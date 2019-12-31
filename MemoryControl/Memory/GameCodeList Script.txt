@@ -1,0 +1,44 @@
+﻿/ Allocate 8 bytes
+/ pNext
+/ pCode
+#Data:8
+#Name:GameCodeList
+
+// If pCode is not null, call it
+/ push ebx
+53
+/ push ecx
+51
+/ push edx
+52
+
+/ mov ecx, [eax+4]
+8B 48 04
+/ test ecx, ecx
+85 C9
+/ je @end
+74 0C
+/ push eax
+50
+/ call ecx
+FF D1
+/ pop eax
+58
+
+// If pNext is not null, call it + 8
+/ mov ecx, [eax]
+8B 08
+/ test ecx, ecx
+85 C9
+/ je @end
+74 02
+/  call ecx
+FF D1
+/ @end
+
+/ pop edx
+5a
+/ pop ecx
+59
+/ pop ebx
+5b

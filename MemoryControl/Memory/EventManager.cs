@@ -1,0 +1,211 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace Common.Memory
+{
+    public class EventManager
+    {
+        public class GameCode
+        {
+            public int DataHeaderSize;
+            public string Name;
+            public string IntendedEvent;
+            public readonly byte[] Code;
+
+
+            public int Length { get
+                {
+                    return DataHeaderSize + Code.Length;
+                } }
+
+            public GameCode(string Path)
+            {
+                var data = ScriptAssembler.ParseScript(File.ReadAllLines(Path));
+                DataHeaderSize = data.DataSize;
+                Name = data.Name;
+                IntendedEvent = data.Event;
+                Code = data.Code;
+
+
+            }
+
+            /// <summary>
+            /// Writes the code to game memory.
+            /// Returns the address to the start of the new allocation.
+            /// </summary>
+            /// <param name="hProcess"></param>
+            /// <returns></returns>
+            public IntPtr WriteNewToMemory(IntPtr hProcess, byte[] Footer)
+            {
+                var pCode = MemoryControl.AllocateMemory(hProcess, 5 + Length + Footer.Length);
+
+                byte[] buffer = new byte[5 + Length + Footer.Length];
+                for(int i = 0; i < DataHeaderSize; i++)
+                {
+                    buffer[i] = 0;
+                }
+
+                Array.Copy(ScriptAssembler.SetRegister(ScriptAssembler.x86Register.EAX, (uint)pCode), 0, buffer, DataHeaderSize, 5);
+                Array.Copy(Code, 0, buffer, DataHeaderSize + 5, Code.Length);
+                Array.Copy(Footer, 0, buffer, DataHeaderSize + 5 + Code.Length, Footer.Length);
+
+                MemoryControl.Write(hProcess, pCode, buffer);
+
+                return pCode;
+            }
+        }
+
+        public class GameCodeList
+        {
+            #region Public Fields
+            public int Count { private get; set; } = 0;
+            #endregion
+
+            #region Private Fields
+            private readonly IntPtr m_hProcess;
+            private List<IntPtr> m_Addresses = new List<IntPtr>();
+            private IntPtr m_pStart;
+            #endregion
+
+            public GameCodeList(IntPtr Start, IntPtr hProcess)
+            {
+                m_pStart = Start;
+                m_hProcess = hProcess;
+            }
+
+
+            #region Public Methods
+            public IntPtr GetIndexPointer(int Index)
+            {
+                return m_Addresses[Index];
+            }
+
+            /// <summary>
+            /// Appends bytes to a list.
+            /// Returns the pointer to allocation.
+            /// </summary>
+            /// <param name="Code"></param>
+            /// <returns></returns>
+            public IntPtr Append(GameCode Code)
+            {
+                // 0: pNext
+                // 4: pCode
+
+                var pCode = Code.WriteNewToMemory(m_hProcess, new byte[] { 0xc3 });
+                var pEntry = GameEvent.EventMain.WriteNewToMemory(m_hProcess, new byte[] { 0xc3 });
+                if (Count > 0)
+                {
+                    var last = GetIndexPointer(Count - 1);
+                    MemoryControl.Write(m_hProcess, last, BitConverter.GetBytes((int)pEntry + 8));
+                    MemoryControl.Write(m_hProcess, last + 4, BitConverter.GetBytes((int)pCode + Code.DataHeaderSize));
+                }
+                else
+                {
+                    MemoryControl.Write(m_hProcess, m_pStart, BitConverter.GetBytes((int)pEntry + 8));
+                    MemoryControl.Write(m_hProcess, m_pStart + 4, BitConverter.GetBytes((int)pCode + Code.DataHeaderSize));
+                }
+
+                m_Addresses.Add(pEntry);
+
+                Count++;
+                return pCode;
+            }
+            #endregion
+        }
+
+        public class GameEvent
+        {
+            #region Public Fields
+            public readonly string EventName;
+            public static readonly GameCode EventMain = new GameCode(ScriptAssembler.SystemModDirectory + "GameCodeList.mod");
+            #endregion
+
+            #region Private Fields
+            private readonly GameCodeList m_List;
+            private readonly IntPtr m_hProcess;
+            #endregion
+
+
+            public GameEvent(IntPtr hProcess, string EventName, IntPtr InjectionPoint, byte[] Footer, int NOPLength)
+            {
+                m_hProcess = hProcess;
+                this.EventName = EventName;
+                var pInjection = EventMain.WriteNewToMemory(m_hProcess, Footer);
+
+                m_List = new GameCodeList(pInjection, hProcess);
+
+                byte[] injection = new byte[7 + NOPLength];
+
+                Array.Copy(ScriptAssembler.FarCall(pInjection + 8, ScriptAssembler.x86Register.EAX), 0, injection, 0, 7);
+
+                for (int i = 0; i < NOPLength; i++)
+                {
+                    injection[i + 7] = 0x90;
+                }
+
+                MemoryControl.Write(m_hProcess, InjectionPoint, injection);
+            }
+
+            #region Public Methods
+            public IntPtr Subscribe(GameCode GC)
+            {
+                return m_List.Append(GC);
+            }
+            #endregion
+
+            #region Private Methods
+
+            #endregion
+        }
+
+        public struct SubscriptionData
+        {
+            public GameCode Code;
+            public string Event;
+            public IntPtr pCode;
+        }
+
+        private List<GameEvent> m_Events = new List<GameEvent>();
+        private List<SubscriptionData> m_Subscriptions = new List<SubscriptionData>();
+        private IntPtr m_hProcess;
+
+        public EventManager(IntPtr hProcess)
+        {
+            m_hProcess = hProcess;
+            
+        }
+
+        public void CreateNewEvent(string EventName, IntPtr Address, byte[] Footer, byte NOPLength)
+        {
+            m_Events.Add(new GameEvent(m_hProcess, EventName, Address, Footer, NOPLength));
+        }
+
+        public GameEvent GetEvent(string EventName)
+        {
+            foreach (var item in m_Events)
+                if (item.EventName == EventName)
+                    return item;
+            throw new Exception("Event not found.");
+        }
+
+        public SubscriptionData[] GetSubscriptions()
+        {
+            return m_Subscriptions.ToArray();
+        }
+
+        public IntPtr Subscribe(string EventName, GameCode Code)
+        {
+            var p = GetEvent(EventName).Subscribe(Code);
+
+            m_Subscriptions.Add(new SubscriptionData()
+            {
+                Code = Code,
+                Event = EventName,
+                pCode = p
+            });
+
+            return p;
+        }
+    }
+}

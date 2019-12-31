@@ -1,0 +1,36 @@
+﻿Key:
+	'#': Meta
+	'/': Comment
+	'-': Macro
+
+Register:
+	"EAX"
+	"EBX"
+	"ECX"
+	"EDX"
+	"[EAX]"
+	"[EBX]"
+	"[ECX]"
+	"[EDX]"
+
+Meta:
+	Set the amount of free bytes above the code:
+		#Data:<int>
+	Set the intended event name for the script:
+		#Event:<string>
+	Set the internal name of the script:
+		#Name:<String>
+		
+Macro:
+	Set the value of a register to a constant:
+		-Mov <register> <int>
+	Set the value of a register to another register:
+		-Mov <register> <register>
+	Call a specific address using specified register:
+		-FarCall <int> <register>
+	Fill bytes with NOP:
+		-Nop <int>
+	Push to stack:
+		-Push <register>
+	Pop from stack:
+		-Pop <register>

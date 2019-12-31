@@ -1,0 +1,42 @@
+﻿Alpha 7:
+ - Rewritten net code to use less data.
+ - Added network usage graph.
+ - Moved and updated memory and network classes into a new class library (For use on future related projects).
+ - Removed ability to change port temporarily.
+ - Fixed a crash in multiplayer when receiving data.
+ - Fixed a possible crash when writing to memory.
+ - Fixed "Load all" in "Other" tab not setting created object's parent to the sector.
+Alpha 6:
+ - Replaced the CodeInjector with the EventManager.
+   This can handle more injections and can inject in more than one place.
+ - Added event: OnGameTick
+ - Added event: OnObjectDestroyed
+ - Added table to show code that has been injected.
+ - Application will no longer crash if it is opened while X2 is not running.
+ - Added format for x2code files to support new meta.
+ - Added macros to x2code files.
+ - Added new README for x2code files.
+ - Added interaction flag editor to the SectorObject tab.
+ - Added the ability to create objects and set their parent (Leave as 0 for sector).
+ - Multiplayer now partially supports shields.
+ - Simplified multiplayer netcode.
+
+Alpha 5:
+ - Added a crash handler.
+ - Multiplayer now works over the internet.
+
+Alpha 4:
+ - Added method to destroy SectorObjects.
+ - Architecture for multiple players to connect to one game improved.
+ - More values can be edited in the SectorObject tab.
+ - Set boxes in the SectorObject tab to readonly where the editor is not implemented.
+ - port.cfg will now regenerate if deleted.
+ - Multiplayer tab now checks the ip box and disables buttons to prevent a crash.
+ - Added the "Station_Internal" MainType.
+
+Alpha 3 - 1:
+ - Fixed a null reference in the SectorObject tab
+ - Fixed a mistake in the readme file.
+
+Alpha 3:
+ - Initial Release.

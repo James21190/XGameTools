@@ -1,0 +1,24 @@
+﻿Alpha 4:
+	- Added an executable patching system for easy implementation of optimised code.
+Alpha 3:
+	- Added an auto reloader to the SectorObject tab.
+	- Added enumerations for a lot of SectorObject sub-types and race ids.
+	- Added GateSystemObject and partial viewer.
+	- Added galaxy map.
+	- Improved SectorObjectManager's SectorObjectExists methods.
+	- Fixed LocalRotationDelta being written to the wrong display on the SectorObject tab.
+Alpha 2:
+	- Added "General" tab.
+	- Added SETA override, which only slows down when regular SETA is activated.
+	- Added SystemBase object.
+	- Added more values to SectorObject tab.
+	- Added functionality to the button in the Injection tab.
+	- Identified more values in SectorObject.
+	- Multiplayer now syncs strafe data and hull data.
+	- SectorObjectManager now fully implements IMemoryObject.
+	- Replaced all SectorObject gets within the SectorObjectManager with methods that use an object's ID.
+	- Fixed SectorObject tab reload.
+	- Fixed multiplayer not saving rotation delta and speed.
+	- Fixed SectorObject's rotation matrix.
+Alpha 1:
+	- Initial

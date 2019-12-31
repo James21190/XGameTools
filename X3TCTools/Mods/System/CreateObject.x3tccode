@@ -1,0 +1,61 @@
+﻿#Event:OnGameTick
+#Name:CreateObject
+#Data:16
+
+/ 0: FullType
+/ 4: pParent
+/ 8: pSectorObject
+/ 12: Lock
+
+// If lock is not null, run
+/ mov ecx [eax+c]
+8b 48 0C
+/ test ecx ecx
+85 c9
+/ je end
+74 3F
+
+- push eax
+
+// Allocate memory
+/ push 0x130
+68 30 01 00 00
+/ call malloc
+- farcall 00511844 eax
+- pop edx
+
+/ mov edx [esp]
+8B 14 24
+
+// Setup SectorObject
+- push [edx]
+- push eax
+/ call SectorObject
+-farcall 004404f0 eax
+
+// If parent is not null, set parent
+/ mov edx [esp]
+8b 14 24
+/ mov edx [edx+4]
+8b 52 04
+/ test edx, edx
+85 d2
+/ je skip
+74 0C
+
+// Call SetParent
+- mov ecx eax
+- push ecx
+- push edx
+- farcall 0044a100 eax
+- pop eax
+
+// Reset
+/mov edx [esp]
+8b 14 24
+/mov [edx+8] eax
+89 42 08
+/ mov [edx+c] 0
+c7 42 0c 00 00 00 00
+
+- pop eax
