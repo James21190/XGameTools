@@ -59,6 +59,11 @@ namespace Common.Vector
             SetData(Memory);
         }
 
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SetData(byte[] Memory)
         {
             Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);

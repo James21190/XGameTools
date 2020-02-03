@@ -47,23 +47,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\Tabs\GateSystemObjectTab.cs">
+    <Compile Include="UI\Displays\DynamicValueDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Tabs\GeneralTab.cs">
+    <Compile Include="UI\Displays\DynamicValueDisplay.Designer.cs">
+      <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\EventObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Tabs\InjectorTab.cs">
+    <Compile Include="UI\Displays\EventObjectDisplay.Designer.cs">
+      <DependentUpon>EventObjectDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\EventObjectSubDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Tabs\MultiplayerTab.cs">
+    <Compile Include="UI\Displays\EventObjectSubDisplay.Designer.cs">
+      <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\SectorObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Tabs\OtherTab.cs">
+    <Compile Include="UI\Displays\SectorObjectDisplay.Designer.cs">
+      <DependentUpon>SectorObjectDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\SectorObjectManagerDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Tabs\SectorObjectTab.cs">
+    <Compile Include="UI\Displays\SectorObjectManagerDisplay.Designer.cs">
+      <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\StoryBaseDisplay.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\StoryBaseDisplay.Designer.cs">
+      <DependentUpon>StoryBaseDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\TypeDataDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\TypeDataDisplay.Designer.cs">
+      <DependentUpon>TypeDataDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TypeSelectDialog.cs">
       <SubType>Form</SubType>
@@ -79,6 +103,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\Displays\DynamicValueDisplay.resx">
+      <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\EventObjectDisplay.resx">
+      <DependentUpon>EventObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\EventObjectSubDisplay.resx">
+      <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\SectorObjectDisplay.resx">
+      <DependentUpon>SectorObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\SectorObjectManagerDisplay.resx">
+      <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\StoryBaseDisplay.resx">
+      <DependentUpon>StoryBaseDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\TypeDataDisplay.resx">
+      <DependentUpon>TypeDataDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\TypeSelectDialog.resx">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,5 +170,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

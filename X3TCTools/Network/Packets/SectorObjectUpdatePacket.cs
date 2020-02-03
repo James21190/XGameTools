@@ -123,5 +123,10 @@ namespace X3TCTools.Network.Packets
             collection.PopFirst(ref Rotation);
             collection.PopFirst(ref LocalRotationDelta);
         }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

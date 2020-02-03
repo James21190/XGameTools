@@ -12,7 +12,7 @@ namespace X3TCTools.Bases
     /// <summary>
     /// Main object that represents the GateSystemObject.
     /// </summary>
-    public class GateSystemObject : IMemoryObject
+    public class GateSystemObject : MemoryObject
     {
         #region Classes
 
@@ -77,6 +77,10 @@ namespace X3TCTools.Bases
                     collection.PopFirst(ref Position);
                     collection.PopFirst(ref Unknown_4);
                 }
+                public void SetLocation(IntPtr hProcess, IntPtr address)
+                {
+                    throw new NotImplementedException();
+                }
                 #endregion
             }
 
@@ -135,6 +139,10 @@ namespace X3TCTools.Bases
                 collection.PopFirst(ref unknown_7);
                 collection.PopFirst(ref unknown_8);
             }
+            public void SetLocation(IntPtr hProcess, IntPtr address)
+            {
+                throw new NotImplementedException();
+            }
             #endregion
         }
 
@@ -143,47 +151,66 @@ namespace X3TCTools.Bases
         /// <summary>
         /// All identified sector names.
         /// </summary>
-        public enum SectorName
+        public enum SectorName : ushort
         {
-            Kingdom_End = 0x00000000,
-            Rolks_Drift = 0x00000001,
-            Queens_Space = 0x00000002,
-            Menelaus_Frontier = 0x00000003,
-            Ceos_Buckzoid = 0x00000004,
-            Teladi_Gain = 0x00000005,
-            Family_Whi = 0x00000006,
-            Family_Zein = 0x00010006,
-            Thuruks_Pride = 0x00020006,
-            Ronkars_Fire = 0x00030006,
-            Ronkars_Clouds = 0x00030007,
-            Tharkas_Sun = 0x00030008,
-            Chos_Defeat = 0x00030009,
-            Patriarchs_Keep = 0x00040009,
-            Two_Grand = 0x0004000a,
-            Freedoms_Reach = 0x00070004,
-            Xenon_Sector_534 = 0x00000011,
-            Xenon_Sector_596 = 0x00000013,
-            Three_Worlds = 0x00010000,
-            Cloudbase_North_West = 0x00020000,
-            Players_Sector = 0x00020014,
-            Ringo_Moon = 0x00030000,
-            Red_Light = 0x00040000,
-            Ckoudbase_South_West = 0x00050000,
-            Emperor_Mines = 0x00060000,
-            Savage_Spur = 0x00070000,
-            Ocracokes_Storm = 0x00080000,
-            Senators_Badlands = 0x00090000,
-            Weavers_Tempest = 0x000a0000,
-            Omicron_Lyrae = 0x0006000d,
-            Circle_Of_Labor = 0x0005000d,
-            Heretics_End = 0x0004000d,
-            Asteroid_Belt = 0x0003000b,
-            Mars = 0x0003000c,
-            Venus = 0x0002000c,
-            The_Moon = 0x0002000d,
-            Earth = 0x0003000d,
-            The_Hub = 0x0008000d,
-            Argon_Prime = 0x00030001
+            Kingdom_End = 0x0000,
+            Rolks_Drift = 0x0001,
+            Queens_Space = 0x0002,
+            Menelaus_Frontier = 0x0003,
+            Ceos_Buckzoid = 0x0004,
+            Teladi_Gain = 0x0005,
+            Family_Whi = 0x0006,
+            Family_Zein = 0x0106,
+            Thuruks_Pride = 0x0206,
+            Ronkars_Fire = 0x0306,
+            Ronkars_Clouds = 0x0307,
+            Tharkas_Sun = 0x0308,
+            Chos_Defeat = 0x0309,
+            Patriarchs_Keep = 0x0409,
+            Two_Grand = 0x040a,
+            Freedoms_Reach = 0x0704,
+            Xenon_Sector_534 = 0x0011,
+            Xenon_Sector_596 = 0x0013,
+            Three_Worlds = 0x0100,
+            Cloudbase_North_West = 0x0200,
+            Players_Sector = 0x0214,
+            Ringo_Moon = 0x0300,
+            Red_Light = 0x0400,
+            Ckoudbase_South_West = 0x0500,
+            Emperor_Mines = 0x0600,
+            Savage_Spur = 0x0700,
+            Ocracokes_Storm = 0x0800,
+            Senators_Badlands = 0x0900,
+            Weavers_Tempest = 0x0a00,
+            Omicron_Lyrae = 0x060d,
+            Circle_Of_Labor = 0x050d,
+            Heretics_End = 0x040d,
+            Asteroid_Belt = 0x030b,
+            Mars = 0x030c,
+            Venus = 0x020c,
+            The_Moon = 0x020d,
+            Earth = 0x030d,
+            The_Hub = 0x080d,
+            Argon_Prime = 0x0301,
+            Mercury = 0x010c,
+            Jupiter = 0x020b,
+            Saturn = 0x010b,
+            Titan = 0x000b,
+            Uranus = 0x010a,
+            Neptune = 0x0109,
+            Pluto = 0x0108,
+            Oort_Cloud = 0x0107,
+            Terran_Unknown_Sector_2 = 0x090f,
+            Aldrin = 0x0a0d,
+            Aldrin_2 = 0x0a0e,
+            Terran_Unknown_Sector_1 = 0x0a0f,
+            Terran_Unknown_Sector_3 = 0x0a10,
+            Xenon_Sector = 0x0a11,
+            Unknown_Sector_18_9 = 0x0912,
+            Kuiper_Belt = 0x0008,
+            Uranus_2 = 0x000a,
+            Uranus_3 = 0x020a
+
         }
 
 
@@ -203,18 +230,12 @@ namespace X3TCTools.Bases
         // Collection of sector data
         public SectorData[] sectorData { get; } = new SectorData[width * height];
 
-        private GameHook m_GameHook;
-
-        private IntPtr pThis;
-
-        public GateSystemObject(GameHook gameHook)
+        public GateSystemObject()
         {
-            this.m_GameHook = gameHook;
             for (int i = 0; i < maxSectorID; i++)
             {
                 sectorData[i] = new SectorData();
             }
-            Reload();
         }
 
         /// <summary>
@@ -223,7 +244,7 @@ namespace X3TCTools.Bases
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public string GetSectorName(short X, short Y)
+        public string GetSectorName(byte X, byte Y)
         {
             var result = ((SectorName)GetSectorFullPos(X, Y)).ToString();
             int o;
@@ -238,9 +259,9 @@ namespace X3TCTools.Bases
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public int GetSectorFullPos(short X, short Y)
+        public int GetSectorFullPos(byte X, byte Y)
         {
-            return (int)((ushort)Y << 16 | (ushort)X);
+            return (ushort)((byte)Y << 8 | (byte)X);
         }
 
         /// <summary>
@@ -254,20 +275,8 @@ namespace X3TCTools.Bases
             return sectorData[Y + X * (width-1)];
         }
 
-        /// <summary>
-        /// Reload all variables.
-        /// </summary>
-        public void Reload()
-        {
-            pThis = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (IntPtr)GameHook.GlobalAddresses.GateSystemObject);
-            SetData(MemoryControl.Read(m_GameHook.hProcess, pThis, byteSize));
-
-            
-
-        }
-
         #region IMemoryObject
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             var collection = new ObjectByteList();
             collection.Append(byteSize);
@@ -278,12 +287,12 @@ namespace X3TCTools.Bases
             return collection.GetBytes();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return byteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList(Memory);
             collection.PopFirst(ref gateSystemFunctionIndex);
@@ -293,6 +302,10 @@ namespace X3TCTools.Bases
             for (int i = 0; i < maxSectorID; i++) {
                 collection.PopFirst(ref sectorData[i]);
             }
+        }
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            base.SetLocation(hProcess, address);
         }
         #endregion
     }

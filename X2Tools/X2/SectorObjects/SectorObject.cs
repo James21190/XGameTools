@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using X2Tools.X2.SectorObjects.Meta;
 using Common.Memory;
-using Common.Memory;
 
 namespace X2Tools.X2.SectorObjects
 {
@@ -14,28 +13,22 @@ namespace X2Tools.X2.SectorObjects
     /// Contains data relating to its type, speed, and copies of its position and rotation.
     /// Contains pointers to additional data structures.
     /// </summary>
-    public partial class SectorObject : IMemoryObject
+    public partial class SectorObject : MemoryObject
     {
         /// <summary>
         /// The size of this object in bytes
         /// </summary>
         public const int ByteSize = 220;
 
-        #region Private Fields
-        private GameHook m_GameHook;      
-        #endregion
-
-        #region Public Fields
-
-        /// <summary>
-        /// The pointer to this sectorobject in game memory
-        /// </summary>
-        public readonly IntPtr pThis;
+        public bool IsValid { get
+            {
+                return pNext.IsValid && pPrevious.IsValid;
+            } }
 
         #region Game memory values
         // All values stored in memory
-        public readonly IntPtr Next;
-        public readonly IntPtr Previous;
+        public MemoryObjectPointer<SectorObject> pNext = new MemoryObjectPointer<SectorObject>();
+        public MemoryObjectPointer<SectorObject> pPrevious = new MemoryObjectPointer<SectorObject>();
         public int SectorObjectID;
         public readonly IntPtr pDefaultName;
         public int Speed;
@@ -79,56 +72,13 @@ namespace X2Tools.X2.SectorObjects
         public int Unknown_21;
         #endregion
 
-        #endregion
-
         /// <summary>
         /// Load a sectorobject from an address in memory.
         /// </summary>
         /// <param name="gameHook"></param>
         /// <param name="Address"></param>
-        public SectorObject(GameHook gameHook, IntPtr Address)
+        public SectorObject()
         {
-            m_GameHook = gameHook;
-
-            var Memory = MemoryControl.Read(m_GameHook.hProcess, Address, ByteSize);
-
-            // Load readonly variables
-            pThis = Address;
-            Next = (IntPtr)BitConverter.ToInt32(Memory, 0);
-            Previous = (IntPtr)BitConverter.ToInt32(Memory, 4);
-            pDefaultName = (IntPtr)BitConverter.ToInt32(Memory, 12);
-            MainType = (Main_Type)BitConverter.ToInt16(Memory, 72);
-            SubType = BitConverter.ToInt16(Memory, 74);
-            pMeta = (IntPtr)BitConverter.ToInt32(Memory, 76);
-            pParent = (IntPtr)BitConverter.ToInt32(Memory, 80);
-            pData = (IntPtr)BitConverter.ToInt32(Memory, 96);
-
-            // Load dynamic data
-            SetData(Memory);
-        }
-
-        /// <summary>
-        /// Load a sectorobject from a byte array.
-        /// pThis will be set to null.
-        /// </summary>
-        /// <param name="gameHook"></param>
-        /// <param name="Memory"></param>
-        public SectorObject(GameHook gameHook, byte[] Memory)
-        {
-            m_GameHook = gameHook;
-            // Load readonly variables
-            pThis = IntPtr.Zero;
-            Next = (IntPtr)BitConverter.ToInt32(Memory, 0);
-            Previous = (IntPtr)BitConverter.ToInt32(Memory, 4);
-            pDefaultName = (IntPtr)BitConverter.ToInt32(Memory, 12);
-            MainType = (Main_Type)BitConverter.ToInt16(Memory, 72);
-            SubType = BitConverter.ToInt16(Memory, 74);
-            pMeta = (IntPtr)BitConverter.ToInt32(Memory, 76);
-            pParent = (IntPtr)BitConverter.ToInt32(Memory, 80);
-            pData = (IntPtr)BitConverter.ToInt32(Memory, 96);
-
-            // Load dynamic data
-            SetData(Memory);
         }
 
         #region Public Methods
@@ -137,20 +87,25 @@ namespace X2Tools.X2.SectorObjects
         {
             switch (MainType)
             {
-                case Main_Type.Ship: return ((ShipMeta)GetMetaData()).FirstChild;
+                case Main_Type.Ship: return ((ShipMeta)GetMetaData()).pFirstChild;
                 default: throw new NotImplementedException();
             }
         }
 
-        #region Game Memory
+        #region IMemoryObject
 
         /// <summary>
         /// Loads dynamic data from the sectorobject memory.
         /// </summary>
         /// <param name="Memory"></param>
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             // Load object data from memory
+            var collection = new ObjectByteList(Memory);
+
+            collection.PopFirst(ref pNext);
+            collection.PopFirst(ref pPrevious);
+
             SectorObjectID = BitConverter.ToInt32(Memory, 8);
             Speed = BitConverter.ToInt32(Memory, 16);
             TargetSpeed = BitConverter.ToInt32(Memory, 20);
@@ -188,7 +143,12 @@ namespace X2Tools.X2.SectorObjects
             Unknown_21 = BitConverter.ToInt32(Memory, 216);
         }
 
-        public virtual int GetByteSize()
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            base.SetLocation(hProcess, address);
+        }
+
+        public override int GetByteSize()
         {
             return ByteSize;
         }
@@ -197,12 +157,12 @@ namespace X2Tools.X2.SectorObjects
         /// Returns the object in bytes compatable with the game.
         /// </summary>
         /// <returns></returns>
-        public virtual byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             List<byte> Memory = new List<byte>();
 
-            Memory.AddRange(BitConverter.GetBytes((int)Next));
-            Memory.AddRange(BitConverter.GetBytes((int) Previous));
+            Memory.AddRange(BitConverter.GetBytes((int) pNext.address));
+            Memory.AddRange(BitConverter.GetBytes((int) pPrevious.address));
             Memory.AddRange(BitConverter.GetBytes((int) SectorObjectID));
             Memory.AddRange(BitConverter.GetBytes((int) pDefaultName));
             Memory.AddRange(BitConverter.GetBytes((int) Speed));
@@ -256,18 +216,12 @@ namespace X2Tools.X2.SectorObjects
         {
             if (pThis == IntPtr.Zero)
                 throw new Exception("pThis is null, unable to save.");
-            MemoryControl.Write(m_GameHook.hProcess, pThis+8, GetBytes().Skip(8).ToArray());
-        }
-
-        public void SaveMeta(IMemoryObject Meta)
-        {
-            throw new Common.KnownBrokenMethodExcption();
-            MemoryControl.Write(m_GameHook.hProcess, pMeta, Meta.GetBytes());
+            MemoryControl.Write(m_hProcess, pThis+8, GetBytes().Skip(8).ToArray());
         }
 
         public void SaveData(SectorObject.Data Data)
         {
-            MemoryControl.Write(m_GameHook.hProcess, pData, Data.GetBytes());
+            MemoryControl.Write(m_hProcess, pData, Data.GetBytes());
         }
 
         #endregion
@@ -276,32 +230,18 @@ namespace X2Tools.X2.SectorObjects
         /// Returns the sectorobject's meta data.
         /// </summary>
         /// <returns></returns>
-        public IMemoryObject GetMetaData()
+        public ISectorObjectMeta GetMetaData()
         {
             if (pMeta == IntPtr.Zero)
                 return null;
             switch (MainType)
             {
                 case Main_Type.Ship:
-                    return new ShipMeta(m_GameHook.hProcess, pMeta);
-                case Main_Type.Planet:
-                case Main_Type.Nebula:
-                case Main_Type.Gate:
-                case Main_Type.Sun:
-                    return null;
+                    return new ShipMeta(m_hProcess, pMeta);
                 case Main_Type.Sector:
-                    return new SectorMeta(m_GameHook.hProcess, pMeta);
-                case Main_Type.Asteroid:
-                    return null;
-                case Main_Type.Shield:
-                    return null;
-                case Main_Type.ShipGun:
-                    return null;
+                    return new SectorMeta(m_hProcess, pMeta);
                 case Main_Type.Projectile:
-                    return new ProjectileMeta(m_GameHook.hProcess, pMeta);
-                case Main_Type.Factory:
-                case Main_Type.Dock:
-                    return null;
+                    return new ProjectileMeta(m_hProcess, pMeta);
                 default:
                     throw new NotImplementedException();
             }

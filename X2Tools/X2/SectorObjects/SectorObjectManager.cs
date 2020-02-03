@@ -13,59 +13,56 @@ namespace X2Tools.X2.SectorObjects
     /// <summary>
     /// The main interface with all sector objects.
     /// </summary>
-    public class SectorObjectManager
+    public class SectorObjectManager : MemoryObject
     {
+        #region MemoryValues
+        public const int ByteSize = 100;
+
+        public int Unknown_1;
+        public int Unknown_2;
         /// <summary>
         /// Pointer to the first sector object in a linear list.
         /// </summary>
-        public IntPtr pFirstSectorObject { get; private set; }
+        public MemoryObjectPointer<SectorObject> pFirstSectorObject = new MemoryObjectPointer<SectorObject>();
         /// <summary>
         /// Pointer to the last sector object in a linear list.
         /// </summary>
-        public IntPtr pLastSectorObject { get; private set; }
+        public int Unknown_3;
+        public MemoryObjectPointer<SectorObject> pLastSectorObject = new MemoryObjectPointer<SectorObject>();
         /// <summary>
         /// Pointer to the hash table containing all SectorObject.
         /// </summary>
-        private IntPtr pObjectHashTable;
+        public MemoryObjectPointer<HashTable<SectorObject>> pSectorObjectHashTable = new MemoryObjectPointer<HashTable<SectorObject>>();
+        public int Unknown_4;
+        public int Unknown_5;
+        public int Unknown_6;
+        public int Unknown_7;
+        public int Unknown_8;
+        public int Unknown_9;
+        public int Unknown_10;
+        public int Unknown_11;
         /// <summary>
         /// Pointer to the SectorObject the player is currently piloting.
         /// </summary>
-        public IntPtr pPlayerShip { get; private set; }
-        
+        public MemoryObjectPointer<SectorObject> pPlayerShip = new MemoryObjectPointer<SectorObject>();
+        public int Unknown_12;
+        public int PlayerShotsFired;
+        public int PlayerMissilesLaunched;
+        public int PlayerShotsHit;
+        public int PlayerMissilesHit;
+        public int PlayerSubDistanceDravelled;
+        public int PlayerDistanceTraveled;
+        public int Unknown_13;
+        public int Unknown_14;
+        public int Unknown_15;
+        #endregion
 
-        private readonly GameHook m_GameHook;
-        public SectorObjectManager(GameHook gameHook)
+        public SectorObjectManager()
         {
-            m_GameHook = gameHook;
 
-            Reload();
-        }
-
-        /// <summary>
-        /// Reloads all values stored in the SectorObjectManager
-        /// </summary>
-        public void Reload()
-        {
-            var pThis = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (IntPtr)GlobalAddresses.pSectorObjectManager);
-            pFirstSectorObject = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (pThis + 8));
-            pLastSectorObject = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (pThis + 16));
-            pObjectHashTable = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (pThis + 20));
-            pPlayerShip = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (pThis + 56));
         }
 
         #region SectorObject Get
-        /// <summary>
-        /// Returns the SectorObject that is stored at the given address.
-        /// </summary>
-        /// <param name="Address"></param>
-        /// <returns></returns>
-        public SectorObject GetSectorObject(IntPtr Address)
-        {
-            if(Address != IntPtr.Zero)
-                return new SectorObject(m_GameHook, Address);
-            throw new AddressNullException();
-        }
-
         /// <summary>
         /// Returns the SectorObject with a given ID.
         /// </summary>
@@ -73,11 +70,9 @@ namespace X2Tools.X2.SectorObjects
         /// <returns></returns>
         public SectorObject GetSectorObject(int ID)
         {
-            // Reload memory to check for changes.
-            Reload();
             // Load the hash table
-            var HashTable = new HashTable(m_GameHook, MemoryControl.Read(m_GameHook.hProcess, pObjectHashTable, 16));
-            return GetSectorObject(HashTable.GetObjectWithID(ID));
+            var HashTable = pSectorObjectHashTable.obj;
+            return HashTable.GetObjectWithID(ID);
         }
 
         /// <summary>
@@ -86,24 +81,15 @@ namespace X2Tools.X2.SectorObjects
         /// <returns></returns>
         public SectorObject GetSpace()
         {
-            foreach(var item in GetSectorObjects(IntPtr.Zero, false))
+            var objects = GetSectorObjects(pFirstSectorObject.obj, false);
+            foreach (var obj in objects)
             {
-                if (item.MainType == SectorObject.Main_Type.Sector && (SectorObject.Sector_Sub_Type)item.SubType == SectorObject.Sector_Sub_Type.Space)
-                    return item;
+                if (obj.MainType == SectorObject.Main_Type.Sector)
+                    return obj;
             }
-            throw new IndexOutOfRangeException();
+            return null;
         }
 
-        public bool SectorObjectExists(int ID, out SectorObject sectorObject)
-        {
-            sectorObject = null;
-            var HashTable = new HashTable(m_GameHook, MemoryControl.Read(m_GameHook.hProcess, pObjectHashTable, 16));
-            var id = HashTable.GetObjectWithID(ID);
-            if (id == IntPtr.Zero)
-                return false;
-            sectorObject = GetSectorObject(id);
-            return true;
-        }
 
         /// <summary>
         /// Returns an array of all SectorObjects and its children from a start address.
@@ -111,58 +97,47 @@ namespace X2Tools.X2.SectorObjects
         /// </summary>
         /// <param name="Start"></param>
         /// <returns></returns>
-        public SectorObject[] GetSectorObjects(IntPtr Start, bool TraverseDown = true)
+        public SectorObject[] GetSectorObjects(SectorObject start, bool TraverseDown = true)
         {
-            Reload();
-            if (Start == IntPtr.Zero)
-                Start = pFirstSectorObject;
-            List<SectorObject> objects = new List<SectorObject>();
-            // Get first
-            var so = GetSectorObject(Start);
-
-            // If at end of array, return
-            while (so.Next != IntPtr.Zero)
+            List<SectorObject> objs = new List<SectorObject>();
+            var so = start;
+            while (so.IsValid)
             {
-                objects.Add(so);
-                if(TraverseDown)
-                    switch (so.MainType)
-                    {
-                        case SectorObject.Main_Type.Sector:
-                            var sectorMeta = new SectorMeta(m_GameHook.hProcess, so.pMeta);
-                            objects.AddRange(GetSectorObjects(sectorMeta.FirstChild));
-                            break;
-                        case SectorObject.Main_Type.Ship:
-                            var shipMeta = new ShipMeta(m_GameHook.hProcess, so.pMeta);
-                            objects.AddRange(GetSectorObjects(shipMeta.FirstChild));
-                            break;
-                    }
-                so = GetSectorObject(so.Next);
+                objs.Add(so);
+
+                if (TraverseDown)
+                {
+                    var child = so.GetMetaData().GetFirstChild();
+                    if (child != null && child.IsValid)
+                        objs.AddRange(GetSectorObjects(child));
+                }
+
+                so = so.pNext.obj;
             }
-            return objects.ToArray();
+
+            return objs.ToArray();
         }
 
-        public SectorObject[] GetSectorObjectsWithType(IntPtr Start, SectorObject.Main_Type main_Type, bool TraverseDown = true)
+        public SectorObject[] GetSectorObjectsWithType(SectorObject start, SectorObject.Main_Type main_Type, bool TraverseDown = true)
         {
-            List<SectorObject> results = new List<SectorObject>();
-            foreach(var item in GetSectorObjects(Start, TraverseDown))
+            List<SectorObject> objs = new List<SectorObject>();
+            var so = start;
+            while (so.IsValid)
             {
-                if (item.MainType == main_Type)
-                    results.Add(item);
-            }
-            return results.ToArray();
-        }
+                if (so.MainType == main_Type)
+                    objs.Add(so);
 
-        /// <summary>
-        /// Returns the address of a SectorObject with a given ID.
-        /// Returns a null pointer if the object is not found.
-        /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        public IntPtr GetAddressOfSectorObject(int ID)
-        {
-            Reload();
-            var HashTable = new HashTable(m_GameHook, MemoryControl.Read(m_GameHook.hProcess, pObjectHashTable, 16));
-            return HashTable.GetObjectWithID(ID);
+                if (TraverseDown)
+                {
+                    var child = so.GetMetaData().GetFirstChild();
+                    if (child != null && child.IsValid)
+                        objs.AddRange(GetSectorObjectsWithType(child,main_Type));
+                }
+
+                so = so.pNext.obj;
+            }
+
+            return objs.ToArray();
         }
 
         /// <summary>
@@ -171,10 +146,85 @@ namespace X2Tools.X2.SectorObjects
         /// <returns></returns>
         public SectorObject GetPlayerShip()
         {
-            Reload();
-            return new SectorObject(m_GameHook, pPlayerShip);
+            return pPlayerShip.obj;
         }
         #endregion
 
+        #region IMemoryObject
+        public override byte[] GetBytes()
+        {
+            var collection = new ObjectByteList();
+            collection.Append(Unknown_1);
+            collection.Append(Unknown_2);
+            collection.Append(pFirstSectorObject);
+            collection.Append(Unknown_3);
+            collection.Append(pLastSectorObject);
+            collection.Append(pSectorObjectHashTable);
+            collection.Append(Unknown_4);
+            collection.Append(Unknown_5);
+            collection.Append(Unknown_6);
+            collection.Append(Unknown_7);
+            collection.Append(Unknown_8);
+            collection.Append(Unknown_9);
+            collection.Append(Unknown_10);
+            collection.Append(Unknown_11);
+            collection.Append(pPlayerShip);
+            collection.Append(Unknown_12);
+            collection.Append(PlayerShotsFired);
+            collection.Append(PlayerMissilesLaunched);
+            collection.Append(PlayerShotsHit);
+            collection.Append(PlayerMissilesHit);
+            collection.Append(PlayerSubDistanceDravelled);
+            collection.Append(PlayerDistanceTraveled);
+            collection.Append(Unknown_13);
+            collection.Append(Unknown_14);
+            collection.Append(Unknown_15);
+            return collection.GetBytes();
+        }
+
+        public override int GetByteSize()
+        {
+            return ByteSize;
+        }
+
+        public override void SetData(byte[] Memory)
+        {
+            var collection = new ObjectByteList(Memory);
+            collection.PopFirst(ref Unknown_1);
+            collection.PopFirst(ref Unknown_2);
+            collection.PopFirst(ref pFirstSectorObject);
+            collection.PopFirst(ref Unknown_3);
+            collection.PopFirst(ref pLastSectorObject);
+            collection.PopFirst(ref pSectorObjectHashTable);
+            collection.PopFirst(ref Unknown_4);
+            collection.PopFirst(ref Unknown_5);
+            collection.PopFirst(ref Unknown_6);
+            collection.PopFirst(ref Unknown_7);
+            collection.PopFirst(ref Unknown_8);
+            collection.PopFirst(ref Unknown_9);
+            collection.PopFirst(ref Unknown_10);
+            collection.PopFirst(ref Unknown_11);
+            collection.PopFirst(ref pPlayerShip);
+            collection.PopFirst(ref Unknown_12);
+            collection.PopFirst(ref PlayerShotsFired);
+            collection.PopFirst(ref PlayerMissilesLaunched);
+            collection.PopFirst(ref PlayerShotsHit);
+            collection.PopFirst(ref PlayerMissilesHit);
+            collection.PopFirst(ref PlayerSubDistanceDravelled);
+            collection.PopFirst(ref PlayerDistanceTraveled);
+            collection.PopFirst(ref Unknown_13);
+            collection.PopFirst(ref Unknown_14);
+            collection.PopFirst(ref Unknown_15);
+        }
+
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            pPlayerShip.SetLocation(hProcess, address+56);
+            pFirstSectorObject.SetLocation(hProcess, address);
+            pLastSectorObject.SetLocation(hProcess, address);
+            pSectorObjectHashTable.SetLocation(hProcess, address);
+            base.SetLocation(hProcess, address);
+        }
+        #endregion
     }
 }

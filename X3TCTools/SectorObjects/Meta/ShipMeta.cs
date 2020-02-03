@@ -7,33 +7,34 @@ using Common.Memory;
 
 namespace X3TCTools.SectorObjects.Meta
 {
-    public class ShipMeta : ISectorObjectMeta
+    public class ShipMeta : MemoryObject, ISectorObjectMeta
     {
         public const int ByteSize = 1168;
 
-        private GameHook m_GameHook;
 
-        public SectorObject.ListTop[] ChildrenList = new SectorObject.ListTop[SectorObject.MAIN_TYPE_COUNT];
+        public ChildList[] ChildrenList = new ChildList[SectorObject.MAIN_TYPE_COUNT];
 
-        public ShipMeta(GameHook gameHook, IntPtr address)
+        public ShipMeta()
         {
-            m_GameHook = gameHook;
-            SetData(MemoryControl.Read(gameHook.hProcess, address, ByteSize));
+            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            {
+                ChildrenList[i] = new ChildList();
+            }
         }
 
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             var collection = new ObjectByteList();
             collection.Append(ChildrenList);
             return collection.GetBytes();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList();
             collection.SetData(Memory);
@@ -41,9 +42,15 @@ namespace X3TCTools.SectorObjects.Meta
             collection.PopFirst(ref ChildrenList);
         }
 
-        public SectorObject.ListTop[] GetChildrenList()
+        public ChildList[] GetChildrenList()
         {
             return ChildrenList;
+        }
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            base.SetLocation(hProcess, address);
+            foreach(var list in ChildrenList)
+                list.SetLocation(hProcess, address);
         }
     }
 }

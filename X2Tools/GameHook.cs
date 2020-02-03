@@ -19,10 +19,6 @@ namespace X2Tools
     public class GameHook
     {
 
-        #region Private Fields
-
-        #endregion
-
         /// <summary>
         /// The unit that is considered 1 by the game's fixed point calculations
         /// </summary>
@@ -31,18 +27,20 @@ namespace X2Tools
         /// The game process handle
         /// </summary>
         public IntPtr hProcess { get; private set; }
-        /// <summary>
-        /// A collection of the type data in the game's memory
-        /// </summary>
-        public TypeDataManager TypeDataArray
-        {
-            private set;
-            get;
-        }
+
+        public MemoryObjectPointer<SectorObjectManager> pSectorObjectManager { get; private set; }
         /// <summary>
         /// The object responcible for managing SectorObjects
         /// </summary>
         public SectorObjectManager SectorObjectManager
+        {
+            get { return pSectorObjectManager.obj; }
+        }
+
+        /// <summary>
+        /// A collection of the type data in the game's memory
+        /// </summary>
+        public TypeDataManager TypeDataArray
         {
             private set;
             get;
@@ -82,9 +80,11 @@ namespace X2Tools
                 0xc3 // Ret
             }, 0);
 
+            // Setup Pointers
+            pSectorObjectManager = new MemoryObjectPointer<SectorObjectManager>(hProcess, (IntPtr)GlobalAddresses.pSectorObjectManager);
+
             // Create main objects
             TypeDataArray = new TypeDataManager(hProcess);
-            SectorObjectManager = new SectorObjectManager(this);
             GameCodeRunner = new GameCodeRunner(this);
         }
         #endregion

@@ -77,6 +77,11 @@ namespace Common.Vector
             return arr.ToArray();
         }
 
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetByteSize()
         {
             return ByteSize;

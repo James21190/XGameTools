@@ -7,31 +7,41 @@ using Common.Memory;
 
 namespace X3TCTools
 {
-    public class HashTable :IMemoryObject
+    /// <summary>
+    /// The object used for traversing and fetching objects from a hash table
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class HashTable<T> : IMemoryObject where T : IMemoryObject, new()
     {
-
-        public struct Entry : IMemoryObject
+        #region Classes
+        public class Entry<t> : IMemoryObject where t : IMemoryObject, new()
         {
-            public const int ByteSize = 16;
+            public const int ByteSize = 12;
 
-            public IntPtr pNext;
+            private IntPtr m_hProcess;
+
+            public MemoryObjectPointer<Entry<t>> pNext;
             public int ObjectID;
-            public IntPtr pObject;
+            public MemoryObjectPointer<t> pObject;
 
-            public Entry(byte[] Memory)
+            #region Constructors
+
+            public Entry()
             {
-                pNext = IntPtr.Zero;
+                pNext = new MemoryObjectPointer<Entry<t>>(m_hProcess);
                 ObjectID = 0;
-                pObject = IntPtr.Zero;
-                SetData(Memory);
+                pObject = new MemoryObjectPointer<t>(m_hProcess);
             }
 
+            #endregion
+
+            #region IMemoryObject
             public byte[] GetBytes()
             {
                 var collection = new ObjectByteList();
-                collection.Append(pNext);
+                collection.Append(pNext.address);
                 collection.Append(ObjectID);
-                collection.Append(pObject);
+                collection.Append(pObject.address);
                 return collection.GetBytes();
             }
 
@@ -44,58 +54,61 @@ namespace X3TCTools
             {
                 var collection = new ObjectByteList();
                 collection.Append(Memory);
-                collection.PopFirst(ref pNext);
+                collection.PopFirst(ref pNext.address);
                 collection.PopFirst(ref ObjectID);
-                collection.PopFirst(ref pObject);
+                collection.PopFirst(ref pObject.address);
             }
+
+            public void SetLocation(IntPtr hProcess, IntPtr address)
+            {
+                m_hProcess = hProcess;
+                pNext.SetLocation(hProcess, address);
+                pObject.SetLocation(hProcess, address);
+            }
+            #endregion
         }
-
+        #endregion
+        #region Constants
         public const int ByteSize = 16;
-        private IntPtr m_pThis;
-        private IntPtr m_hProcess;
-
-        public IntPtr pTable;
+        #endregion
+        #region Fields
+        public MemoryObjectPointer<MemoryObjectPointer<Entry<T>>> ppEntry;
         public int Length;
         public int LastUsedID;
         public int Count;
+        #endregion
 
-
-        public HashTable(IntPtr hProcess, IntPtr address)
+        public HashTable()
         {
-            m_hProcess = hProcess;
-            m_pThis = address;
-            SetData(MemoryControl.Read(m_hProcess, address, ByteSize));
+            ppEntry = new MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>();
         }
 
-        /// <summary>
-        /// Returns the address of an object with a given id.
-        /// Returns null if the object is not found.
-        /// </summary>
-        /// <param name="ObjectID"></param>
-        /// <returns></returns>
-        public IntPtr GetAddressOfObject(int ObjectID)
+        public T GetObject(int ID)
         {
-            var arrayIndex = GetIndex(ObjectID);
-            var table = MemoryControl.ReadInt(m_hProcess, m_pThis);
+            return GetEntry(ID).obj;
+        }
 
-            var entry = new Entry(MemoryControl.Read(m_hProcess, (IntPtr)(table + (arrayIndex * 4)), Entry.ByteSize));
+        public IntPtr GetAddress(int ID)
+        {
+            return GetEntry(ID).address;
+        }
 
-            // Loop until object is found
-            while (entry.ObjectID != ObjectID)
+        private MemoryObjectPointer<T> GetEntry(int ID)
+        {
+            var index = GetIndex(ID);
+
+            var pEntry = ppEntry.GetObjectInArray(index);
+
+            if(!pEntry.IsValid)
+                throw new Exception("Object not found in hash table");
+
+            var entry = pEntry.obj;
+            while (entry.ObjectID != ID)
             {
-                // If object is not in list, throw exception
-                if (entry.pNext == IntPtr.Zero)
-                {
-                    return IntPtr.Zero;
-                }
-                entry = new Entry(MemoryControl.Read(m_hProcess, entry.pNext, Entry.ByteSize));
+                if (!entry.pNext.IsValid)
+                    throw new Exception("Object not found in hash table");
+                entry = entry.pNext.obj;
             }
-
-            if (entry.pObject == IntPtr.Zero)
-            {
-                return IntPtr.Zero;
-            }
-
             return entry.pObject;
         }
 
@@ -104,10 +117,11 @@ namespace X3TCTools
             return (Length - 1) & ID;
         }
 
+        #region IMemoryObject
         public byte[] GetBytes()
         {
             var collection = new ObjectByteList();
-            collection.Append(pTable);
+            collection.Append(ppEntry.address);
             collection.Append(Length);
             collection.Append(LastUsedID);
             collection.Append(Count);
@@ -124,10 +138,16 @@ namespace X3TCTools
         {
             var collection = new ObjectByteList();
             collection.Append(Memory);
-            collection.PopFirst(ref pTable);
+            collection.PopFirst(ref ppEntry);
             collection.PopFirst(ref Length);
             collection.PopFirst(ref LastUsedID);
             collection.PopFirst(ref Count);
         }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            ppEntry.SetLocation(hProcess, address);
+        }
+        #endregion
     }
 }

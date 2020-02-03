@@ -6,6 +6,7 @@
  - Fixed a crash in multiplayer when receiving data.
  - Fixed a possible crash when writing to memory.
  - Fixed "Load all" in "Other" tab not setting created object's parent to the sector.
+
 Alpha 6:
  - Replaced the CodeInjector with the EventManager.
    This can handle more injections and can inject in more than one place.

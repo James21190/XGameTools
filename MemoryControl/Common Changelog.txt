@@ -1,6 +1,13 @@
-﻿1.4.0.0
+﻿1.5.0.0
+	- Added comments to more methods and objects.
+
+1.4.0.0
 	- Added the Patcher object.
 	- Added the MemoryObjectPointer object.
+	- Added the MemoryObject class.
+	- Added the ApplicationHook abstract class.
+	- Added "void SetLocation(IntPtr hProcess, IntPtr address)" to IMemoryObject.
+	- Added Skip method to ObjectByteList
 
 1.3.0.0:
 	- Added ToString override to Vector3.

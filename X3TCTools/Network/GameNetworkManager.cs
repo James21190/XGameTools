@@ -40,8 +40,9 @@ namespace X3TCTools.Network
                 if (objects[i].ConnectionID == ConnectionID && objects[i].ForeignID == ReferenceID)
                 {
                     // If object exists, return it.
-                    SectorObject sectorObject;
-                    if (m_GameHook.SectorObjectManager.SectorObjectExists(m_ObjectLinks[i].LocalAddress, out sectorObject))
+                    SectorObject sectorObject = new SectorObject();
+                    sectorObject.SetLocation(m_GameHook.hProcess, m_ObjectLinks[i].LocalAddress);
+                    if (sectorObject.IsValid)
                     {
                         return sectorObject;
                     }
@@ -57,7 +58,7 @@ namespace X3TCTools.Network
             Log.AppendMessage(string.Format("Creating object with type {0}-{1} with ID {2} for {3}.", main_Type.ToString(), sub_Type.ToString(), ReferenceID, ConnectionID.ToString()), Common.Logger.MessageSeverity.Debug);
 
             // Create new object
-            var newobj = m_GameHook.GameCodeRunner.CreateSectorObject(main_Type, sub_Type, m_GameHook.SectorObjectManager.GetSpace());
+            var newobj = m_GameHook.gameCodeRunner.CreateSectorObject(main_Type, sub_Type, m_GameHook.sectorObjectManager.GetSpace());
             // Add to the list
             m_ObjectLinks.Add(new ObjectLink() { ConnectionID = ConnectionID, ForeignID = ReferenceID, LocalAddress = newobj.pThis , LocalID = newobj.ObjectID});
             Log.AppendMessage(string.Format("Created object with type {0}-{1} with ID {2} for {3}.", main_Type.ToString(), sub_Type.ToString(), ReferenceID, ConnectionID.ToString()), Common.Logger.MessageSeverity.Debug);
@@ -77,7 +78,7 @@ namespace X3TCTools.Network
         #endregion
         public void SendData()
         {
-            var space = m_GameHook.SectorObjectManager.GetSpace();
+            var space = m_GameHook.sectorObjectManager.GetSpace();
 
             // Send all ships owned by the player
             foreach (var ship in space.GetAllChildrenWithType(SectorObject.Main_Type.Ship))

@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bases\GateSystemObject.cs" />
+    <Compile Include="Bases\StoryBase\DynamicValue.cs" />
+    <Compile Include="Bases\StoryBase\EventFunctionStruct.cs" />
+    <Compile Include="Bases\StoryBase\EventObject.cs" />
+    <Compile Include="Bases\StoryBase\EventObjectSub.cs" />
+    <Compile Include="Bases\StoryBase\ScriptObject.cs" />
     <Compile Include="Bases\StoryBase.cs" />
     <Compile Include="Bases\SystemBase.cs" />
     <Compile Include="GameCodeRunner.cs" />
@@ -52,10 +57,8 @@
     <Compile Include="Network\Packets\SectorObjectUpdatePacket.cs" />
     <Compile Include="Network\Packets\Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SectorObjects\Meta\DockMeta.cs" />
-    <Compile Include="SectorObjects\Meta\SectorObjectMeta.cs" />
-    <Compile Include="SectorObjects\Meta\ShipGunMeta.cs" />
-    <Compile Include="SectorObjects\Meta\ShieldMeta.cs" />
+    <Compile Include="SectorObjects\Meta\ChildList.cs" />
+    <Compile Include="SectorObjects\Meta\ISectorObjectMeta.cs" />
     <Compile Include="SectorObjects\Meta\SectorMeta.cs" />
     <Compile Include="SectorObjects\Meta\ShipMeta.cs" />
     <Compile Include="SectorObjects\SectorObject Offsets.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="SectorObjects\SectorObjectData.cs" />
     <Compile Include="SectorObjects\SectorObjectManager.cs" />
     <Compile Include="SectorObjects\SectorObject.cs" />
+    <Compile Include="SectorObjects\TypeData.cs" />
     <Compile Include="X3FixedPointValue.cs" />
   </ItemGroup>
   <ItemGroup>

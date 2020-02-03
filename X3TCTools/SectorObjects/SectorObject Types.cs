@@ -291,7 +291,8 @@ namespace X3TCTools.SectorObjects
             Boron_Manta_1,
             Boron_Manta_2,
             Boron_Pleco,
-            Boron_Ray = 116,
+            Boron_Shark,
+            Boron_Ray,
             Boron_Barracuda_1,
             Boron_Barracuda_2,
             Boron_Barracuda_3,
@@ -299,7 +300,8 @@ namespace X3TCTools.SectorObjects
             Boron_Mako_1,
             Boron_Mako_2,
             Boron_Mako_3,
-            Boron_Pike = 126,
+            Boron_Mako_4,
+            Boron_Pike,
             Boron_Octopus_1,
             Boron_Octopus_2,
             Boron_Octopus_3,
@@ -377,7 +379,8 @@ namespace X3TCTools.SectorObjects
             Terran_CPU_Deca = 226,
             Yaki_Susanowa = 229,
             Yaki_Fujin = 238,
-            Khaak_Destroyer = 242,
+            Khaak_Carrier = 241,
+            Khaak_Destroyer,
             Khaak_Fighter,
             Khaak_Interceptor,
             Khaak_Scout,
@@ -518,5 +521,61 @@ namespace X3TCTools.SectorObjects
         // Type 30
         // Type 31
         #endregion
+
+        /// <summary>
+        /// Returns the object's subtype in as a string. Takes maintype into account.
+        /// </summary>
+        /// <returns></returns>
+        public string GetSubTypeAsString()
+        {
+            return (GetSubTypeAsString(MainType, SubType));
+        }
+
+        public static string GetSubTypeAsString(Main_Type main_Type, int SubType)
+        {
+            switch (main_Type)
+            {
+                case Main_Type.Projectile: // 0
+                case Main_Type.Weapon: // 8
+                    return ((Weapon_Sub_Type)SubType).ToString();
+                case Main_Type.Dock: // 5
+                    return ((Dock_Sub_Type)SubType).ToString();
+                case Main_Type.Factory: // 6
+                    return ((Factory_Sub_Type)SubType).ToString();
+                case Main_Type.Ship: // 7
+                    return ((Ship_Sub_Type)SubType).ToString();
+                case Main_Type.Shield: // 9
+                    return ((Shield_Sub_Type)SubType).ToString();
+                case Main_Type.Missile: // 10
+                    return ((Missile_Sub_Type)SubType).ToString();
+                case Main_Type.Gate: // 18
+                    return ((Gate_Sub_Type)SubType).ToString();
+                default:
+                    return SubType.ToString();
+            }
+        }
+
+        public static int GetMaxSubType(Main_Type main_Type)
+        {
+            switch(main_Type)
+            {
+                case Main_Type.Projectile: // 0
+                case Main_Type.Weapon: // 8
+                    return WEAPON_SUB_TYPE_COUNT;
+                case Main_Type.Dock: // 5
+                    return DOCK_SUB_TYPE_COUNT;
+                case Main_Type.Factory: // 6
+                    return FACTORY_SUB_TYPE_COUNT;
+                case Main_Type.Ship: // 7
+                    return SHIP_SUB_TYPE_COUNT;
+                case Main_Type.Shield: // 9
+                    return SHIELD_SUB_TYPE_COUNT;
+                case Main_Type.Missile: // 10
+                    return MISSILE_SUB_TYPE_COUNT;
+                case Main_Type.Gate: // 18
+                    return GATE_SUB_TYPE_COUNT;
+                default: throw new NotImplementedException();
+            }
+        }
     }
 }

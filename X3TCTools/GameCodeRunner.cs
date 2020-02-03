@@ -23,7 +23,7 @@ namespace X3TCTools
         {
             m_GameHook = gameHook;
 
-            pCreateObjectInjection = m_GameHook.EventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
+            pCreateObjectInjection = m_GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
         }
 
         /// <summary>
@@ -44,8 +44,10 @@ namespace X3TCTools
             while (MemoryControl.ReadInt(m_GameHook.hProcess, pCreateObjectInjection + 12) != 0)
                 Thread.Sleep(WaitTime);
 
+            var result = new SectorObject();
+            result.SetLocation(m_GameHook.hProcess, (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, pCreateObjectInjection + 8));
 
-            return new SectorObject(m_GameHook, (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, pCreateObjectInjection + 8));
+            return result;
         }
     }
 }

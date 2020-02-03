@@ -4,20 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Memory.Unimplemented
+namespace Common.Memory
 {
     /// <summary>
-    /// The base class of memory objects.
+    /// Basic IMemoryObject with additional functionality.
     /// </summary>
     public abstract class MemoryObject : IMemoryObject
     {
-        #region IMemoryObject
-        public virtual int GetByteSize()
-        {
-            return GetBytes().Length;
-        }
+        protected IntPtr m_hProcess;
+        public IntPtr pThis { protected set; get; }
+
+        /// <summary>
+        /// Converts the values within the object into bytes.
+        /// </summary>
+        /// <returns></returns>
         public abstract byte[] GetBytes();
+
+        /// <summary>
+        /// Returns the size of the object in bytes.
+        /// </summary>
+        /// <returns></returns>
+        public abstract int GetByteSize();
+
+        /// <summary>
+        /// Sets the values of the fields of this object with the values stored in a binary array.
+        /// </summary>
+        /// <param name="Memory"></param>
         public abstract void SetData(byte[] Memory);
-        #endregion
+
+        /// <summary>
+        /// Sets the context of the object.
+        /// Essential for keeping newly created objects from pointers in context.
+        /// Ensure all MemoryObject fields are updated when this method is called.
+        /// </summary>
+        /// <param name="hProcess"></param>
+        /// <param name="address"></param>
+        public virtual void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            m_hProcess = hProcess;
+            pThis = address;
+            ReloadFromMemory();
+        }
+
+        /// <summary>
+        /// Reload values from memory.
+        /// </summary>
+        public void ReloadFromMemory()
+        {
+            SetData(MemoryControl.Read(m_hProcess, pThis, GetByteSize()));
+        }
+
     }
 }

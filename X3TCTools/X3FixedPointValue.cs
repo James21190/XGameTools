@@ -51,5 +51,10 @@ namespace X3TCTools
         {
             FixedPointValue = BitConverter.ToUInt32(Memory, 0);
         }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

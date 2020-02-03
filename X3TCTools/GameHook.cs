@@ -10,22 +10,62 @@ using X3TCTools.Bases;
 
 namespace X3TCTools
 {
-    public class GameHook
+    public class GameHook : ApplicationHook
     {
-        public SectorObjectManager SectorObjectManager { private set; get; }
-        public GameCodeRunner GameCodeRunner { private set; get; }
-        public EventManager EventManager { private set; get; }
-        public SystemBase SystemBase { private set; get; }
-        public GateSystemObject gateSystemObject { private set; get; }
-        public IntPtr hProcess { private set; get; }
+
+        #region Pointers
+        private MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>> ppSectorObjectManager;
+        private MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
+        private MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
+        private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData>> ppTypeData;
+        #endregion
+
+        #region Pointer Objects
+        /// <summary>
+        /// An up to date representation of the game's SectorObjectManager.
+        /// </summary>
+        public SectorObjectManager sectorObjectManager { get { return ppSectorObjectManager.obj.obj; } }
+        /// <summary>
+        /// An up to date representation of the game's SystemBase.
+        /// </summary>
+        public SystemBase systemBase { get { return ppSystemBase.obj.obj; } }
+        /// <summary>
+        /// An up to date representation of the game's GateSystemObject.
+        /// </summary>
+        public GateSystemObject gateSystemObject { get { return ppGateSystemObject.obj.obj; } }
+        /// <summary>
+        /// An up to date representation of the game's StoryBase.
+        /// </summary>
+        public StoryBase storyBase { get { return ppStoryBase.obj.obj; } }
+
+        public TypeData GetTypeData(int MainType, int SubType)
+        {
+            return ppTypeData.GetObjectInArray(MainType).GetObjectInArray(SubType);
+        }
+
+        #endregion
+        /// <summary>
+        /// The object responsible for managing code that can be executed by the game.
+        /// </summary>
+        public GameCodeRunner gameCodeRunner { private set; get; }
+        public EventManager eventManager { private set; get; }
 
         public GameHook(Process process)
         {
             // Get a handle to the process
-            hProcess = MemoryControl.OpenProcess((uint)MemoryControl.ProcessAccessFlags.All, 0, (uint)process.Id);
-            EventManager = new EventManager(hProcess);
+            HookIntoProcess(process);
+            
+            // Create references to MemoryObjects
+            ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess,(IntPtr)GlobalAddresses.pSectorObjectManager);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses.pStoryBase);
+            ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddresses.pSystemBase);
+            ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddresses.pGateSystemObject);
+            ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddresses.pTypeData);
+
             // Create events
-            EventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
+            eventManager = new EventManager(hProcess);
+            eventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
             // MOV EAX 0x004b1370
             0xB8, 0x70, 0x13, 0x4B, 0x00,
             // CALL EAX
@@ -38,23 +78,17 @@ namespace X3TCTools
             0xC3
             } ,3);
 
-            SectorObjectManager = new SectorObjectManager(this);
-            GameCodeRunner = new GameCodeRunner(this);
-            SystemBase = new SystemBase(this);
-            gateSystemObject = new GateSystemObject(this);
-        }
-
-        public void ReloadAll()
-        {
-            SystemBase.Reload();
-            SectorObjectManager.Reload();
+            gameCodeRunner = new GameCodeRunner(this);
         }
 
         public enum GlobalAddresses
         {
-            SystemBase = 0x00603064,
-            GateSystemObject = 0x00604634,
-            SectorObjectManager = 0x00604640
+            pSystemBase = 0x00603064,
+            pGateSystemObject = 0x00604634,
+            pSectorObjectManager = 0x00604640,
+            pCockpitBase = 0x00604638,
+            pStoryBase = 0x00604718,
+            pTypeData = 0x006030e8
         }
         public enum RaceID : ushort
         {

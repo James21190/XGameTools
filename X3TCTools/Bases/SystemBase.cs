@@ -11,37 +11,27 @@ using X3TCTools;
 
 namespace X3TCTools.Bases
 {
-    public class SystemBase : IMemoryObject
+    public class SystemBase : MemoryObject
     {
         public const int ByteSize = 1960;
-
-        public readonly IntPtr pThis;
 
         public byte[] top = new byte[204];
         public X3FixedPointValue SETAValue = new X3FixedPointValue();
         public byte[] bottom = new byte[ByteSize - 204 - 4];
 
-        private GameHook m_GameHook; 
-
-        public SystemBase(GameHook gameHook)
+        public SystemBase()
         {
-            m_GameHook = gameHook;
-            pThis = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, (IntPtr)GameHook.GlobalAddresses.SystemBase);
+
         }
 
         #region Set Individual
         public void SaveSETA()
         {
-            MemoryControl.Write(m_GameHook.hProcess, pThis + 204, SETAValue.GetBytes());
+            MemoryControl.Write(m_hProcess, pThis + 204, SETAValue.GetBytes());
         }
         #endregion
 
-        public void Reload()
-        {
-            SetData(MemoryControl.Read(m_GameHook.hProcess, pThis, ByteSize));
-        }
-
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             var collection = new ObjectByteList();
 
@@ -52,12 +42,12 @@ namespace X3TCTools.Bases
             return collection.GetBytes();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList();
             collection.SetData(Memory);
@@ -65,6 +55,11 @@ namespace X3TCTools.Bases
             collection.PopFirst(ref top);
             collection.PopFirst(ref SETAValue);
             collection.PopFirst(ref bottom);
+        }
+
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            base.SetLocation(hProcess, address);
         }
     }
 }

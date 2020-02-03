@@ -112,15 +112,34 @@ namespace Common.Memory
         /// <returns></returns>
         public static string ReadNullTerminatedString(IntPtr hProcess, IntPtr Address)
         {
-            string result = "";
-            char value = (char)Read(hProcess, Address, 1)[0];
+            List<byte> bytes = new List<byte>();
+            byte value = Read(hProcess, Address, 1)[0];
             for(int i = 1; value != 0x0; i++)
             {
-                result += value;
-                value = (char)Read(hProcess, Address + i, 1)[0];
+                bytes.Add(value);
+                value = Read(hProcess, Address + i, 1)[0];
             }
+
+            string result;
+            result = Encoding.UTF8.GetString(bytes.ToArray());
+
             return result;
+
         }
+
+        /// <summary>
+        /// Reads 4 bytes at the given address and returns it as a MemoryObjectPointer.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="hProcess"></param>
+        /// <param name="Address"></param>
+        /// <returns></returns>
+        public static MemoryObjectPointer<T> ReadPointer<T>(IntPtr hProcess, IntPtr Address) where T : IMemoryObject, new()
+        {
+            return new MemoryObjectPointer<T>(hProcess, (IntPtr)ReadInt(hProcess,Address));
+        }
+
+        #region Writes
 
         /// <summary>
         /// Write an IMemoryObject to memory.
@@ -164,6 +183,8 @@ namespace Common.Memory
             WriteProcessMemory(hProcess, Address, Bytes, (uint)Bytes.Length, numberOfBytesWritten);
             VirtualProtectEx(hProcess, Address, (IntPtr)Bytes.Length, old, out old);
         }
+
+        #endregion
 
         public static IntPtr AllocateMemory(IntPtr hProcess, int Size)
         {

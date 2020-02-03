@@ -57,6 +57,7 @@
     <Compile Include="X2\RunObjectParam\RunObjectParam.cs" />
     <Compile Include="X2\SectorObjects\InteractionFlags.cs" />
     <Compile Include="X2\SectorObjects\Meta\GateMeta.cs" />
+    <Compile Include="X2\SectorObjects\Meta\ISectorObjectMeta.cs" />
     <Compile Include="X2\SectorObjects\Meta\ProjectileMeta.cs" />
     <Compile Include="X2\SectorObjects\Meta\SectorMeta.cs" />
     <Compile Include="X2\SectorObjects\Meta\StationMeta.cs" />

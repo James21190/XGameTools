@@ -7,40 +7,47 @@ using Common.Memory;
 
 namespace X3TCTools.SectorObjects.Meta
 {
-    public class SectorMeta : ISectorObjectMeta
+    public class SectorMeta : MemoryObject, ISectorObjectMeta
     {
         public const int ByteSize = 384;
 
-        public SectorObject.ListTop[] ChildrenList = new SectorObject.ListTop[SectorObject.MAIN_TYPE_COUNT];
-
-        private GameHook m_GameHook;
-        public SectorMeta(GameHook gameHook, IntPtr address)
+        public ChildList[] ChildrenList = new ChildList[SectorObject.MAIN_TYPE_COUNT];
+        public SectorMeta()
         {
-            m_GameHook = gameHook;
-            SetData(MemoryControl.Read(gameHook.hProcess, address, ByteSize));
+            for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            {
+                ChildrenList[i] = new ChildList();
+            }
         }
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             var collection = new ObjectByteList();
             collection.Append(ChildrenList);
             return collection.GetBytes();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public SectorObject.ListTop[] GetChildrenList()
+        public ChildList[] GetChildrenList()
         {
             return ChildrenList;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList();
             collection.SetData(Memory);
             collection.PopFirst(ref ChildrenList);
+        }
+
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            base.SetLocation(hProcess, address);
+            foreach (var list in ChildrenList)
+                list.SetLocation(hProcess, address);
         }
     }
 }

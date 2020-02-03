@@ -38,6 +38,11 @@ namespace Common.Vector
             return ByteSize;
         }
 
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+
         public Vector3(int X, int Y, int Z)
         {
             this.X = X;

@@ -25,5 +25,9 @@ namespace X3TCTools
         {
             throw new NotImplementedException();
         }
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

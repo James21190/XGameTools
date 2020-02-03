@@ -12,7 +12,7 @@ namespace X3TCTools.SectorObjects
     {
         public const int ByteSize = 624;
 
-        private GameHook m_GameHook;
+        public IntPtr hProcess = IntPtr.Zero;
         public IntPtr pThis = IntPtr.Zero;
 
         public int Unknown_1;
@@ -157,15 +157,15 @@ namespace X3TCTools.SectorObjects
         public int Unknown_155;
         public int Unknown_156;
 
-        public SectorObjectData(GameHook gameHook)
+        public SectorObjectData(IntPtr hProcess)
         {
-            m_GameHook = gameHook;
+            this.hProcess = hProcess;
         }
-        public SectorObjectData(GameHook gameHook, IntPtr address)
+        public SectorObjectData(IntPtr hProcess, IntPtr address)
         {
-            m_GameHook = gameHook;
             pThis = address;
-            SetData(MemoryControl.Read(gameHook.hProcess, address, ByteSize));
+            this.hProcess = hProcess;
+            SetData(MemoryControl.Read(hProcess, address, ByteSize));
         }
         public SectorObjectData(byte[] memory)
         {
@@ -174,8 +174,8 @@ namespace X3TCTools.SectorObjects
 
         public void Save(IntPtr address)
         {
-            MemoryControl.Write(m_GameHook.hProcess, address, (IntPtr)Offsets.Position, Position);
-            MemoryControl.Write(m_GameHook.hProcess, address, (IntPtr)Offsets.RotationMatrix, rotationMatrix);
+            MemoryControl.Write(hProcess, address, (IntPtr)Offsets.Position, Position);
+            MemoryControl.Write(hProcess, address, (IntPtr)Offsets.RotationMatrix, rotationMatrix);
         }
 
         #region IMemoryObject
@@ -479,6 +479,11 @@ namespace X3TCTools.SectorObjects
             collection.PopFirst(ref Unknown_154);
             collection.PopFirst(ref Unknown_155);
             collection.PopFirst(ref Unknown_156);
+        }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

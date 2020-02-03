@@ -12,6 +12,8 @@ namespace Common.Memory
     public class ObjectByteList : IMemoryObject
     {
         private List<byte> m_data = new List<byte>();
+        private IntPtr m_hProcess;
+
 
         public ObjectByteList()
         {
@@ -35,6 +37,16 @@ namespace Common.Memory
         public byte[] GetBytes()
         {
             return m_data.ToArray();
+        }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            m_hProcess = hProcess;
+        }
+
+        public void Skip(int count)
+        {
+            m_data.RemoveRange(0, count);
         }
 
         #region Byte Array
@@ -73,11 +85,9 @@ namespace Common.Memory
         {
             byte[] data = new byte[2];
 
-            for (int i = 0; i < 2; i++)
-            {
-                data[i] = m_data[0];
-                m_data.RemoveAt(0);
-            }
+            data[0] = m_data[0];
+            data[1] = m_data[1];
+            m_data.RemoveRange(0, 2);
 
             value = BitConverter.ToInt16(data, 0);
         }
@@ -89,15 +99,9 @@ namespace Common.Memory
 
         public void PopFirst(ref ushort value)
         {
-            byte[] data = new byte[2];
-
-            for (int i = 0; i < 2; i++)
-            {
-                data[i] = m_data[0];
-                m_data.RemoveAt(0);
-            }
-
-            value = BitConverter.ToUInt16(data, 0);
+            short temp = (short)value;
+            PopFirst(ref temp);
+            value = (ushort)temp;
         }
         #endregion
 

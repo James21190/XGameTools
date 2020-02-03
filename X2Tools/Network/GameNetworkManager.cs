@@ -126,7 +126,7 @@ namespace X2Tools.Network
         public void SendUpdate()
         {
             // For every ship in sector
-            foreach (var obj in m_GameHook.SectorObjectManager.GetSectorObjectsWithType(((SectorMeta)m_GameHook.SectorObjectManager.GetSpace().GetMetaData()).FirstChild, SectorObject.Main_Type.Ship, false))
+            foreach (var obj in m_GameHook.SectorObjectManager.GetSectorObjectsWithType(((SectorMeta)m_GameHook.SectorObjectManager.GetSpace().GetMetaData()).pFirstChild, SectorObject.Main_Type.Ship, false))
             {
                 if (ShouldSendObject(obj))
                 {
@@ -139,7 +139,7 @@ namespace X2Tools.Network
                 }
             }
             // For every projectile in sector
-            foreach (var obj in m_GameHook.SectorObjectManager.GetSectorObjectsWithType(((SectorMeta)m_GameHook.SectorObjectManager.GetSpace().GetMetaData()).FirstChild, SectorObject.Main_Type.Projectile, false))
+            foreach (var obj in m_GameHook.SectorObjectManager.GetSectorObjectsWithType(((SectorMeta)m_GameHook.SectorObjectManager.GetSpace().GetMetaData()).pFirstChild, SectorObject.Main_Type.Projectile, false))
             {
                 if (ShouldSendObject(obj))
                 {

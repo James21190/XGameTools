@@ -26,7 +26,7 @@ namespace X2Tools.Network.Packet
             switch (sectorObject.MainType) 
             {
                 case SectorObject.Main_Type.Ship:
-                    start = ((ShipMeta)sectorObject.GetMetaData()).FirstChild;
+                    start = ((ShipMeta)sectorObject.GetMetaData()).pFirstChild;
                     break;
                 default:
                     throw new NotImplementedException();

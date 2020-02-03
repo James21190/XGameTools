@@ -137,6 +137,11 @@ namespace Common.Network
             {
                 throw new NotSupportedException();
             }
+
+            public void SetLocation(IntPtr hProcess, IntPtr address)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public class ConnectionRequestResponcePacket : ITransmittable
@@ -164,6 +169,11 @@ namespace Common.Network
             public void SetData(byte[] Memory)
             {
                 ConnectionID = Memory[0];
+            }
+
+            public void SetLocation(IntPtr hProcess, IntPtr address)
+            {
+                throw new NotImplementedException();
             }
         }
         #endregion

@@ -23,5 +23,7 @@ namespace Common.Memory
         /// </summary>
         /// <returns></returns>
         byte[] GetBytes();
+
+        void SetLocation(IntPtr hProcess, IntPtr address);
     }
 }

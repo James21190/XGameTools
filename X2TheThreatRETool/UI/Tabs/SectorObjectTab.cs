@@ -124,10 +124,10 @@ namespace X2TheThreatRETool
             // Load address
             textBox2.Text = m_GameHook.SectorObjectManager.GetAddressOfSectorObject(m_CurrentSectorObject.SectorObjectID).ToString("X");
             // Load next and previous objects
-            var nextobject = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.Next);
-            var previousobject = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.Previous);
+            var nextobject = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.pNext);
+            var previousobject = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.pPrevious);
 
-            if (nextobject.Next != IntPtr.Zero)
+            if (nextobject.pNext != IntPtr.Zero)
             {
                 numericUpDown23.Enabled = true;
                 button8.Enabled = true;
@@ -138,7 +138,7 @@ namespace X2TheThreatRETool
                 numericUpDown23.Enabled = false;
                 button8.Enabled = false;
             }
-            if (previousobject.Previous != IntPtr.Zero)
+            if (previousobject.pPrevious != IntPtr.Zero)
             {
                 numericUpDown22.Enabled = true;
                 button7.Enabled = true;
@@ -260,7 +260,7 @@ namespace X2TheThreatRETool
             try
             {
                 var SO = m_GameHook.SectorObjectManager.GetSectorObject(Convert.ToInt32(SectorObjectID));
-                if (SO.Next == IntPtr.Zero || SO.Previous == IntPtr.Zero)
+                if (SO.pNext == IntPtr.Zero || SO.pPrevious == IntPtr.Zero)
                 {
                     textBox2.Text = "Object Not Found!";
                     return;

@@ -1,5 +1,19 @@
-﻿Alpha 4:
+﻿Alpha 5:
+	- Added TypeData class and viewer.
+	- Seperated UI into multiple forms for faster loading and a better look.
+	- Reduced and renamed unknowns in SectorObject.
+
+Alpha 4:
 	- Added an executable patching system for easy implementation of optimised code.
+	- Added the StoryBase.
+	- Added EventObject.
+	- Added "Get Space" button to sector object viewer.
+	- Added the ability to load SectorObjects via their ID.
+	- Completed GateSystemObject viewer.
+	- Improved the HashTable class.
+	- Fixed crash when loading invalid SectorObjects.
+	- Fixed SectorObjectManager not updating its pointers.
+
 Alpha 3:
 	- Added an auto reloader to the SectorObject tab.
 	- Added enumerations for a lot of SectorObject sub-types and race ids.
@@ -7,6 +21,7 @@ Alpha 3:
 	- Added galaxy map.
 	- Improved SectorObjectManager's SectorObjectExists methods.
 	- Fixed LocalRotationDelta being written to the wrong display on the SectorObject tab.
+
 Alpha 2:
 	- Added "General" tab.
 	- Added SETA override, which only slows down when regular SETA is activated.
@@ -20,5 +35,6 @@ Alpha 2:
 	- Fixed SectorObject tab reload.
 	- Fixed multiplayer not saving rotation delta and speed.
 	- Fixed SectorObject's rotation matrix.
+
 Alpha 1:
 	- Initial

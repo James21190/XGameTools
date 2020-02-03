@@ -15,7 +15,7 @@ namespace X2Tools.X2.SectorObjects.Meta
     public class SectorMeta : IMemoryObject
     {
         public const int ByteSize = 12;
-        public IntPtr FirstChild;
+        public IntPtr pFirstChild;
         public IntPtr LastChild;
         public SectorMeta(IntPtr hProcess, IntPtr Address)
         {
@@ -24,7 +24,7 @@ namespace X2Tools.X2.SectorObjects.Meta
 
         public void SetData(byte[] Memory)
         {
-            FirstChild = (IntPtr)BitConverter.ToInt32(Memory, 0);
+            pFirstChild = (IntPtr)BitConverter.ToInt32(Memory, 0);
             LastChild = (IntPtr)BitConverter.ToInt32(Memory, 8);
         }
 

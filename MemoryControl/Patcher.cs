@@ -7,8 +7,14 @@ using System.IO;
 
 namespace Common
 {
+    /// <summary>
+    /// Object that can be used to patch executables with patch files.
+    /// </summary>
     public static class Patcher
     {
+        /// <summary>
+        /// Patch data
+        /// </summary>
         private struct Patch
         {
             public string notes;
@@ -16,6 +22,11 @@ namespace Common
             public byte[] bytes;
         }
 
+        /// <summary>
+        /// Converts a string array into a byte array
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
         private static byte[] _StringArrToByteArr(string[] arr)
         {
             byte[] res = new byte[arr.Length];
@@ -26,6 +37,17 @@ namespace Common
             return res;
         }
 
+        /// <summary>
+        /// Copies the original file and writes changes to it sorced from multiple files, then outputs a file to the specified path.
+        /// If the file already exists it is overwritten.
+        /// Returns a list of patch notes.
+        /// </summary>
+        /// <param name="originalPath"></param>
+        /// <param name="destPath"></param>
+        /// <param name="patchPaths"></param>
+        /// <param name="exeBaseOffset"></param>
+        /// <param name="bytesBeforeBase"></param>
+        /// <returns></returns>
         public static string PatchExe(string originalPath, string destPath, string[] patchPaths, int exeBaseOffset, int bytesBeforeBase)
         {
             string[] output = new string[patchPaths.Length];
