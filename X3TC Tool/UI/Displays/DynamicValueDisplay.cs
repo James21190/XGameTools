@@ -13,12 +13,12 @@ using X3TCTools.Bases;
 
 namespace X3TC_Tool.UI.Displays
 {
-    public partial class DynamicValueDisplay : Form
+    public partial class DynamicValueArrayDisplay : Form
     {
         private GameHook m_GameHook;
         private IntPtr m_Address;
         private int m_Depth, m_Height;
-        public DynamicValueDisplay(GameHook gameHook)
+        public DynamicValueArrayDisplay(GameHook gameHook)
         {
             InitializeComponent();
             m_GameHook = gameHook;

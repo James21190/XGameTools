@@ -9,5 +9,6 @@ namespace X2Tools.X2.SectorObjects.Meta
     public interface ISectorObjectMeta
     {
         SectorObject GetFirstChild();
+        SectorObject GetLastChild();
     }
 }

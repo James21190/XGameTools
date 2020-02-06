@@ -88,7 +88,7 @@ namespace X3TC_Tool
 
         private void LoadDynamicValueDisplay(object sender, EventArgs e)
         {
-            var viewer = new DynamicValueDisplay(m_GameHook);
+            var viewer = new DynamicValueArrayDisplay(m_GameHook);
             viewer.Show();
         }
 
@@ -109,6 +109,12 @@ namespace X3TC_Tool
         private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var display = new TypeDataDisplay(m_GameHook);
+            display.Show();
+        }
+
+        private void storyBase15fcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new StoryBase15fcDisplay(m_GameHook);
             display.Show();
         }
     }

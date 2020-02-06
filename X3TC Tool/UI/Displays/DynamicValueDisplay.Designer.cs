@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Displays
 {
-    partial class DynamicValueDisplay
+    partial class DynamicValueArrayDisplay
     {
         /// <summary>
         /// Required designer variable.

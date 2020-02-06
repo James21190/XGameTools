@@ -56,17 +56,12 @@
     <Compile Include="X2\Races.cs" />
     <Compile Include="X2\RunObjectParam\RunObjectParam.cs" />
     <Compile Include="X2\SectorObjects\InteractionFlags.cs" />
-    <Compile Include="X2\SectorObjects\Meta\GateMeta.cs" />
     <Compile Include="X2\SectorObjects\Meta\ISectorObjectMeta.cs" />
-    <Compile Include="X2\SectorObjects\Meta\ProjectileMeta.cs" />
-    <Compile Include="X2\SectorObjects\Meta\SectorMeta.cs" />
-    <Compile Include="X2\SectorObjects\Meta\StationMeta.cs" />
     <Compile Include="X2\SectorObjects\SectorObject Data.cs" />
     <Compile Include="X2\SectorObjects\SectorObject Shielding.cs" />
     <Compile Include="X2\SectorObjects\SectorObject Types.cs" />
     <Compile Include="X2\SectorObjects\SectorObject.cs" />
     <Compile Include="X2\SectorObjects\SectorObjectManager.cs" />
-    <Compile Include="X2\SectorObjects\Meta\ShipMeta.cs" />
     <Compile Include="X2\TypeData\ProjectileTypeData.cs" />
     <Compile Include="X2\TypeData\ShipTypeData.cs" />
     <Compile Include="X2\TypeData\TypeDataManager.cs" />

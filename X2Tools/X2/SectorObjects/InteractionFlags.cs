@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X2Tools.X2.SectorObjects
 {
-    public class InteractionFlags :IMemoryObject
+    public class InteractionFlags : IMemoryObject
     {
         public const int ByteSize = 4;
 
@@ -170,6 +170,11 @@ namespace X2Tools.X2.SectorObjects
             Unknown31 = (Value & 1) != 0;
             Value = Value >> 1;
             Unknown32 = (Value & 1) != 0;
+        }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
         }
     }
 }

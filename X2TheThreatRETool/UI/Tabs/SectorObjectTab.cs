@@ -122,12 +122,12 @@ namespace X2TheThreatRETool
             // Load values
 
             // Load address
-            textBox2.Text = m_GameHook.SectorObjectManager.GetAddressOfSectorObject(m_CurrentSectorObject.SectorObjectID).ToString("X");
+            textBox2.Text = (m_CurrentSectorObject.pThis).ToString("X");
             // Load next and previous objects
-            var nextobject = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.pNext);
-            var previousobject = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.pPrevious);
+            var nextobject = (m_CurrentSectorObject.pNext.obj);
+            var previousobject = (m_CurrentSectorObject.pPrevious.obj);
 
-            if (nextobject.pNext != IntPtr.Zero)
+            if (nextobject.pNext.IsValid)
             {
                 numericUpDown23.Enabled = true;
                 button8.Enabled = true;
@@ -138,7 +138,7 @@ namespace X2TheThreatRETool
                 numericUpDown23.Enabled = false;
                 button8.Enabled = false;
             }
-            if (previousobject.pPrevious != IntPtr.Zero)
+            if (previousobject.pPrevious.IsValid)
             {
                 numericUpDown22.Enabled = true;
                 button7.Enabled = true;
@@ -199,11 +199,11 @@ namespace X2TheThreatRETool
             textBox8.Text = m_CurrentSectorObject.MainType.ToString();
 
             // Meta
-            if (m_CurrentSectorObject.pParent != IntPtr.Zero)
+            if (m_CurrentSectorObject.pParent.IsValid)
             {
                 numericUpDown24.Enabled = true;
                 button9.Enabled = true;
-                numericUpDown24.Value = m_GameHook.SectorObjectManager.GetSectorObject(m_CurrentSectorObject.pParent).SectorObjectID;
+                numericUpDown24.Value = (m_CurrentSectorObject.pParent.obj).SectorObjectID;
             }
             else
             {
@@ -260,7 +260,7 @@ namespace X2TheThreatRETool
             try
             {
                 var SO = m_GameHook.SectorObjectManager.GetSectorObject(Convert.ToInt32(SectorObjectID));
-                if (SO.pNext == IntPtr.Zero || SO.pPrevious == IntPtr.Zero)
+                if (!SO.pNext.IsValid || !SO.pPrevious.IsValid)
                 {
                     textBox2.Text = "Object Not Found!";
                     return;
@@ -330,10 +330,10 @@ namespace X2TheThreatRETool
         {
             tabControl3.SelectedIndex = GetMetaTabIndex("ShipMetaDataTab");
             var Meta = (ShipMeta) m_CurrentSectorObject.GetMetaData();
-            if (Meta.FirstChild != IntPtr.Zero)
+            if (Meta.pFirstChild.IsValid)
             {
-                numericUpDown20.Value = m_GameHook.SectorObjectManager.GetSectorObject(Meta.FirstChild).SectorObjectID;
-                numericUpDown21.Value = m_GameHook.SectorObjectManager.GetSectorObject(Meta.LastChild).SectorObjectID;
+                numericUpDown20.Value = (Meta.pFirstChild.obj).SectorObjectID;
+                numericUpDown21.Value = (Meta.pLastChild.obj).SectorObjectID;
             }
         }
 
@@ -353,8 +353,8 @@ namespace X2TheThreatRETool
         {
             tabControl3.SelectedIndex = GetMetaTabIndex("SectorMetaDataTab");
             var Meta = (SectorMeta) m_CurrentSectorObject.GetMetaData();
-            numericUpDown37.Value = m_GameHook.SectorObjectManager.GetSectorObject(Meta.FirstChild).SectorObjectID;
-            numericUpDown38.Value = m_GameHook.SectorObjectManager.GetSectorObject(Meta.LastChild).SectorObjectID;
+            numericUpDown37.Value = (Meta.pFirstChild.obj).SectorObjectID;
+            numericUpDown38.Value = (Meta.pLastChild.obj).SectorObjectID;
         }
 
         private void button4_Click(object sender, EventArgs e)

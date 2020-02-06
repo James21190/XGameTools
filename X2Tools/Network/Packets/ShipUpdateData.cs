@@ -119,5 +119,10 @@ namespace X2Tools.Network.Packet
         {
             return (byte)GameNetworkManager.PacketTypes.ShipUpdateData;
         }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

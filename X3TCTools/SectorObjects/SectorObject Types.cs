@@ -289,7 +289,7 @@ namespace X3TCTools.SectorObjects
             Boron_Dolphin_6,
             Boron_Angel,
             Boron_Manta_1,
-            Boron_Manta_2,
+            Boron_Manta_Hauler,
             Boron_Pleco,
             Boron_Shark,
             Boron_Ray,

@@ -30,7 +30,7 @@ namespace X2Tools.X2.SectorObjects
         public MemoryObjectPointer<SectorObject> pNext = new MemoryObjectPointer<SectorObject>();
         public MemoryObjectPointer<SectorObject> pPrevious = new MemoryObjectPointer<SectorObject>();
         public int SectorObjectID;
-        public readonly IntPtr pDefaultName;
+        public IntPtr pDefaultName;
         public int Speed;
         public int TargetSpeed;
         public Common.Vector.Vector3 Rotation;
@@ -40,12 +40,12 @@ namespace X2Tools.X2.SectorObjects
         public int Unknown_4;
         public InteractionFlags InteractionFlags;
         public int Unknown_5;
-        public readonly Main_Type MainType;
-        public readonly int SubType;
-        public readonly IntPtr pMeta;
-        public readonly IntPtr pParent;
+        public Main_Type MainType;
+        public int SubType;
+        public IntPtr pMeta;
+        public MemoryObjectPointer<SectorObject> pParent = new MemoryObjectPointer<SectorObject>();
         public Common.Vector.Vector3 StrafePositionDelta;
-        public readonly IntPtr pData;
+        public IntPtr pData;
         public int Unknown_6;
         public int Unknown_7;
         public int RunObjectParamID;
@@ -87,7 +87,7 @@ namespace X2Tools.X2.SectorObjects
         {
             switch (MainType)
             {
-                case Main_Type.Ship: return ((ShipMeta)GetMetaData()).pFirstChild;
+                case Main_Type.Ship: return ((ShipMeta)GetMetaData()).pFirstChild.address;
                 default: throw new NotImplementedException();
             }
         }
@@ -177,7 +177,7 @@ namespace X2Tools.X2.SectorObjects
             Memory.AddRange(BitConverter.GetBytes((short) MainType));
             Memory.AddRange(BitConverter.GetBytes((short) SubType));
             Memory.AddRange(BitConverter.GetBytes((int) pMeta));
-            Memory.AddRange(BitConverter.GetBytes((int) pParent));
+            Memory.AddRange(BitConverter.GetBytes((int) pParent.address));
             Memory.AddRange(StrafePositionDelta.GetBytes());
             Memory.AddRange(BitConverter.GetBytes((int) pData));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_6));

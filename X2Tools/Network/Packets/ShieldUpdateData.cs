@@ -22,11 +22,11 @@ namespace X2Tools.Network.Packet
         public ShieldUpdateData(SectorObject sectorObject, GameHook gameHook)
         {
             SectorObjectID = sectorObject.SectorObjectID;
-            IntPtr start;
+            SectorObject start;
             switch (sectorObject.MainType) 
             {
                 case SectorObject.Main_Type.Ship:
-                    start = ((ShipMeta)sectorObject.GetMetaData()).pFirstChild;
+                    start = ((ShipMeta)sectorObject.GetMetaData()).pFirstChild.obj;
                     break;
                 default:
                     throw new NotImplementedException();
@@ -78,6 +78,11 @@ namespace X2Tools.Network.Packet
             collection.PopFirst(ref Shield_5MW);
             collection.PopFirst(ref Shield_25MW);
             collection.PopFirst(ref Shield_125MW);
+        }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
         }
     }
 }

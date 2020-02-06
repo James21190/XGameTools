@@ -23,7 +23,7 @@ namespace X2TheThreatRETool
         private GameNetworkManager m_GNM;
         private void button34_Click(object sender, EventArgs e)
         {
-            m_GNM.Start();
+            m_GNM.Start(true);
             MultiplayerUpdateSender.RunWorkerAsync();
             MultiplayerLogUpdater.Enabled = true;
             PacketSizeSampleReload.Enabled = true;
@@ -40,7 +40,7 @@ namespace X2TheThreatRETool
             IPAddress address;
             if (IPAddress.TryParse(textBox6.Text, out address))
             {
-                m_GNM.Start();
+                m_GNM.Start(false);
                 m_GNM.ConnectTo(IPAddress.Parse(textBox6.Text));
                 richTextBox2.Clear();
                 MultiplayerUpdateSender.RunWorkerAsync();

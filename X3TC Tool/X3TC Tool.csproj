@@ -77,6 +77,12 @@
     <Compile Include="UI\Displays\SectorObjectManagerDisplay.Designer.cs">
       <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\StoryBase15fcDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\StoryBase15fcDisplay.Designer.cs">
+      <DependentUpon>StoryBase15fcDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\StoryBaseDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\SectorObjectManagerDisplay.resx">
       <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\StoryBase15fcDisplay.resx">
+      <DependentUpon>StoryBase15fcDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\StoryBaseDisplay.resx">
       <DependentUpon>StoryBaseDisplay.cs</DependentUpon>

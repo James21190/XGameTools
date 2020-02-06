@@ -55,7 +55,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadVariablesButton_Click(object sender, EventArgs e)
         {
-            var display = new DynamicValueDisplay(m_GameHook);
+            var display = new DynamicValueArrayDisplay(m_GameHook);
             display.LoadFrom(m_EventObject.pScriptVariableArr.address, 0, 0);
             display.Show();
         }
