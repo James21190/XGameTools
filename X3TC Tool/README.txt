@@ -12,31 +12,12 @@ X3TC Tool, and its components:
  Main Features:
   - SectorObject Viewer.
   - Code injector.
-  - Partial Multiplayer
  
  Code injector:
   The code injector injects binary directly into the game loop. Code can be read
   from a text file as shown in the mods folder. This tool is extreamly powerful and
   can be used maliciously. Do not run any code files unless you trust the file's
   source.
-  
- Multiplayer:
-  The multiplayer section of this tool is still in development and is unfinished.
-  
-  Default port: 25565
-  
-  How to connect:
-   - Ensure both players have the game loaded in the background, idealy in the same sector.
-   - Load the tool, go to Multiplayer, one player clicks host, the other connects with
-     the IP of the host.
-   - Once both players have recieved a connection message
-     ("Opening connection..." for the host, "Connected!" for the client)
-	 tab back into the game.
-  
-  Troubleshooting:
-   - If a player does not recieve a connection message, either their inbound traffic is blocked,
-     or the outbound traffic of the other computer is blocked.
-
  
  You are permitted to distribute this software
  and use its components in your own projects as long as:

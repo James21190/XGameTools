@@ -5,6 +5,7 @@
 	- Corrected LastUsedID in HashTable to NextAvailableID.
 	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
 	- HashTable now inherits from MemoryObject.
+	- Recreated SectorObject meta objects.
 
 Alpha 4:
 	- Added an executable patching system for easy implementation of optimised code.

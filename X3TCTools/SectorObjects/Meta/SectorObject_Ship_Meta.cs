@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.SectorObjects.Meta
 {
-    public abstract class SectorObjectMeta
+    public class SectorObject_Ship_Meta : SectorObjectMetaWithChildren
     {
-        
     }
 }

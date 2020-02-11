@@ -10,7 +10,8 @@ using X3TCTools.SectorObjects.Meta;
 namespace X3TCTools.SectorObjects
 {
     public partial class SectorObject : MemoryObject
-    {        public bool IsValid
+    {        
+        public bool IsValid
         {
             get
             {
@@ -100,6 +101,10 @@ namespace X3TCTools.SectorObjects
             ISectorObjectMeta meta;
             switch(MainType)
             {
+                case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
+                case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
+                case Main_Type.Dock:
+                case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
                 default: return null;
             }
             meta.SetLocation(m_hProcess, pMeta);
