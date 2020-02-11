@@ -49,6 +49,7 @@
     <Compile Include="Exceptions.cs" />
     <Compile Include="Memory\IMemoryObject.cs" />
     <Compile Include="Memory\MemoryControl.cs" />
+    <Compile Include="Memory\Basic Types.cs" />
     <Compile Include="Memory\MemoryObject.cs" />
     <Compile Include="Memory\ObjectByteList.cs" />
     <Compile Include="Memory\MemoryObjectPointer.cs" />

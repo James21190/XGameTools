@@ -2,6 +2,9 @@
 	- Added TypeData class and viewer.
 	- Seperated UI into multiple forms for faster loading and a better look.
 	- Reduced and renamed unknowns in SectorObject.
+	- Corrected LastUsedID in HashTable to NextAvailableID.
+	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
+	- HashTable now inherits from MemoryObject.
 
 Alpha 4:
 	- Added an executable patching system for easy implementation of optimised code.

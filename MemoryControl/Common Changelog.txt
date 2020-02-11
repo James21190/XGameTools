@@ -1,5 +1,6 @@
 ﻿1.5.0.0
 	- Added comments to more methods and objects.
+	- Added MemoryByte, MemoryInt16, MemoryInt32, and MemoryInt64, which are basic types that derive from MemoryObject.
 
 1.4.0.0
 	- Added the Patcher object.

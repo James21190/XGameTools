@@ -117,5 +117,28 @@ namespace X3TC_Tool
             var display = new StoryBase15fcDisplay(m_GameHook);
             display.Show();
         }
+
+        InputBaseDisplay m_InputBaseDisplay = null;
+
+        public void OnInputBaseDisplayClosed(object sender, EventArgs e)
+        {
+            m_InputBaseDisplay = null;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (m_InputBaseDisplay == null)
+            {
+                m_InputBaseDisplay = new InputBaseDisplay(m_GameHook);
+                m_InputBaseDisplay.FormClosed += OnInputBaseDisplayClosed;
+                m_InputBaseDisplay.Show();
+            }
+        }
+
+        private void hashTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay(m_GameHook);
+            display.Show();
+        }
     }
 }

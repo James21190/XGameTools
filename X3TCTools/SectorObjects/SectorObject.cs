@@ -100,8 +100,6 @@ namespace X3TCTools.SectorObjects
             ISectorObjectMeta meta;
             switch(MainType)
             {
-                case Main_Type.Sector: meta = new SectorMeta(); break;// 1
-                case Main_Type.Ship: meta =  new ShipMeta(); break;// 7
                 default: return null;
             }
             meta.SetLocation(m_hProcess, pMeta);
@@ -122,14 +120,14 @@ namespace X3TCTools.SectorObjects
         public SectorObject[] GetAllChildrenWithType(int main_Type)
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();
-            var list = GetMeta().GetChildrenList();
-            var entry = list[main_Type].pFirst;
-            while (entry.address != IntPtr.Zero)
-            {
-                var next = entry.obj;
-                sectorObjects.Add(next);
-                entry = next.pNext;
-            }
+            //var list = GetMeta().GetChildrenList();
+            //var entry = list[main_Type].pFirst;
+            //while (entry.address != IntPtr.Zero)
+            //{
+            //    var next = entry.obj;
+            //    sectorObjects.Add(next);
+            //    entry = next.pNext;
+            //}
 
             return sectorObjects.ToArray();
         }

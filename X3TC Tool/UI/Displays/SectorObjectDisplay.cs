@@ -110,25 +110,25 @@ namespace X3TC_Tool.UI.Displays
 
         public void ReloadChildren()
         {
-            if (ChildTypeSelectionBox.SelectedIndex < 0) goto failed;
-            var meta = m_SectorObject.GetMeta();
-            if (meta == null) goto failed;
-            var childList = meta.GetChildrenList();
+            //if (ChildTypeSelectionBox.SelectedIndex < 0) goto failed;
+            //var meta = m_SectorObject.GetMeta();
+            //if (meta == null) goto failed;
+            //var childList = meta.GetChildrenList();
 
-            if (childList.Length == 0) goto failed;
+            //if (childList.Length == 0) goto failed;
 
-            var list = childList[ChildTypeSelectionBox.SelectedIndex];
+            //var list = childList[ChildTypeSelectionBox.SelectedIndex];
 
-            if (list == null || !list.pFirst.IsValid || !list.pLast.IsValid || !list.pFirst.obj.IsValid || !list.pLast.obj.IsValid) goto failed;
+            //if (list == null || !list.pFirst.IsValid || !list.pLast.IsValid || !list.pFirst.obj.IsValid || !list.pLast.obj.IsValid) goto failed;
 
-            FirstChildButton.Enabled = true;
-            LastChildButton.Enabled = true;
-            return;
+            //FirstChildButton.Enabled = true;
+            //LastChildButton.Enabled = true;
+            //return;
 
-            failed:
-                FirstChildButton.Enabled = false;
-                LastChildButton.Enabled = false;
-            return;
+            //failed:
+            //    FirstChildButton.Enabled = false;
+            //    LastChildButton.Enabled = false;
+            //return;
         }
 
         private void LoadIDButton_Click(object sender, EventArgs e)
@@ -186,18 +186,18 @@ namespace X3TC_Tool.UI.Displays
 
         private void FirstChildButton_Click(object sender, EventArgs e)
         {
-            var meta = m_SectorObject.GetMeta();
-            var childList = meta.GetChildrenList();
-            var list = childList[ChildTypeSelectionBox.SelectedIndex];
-            LoadObject(list.pFirst.obj);
+            //var meta = m_SectorObject.GetMeta();
+            //var childList = meta.GetChildrenList();
+            //var list = childList[ChildTypeSelectionBox.SelectedIndex];
+            //LoadObject(list.pFirst.obj);
         }
 
         private void LastChildButton_Click(object sender, EventArgs e)
         {
-            var meta = m_SectorObject.GetMeta();
-            var childList = meta.GetChildrenList();
-            var list = childList[ChildTypeSelectionBox.SelectedIndex];
-            LoadObject(list.pLast.obj);
+            //var meta = m_SectorObject.GetMeta();
+            //var childList = meta.GetChildrenList();
+            //var list = childList[ChildTypeSelectionBox.SelectedIndex];
+            //LoadObject(list.pLast.obj);
         }
     }
 }

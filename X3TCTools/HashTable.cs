@@ -11,14 +11,13 @@ namespace X3TCTools
     /// The object used for traversing and fetching objects from a hash table
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class HashTable<T> : IMemoryObject where T : IMemoryObject, new()
+    public class HashTable<T> : MemoryObject where T : IMemoryObject, new()
     {
         #region Classes
-        public class Entry<t> : IMemoryObject where t : IMemoryObject, new()
+        public class Entry<t> : MemoryObject where t : IMemoryObject, new()
         {
             public const int ByteSize = 12;
 
-            private IntPtr m_hProcess;
 
             public MemoryObjectPointer<Entry<t>> pNext;
             public int ObjectID;
@@ -36,7 +35,7 @@ namespace X3TCTools
             #endregion
 
             #region IMemoryObject
-            public byte[] GetBytes()
+            public override byte[] GetBytes()
             {
                 var collection = new ObjectByteList();
                 collection.Append(pNext.address);
@@ -45,12 +44,12 @@ namespace X3TCTools
                 return collection.GetBytes();
             }
 
-            public int GetByteSize()
+            public override int GetByteSize()
             {
                 return ByteSize;
             }
 
-            public void SetData(byte[] Memory)
+            public override void SetData(byte[] Memory)
             {
                 var collection = new ObjectByteList();
                 collection.Append(Memory);
@@ -59,9 +58,9 @@ namespace X3TCTools
                 collection.PopFirst(ref pObject.address);
             }
 
-            public void SetLocation(IntPtr hProcess, IntPtr address)
+            public override void SetLocation(IntPtr hProcess, IntPtr address)
             {
-                m_hProcess = hProcess;
+                base.SetLocation(hProcess, address);
                 pNext.SetLocation(hProcess, address);
                 pObject.SetLocation(hProcess, address);
             }
@@ -74,7 +73,7 @@ namespace X3TCTools
         #region Fields
         public MemoryObjectPointer<MemoryObjectPointer<Entry<T>>> ppEntry;
         public int Length;
-        public int LastUsedID;
+        public int NextAvailableID;
         public int Count;
         #endregion
 
@@ -91,6 +90,40 @@ namespace X3TCTools
         public IntPtr GetAddress(int ID)
         {
             return GetEntry(ID).address;
+        }
+
+        /// <summary>
+        /// Returns all ID's stored in the hash table.
+        /// </summary>
+        /// <returns></returns>
+        public int[] ScanContents()
+        {
+            List<int> results = new List<int>();
+            for(int i = 0; i < Length; i++)
+            {
+                var pEntry = ppEntry.GetObjectInArray(i);
+                if (pEntry.IsValid)
+                {
+
+                    var entry = pEntry.obj;
+                    while (true)
+                    {
+                        if (entry.pObject.IsValid)
+                        {
+                            results.Add(entry.ObjectID);
+                        }
+
+                        if (!entry.pNext.IsValid) break;
+                        entry = entry.pNext.obj;
+                    }
+
+                }
+
+            }
+
+            results.Sort();
+
+            return results.ToArray();
         }
 
         private MemoryObjectPointer<T> GetEntry(int ID)
@@ -118,34 +151,35 @@ namespace X3TCTools
         }
 
         #region IMemoryObject
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             var collection = new ObjectByteList();
             collection.Append(ppEntry.address);
             collection.Append(Length);
-            collection.Append(LastUsedID);
+            collection.Append(NextAvailableID);
             collection.Append(Count);
 
             return collection.GetBytes();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList();
             collection.Append(Memory);
             collection.PopFirst(ref ppEntry);
             collection.PopFirst(ref Length);
-            collection.PopFirst(ref LastUsedID);
+            collection.PopFirst(ref NextAvailableID);
             collection.PopFirst(ref Count);
         }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
+            base.SetLocation(hProcess, address);
             ppEntry.SetLocation(hProcess, address);
         }
         #endregion

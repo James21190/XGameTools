@@ -65,6 +65,18 @@
     <Compile Include="UI\Displays\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\HashTableDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\HashTableDisplay.Designer.cs">
+      <DependentUpon>HashTableDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\InputBaseDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
+      <DependentUpon>InputBaseDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\SectorObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
+      <DependentUpon>HashTableDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
+      <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\SectorObjectDisplay.resx">
       <DependentUpon>SectorObjectDisplay.cs</DependentUpon>

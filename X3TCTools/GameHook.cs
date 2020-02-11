@@ -19,6 +19,7 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData>> ppTypeData;
+        private MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
         #endregion
 
         #region Pointer Objects
@@ -38,6 +39,8 @@ namespace X3TCTools
         /// An up to date representation of the game's StoryBase.
         /// </summary>
         public StoryBase storyBase { get { return ppStoryBase.obj.obj; } }
+
+        public InputBase inputBase { get { return ppInputBase.obj.obj; } }
 
         public TypeData GetTypeData(int MainType, int SubType)
         {
@@ -62,6 +65,7 @@ namespace X3TCTools
             ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddresses.pSystemBase);
             ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddresses.pGateSystemObject);
             ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddresses.pTypeData);
+            ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddresses.pInputBase);
 
             // Create events
             eventManager = new EventManager(hProcess);
@@ -83,12 +87,13 @@ namespace X3TCTools
 
         public enum GlobalAddresses
         {
-            pSystemBase = 0x00603064,
-            pGateSystemObject = 0x00604634,
-            pSectorObjectManager = 0x00604640,
-            pCockpitBase = 0x00604638,
-            pStoryBase = 0x00604718,
-            pTypeData = 0x006030e8
+            pSystemBase =           0x00603064,
+            pGateSystemObject =     0x00604634,
+            pSectorObjectManager =  0x00604640,
+            pCockpitBase =          0x00604638,
+            pStoryBase =            0x00604718,
+            pTypeData =             0x006030e8,
+            pInputBase =            0x0057FDA0
         }
         public enum RaceID : ushort
         {

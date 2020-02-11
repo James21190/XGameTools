@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 using Common.Memory;
 
-namespace X3TCTools
+namespace X3TCTools.Bases
 {
-    public class LinkedListStart<T> : MemoryObject where T:IMemoryObject, new()
+    public class InputBase : MemoryObject
     {
 
-        public const int ByteSize = 12;
+        public const int ByteSize = 0x531;
 
-        public MemoryObjectPointer<T> pFirst = new MemoryObjectPointer<T>();
-        public int NULL;
-        public MemoryObjectPointer<T> pLast = new MemoryObjectPointer<T>();
+        // Skip0x4dc
+        public int EventObjectID;
 
         public override byte[] GetBytes()
         {
@@ -30,15 +29,14 @@ namespace X3TCTools
         public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList(Memory);
-            collection.PopFirst(ref pFirst);
-            collection.PopFirst(ref NULL);
-            collection.PopFirst(ref pLast);
+
+            collection.Skip(0x4dc);
+            collection.PopFirst(ref EventObjectID);
         }
+
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            pFirst.SetLocation(hProcess, address);
-            pLast.SetLocation(hProcess, address + 8);
         }
     }
 }
