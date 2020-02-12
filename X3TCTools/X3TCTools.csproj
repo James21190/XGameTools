@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bases\CameraBase.cs" />
+    <Compile Include="Bases\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
     <Compile Include="Bases\StoryBase\DynamicValue.cs" />

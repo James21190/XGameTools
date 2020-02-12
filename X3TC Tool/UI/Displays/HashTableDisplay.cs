@@ -27,6 +27,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void LoadTable(IntPtr pHashTable)
         {
+            if (AddressBox.Text != pHashTable.ToString("X")) AddressBox.Text = pHashTable.ToString("X");
             m_HashTable.SetLocation(m_GameHook.hProcess, pHashTable);
             Reload();
         }
@@ -53,6 +54,30 @@ namespace X3TC_Tool.UI.Displays
                 listBox1.Items.Add(item);
             }
             ScannerLabel.Text = string.Format("{0} results found!", listBox1.Items.Count);
+        }
+
+        public void LoadEntry(int id)
+        {
+            if (EntryIDSelector.Value != id) EntryIDSelector.Value = id;
+            try
+            {
+                textBox2.Text = m_HashTable.GetAddress(id).ToString("X");
+            }
+            catch(Exception e)
+            {
+                textBox2.Text = "Not Found!";
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadEntry((int)EntryIDSelector.Value);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex < 0 || listBox1.SelectedIndex >= listBox1.Items.Count) return;
+            LoadEntry(Convert.ToInt32(listBox1.SelectedItem.ToString()));
         }
     }
 }

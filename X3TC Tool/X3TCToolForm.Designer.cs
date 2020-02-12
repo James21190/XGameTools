@@ -30,6 +30,7 @@
         {
             this.ViewStoryBaseButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.ViewSectorObjectManagerButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -39,8 +40,9 @@
             this.sectorObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storyBase15fcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
+            this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,15 +61,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.ViewSectorObjectManagerButton);
             this.groupBox1.Controls.Add(this.ViewStoryBaseButton);
             this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 126);
+            this.groupBox1.Size = new System.Drawing.Size(200, 172);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bases";
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(6, 106);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(188, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "View CameraBase";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -111,7 +126,8 @@
             this.sectorObjectToolStripMenuItem,
             this.typeDataToolStripMenuItem,
             this.storyBase15fcToolStripMenuItem,
-            this.hashTableToolStripMenuItem});
+            this.hashTableToolStripMenuItem,
+            this.cameraToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.windowToolStripMenuItem.Text = "Viewers";
@@ -151,6 +167,13 @@
             this.storyBase15fcToolStripMenuItem.Text = "StoryBase15fc";
             this.storyBase15fcToolStripMenuItem.Click += new System.EventHandler(this.storyBase15fcToolStripMenuItem_Click);
             // 
+            // hashTableToolStripMenuItem
+            // 
+            this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hashTableToolStripMenuItem.Text = "HashTable";
+            this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
+            // 
             // LoadPlayerShipButton
             // 
             this.LoadPlayerShipButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -163,12 +186,12 @@
             this.LoadPlayerShipButton.UseVisualStyleBackColor = true;
             this.LoadPlayerShipButton.Click += new System.EventHandler(this.LoadPlayerShipButton_Click);
             // 
-            // hashTableToolStripMenuItem
+            // cameraToolStripMenuItem
             // 
-            this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.hashTableToolStripMenuItem.Text = "HashTable";
-            this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
+            this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cameraToolStripMenuItem.Text = "Camera";
+            this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -207,6 +230,8 @@
         private System.Windows.Forms.ToolStripMenuItem storyBase15fcToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem hashTableToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
     }
 }
 

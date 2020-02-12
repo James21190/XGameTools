@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Vector\RotationMatrix_4.cs" />
     <Compile Include="Vector\RotationMatrix_3.cs" />
+    <Compile Include="Vector\Vector3 - Copy.cs" />
     <Compile Include="Vector\Vector4.cs" />
     <Compile Include="Vector\Vector3.cs" />
   </ItemGroup>

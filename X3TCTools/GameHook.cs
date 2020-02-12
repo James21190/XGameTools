@@ -20,6 +20,7 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData>> ppTypeData;
         private MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
+        private MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
         #endregion
 
         #region Pointer Objects
@@ -41,6 +42,7 @@ namespace X3TCTools
         public StoryBase storyBase { get { return ppStoryBase.obj.obj; } }
 
         public InputBase inputBase { get { return ppInputBase.obj.obj; } }
+        public CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
 
         public TypeData GetTypeData(int MainType, int SubType)
         {
@@ -66,6 +68,7 @@ namespace X3TCTools
             ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddresses.pGateSystemObject);
             ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddresses.pTypeData);
             ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddresses.pInputBase);
+            ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddresses.pCameraBase);
 
             // Create events
             eventManager = new EventManager(hProcess);
@@ -85,6 +88,12 @@ namespace X3TCTools
             gameCodeRunner = new GameCodeRunner(this);
         }
 
+        ~GameHook()
+        {
+            if (hProcess != IntPtr.Zero)
+                Unhook();
+        }
+
         public enum GlobalAddresses
         {
             pSystemBase =           0x00603064,
@@ -93,7 +102,8 @@ namespace X3TCTools
             pCockpitBase =          0x00604638,
             pStoryBase =            0x00604718,
             pTypeData =             0x006030e8,
-            pInputBase =            0x0057FDA0
+            pInputBase =            0x0057FDA0,
+            pCameraBase =           0x0060464c
         }
         public enum RaceID : ushort
         {

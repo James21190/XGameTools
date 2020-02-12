@@ -140,5 +140,28 @@ namespace X3TC_Tool
             var display = new HashTableDisplay(m_GameHook);
             display.Show();
         }
+
+        CameraBaseDisplay m_CameraBaseDisplay = null;
+
+        public void OnCameraBaseDisplayClosed(object sender, EventArgs e)
+        {
+            m_CameraBaseDisplay = null;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (m_CameraBaseDisplay == null)
+            {
+                m_CameraBaseDisplay = new CameraBaseDisplay(m_GameHook);
+                m_CameraBaseDisplay.FormClosed += OnCameraBaseDisplayClosed;
+                m_CameraBaseDisplay.Show();
+            }
+        }
+
+        private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new CameraDisplay(m_GameHook);
+            display.Show();
+        }
     }
 }

@@ -27,7 +27,8 @@ namespace Common.Memory
 
         public void HookIntoProcess(string processName)
         {
-
+            var process = Process.GetProcessesByName(processName).FirstOrDefault();
+            HookIntoProcess(process);
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace Common.Memory
         /// </summary>
         public void Unhook()
         {
-
+            MemoryControl.CloseHandle(hProcess);
         }
     }
 }

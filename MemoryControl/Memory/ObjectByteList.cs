@@ -11,9 +11,9 @@ namespace Common.Memory
     /// </summary>
     public class ObjectByteList : IMemoryObject
     {
-        private List<byte> m_data = new List<byte>();
-        private IntPtr m_hProcess;
+        private List<byte> m_Data = new List<byte>();
 
+        private int m_ReadPointer = 0;
 
         public ObjectByteList()
         {
@@ -21,80 +21,82 @@ namespace Common.Memory
         }
         public ObjectByteList(byte[] Data)
         {
-            m_data = new List<byte>(Data);
+            m_Data = new List<byte>(Data);
         }
 
+        #region IMemoryObject
         public int GetByteSize()
         {
-            return m_data.Count();
+            return m_Data.Count();
         }
 
         public void SetData(byte[] Memory)
         {
-            m_data = new List<byte>(Memory);
+            m_Data = new List<byte>(Memory);
         }
 
         public byte[] GetBytes()
         {
-            return m_data.ToArray();
+            return m_Data.ToArray();
         }
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            m_hProcess = hProcess;
+
         }
+
+        #endregion
 
         public void Skip(int count)
         {
-            m_data.RemoveRange(0, count);
+            m_ReadPointer += count;
         }
+
+        public void GoTo(int offset)
+        {
+            m_ReadPointer = offset;
+        }
+
+        #region Pops and Appends
 
         #region Byte Array
         public void PopFirst(ref byte[] arr)
         {
             for(int i = 0; i < arr.Length; i++)
             {
-                arr[i] = m_data[0];
-                m_data.RemoveAt(0);
+                arr[i] = m_Data[m_ReadPointer++];
             }
         }
         public void Append(byte[] arr)
         {
-            m_data.AddRange(arr);
+            m_Data.AddRange(arr);
         }
         #endregion
 
         #region 1 Byte int
-        public void Append(byte value)
-        {
-            m_data.Add(value);
-        }
         public void PopFirst(ref byte value)
         {
-            value = m_data[0];
-            m_data.RemoveAt(0);
+            value = m_Data[m_ReadPointer++];
+        }
+        public void Append(byte value)
+        {
+            m_Data.Add(value);
         }
         #endregion
 
         #region 2 Byte int
-        public void Append(short value)
-        {
-            m_data.AddRange(BitConverter.GetBytes(value));
-        }
         public void PopFirst(ref short value)
         {
             byte[] data = new byte[2];
 
-            data[0] = m_data[0];
-            data[1] = m_data[1];
-            m_data.RemoveRange(0, 2);
+            data[0] = m_Data[m_ReadPointer++];
+            data[1] = m_Data[m_ReadPointer++];
 
             value = BitConverter.ToInt16(data, 0);
         }
-
-        public void Append(ushort value)
+        public void Append(short value)
         {
-            m_data.AddRange(BitConverter.GetBytes(value));
+            m_Data.AddRange(BitConverter.GetBytes(value));
         }
 
         public void PopFirst(ref ushort value)
@@ -103,68 +105,63 @@ namespace Common.Memory
             PopFirst(ref temp);
             value = (ushort)temp;
         }
+        public void Append(ushort value)
+        {
+            m_Data.AddRange(BitConverter.GetBytes(value));
+        }
         #endregion
 
         #region 4 Byte int
-        public void Append(int value)
-        {
-            m_data.AddRange(BitConverter.GetBytes(value));
-        }
         public void PopFirst(ref int value)
         {
             byte[] data = new byte[4];
 
             for (int i = 0; i < 4; i++)
             {
-                data[i] = m_data[0];
-                m_data.RemoveAt(0);
+                data[i] = m_Data[m_ReadPointer++];
             }
 
             value = BitConverter.ToInt32(data, 0);
         }
-
-        public void Append(uint value)
+        public void Append(int value)
         {
-            m_data.AddRange(BitConverter.GetBytes(value));
+            m_Data.AddRange(BitConverter.GetBytes(value));
         }
+
         public void PopFirst(ref uint value)
         {
             byte[] data = new byte[4];
 
             for (int i = 0; i < 4; i++)
             {
-                data[i] = m_data[0];
-                m_data.RemoveAt(0);
+                data[i] = m_Data[m_ReadPointer++];
             }
 
             value = BitConverter.ToUInt32(data, 0);
         }
-        public void Append(IntPtr value)
+        public void Append(uint value)
         {
-            Append((int)value);
+            m_Data.AddRange(BitConverter.GetBytes(value));
         }
+        
         public void PopFirst(ref IntPtr value)
         {
             byte[] data = new byte[4];
 
             for (int i = 0; i < 4; i++)
             {
-                data[i] = m_data[0];
-                m_data.RemoveAt(0);
+                data[i] = m_Data[m_ReadPointer++];
             }
 
             value = (IntPtr)BitConverter.ToInt32(data, 0);
         }
+        public void Append(IntPtr value)
+        {
+            Append((int)value);
+        }
         #endregion
 
         #region IMemoryObject Arr
-        public void Append<T>(T[] arr) where T : IMemoryObject
-        {
-            foreach(var obj in arr)
-            {
-                Append(obj.GetBytes());
-            }
-        }
         public void PopFirst<T>(ref T[] arr) where T : IMemoryObject
         {
             for(int i = 0; i < arr.Length; i++)
@@ -174,14 +171,14 @@ namespace Common.Memory
                 arr[i].SetData(data);
             }
         }
-
-        public void Append<T>(T[,] arr) where T : IMemoryObject
+        public void Append<T>(T[] arr) where T : IMemoryObject
         {
-            foreach (var obj in arr)
+            foreach(var obj in arr)
             {
                 Append(obj.GetBytes());
             }
         }
+
         public void PopFirst<T>(ref T[,] arr) where T : IMemoryObject
         {
             for (int x = 0; x < arr.GetLength(0); x++)
@@ -194,31 +191,39 @@ namespace Common.Memory
                 }
             }
         }
+        public void Append<T>(T[,] arr) where T : IMemoryObject
+        {
+            foreach (var obj in arr)
+            {
+                Append(obj.GetBytes());
+            }
+        }
         #endregion
 
         #region IMemoryObject
-        public void Append(IMemoryObject memoryObject)
-        {
-            m_data.AddRange(memoryObject.GetBytes());
-        }
         public void PopFirst<T>(ref T obj) where T : IMemoryObject
         {
             byte[] data = new byte[obj.GetByteSize()];
 
             for(int i = 0; i < obj.GetByteSize(); i++)
             {
-                data[i] = m_data[0];
-                m_data.RemoveAt(0);
+                data[i] = m_Data[m_ReadPointer++];
             }
 
             obj.SetData(data);
         }
+        public void Append(IMemoryObject memoryObject)
+        {
+            m_Data.AddRange(memoryObject.GetBytes());
+        }
         #endregion
         public void PopRemaining(ref byte[] arr)
         {
-            arr = m_data.ToArray();
-            m_data.Clear();
+            arr = m_Data.Skip(m_ReadPointer).ToArray();
+            m_ReadPointer = m_Data.Count;
         }
+
+        #endregion
 
     }
 }

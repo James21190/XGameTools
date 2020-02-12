@@ -126,6 +126,11 @@ namespace X3TCTools
             return results.ToArray();
         }
 
+        /// <summary>
+        /// Returns the entry with a given id. Throws an exception if not found.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         private MemoryObjectPointer<T> GetEntry(int ID)
         {
             var index = GetIndex(ID);

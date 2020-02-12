@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\Displays\CameraBaseDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\CameraBaseDisplay.Designer.cs">
+      <DependentUpon>CameraBaseDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\CameraDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\CameraDisplay.Designer.cs">
+      <DependentUpon>CameraDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\DynamicValueDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +133,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\Displays\CameraBaseDisplay.resx">
+      <DependentUpon>CameraBaseDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\CameraDisplay.resx">
+      <DependentUpon>CameraDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
