@@ -61,6 +61,18 @@
     <Compile Include="Patcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptAssembler.cs" />
+    <Compile Include="UI\Vector2Display.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Vector2Display.Designer.cs">
+      <DependentUpon>Vector2Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Vector4Display.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Vector4Display.Designer.cs">
+      <DependentUpon>Vector4Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Vector3Display.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -69,11 +81,17 @@
     </Compile>
     <Compile Include="Vector\RotationMatrix_4.cs" />
     <Compile Include="Vector\RotationMatrix_3.cs" />
-    <Compile Include="Vector\Vector3 - Copy.cs" />
+    <Compile Include="Vector\Vector2.cs" />
     <Compile Include="Vector\Vector4.cs" />
     <Compile Include="Vector\Vector3.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UI\Vector2Display.resx">
+      <DependentUpon>Vector2Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Vector4Display.resx">
+      <DependentUpon>Vector4Display.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Vector3Display.resx">
       <DependentUpon>Vector3Display.cs</DependentUpon>
     </EmbeddedResource>
