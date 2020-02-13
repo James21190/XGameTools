@@ -4,6 +4,7 @@
 	- Added Vector2 struct.
 	- Completed ApplicationHook abstract class.
 	- Improved ObjectByteList and added GoTo(address).
+	- Added Vector2Display and Vector4Display form components.
 
 1.4.0.0
 	- Added the Patcher object.

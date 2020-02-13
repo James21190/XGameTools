@@ -83,12 +83,6 @@
     <Compile Include="X3FixedPointValue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\Common.csproj">
-      <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Mods\System\CreateObject.x3tccode">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -105,6 +99,12 @@
     <EmbeddedResource Include="DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MemoryControl\Common.csproj">
+      <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
