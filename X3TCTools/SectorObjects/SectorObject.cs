@@ -41,7 +41,7 @@ namespace X3TCTools.SectorObjects
         public int Unknown_8;
         public Vector3 PositionStrafeDelta;
         public int Unknown_9;
-        public IntPtr pData;
+        public MemoryObjectPointer<SectorObjectData> pData;
         public int Unknown_10;
         public int Unknown_11;
         public int _RelatedToEvents_1;
@@ -90,6 +90,7 @@ namespace X3TCTools.SectorObjects
             pPrevious = new MemoryObjectPointer<SectorObject>();
             pParent = new MemoryObjectPointer<SectorObject>();
             DynamicValue = new Bases.DynamicValue();
+            pData = new MemoryObjectPointer<SectorObjectData>();
         }
 
         /// <summary>
@@ -157,8 +158,11 @@ namespace X3TCTools.SectorObjects
 
         public SectorObjectData GetData()
         {
-            return new SectorObjectData(m_hProcess, pData);
-            
+            var data = new SectorObjectData();
+            data.SetLocation(m_hProcess, pData.address);
+            return data;
+
+
         }
 
         #region IMemoryObject
@@ -325,6 +329,8 @@ namespace X3TCTools.SectorObjects
             pPrevious.SetLocation(hProcess, address);
             pParent.SetLocation(hProcess, address);
             DynamicValue.SetLocation(hProcess, address);
+            pData.SetLocation(hProcess, address);
+
         }
 
     }

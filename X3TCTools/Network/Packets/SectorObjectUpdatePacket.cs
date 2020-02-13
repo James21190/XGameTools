@@ -92,7 +92,7 @@ namespace X3TCTools.Network.Packets
             data.rotationMatrix = Rotation;
 
             sectorObject.Save();
-            data.Save(sectorObject.pData);
+            //data.Save(sectorObject.pData);
         }
 
         public int GetByteSize()

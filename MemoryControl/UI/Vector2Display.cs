@@ -105,11 +105,10 @@ namespace Common.UI
             {
                 X = value.X;
                 Y = value.Y;
-                Z = value.Z;
             }
         }
 
-        public Vector3Display()
+        public Vector2Display()
         {
             InitializeComponent();
         }

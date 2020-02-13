@@ -33,9 +33,14 @@ namespace X3TC_Tool.UI.Displays
         public void Reload()
         {
             AddressBox.Text = m_SectorObjectData.pThis.ToString("X");
-        
+
+            ScaleBox.Vector = m_SectorObjectData.ComponentPositionMult;
+
             // Relations
-            
+            NextButton.Enabled = m_SectorObjectData.pNext.IsValid;
+            PreviousButton.Enabled = m_SectorObjectData.pPrevious.IsValid;
+            FirstChildButton.Enabled = m_SectorObjectData.pFirstChild.IsValid;
+            LastChildButton.Enabled = m_SectorObjectData.pLastChild.IsValid;
         }
     }
 }

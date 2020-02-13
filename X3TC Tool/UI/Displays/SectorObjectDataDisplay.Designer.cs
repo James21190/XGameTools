@@ -34,6 +34,7 @@
             this.NextButton = new System.Windows.Forms.Button();
             this.LastChildButton = new System.Windows.Forms.Button();
             this.FirstChildButton = new System.Windows.Forms.Button();
+            this.ScaleBox = new Common.UI.Vector3Display();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,11 +92,47 @@
             this.FirstChildButton.Text = "Go To First Child";
             this.FirstChildButton.UseVisualStyleBackColor = true;
             // 
+            // ScaleBox
+            // 
+            this.ScaleBox.Location = new System.Drawing.Point(220, 19);
+            this.ScaleBox.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.ScaleBox.MaximumSize = new System.Drawing.Size(156, 103);
+            this.ScaleBox.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ScaleBox.MinimumSize = new System.Drawing.Size(100, 103);
+            this.ScaleBox.Name = "ScaleBox";
+            this.ScaleBox.Size = new System.Drawing.Size(156, 103);
+            this.ScaleBox.TabIndex = 17;
+            this.ScaleBox.Text = "Scale";
+            this.ScaleBox.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ScaleBox.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ScaleBox.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // SectorObjectDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ScaleBox);
             this.Controls.Add(this.LastChildButton);
             this.Controls.Add(this.FirstChildButton);
             this.Controls.Add(this.PreviousButton);
@@ -117,5 +154,6 @@
         private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.Button LastChildButton;
         private System.Windows.Forms.Button FirstChildButton;
+        private Common.UI.Vector3Display ScaleBox;
     }
 }

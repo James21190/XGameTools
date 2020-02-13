@@ -52,7 +52,7 @@
             this.groupBox1.Size = new System.Drawing.Size(150, 74);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Vector3Display";
+            this.groupBox1.Text = "Vector2Display";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label2

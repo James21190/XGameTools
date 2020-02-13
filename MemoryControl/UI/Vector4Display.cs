@@ -26,6 +26,7 @@ namespace Common.UI
                 numericUpDown1.ReadOnly = value;
                 numericUpDown2.ReadOnly = value;
                 numericUpDown3.ReadOnly = value;
+                numericUpDown4.ReadOnly = value;
             }
         }
         [Browsable(true)]
@@ -82,6 +83,19 @@ namespace Common.UI
         }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public decimal W
+        {
+            get
+            {
+                return numericUpDown4.Value;
+            }
+            set
+            {
+                numericUpDown4.Value = value;
+            }
+        }
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal Minimum
         {
             get
@@ -93,6 +107,7 @@ namespace Common.UI
                 numericUpDown1.Minimum = value;
                 numericUpDown2.Minimum = value;
                 numericUpDown3.Minimum = value;
+                numericUpDown4.Minimum = value;
             }
         }
         [Browsable(true)]
@@ -108,24 +123,26 @@ namespace Common.UI
                 numericUpDown1.Maximum = value;
                 numericUpDown2.Maximum = value;
                 numericUpDown3.Maximum = value;
+                numericUpDown4.Maximum = value;
             }
         }
 
-        public Common.Vector.Vector3 Vector
+        public Common.Vector.Vector4 Vector
         {
             get
             {
-                return new Common.Vector.Vector3(Convert.ToInt32(X),Convert.ToInt32(Y),Convert.ToInt32(Z));
+                return new Common.Vector.Vector4(Convert.ToInt32(X),Convert.ToInt32(Y),Convert.ToInt32(Z), Convert.ToInt32(W));
             }
             set
             {
                 X = value.X;
                 Y = value.Y;
                 Z = value.Z;
+                W = value.W;
             }
         }
 
-        public Vector3Display()
+        public Vector4Display()
         {
             InitializeComponent();
         }

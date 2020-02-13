@@ -74,7 +74,6 @@
     <Compile Include="SectorObjects\Meta\SectorObject_Station_Meta.cs" />
     <Compile Include="SectorObjects\SectorObject Offsets.cs" />
     <Compile Include="SectorObjects\SectorObject Types.cs" />
-    <Compile Include="SectorObjects\SectorObjectData Offsets.cs" />
     <Compile Include="SectorObjects\SectorObjectData.cs" />
     <Compile Include="SectorObjects\SectorObjectManager.cs" />
     <Compile Include="SectorObjects\SectorObject.cs" />

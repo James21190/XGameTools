@@ -8,19 +8,16 @@ using Common.Memory;
 
 namespace X3TCTools.SectorObjects
 {
-    public partial class SectorObjectData : Common.Memory.IMemoryObject
+    public class SectorObjectData : MemoryObject
     {
         public const int ByteSize = 624;
 
-        public IntPtr hProcess = IntPtr.Zero;
-        public IntPtr pThis = IntPtr.Zero;
-
-        public int Unknown_1;
-        public int Unknown_2;
+        public MemoryObjectPointer<SectorObjectData> pNext = new MemoryObjectPointer<SectorObjectData>();
+        public MemoryObjectPointer<SectorObjectData> pPrevious = new MemoryObjectPointer<SectorObjectData>();
         public int Unknown_3;
-        public int Unknown_4;
+        public MemoryObjectPointer<SectorObjectData> pFirstChild = new MemoryObjectPointer<SectorObjectData>();
         public int Unknown_5;
-        public int Unknown_6;
+        public MemoryObjectPointer<SectorObjectData> pLastChild = new MemoryObjectPointer<SectorObjectData>();
         public int Unknown_7;
         public int Unknown_8;
         public int Unknown_9;
@@ -157,38 +154,29 @@ namespace X3TCTools.SectorObjects
         public int Unknown_155;
         public int Unknown_156;
 
-        public SectorObjectData(IntPtr hProcess)
+        public SectorObjectData()
         {
-            this.hProcess = hProcess;
-        }
-        public SectorObjectData(IntPtr hProcess, IntPtr address)
-        {
-            pThis = address;
-            this.hProcess = hProcess;
-            SetData(MemoryControl.Read(hProcess, address, ByteSize));
-        }
-        public SectorObjectData(byte[] memory)
-        {
-            SetData(memory);
         }
 
-        public void Save(IntPtr address)
+        public bool IsValid
         {
-            MemoryControl.Write(hProcess, address, (IntPtr)Offsets.Position, Position);
-            MemoryControl.Write(hProcess, address, (IntPtr)Offsets.RotationMatrix, rotationMatrix);
+            get
+            {
+                return pNext.IsValid && pPrevious.IsValid;
+            }
         }
 
         #region IMemoryObject
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             var collection = new ObjectByteList();
 
-            collection.Append(Unknown_1);
-            collection.Append(Unknown_2);
+            collection.Append(pNext);
+            collection.Append(pPrevious);
             collection.Append(Unknown_3);
-            collection.Append(Unknown_4);
+            collection.Append(pFirstChild);
             collection.Append(Unknown_5);
-            collection.Append(Unknown_6);
+            collection.Append(pLastChild);
             collection.Append(Unknown_7);
             collection.Append(Unknown_8);
             collection.Append(Unknown_9);
@@ -328,22 +316,22 @@ namespace X3TCTools.SectorObjects
             return collection.GetBytes();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList();
             collection.SetData(Memory);
 
-            collection.PopFirst(ref Unknown_1);
-            collection.PopFirst(ref Unknown_2);
+            collection.PopFirst(ref pNext);
+            collection.PopFirst(ref pPrevious);
             collection.PopFirst(ref Unknown_3);
-            collection.PopFirst(ref Unknown_4);
+            collection.PopFirst(ref pFirstChild);
             collection.PopFirst(ref Unknown_5);
-            collection.PopFirst(ref Unknown_6);
+            collection.PopFirst(ref pLastChild);
             collection.PopFirst(ref Unknown_7);
             collection.PopFirst(ref Unknown_8);
             collection.PopFirst(ref Unknown_9);
@@ -481,9 +469,13 @@ namespace X3TCTools.SectorObjects
             collection.PopFirst(ref Unknown_156);
         }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            throw new NotImplementedException();
+            base.SetLocation(hProcess, address);
+            pNext.SetLocation(hProcess, address);
+            pPrevious.SetLocation(hProcess, address+0x4);
+            pFirstChild.SetLocation(hProcess, address+0xC);
+            pLastChild.SetLocation(hProcess, address+0x14);
         }
         #endregion
     }
