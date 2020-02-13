@@ -54,6 +54,7 @@
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.UnknownsListBox = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -348,6 +349,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.UnknownsListBox);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox6);
@@ -375,6 +377,16 @@
             this.UnknownsListBox.Name = "UnknownsListBox";
             this.UnknownsListBox.Size = new System.Drawing.Size(170, 355);
             this.UnknownsListBox.TabIndex = 21;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(162, 119);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Load Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SectorObjectDisplay
             // 
@@ -428,5 +440,6 @@
         private System.Windows.Forms.Button FirstChildButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox UnknownsListBox;
+        private System.Windows.Forms.Button button1;
     }
 }

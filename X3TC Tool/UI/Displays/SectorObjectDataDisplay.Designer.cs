@@ -34,16 +34,19 @@
             this.NextButton = new System.Windows.Forms.Button();
             this.LastChildButton = new System.Windows.Forms.Button();
             this.FirstChildButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.ScaleBox = new Common.UI.Vector3Display();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.AddressBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(121, 52);
+            this.groupBox2.Size = new System.Drawing.Size(202, 52);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Address";
@@ -64,6 +67,7 @@
             this.PreviousButton.TabIndex = 14;
             this.PreviousButton.Text = "Go To Previous";
             this.PreviousButton.UseVisualStyleBackColor = true;
+            this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
             // NextButton
             // 
@@ -73,6 +77,7 @@
             this.NextButton.TabIndex = 13;
             this.NextButton.Text = "Go To Next";
             this.NextButton.UseVisualStyleBackColor = true;
+            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
             // 
             // LastChildButton
             // 
@@ -82,6 +87,7 @@
             this.LastChildButton.TabIndex = 16;
             this.LastChildButton.Text = "Go To Last Child";
             this.LastChildButton.UseVisualStyleBackColor = true;
+            this.LastChildButton.Click += new System.EventHandler(this.LastChildButton_Click);
             // 
             // FirstChildButton
             // 
@@ -91,13 +97,34 @@
             this.FirstChildButton.TabIndex = 15;
             this.FirstChildButton.Text = "Go To First Child";
             this.FirstChildButton.UseVisualStyleBackColor = true;
+            this.FirstChildButton.Click += new System.EventHandler(this.FirstChildButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(121, 17);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Load";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(382, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ScaleBox
             // 
             this.ScaleBox.Location = new System.Drawing.Point(220, 19);
             this.ScaleBox.Maximum = new decimal(new int[] {
-            100,
-            0,
+            -1530494977,
+            232830,
             0,
             0});
             this.ScaleBox.MaximumSize = new System.Drawing.Size(156, 103);
@@ -132,6 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.ScaleBox);
             this.Controls.Add(this.LastChildButton);
             this.Controls.Add(this.FirstChildButton);
@@ -155,5 +183,7 @@
         private System.Windows.Forms.Button LastChildButton;
         private System.Windows.Forms.Button FirstChildButton;
         private Common.UI.Vector3Display ScaleBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

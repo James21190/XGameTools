@@ -14,24 +14,24 @@ namespace X3TCTools.SectorObjects
 
         public MemoryObjectPointer<SectorObjectData> pNext = new MemoryObjectPointer<SectorObjectData>();
         public MemoryObjectPointer<SectorObjectData> pPrevious = new MemoryObjectPointer<SectorObjectData>();
-        public int Unknown_3;
+        public int Unknown_3; // 0x8
         public MemoryObjectPointer<SectorObjectData> pFirstChild = new MemoryObjectPointer<SectorObjectData>();
-        public int Unknown_5;
+        public int Unknown_5; // 0x10
         public MemoryObjectPointer<SectorObjectData> pLastChild = new MemoryObjectPointer<SectorObjectData>();
-        public int Unknown_7;
+        public int Unknown_7; // 0x18
         public int Unknown_8;
-        public int Unknown_9;
+        public int Unknown_9; // 0x20
         public int Unknown_10;
-        public int Unknown_11;
+        public int Unknown_11; // 0x28
         public int Unknown_12;
-        public Vector3 Position;
-        public int Unknown_16;
-        public RotationMatrix_4 rotationMatrix = new RotationMatrix_4();
-        public int Unknown_29;
+        public Vector3 Position; // 0x30
+        public int Unknown_16; // 0x3c
+        public RotationMatrix_4 rotationMatrix = new RotationMatrix_4(); // 0x40
+        public int Unknown_29; // 0x70
         public int Unknown_30;
-        public int Unknown_31;
+        public int Unknown_31; // 0x78
         public int Unknown_32;
-        public Vector3 ComponentPositionMult;
+        public Vector3 ComponentPositionMult; // 0x80
         public int Unknown_36;
         public int Unknown_37;
         public int Unknown_38;
@@ -156,6 +156,11 @@ namespace X3TCTools.SectorObjects
 
         public SectorObjectData()
         {
+        }
+
+        public void Save()
+        {
+            MemoryControl.Write(m_hProcess, pThis + 0x80, ComponentPositionMult);
         }
 
         public bool IsValid

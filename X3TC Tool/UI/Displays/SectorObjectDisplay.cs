@@ -192,5 +192,12 @@ namespace X3TC_Tool.UI.Displays
             if (child != null)
                 LoadObject(child);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var display = new SectorObjectDataDisplay(m_GameHook);
+            display.LoadData(m_SectorObject.pData.obj);
+            display.Show();
+        }
     }
 }

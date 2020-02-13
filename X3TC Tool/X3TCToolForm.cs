@@ -140,5 +140,11 @@ namespace X3TC_Tool
             var display = new HashTableDisplay(m_GameHook);
             display.Show();
         }
+
+        private void sectorObjectDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new SectorObjectDataDisplay(m_GameHook);
+            display.Show();
+        }
     }
 }

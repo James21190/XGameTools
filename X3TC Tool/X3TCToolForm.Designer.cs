@@ -33,14 +33,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ViewSectorObjectManagerButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ViewersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eventObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dynamicValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sectorObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storyBase15fcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
+            this.sectorObjectDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -96,60 +97,68 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.windowToolStripMenuItem});
+            this.ViewersMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // windowToolStripMenuItem
+            // ViewersMenuItem
             // 
-            this.windowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ViewersMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eventObjectToolStripMenuItem,
             this.dynamicValueToolStripMenuItem,
             this.sectorObjectToolStripMenuItem,
             this.typeDataToolStripMenuItem,
             this.storyBase15fcToolStripMenuItem,
-            this.hashTableToolStripMenuItem});
-            this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.windowToolStripMenuItem.Text = "Viewers";
+            this.hashTableToolStripMenuItem,
+            this.sectorObjectDataToolStripMenuItem});
+            this.ViewersMenuItem.Name = "ViewersMenuItem";
+            this.ViewersMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.ViewersMenuItem.Text = "Viewers";
             // 
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.eventObjectToolStripMenuItem.Text = "EventObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
             // 
             // dynamicValueToolStripMenuItem
             // 
             this.dynamicValueToolStripMenuItem.Name = "dynamicValueToolStripMenuItem";
-            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.dynamicValueToolStripMenuItem.Text = "DynamicValue";
             this.dynamicValueToolStripMenuItem.Click += new System.EventHandler(this.LoadDynamicValueDisplay);
             // 
             // sectorObjectToolStripMenuItem
             // 
             this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.sectorObjectToolStripMenuItem.Text = "SectorObject";
             this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
             // 
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
             // storyBase15fcToolStripMenuItem
             // 
             this.storyBase15fcToolStripMenuItem.Name = "storyBase15fcToolStripMenuItem";
-            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.storyBase15fcToolStripMenuItem.Text = "StoryBase15fc";
             this.storyBase15fcToolStripMenuItem.Click += new System.EventHandler(this.storyBase15fcToolStripMenuItem_Click);
+            // 
+            // hashTableToolStripMenuItem
+            // 
+            this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.hashTableToolStripMenuItem.Text = "HashTable";
+            this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // LoadPlayerShipButton
             // 
@@ -163,12 +172,12 @@
             this.LoadPlayerShipButton.UseVisualStyleBackColor = true;
             this.LoadPlayerShipButton.Click += new System.EventHandler(this.LoadPlayerShipButton_Click);
             // 
-            // hashTableToolStripMenuItem
+            // sectorObjectDataToolStripMenuItem
             // 
-            this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.hashTableToolStripMenuItem.Text = "HashTable";
-            this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
+            this.sectorObjectDataToolStripMenuItem.Name = "sectorObjectDataToolStripMenuItem";
+            this.sectorObjectDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sectorObjectDataToolStripMenuItem.Text = "SectorObjectData";
+            this.sectorObjectDataToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectDataToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -197,7 +206,7 @@
         private System.Windows.Forms.Button ViewStoryBaseButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem windowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ViewersMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eventObjectToolStripMenuItem;
         private System.Windows.Forms.Button ViewSectorObjectManagerButton;
         private System.Windows.Forms.ToolStripMenuItem dynamicValueToolStripMenuItem;
@@ -207,6 +216,7 @@
         private System.Windows.Forms.ToolStripMenuItem storyBase15fcToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem hashTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sectorObjectDataToolStripMenuItem;
     }
 }
 

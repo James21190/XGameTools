@@ -169,8 +169,7 @@ namespace X3TCTools
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList();
-            collection.Append(Memory);
+            var collection = new ObjectByteList(Memory);
             collection.PopFirst(ref ppEntry);
             collection.PopFirst(ref Length);
             collection.PopFirst(ref NextAvailableID);

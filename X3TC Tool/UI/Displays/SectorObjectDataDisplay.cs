@@ -30,6 +30,13 @@ namespace X3TC_Tool.UI.Displays
             Reload();
         }
 
+        public void LoadData(IntPtr pSectorObjectData)
+        {
+            m_SectorObjectData = new SectorObjectData();
+            m_SectorObjectData.SetLocation(m_GameHook.hProcess, pSectorObjectData);
+            Reload();
+        }
+
         public void Reload()
         {
             AddressBox.Text = m_SectorObjectData.pThis.ToString("X");
@@ -41,6 +48,37 @@ namespace X3TC_Tool.UI.Displays
             PreviousButton.Enabled = m_SectorObjectData.pPrevious.IsValid;
             FirstChildButton.Enabled = m_SectorObjectData.pFirstChild.IsValid;
             LastChildButton.Enabled = m_SectorObjectData.pLastChild.IsValid;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadData((IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+            LoadData(m_SectorObjectData.pNext.obj);
+        }
+
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            LoadData(m_SectorObjectData.pPrevious.obj);
+        }
+
+        private void FirstChildButton_Click(object sender, EventArgs e)
+        {
+            LoadData(m_SectorObjectData.pFirstChild.obj);
+        }
+
+        private void LastChildButton_Click(object sender, EventArgs e)
+        {
+            LoadData(m_SectorObjectData.pLastChild.obj);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            m_SectorObjectData.ComponentPositionMult = ScaleBox.Vector;
+            m_SectorObjectData.Save();
         }
     }
 }

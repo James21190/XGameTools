@@ -9,7 +9,7 @@ namespace Common.Vector
 {
     public class RotationMatrix_4 : IMemoryObject
     {
-        public const int ByteSize = Vector4.ByteSize * 3;
+        public const int ByteSize = 0x30;
 
         public double[,] Matrix = new double[3,4];
 
