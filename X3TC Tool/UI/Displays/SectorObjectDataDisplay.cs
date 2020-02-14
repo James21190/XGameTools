@@ -41,7 +41,7 @@ namespace X3TC_Tool.UI.Displays
         {
             AddressBox.Text = m_SectorObjectData.pThis.ToString("X");
 
-            ScaleBox.Vector = m_SectorObjectData.ComponentPositionMult;
+            ScaleBox.Vector = m_SectorObjectData.ModelScale;
 
             // Relations
             NextButton.Enabled = m_SectorObjectData.pNext.IsValid;
@@ -77,7 +77,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button2_Click(object sender, EventArgs e)
         {
-            m_SectorObjectData.ComponentPositionMult = ScaleBox.Vector;
+            m_SectorObjectData.ModelScale = ScaleBox.Vector;
             m_SectorObjectData.Save();
         }
     }

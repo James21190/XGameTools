@@ -411,6 +411,7 @@ namespace X3TCTools.SectorObjects
             Terran_Mobile_Mining_Base_Ship,
             Paranid_Hyperion,
             Argon_Discoverer_Advanced = 335,
+            Teladi_Enhanced_Kea = 350,
             Teladi_Kite_2 = 354,
             Xperimental_Shuttle = 372
         }

@@ -31,7 +31,7 @@ namespace X3TCTools.SectorObjects
         public int Unknown_30;
         public int Unknown_31; // 0x78
         public int Unknown_32;
-        public Vector3 ComponentPositionMult; // 0x80
+        public Vector3 ModelScale; // 0x80
         public int Unknown_36;
         public int Unknown_37;
         public int Unknown_38;
@@ -160,7 +160,7 @@ namespace X3TCTools.SectorObjects
 
         public void Save()
         {
-            MemoryControl.Write(m_hProcess, pThis + 0x80, ComponentPositionMult);
+            MemoryControl.Write(m_hProcess, pThis + 0x80, ModelScale);
         }
 
         public bool IsValid
@@ -195,7 +195,7 @@ namespace X3TCTools.SectorObjects
             collection.Append(Unknown_30);
             collection.Append(Unknown_31);
             collection.Append(Unknown_32);
-            collection.Append(ComponentPositionMult);
+            collection.Append(ModelScale);
             collection.Append(Unknown_36);
             collection.Append(Unknown_37);
             collection.Append(Unknown_38);
@@ -350,7 +350,7 @@ namespace X3TCTools.SectorObjects
             collection.PopFirst(ref Unknown_30);
             collection.PopFirst(ref Unknown_31);
             collection.PopFirst(ref Unknown_32);
-            collection.PopFirst(ref ComponentPositionMult);
+            collection.PopFirst(ref ModelScale);
             collection.PopFirst(ref Unknown_36);
             collection.PopFirst(ref Unknown_37);
             collection.PopFirst(ref Unknown_38);
