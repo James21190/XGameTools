@@ -2,8 +2,9 @@
 	- Added comments to more methods and objects.
 	- Added MemoryByte, MemoryInt16, MemoryInt32, and MemoryInt64, which are basic types that derive from MemoryObject.
 	- Added Vector2 struct.
+	- Added GoTo(address) to ObjectByteList.
+	- Reworked ObjectByteList methods. Previous Pop methods are now depreciated.
 	- Completed ApplicationHook abstract class.
-	- Improved ObjectByteList and added GoTo(address).
 	- Added Vector2Display and Vector4Display form components.
 
 1.4.0.0

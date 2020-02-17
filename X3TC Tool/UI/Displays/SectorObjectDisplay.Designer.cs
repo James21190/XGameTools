@@ -53,12 +53,16 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.UnknownsListBox = new System.Windows.Forms.ListBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.SpeedBox = new System.Windows.Forms.NumericUpDown();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.TargetSpeedBox = new System.Windows.Forms.NumericUpDown();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.SpeedBox = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
+            this.UnknownsListBox = new System.Windows.Forms.ListBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -67,10 +71,11 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).BeginInit();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -373,60 +378,11 @@
             this.panel1.Controls.Add(this.ParentButton);
             this.panel1.Controls.Add(this.RotationVectorDisplay);
             this.panel1.Controls.Add(this.NextButton);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Controls.Add(this.menuStrip1);
+            this.panel1.Location = new System.Drawing.Point(12, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 426);
+            this.panel1.Size = new System.Drawing.Size(776, 396);
             this.panel1.TabIndex = 15;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(162, 119);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Load Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // UnknownsListBox
-            // 
-            this.UnknownsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UnknownsListBox.FormattingEnabled = true;
-            this.UnknownsListBox.Location = new System.Drawing.Point(603, 61);
-            this.UnknownsListBox.Name = "UnknownsListBox";
-            this.UnknownsListBox.Size = new System.Drawing.Size(170, 355);
-            this.UnknownsListBox.TabIndex = 21;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.SpeedBox);
-            this.groupBox7.Location = new System.Drawing.Point(165, 148);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(121, 52);
-            this.groupBox7.TabIndex = 7;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Speed";
-            // 
-            // SpeedBox
-            // 
-            this.SpeedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SpeedBox.Location = new System.Drawing.Point(6, 19);
-            this.SpeedBox.Maximum = new decimal(new int[] {
-            -1486618625,
-            232830643,
-            0,
-            0});
-            this.SpeedBox.Minimum = new decimal(new int[] {
-            -1486618625,
-            232830643,
-            0,
-            -2147483648});
-            this.SpeedBox.Name = "SpeedBox";
-            this.SpeedBox.Size = new System.Drawing.Size(109, 20);
-            this.SpeedBox.TabIndex = 0;
             // 
             // groupBox8
             // 
@@ -458,12 +414,97 @@
             this.TargetSpeedBox.Size = new System.Drawing.Size(109, 20);
             this.TargetSpeedBox.TabIndex = 0;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.SpeedBox);
+            this.groupBox7.Location = new System.Drawing.Point(165, 148);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(121, 52);
+            this.groupBox7.TabIndex = 7;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Speed";
+            // 
+            // SpeedBox
+            // 
+            this.SpeedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SpeedBox.Location = new System.Drawing.Point(6, 19);
+            this.SpeedBox.Maximum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            0});
+            this.SpeedBox.Minimum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            -2147483648});
+            this.SpeedBox.Name = "SpeedBox";
+            this.SpeedBox.Size = new System.Drawing.Size(109, 20);
+            this.SpeedBox.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(162, 119);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Load Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // UnknownsListBox
+            // 
+            this.UnknownsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UnknownsListBox.FormattingEnabled = true;
+            this.UnknownsListBox.Location = new System.Drawing.Point(603, 61);
+            this.UnknownsListBox.Name = "UnknownsListBox";
+            this.UnknownsListBox.Size = new System.Drawing.Size(170, 316);
+            this.UnknownsListBox.TabIndex = 21;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(776, 24);
+            this.menuStrip1.TabIndex = 23;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.otherToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip2.TabIndex = 16;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // otherToolStripMenuItem
+            // 
+            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.typeDataToolStripMenuItem});
+            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.otherToolStripMenuItem.Text = "Load Other";
+            // 
+            // typeDataToolStripMenuItem
+            // 
+            this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.typeDataToolStripMenuItem.Text = "TypeData";
+            this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
+            // 
             // SectorObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip2);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "SectorObjectDisplay";
             this.Text = "SectorObjectDisplay";
             this.groupBox2.ResumeLayout(false);
@@ -479,11 +520,14 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).EndInit();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).EndInit();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -519,5 +563,9 @@
         private System.Windows.Forms.NumericUpDown TargetSpeedBox;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.NumericUpDown SpeedBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
     }
 }

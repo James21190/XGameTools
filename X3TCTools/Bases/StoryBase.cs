@@ -46,8 +46,8 @@ namespace X3TCTools.Bases
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
-            collection.PopFirst(ref pScriptObjectHashTable);
+            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptObject>>>();
             collection.Skip(4);
             collection.PopFirst(ref pInstructionArray);
             collection.Skip(8 * 4);

@@ -30,6 +30,10 @@ namespace X3TC_Tool.UI.Displays
 
         public void LoadTypeData(int MainType, int SubType)
         {
+
+            if (comboBox1.SelectedIndex != MainType) comboBox1.SelectedIndex = MainType;
+            if (comboBox2.SelectedIndex != SubType) comboBox2.SelectedIndex = SubType;
+
             m_TypeData = m_GameHook.GetTypeData(MainType, SubType);
             Reload();
         }

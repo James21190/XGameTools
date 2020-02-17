@@ -53,8 +53,8 @@ namespace Common.Memory
             get
             {
                 var obj = new T();
-                obj.SetData(MemoryControl.Read(hProcess, address, obj.GetByteSize()));
                 obj.SetLocation(hProcess, address);
+                obj.SetData(MemoryControl.Read(hProcess, address, obj.GetByteSize()));
                 return obj;
             }
             set
@@ -88,8 +88,8 @@ namespace Common.Memory
         {
             var obj = new T();
             var newAddress = address + (Index * obj.GetByteSize());
-            obj.SetData(MemoryControl.Read(hProcess, newAddress, obj.GetByteSize()));
             obj.SetLocation(hProcess, newAddress);
+            obj.SetData(MemoryControl.Read(hProcess, newAddress, obj.GetByteSize()));
             return obj;
         }
 

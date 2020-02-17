@@ -203,5 +203,12 @@ namespace X3TC_Tool.UI.Displays
             display.LoadData(m_SectorObject.pData.obj);
             display.Show();
         }
+
+        private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new TypeDataDisplay(m_GameHook);
+            display.LoadTypeData((int)m_SectorObject.MainType, m_SectorObject.SubType);
+            display.Show();
+        }
     }
 }

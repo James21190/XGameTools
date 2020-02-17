@@ -9,7 +9,7 @@ namespace Common.Memory
     /// <summary>
     /// List that can convert objects to bytes and can pop objects.
     /// </summary>
-    public class ObjectByteList : IMemoryObject
+    public class ObjectByteList : MemoryObject
     {
         private List<byte> m_Data = new List<byte>();
 
@@ -24,25 +24,31 @@ namespace Common.Memory
             m_Data = new List<byte>(Data);
         }
 
+        public ObjectByteList(byte[] Data, IntPtr hProcess, IntPtr address)
+        {
+            m_Data = new List<byte>(Data);
+            SetLocation(hProcess, address);
+        }
+
         #region IMemoryObject
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return m_Data.Count();
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             m_Data = new List<byte>(Memory);
         }
 
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             return m_Data.ToArray();
         }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-
+            base.SetLocation(hProcess, address);
         }
 
         #endregion
@@ -57,9 +63,8 @@ namespace Common.Memory
             m_ReadPointer = offset;
         }
 
-        #region Pops and Appends
-
-        #region Byte Array
+        #region Depreciated
+        [Obsolete("This method is no longer supported. Please use PopBytes instead.")]
         public void PopFirst(ref byte[] arr)
         {
             for(int i = 0; i < arr.Length; i++)
@@ -68,37 +73,27 @@ namespace Common.Memory
             }
         }
 
+        [Obsolete("This method is no longer supported. Please use PopBytes instead.")]
         public void PopFirst(ref byte[] arr, int GoToOffset)
         {
             GoTo(GoToOffset);
             PopFirst(ref arr);
         }
 
-        public void Append(byte[] arr)
-        {
-            m_Data.AddRange(arr);
-        }
-        #endregion
-
-        #region 1 Byte int
+        [Obsolete("This method is no longer supported. Please use PopByte instead.")]
         public void PopFirst(ref byte value)
         {
             value = m_Data[m_ReadPointer++];
         }
 
+        [Obsolete("This method is no longer supported. Please use PopByte instead.")]
         public void PopFirst(ref byte value, int GoToOffset)
         {
             GoTo(GoToOffset);
             PopFirst(ref value);
         }
 
-        public void Append(byte value)
-        {
-            m_Data.Add(value);
-        }
-        #endregion
-
-        #region 2 Byte int
+        [Obsolete("This method is no longer supported. Please use PopShort instead.")]
         public void PopFirst(ref short value)
         {
             byte[] data = new byte[2];
@@ -108,36 +103,28 @@ namespace Common.Memory
 
             value = BitConverter.ToInt16(data, 0);
         }
-
+        [Obsolete("This method is no longer supported. Please use PopShort instead.")]
         public void PopFirst(ref short value, int GoToOffset)
         {
             GoTo(GoToOffset);
             PopFirst(ref value);
         }
-        public void Append(short value)
-        {
-            m_Data.AddRange(BitConverter.GetBytes(value));
-        }
 
+        [Obsolete("This method is no longer supported. Please use PopUShort instead.")]
         public void PopFirst(ref ushort value)
         {
             short temp = (short)value;
             PopFirst(ref temp);
             value = (ushort)temp;
         }
-
+        [Obsolete("This method is no longer supported. Please use PopUShort instead.")]
         public void PopFirst(ref ushort value, int GoToOffset)
         {
             GoTo(GoToOffset);
             PopFirst(ref value);
         }
-        public void Append(ushort value)
-        {
-            m_Data.AddRange(BitConverter.GetBytes(value));
-        }
-        #endregion
 
-        #region 4 Byte int
+        [Obsolete("This method is no longer supported. Please use PopInt instead.")]
         public void PopFirst(ref int value)
         {
             byte[] data = new byte[4];
@@ -149,39 +136,14 @@ namespace Common.Memory
 
             value = BitConverter.ToInt32(data, 0);
         }
-
+        [Obsolete("This method is no longer supported. Please use PopInt instead.")]
         public void PopFirst(ref int value, int GoToOffset)
         {
             GoTo(GoToOffset);
             PopFirst(ref value);
         }
 
-        public void Append(int value)
-        {
-            m_Data.AddRange(BitConverter.GetBytes(value));
-        }
-
-        public void PopFirst(ref uint value)
-        {
-            byte[] data = new byte[4];
-
-            for (int i = 0; i < 4; i++)
-            {
-                data[i] = m_Data[m_ReadPointer++];
-            }
-
-            value = BitConverter.ToUInt32(data, 0);
-        }
-        public void PopFirst(ref uint value, int GoToOffset)
-        {
-            GoTo(GoToOffset);
-            PopFirst(ref value);
-        }
-        public void Append(uint value)
-        {
-            m_Data.AddRange(BitConverter.GetBytes(value));
-        }
-        
+        [Obsolete("This method is no longer supported. Please use PopIntPtr instead.")]
         public void PopFirst(ref IntPtr value)
         {
             byte[] data = new byte[4];
@@ -193,13 +155,27 @@ namespace Common.Memory
 
             value = (IntPtr)BitConverter.ToInt32(data, 0);
         }
-        public void Append(IntPtr value)
-        {
-            Append((int)value);
-        }
-        #endregion
 
-        #region IMemoryObject Arr
+        [Obsolete("This method is no longer supported. Please use PopUInt instead.")]
+        public void PopFirst(ref uint value)
+        {
+            byte[] data = new byte[4];
+
+            for (int i = 0; i < 4; i++)
+            {
+                data[i] = m_Data[m_ReadPointer++];
+            }
+
+            value = BitConverter.ToUInt32(data, 0);
+        }
+
+        [Obsolete("This method is no longer supported. Please use PopUInt instead.")]
+        public void PopFirst(ref uint value, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
+        }
+        [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
         public void PopFirst<T>(ref T[] arr) where T : IMemoryObject
         {
             for(int i = 0; i < arr.Length; i++)
@@ -210,19 +186,13 @@ namespace Common.Memory
             }
         }
 
+        [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
         public void PopFirst<T>(ref T[] arr, int GoToOffset) where T: IMemoryObject
         {
             GoTo(GoToOffset);
             PopFirst(ref arr);
         }
-        public void Append<T>(T[] arr) where T : IMemoryObject
-        {
-            foreach(var obj in arr)
-            {
-                Append(obj.GetBytes());
-            }
-        }
-
+        [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
         public void PopFirst<T>(ref T[,] arr) where T : IMemoryObject
         {
             for (int x = 0; x < arr.GetLength(0); x++)
@@ -235,23 +205,14 @@ namespace Common.Memory
                 }
             }
         }
-
+        [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
         public void PopFirst<T>(ref T[,] arr, int GoToOffset) where T:IMemoryObject
         {
             GoTo(GoToOffset);
             PopFirst(ref arr);
         }
-
-        public void Append<T>(T[,] arr) where T : IMemoryObject
-        {
-            foreach (var obj in arr)
-            {
-                Append(obj.GetBytes());
-            }
-        }
-        #endregion
-
-        #region IMemoryObject
+        
+        [Obsolete("This method is no longer supported. Please use PopIMemoryObject instead.")]
         public void PopFirst<T>(ref T obj) where T : IMemoryObject
         {
             byte[] data = new byte[obj.GetByteSize()];
@@ -263,25 +224,331 @@ namespace Common.Memory
 
             obj.SetData(data);
         }
-
+        [Obsolete("This method is no longer supported. Please use PopIMemoryObject instead.")]
         public void PopFirst<T>(ref T value, int GoToOffset) where T: IMemoryObject
         {
             GoTo(GoToOffset);
             PopFirst(ref value);
         }
+        #endregion
 
+        #region Appends
+
+        public void Append(byte[] arr)
+        {
+            m_Data.AddRange(arr);
+        }
+        public void Append(byte value)
+        {
+            m_Data.Add(value);
+        }
+        public void Append(short value)
+        {
+            m_Data.AddRange(BitConverter.GetBytes(value));
+        }
+        public void Append(ushort value)
+        {
+            m_Data.AddRange(BitConverter.GetBytes(value));
+        }
+        public void Append(int value)
+        {
+            m_Data.AddRange(BitConverter.GetBytes(value));
+        }
+        public void Append(uint value)
+        {
+            m_Data.AddRange(BitConverter.GetBytes(value));
+        }
+        public void Append(IntPtr value)
+        {
+            Append((int)value);
+        }
+        public void Append<T>(T[] arr) where T : IMemoryObject
+        {
+            foreach(var obj in arr)
+            {
+                Append(obj.GetBytes());
+            }
+        }
+        public void Append<T>(T[,] arr) where T : IMemoryObject
+        {
+            foreach (var obj in arr)
+            {
+                Append(obj.GetBytes());
+            }
+        }
         public void Append(IMemoryObject memoryObject)
         {
             m_Data.AddRange(memoryObject.GetBytes());
         }
+        #endregion
+
+        #region Pops
+
+        public byte PopByte()
+        {
+            return m_Data[m_ReadPointer++];
+        }
+
+        public byte[] PopBytes(int Count)
+        {
+            var result = m_Data.Skip(m_ReadPointer).Take(Count).ToArray();
+            m_ReadPointer += Count;
+            return result;
+        }
+
+        public short PopShort()
+        {
+            return BitConverter.ToInt16(PopBytes(2), 0);
+        }
+
+        public short[] PopShorts(int Count)
+        {
+            var arr = new short[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopShort();
+            }
+
+            return arr;
+        }
+
+        public ushort PopUShort()
+        {
+            return (ushort)PopShort();
+        }
+
+        public ushort[] PopUShorts(int Count)
+        {
+            var arr = new ushort[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopUShort();
+            }
+
+            return arr;
+        }
+
+        public int PopInt()
+        {
+            return BitConverter.ToInt32(PopBytes(4), 0);
+        }
+
+        public int[] PopInts(int Count)
+        {
+            var arr = new int[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopInt();
+            }
+
+            return arr;
+        }
+
+        public uint PopUInt()
+        {
+            return (uint)PopInt();
+        }
+
+        public uint[] PopUInts(int Count)
+        {
+            var arr = new uint[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopUInt();
+            }
+
+            return arr;
+        }
+
+        public IntPtr PopIntPtr()
+        {
+            return (IntPtr)PopInt();
+        }
+
+        public IntPtr[] PopIntPtrs(int Count)
+        {
+            var arr = new IntPtr[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopIntPtr();
+            }
+
+            return arr;
+        }
+
+        public long PopLong()
+        {
+            return BitConverter.ToInt64(PopBytes(8), 0);
+        }
+
+        public long[] PopLongs(int Count)
+        {
+            var arr = new long[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopLong();
+            }
+
+            return arr;
+        }
+
+        public ulong PopULong()
+        {
+            return (ulong)PopLong();
+        }
+
+        public ulong[] PopULongs(int Count)
+        {
+            var arr = new ulong[Count];
+
+            for (int i = 0; i < Count; i++)
+            {
+                arr[i] = PopULong();
+            }
+
+            return arr;
+        }
+
+        public T PopIMemoryObject<T>() where T : IMemoryObject, new()
+        {
+            var memoryObject = new T();
+
+            memoryObject.SetLocation(m_hProcess, pThis + m_ReadPointer);
+            memoryObject.SetData(PopBytes(memoryObject.GetByteSize()));
+
+            return memoryObject;
+        }
+
+        public T[] PopIMemoryObjects<T>(int Count) where T: IMemoryObject, new()
+        {
+            var memoryObjects = new T[Count];
+
+            for(int i = 0; i < Count; i++)
+            {
+                memoryObjects[i] = new T();
+                memoryObjects[i].SetLocation(m_hProcess, pThis + m_ReadPointer);
+                memoryObjects[i].SetData(PopBytes(memoryObjects[i].GetByteSize()));
+            }
+
+            return memoryObjects;
+        }
+
+
+        #region GoTo
+
+        public byte PopByte(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopByte();
+        }
+        public byte[] PopBytes(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopBytes(Count);
+        }
+
+        public short PopShort(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopShort();
+        }
+        public short[] PopShorts(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopShorts(Count);
+        }
+
+        public ushort PopUShort(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopUShort();
+        }
+        public ushort[] PopUShorts(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopUShorts(Count);
+        }
+
+        public int PopInt(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopInt();
+        }
+        public int[] PopInts(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopInts(Count);
+        }
+
+        public uint PopUInt(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopUInt();
+        }
+        public uint[] PopUInts(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopUInts(Count);
+        }
+
+        public IntPtr PopIntPtr(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopIntPtr();
+        }
+        public IntPtr[] PopIntPtrs(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopIntPtrs(Count);
+        }
+
+        public long PopLong(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopLong();
+        }
+        public long[] PopLongs(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopLongs(Count);
+        }
+
+        public ulong PopULong(int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopUInt();
+        }
+        public ulong[] PopULongs(int Count, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            return PopULongs(Count);
+        }
+
+        public T PopIMemoryObject<T>(int GoToOffset) where T : IMemoryObject, new()
+        {
+            GoTo(GoToOffset);
+            return PopIMemoryObject<T>();
+        }
+        public T[] PopIMemoryObjects<T>(int Count, int GoToOffset) where T : IMemoryObject, new()
+        {
+            GoTo(GoToOffset);
+            return PopIMemoryObjects<T>(Count);
+        }
+
+        #endregion
+
         #endregion
         public void PopRemaining(ref byte[] arr)
         {
             arr = m_Data.Skip(m_ReadPointer).ToArray();
             m_ReadPointer = m_Data.Count;
         }
-
-        #endregion
 
     }
 }
