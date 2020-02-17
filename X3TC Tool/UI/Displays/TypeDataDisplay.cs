@@ -37,6 +37,9 @@ namespace X3TC_Tool.UI.Displays
         public void Reload()
         {
             AddressBox.Text = m_TypeData.pThis.ToString("X");
+            MaxHullBox.Text = m_TypeData.MaxHull.ToString();
+            OriginRaceBox.Text = m_TypeData.OriginRace.ToString();
+            ClassBox.Text = m_TypeData.GetClassAsString((SectorObject.Main_Type)comboBox1.SelectedIndex);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,11 +55,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button1.Enabled = comboBox2.SelectedIndex >= 0;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
+            if(comboBox2.SelectedIndex < 0) return;
             LoadTypeData(comboBox1.SelectedIndex, comboBox2.SelectedIndex);
         }
     }

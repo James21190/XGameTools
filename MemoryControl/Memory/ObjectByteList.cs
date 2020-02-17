@@ -67,6 +67,13 @@ namespace Common.Memory
                 arr[i] = m_Data[m_ReadPointer++];
             }
         }
+
+        public void PopFirst(ref byte[] arr, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref arr);
+        }
+
         public void Append(byte[] arr)
         {
             m_Data.AddRange(arr);
@@ -78,6 +85,13 @@ namespace Common.Memory
         {
             value = m_Data[m_ReadPointer++];
         }
+
+        public void PopFirst(ref byte value, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
+        }
+
         public void Append(byte value)
         {
             m_Data.Add(value);
@@ -94,6 +108,12 @@ namespace Common.Memory
 
             value = BitConverter.ToInt16(data, 0);
         }
+
+        public void PopFirst(ref short value, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
+        }
         public void Append(short value)
         {
             m_Data.AddRange(BitConverter.GetBytes(value));
@@ -104,6 +124,12 @@ namespace Common.Memory
             short temp = (short)value;
             PopFirst(ref temp);
             value = (ushort)temp;
+        }
+
+        public void PopFirst(ref ushort value, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
         }
         public void Append(ushort value)
         {
@@ -123,6 +149,13 @@ namespace Common.Memory
 
             value = BitConverter.ToInt32(data, 0);
         }
+
+        public void PopFirst(ref int value, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
+        }
+
         public void Append(int value)
         {
             m_Data.AddRange(BitConverter.GetBytes(value));
@@ -138,6 +171,11 @@ namespace Common.Memory
             }
 
             value = BitConverter.ToUInt32(data, 0);
+        }
+        public void PopFirst(ref uint value, int GoToOffset)
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
         }
         public void Append(uint value)
         {
@@ -171,6 +209,12 @@ namespace Common.Memory
                 arr[i].SetData(data);
             }
         }
+
+        public void PopFirst<T>(ref T[] arr, int GoToOffset) where T: IMemoryObject
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref arr);
+        }
         public void Append<T>(T[] arr) where T : IMemoryObject
         {
             foreach(var obj in arr)
@@ -191,6 +235,13 @@ namespace Common.Memory
                 }
             }
         }
+
+        public void PopFirst<T>(ref T[,] arr, int GoToOffset) where T:IMemoryObject
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref arr);
+        }
+
         public void Append<T>(T[,] arr) where T : IMemoryObject
         {
             foreach (var obj in arr)
@@ -212,6 +263,13 @@ namespace Common.Memory
 
             obj.SetData(data);
         }
+
+        public void PopFirst<T>(ref T value, int GoToOffset) where T: IMemoryObject
+        {
+            GoTo(GoToOffset);
+            PopFirst(ref value);
+        }
+
         public void Append(IMemoryObject memoryObject)
         {
             m_Data.AddRange(memoryObject.GetBytes());

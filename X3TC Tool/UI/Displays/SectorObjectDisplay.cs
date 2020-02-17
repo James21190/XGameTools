@@ -62,6 +62,10 @@ namespace X3TC_Tool.UI.Displays
             EventObjectIDBox.Text = m_SectorObject.EventObjectID.ToString();
             TypeBox.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
 
+            SpeedBox.Value = m_SectorObject.Speed;
+            TargetSpeedBox.Value = m_SectorObject.TargetSpeed;
+
+
             // Unknowns
             UnknownsListBox.Items.Clear();
             int i = 4;

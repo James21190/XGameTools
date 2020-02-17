@@ -53,8 +53,12 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.UnknownsListBox = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.UnknownsListBox = new System.Windows.Forms.ListBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.SpeedBox = new System.Windows.Forms.NumericUpDown();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.TargetSpeedBox = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -63,6 +67,10 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -306,7 +314,7 @@
             this.groupBox6.Controls.Add(this.LastChildButton);
             this.groupBox6.Controls.Add(this.ChildTypeSelectionBox);
             this.groupBox6.Controls.Add(this.FirstChildButton);
-            this.groupBox6.Location = new System.Drawing.Point(354, 61);
+            this.groupBox6.Location = new System.Drawing.Point(457, 61);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(140, 108);
             this.groupBox6.TabIndex = 13;
@@ -349,6 +357,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox8);
+            this.panel1.Controls.Add(this.groupBox7);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.UnknownsListBox);
             this.panel1.Controls.Add(this.groupBox2);
@@ -368,6 +378,16 @@
             this.panel1.Size = new System.Drawing.Size(776, 426);
             this.panel1.TabIndex = 15;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(162, 119);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Load Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UnknownsListBox
             // 
             this.UnknownsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -378,15 +398,65 @@
             this.UnknownsListBox.Size = new System.Drawing.Size(170, 355);
             this.UnknownsListBox.TabIndex = 21;
             // 
-            // button1
+            // groupBox7
             // 
-            this.button1.Location = new System.Drawing.Point(162, 119);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Load Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBox7.Controls.Add(this.SpeedBox);
+            this.groupBox7.Location = new System.Drawing.Point(165, 148);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(121, 52);
+            this.groupBox7.TabIndex = 7;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Speed";
+            // 
+            // SpeedBox
+            // 
+            this.SpeedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SpeedBox.Location = new System.Drawing.Point(6, 19);
+            this.SpeedBox.Maximum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            0});
+            this.SpeedBox.Minimum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            -2147483648});
+            this.SpeedBox.Name = "SpeedBox";
+            this.SpeedBox.Size = new System.Drawing.Size(109, 20);
+            this.SpeedBox.TabIndex = 0;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.TargetSpeedBox);
+            this.groupBox8.Location = new System.Drawing.Point(292, 148);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(121, 52);
+            this.groupBox8.TabIndex = 8;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Target Speed";
+            // 
+            // TargetSpeedBox
+            // 
+            this.TargetSpeedBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TargetSpeedBox.Location = new System.Drawing.Point(6, 19);
+            this.TargetSpeedBox.Maximum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            0});
+            this.TargetSpeedBox.Minimum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            -2147483648});
+            this.TargetSpeedBox.Name = "TargetSpeedBox";
+            this.TargetSpeedBox.Size = new System.Drawing.Size(109, 20);
+            this.TargetSpeedBox.TabIndex = 0;
             // 
             // SectorObjectDisplay
             // 
@@ -409,6 +479,10 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -441,5 +515,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox UnknownsListBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.NumericUpDown TargetSpeedBox;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.NumericUpDown SpeedBox;
     }
 }
