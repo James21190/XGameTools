@@ -49,11 +49,12 @@ namespace X3TC_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            foreach(var item in m_HashTable.ScanContents())
+            int NumOfInvalids;
+            foreach(var item in m_HashTable.ScanContents(out NumOfInvalids))
             {
                 listBox1.Items.Add(item);
             }
-            ScannerLabel.Text = string.Format("{0} results found!", listBox1.Items.Count);
+            ScannerLabel.Text = string.Format("{0} results found! {1} additional entries were found with null pointers. {2} in total.", listBox1.Items.Count, NumOfInvalids, NumOfInvalids + listBox1.Items.Count) ;
         }
 
         public void LoadEntry(int id)

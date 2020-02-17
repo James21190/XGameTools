@@ -41,8 +41,9 @@
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storyBase15fcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
+            this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -127,7 +128,8 @@
             this.typeDataToolStripMenuItem,
             this.storyBase15fcToolStripMenuItem,
             this.hashTableToolStripMenuItem,
-            this.cameraToolStripMenuItem});
+            this.cameraToolStripMenuItem,
+            this.scriptObjectToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.windowToolStripMenuItem.Text = "Viewers";
@@ -174,6 +176,13 @@
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
+            // cameraToolStripMenuItem
+            // 
+            this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cameraToolStripMenuItem.Text = "Camera";
+            this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            // 
             // LoadPlayerShipButton
             // 
             this.LoadPlayerShipButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -186,12 +195,12 @@
             this.LoadPlayerShipButton.UseVisualStyleBackColor = true;
             this.LoadPlayerShipButton.Click += new System.EventHandler(this.LoadPlayerShipButton_Click);
             // 
-            // cameraToolStripMenuItem
+            // scriptObjectToolStripMenuItem
             // 
-            this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cameraToolStripMenuItem.Text = "Camera";
-            this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
+            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
+            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -232,6 +241,7 @@
         private System.Windows.Forms.ToolStripMenuItem hashTableToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem;
     }
 }
 

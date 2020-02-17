@@ -10,34 +10,29 @@ namespace Common.Memory
     /// A pointer that points to an IMemoryObject in a process's memory.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public sealed class MemoryObjectPointer<T> :IMemoryObject where T : IMemoryObject, new()
+    public sealed class MemoryObjectPointer<T> :MemoryObject where T : IMemoryObject, new()
     {
 
         #region Constructors
         public MemoryObjectPointer(IntPtr hProcess, IntPtr address)
         {
-            this.hProcess = hProcess;
+            m_hProcess = hProcess;
             this.address = address;
         }
 
         public MemoryObjectPointer(IntPtr hProcess)
         {
-            this.hProcess = hProcess;
+            m_hProcess = hProcess;
             this.address = IntPtr.Zero;
         }
 
         public MemoryObjectPointer()
         {
-            this.hProcess = IntPtr.Zero;
+            m_hProcess = IntPtr.Zero;
             this.address = IntPtr.Zero;
         }
 
         #endregion
-        /// <summary>
-        /// The hProcess this pointer is attached to.
-        /// </summary>
-        public IntPtr hProcess;
-
         /// <summary>
         /// The address that is pointed to.
         /// </summary>
@@ -53,13 +48,12 @@ namespace Common.Memory
             get
             {
                 var obj = new T();
-                obj.SetLocation(hProcess, address);
-                obj.SetData(MemoryControl.Read(hProcess, address, obj.GetByteSize()));
+                obj.SetLocation(m_hProcess, address);
                 return obj;
             }
             set
             {
-                MemoryControl.Write(hProcess, address, value.GetBytes());
+                MemoryControl.Write(m_hProcess, address, value.GetBytes());
             }
         }
 
@@ -88,8 +82,7 @@ namespace Common.Memory
         {
             var obj = new T();
             var newAddress = address + (Index * obj.GetByteSize());
-            obj.SetLocation(hProcess, newAddress);
-            obj.SetData(MemoryControl.Read(hProcess, newAddress, obj.GetByteSize()));
+            obj.SetLocation(m_hProcess, newAddress);
             return obj;
         }
 
@@ -100,29 +93,25 @@ namespace Common.Memory
         /// <param name="obj"></param>
         public void SetObjectInArray(int Index, T obj)
         {
-            MemoryControl.Write(hProcess, address + (Index * 4), obj.GetBytes());
+            MemoryControl.Write(m_hProcess, address + (Index * 4), obj.GetBytes());
         }
 
         #region IMemoryObject
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return 4;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             address = (IntPtr)BitConverter.ToInt32(Memory, 0);
         }
 
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             return BitConverter.GetBytes((int)address);
         }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            this.hProcess = hProcess;
-        }
         #endregion
     }
 }

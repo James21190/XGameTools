@@ -182,9 +182,9 @@ namespace X3TCTools.SectorObjects
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
+            pObjectHashTable.SetLocation(hProcess, address + 0x14);
+            pPlayerShip.SetLocation(hProcess, address +0x38);
             base.SetLocation(hProcess, address);
-            pObjectHashTable.SetLocation(hProcess, address);
-            pPlayerShip.SetLocation(hProcess, address);
         }
         #endregion
     }

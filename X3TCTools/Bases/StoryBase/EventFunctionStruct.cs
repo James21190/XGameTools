@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X3TCTools.Bases
 {
-    public class EventFunctionStruct : IMemoryObject
+    public class EventFunctionStruct : MemoryObject
     {
         public const int ByteSize = 24;
 
@@ -19,17 +19,17 @@ namespace X3TCTools.Bases
         public IntPtr ppString;
         public int Index;
 
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList(Memory);
             collection.PopFirst(ref pPrimaryFunction);
@@ -40,9 +40,9 @@ namespace X3TCTools.Bases
             collection.PopFirst(ref Index);
         }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
+        public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            throw new NotImplementedException();
+            base.SetLocation(hProcess, address);
         }
     }
 }

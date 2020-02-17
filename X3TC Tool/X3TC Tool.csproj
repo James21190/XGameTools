@@ -89,6 +89,12 @@
     <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\ScriptObjectDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\ScriptObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\SectorObjectDataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\ScriptObjectDisplay.resx">
+      <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\SectorObjectDataDisplay.resx">
       <DependentUpon>SectorObjectDataDisplay.cs</DependentUpon>

@@ -163,5 +163,11 @@ namespace X3TC_Tool
             var display = new CameraDisplay(m_GameHook);
             display.Show();
         }
+
+        private void scriptObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new ScriptObjectDisplay(m_GameHook);
+            display.Show();
+        }
     }
 }

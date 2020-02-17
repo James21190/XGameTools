@@ -21,6 +21,8 @@ namespace X3TCTools.Bases
         
         public MemoryObjectPointer<HashTable<EventObject>> pEventObjectHashTable;
 
+        public MemoryObjectPointer<ScriptObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptObject>();
+
         public StoryBase()
         {
             for(int i = 0; i < FunctionArray.Length; i++)
@@ -48,21 +50,20 @@ namespace X3TCTools.Bases
         {
             var collection = new ObjectByteList(Memory, m_hProcess, pThis);
             pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptObject>>>();
-            collection.Skip(4);
-            collection.PopFirst(ref pInstructionArray);
-            collection.Skip(8 * 4);
-            collection.PopFirst(ref FunctionArrayCount);
-            collection.PopFirst(ref FunctionArray);
-            collection.Skip(4000);
-            collection.PopFirst(ref pEventObjectHashTable);
+            pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<DynamicValue>>(0x8);
+            FunctionArrayCount = collection.PopInt(0x2c);
+            FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);
+            pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);
+            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptObject>>(0x1434);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            base.SetLocation(hProcess, address);
             pScriptObjectHashTable.SetLocation(hProcess, address + 0);
-            pInstructionArray.SetLocation(hProcess, address + 0);
-            pEventObjectHashTable.SetLocation(hProcess, address + 0);
+            pInstructionArray.SetLocation(hProcess, address + 0x8);
+            pEventObjectHashTable.SetLocation(hProcess, address + 0x12d0);
+            pCurrentScriptObject.SetLocation(hProcess, address + 0x1434);
+            base.SetLocation(hProcess, address);
         }
         #endregion
     }

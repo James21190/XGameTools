@@ -60,9 +60,9 @@ namespace X3TCTools
 
             public override void SetLocation(IntPtr hProcess, IntPtr address)
             {
-                base.SetLocation(hProcess, address);
                 pNext.SetLocation(hProcess, address);
-                pObject.SetLocation(hProcess, address);
+                pObject.SetLocation(hProcess, address + 0x8);
+                base.SetLocation(hProcess, address);
             }
             #endregion
         }
@@ -98,8 +98,15 @@ namespace X3TCTools
         /// <returns></returns>
         public int[] ScanContents()
         {
+            int temp;
+            return ScanContents(out temp);
+        }
+
+        public int[] ScanContents(out int NumOfNulls)
+        {
+            NumOfNulls = 0;
             List<int> results = new List<int>();
-            for(int i = 0; i < Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 var pEntry = ppEntry.GetObjectInArray(i);
                 if (pEntry.IsValid)
@@ -111,6 +118,10 @@ namespace X3TCTools
                         if (entry.pObject.IsValid)
                         {
                             results.Add(entry.ObjectID);
+                        }
+                        else
+                        {
+                            NumOfNulls++;
                         }
 
                         if (!entry.pNext.IsValid) break;
@@ -183,8 +194,8 @@ namespace X3TCTools
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            base.SetLocation(hProcess, address);
             ppEntry.SetLocation(hProcess, address);
+            base.SetLocation(hProcess, address);
         }
         #endregion
     }
