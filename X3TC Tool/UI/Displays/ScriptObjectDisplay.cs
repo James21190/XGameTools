@@ -53,6 +53,12 @@ namespace X3TC_Tool.UI.Displays
             NextButton.Enabled = m_ScriptObject.pNext.IsValid;
             PreviousButton.Enabled = m_ScriptObject.pPrevious.IsValid;
 
+            textBox1.Text = m_ScriptObject.CurrentStackIndex.ToString();
+            textBox2.Text = m_ScriptObject.InstructionOffset.ToString();
+            textBox3.Text = m_ScriptObject.FunctionIndex.ToString();
+
+            ReturnValueDisplay.Value = m_ScriptObject.ReturnValue;
+
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -84,6 +90,13 @@ namespace X3TC_Tool.UI.Displays
                 m_ScriptObject = null;
                 Reload();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var display = new DynamicValueArrayDisplay(m_GameHook);
+            display.LoadFrom(m_ScriptObject.pStack.address, m_ScriptObject.StackSize, 0);
+            display.Show();
         }
     }
 }

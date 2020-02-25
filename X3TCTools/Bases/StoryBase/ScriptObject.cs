@@ -13,9 +13,9 @@ namespace X3TCTools.Bases
         public MemoryObjectPointer<ScriptObject> pPrevious = new MemoryObjectPointer<ScriptObject>();
         public int ID;
 
-        public uint FlagAndIntArrSize;
-        public MemoryObjectPointer<DynamicValue> pFlagAndIntArrEnd = new MemoryObjectPointer<DynamicValue>();
-        public int FlagAndIntIndex;
+        public int StackSize;
+        public MemoryObjectPointer<DynamicValue> pStack = new MemoryObjectPointer<DynamicValue>();
+        public int CurrentStackIndex;
         public int InstructionOffset;
 
         public DynamicValue ReturnValue = new DynamicValue();
@@ -52,9 +52,9 @@ namespace X3TCTools.Bases
             pPrevious.address = collection.PopIntPtr();
             ID = collection.PopInt();
 
-            FlagAndIntArrSize = collection.PopUInt(0x10);
-            pFlagAndIntArrEnd.address = collection.PopIntPtr();
-            FlagAndIntIndex = collection.PopInt();
+            StackSize = collection.PopInt(0x10);
+            pStack.address = collection.PopIntPtr();
+            CurrentStackIndex = collection.PopInt();
             InstructionOffset = collection.PopInt();
 
             ReturnValue = collection.PopIMemoryObject<DynamicValue>(0x28);

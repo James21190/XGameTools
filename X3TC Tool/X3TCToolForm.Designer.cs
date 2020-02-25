@@ -42,10 +42,16 @@
             this.storyBase15fcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadPlayerShipButton = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ViewStoryBaseButton
@@ -137,51 +143,58 @@
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.eventObjectToolStripMenuItem.Text = "EventObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
             // 
             // dynamicValueToolStripMenuItem
             // 
             this.dynamicValueToolStripMenuItem.Name = "dynamicValueToolStripMenuItem";
-            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.dynamicValueToolStripMenuItem.Text = "DynamicValue";
             this.dynamicValueToolStripMenuItem.Click += new System.EventHandler(this.LoadDynamicValueDisplay);
             // 
             // sectorObjectToolStripMenuItem
             // 
             this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.sectorObjectToolStripMenuItem.Text = "SectorObject";
             this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
             // 
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
             // storyBase15fcToolStripMenuItem
             // 
             this.storyBase15fcToolStripMenuItem.Name = "storyBase15fcToolStripMenuItem";
-            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.storyBase15fcToolStripMenuItem.Text = "StoryBase15fc";
             this.storyBase15fcToolStripMenuItem.Click += new System.EventHandler(this.storyBase15fcToolStripMenuItem_Click);
             // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.cameraToolStripMenuItem.Text = "Camera";
             this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            // 
+            // scriptObjectToolStripMenuItem
+            // 
+            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
+            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
+            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
             // 
             // LoadPlayerShipButton
             // 
@@ -195,18 +208,54 @@
             this.LoadPlayerShipButton.UseVisualStyleBackColor = true;
             this.LoadPlayerShipButton.Click += new System.EventHandler(this.LoadPlayerShipButton_Click);
             // 
-            // scriptObjectToolStripMenuItem
+            // trackBar1
             // 
-            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
-            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
-            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
+            this.trackBar1.Location = new System.Drawing.Point(6, 42);
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(252, 45);
+            this.trackBar1.TabIndex = 3;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkBox1);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.trackBar1);
+            this.groupBox2.Location = new System.Drawing.Point(608, 34);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(264, 93);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "SETA Override";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "SETA: x1";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(113, 15);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(145, 17);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Increase Maximum SETA";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // X3TCToolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.LoadPlayerShipButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -219,6 +268,9 @@
             this.groupBox1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,6 +294,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

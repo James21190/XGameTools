@@ -178,5 +178,18 @@ namespace X3TC_Tool
             var display = new ScriptObjectDisplay(m_GameHook);
             display.Show();
         }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label1.Text = "SETA: x" + trackBar1.Value;
+            var systembase = m_GameHook.systemBase;
+            systembase.SETAValue.Value = trackBar1.Value;
+            systembase.SaveSETA();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            trackBar1.Maximum = checkBox1.Checked ? 20 : 10;
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace X3TC_Tool.UI.Displays
         {
             // Update instance
             m_StoryBase = m_GameHook.storyBase;
+            m_StoryBase.ReloadFromMemory();
 
         }
 
@@ -35,6 +36,20 @@ namespace X3TC_Tool.UI.Displays
         {
             var display = new HashTableDisplay(m_GameHook);
             display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
+            display.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var display = new ScriptObjectDisplay(m_GameHook);
+            display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
+            display.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var display = new DynamicValueArrayDisplay(m_GameHook);
+            display.LoadFrom(m_StoryBase.pInstructionArray.address, 0, 0);
             display.Show();
         }
     }

@@ -118,7 +118,7 @@ namespace X3TCTools
                 //    break;
                 default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", gameVersion));
             }
-            gameCodeRunner = new GameCodeRunner(this);
+            
 
         }
 
@@ -126,6 +126,11 @@ namespace X3TCTools
         {
             if (hProcess != IntPtr.Zero)
                 Unhook();
+        }
+
+        public void InitGameCodeRunner()
+        {
+            gameCodeRunner = new GameCodeRunner(this);
         }
 
         public enum GlobalAddressesX3TC

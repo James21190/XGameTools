@@ -65,6 +65,7 @@ namespace X3TC_Tool.UI.Displays
             SpeedBox.Value = m_SectorObject.Speed;
             TargetSpeedBox.Value = m_SectorObject.TargetSpeed;
 
+            RaceBox.Text = m_SectorObject.RaceID.ToString();
 
             // Unknowns
             UnknownsListBox.Items.Clear();

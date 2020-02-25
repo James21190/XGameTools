@@ -63,6 +63,8 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.RaceBox = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -76,6 +78,7 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).BeginInit();
             this.menuStrip2.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -362,6 +365,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox9);
             this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox7);
             this.panel1.Controls.Add(this.button1);
@@ -493,9 +497,27 @@
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.RaceBox);
+            this.groupBox9.Location = new System.Drawing.Point(165, 206);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(121, 52);
+            this.groupBox9.TabIndex = 7;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Race";
+            // 
+            // RaceBox
+            // 
+            this.RaceBox.Location = new System.Drawing.Point(6, 19);
+            this.RaceBox.Name = "RaceBox";
+            this.RaceBox.ReadOnly = true;
+            this.RaceBox.Size = new System.Drawing.Size(109, 20);
+            this.RaceBox.TabIndex = 0;
             // 
             // SectorObjectDisplay
             // 
@@ -526,6 +548,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).EndInit();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -567,5 +591,7 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.TextBox RaceBox;
     }
 }
