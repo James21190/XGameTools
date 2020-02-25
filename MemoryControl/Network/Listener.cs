@@ -15,100 +15,35 @@ namespace Common.Network
     /// </summary>
     public class Listener
     {
-        public delegate void ObjectRecieved(Packet packet, IPAddress SenderIP);
-        public event ObjectRecieved OnObjectRecieved;
-        private TcpListener m_Listener;
-        private List<TcpClient> m_Listeners = new List<TcpClient>();
-        private bool m_Stop;
-
-        private Thread m_ListeningThread;
-
-        public Listener(int Port)
+        TcpListener m_Listener;
+        TcpClient[] m_Clients;
+        int m_Port;
+        int m_MaxConnections;
+        int m_NextAvailableID = 0;
+        public Listener(int port, int maxConnections)
         {
-            m_Listener = new TcpListener(IPAddress.Parse("0.0.0.0"), Port);
-        }
+            m_Port = port;
+            m_MaxConnections = maxConnections;
+            m_Clients = new TcpClient[maxConnections];
 
-        public void Start()
-        {
-            m_Stop = false;
+
+            m_Listener = new TcpListener(IPAddress.Parse("0.0.0.0"), m_Port);
             m_Listener.Start();
-            m_ListeningThread = new Thread(Check);
-            m_ListeningThread.Start();
         }
 
-        public void Close()
+        public int ListenForNew()
         {
-            m_Stop = true;
-            m_Listener.Stop();
-            foreach (var item in m_Listeners)
-                item.Close();
+            var newClient = m_Listener.AcceptTcpClient();
+            var index = m_NextAvailableID++;
+            m_Clients[index] = newClient;
+            return index;
         }
 
-        private void Check()
+        public void SendTo(int id, byte[] data)
         {
-            while (!m_Stop)
-            {
-                try
-                {
-                    var listener = m_Listener.AcceptTcpClient();
-                    m_Listeners.Add(listener);
-                    new Thread(() => HandleClient(listener)).Start();
-                }
-                catch (Exception)
-                {
-
-                }
-            }
-        }
-
-        private void HandleClient(TcpClient listener)
-        {
-            NetworkStream stream = null;
-            while (!m_Stop)
-            {
-                if (listener.Connected)
-                {
-
-                    if (stream == null)
-                        stream = listener.GetStream();
-                    var ip = (((IPEndPoint)listener.Client.RemoteEndPoint).Address);
-
-                    if (stream.DataAvailable)
-                    {
-                        while (listener.Available == 0)
-                        {
-                            Thread.Sleep(10);
-                        }
-                        var packet = new Packet(0);
-                        var collection = new Memory.ObjectByteList();
-
-                        var header = new byte[Packet.PacketHeaderSize];
-
-                        stream.Read(header, 0, Packet.PacketHeaderSize);
-                        collection.Append(header);
-                        byte[] sig = new byte[Packet.Signature.Length];
-                        collection.PopFirst(ref sig);
-                        if (sig.SequenceEqual(Packet.Signature))
-                        {
-
-                            collection.PopFirst(ref packet.Length);
-                            collection.PopFirst(ref packet.DataType);
-                            collection.PopFirst(ref packet.ConnectionID);
-
-                            var data = new byte[packet.Length];
-                            if (packet.Length > 0)
-                                stream.Read(data, 0, packet.Length);
-                            packet.Data = data;
-
-
-
-                            if (OnObjectRecieved != null)
-                                OnObjectRecieved(packet, ip);
-                        }
-
-                    }
-                }
-            }
+            var client = m_Clients[id];
+            var stream = client.GetStream();
+            stream.Write(data,0, data.Length);
         }
     }
 }

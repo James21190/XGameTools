@@ -84,5 +84,10 @@ namespace Common.Vector
         {
             return string.Format("{0},{1},{2},{3}", X, Y, Z, W);
         }
+
+        public void ReloadFromMemory()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

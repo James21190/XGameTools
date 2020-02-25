@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Network
+namespace X3TCMultiplayerComponents
 {
-    public interface ITransmittable : Memory.IMemoryObject
+    public class MultiplayerServer
     {
-        byte GetDataType();
+        public MultiplayerServer()
+        {
+        }
     }
 }

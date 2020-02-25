@@ -192,7 +192,7 @@ namespace X3TC_Tool.UI.Displays
         private void LastChildButton_Click(object sender, EventArgs e)
         {
             var meta = m_SectorObject.GetMeta();
-            var child = meta.GetFirstChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex);
+            var child = meta.GetLastChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex);
             if (child != null)
                 LoadObject(child);
         }

@@ -109,6 +109,7 @@ namespace X3TCTools.SectorObjects
                 default: return null;
             }
             meta.SetLocation(m_hProcess, pMeta);
+            meta.ReloadFromMemory();
             return meta;
         }
 
@@ -326,10 +327,10 @@ namespace X3TCTools.SectorObjects
         {
             base.SetLocation(hProcess, address);
             pNext.SetLocation(hProcess,address);
-            pPrevious.SetLocation(hProcess, address);
-            pParent.SetLocation(hProcess, address);
+            pPrevious.SetLocation(hProcess, address+0x4);
+            pParent.SetLocation(hProcess, address+0x54);
             DynamicValue.SetLocation(hProcess, address);
-            pData.SetLocation(hProcess, address);
+            pData.SetLocation(hProcess, address+0x70);
 
         }
 

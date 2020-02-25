@@ -7,7 +7,7 @@ using Common.Memory;
 
 namespace Common.Vector
 {
-    public class RotationMatrix_4 : IMemoryObject
+    public class RotationMatrix_4 : MemoryObject
     {
         public const int ByteSize = 0x30;
 
@@ -40,8 +40,8 @@ namespace Common.Vector
         }
         #endregion
 
-        #region MemoryObject
-        public void SetData(byte[] Memory)
+        #region IMemoryObject
+        public override void SetData(byte[] Memory)
         {
             Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
             Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
@@ -57,7 +57,7 @@ namespace Common.Vector
             Matrix[2, 3] = BitConverter.ToInt32(Memory, 44);
         }
 
-        public byte[] GetBytes()
+        public override byte[] GetBytes()
         {
             List<byte> arr = new List<byte>();
 
@@ -77,12 +77,7 @@ namespace Common.Vector
             return arr.ToArray();
         }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }

@@ -56,5 +56,10 @@ namespace X3TCTools
         {
             throw new NotImplementedException();
         }
+
+        public void ReloadFromMemory()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

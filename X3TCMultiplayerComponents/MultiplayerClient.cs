@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace X3TCTools.Network
+namespace X3TCMultiplayerComponents
 {
-    partial class GameNetworkManager
+    public class MultiplayerClient
     {
-        public enum PacketTypes
+        public MultiplayerClient()
         {
-            SectorObjectUpdate = 3
         }
     }
 }

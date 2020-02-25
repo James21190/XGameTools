@@ -23,7 +23,11 @@ namespace X3TCTools
         {
             m_GameHook = gameHook;
 
-            pCreateObjectInjection = m_GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
+            switch (m_GameHook.gameVersion) {
+                case GameHook.GameVersion.X3TC:
+                pCreateObjectInjection = m_GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
+                    break;
+            }
         }
 
         /// <summary>
@@ -35,6 +39,11 @@ namespace X3TCTools
         /// <returns></returns>
         public SectorObject CreateSectorObject(SectorObject.Main_Type mainType, int subType, SectorObject parent = null)
         {
+            if(pCreateObjectInjection == IntPtr.Zero)
+            {
+                throw new Exception("CreateObject code injection not found.");
+            }
+
             if(parent != null)
                 MemoryControl.Write(m_GameHook.hProcess, pCreateObjectInjection + 4, BitConverter.GetBytes((int)parent.pThis));
             MemoryControl.Write(m_GameHook.hProcess, pCreateObjectInjection, BitConverter.GetBytes((int)SectorObject.ToFullType(mainType, subType)));

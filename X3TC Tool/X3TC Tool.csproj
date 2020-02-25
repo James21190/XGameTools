@@ -95,22 +95,22 @@
     <Compile Include="UI\Displays\ScriptObjectDisplay.Designer.cs">
       <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\SectorObjectDataDisplay.cs">
+    <Compile Include="UI\Displays\SectorObjects\SectorObjectDataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\SectorObjectDataDisplay.Designer.cs">
+    <Compile Include="UI\Displays\SectorObjects\SectorObjectDataDisplay.Designer.cs">
       <DependentUpon>SectorObjectDataDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\SectorObjectDisplay.cs">
+    <Compile Include="UI\Displays\SectorObjects\SectorObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\SectorObjectDisplay.Designer.cs">
+    <Compile Include="UI\Displays\SectorObjects\SectorObjectDisplay.Designer.cs">
       <DependentUpon>SectorObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\SectorObjectManagerDisplay.cs">
+    <Compile Include="UI\Displays\SectorObjects\SectorObjectManagerDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\SectorObjectManagerDisplay.Designer.cs">
+    <Compile Include="UI\Displays\SectorObjects\SectorObjectManagerDisplay.Designer.cs">
       <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\StoryBase15fcDisplay.cs">
@@ -169,13 +169,13 @@
     <EmbeddedResource Include="UI\Displays\ScriptObjectDisplay.resx">
       <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\SectorObjectDataDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\SectorObjects\SectorObjectDataDisplay.resx">
       <DependentUpon>SectorObjectDataDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\SectorObjectDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\SectorObjects\SectorObjectDisplay.resx">
       <DependentUpon>SectorObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\SectorObjectManagerDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\SectorObjects\SectorObjectManagerDisplay.resx">
       <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\StoryBase15fcDisplay.resx">

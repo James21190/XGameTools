@@ -49,6 +49,7 @@ namespace Common.Memory
             {
                 var obj = new T();
                 obj.SetLocation(m_hProcess, address);
+                obj.ReloadFromMemory();
                 return obj;
             }
             set
@@ -83,6 +84,7 @@ namespace Common.Memory
             var obj = new T();
             var newAddress = address + (Index * obj.GetByteSize());
             obj.SetLocation(m_hProcess, newAddress);
+            obj.ReloadFromMemory();
             return obj;
         }
 

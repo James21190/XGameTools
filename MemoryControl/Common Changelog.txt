@@ -6,6 +6,9 @@
 	- Reworked ObjectByteList methods. Previous Pop methods are now depreciated.
 	- Completed ApplicationHook abstract class.
 	- Added Vector2Display and Vector4Display form components.
+	- Added ReloadFromMemory() to IMemoryObject.
+	- SetLocation in MemoryObject will no longer reload values from memory.
+	- Replaced flawed network classes.
 
 1.4.0.0
 	- Added the Patcher object.

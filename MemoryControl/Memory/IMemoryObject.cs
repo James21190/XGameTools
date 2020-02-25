@@ -25,5 +25,10 @@ namespace Common.Memory
         byte[] GetBytes();
 
         void SetLocation(IntPtr hProcess, IntPtr address);
+
+        /// <summary>
+        /// Reloads values from memory with the data provided by SetLocation.
+        /// </summary>
+        void ReloadFromMemory();
     }
 }

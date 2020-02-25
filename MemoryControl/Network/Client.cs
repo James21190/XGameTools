@@ -15,31 +15,26 @@ namespace Common.Network
     /// </summary>
     public class Client
     {
-        private TcpClient m_client;
-        private NetworkStream m_networkStream;
-
-        public readonly byte ConnectionID;
-        public Client(string IP, int Port, byte ConnectionID)
-        {
-            m_client = new TcpClient(IP, Port);
-            m_networkStream = m_client.GetStream();
-            this.ConnectionID = ConnectionID;
-        }
-
+        TcpClient m_Client;
         /// <summary>
-        /// Send a packet to the connected IP.
+        /// Creates and connects a TCP Client to the given address and port.
+        /// Returns true if successful, false if failed or a connection already exists.
         /// </summary>
-        /// <param name="packet"></param>
-        public void SendData(Packet packet)
+        /// <param name="address"></param>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public bool ConnectTo(string address, int port)
         {
-            var s = packet.ToByteArray();
-            m_networkStream.Write(s.ToArray(),0,(int)s.Length);
-            m_networkStream.Flush();
-        }
-
-        public void Close()
-        {
-            m_client.Close();
+            if (m_Client != null) return false;
+            try
+            {
+                m_Client = new TcpClient(address, port);
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
         }
     }
 }

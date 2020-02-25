@@ -56,36 +56,70 @@ namespace X3TCTools
         public GameCodeRunner gameCodeRunner { private set; get; }
         public EventManager eventManager { private set; get; }
 
-        public GameHook(Process process)
+        public readonly GameVersion gameVersion;
+
+        public GameHook(Process process, GameVersion gameVersion)
         {
+            this.gameVersion = gameVersion;
             // Get a handle to the process
             HookIntoProcess(process);
-            
-            // Create references to MemoryObjects
-            ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess,(IntPtr)GlobalAddresses.pSectorObjectManager);
-            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses.pStoryBase);
-            ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddresses.pSystemBase);
-            ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddresses.pGateSystemObject);
-            ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddresses.pTypeData);
-            ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddresses.pInputBase);
-            ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddresses.pCameraBase);
 
-            // Create events
-            eventManager = new EventManager(hProcess);
-            eventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
-            // MOV EAX 0x004b1370
-            0xB8, 0x70, 0x13, 0x4B, 0x00,
-            // CALL EAX
-            0xFF, 0xD0,
-            // MOV EAX 0x004D2D90
-            0xB8, 0x90, 0x2D, 0x4D, 0x00,
-            // CALL EAX
-            0xFF, 0xD0,
-            // RET
-            0xC3
-            } ,3);
+            switch (gameVersion) {
+                case GameVersion.X3TC:
+                    // Create references to MemoryObjects
+                    ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorObjectManager);
+                    ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
+                    ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
+                    ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
+                    ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData);
+                    ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
+                    ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
 
+                    // Create events
+                    eventManager = new EventManager(hProcess);
+                    eventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
+                    // MOV EAX 0x004b1370
+                    0xB8, 0x70, 0x13, 0x4B, 0x00,
+                    // CALL EAX
+                    0xFF, 0xD0,
+                    // MOV EAX 0x004D2D90
+                    0xB8, 0x90, 0x2D, 0x4D, 0x00,
+                    // CALL EAX
+                    0xFF, 0xD0,
+                    // RET
+                    0xC3
+                    }, 3);
+                    break;
+                //case GameVersion.X3AP:
+                //    // Create references to MemoryObjects
+                //    ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
+                //    ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pStoryBase);
+                //    //ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
+                //    //ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
+                //    //ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData);
+                //    ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
+                //    //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
+
+                //    //// Create events
+                //    //eventManager = new EventManager(hProcess);
+                //    //eventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
+                //    //// MOV EAX 0x004b1370
+                //    //0xB8, 0x70, 0x13, 0x4B, 0x00,
+                //    //// CALL EAX
+                //    //0xFF, 0xD0,
+                //    //// MOV EAX 0x004D2D90
+                //    //0xB8, 0x90, 0x2D, 0x4D, 0x00,
+                //    //// CALL EAX
+                //    //0xFF, 0xD0,
+                //    //// RET
+                //    //0xC3
+                //    //}, 3);
+
+                //    break;
+                default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", gameVersion));
+            }
             gameCodeRunner = new GameCodeRunner(this);
+
         }
 
         ~GameHook()
@@ -94,7 +128,7 @@ namespace X3TCTools
                 Unhook();
         }
 
-        public enum GlobalAddresses
+        public enum GlobalAddressesX3TC
         {
             pSystemBase =           0x00603064,
             pGateSystemObject =     0x00604634,
@@ -103,7 +137,19 @@ namespace X3TCTools
             pStoryBase =            0x00604718,
             pTypeData =             0x006030e8,
             pInputBase =            0x0057FDA0,
-            pCameraBase =           0x0060464c
+            pCameraBase =           0x0060464c,
+        }
+
+        public enum GlobalAddressesX3AP
+        {
+            //pSystemBase = 0,
+            //pGateSystemObject = 0,
+            pSectorObjectManager = 0x60a6e0,
+            //pCockpitBase = 0,
+            pStoryBase = 0x60a7b8,
+            //pTypeData = 0,
+            pInputBase = 0x581e30,
+            //pCameraBase = 0,
         }
         public enum RaceID : ushort
         {
@@ -125,6 +171,12 @@ namespace X3TCTools
             Terran,
             Yaki,
             None = 65535
+        }
+
+        public enum GameVersion
+        {
+            X3TC,
+            X3AP
         }
     }
 }

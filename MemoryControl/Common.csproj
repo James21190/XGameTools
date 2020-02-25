@@ -54,9 +54,7 @@
     <Compile Include="Memory\ObjectByteList.cs" />
     <Compile Include="Memory\MemoryObjectPointer.cs" />
     <Compile Include="Network\Client.cs" />
-    <Compile Include="Network\ITransmittable.cs" />
     <Compile Include="Network\Listener.cs" />
-    <Compile Include="Network\NetworkManager.cs" />
     <Compile Include="Network\Packet.cs" />
     <Compile Include="Patcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

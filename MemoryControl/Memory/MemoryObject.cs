@@ -35,7 +35,6 @@ namespace Common.Memory
         /// <summary>
         /// Sets the context of the object.
         /// Essential for keeping newly created objects from pointers in context.
-        /// Ensure all MemoryObject fields are updated when this method is called.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="address"></param>
@@ -43,7 +42,6 @@ namespace Common.Memory
         {
             m_hProcess = hProcess;
             pThis = address;
-            ReloadFromMemory();
         }
 
         /// <summary>

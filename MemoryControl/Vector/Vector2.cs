@@ -14,32 +14,6 @@ namespace Common.Vector
         public int X;
         public int Y;
 
-        public byte[] GetBytes()
-        {
-            List<byte> arr = new List<byte>();
-
-            arr.AddRange(BitConverter.GetBytes(X));
-            arr.AddRange(BitConverter.GetBytes(Y));
-
-            return arr.ToArray();
-        }
-
-        public void SetData(byte[] Memory)
-        {
-            X = BitConverter.ToInt32(Memory, 0);
-            Y = BitConverter.ToInt32(Memory, 4);
-        }
-
-        public int GetByteSize()
-        {
-            return ByteSize;
-        }
-
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            throw new NotImplementedException();
-        }
-
         public Vector2(int X, int Y)
         {
             this.X = X;
@@ -73,5 +47,39 @@ namespace Common.Vector
         {
             return string.Format("{0},{1}", X, Y);
         }
+
+        #region IMemoryObject
+        public byte[] GetBytes()
+        {
+            List<byte> arr = new List<byte>();
+
+            arr.AddRange(BitConverter.GetBytes(X));
+            arr.AddRange(BitConverter.GetBytes(Y));
+
+            return arr.ToArray();
+        }
+
+        public void SetData(byte[] Memory)
+        {
+            X = BitConverter.ToInt32(Memory, 0);
+            Y = BitConverter.ToInt32(Memory, 4);
+        }
+
+        public int GetByteSize()
+        {
+            return ByteSize;
+        }
+
+        public void SetLocation(IntPtr hProcess, IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReloadFromMemory()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

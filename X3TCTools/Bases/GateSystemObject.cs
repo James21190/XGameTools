@@ -81,6 +81,11 @@ namespace X3TCTools.Bases
                 {
                     throw new NotImplementedException();
                 }
+
+                public void ReloadFromMemory()
+                {
+                    throw new NotImplementedException();
+                }
                 #endregion
             }
 
@@ -140,6 +145,11 @@ namespace X3TCTools.Bases
                 collection.PopFirst(ref unknown_8);
             }
             public void SetLocation(IntPtr hProcess, IntPtr address)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void ReloadFromMemory()
             {
                 throw new NotImplementedException();
             }

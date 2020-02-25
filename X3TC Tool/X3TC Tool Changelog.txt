@@ -2,6 +2,7 @@
 	- Added TypeData class.
 	- Added CameraBase and Camera classes.
 	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
+	- Rotation matricise now inherit from MemoryObject.
 	- Reduced and renamed unknowns in SectorObject.
 	- Seperated UI into multiple forms for faster loading and a better look.
 	- Corrected LastUsedID in HashTable to NextAvailableID.
