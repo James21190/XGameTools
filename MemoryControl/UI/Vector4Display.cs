@@ -15,6 +15,41 @@ namespace Common.UI
         [DefaultValue(false)]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public decimal Increment
+        {
+            get
+            {
+                return numericUpDown1.Increment;
+            }
+            set
+            {
+                numericUpDown1.Increment = value;
+                numericUpDown2.Increment = value;
+                numericUpDown3.Increment = value;
+                numericUpDown4.Increment = value;
+            }
+        }
+
+        [DefaultValue(false)]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public int DecimalPlaces
+        {
+            get
+            {
+                return numericUpDown1.DecimalPlaces;
+            }
+            set
+            {
+                numericUpDown1.DecimalPlaces = value;
+                numericUpDown2.DecimalPlaces = value;
+                numericUpDown3.DecimalPlaces = value;
+                numericUpDown4.DecimalPlaces = value;
+            }
+        }
+        [DefaultValue(false)]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly
         {
             get

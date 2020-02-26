@@ -38,8 +38,6 @@
             this.DefaultNameBox = new System.Windows.Forms.TextBox();
             this.AutoReloader = new System.Windows.Forms.Timer(this.components);
             this.AutoReloadCheckBox = new System.Windows.Forms.CheckBox();
-            this.PositionVectorDisplay = new Common.UI.Vector3Display();
-            this.RotationVectorDisplay = new Common.UI.Vector3Display();
             this.NextButton = new System.Windows.Forms.Button();
             this.ParentButton = new System.Windows.Forms.Button();
             this.PreviousButton = new System.Windows.Forms.Button();
@@ -53,6 +51,8 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.RaceBox = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.TargetSpeedBox = new System.Windows.Forms.NumericUpDown();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -63,8 +63,9 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.RaceBox = new System.Windows.Forms.TextBox();
+            this.PositionVectorDisplay = new Common.UI.Vector3Display();
+            this.PositionKmVectorDisplay = new Common.UI.Vector3Display();
+            this.RotationVectorDisplay = new Common.UI.Vector3Display();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -73,12 +74,12 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).BeginInit();
             this.menuStrip2.SuspendLayout();
-            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -124,8 +125,8 @@
             // 
             this.IDNumericUpDown.Location = new System.Drawing.Point(6, 19);
             this.IDNumericUpDown.Maximum = new decimal(new int[] {
-            1000000,
-            0,
+            -1486618625,
+            232830643,
             0,
             0});
             this.IDNumericUpDown.Name = "IDNumericUpDown";
@@ -165,78 +166,6 @@
             this.AutoReloadCheckBox.Text = "Auto Reload";
             this.AutoReloadCheckBox.UseVisualStyleBackColor = true;
             this.AutoReloadCheckBox.CheckedChanged += new System.EventHandler(this.AutoReloadCheckBox_CheckedChanged);
-            // 
-            // PositionVectorDisplay
-            // 
-            this.PositionVectorDisplay.Location = new System.Drawing.Point(3, 119);
-            this.PositionVectorDisplay.Maximum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            0});
-            this.PositionVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
-            this.PositionVectorDisplay.Minimum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            -2147483648});
-            this.PositionVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
-            this.PositionVectorDisplay.Name = "PositionVectorDisplay";
-            this.PositionVectorDisplay.ReadOnly = true;
-            this.PositionVectorDisplay.Size = new System.Drawing.Size(156, 103);
-            this.PositionVectorDisplay.TabIndex = 7;
-            this.PositionVectorDisplay.Text = "Position";
-            this.PositionVectorDisplay.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.PositionVectorDisplay.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.PositionVectorDisplay.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // RotationVectorDisplay
-            // 
-            this.RotationVectorDisplay.Location = new System.Drawing.Point(3, 228);
-            this.RotationVectorDisplay.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.RotationVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
-            this.RotationVectorDisplay.Minimum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            -2147483648});
-            this.RotationVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
-            this.RotationVectorDisplay.Name = "RotationVectorDisplay";
-            this.RotationVectorDisplay.ReadOnly = true;
-            this.RotationVectorDisplay.Size = new System.Drawing.Size(156, 103);
-            this.RotationVectorDisplay.TabIndex = 9;
-            this.RotationVectorDisplay.Text = "Rotation";
-            this.RotationVectorDisplay.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.RotationVectorDisplay.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.RotationVectorDisplay.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // NextButton
             // 
@@ -365,6 +294,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.PositionVectorDisplay);
             this.panel1.Controls.Add(this.groupBox9);
             this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox7);
@@ -376,7 +306,7 @@
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.PositionVectorDisplay);
+            this.panel1.Controls.Add(this.PositionKmVectorDisplay);
             this.panel1.Controls.Add(this.PreviousButton);
             this.panel1.Controls.Add(this.AutoReloadCheckBox);
             this.panel1.Controls.Add(this.ParentButton);
@@ -387,6 +317,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 396);
             this.panel1.TabIndex = 15;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.RaceBox);
+            this.groupBox9.Location = new System.Drawing.Point(165, 206);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(121, 52);
+            this.groupBox9.TabIndex = 7;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Race";
+            // 
+            // RaceBox
+            // 
+            this.RaceBox.Location = new System.Drawing.Point(6, 19);
+            this.RaceBox.Name = "RaceBox";
+            this.RaceBox.ReadOnly = true;
+            this.RaceBox.Size = new System.Drawing.Size(109, 20);
+            this.RaceBox.TabIndex = 0;
             // 
             // groupBox8
             // 
@@ -463,16 +411,16 @@
             this.UnknownsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UnknownsListBox.FormattingEnabled = true;
-            this.UnknownsListBox.Location = new System.Drawing.Point(603, 61);
+            this.UnknownsListBox.Location = new System.Drawing.Point(586, 61);
             this.UnknownsListBox.Name = "UnknownsListBox";
-            this.UnknownsListBox.Size = new System.Drawing.Size(170, 316);
+            this.UnknownsListBox.Size = new System.Drawing.Size(170, 355);
             this.UnknownsListBox.TabIndex = 21;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(776, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(759, 24);
             this.menuStrip1.TabIndex = 23;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -501,23 +449,131 @@
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
-            // groupBox9
+            // PositionVectorDisplay
             // 
-            this.groupBox9.Controls.Add(this.RaceBox);
-            this.groupBox9.Location = new System.Drawing.Point(165, 206);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(121, 52);
-            this.groupBox9.TabIndex = 7;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Race";
+            this.PositionVectorDisplay.DecimalPlaces = 0;
+            this.PositionVectorDisplay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.PositionVectorDisplay.Location = new System.Drawing.Point(9, 119);
+            this.PositionVectorDisplay.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.PositionVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
+            this.PositionVectorDisplay.Minimum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            -2147483648});
+            this.PositionVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
+            this.PositionVectorDisplay.Name = "PositionVectorDisplay";
+            this.PositionVectorDisplay.ReadOnly = true;
+            this.PositionVectorDisplay.Size = new System.Drawing.Size(156, 103);
+            this.PositionVectorDisplay.TabIndex = 24;
+            this.PositionVectorDisplay.Text = "Position";
+            this.PositionVectorDisplay.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.PositionVectorDisplay.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.PositionVectorDisplay.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
-            // RaceBox
+            // PositionKmVectorDisplay
             // 
-            this.RaceBox.Location = new System.Drawing.Point(6, 19);
-            this.RaceBox.Name = "RaceBox";
-            this.RaceBox.ReadOnly = true;
-            this.RaceBox.Size = new System.Drawing.Size(109, 20);
-            this.RaceBox.TabIndex = 0;
+            this.PositionKmVectorDisplay.DecimalPlaces = 2;
+            this.PositionKmVectorDisplay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.PositionKmVectorDisplay.Location = new System.Drawing.Point(9, 228);
+            this.PositionKmVectorDisplay.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.PositionKmVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
+            this.PositionKmVectorDisplay.Minimum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            -2147483648});
+            this.PositionKmVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
+            this.PositionKmVectorDisplay.Name = "PositionKmVectorDisplay";
+            this.PositionKmVectorDisplay.ReadOnly = true;
+            this.PositionKmVectorDisplay.Size = new System.Drawing.Size(156, 103);
+            this.PositionKmVectorDisplay.TabIndex = 7;
+            this.PositionKmVectorDisplay.Text = "Position (Km)";
+            this.PositionKmVectorDisplay.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.PositionKmVectorDisplay.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.PositionKmVectorDisplay.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // RotationVectorDisplay
+            // 
+            this.RotationVectorDisplay.DecimalPlaces = 0;
+            this.RotationVectorDisplay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.RotationVectorDisplay.Location = new System.Drawing.Point(9, 337);
+            this.RotationVectorDisplay.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.RotationVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
+            this.RotationVectorDisplay.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.RotationVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
+            this.RotationVectorDisplay.Name = "RotationVectorDisplay";
+            this.RotationVectorDisplay.ReadOnly = true;
+            this.RotationVectorDisplay.Size = new System.Drawing.Size(156, 103);
+            this.RotationVectorDisplay.TabIndex = 9;
+            this.RotationVectorDisplay.Text = "Rotation";
+            this.RotationVectorDisplay.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.RotationVectorDisplay.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.RotationVectorDisplay.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // SectorObjectDisplay
             // 
@@ -542,14 +598,14 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).EndInit();
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).EndInit();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -564,7 +620,7 @@
         private System.Windows.Forms.NumericUpDown IDNumericUpDown;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox DefaultNameBox;
-        private Common.UI.Vector3Display PositionVectorDisplay;
+        private Common.UI.Vector3Display PositionKmVectorDisplay;
         private System.Windows.Forms.Timer AutoReloader;
         private System.Windows.Forms.CheckBox AutoReloadCheckBox;
         private Common.UI.Vector3Display RotationVectorDisplay;
@@ -593,5 +649,6 @@
         private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox RaceBox;
+        private Common.UI.Vector3Display PositionVectorDisplay;
     }
 }

@@ -256,7 +256,7 @@ namespace X3TCTools.SectorObjects
             Split_Viper = 72,
             Paranid_Hercules,
             Paranid_Demeter_1,
-            Paranid_Demeter_2,
+            Paranid_Demeter_Tanker,
             Paranid_Demeter_3,
             Paranid_Demeter_4,
             Paranid_Demeter_5,
@@ -354,7 +354,7 @@ namespace X3TCTools.SectorObjects
             Pirate_Kea = 184,
             Pirate_Buster = 186,
             Pirate_Buzzard,
-            Pirate_Elete = 191,
+            Pirate_Elite = 191,
             Pirate_Harrier,
             Pirate_Centaur = 197,
             Pirate_Carrack = 199,
@@ -381,8 +381,17 @@ namespace X3TCTools.SectorObjects
             Terran_Spitfyre,
             Terran_Springblossom,
             Terran_CPU_Deca = 226,
-            Yaki_Susanowa = 229,
-            Yaki_Fujin = 238,
+            Yaki_Chokaro = 228,
+            Yaki_Susanowa_1,
+            Yaki_Susanowa_Raider,
+            Yaki_Susanowa_3,
+            Yaki_Tenjin,
+            Yaki_Raijin_1 = 233,
+            Yaki_Raijin_2,
+            Yaki_Raijin_3,
+            Yaki_Tonbo,
+            Yaki_Fujin_1,
+            Yaki_Fujin_2,
             Khaak_Carrier = 241,
             Khaak_Destroyer,
             Khaak_Fighter,
@@ -407,6 +416,7 @@ namespace X3TCTools.SectorObjects
             Split_Panther,
             Paranid_Agamemnon,
             Pirate_Brigantine = 301,
+            Yaki_Shuri,
             Yaki_Akuma = 305,
             OTAS_Mistral_1 = 309,
             OTAS_Mistral_2,
@@ -480,6 +490,11 @@ namespace X3TCTools.SectorObjects
             Shadow = 33,
         }
         // Type 11
+        public const int WARE_ENERGY_SUB_TYPE_COUNT = 1;
+        public enum Ware_Energy_Sub_Type
+        {
+            Energy_Cells
+        }
         // Type 12
         // Type 13
         // Type 14
@@ -553,6 +568,8 @@ namespace X3TCTools.SectorObjects
                     return ((Shield_Sub_Type)SubType).ToString();
                 case Main_Type.Missile: // 10
                     return ((Missile_Sub_Type)SubType).ToString();
+                case Main_Type.Ware_Energy: // 11
+                    return ((Ware_Energy_Sub_Type)SubType).ToString();
                 case Main_Type.Gate: // 18
                     return ((Gate_Sub_Type)SubType).ToString();
                 default:

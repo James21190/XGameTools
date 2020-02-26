@@ -58,6 +58,9 @@ namespace X3TC_Tool.UI.Displays
             DefaultNameBox.Text = MemoryControl.ReadNullTerminatedString(m_GameHook.hProcess, m_SectorObject.pDefaultName);
             IDNumericUpDown.Value = m_SectorObject.ObjectID;
             PositionVectorDisplay.Vector = m_SectorObject.Position_Copy;
+            PositionKmVectorDisplay.X = (m_SectorObject.Position_Copy.X)/500000;
+            PositionKmVectorDisplay.Y = (m_SectorObject.Position_Copy.Y)/500000;
+            PositionKmVectorDisplay.Z = (m_SectorObject.Position_Copy.Z)/500000;
             RotationVectorDisplay.Vector = m_SectorObject.EulerRotationCopy;
             EventObjectIDBox.Text = m_SectorObject.EventObjectID.ToString();
             TypeBox.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);

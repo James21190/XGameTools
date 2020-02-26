@@ -9,6 +9,7 @@
 	- Added ReloadFromMemory() to IMemoryObject.
 	- SetLocation in MemoryObject will no longer reload values from memory.
 	- Replaced flawed network classes.
+	- Added DecimalPlaces and Increment to vector displays.
 
 1.4.0.0
 	- Added the Patcher object.

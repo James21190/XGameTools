@@ -36,6 +36,16 @@ namespace X3TCTools
             }
         }
 
+        public static decimal ConvertFromInt(int value) 
+        {
+            return value / FixedPointUnit;
+        }
+
+        public static int ConvertToInt(decimal value)
+        {
+            return Convert.ToInt32(value * FixedPointUnit);
+        }
+
         public const uint FixedPointUnit = 0x00010000;
         public byte[] GetBytes()
         {
