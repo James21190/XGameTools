@@ -65,17 +65,23 @@
     <Compile Include="UI\Displays\DynamicValueDisplay.Designer.cs">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\EventObjectDisplay.cs">
+    <Compile Include="UI\Displays\EventObject\EventObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\EventObjectDisplay.Designer.cs">
+    <Compile Include="UI\Displays\EventObject\EventObjectDisplay.Designer.cs">
       <DependentUpon>EventObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\EventObjectSubDisplay.cs">
+    <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\EventObjectSubDisplay.Designer.cs">
+    <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\EventObject\EventObjectVariableDisplay_Ship.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\EventObject\EventObjectVariableDisplay_Ship.Designer.cs">
+      <DependentUpon>EventObjectVariableDisplay_Ship.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\HashTableDisplay.cs">
       <SubType>Form</SubType>
@@ -154,11 +160,14 @@
     <EmbeddedResource Include="UI\Displays\DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\EventObjectDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\EventObject\EventObjectDisplay.resx">
       <DependentUpon>EventObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\EventObjectSubDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\EventObject\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\EventObject\EventObjectVariableDisplay_Ship.resx">
+      <DependentUpon>EventObjectVariableDisplay_Ship.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>

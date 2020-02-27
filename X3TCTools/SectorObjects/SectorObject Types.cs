@@ -26,16 +26,17 @@ namespace X3TCTools.SectorObjects
             Ware_Energy,
             Type_12,
             Type_13,
-            Type_14,
+            Ware_Bio,
             Type_15,
-            Type_16,
+            Ware_Miscellaneous,
             Asteroid_1,
             Gate,
             Type_19,
             Miscellaneous,
             Type_21,
             Type_22,
-            Asteroid_2 = 28
+            Asteroid_2 = 28,
+            Station_Debris = 30,
         }
 
         public static int ToFullType(Main_Type MainType, int SubType)
@@ -58,13 +59,19 @@ namespace X3TCTools.SectorObjects
         public const int SUN_SUB_TYPE_COUNT = 8;
         public enum Sun_Sub_Type
         {
-
+            Red_1,
+            White_1 = 4,
+            Red_2 = 6,
+            Yellow_1 = 7
         }
         // Type 4
         public const int PLANET_SUB_TYPE_COUNT = 147;
         public enum Planet_Sub_Type
         {
-
+            Large_Habitable_1,
+            Large_Desert_1 = 6,
+            Small_Barren_Moon_1 = 74,
+            Small_Barren_Moon_2 = 110,
         }
         // Type 5
         public const int DOCK_SUB_TYPE_COUNT = 46;
@@ -74,7 +81,7 @@ namespace X3TCTools.SectorObjects
             Split_Trading_Port,
             Paranid_Trading_Dock,
             Royal_Boron_Trading_Station,
-            Trading_Station,
+            Teladi_Trading_Station,
             Xenon_Station,
             Argon_Equipment_Dock,
             Split_Equipment_Dock,
@@ -137,6 +144,7 @@ namespace X3TCTools.SectorObjects
             Chip_Plant_3,
             Argon_Computer_Plant,
             Boron_Computer_Plant,
+            Argon_Mass_Driver_Forge = 93,
             Wheat_Farm_1 = 143,
             Wheat_Farm_2,
             Cattle_Ranch,
@@ -153,6 +161,8 @@ namespace X3TCTools.SectorObjects
             Teladianium_Foundry_2,
             Dream_Farm,
             Stott_Mixery = 171,
+            Soyery_M = 181,
+            Soyery_L,
             Boron_Silicon_Mine_M = 215,
             Boron_Silicon_Mine_L,
             Complex_Hub = 227,
@@ -171,6 +181,8 @@ namespace X3TCTools.SectorObjects
             Terran_Matter_Anti_Matter_Mine_Fab = 352,
             Terran_Ghoul_Missile_Manufacturing_Plant = 356,
             Teladi_Energy_Bolt_Chaingun_Ammunition_Forge = 363,
+            Argon_Hammer_Torpedo_Fabrication_Facility = 370,
+            Argon_Flail_Missile_Production_Facility = 375,
             Argon_Heavy_Weapons_Complex = 384,
             Terran_Solar_Power_Plant_1,
             Terran_Solar_Power_Plant_2,
@@ -208,7 +220,7 @@ namespace X3TCTools.SectorObjects
             Argon_Buster_1,
             Argon_Buster_2,
             Argon_Buster_3,
-            Argon_Buster_4,
+            Argon_Buster_Sentiel,
             Argon_Elite,
             Argon_Discoverer_1,
             Argon_Discoverer_2,
@@ -334,7 +346,7 @@ namespace X3TCTools.SectorObjects
             Teladi_Buzzard_3,
             Teladi_Kite_1,
             Teladi_Harrier_1,
-            Teladi_Harrier_2,
+            Teladi_Harrier_Hauler,
             Teladi_Harrier_3,
             Teladi_Harrier_4,
             Teladi_Kestrel,
@@ -346,12 +358,14 @@ namespace X3TCTools.SectorObjects
             Xenon_LX,
             Xenon_M,
             Xenon_N,
-            Xenon_PX = 175,
+            Xenon_P,
+            Xenon_PX,
             Xenon_Q,
             Pirate_Falcon = 179,
-            Pirate_Nova_1,
+            Pirate_Nova_Raider,
             Pirate_Nova_2,
             Pirate_Kea = 184,
+            Pirate_Blastclaw,
             Pirate_Buster = 186,
             Pirate_Buzzard,
             Pirate_Elite = 191,
@@ -382,7 +396,7 @@ namespace X3TCTools.SectorObjects
             Terran_Springblossom,
             Terran_CPU_Deca = 226,
             Yaki_Chokaro = 228,
-            Yaki_Susanowa_1,
+            Yaki_Susanowa,
             Yaki_Susanowa_Raider,
             Yaki_Susanowa_3,
             Yaki_Tenjin,
@@ -411,11 +425,13 @@ namespace X3TCTools.SectorObjects
             Gonor_UFO,
             Spaceflies,
             Advanced_Satellite = 278,
+            Navigational_Beacon = 280,
             Freight_Drone = 294,
             Argon_Griffon,
             Split_Panther,
             Paranid_Agamemnon,
-            Pirate_Brigantine = 301,
+            Pirage_Galleon = 300,
+            Pirate_Brigantine,
             Yaki_Shuri,
             Yaki_Akuma = 305,
             OTAS_Mistral_1 = 309,
@@ -424,7 +440,8 @@ namespace X3TCTools.SectorObjects
             Terran_Atmospheric_Lifter = 326,
             Terran_Mobile_Mining_Base_Ship,
             Paranid_Hyperion,
-            Argon_Discoverer_Advanced = 335,
+            Argon_Heavy_Centaur_Prototype = 334,
+            Argon_Discoverer_Advanced,
             Teladi_Kea_Enhanced = 350,
             Teladi_Kite_2 = 354,
             Xperimental_Shuttle = 372
@@ -476,17 +493,24 @@ namespace X3TCTools.SectorObjects
         public const int MISSILE_SUB_TYPE_COUNT = 33;
         public enum Missile_Sub_Type
         {
-            Wasp = 1,
-            Sting = 6,
+            Mosquito,
+            Wasp,
+            Dragonfly,
+            Silkworm,
+            Disruptor = 5,
+            Sting,
             Needle,
             Thorn,
             Hurricane = 12,
             Tornado = 14,
-            Hammerhead = 20,
+            Aurora = 17,
+            Beluga = 19,
+            Hammerhead,
             Rapier,
             Firelance,
             Windstalker = 24,
             Banshee,
+            Wraith,
             Shadow = 33,
         }
         // Type 11
@@ -498,17 +522,35 @@ namespace X3TCTools.SectorObjects
         // Type 12
         // Type 13
         // Type 14
+        public const int WARE_BIO_SUB_TYPE_COUNT = 11;
+        public enum Ware_Bio_Sub_Type
+        {
+            Space_Weed = 10
+        }
         // Type 15
         // Type 16
+        public const int WARE_MMISCELLANEOUS_SUB_TYPE_COUNT = 94;
+        public enum Ware_Miscellaneous_Sub_Type
+        {
+            Spaceflies = 5,
+            Credits = 79,
+            Energy_Bolt_Chaingun_Ammunition = 93
+        }
         // Type 17
         // Type 18
         public const int GATE_SUB_TYPE_COUNT = 4;
         public enum Gate_Sub_Type
         {
-            North,
-            South,
-            West,
-            East
+            North_Gate,
+            South_Gate,
+            West_Gate,
+            East_Gate,
+            North_TransOrbital_Accelerator = 5,
+            South_TransOrbital_Accelerator,
+            West_TransOrbital_Accelerator,
+            East_TransOrbital_Accelerator,
+
+
         }
         // Type 19
         // Type 20
@@ -525,7 +567,7 @@ namespace X3TCTools.SectorObjects
             Undefined_1 = 76,
             Undefined_2,
             Undefined_3,
-            Undefined_4,
+            Advertisement_Ring_Solar_Power_Plant,
             Ship_Debris_2 = 93,
             Ship_Debris_3,
         }
@@ -558,6 +600,10 @@ namespace X3TCTools.SectorObjects
                 case Main_Type.Projectile: // 0
                 case Main_Type.Weapon: // 8
                     return ((Weapon_Sub_Type)SubType).ToString();
+                case Main_Type.Sun: // 3
+                    return ((Sun_Sub_Type)SubType).ToString();
+                case Main_Type.Planet: // 4
+                    return ((Planet_Sub_Type)SubType).ToString();
                 case Main_Type.Dock: // 5
                     return ((Dock_Sub_Type)SubType).ToString();
                 case Main_Type.Factory: // 6
@@ -570,8 +616,14 @@ namespace X3TCTools.SectorObjects
                     return ((Missile_Sub_Type)SubType).ToString();
                 case Main_Type.Ware_Energy: // 11
                     return ((Ware_Energy_Sub_Type)SubType).ToString();
+                case Main_Type.Ware_Bio: // 14
+                    return ((Ware_Bio_Sub_Type)SubType).ToString();
+                case Main_Type.Ware_Miscellaneous: // 16
+                    return ((Ware_Miscellaneous_Sub_Type)SubType).ToString();
                 case Main_Type.Gate: // 18
                     return ((Gate_Sub_Type)SubType).ToString();
+                case Main_Type.Miscellaneous: // 20
+                    return ((Miscellaneous_Sub_Type)SubType).ToString();
                 default:
                     return SubType.ToString();
             }
@@ -584,6 +636,10 @@ namespace X3TCTools.SectorObjects
                 case Main_Type.Projectile: // 0
                 case Main_Type.Weapon: // 8
                     return WEAPON_SUB_TYPE_COUNT;
+                case Main_Type.Sun: // 3
+                    return SUN_SUB_TYPE_COUNT;
+                case Main_Type.Planet: // 4
+                    return PLANET_SUB_TYPE_COUNT;
                 case Main_Type.Dock: // 5
                     return DOCK_SUB_TYPE_COUNT;
                 case Main_Type.Factory: // 6
@@ -594,8 +650,14 @@ namespace X3TCTools.SectorObjects
                     return SHIELD_SUB_TYPE_COUNT;
                 case Main_Type.Missile: // 10
                     return MISSILE_SUB_TYPE_COUNT;
+                case Main_Type.Ware_Bio: // 14
+                    return WARE_BIO_SUB_TYPE_COUNT;
+                case Main_Type.Ware_Miscellaneous: // 16
+                    return WARE_MMISCELLANEOUS_SUB_TYPE_COUNT;
                 case Main_Type.Gate: // 18
                     return GATE_SUB_TYPE_COUNT;
+                case Main_Type.Miscellaneous: // 20
+                    return MISCELLANEOUS_SUB_TYPE_COUNT;
                 default: throw new NotImplementedException();
             }
         }

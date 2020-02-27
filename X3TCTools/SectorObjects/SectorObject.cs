@@ -127,14 +127,16 @@ namespace X3TCTools.SectorObjects
         public SectorObject[] GetAllChildrenWithType(int main_Type)
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();
-            //var list = GetMeta().GetChildrenList();
-            //var entry = list[main_Type].pFirst;
-            //while (entry.address != IntPtr.Zero)
-            //{
-            //    var next = entry.obj;
-            //    sectorObjects.Add(next);
-            //    entry = next.pNext;
-            //}
+            var meta = GetMeta();
+            if (meta == null)
+                return sectorObjects.ToArray();
+            var so = meta.GetFirstChild((SectorObject.Main_Type)main_Type);
+            if(so != null)
+                while (so.IsValid)
+                {
+                    sectorObjects.Add(so);
+                    so = so.pNext.obj;
+                }
 
             return sectorObjects.ToArray();
         }

@@ -40,6 +40,8 @@
             this.LoadVariablesButton = new System.Windows.Forms.Button();
             this.AutoReloadCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoReloader = new System.Windows.Forms.Timer(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -132,9 +134,9 @@
             // 
             // LoadVariablesButton
             // 
-            this.LoadVariablesButton.Location = new System.Drawing.Point(236, 70);
+            this.LoadVariablesButton.Location = new System.Drawing.Point(242, 70);
             this.LoadVariablesButton.Name = "LoadVariablesButton";
-            this.LoadVariablesButton.Size = new System.Drawing.Size(97, 23);
+            this.LoadVariablesButton.Size = new System.Drawing.Size(102, 23);
             this.LoadVariablesButton.TabIndex = 4;
             this.LoadVariablesButton.Text = "Load Variables";
             this.LoadVariablesButton.UseVisualStyleBackColor = true;
@@ -143,7 +145,7 @@
             // AutoReloadCheckBox
             // 
             this.AutoReloadCheckBox.AutoSize = true;
-            this.AutoReloadCheckBox.Location = new System.Drawing.Point(248, 105);
+            this.AutoReloadCheckBox.Location = new System.Drawing.Point(18, 128);
             this.AutoReloadCheckBox.Name = "AutoReloadCheckBox";
             this.AutoReloadCheckBox.Size = new System.Drawing.Size(85, 17);
             this.AutoReloadCheckBox.TabIndex = 5;
@@ -156,19 +158,40 @@
             this.AutoReloader.Interval = 1000;
             this.AutoReloader.Tick += new System.EventHandler(this.AutoReloader_Tick);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(139, 101);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(97, 21);
+            this.comboBox1.TabIndex = 6;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(242, 99);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Load Variables As";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // EventObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 131);
+            this.ClientSize = new System.Drawing.Size(356, 148);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.AutoReloadCheckBox);
             this.Controls.Add(this.LoadVariablesButton);
             this.Controls.Add(this.LoadSubButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(360, 170);
-            this.MinimumSize = new System.Drawing.Size(360, 170);
             this.Name = "EventObjectDisplay";
             this.Text = "EventObjectDisplay";
             this.groupBox1.ResumeLayout(false);
@@ -195,5 +218,7 @@
         private System.Windows.Forms.Button LoadVariablesButton;
         private System.Windows.Forms.CheckBox AutoReloadCheckBox;
         private System.Windows.Forms.Timer AutoReloader;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

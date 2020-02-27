@@ -51,6 +51,7 @@
     <Compile Include="Bases\StoryBase\EventFunctionStruct.cs" />
     <Compile Include="Bases\StoryBase\EventObject.cs" />
     <Compile Include="Bases\StoryBase\EventObjectSub.cs" />
+    <Compile Include="Bases\StoryBase\EventObject_VariableIndices.cs" />
     <Compile Include="Bases\StoryBase\ScriptObject.cs" />
     <Compile Include="Bases\StoryBase.cs" />
     <Compile Include="Bases\StoryBase\StoryBase15fc.cs" />

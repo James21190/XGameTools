@@ -29,6 +29,95 @@ namespace X3TC_Tool.UI.Displays
             }
         }
 
+        private void LoadTree(int AutoLoadID = 0, bool clear = true, SectorObject baseSectorObject = null, TreeNode baseNode = null)
+        {
+            if(clear)
+                treeView1.Nodes.Clear();
+            if(baseSectorObject == null)
+                baseSectorObject = m_GameHook.sectorObjectManager.GetSpace();
+
+
+            var children = baseSectorObject.GetAllChildren(false);
+
+            if (children.Count() == 0)
+                return;
+
+            Queue<TreeNode> ToRemove = new Queue<TreeNode>();
+
+            if(baseNode == null)
+            {
+                
+                IsLoadingTree = true;
+                for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+                    treeView1.Nodes.Add("Type " + ((SectorObject.Main_Type)i).ToString());
+                treeView1.Nodes.Add("Invalid MainType");
+
+                foreach(var child in children)
+                {
+                    var a = new TreeNode(child.GetSubTypeAsString());
+                    a.Tag = child;
+                    a.BackColor = GameHook.GetRaceColor(child.RaceID);
+                    if ((int)child.MainType < SectorObject.MAIN_TYPE_COUNT)
+                    {
+                        treeView1.Nodes[(int)child.MainType].Nodes.Add(a);
+                        if(child.ObjectID == AutoLoadID)
+                        {
+                            treeView1.SelectedNode = a;
+                        }
+                        LoadTree(AutoLoadID, false, child, a);
+                    }
+                    else
+                        treeView1.Nodes[SectorObject.MAIN_TYPE_COUNT].Nodes.Add(a);
+                }
+                // Remove empty nodes.
+                foreach (TreeNode node in treeView1.Nodes)
+                {
+                    if (node.Nodes.Count == 0)
+                        ToRemove.Enqueue(node);
+                }
+                IsLoadingTree = false;
+            }
+            else
+            {
+                for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+                    baseNode.Nodes.Add("Type " + ((SectorObject.Main_Type)i).ToString());
+                baseNode.Nodes.Add("Invalid MainType");
+
+                foreach (var child in children)
+                {
+                    var a = new TreeNode(child.GetSubTypeAsString());
+                    a.Tag = child;
+                    a.BackColor = GameHook.GetRaceColor(child.RaceID);
+                    if ((int)child.MainType < SectorObject.MAIN_TYPE_COUNT)
+                    {
+                        baseNode.Nodes[(int)child.MainType].Nodes.Add(a);
+                        if (child.ObjectID == AutoLoadID)
+                        {
+                            treeView1.SelectedNode = a;
+                        }
+                        LoadTree(AutoLoadID, false, child, a);
+                    }
+                    else
+                        baseNode.Nodes[SectorObject.MAIN_TYPE_COUNT].Nodes.Add(a);
+
+                }
+
+                // Remove empty nodes.
+                foreach (TreeNode node in baseNode.Nodes)
+                {
+                    if (node.Nodes.Count == 0)
+                        ToRemove.Enqueue(node);
+                }
+            }
+
+            while(ToRemove.Count > 0)
+            {
+                treeView1.Nodes.Remove(ToRemove.Dequeue());
+
+            }
+
+
+        }
         public void LoadObject(int ID)
         {
             var sectorObjectManager = m_GameHook.sectorObjectManager;
@@ -54,13 +143,16 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
+
+            m_SectorObject.ReloadFromMemory();
+            LoadTree(m_SectorObject.ObjectID);
             AddressBox.Text = m_SectorObject.pThis.ToString("X");
             DefaultNameBox.Text = MemoryControl.ReadNullTerminatedString(m_GameHook.hProcess, m_SectorObject.pDefaultName);
             IDNumericUpDown.Value = m_SectorObject.ObjectID;
             PositionVectorDisplay.Vector = m_SectorObject.Position_Copy;
-            PositionKmVectorDisplay.X = (m_SectorObject.Position_Copy.X)/500000;
-            PositionKmVectorDisplay.Y = (m_SectorObject.Position_Copy.Y)/500000;
-            PositionKmVectorDisplay.Z = (m_SectorObject.Position_Copy.Z)/500000;
+            PositionKmVectorDisplay.X = ((decimal)m_SectorObject.Position_Copy.X)/500000;
+            PositionKmVectorDisplay.Y = ((decimal)m_SectorObject.Position_Copy.Y)/500000;
+            PositionKmVectorDisplay.Z = ((decimal)m_SectorObject.Position_Copy.Z)/500000;
             RotationVectorDisplay.Vector = m_SectorObject.EulerRotationCopy;
             EventObjectIDBox.Text = m_SectorObject.EventObjectID.ToString();
             TypeBox.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
@@ -139,7 +231,6 @@ namespace X3TC_Tool.UI.Displays
 
         private void AutoReloader_Tick(object sender, EventArgs e)
         {
-            m_SectorObject.ReloadFromMemory();
             if (m_SectorObject.IsValid)
             {
                 Reload();
@@ -213,6 +304,25 @@ namespace X3TC_Tool.UI.Displays
             var display = new TypeDataDisplay(m_GameHook);
             display.LoadTypeData((int)m_SectorObject.MainType, m_SectorObject.SubType);
             display.Show();
+        }
+
+        bool IsLoadingTree = false;
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (IsLoadingTree)
+                return;
+            if(e.Node.Tag != null)
+                LoadObject((SectorObject)e.Node.Tag);
+        }
+
+        private void sectorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadObject(m_GameHook.sectorObjectManager.GetSpace());
+        }
+
+        private void playerShipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadObject(m_GameHook.sectorObjectManager.GetPlayerObject());
         }
     }
 }

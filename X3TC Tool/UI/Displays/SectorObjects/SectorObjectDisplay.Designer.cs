@@ -51,6 +51,7 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PositionVectorDisplay = new Common.UI.Vector3Display();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.RaceBox = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -59,13 +60,17 @@
             this.SpeedBox = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.UnknownsListBox = new System.Windows.Forms.ListBox();
+            this.PositionKmVectorDisplay = new Common.UI.Vector3Display();
+            this.RotationVectorDisplay = new Common.UI.Vector3Display();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PositionVectorDisplay = new Common.UI.Vector3Display();
-            this.PositionKmVectorDisplay = new Common.UI.Vector3Display();
-            this.RotationVectorDisplay = new Common.UI.Vector3Display();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playerShipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -80,6 +85,10 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).BeginInit();
             this.menuStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -251,7 +260,7 @@
             this.groupBox6.Controls.Add(this.LastChildButton);
             this.groupBox6.Controls.Add(this.ChildTypeSelectionBox);
             this.groupBox6.Controls.Add(this.FirstChildButton);
-            this.groupBox6.Location = new System.Drawing.Point(457, 61);
+            this.groupBox6.Location = new System.Drawing.Point(419, 61);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(140, 108);
             this.groupBox6.TabIndex = 13;
@@ -313,10 +322,52 @@
             this.panel1.Controls.Add(this.RotationVectorDisplay);
             this.panel1.Controls.Add(this.NextButton);
             this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Location = new System.Drawing.Point(12, 42);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 396);
+            this.panel1.Size = new System.Drawing.Size(589, 405);
             this.panel1.TabIndex = 15;
+            // 
+            // PositionVectorDisplay
+            // 
+            this.PositionVectorDisplay.DecimalPlaces = 0;
+            this.PositionVectorDisplay.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.PositionVectorDisplay.Location = new System.Drawing.Point(9, 119);
+            this.PositionVectorDisplay.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.PositionVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
+            this.PositionVectorDisplay.Minimum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            -2147483648});
+            this.PositionVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
+            this.PositionVectorDisplay.Name = "PositionVectorDisplay";
+            this.PositionVectorDisplay.ReadOnly = true;
+            this.PositionVectorDisplay.Size = new System.Drawing.Size(156, 103);
+            this.PositionVectorDisplay.TabIndex = 24;
+            this.PositionVectorDisplay.Text = "Position";
+            this.PositionVectorDisplay.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.PositionVectorDisplay.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.PositionVectorDisplay.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // groupBox9
             // 
@@ -408,88 +459,11 @@
             // 
             // UnknownsListBox
             // 
-            this.UnknownsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.UnknownsListBox.FormattingEnabled = true;
-            this.UnknownsListBox.Location = new System.Drawing.Point(586, 61);
+            this.UnknownsListBox.Location = new System.Drawing.Point(419, 175);
             this.UnknownsListBox.Name = "UnknownsListBox";
-            this.UnknownsListBox.Size = new System.Drawing.Size(170, 355);
+            this.UnknownsListBox.Size = new System.Drawing.Size(170, 433);
             this.UnknownsListBox.TabIndex = 21;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(759, 24);
-            this.menuStrip1.TabIndex = 23;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // menuStrip2
-            // 
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.otherToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip2.TabIndex = 16;
-            this.menuStrip2.Text = "menuStrip2";
-            // 
-            // otherToolStripMenuItem
-            // 
-            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.typeDataToolStripMenuItem});
-            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
-            this.otherToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.otherToolStripMenuItem.Text = "Load Other";
-            // 
-            // typeDataToolStripMenuItem
-            // 
-            this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.typeDataToolStripMenuItem.Text = "TypeData";
-            this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
-            // 
-            // PositionVectorDisplay
-            // 
-            this.PositionVectorDisplay.DecimalPlaces = 0;
-            this.PositionVectorDisplay.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.PositionVectorDisplay.Location = new System.Drawing.Point(9, 119);
-            this.PositionVectorDisplay.Maximum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            0});
-            this.PositionVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
-            this.PositionVectorDisplay.Minimum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            -2147483648});
-            this.PositionVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
-            this.PositionVectorDisplay.Name = "PositionVectorDisplay";
-            this.PositionVectorDisplay.ReadOnly = true;
-            this.PositionVectorDisplay.Size = new System.Drawing.Size(156, 103);
-            this.PositionVectorDisplay.TabIndex = 24;
-            this.PositionVectorDisplay.Text = "Position";
-            this.PositionVectorDisplay.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.PositionVectorDisplay.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.PositionVectorDisplay.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // PositionKmVectorDisplay
             // 
@@ -575,12 +549,99 @@
             0,
             0});
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
+            this.menuStrip1.TabIndex = 23;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadToolStripMenuItem,
+            this.otherToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip2.TabIndex = 16;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // otherToolStripMenuItem
+            // 
+            this.otherToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.typeDataToolStripMenuItem});
+            this.otherToolStripMenuItem.Name = "otherToolStripMenuItem";
+            this.otherToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.otherToolStripMenuItem.Text = "Load Other";
+            // 
+            // typeDataToolStripMenuItem
+            // 
+            this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.typeDataToolStripMenuItem.Text = "TypeData";
+            this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
+            // 
+            // treeView1
+            // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeView1.Location = new System.Drawing.Point(3, 3);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(174, 405);
+            this.treeView1.TabIndex = 25;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(9, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(779, 411);
+            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.TabIndex = 26;
+            // 
+            // loadToolStripMenuItem
+            // 
+            this.loadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.playerShipToolStripMenuItem,
+            this.sectorToolStripMenuItem});
+            this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.loadToolStripMenuItem.Text = "Load";
+            // 
+            // playerShipToolStripMenuItem
+            // 
+            this.playerShipToolStripMenuItem.Name = "playerShipToolStripMenuItem";
+            this.playerShipToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.playerShipToolStripMenuItem.Text = "Player Ship";
+            this.playerShipToolStripMenuItem.Click += new System.EventHandler(this.playerShipToolStripMenuItem_Click);
+            // 
+            // sectorToolStripMenuItem
+            // 
+            this.sectorToolStripMenuItem.Name = "sectorToolStripMenuItem";
+            this.sectorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sectorToolStripMenuItem.Text = "Sector";
+            this.sectorToolStripMenuItem.Click += new System.EventHandler(this.sectorToolStripMenuItem_Click);
+            // 
             // SectorObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SectorObjectDisplay";
@@ -606,6 +667,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBox)).EndInit();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -650,5 +715,10 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox RaceBox;
         private Common.UI.Vector3Display PositionVectorDisplay;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playerShipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sectorToolStripMenuItem;
     }
 }

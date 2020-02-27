@@ -85,6 +85,7 @@ namespace X3TCTools.SectorObjects
         {
             var value = new SectorObject();
             value.SetLocation(m_hProcess, address);
+            value.ReloadFromMemory();
             return value;
         }
         #endregion

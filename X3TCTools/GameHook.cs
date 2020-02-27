@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Common.Memory;
 using X3TCTools.SectorObjects;
 using X3TCTools.Bases;
+using System.Drawing;
 
 namespace X3TCTools
 {
@@ -176,6 +177,30 @@ namespace X3TCTools
             Terran,
             Yaki,
             None = 65535
+        }
+
+        public static Color GetRaceColor(RaceID race)
+        {
+            switch (race)
+            {
+                case RaceID.Argon: return Color.LightBlue;
+                case RaceID.ATF: return Color.Gray;
+                case RaceID.Boron: return Color.Aqua;
+                case RaceID.Friendly: return Color.LightSeaGreen;
+                case RaceID.Gonor: return Color.Gold;
+                case RaceID.Khaak: return Color.BlueViolet;
+                case RaceID.Paranid: return Color.SandyBrown;
+                case RaceID.Pirate: return Color.IndianRed;
+                case RaceID.Player: return Color.LawnGreen;
+                case RaceID.Split: return Color.DarkOrange;
+                case RaceID.Teladi: return Color.Green;
+                case RaceID.Terran: return Color.SkyBlue;
+                case RaceID.Unowned: return Color.Pink;
+                case RaceID.Xenon: return Color.Red;
+                case RaceID.Yaki: return Color.GreenYellow;
+                case RaceID.Unknown: return Color.Honeydew;
+                default: return Color.White;
+            }
         }
 
         public enum GameVersion

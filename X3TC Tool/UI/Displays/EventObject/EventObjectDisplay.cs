@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using X3TCTools;
 using X3TCTools.Bases;
+using X3TCTools.SectorObjects;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -21,6 +22,8 @@ namespace X3TC_Tool.UI.Displays
         {
             InitializeComponent();
             m_GameHook = gameHook;
+            for (int i = 0; i < X3TCTools.SectorObjects.SectorObject.MAIN_TYPE_COUNT; i++)
+                comboBox1.Items.Add((X3TCTools.SectorObjects.SectorObject.Main_Type)i);
         }
 
         public void LoadObject(int ID)
@@ -76,6 +79,23 @@ namespace X3TC_Tool.UI.Displays
         {
             m_EventObject.ReloadFromMemory();
             Reload();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = (comboBox1.SelectedIndex >= 0) ;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
+            {
+                case SectorObject.Main_Type.Ship:
+                    var display = new EventObjectVariableDisplay_Ship(m_GameHook);
+                    display.LoadVariables(m_EventObject.pScriptVariableArr.address);
+                    display.Show();
+                    return;
+            }
         }
     }
 }
