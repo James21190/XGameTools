@@ -29,6 +29,7 @@ namespace X3TC_Tool.UI.Displays
         {
             if (AddressBox.Text != pHashTable.ToString("X")) AddressBox.Text = pHashTable.ToString("X");
             m_HashTable.SetLocation(m_GameHook.hProcess, pHashTable);
+            m_HashTable.ReloadFromMemory();
             Reload();
         }
 

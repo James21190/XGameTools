@@ -38,5 +38,13 @@ namespace X3TC_Tool.UI.Displays
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var sectorObjectManager = m_GameHook.sectorObjectManager;
+            var display = new HashTableDisplay(m_GameHook);
+            display.LoadTable(sectorObjectManager.pObjectHashTable.address);
+            display.Show();
+        }
     }
 }
