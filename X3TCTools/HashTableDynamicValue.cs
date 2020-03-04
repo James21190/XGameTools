@@ -18,7 +18,7 @@ namespace X3TCTools
         #region Classes
         public class Entry : MemoryObject
         {
-            public const int ByteSize = 12;
+            public const int ByteSize = 14;
 
 
             public MemoryObjectPointer<Entry> pNext;
@@ -53,8 +53,7 @@ namespace X3TCTools
 
             public override void SetData(byte[] Memory)
             {
-                var collection = new ObjectByteList();
-                collection.Append(Memory);
+                var collection = new ObjectByteList(Memory);
                 collection.PopFirst(ref pNext.address);
                 collection.PopFirst(ref id);
                 collection.PopFirst(ref value);
@@ -127,9 +126,6 @@ namespace X3TCTools
                 }
 
             }
-
-            results.Sort();
-
             return results.ToArray();
         }
 

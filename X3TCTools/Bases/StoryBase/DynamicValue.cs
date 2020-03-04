@@ -10,7 +10,7 @@ namespace X3TCTools.Bases
 {
     public class DynamicValue : MemoryObject
     {
-
+        public const int FlagCount = 15;
         public enum FlagType
         {
             NULL,
@@ -49,6 +49,30 @@ namespace X3TCTools.Bases
             collection.PopFirst(ref temp);
             Flag = (FlagType)temp;
             collection.PopFirst(ref Value);
+        }
+
+        public override string ToString()
+        {
+            return Flag + "-" + Value.ToString("X");
+        }
+
+        public static bool operator==(DynamicValue a, DynamicValue b)
+        {
+            if (object.ReferenceEquals(a, null))
+            {
+                return object.ReferenceEquals(b, null);
+            }
+            else if (object.ReferenceEquals(b, null))
+            {
+                return object.ReferenceEquals(a, null);
+            }
+
+            return (a.Flag == b.Flag && a.Value == b.Value);
+        }
+
+        public static bool operator!=(DynamicValue a, DynamicValue b)
+        {
+            return !(a == b);
         }
     }
 }

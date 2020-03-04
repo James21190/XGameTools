@@ -191,5 +191,11 @@ namespace X3TC_Tool
         {
             trackBar1.Maximum = checkBox1.Checked ? 20 : 10;
         }
+
+        private void hashTableDynamicValueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDynamicValueDisplay(m_GameHook);
+            display.Show();
+        }
     }
 }

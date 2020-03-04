@@ -83,6 +83,12 @@
     <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\HashTableDynamicValueDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\HashTableDynamicValueDisplay.Designer.cs">
+      <DependentUpon>HashTableDynamicValueDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\HashTableDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\EventObject\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\HashTableDynamicValueDisplay.resx">
+      <DependentUpon>HashTableDynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>

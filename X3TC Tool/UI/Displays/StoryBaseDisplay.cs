@@ -59,5 +59,12 @@ namespace X3TC_Tool.UI.Displays
             display.LoadTable(m_StoryBase.pStoryBase15fcHashTable.address);
             display.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay(m_GameHook);
+            display.LoadTable(m_StoryBase.pStoryBase1600HashTable.address);
+            display.Show();
+        }
     }
 }

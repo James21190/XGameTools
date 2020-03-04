@@ -46,8 +46,9 @@
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.hashTableDynamicValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -135,7 +136,8 @@
             this.storyBase15fcToolStripMenuItem,
             this.hashTableToolStripMenuItem,
             this.cameraToolStripMenuItem,
-            this.scriptObjectToolStripMenuItem});
+            this.scriptObjectToolStripMenuItem,
+            this.hashTableDynamicValueToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.windowToolStripMenuItem.Text = "Viewers";
@@ -143,56 +145,56 @@
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.eventObjectToolStripMenuItem.Text = "EventObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
             // 
             // dynamicValueToolStripMenuItem
             // 
             this.dynamicValueToolStripMenuItem.Name = "dynamicValueToolStripMenuItem";
-            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.dynamicValueToolStripMenuItem.Text = "DynamicValue";
             this.dynamicValueToolStripMenuItem.Click += new System.EventHandler(this.LoadDynamicValueDisplay);
             // 
             // sectorObjectToolStripMenuItem
             // 
             this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.sectorObjectToolStripMenuItem.Text = "SectorObject";
             this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
             // 
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
             // storyBase15fcToolStripMenuItem
             // 
             this.storyBase15fcToolStripMenuItem.Name = "storyBase15fcToolStripMenuItem";
-            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.storyBase15fcToolStripMenuItem.Text = "StoryBase15fc";
             this.storyBase15fcToolStripMenuItem.Click += new System.EventHandler(this.storyBase15fcToolStripMenuItem_Click);
             // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.cameraToolStripMenuItem.Text = "Camera";
             this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
             // scriptObjectToolStripMenuItem
             // 
             this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
-            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
             this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
             // 
@@ -230,15 +232,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SETA Override";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "SETA: x1";
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -249,6 +242,22 @@
             this.checkBox1.Text = "Increase Maximum SETA";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "SETA: x1";
+            // 
+            // hashTableDynamicValueToolStripMenuItem
+            // 
+            this.hashTableDynamicValueToolStripMenuItem.Name = "hashTableDynamicValueToolStripMenuItem";
+            this.hashTableDynamicValueToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.hashTableDynamicValueToolStripMenuItem.Text = "HashTableDynamicValue";
+            this.hashTableDynamicValueToolStripMenuItem.Click += new System.EventHandler(this.hashTableDynamicValueToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -298,6 +307,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ToolStripMenuItem hashTableDynamicValueToolStripMenuItem;
     }
 }
 

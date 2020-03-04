@@ -46,13 +46,34 @@ namespace X3TCTools
 
         private void Reload()
         {
-            TypeBox.Text = m_DynamicValue.Flag.ToString();
-            ValueBox.Text = m_DynamicValue.Value.ToString();
+            FlagBox.SelectedIndex = (int)m_DynamicValue.Flag;
+            ValueBox.Text = m_DynamicValue.Value.ToString("X");
         }
 
         public DynamicValueDisplay()
         {
             InitializeComponent();
+            for(int i = 0; i < DynamicValue.FlagCount; i++)
+            {
+                FlagBox.Items.Add((DynamicValue.FlagType)i);
+            }
+        }
+
+        private void FlagBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            m_DynamicValue.Flag = (DynamicValue.FlagType)FlagBox.SelectedIndex;
+        }
+
+        private void ValueBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                m_DynamicValue.Value = int.Parse(ValueBox.Text, System.Globalization.NumberStyles.HexNumber);
+            }
+            catch (Exception)
+            {
+                m_DynamicValue.Value = 0;
+            }
         }
     }
 }

@@ -30,13 +30,13 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ValueBox = new System.Windows.Forms.TextBox();
-            this.TypeBox = new System.Windows.Forms.TextBox();
+            this.FlagBox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TypeBox);
+            this.groupBox1.Controls.Add(this.FlagBox);
             this.groupBox1.Controls.Add(this.ValueBox);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
@@ -51,13 +51,17 @@
             this.ValueBox.Name = "ValueBox";
             this.ValueBox.Size = new System.Drawing.Size(161, 20);
             this.ValueBox.TabIndex = 2;
+            this.ValueBox.TextChanged += new System.EventHandler(this.ValueBox_TextChanged);
             // 
-            // TypeBox
+            // FlagBox
             // 
-            this.TypeBox.Location = new System.Drawing.Point(6, 19);
-            this.TypeBox.Name = "TypeBox";
-            this.TypeBox.Size = new System.Drawing.Size(161, 20);
-            this.TypeBox.TabIndex = 3;
+            this.FlagBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FlagBox.FormattingEnabled = true;
+            this.FlagBox.Location = new System.Drawing.Point(6, 18);
+            this.FlagBox.Name = "FlagBox";
+            this.FlagBox.Size = new System.Drawing.Size(161, 21);
+            this.FlagBox.TabIndex = 3;
+            this.FlagBox.SelectedIndexChanged += new System.EventHandler(this.FlagBox_SelectedIndexChanged);
             // 
             // DynamicValueDisplay
             // 
@@ -76,6 +80,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox ValueBox;
-        private System.Windows.Forms.TextBox TypeBox;
+        private System.Windows.Forms.ComboBox FlagBox;
     }
 }
