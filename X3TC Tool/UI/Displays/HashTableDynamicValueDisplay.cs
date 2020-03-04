@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using X3TCTools;
 using Common.Memory;
 using X3TCTools.Bases;
+using X3TCTools.Bases.Scripting;
 
 namespace X3TC_Tool.UI.Displays
 {

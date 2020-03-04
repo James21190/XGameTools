@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Common.Memory;
 
-namespace X3TCTools.Bases
+namespace X3TCTools.Bases.Scripting
 {
     public sealed partial class DynamicValueObject : MemoryObject
     {

@@ -63,7 +63,7 @@ namespace X3TC_Tool.UI.Displays
         private void button5_Click(object sender, EventArgs e)
         {
             var display = new HashTableDisplay(m_GameHook);
-            display.LoadTable(m_StoryBase.pStoryBase1600HashTable.address);
+            display.LoadTable(m_StoryBase.pScriptingHashTable_HashTable.address);
             display.Show();
         }
     }

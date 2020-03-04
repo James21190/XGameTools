@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Common.Memory;
 
-namespace X3TCTools.Bases
+namespace X3TCTools.Bases.Scripting
 {
-    public class StoryBase1600 : MemoryObject
+    public class ScriptingHashTable : MemoryObject
     {
 
         public const int ByteSize = 32;

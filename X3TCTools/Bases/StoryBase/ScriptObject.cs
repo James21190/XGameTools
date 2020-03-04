@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Memory;
 
+using X3TCTools.Bases.Scripting;
+
 namespace X3TCTools.Bases
 {
     public class ScriptObject : MemoryObject

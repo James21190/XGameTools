@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using X3TCTools;
 using X3TCTools.Bases;
+using X3TCTools.Bases.Scripting;
+
 
 namespace X3TCTools
 {

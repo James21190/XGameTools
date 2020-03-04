@@ -7,6 +7,8 @@ using Common.Memory;
 using Common.Vector;
 using X3TCTools.SectorObjects.Meta;
 
+using X3TCTools.Bases.Scripting;
+
 namespace X3TCTools.SectorObjects
 {
     public partial class SectorObject : MemoryObject
@@ -48,7 +50,7 @@ namespace X3TCTools.SectorObjects
         public int _RelatedToEvents_2;
         public int Unknown_12;
         public int Unknown_13;
-        public Bases.DynamicValue DynamicValue;
+        public DynamicValue DynamicValue;
         public byte Unknown_14_0;
         public byte Unknown_14_1;
         public byte Unknown_14_2;
@@ -89,7 +91,7 @@ namespace X3TCTools.SectorObjects
             pNext = new MemoryObjectPointer<SectorObject>();
             pPrevious = new MemoryObjectPointer<SectorObject>();
             pParent = new MemoryObjectPointer<SectorObject>();
-            DynamicValue = new Bases.DynamicValue();
+            DynamicValue = new DynamicValue();
             pData = new MemoryObjectPointer<SectorObjectData>();
         }
 

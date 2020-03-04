@@ -1,4 +1,6 @@
-﻿namespace X3TC_Tool.UI.Displays
+﻿using X3TCTools.Bases.Scripting;
+
+namespace X3TC_Tool.UI.Displays
 {
     partial class StoryBase15fcDisplay
     {
@@ -28,9 +30,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            X3TCTools.Bases.DynamicValue dynamicValue1 = new X3TCTools.Bases.DynamicValue();
-            X3TCTools.Bases.DynamicValue dynamicValue2 = new X3TCTools.Bases.DynamicValue();
-            X3TCTools.Bases.DynamicValue dynamicValue3 = new X3TCTools.Bases.DynamicValue();
+            DynamicValue dynamicValue1 = new DynamicValue();
+            DynamicValue dynamicValue2 = new DynamicValue();
+            DynamicValue dynamicValue3 = new DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();

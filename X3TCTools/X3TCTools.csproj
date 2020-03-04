@@ -47,16 +47,16 @@
     <Compile Include="Bases\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
-    <Compile Include="Bases\StoryBase\DynamicValue.cs" />
-    <Compile Include="Bases\StoryBase\DynamicValueObject Presets.cs" />
-    <Compile Include="Bases\StoryBase\DynamicValueObject.cs" />
+    <Compile Include="Bases\Scripting\DynamicValue.cs" />
+    <Compile Include="Bases\Scripting\DynamicValueObject Presets.cs" />
+    <Compile Include="Bases\Scripting\DynamicValueObject.cs" />
     <Compile Include="Bases\StoryBase\EventFunctionStruct.cs" />
     <Compile Include="Bases\StoryBase\EventObject.cs" />
     <Compile Include="Bases\StoryBase\EventObjectSub.cs" />
     <Compile Include="Bases\StoryBase\ScriptObject.cs" />
     <Compile Include="Bases\StoryBase.cs" />
     <Compile Include="Bases\StoryBase\StoryBase15fc.cs" />
-    <Compile Include="Bases\StoryBase\StoryBase1600.cs" />
+    <Compile Include="Bases\Scripting\ScriptingHashTable.cs" />
     <Compile Include="Bases\SystemBase.cs" />
     <Compile Include="DynamicValueDisplay.cs">
       <SubType>UserControl</SubType>
