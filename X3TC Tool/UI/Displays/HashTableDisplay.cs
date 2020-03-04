@@ -19,10 +19,12 @@ namespace X3TC_Tool.UI.Displays
 
         private HashTable<MemoryInt32> m_HashTable = new HashTable<MemoryInt32>();
 
-        public HashTableDisplay(GameHook gameHook)
+        public HashTableDisplay(GameHook gameHook, string name = null)
         {
             InitializeComponent();
             m_GameHook = gameHook;
+            if (name != null)
+                Text = name;
         }
 
         public void LoadTable(IntPtr pHashTable)

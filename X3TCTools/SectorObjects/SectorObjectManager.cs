@@ -52,13 +52,18 @@ namespace X3TCTools.SectorObjects
         }
         #endregion
 
+        /// <summary>
+        /// Gets the space SectorObject.
+        /// Returns null if not found.
+        /// </summary>
+        /// <returns></returns>
         public SectorObject GetSpace()
         {
             var so = GetSectorObject(pFirst);
             while(so.MainType != SectorObject.Main_Type.Sector)
             {
                 if (so.pNext.address == IntPtr.Zero)
-                    throw new Exception("Sector not found.");
+                    return null;
                 so = so.pNext.obj;
             }
             return so;

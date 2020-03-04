@@ -60,9 +60,11 @@ namespace X3TCTools.SectorObjects
         public enum Sun_Sub_Type
         {
             Red_1,
+            Sol,
             White_1 = 4,
             Red_2 = 6,
-            Yellow_1 = 7
+            Yellow_1 = 7,
+            Green_1,
         }
         // Type 4
         public const int PLANET_SUB_TYPE_COUNT = 147;
@@ -70,8 +72,18 @@ namespace X3TCTools.SectorObjects
         {
             Large_Habitable_1,
             Large_Desert_1 = 6,
+            The_Moon_Close = 69,
+            The_Moon_Far = 75,
             Small_Barren_Moon_1 = 74,
             Small_Barren_Moon_2 = 110,
+            Saturn = 135,
+            Saturn_Moon,
+            Mercury = 137,
+            Venus,
+            Earth,
+            Mars = 141,
+            Jupiter,
+            Earth_With_Tourus = 148,
         }
         // Type 5
         public const int DOCK_SUB_TYPE_COUNT = 46;
@@ -88,17 +100,21 @@ namespace X3TCTools.SectorObjects
             Paranid_Equipment_Dock,
             Boron_Equipment_Dock,
             Teladi_Space_Equipment_Dock,
+
             Pirate_Base = 13,
+
             Boron_Military_Outpost = 16,
             Paranid_Military_Outpost,
             Split_Military_Outpost,
+
             Military_Outpost_3 = 19,
+
             Headquarters = 20,
             Goner_Temple,
             USC_Orbital_Supply_Base,
             USC_Orbital_Support_Station,
             USC_Orbital_Logistics_Dock,
-            Military_Base_1,
+            Terran_Military_Base,
             Orbital_Defence_Station_1,
             Orbital_Patrol_Base,
             Orbital_Defence_Station_2,
@@ -117,6 +133,7 @@ namespace X3TCTools.SectorObjects
             Atreus_HQ,
             Strong_Arms_HQ,
             Xenon_Hub,
+
             Saturn_Research_Station = 45
         }
         // Type 6
@@ -128,48 +145,162 @@ namespace X3TCTools.SectorObjects
             Paranid_Shipyard,
             Royal_Boron_Shipyard,
             Teladi_Shipyard,
+
             Argon_Weapon_Component_Factory = 6,
             Boron_Weapon_Component_Factory,
-            Teladi_Weapon_Component_Factory = 10,
+
+            Split_Weapon_Component_Factory = 9,
+            Teladi_Weapon_Component_Factory,
             Argon_Crystal_Fab,
             Boron_Crystal_Fab,
             Paranid_Crystal_Fab,
-            Crystal_Fab_2,
+            Split_Crystal_Fab,
             Teladi_Crystal_Fab,
             Argon_Quantum_Tube_Fab,
+
             Quantum_Tube_Fab_1 = 19,
             Teladi_Quantum_Tube_Fab,
+
             Boron_Chip_Plant = 22,
-            Chip_Plant_2 = 24,
-            Chip_Plant_3,
+
+            Teladi_Chip_Plant = 25,
             Argon_Computer_Plant,
             Boron_Computer_Plant,
+
+            Teladi_Computer_Plant = 30,
+
+            Paranid_Wasp_Missile_Factory = 36,
+
+            Split_Silkworm_Missile_Factory = 42,
+
+            Split_SQUASH_Mine_Factory = 44,
+            Teladi_SQUASH_Mine_Factory,
+
+            Argon_Drone_Factory = 49,
+            Split_Drone_Factory = 51,
+
+            Boron_Saterllite_Factory=54,
+
+            Teladi_Saterllite_Factory = 56,
+            Argon_Advanced_Saterllite_Factory,
+            Paranid_Advanced_Satellite_Factory,
+            Split_Advanced_Satellite_Factory,
+            Argon_Impulse_Ray_Emitter_Forge,
+            Boron_Impulse_Ray_Emitter_Forge,
+
+            Argon_Light_Weapons_Complex = 70,
+
+            Teladi_Gauss_Cannon_Forge = 79,
+
+            Teladi_Flak_Artillery_Array_Forge = 89,
+            
+            Teladi_Heavy_Weapons_Complex = 91,
+
             Argon_Mass_Driver_Forge = 93,
+
+            Split_Ammunition_Factory = 96,
+
+            Boron_Concussion_Impulse_Generator_Forge=100,
+            Split_Medium_Weapons_Complex,
+
+            Paranid_Heavy_Weapons_Complex = 109,
+
+            Boron_Medium_Weapons_Complex=114,
+
             Wheat_Farm_1 = 143,
             Wheat_Farm_2,
-            Cattle_Ranch,
-            Bio_Gass_Factory = 150,
-            Scruffin_Farm = 152,
-            Chelt_Space_Aquarium_1,
-            Chelt_Space_Aquarium_2,
-            Soyfarm_1,
-            Soyfarm_2,
-            Snail_Ranch,
-            Flower_Farm_1 = 159,
-            Flower_Farm_2,
-            Teladianium_Foundry_1,
-            Teladianium_Foundry_2,
+            Cattle_Ranch_M,
+            Cattle_Ranch_L,
+            Plankton_Farm_M,
+            Plankton_Farm_L,
+            Bio_Gass_Factory_M,
+            Bio_Gass_Factory_L,
+            Scruffin_Farm_M,
+            Scruffin_Farm_L,
+            Chelt_Space_Aquarium_M,
+            Chelt_Space_Aquarium_L,
+            Soyfarm_M,
+            Soyfarm_L,
+            Snail_Ranch_M,
+            Snail_Rance_L,
+            Flower_Farm_M,
+            Flower_Farm_L,
+            Teladianium_Foundry_M,
+            Teladianium_Foundry_L,
             Dream_Farm,
-            Stott_Mixery = 171,
+
+            Rimes_Fact = 166,
+            Cahoona_Bakery_M,
+            Cahoona_Bakery_L,
+            Space_Fuel_Distillery,
+
+            Stott_Mixery_M = 171,
+            Stott_Mixery_L,
+            BoFu_Chemical_Lab_M,
+            BoFu_Chemical_Lab_L,
+            Massom_Mill,
+
+            Rastar_Refinery_M = 177,
+            Rastar_Refinery_L,
+            Space_Jewellery_M,
+            Space_Jewellery_L,
+
             Soyery_M = 181,
             Soyery_L,
-            Boron_Silicon_Mine_M = 215,
+            Sun_Oil_Refinery_M,
+            Sun_Oil_Refinery_L,
+
+            Bliss_Place = 186,
+
+            Argon_Solar_Power_Plant = 189,
+            Boron_Solar_Power_Plant_1,
+            Boron_Solar_Power_Plant_2,
+            Boron_Solar_Power_Plant_3,
+            Paranid_Solar_Power_Plant_1,
+
+            Paranid_Solar_Power_Plant_2 = 195,
+            Split_Solar_Power_Plant_1,
+            Split_Solar_Power_Plant_2,
+
+            Teladi_Solar_Power_Plant_1 = 199,
+            Teladi_Solar_Power_Plant_2,
+            Teladi_Solar_Power_Plant_3,
+
+            Argon_Ore_Mine_1 = 203,
+            Argon_Ore_Mine_2,
+
+            Boron_Ore_Mine_1 = 206,
+            Boron_Ore_Mine_2,
+            Paranid_Ore_Mine_1,
+            Split_Ore_Mine_1 = 209,
+            Split_Ore_Mine_2,
+
+            Teladi_Ore_Mine_1 = 211,
+            Teladi_Ore_Mine_2,
+            Argon_Silicon_Mine_M,
+            Argon_Silicon_Mine_L,
+            Boron_Silicon_Mine_M,
             Boron_Silicon_Mine_L,
+            Paranid_Silicon_Mine_M,
+            Paranid_Silicon_Mine_L,
+            Split_Silicon_Mine_1,
+            Split_Silicon_Mine_2,
+
+            Teladi_Silicon_Mine_1 = 221,
+            Teladi_Silicon_Mine_2,
+
             Complex_Hub = 227,
+
+            Teladi_Cyclone_Missile_Factory = 272,
+
             Split_Shipyard_Special = 305,
+
             Paranid_Shipyard_Special = 307,
+
             Royal_Boron_Shipyard_Special = 309,
+
             Teladi_Shipyard_Special = 311,
+
             Terran_Shipyard = 331,
             Terran_USC_Food_Supply_Factory_1,
             Terran_USC_Food_Supply_Factory_2,
@@ -177,24 +308,52 @@ namespace X3TCTools.SectorObjects
             Terran_Food_Preparation_Facility_2,
             Terran_Mining_Outpost_1,
             Terran_Water_Purification_Plant,
+
             Terran_Matter_Anti_Matter_Launcher_Forge = 339,
+
+            Terran_Hull_Plating_Production_Facility = 347,
+            Pirate_Rehabilitation_Facility,
+
             Terran_Matter_Anti_Matter_Mine_Fab = 352,
+
+            Terran_Phantom_Missile_Fabrication_Facility = 354,
+
             Terran_Ghoul_Missile_Manufacturing_Plant = 356,
-            Teladi_Energy_Bolt_Chaingun_Ammunition_Forge = 363,
+
+            Boron_Recon_Drone_Construction_Facility = 362,
+            Teladi_Energy_Bolt_Chaingun_Ammunition_Forge,
+            Teladi_Gauss_Cannon_Ammunition_Forge,
+
+            Boron_Tomahawk_Missile_Manufacturing_Plant = 366,
+
+            Split_Tomahawk_Missile_Manufacturing_Plant = 368,
+
             Argon_Hammer_Torpedo_Fabrication_Facility = 370,
-            Argon_Flail_Missile_Production_Facility = 375,
+            Boron_Hammer_Torpedo_Fabrication_Facility,
+
+            Argon_Flail_Missile_Production_Facility_1 = 375,
+
+            Argon_Flail_Missile_Production_Facility_2 = 378,
+
+            Pirate_Plasma_Burst_Generator_Forge = 381,
+            Pirate_Incendiary_Bomb_Launcher_Forge = 382,
+
             Argon_Heavy_Weapons_Complex = 384,
             Terran_Solar_Power_Plant_1,
             Terran_Solar_Power_Plant_2,
             Terran_Solar_Power_Plant_3,
+
             Terran_Mining_Outpost_2 = 395,
+
+
             Argon_Drone_Production_Facility = 402,
             Boron_Drone_Production_Facility,
+
             Teladi_Drone_Production_Facility = 405,
-            Boron_Recon_Drone_Construction_Facility = 362,
-            Boron_Tomahawk_Missile_Manufacturing_Plant = 366,
-            Crystal_Fab_5 = 435,
-            Crystal_Fab_4 = 438
+
+            Crystal_Fab = 435,
+
+            Teladi_Crystal_Fab_1 = 438
         }
         // Type 7
         public const int SHIP_SUB_TYPE_COUNT = 373;
@@ -252,7 +411,8 @@ namespace X3TCTools.SectorObjects
             Split_Mamba,
             Split_Mamba_Raider,
             Split_Mamba_Vanguard,
-            Split_Chimera = 58,
+            Split_Mamba_4,
+            Split_Chimera,
             Split_Scorpion_1,
             Split_Scorpion_2,
             Split_Scorpion_3,
@@ -265,6 +425,7 @@ namespace X3TCTools.SectorObjects
             Split_Dragon,
             Split_Heavy_Dragon,
             Split_Tiger,
+
             Split_Viper = 72,
             Paranid_Hercules,
             Paranid_Demeter_1,
@@ -295,6 +456,7 @@ namespace X3TCTools.SectorObjects
             Paranid_Nemesis,
             Paranid_Heavy_Nemesis,
             Paranid_Diamos,
+
             Paranid_Hades = 103,
             Boron_Orca,
             Boron_Dolphin_1,
@@ -312,7 +474,8 @@ namespace X3TCTools.SectorObjects
             Boron_Barracuda_1,
             Boron_Barracuda_2,
             Boron_Barracuda_3,
-            Boron_Skate = 121,
+            Boron_Barracuda_4,
+            Boron_Skate,
             Boron_Mako_1,
             Boron_Mako_2,
             Boron_Mako_3,
@@ -323,7 +486,10 @@ namespace X3TCTools.SectorObjects
             Boron_Octopus_3,
             Boron_Octopus_4,
             Boron_Hydra,
-            Boron_Thresher = 133,
+            Boron_Heavy_Hydra,
+            Boron_Thresher,
+            Boron_Kracken,
+
             Teladi_Albatross = 136,
             Teladi_Vulture_1,
             Teladi_Vulture_2,
@@ -342,8 +508,9 @@ namespace X3TCTools.SectorObjects
             Teladi_Falcon_4,
             Teladi_Kea,
             Teladi_Buzzard_1,
-            Teladi_Buzzard_2 = 155,
+            Teladi_Buzzard_2,
             Teladi_Buzzard_3,
+            Teladi_Buzzard_4,
             Teladi_Kite_1,
             Teladi_Harrier_1,
             Teladi_Harrier_Hauler,
@@ -351,6 +518,9 @@ namespace X3TCTools.SectorObjects
             Teladi_Harrier_4,
             Teladi_Kestrel,
             Teladi_Osprey,
+            Teladi_Heavy_Osprey,
+            Teladi_Shrike,
+
             Teladi_Peregrine = 167,
             Xenon_J,
             Xenon_K,
@@ -361,26 +531,39 @@ namespace X3TCTools.SectorObjects
             Xenon_P,
             Xenon_PX,
             Xenon_Q,
+
             Pirate_Falcon = 179,
             Pirate_Nova_Raider,
             Pirate_Nova_2,
+            UNKNOWN_Falcon,
+
             Pirate_Kea = 184,
             Pirate_Blastclaw,
+
             Pirate_Buster = 186,
             Pirate_Buzzard,
+
+            UNKNOWN_Buzzard = 189,
+
             Pirate_Elite = 191,
             Pirate_Harrier,
+
+            UNKNOWN_Harrier = 194,
+
             Pirate_Centaur = 197,
+
             Pirate_Carrack = 199,
             ATF_Odin,
-            ATF_Tyre,
+            ATF_Tyr,
             ATF_Thor,
             ATF_Fenrir,
             ATF_Mjollnir,
             ATF_Valkyrie,
+
             ATF_Vali = 207,
             ATF_Aegir,
             ATF_Skirnir,
+
             Terran_Baldric = 212,
             Terran_Scabbard,
             Terran_Tokyo,
@@ -389,23 +572,28 @@ namespace X3TCTools.SectorObjects
             Terran_Cutlass,
             Terran_Sabre,
             Terran_Rapier,
+
             Terran_Katana = 221,
             Terran_Yokohama,
             Terran_Clamore,
             Terran_Spitfyre,
             Terran_Springblossom,
+
             Terran_CPU_Deca = 226,
+
             Yaki_Chokaro = 228,
             Yaki_Susanowa,
             Yaki_Susanowa_Raider,
             Yaki_Susanowa_3,
             Yaki_Tenjin,
+
             Yaki_Raijin_1 = 233,
             Yaki_Raijin_2,
             Yaki_Raijin_3,
             Yaki_Tonbo,
             Yaki_Fujin_1,
             Yaki_Fujin_2,
+
             Khaak_Carrier = 241,
             Khaak_Destroyer,
             Khaak_Fighter,
@@ -413,37 +601,59 @@ namespace X3TCTools.SectorObjects
             Khaak_Scout,
             Khaak_Corvette,
             Khaak_Guardian,
+
             Gonor_Aran = 250,
             Gonor_Ranger,
+
             OTAS_Boreas = 252,
+
             OTAS_Solano = 256,
             OTAS_Zephyrus,
+
             Khaak_Cluster = 266,
+
             Navigation_Relay_Satellite = 270,
-            Fighter_Drone = 272,
+            SQUASH_Mine,
+            Fighter_Drone,
+
             Lazertower = 273,
             Gonor_UFO,
             Spaceflies,
             Advanced_Satellite = 278,
+
             Navigational_Beacon = 280,
+
             Freight_Drone = 294,
             Argon_Griffon,
             Split_Panther,
             Paranid_Agamemnon,
+
             Pirage_Galleon = 300,
             Pirate_Brigantine,
             Yaki_Shuri,
+
             Yaki_Akuma = 305,
+
             OTAS_Mistral_1 = 309,
             OTAS_Mistral_2,
+
             Matter_Anti_Matter_Mine = 319,
+
             Terran_Atmospheric_Lifter = 326,
             Terran_Mobile_Mining_Base_Ship,
             Paranid_Hyperion,
+
             Argon_Heavy_Centaur_Prototype = 334,
             Argon_Discoverer_Advanced,
+
             Teladi_Kea_Enhanced = 350,
+
             Teladi_Kite_2 = 354,
+
+            Jump_Beacon = 359,
+
+            Terran_Tourus_Lasertower = 368,
+
             Xperimental_Shuttle = 372
         }
         // Type 8
@@ -468,12 +678,17 @@ namespace X3TCTools.SectorObjects
             Flak_Artillery_Array,
             Cluster_Flak_Array,
             Phased_Array_Laser_Cannon,
-            Starburst_Shockwave_Cannon = 19,
+            Phased_Shockwave_Generator,
+            Starburst_Shockwave_Cannon,
             Photon_Pulse_Cannon,
             Ion_Cannon,
+
             Incendiary_Bomb_Launcher = 23,
             Point_Singularity_Projector,
             Plasma_Beam_Cannon,
+
+            SPARE_LASER_1 = 30,
+
             Alpha_Kyon_Emitter = 32,
             Beta_Kyon_Emitter,
             Gamma_Kyon_Emitter,
@@ -497,20 +712,28 @@ namespace X3TCTools.SectorObjects
             Wasp,
             Dragonfly,
             Silkworm,
+
             Disruptor = 5,
             Sting,
             Needle,
             Thorn,
+            Firefly,
+
             Hurricane = 12,
+
             Tornado = 14,
+
             Aurora = 17,
+
             Beluga = 19,
             Hammerhead,
             Rapier,
             Firelance,
+
             Windstalker = 24,
             Banshee,
             Wraith,
+
             Shadow = 33,
         }
         // Type 11
@@ -529,12 +752,13 @@ namespace X3TCTools.SectorObjects
         }
         // Type 15
         // Type 16
-        public const int WARE_MMISCELLANEOUS_SUB_TYPE_COUNT = 94;
+        public const int WARE_MMISCELLANEOUS_SUB_TYPE_COUNT = 110;
         public enum Ware_Miscellaneous_Sub_Type
         {
             Spaceflies = 5,
             Credits = 79,
-            Energy_Bolt_Chaingun_Ammunition = 93
+            Energy_Bolt_Chaingun_Ammunition = 93,
+            Keris = 109,
         }
         // Type 17
         // Type 18

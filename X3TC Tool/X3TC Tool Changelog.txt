@@ -9,6 +9,7 @@
 	- HashTable now inherits from MemoryObject.
 	- Recreated SectorObject meta objects.
 	- Fixed handle to the game remaining open after the tool application closes.
+	- Added maintype check to SectorObject.IsValid.
 
 Alpha 4:
 	- Added an executable patching system for easy implementation of optimised code.

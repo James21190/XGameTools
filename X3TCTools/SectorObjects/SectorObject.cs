@@ -15,7 +15,7 @@ namespace X3TCTools.SectorObjects
         {
             get
             {
-                return (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero);
+                return (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero && (int)MainType < MAIN_TYPE_COUNT);
             }
         }
 

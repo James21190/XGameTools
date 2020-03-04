@@ -83,7 +83,7 @@ namespace X3TC_Tool
         private SectorObjectManagerDisplay m_SectorObjectManagerDisplay;
         private void OnSectorObjectManagerDisplayClosed(object sender, EventArgs e)
         {
-            m_StoryBaseDisplay = null;
+            m_SectorObjectManagerDisplay = null;
         }
         private void LoadSectorObjectManagerDisplay(object sender, EventArgs e)
         {

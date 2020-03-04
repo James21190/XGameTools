@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X3TCTools.Bases
 {
-    public partial class EventObject : MemoryObject
+    public class EventObject : MemoryObject
     {
         public const int ByteSize = 16;
 

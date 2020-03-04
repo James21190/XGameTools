@@ -25,6 +25,8 @@ namespace X3TCTools.Bases
 
         public MemoryObjectPointer<HashTable<StoryBase15fc>> pStoryBase15fcHashTable = new MemoryObjectPointer<HashTable<StoryBase15fc>>();
 
+        public MemoryObjectPointer<HashTable<StoryBase1600>> pStoryBase1600HashTable = new MemoryObjectPointer<HashTable<StoryBase1600>>();
+
         public StoryBase()
         {
             for(int i = 0; i < FunctionArray.Length; i++)
@@ -58,6 +60,7 @@ namespace X3TCTools.Bases
             pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);
             pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptObject>>(0x1434);
             pStoryBase15fcHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>(0x15fc);
+            pStoryBase1600HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase1600>>>(0x1600);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -67,6 +70,7 @@ namespace X3TCTools.Bases
             pEventObjectHashTable.SetLocation(hProcess, address + 0x12d0);
             pCurrentScriptObject.SetLocation(hProcess, address + 0x1434);
             pStoryBase15fcHashTable.SetLocation(hProcess, address + 0x15fc);
+            pStoryBase1600HashTable.SetLocation(hProcess, address + 0x1600);
             base.SetLocation(hProcess, address);
         }
         #endregion

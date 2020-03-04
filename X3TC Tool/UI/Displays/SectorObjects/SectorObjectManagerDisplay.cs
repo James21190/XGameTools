@@ -42,7 +42,7 @@ namespace X3TC_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             var sectorObjectManager = m_GameHook.sectorObjectManager;
-            var display = new HashTableDisplay(m_GameHook);
+            var display = new HashTableDisplay(m_GameHook, "SectorObject Hash Table");
             display.LoadTable(sectorObjectManager.pObjectHashTable.address);
             display.Show();
         }

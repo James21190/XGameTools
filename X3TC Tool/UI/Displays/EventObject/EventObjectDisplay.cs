@@ -91,8 +91,10 @@ namespace X3TC_Tool.UI.Displays
             switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
             {
                 case SectorObject.Main_Type.Ship:
-                    var display = new EventObjectVariableDisplay_Ship(m_GameHook);
-                    display.LoadVariables(m_EventObject.pScriptVariableArr.address);
+                    var display = new DynamicValueObjectViewer(m_GameHook);
+                    var obj = DynamicValueObject.GetSectorObjectShip();
+                    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                    display.LoadObject(obj);
                     display.Show();
                     return;
             }
