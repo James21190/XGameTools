@@ -15,13 +15,13 @@ using X3TCTools.Bases.Scripting;
 
 namespace X3TC_Tool.UI.Displays
 {
-    public partial class HashTableDynamicValueDisplay : Form
+    public partial class ScriptingHashTableDisplay : Form
     {
         private GameHook m_GameHook;
 
-        private HashTableDynamicValue m_HashTable = new HashTableDynamicValue();
+        private ScriptingHashTable m_HashTable = new ScriptingHashTable();
 
-        public HashTableDynamicValueDisplay(GameHook gameHook, string name = null)
+        public ScriptingHashTableDisplay(GameHook gameHook, string name = null)
         {
             InitializeComponent();
             m_GameHook = gameHook;

@@ -89,11 +89,20 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DynamicValueObjectDisplay display;
+            DynamicValueObject obj;
             switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
             {
                 case SectorObject.Main_Type.Ship:
-                    var display = new DynamicValueObjectViewer(m_GameHook);
-                    var obj = DynamicValueObject.GetSectorObjectShip();
+                    display = new DynamicValueObjectDisplay(m_GameHook);
+                    obj = DynamicValueObject.GetSectorObjectShip();
+                    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                    display.LoadObject(obj);
+                    display.Show();
+                    return;
+                case SectorObject.Main_Type.Dock:
+                    display = new DynamicValueObjectDisplay(m_GameHook);
+                    obj = DynamicValueObject.GetSectorObjectDock();
                     obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                     display.LoadObject(obj);
                     display.Show();

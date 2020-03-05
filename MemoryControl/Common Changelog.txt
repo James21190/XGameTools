@@ -3,13 +3,14 @@
 	- Added MemoryByte, MemoryInt16, MemoryInt32, and MemoryInt64, which are basic types that derive from MemoryObject.
 	- Added Vector2 struct.
 	- Added GoTo(address) to ObjectByteList.
+	- Added DecimalPlaces and Increment to vector displays.
+	- Added WriteToMemory in MemoryObject.
 	- Reworked ObjectByteList methods. Previous Pop methods are now depreciated.
 	- Completed ApplicationHook abstract class.
 	- Added Vector2Display and Vector4Display form components.
 	- Added ReloadFromMemory() to IMemoryObject.
 	- SetLocation in MemoryObject will no longer reload values from memory.
 	- Replaced flawed network classes.
-	- Added DecimalPlaces and Increment to vector displays.
 
 1.4.0.0
 	- Added the Patcher object.

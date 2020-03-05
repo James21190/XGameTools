@@ -16,12 +16,10 @@ namespace X3TCTools.Bases.Scripting
             NULL,
             Int,
             MODValue,
-            pStoryBase_15fc_Object = 8,
-            pStoryBase_1600_Object,
+            pArray = 8,
+            pHashTable,
             pEventObject,
-            pTextObject,
-            Pointer = 14
-
+            pTextObject
         }
 
         public const int ByteSize = 5;

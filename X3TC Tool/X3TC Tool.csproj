@@ -65,10 +65,16 @@
     <Compile Include="UI\Displays\DynamicValueDisplay.Designer.cs">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\DynamicValueObjectViewer.cs">
+    <Compile Include="UI\Displays\DynamicValueEditorDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\DynamicValueObjectViewer.Designer.cs">
+    <Compile Include="UI\Displays\DynamicValueEditorDisplay.Designer.cs">
+      <DependentUpon>DynamicValueEditorDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.Designer.cs">
       <DependentUpon>DynamicValueObjectViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\EventObject\EventObjectDisplay.cs">
@@ -83,11 +89,17 @@
     <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\HashTableDynamicValueDisplay.cs">
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\HashTableDynamicValueDisplay.Designer.cs">
-      <DependentUpon>HashTableDynamicValueDisplay.cs</DependentUpon>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingHashTableDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingHashTableDisplay.Designer.cs">
+      <DependentUpon>ScriptingHashTableDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\HashTableDisplay.cs">
       <SubType>Form</SubType>
@@ -100,6 +112,18 @@
     </Compile>
     <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingArrayObjectDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingArrayObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptingArrayObjectDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingHashTableObjectDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\ScriptingHashTableObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptingHashTableObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\ScriptObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -124,12 +148,6 @@
     </Compile>
     <Compile Include="UI\Displays\SectorObjects\SectorObjectManagerDisplay.Designer.cs">
       <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Displays\StoryBase15fcDisplay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Displays\StoryBase15fcDisplay.Designer.cs">
-      <DependentUpon>StoryBase15fcDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\StoryBaseDisplay.cs">
       <SubType>Form</SubType>
@@ -166,7 +184,10 @@
     <EmbeddedResource Include="UI\Displays\DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\DynamicValueObjectViewer.resx">
+    <EmbeddedResource Include="UI\Displays\DynamicValueEditorDisplay.resx">
+      <DependentUpon>DynamicValueEditorDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.resx">
       <DependentUpon>DynamicValueObjectViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\EventObject\EventObjectDisplay.resx">
@@ -175,14 +196,23 @@
     <EmbeddedResource Include="UI\Displays\EventObject\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\HashTableDynamicValueDisplay.resx">
-      <DependentUpon>HashTableDynamicValueDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.resx">
+      <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingHashTableDisplay.resx">
+      <DependentUpon>ScriptingHashTableDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingArrayObjectDisplay.resx">
+      <DependentUpon>ScriptingArrayObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingHashTableObjectDisplay.resx">
+      <DependentUpon>ScriptingHashTableObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\ScriptObjectDisplay.resx">
       <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
@@ -195,9 +225,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\SectorObjects\SectorObjectManagerDisplay.resx">
       <DependentUpon>SectorObjectManagerDisplay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\StoryBase15fcDisplay.resx">
-      <DependentUpon>StoryBase15fcDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\StoryBaseDisplay.resx">
       <DependentUpon>StoryBaseDisplay.cs</DependentUpon>

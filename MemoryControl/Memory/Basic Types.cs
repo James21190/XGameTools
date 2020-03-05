@@ -93,4 +93,39 @@ namespace Common.Memory
             Value = Memory[0];
         }
     }
+
+    public class MemoryString : MemoryObject
+    {
+        public string value;
+
+        public override byte[] GetBytes()
+        {
+            var bytes = new byte[value.Length + 1];
+            for(int i = 0; i < value.Length; i++)
+            {
+                bytes[i] = (byte)value.ToArray()[i];
+            }
+            bytes[value.Length] = 0;
+            var collection = new ObjectByteList();
+            collection.Append(bytes);
+            return collection.GetBytes();
+        }
+
+        public override int GetByteSize()
+        {
+            return value == null ? 100 : value.Length+1;
+        }
+
+        public override void SetData(byte[] Memory)
+        {
+            value = "";
+            var collection = new ObjectByteList(Memory);
+            var character = (char)collection.PopByte();
+            while(character != 0)
+            {
+                value += character;
+                character = (char)collection.PopByte();
+            }
+        }
+    }
 }

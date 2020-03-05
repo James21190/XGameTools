@@ -57,13 +57,12 @@ namespace X3TC_Tool
             }
         }
 
+        #region Base Viewers
         private StoryBaseDisplay m_StoryBaseDisplay;
-
         private void OnStoryBaseDisplayClosed(object sender, EventArgs e)
         {
             m_StoryBaseDisplay = null;
         }
-
         private void LoadStoryBaseDisplay(object sender, EventArgs e)
         {
             if(m_StoryBaseDisplay == null)
@@ -72,12 +71,6 @@ namespace X3TC_Tool
                 m_StoryBaseDisplay.FormClosed += OnStoryBaseDisplayClosed;
                 m_StoryBaseDisplay.Show();
             }
-        }
-
-        private void LoadEventObjectDisplay(object sender, EventArgs e)
-        {
-            var viewer = new EventObjectDisplay(m_GameHook);
-            viewer.Show();
         }
 
         private SectorObjectManagerDisplay m_SectorObjectManagerDisplay;
@@ -94,12 +87,15 @@ namespace X3TC_Tool
                 m_SectorObjectManagerDisplay.Show();
             }
         }
+        #endregion
 
-        private void LoadDynamicValueDisplay(object sender, EventArgs e)
+
+        private void LoadEventObjectDisplay(object sender, EventArgs e)
         {
-            var viewer = new DynamicValueArrayDisplay(m_GameHook);
+            var viewer = new EventObjectDisplay(m_GameHook);
             viewer.Show();
         }
+
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
@@ -118,12 +114,6 @@ namespace X3TC_Tool
         private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var display = new TypeDataDisplay(m_GameHook);
-            display.Show();
-        }
-
-        private void storyBase15fcToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var display = new StoryBase15fcDisplay(m_GameHook);
             display.Show();
         }
 
@@ -173,12 +163,6 @@ namespace X3TC_Tool
             display.Show();
         }
 
-        private void scriptObjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var display = new ScriptObjectDisplay(m_GameHook);
-            display.Show();
-        }
-
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label1.Text = "SETA: x" + trackBar1.Value;
@@ -192,9 +176,33 @@ namespace X3TC_Tool
             trackBar1.Maximum = checkBox1.Checked ? 20 : 10;
         }
 
-        private void hashTableDynamicValueToolStripMenuItem_Click(object sender, EventArgs e)
+        private void scriptObjectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDynamicValueDisplay(m_GameHook);
+            var display = new ScriptObjectDisplay(m_GameHook);
+            display.Show();
+        }
+
+        private void dynamicValueToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var viewer = new DynamicValueArrayDisplay(m_GameHook);
+            viewer.Show();
+        }
+
+        private void scriptingHashTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new ScriptingHashTableDisplay(m_GameHook);
+            display.Show();
+        }
+
+        private void scriptingArrayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new ScriptingArrayObjectDisplay(m_GameHook);
+            display.Show();
+        }
+
+        private void dynamicValueObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new DynamicValueObjectDisplay(m_GameHook);
             display.Show();
         }
     }

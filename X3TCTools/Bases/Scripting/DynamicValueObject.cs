@@ -59,6 +59,11 @@ namespace X3TCTools.Bases.Scripting
             return null;
         }
 
+        public void SetVariable(int index, DynamicValue value)
+        {
+            m_values[index] = value;
+        }
+
         #region IMemoryObject
         public sealed override byte[] GetBytes()
         {

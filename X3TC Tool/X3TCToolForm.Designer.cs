@@ -36,19 +36,21 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eventObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dynamicValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sectorObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.storyBase15fcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptObjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dynamicValueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.hashTableDynamicValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dynamicValueObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -130,14 +132,11 @@
             // 
             this.windowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eventObjectToolStripMenuItem,
-            this.dynamicValueToolStripMenuItem,
             this.sectorObjectToolStripMenuItem,
             this.typeDataToolStripMenuItem,
-            this.storyBase15fcToolStripMenuItem,
             this.hashTableToolStripMenuItem,
             this.cameraToolStripMenuItem,
-            this.scriptObjectToolStripMenuItem,
-            this.hashTableDynamicValueToolStripMenuItem});
+            this.scriptingObjectsToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.windowToolStripMenuItem.Text = "Viewers";
@@ -145,58 +144,77 @@
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eventObjectToolStripMenuItem.Text = "EventObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
-            // 
-            // dynamicValueToolStripMenuItem
-            // 
-            this.dynamicValueToolStripMenuItem.Name = "dynamicValueToolStripMenuItem";
-            this.dynamicValueToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.dynamicValueToolStripMenuItem.Text = "DynamicValue";
-            this.dynamicValueToolStripMenuItem.Click += new System.EventHandler(this.LoadDynamicValueDisplay);
             // 
             // sectorObjectToolStripMenuItem
             // 
             this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sectorObjectToolStripMenuItem.Text = "SectorObject";
             this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
             // 
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
-            // 
-            // storyBase15fcToolStripMenuItem
-            // 
-            this.storyBase15fcToolStripMenuItem.Name = "storyBase15fcToolStripMenuItem";
-            this.storyBase15fcToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.storyBase15fcToolStripMenuItem.Text = "StoryBase15fc";
-            this.storyBase15fcToolStripMenuItem.Click += new System.EventHandler(this.storyBase15fcToolStripMenuItem_Click);
             // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cameraToolStripMenuItem.Text = "Camera";
             this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
-            // scriptObjectToolStripMenuItem
+            // scriptingObjectsToolStripMenuItem
             // 
-            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
-            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
-            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
+            this.scriptingObjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dynamicValueObjectToolStripMenuItem,
+            this.scriptObjectToolStripMenuItem1,
+            this.scriptingHashTableToolStripMenuItem,
+            this.scriptingArrayToolStripMenuItem,
+            this.dynamicValueToolStripMenuItem1});
+            this.scriptingObjectsToolStripMenuItem.Name = "scriptingObjectsToolStripMenuItem";
+            this.scriptingObjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scriptingObjectsToolStripMenuItem.Text = "Scripting Objects";
+            // 
+            // scriptObjectToolStripMenuItem1
+            // 
+            this.scriptObjectToolStripMenuItem1.Name = "scriptObjectToolStripMenuItem1";
+            this.scriptObjectToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
+            this.scriptObjectToolStripMenuItem1.Text = "ScriptObject";
+            this.scriptObjectToolStripMenuItem1.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem1_Click);
+            // 
+            // scriptingHashTableToolStripMenuItem
+            // 
+            this.scriptingHashTableToolStripMenuItem.Name = "scriptingHashTableToolStripMenuItem";
+            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.scriptingHashTableToolStripMenuItem.Text = "ScriptingHashTable";
+            this.scriptingHashTableToolStripMenuItem.Click += new System.EventHandler(this.scriptingHashTableToolStripMenuItem_Click);
+            // 
+            // scriptingArrayToolStripMenuItem
+            // 
+            this.scriptingArrayToolStripMenuItem.Name = "scriptingArrayToolStripMenuItem";
+            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.scriptingArrayToolStripMenuItem.Text = "ScriptingArray";
+            this.scriptingArrayToolStripMenuItem.Click += new System.EventHandler(this.scriptingArrayToolStripMenuItem_Click);
+            // 
+            // dynamicValueToolStripMenuItem1
+            // 
+            this.dynamicValueToolStripMenuItem1.Name = "dynamicValueToolStripMenuItem1";
+            this.dynamicValueToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
+            this.dynamicValueToolStripMenuItem1.Text = "DynamicValue";
+            this.dynamicValueToolStripMenuItem1.Click += new System.EventHandler(this.dynamicValueToolStripMenuItem1_Click);
             // 
             // LoadPlayerShipButton
             // 
@@ -252,12 +270,12 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "SETA: x1";
             // 
-            // hashTableDynamicValueToolStripMenuItem
+            // dynamicValueObjectToolStripMenuItem
             // 
-            this.hashTableDynamicValueToolStripMenuItem.Name = "hashTableDynamicValueToolStripMenuItem";
-            this.hashTableDynamicValueToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
-            this.hashTableDynamicValueToolStripMenuItem.Text = "HashTableDynamicValue";
-            this.hashTableDynamicValueToolStripMenuItem.Click += new System.EventHandler(this.hashTableDynamicValueToolStripMenuItem_Click);
+            this.dynamicValueObjectToolStripMenuItem.Name = "dynamicValueObjectToolStripMenuItem";
+            this.dynamicValueObjectToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.dynamicValueObjectToolStripMenuItem.Text = "DynamicValueObject";
+            this.dynamicValueObjectToolStripMenuItem.Click += new System.EventHandler(this.dynamicValueObjectToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -293,21 +311,23 @@
         private System.Windows.Forms.ToolStripMenuItem windowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eventObjectToolStripMenuItem;
         private System.Windows.Forms.Button ViewSectorObjectManagerButton;
-        private System.Windows.Forms.ToolStripMenuItem dynamicValueToolStripMenuItem;
         private System.Windows.Forms.Button LoadPlayerShipButton;
         private System.Windows.Forms.ToolStripMenuItem sectorObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem storyBase15fcToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem hashTableToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ToolStripMenuItem hashTableDynamicValueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingObjectsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem scriptingHashTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingArrayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dynamicValueToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem dynamicValueObjectToolStripMenuItem;
     }
 }
 

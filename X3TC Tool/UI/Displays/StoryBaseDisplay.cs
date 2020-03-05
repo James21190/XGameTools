@@ -56,14 +56,14 @@ namespace X3TC_Tool.UI.Displays
         private void button4_Click(object sender, EventArgs e)
         {
             var display = new HashTableDisplay(m_GameHook);
-            display.LoadTable(m_StoryBase.pStoryBase15fcHashTable.address);
+            display.LoadTable(m_StoryBase.pScriptingArrayObject_HashTable.address);
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             var display = new HashTableDisplay(m_GameHook);
-            display.LoadTable(m_StoryBase.pScriptingHashTable_HashTable.address);
+            display.LoadTable(m_StoryBase.pScriptingHashTableObject_HashTable.address);
             display.Show();
         }
     }

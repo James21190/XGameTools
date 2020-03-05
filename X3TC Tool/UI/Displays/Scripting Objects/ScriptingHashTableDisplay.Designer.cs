@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Displays
 {
-    partial class HashTableDynamicValueDisplay
+    partial class ScriptingHashTableDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            X3TCTools.Bases.Scripting.DynamicValue dynamicValue1 = new X3TCTools.Bases.Scripting.DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();
@@ -45,8 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.IDBox = new X3TCTools.DynamicValueDisplay();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -222,6 +223,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "ID";
             // 
+            // IDBox
+            // 
+            this.IDBox.Location = new System.Drawing.Point(8, 16);
+            this.IDBox.Name = "IDBox";
+            this.IDBox.Size = new System.Drawing.Size(179, 83);
+            this.IDBox.TabIndex = 2;
+            this.IDBox.Text = "ID";
+            this.IDBox.Value = dynamicValue1;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(112, 99);
@@ -232,16 +242,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // IDBox
-            // 
-            this.IDBox.Location = new System.Drawing.Point(8, 16);
-            this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(179, 83);
-            this.IDBox.TabIndex = 2;
-            this.IDBox.Text = "ID";
-            this.IDBox.Value = null;
-            // 
-            // HashTableDynamicValueDisplay
+            // ScriptingHashTableDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -254,8 +255,8 @@
             this.Controls.Add(this.groupBox2);
             this.MaximumSize = new System.Drawing.Size(629, 370);
             this.MinimumSize = new System.Drawing.Size(629, 370);
-            this.Name = "HashTableDynamicValueDisplay";
-            this.Text = "HashTableDynamicValueDisplay";
+            this.Name = "ScriptingHashTableDisplay";
+            this.Text = "ScriptingHashTableDisplay";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);

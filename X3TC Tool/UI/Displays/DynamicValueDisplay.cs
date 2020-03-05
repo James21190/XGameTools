@@ -62,6 +62,11 @@ namespace X3TC_Tool.UI.Displays
             Reload();
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private DynamicValue[] GetAllValues()
         {
             List<DynamicValue> values = new List<DynamicValue>();

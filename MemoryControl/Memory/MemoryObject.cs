@@ -52,5 +52,13 @@ namespace Common.Memory
             SetData(MemoryControl.Read(m_hProcess, pThis, GetByteSize()));
         }
 
+        /// <summary>
+        /// Writes all values to memory.
+        /// </summary>
+        public void WriteToMemory()
+        {
+            MemoryControl.Write(m_hProcess, pThis, GetBytes());
+        }
+
     }
 }
