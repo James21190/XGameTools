@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            X3TCTools.Bases.Scripting.DynamicValue dynamicValue1 = new X3TCTools.Bases.Scripting.DynamicValue();
+            X3TCTools.Bases.Scripting.DynamicValue dynamicValue5 = new X3TCTools.Bases.Scripting.DynamicValue();
+            X3TCTools.Bases.Scripting.DynamicValue dynamicValue6 = new X3TCTools.Bases.Scripting.DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();
@@ -43,6 +44,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ScannerLabel = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.dynamicValueDisplay1 = new X3TCTools.DynamicValueDisplay();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -185,15 +187,25 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.dynamicValueDisplay1);
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.textBox2);
             this.groupBox6.Controls.Add(this.groupBox7);
             this.groupBox6.Location = new System.Drawing.Point(393, 12);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(218, 188);
+            this.groupBox6.Size = new System.Drawing.Size(218, 307);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Entry";
+            // 
+            // dynamicValueDisplay1
+            // 
+            this.dynamicValueDisplay1.Location = new System.Drawing.Point(27, 185);
+            this.dynamicValueDisplay1.Name = "dynamicValueDisplay1";
+            this.dynamicValueDisplay1.Size = new System.Drawing.Size(179, 83);
+            this.dynamicValueDisplay1.TabIndex = 3;
+            this.dynamicValueDisplay1.Text = "Value";
+            this.dynamicValueDisplay1.Value = dynamicValue5;
             // 
             // label1
             // 
@@ -230,7 +242,7 @@
             this.IDBox.Size = new System.Drawing.Size(179, 83);
             this.IDBox.TabIndex = 2;
             this.IDBox.Text = "ID";
-            this.IDBox.Value = dynamicValue1;
+            this.IDBox.Value = dynamicValue6;
             // 
             // button2
             // 
@@ -295,5 +307,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private X3TCTools.DynamicValueDisplay IDBox;
+        private X3TCTools.DynamicValueDisplay dynamicValueDisplay1;
     }
 }

@@ -51,15 +51,7 @@ namespace X3TCTools.Bases.Scripting
 
         public override string ToString()
         {
-            return Flag + "-" + (int)Flag + "-" + Value.ToString("X");
-        }
-
-        public void FromString(string str)
-        {
-            var split = str.Split('-');
-            Flag = (FlagType)int.Parse(split[1]);
-            Value = int.Parse(split[2]);
-
+            return Flag + "-" + Value.ToString("X");
         }
 
         public static bool operator==(DynamicValue a, DynamicValue b)

@@ -40,6 +40,14 @@ namespace X3TCTools.Bases
             pEventObjectHashTable = new MemoryObjectPointer<HashTable<EventObject>>();
         }
 
+        public DynamicValue GetInstruction(int offset)
+        {
+            var value = new DynamicValue();
+            value.SetLocation(m_hProcess, pInstructionArray.address + offset);
+            value.ReloadFromMemory();
+            return value;
+        }
+
         #region IMemoryObject
         public override byte[] GetBytes()
         {

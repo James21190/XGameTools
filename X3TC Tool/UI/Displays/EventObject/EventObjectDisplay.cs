@@ -107,6 +107,13 @@ namespace X3TC_Tool.UI.Displays
                     display.LoadObject(obj);
                     display.Show();
                     return;
+                case SectorObject.Main_Type.Gate:
+                    display = new DynamicValueObjectDisplay(m_GameHook);
+                    obj = DynamicValueObject.GetSectorObjectGate();
+                    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                    display.LoadObject(obj);
+                    display.Show();
+                    return;
             }
         }
     }

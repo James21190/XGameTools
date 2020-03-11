@@ -149,7 +149,8 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Blank",
             "Ship Variables",
-            "Dock Variables"});
+            "Dock Variables",
+            "Gate Variables"});
             this.comboBox1.Location = new System.Drawing.Point(6, 19);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(110, 21);

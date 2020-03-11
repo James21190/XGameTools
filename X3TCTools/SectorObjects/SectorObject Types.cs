@@ -83,7 +83,10 @@ namespace X3TCTools.SectorObjects
             Earth,
             Mars = 141,
             Jupiter,
-            Earth_With_Tourus = 148,
+
+            The_Hub_Planet = 146,
+            Khaak_Home_Planet,
+            Earth_With_Tourus
         }
         // Type 5
         public const int DOCK_SUB_TYPE_COUNT = 46;
@@ -773,8 +776,12 @@ namespace X3TCTools.SectorObjects
             South_TransOrbital_Accelerator,
             West_TransOrbital_Accelerator,
             East_TransOrbital_Accelerator,
-
-
+            Hub_Circle_1,
+            Hub_Circle_2,
+            Hub_Square_1,
+            Hub_Square_2,
+            Hub_Triangle_1,
+            Hub_Triangle_2
         }
         // Type 19
         // Type 20

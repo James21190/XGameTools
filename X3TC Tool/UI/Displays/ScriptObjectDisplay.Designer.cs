@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            X3TCTools.Bases.Scripting.DynamicValue dynamicValue2 = new X3TCTools.Bases.Scripting.DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();
@@ -44,12 +45,14 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.ReturnValueDisplay = new X3TCTools.DynamicValueDisplay();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -170,7 +173,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Location = new System.Drawing.Point(148, 128);
+            this.groupBox4.Location = new System.Drawing.Point(6, 19);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(130, 52);
             this.groupBox4.TabIndex = 7;
@@ -203,21 +206,31 @@
             // 
             // ReturnValueDisplay
             // 
-            this.ReturnValueDisplay.Location = new System.Drawing.Point(148, 186);
+            this.ReturnValueDisplay.Location = new System.Drawing.Point(12, 254);
             this.ReturnValueDisplay.Name = "ReturnValueDisplay";
             this.ReturnValueDisplay.Size = new System.Drawing.Size(179, 83);
             this.ReturnValueDisplay.TabIndex = 9;
             this.ReturnValueDisplay.Text = "Return Value";
-            this.ReturnValueDisplay.Value = null;
+            this.ReturnValueDisplay.Value = dynamicValue2;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.groupBox4);
+            this.groupBox6.Location = new System.Drawing.Point(535, 80);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(200, 183);
+            this.groupBox6.TabIndex = 10;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Instruction";
             // 
             // ScriptObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.ReturnValueDisplay);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -236,6 +249,7 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -258,5 +272,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox3;
         private X3TCTools.DynamicValueDisplay ReturnValueDisplay;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }

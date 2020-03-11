@@ -196,14 +196,27 @@ namespace X3TC_Tool
 
         private void scriptingArrayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new ScriptingArrayObjectDisplay(m_GameHook);
-            display.Show();
         }
 
         private void dynamicValueObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var display = new DynamicValueObjectDisplay(m_GameHook);
             display.Show();
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            X3TCTools.SectorObjects.SectorObject.Main_Type main;
+            int sub;
+            X3TCTools.SectorObjects.SectorObject.FromFullType(int.Parse(textBox1.Text, System.Globalization.NumberStyles.HexNumber),out main, out sub);
+            var subname = X3TCTools.SectorObjects.SectorObject.GetSubTypeAsString(main, sub);
+            textBox2.Text = main.ToString() + "-" + subname;
+
         }
     }
 }

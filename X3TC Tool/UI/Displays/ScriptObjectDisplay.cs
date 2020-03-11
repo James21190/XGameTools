@@ -38,6 +38,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
+            var storybase = m_GameHook.storyBase;
             if(m_ScriptObject == null)
             {
                 NextButton.Enabled = false;
@@ -54,8 +55,13 @@ namespace X3TC_Tool.UI.Displays
             PreviousButton.Enabled = m_ScriptObject.pPrevious.IsValid;
 
             textBox1.Text = m_ScriptObject.CurrentStackIndex.ToString();
-            textBox2.Text = m_ScriptObject.InstructionOffset.ToString();
+
+
             textBox3.Text = m_ScriptObject.FunctionIndex.ToString();
+
+            // Instruction
+            textBox2.Text = m_ScriptObject.InstructionOffset.ToString();
+            var instruction = storybase.GetInstruction(m_ScriptObject.InstructionOffset);
 
             ReturnValueDisplay.Value = m_ScriptObject.ReturnValue;
 

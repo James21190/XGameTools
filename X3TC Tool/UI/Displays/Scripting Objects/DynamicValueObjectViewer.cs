@@ -53,26 +53,13 @@ namespace X3TC_Tool.UI.Displays
             if (e.ColumnIndex == dataGridView1.Columns["ViewColumn"].Index && e.RowIndex >= 0)
             {
 
-                if((DynamicValue.FlagType) row.Cells[1].Value == DynamicValue.FlagType.pHashTable)
-                {
-                    var display = new ScriptingHashTableObjectDisplay(m_GameHook);
+                var dv = new DynamicValue();
+                dv.Flag = (DynamicValue.FlagType)row.Cells[1].Value;
+                dv.Value = (int)row.Cells[2].Value;
 
-                    display.LoadObject((IntPtr)(int)row.Cells[2].Value);
-
+                var display = DynamicValueContentLoader.LoadContent(m_GameHook, dv);
+                if (display != null)
                     display.Show();
-                }
-                else if ((DynamicValue.FlagType)row.Cells[1].Value == DynamicValue.FlagType.pArray)
-                {
-                    var display = new ScriptingArrayObjectDisplay(m_GameHook);
-                    display.LoadObject((IntPtr)(int)row.Cells[2].Value);
-                    display.Show();
-                }
-                else if ((DynamicValue.FlagType)row.Cells[1].Value == DynamicValue.FlagType.pTextObject)
-                {
-                    var display = new ScriptingTextObjectDisplay(m_GameHook);
-                    display.LoadObject((IntPtr)(int)row.Cells[2].Value);
-                    display.Show();
-                }
             }
             else if (e.ColumnIndex == dataGridView1.Columns["EditColumn"].Index && e.RowIndex >= 0)
             {
@@ -93,19 +80,23 @@ namespace X3TC_Tool.UI.Displays
             DynamicValueObject obj;
             switch (comboBox1.SelectedIndex)
             {
-                case 0:
-
+                case 0: // Blank
                     obj = DynamicValueObject.GetBlank(textBox1.Text, (int)numericUpDown1.Value);
                     obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
                     LoadObject(obj);
                     break;
-                case 1:
+                case 1: // Ship
                     obj = DynamicValueObject.GetSectorObjectShip();
                     obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
                     LoadObject(obj);
                     break;
-                case 2:
+                case 2: // Dock
                     obj = DynamicValueObject.GetSectorObjectDock();
+                    obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
+                    LoadObject(obj);
+                    break;
+                case 3: // Gate
+                    obj = DynamicValueObject.GetSectorObjectGate();
                     obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
                     LoadObject(obj);
                     break;

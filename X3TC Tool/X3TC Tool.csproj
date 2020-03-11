@@ -71,6 +71,7 @@
     <Compile Include="UI\Displays\DynamicValueEditorDisplay.Designer.cs">
       <DependentUpon>DynamicValueEditorDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\DynamicValueContentLoader.cs" />
     <Compile Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,18 +113,6 @@
     </Compile>
     <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Displays\Scripting Objects\ScriptingArrayObjectDisplay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Displays\Scripting Objects\ScriptingArrayObjectDisplay.Designer.cs">
-      <DependentUpon>ScriptingArrayObjectDisplay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Displays\Scripting Objects\ScriptingHashTableObjectDisplay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Displays\Scripting Objects\ScriptingHashTableObjectDisplay.Designer.cs">
-      <DependentUpon>ScriptingHashTableObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\ScriptObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -207,12 +196,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingArrayObjectDisplay.resx">
-      <DependentUpon>ScriptingArrayObjectDisplay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingHashTableObjectDisplay.resx">
-      <DependentUpon>ScriptingHashTableObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\ScriptObjectDisplay.resx">
       <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
