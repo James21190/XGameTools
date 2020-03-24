@@ -218,5 +218,11 @@ namespace X3TC_Tool
             textBox2.Text = main.ToString() + "-" + subname;
 
         }
+
+        private void kCodeViewerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new KCodeViewer(m_GameHook);
+            display.Show();
+        }
     }
 }

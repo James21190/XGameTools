@@ -47,6 +47,7 @@
     <Compile Include="Bases\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
+    <Compile Include="Bases\Scripting\KCodeDissassembler.cs" />
     <Compile Include="Bases\Scripting\ScriptingTextObject.cs" />
     <Compile Include="Bases\Scripting\DynamicValue.cs" />
     <Compile Include="Bases\Scripting\DynamicValueObject Presets.cs" />

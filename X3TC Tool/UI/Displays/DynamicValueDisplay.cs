@@ -42,7 +42,7 @@ namespace X3TC_Tool.UI.Displays
             int index = -m_Depth;
             foreach(var item in GetAllValues())
             {
-                dataGridView1.Rows.Add(index++, item.pThis.ToString("X"), item.Flag.ToString(), item.Value.ToString("X"), item.Value);
+                dataGridView1.Rows.Add(index++, item.pThis.ToString("X"), item.Flag, item.Value.ToString("X"), item.Value);
             }
         }
 
@@ -64,7 +64,28 @@ namespace X3TC_Tool.UI.Displays
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var row = dataGridView1.Rows[e.RowIndex];
+            if (e.ColumnIndex == dataGridView1.Columns["ViewColumn"].Index && e.RowIndex >= 0)
+            {
 
+                var dv = new DynamicValue();
+                dv.Flag = (DynamicValue.FlagType)row.Cells[2].Value;
+                dv.Value = (int)row.Cells[4].Value;
+
+                var display = DynamicValueContentLoader.LoadContent(m_GameHook, dv);
+                if (display != null)
+                    display.Show();
+            }
+        }
+
+        private void AutoReloader_Tick(object sender, EventArgs e)
+        {
+            Reload();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            AutoReloader.Enabled = checkBox1.Checked;
         }
 
         private DynamicValue[] GetAllValues()

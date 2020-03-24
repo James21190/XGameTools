@@ -11,11 +11,12 @@ namespace X3TCTools.Bases
 {
     public class StoryBase : MemoryObject
     {
+
         public const int ByteSize = 5648;
 
         public MemoryObjectPointer<HashTable<ScriptObject>> pScriptObjectHashTable;
         
-        public MemoryObjectPointer<DynamicValue> pInstructionArray;
+        public MemoryObjectPointer<MemoryByte> pInstructionArray;
 
         public int FunctionArrayCount;
         public EventFunctionStruct[] FunctionArray = new EventFunctionStruct[32];
@@ -28,6 +29,10 @@ namespace X3TCTools.Bases
 
         public MemoryObjectPointer<HashTable<ScriptingHashTableObject>> pScriptingHashTableObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingHashTableObject>>();
 
+        private GameHook m_GameHook;
+
+        public void SetHook(GameHook gameHook) { m_GameHook = gameHook; }
+
         public StoryBase()
         {
             for(int i = 0; i < FunctionArray.Length; i++)
@@ -36,17 +41,11 @@ namespace X3TCTools.Bases
             }
 
             pScriptObjectHashTable = new MemoryObjectPointer<HashTable<ScriptObject>>();
-            pInstructionArray = new MemoryObjectPointer<DynamicValue>();
+            pInstructionArray = new MemoryObjectPointer<MemoryByte>();
             pEventObjectHashTable = new MemoryObjectPointer<HashTable<EventObject>>();
         }
 
-        public DynamicValue GetInstruction(int offset)
-        {
-            var value = new DynamicValue();
-            value.SetLocation(m_hProcess, pInstructionArray.address + offset);
-            value.ReloadFromMemory();
-            return value;
-        }
+        
 
         #region IMemoryObject
         public override byte[] GetBytes()
@@ -63,7 +62,7 @@ namespace X3TCTools.Bases
         {
             var collection = new ObjectByteList(Memory, m_hProcess, pThis);
             pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptObject>>>();
-            pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<DynamicValue>>(0x8);
+            pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
             FunctionArrayCount = collection.PopInt(0x2c);
             FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);
             pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);

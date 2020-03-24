@@ -90,6 +90,12 @@
     <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\KCodeViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting Objects\KCodeViewer.Designer.cs">
+      <DependentUpon>KCodeViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\EventObject\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\Scripting Objects\KCodeViewer.resx">
+      <DependentUpon>KCodeViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.resx">
       <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>

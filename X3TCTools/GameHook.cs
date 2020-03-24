@@ -22,6 +22,8 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<TypeData>> ppTypeData;
         private MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
         private MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
+        public MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
+        public MemoryObjectPointer<MemoryInt32> pProcessEventSwitch;
         #endregion
 
         #region Pointer Objects
@@ -40,7 +42,7 @@ namespace X3TCTools
         /// <summary>
         /// An up to date representation of the game's StoryBase.
         /// </summary>
-        public StoryBase storyBase { get { return ppStoryBase.obj.obj; } }
+        public StoryBase storyBase { get { var sbase = ppStoryBase.obj.obj; sbase.SetHook(this); return sbase; } }
 
         public InputBase inputBase { get { return ppInputBase.obj.obj; } }
         public CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
@@ -75,6 +77,8 @@ namespace X3TCTools
                     ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData);
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
                     ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
+                    pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitchArray);
+                    pProcessEventSwitch = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitch);
 
                     // Create events
                     eventManager = new EventManager(hProcess);
@@ -136,14 +140,16 @@ namespace X3TCTools
 
         public enum GlobalAddressesX3TC
         {
-            pSystemBase =           0x00603064,
-            pGateSystemObject =     0x00604634,
-            pSectorObjectManager =  0x00604640,
-            pCockpitBase =          0x00604638,
-            pStoryBase =            0x00604718,
-            pTypeData =             0x006030e8,
-            pInputBase =            0x0057FDA0,
-            pCameraBase =           0x0060464c,
+            pSystemBase =               0x00603064,
+            pGateSystemObject =         0x00604634,
+            pSectorObjectManager =      0x00604640,
+            pCockpitBase =              0x00604638,
+            pStoryBase =                0x00604718,
+            pTypeData =                 0x006030e8,
+            pInputBase =                0x0057FDA0,
+            pCameraBase =               0x0060464c,
+            ProcessEventSwitchArray =   0x004a4d18,
+            ProcessEventSwitch =        0x004a4b20
         }
 
         public enum GlobalAddressesX3AP

@@ -52,10 +52,11 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.kCodeViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -150,35 +151,35 @@
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eventObjectToolStripMenuItem.Text = "EventObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
             // 
             // sectorObjectToolStripMenuItem
             // 
             this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sectorObjectToolStripMenuItem.Text = "SectorObject";
             this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
             // 
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cameraToolStripMenuItem.Text = "Camera";
             this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
@@ -189,9 +190,10 @@
             this.scriptObjectToolStripMenuItem1,
             this.scriptingHashTableToolStripMenuItem,
             this.scriptingArrayToolStripMenuItem,
-            this.dynamicValueToolStripMenuItem1});
+            this.dynamicValueToolStripMenuItem1,
+            this.kCodeViewerToolStripMenuItem});
             this.scriptingObjectsToolStripMenuItem.Name = "scriptingObjectsToolStripMenuItem";
-            this.scriptingObjectsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.scriptingObjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.scriptingObjectsToolStripMenuItem.Text = "Scripting Objects";
             // 
             // dynamicValueObjectToolStripMenuItem
@@ -297,21 +299,13 @@
             this.groupBox3.Text = "Type Lookup";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
-            // label2
+            // textBox2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Full Type";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(62, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 1;
+            this.textBox2.Location = new System.Drawing.Point(9, 45);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(249, 20);
+            this.textBox2.TabIndex = 3;
             // 
             // button3
             // 
@@ -323,13 +317,28 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox2
+            // textBox1
             // 
-            this.textBox2.Location = new System.Drawing.Point(9, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(249, 20);
-            this.textBox2.TabIndex = 3;
+            this.textBox1.Location = new System.Drawing.Point(62, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(119, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Full Type";
+            // 
+            // kCodeViewerToolStripMenuItem
+            // 
+            this.kCodeViewerToolStripMenuItem.Name = "kCodeViewerToolStripMenuItem";
+            this.kCodeViewerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.kCodeViewerToolStripMenuItem.Text = "KCode Viewer";
+            this.kCodeViewerToolStripMenuItem.Click += new System.EventHandler(this.kCodeViewerToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -390,6 +399,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem kCodeViewerToolStripMenuItem;
     }
 }
 

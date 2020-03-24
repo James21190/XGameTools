@@ -19,7 +19,8 @@ namespace X3TCTools.Bases.Scripting
             pArray = 8,
             pHashTable,
             pEventObject,
-            pTextObject
+            pTextObject,
+            pObject0xe = 14
         }
 
         public const int ByteSize = 5;

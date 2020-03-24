@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FlagColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.AddressBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -41,6 +37,14 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
+            this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FlagColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AutoReloader = new System.Windows.Forms.Timer(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -51,6 +55,9 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -60,43 +67,14 @@
             this.AddressColumn,
             this.FlagColumn,
             this.ValueColumn,
-            this.Column1});
+            this.Column1,
+            this.ViewColumn});
             this.dataGridView1.Location = new System.Drawing.Point(12, 70);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(456, 167);
+            this.dataGridView1.Size = new System.Drawing.Size(826, 167);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // IndexColumn
-            // 
-            this.IndexColumn.HeaderText = "Index";
-            this.IndexColumn.Name = "IndexColumn";
-            this.IndexColumn.ReadOnly = true;
-            // 
-            // AddressColumn
-            // 
-            this.AddressColumn.HeaderText = "Address";
-            this.AddressColumn.Name = "AddressColumn";
-            this.AddressColumn.ReadOnly = true;
-            // 
-            // FlagColumn
-            // 
-            this.FlagColumn.HeaderText = "Flag";
-            this.FlagColumn.Name = "FlagColumn";
-            this.FlagColumn.ReadOnly = true;
-            // 
-            // ValueColumn
-            // 
-            this.ValueColumn.HeaderText = "Value (Hex)";
-            this.ValueColumn.Name = "ValueColumn";
-            this.ValueColumn.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Value (Dec)";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -169,11 +147,66 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // IndexColumn
+            // 
+            this.IndexColumn.HeaderText = "Index";
+            this.IndexColumn.Name = "IndexColumn";
+            this.IndexColumn.ReadOnly = true;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.ReadOnly = true;
+            // 
+            // FlagColumn
+            // 
+            this.FlagColumn.HeaderText = "Flag";
+            this.FlagColumn.Name = "FlagColumn";
+            this.FlagColumn.ReadOnly = true;
+            // 
+            // ValueColumn
+            // 
+            this.ValueColumn.HeaderText = "Value";
+            this.ValueColumn.Name = "ValueColumn";
+            this.ValueColumn.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Value (Dec)";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // ViewColumn
+            // 
+            this.ViewColumn.HeaderText = "";
+            this.ViewColumn.Name = "ViewColumn";
+            this.ViewColumn.ReadOnly = true;
+            this.ViewColumn.Text = "View";
+            this.ViewColumn.UseColumnTextForButtonValue = true;
+            // 
+            // AutoReloader
+            // 
+            this.AutoReloader.Interval = 1000;
+            this.AutoReloader.Tick += new System.EventHandler(this.AutoReloader_Tick);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(533, 33);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(85, 17);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Auto Reload";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // DynamicValueArrayDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 249);
+            this.ClientSize = new System.Drawing.Size(847, 249);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -189,6 +222,7 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -207,5 +241,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FlagColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewButtonColumn ViewColumn;
+        private System.Windows.Forms.Timer AutoReloader;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

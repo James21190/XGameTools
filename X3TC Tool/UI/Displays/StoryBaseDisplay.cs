@@ -41,6 +41,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Reload();
             var display = new ScriptObjectDisplay(m_GameHook);
             display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
             display.Show();

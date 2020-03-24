@@ -48,7 +48,13 @@ namespace X3TCTools
 
         private void Reload()
         {
-            FlagBox.SelectedIndex = (int)m_DynamicValue.Flag;
+            if((int)m_DynamicValue.Flag < DynamicValue.FlagCount)
+                FlagBox.SelectedIndex = (int)m_DynamicValue.Flag;
+            else
+            {
+                FlagBox.Items.Add(m_DynamicValue.Flag);
+                FlagBox.SelectedIndex = DynamicValue.FlagCount;
+            }
             ValueBox.Text = m_DynamicValue.Value.ToString("X");
         }
 

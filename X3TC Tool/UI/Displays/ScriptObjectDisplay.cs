@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using Common.Memory;
 using X3TCTools;
 using X3TCTools.Bases;
+using X3TCTools.Bases.Scripting;
+
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -54,17 +56,29 @@ namespace X3TC_Tool.UI.Displays
             NextButton.Enabled = m_ScriptObject.pNext.IsValid;
             PreviousButton.Enabled = m_ScriptObject.pPrevious.IsValid;
 
-            textBox1.Text = m_ScriptObject.CurrentStackIndex.ToString();
-
-
+            // Stack
+            StackCurrentIndexBox.Text = m_ScriptObject.CurrentStackIndex.ToString();
+            StackSizeBox.Text = m_ScriptObject.StackSize.ToString();
+            
+            
             textBox3.Text = m_ScriptObject.FunctionIndex.ToString();
 
             // Instruction
-            textBox2.Text = m_ScriptObject.InstructionOffset.ToString();
-            var instruction = storybase.GetInstruction(m_ScriptObject.InstructionOffset);
+            InstructionOffsetBox.Text = m_ScriptObject.InstructionOffset.ToString();
+            numericUpDown1.Value = m_ScriptObject.InstructionOffset;
 
-            ReturnValueDisplay.Value = m_ScriptObject.ReturnValue;
 
+            // Load dissassembly
+            ReloadDissassembly();
+        }
+
+        public void ReloadDissassembly()
+        {
+            richTextBox1.Clear();
+            var dissassembler = new KCodeDissassembler(m_GameHook);
+            var code = dissassembler.Dissassemble(m_ScriptObject.InstructionOffset);
+            foreach (var line in code)
+                richTextBox1.Text += line.ToString(0,DisplayFunctionNamesAsHex);
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -103,6 +117,20 @@ namespace X3TC_Tool.UI.Displays
             var display = new DynamicValueArrayDisplay(m_GameHook);
             display.LoadFrom(m_ScriptObject.pStack.address, m_ScriptObject.StackSize, 0);
             display.Show();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            var offset = (int)numericUpDown1.Value;
+            textBox1.Text = (((int)m_GameHook.storyBase.pInstructionArray.address) + offset).ToString("X");
+        }
+
+        bool DisplayFunctionNamesAsHex = false;
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayFunctionNamesAsHex = checkBox1.Checked;
+            ReloadDissassembly();
         }
     }
 }
