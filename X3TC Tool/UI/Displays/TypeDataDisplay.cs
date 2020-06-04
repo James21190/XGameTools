@@ -16,51 +16,72 @@ namespace X3TC_Tool.UI.Displays
     public partial class TypeDataDisplay : Form
     {
         private GameHook m_GameHook;
-        private TypeData m_TypeData;
+        private object m_TypeData;
+        private int m_TypeDataMainType;
         public TypeDataDisplay(GameHook gameHook)
         {
             InitializeComponent();
             m_GameHook = gameHook;
-            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
-            {
-                comboBox1.Items.Add((SectorObject.Main_Type)i);
-            }
+
+            tabControl1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
 
         }
 
         public void LoadTypeData(int MainType, int SubType)
         {
-
-            if (comboBox1.SelectedIndex != MainType) comboBox1.SelectedIndex = MainType;
+            if (tabControl1.SelectedIndex != MainType)
+            {
+                tabControl1.SelectedIndex = MainType;
+                ReloadSubTypes();
+            }
             if (comboBox2.SelectedIndex != SubType) comboBox2.SelectedIndex = SubType;
 
-            m_TypeData = m_GameHook.GetTypeData(MainType, SubType);
+            m_TypeDataMainType = MainType;
+            m_TypeData = m_GameHook.GetShipTypeData(SubType);
             Reload();
+        }
+
+        public void ReloadSubTypes()
+        {
+            if(tabControl1.SelectedIndex == -1)
+            {
+                comboBox2.Enabled = false;
+                return;
+            }
+
+            comboBox2.Enabled = true;
+            comboBox2.SelectedIndex = -1;
+            comboBox2.Items.Clear();
+            for (int i = 0; i < SectorObject.GetMaxSubType((SectorObject.Main_Type)tabControl1.SelectedIndex); i++)
+            {
+                comboBox2.Items.Add(SectorObject.GetSubTypeAsString((SectorObject.Main_Type)tabControl1.SelectedIndex, i));
+            }
+
         }
 
         public void Reload()
         {
-            AddressBox.Text = m_TypeData.pThis.ToString("X");
-            MaxHullBox.Text = m_TypeData.MaxHull.ToString();
-            OriginRaceBox.Text = m_TypeData.OriginRace.ToString();
-            ClassBox.Text = m_TypeData.GetClassAsString((SectorObject.Main_Type)comboBox1.SelectedIndex);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBox2.Enabled = comboBox1.SelectedIndex >= 0;
-            comboBox2.SelectedIndex = -1;
-            comboBox2.Items.Clear();
-            for (int i = 0; i < SectorObject.GetMaxSubType((SectorObject.Main_Type)comboBox1.SelectedIndex); i++)
+            switch (m_TypeDataMainType)
             {
-                comboBox2.Items.Add(SectorObject.GetSubTypeAsString((SectorObject.Main_Type)comboBox1.SelectedIndex, i));
+                case 7:
+                    var shipTypeData = (TypeData_Ship)m_TypeData;
+                    AddressBox.Text = shipTypeData.pThis.ToString("X");
+                    ShipMaxHullBox.Text = shipTypeData.MaxHull.ToString();
+                    ShipOriginRaceBox.Text = shipTypeData.OriginRace.ToString();
+                    ShipClassBox.Text = shipTypeData.ObjectClass.ToString();
+                    break;
             }
-        }
-
+        } 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox2.SelectedIndex < 0) return;
-            LoadTypeData(comboBox1.SelectedIndex, comboBox2.SelectedIndex);
+            LoadTypeData(tabControl1.SelectedIndex, comboBox2.SelectedIndex);
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReloadSubTypes();
         }
     }
 }

@@ -6,19 +6,9 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.SectorObjects
 {
-    public partial class TypeData
+    public partial class TypeData_Ship
     {
-
-        public string GetClassAsString(SectorObject.Main_Type MainType)
-        {
-            switch (MainType)
-            {
-                case SectorObject.Main_Type.Ship: return ((Ship_Class)ObjectClass).ToString();
-                default: return ObjectClass.ToString();
-            }
-        }
-
-        public enum Ship_Class
+        public enum Class
         {
             TL_Large_Transporter,
             TS_Transporter,

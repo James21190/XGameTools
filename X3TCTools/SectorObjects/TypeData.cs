@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X3TCTools.SectorObjects
 {
-    public partial class TypeData : MemoryObject
+    public partial class TypeData_Ship : MemoryObject
     {
 
 

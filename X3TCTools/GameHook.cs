@@ -19,7 +19,7 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
         private MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData>> ppTypeData;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         private MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
         private MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
         public MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
@@ -47,9 +47,9 @@ namespace X3TCTools
         public InputBase inputBase { get { return ppInputBase.obj.obj; } }
         public CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
 
-        public TypeData GetTypeData(int MainType, int SubType)
+        public TypeData_Ship GetShipTypeData(int SubType)
         {
-            return ppTypeData.GetObjectInArray(MainType).GetObjectInArray(SubType);
+            return ppTypeData_Ship.obj.GetObjectInArray(SubType);
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace X3TCTools
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
-                    ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData);
+                    ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
                     ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
                     pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitchArray);
@@ -146,6 +146,7 @@ namespace X3TCTools
             pCockpitBase =              0x00604638,
             pStoryBase =                0x00604718,
             pTypeData =                 0x006030e8,
+            pTypeData_Ship =            0x00603104,
             pInputBase =                0x0057FDA0,
             pCameraBase =               0x0060464c,
             ProcessEventSwitchArray =   0x004a4d18,
