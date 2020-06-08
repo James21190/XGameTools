@@ -162,6 +162,8 @@ namespace X3TC_Tool.UI.Displays
 
             RaceBox.Text = m_SectorObject.RaceID.ToString();
 
+            ModelCollectionIDBox.Text = m_SectorObject.ModelCollectionID.ToString();
+
             // Unknowns
             UnknownsListBox.Items.Clear();
             int i = 4;
@@ -176,7 +178,6 @@ namespace X3TC_Tool.UI.Displays
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_12));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_13));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1} {2} {3}", i++, m_SectorObject.Unknown_14_0, m_SectorObject.Unknown_14_1, m_SectorObject.Unknown_14_2));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_15));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_16));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_17));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_18));
@@ -323,6 +324,11 @@ namespace X3TC_Tool.UI.Displays
         private void playerShipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LoadObject(m_GameHook.sectorObjectManager.GetPlayerObject());
+        }
+
+        private void SectorObjectDisplay_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -36,5 +36,12 @@ namespace X3TC_Tool.UI.Displays
             display.LoadTable(m_GameHook.cameraBase.pCameraHashTable.address);
             display.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay(m_GameHook);
+            display.LoadTable(m_GameHook.cameraBase.pModelCollectionHashTable.address);
+            display.Show();
+        }
     }
 }

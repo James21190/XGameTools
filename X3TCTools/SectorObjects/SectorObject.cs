@@ -55,7 +55,7 @@ namespace X3TCTools.SectorObjects
         public byte Unknown_14_1;
         public byte Unknown_14_2;
         public int EventObjectID;
-        public int Unknown_15;
+        public int ModelCollectionID;
         public int Unknown_16;
         public int Unknown_17;
         public int Unknown_18;
@@ -208,7 +208,7 @@ namespace X3TCTools.SectorObjects
             collection.Append(Unknown_14_1);
             collection.Append(Unknown_14_2);
             collection.Append(EventObjectID);
-            collection.Append(Unknown_15);
+            collection.Append(ModelCollectionID);
             collection.Append(Unknown_16);
             collection.Append(Unknown_17);
             collection.Append(Unknown_18);
@@ -285,7 +285,7 @@ namespace X3TCTools.SectorObjects
             collection.PopFirst(ref Unknown_14_1);
             collection.PopFirst(ref Unknown_14_2);
             collection.PopFirst(ref EventObjectID);
-            collection.PopFirst(ref Unknown_15);
+            collection.PopFirst(ref ModelCollectionID);
             collection.PopFirst(ref Unknown_16);
             collection.PopFirst(ref Unknown_17);
             collection.PopFirst(ref Unknown_18);

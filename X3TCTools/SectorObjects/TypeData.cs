@@ -12,9 +12,6 @@ namespace X3TCTools.SectorObjects
     {
 
 
-        #region IMemoryObject
-        public const int ByteSize = 3512;
-
         public int ObjectClass;
         public int MaxSpeed;
         public int ShieldPowerGenrator;
@@ -27,9 +24,14 @@ namespace X3TCTools.SectorObjects
         public GameHook.RaceID OriginRace;
         public int MaxHull;
 
+        #region IMemoryObject
+        public const int ByteSize = 3512;
+
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
+
+            // Must define all fields
             var collection = new ObjectByteList();
 
             return collection.GetBytes();

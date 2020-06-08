@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Common.Memory;
+using Common.Vector;
 
 namespace X3TCTools.Bases
 {
@@ -13,8 +14,20 @@ namespace X3TCTools.Bases
 
         public const int ByteSize = 0x531;
 
-        // Skip0x4dc
+        public int X2FunctionIndex;
+
+        public int Paused;
+
+        public MemoryObjectPointer<HashTable<MemoryInt32>> pHashTable1;
+        public MemoryObjectPointer<HashTable<MemoryInt32>> pHashTable2;
+
         public int EventObjectID;
+
+        public Vector3 NextLocation;
+
+        public int AbsTime;
+
+        public int IsModified;
 
         public override byte[] GetBytes()
         {
