@@ -7,26 +7,11 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.SectorObjects
 {
-    public class TypeData_Laser : MemoryObject
+    public class TypeData_Laser : TypeData
     {
-        public MemoryObjectPointer<MemoryString> pTypeName;
-
-
-        public const int ByteSize = 3512;
-        public override byte[] GetBytes()
+        protected override void SetUniqueData(ObjectByteList obl)
         {
-            throw new NotImplementedException();
-        }
-
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
-
-        public override void SetData(byte[] Memory)
-        {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
-            pTypeName = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x40);
+            
         }
     }
 }

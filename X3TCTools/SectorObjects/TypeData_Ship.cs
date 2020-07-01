@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X3TCTools.SectorObjects
 {
-    public class TypeData_Ship : MemoryObject
+    public class TypeData_Ship : TypeData
     {
 
         public class TurretData : MemoryObject
@@ -61,15 +61,6 @@ namespace X3TCTools.SectorObjects
             M8_Bomber,
         }
 
-        public Common.Vector.Vector3 RotationSpeed;
-
-        public ShipClassification ObjectClass;
-        public int NameID;
-
-        public int Price1;
-        public int Price2;
-
-        public MemoryObjectPointer<MemoryString> pTypeString;
         public int MaxSpeed;
 
         public int ShieldPowerGenerator;
@@ -96,37 +87,12 @@ namespace X3TCTools.SectorObjects
         public int TurretCount;
         public TurretData[] TurretDatas;
 
-        #region IMemoryObject
-        public const int ByteSize = 3512;
-
-        public override byte[] GetBytes()
+        public override string GetObjectClassAsString()
         {
-            throw new NotImplementedException();
-
-            // Must define all fields
-            var collection = new ObjectByteList();
-
-            return collection.GetBytes();
+            return ((ShipClassification)ObjectClass).ToString();
         }
-
-        public override int GetByteSize()
+        protected override void SetUniqueData(ObjectByteList collection)
         {
-            return ByteSize;
-        }
-
-        public override void SetData(byte[] Memory)
-        {
-            var collection = new ObjectByteList(Memory,m_hProcess,pThis);
-
-            RotationSpeed = collection.PopIMemoryObject<Common.Vector.Vector3>(0x8);
-
-            ObjectClass = (ShipClassification)collection.PopInt(0x14);
-            NameID = collection.PopInt();
-
-            Price1 = collection.PopInt(0x20);
-            Price2 = collection.PopInt();
-
-            pTypeString = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x40);
             MaxSpeed = collection.PopInt();
 
             ShieldPowerGenerator = collection.PopInt(0x5c);
@@ -153,11 +119,5 @@ namespace X3TCTools.SectorObjects
             TurretCount = collection.PopInt(0x180);
             TurretDatas = collection.PopIMemoryObjects<TurretData>(10);
         }
-
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            base.SetLocation(hProcess, address);
-        }
-        #endregion
     }
 }

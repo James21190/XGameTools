@@ -144,11 +144,11 @@ namespace Common.UI
             }
         }
 
-        public Common.Vector.Vector3 Vector
+        public Vector.Vector3 Vector
         {
             get
             {
-                return new Common.Vector.Vector3(Convert.ToInt32(X),Convert.ToInt32(Y),Convert.ToInt32(Z));
+                return new Vector.Vector3(Convert.ToInt32(X),Convert.ToInt32(Y),Convert.ToInt32(Z));
             }
             set
             {

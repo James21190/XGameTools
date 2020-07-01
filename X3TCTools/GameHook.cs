@@ -50,7 +50,7 @@ namespace X3TCTools
         public InputBase inputBase { get { return ppInputBase.obj.obj; } }
         public CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
 
-        public object GetTypeData(int MainType, int SubType)
+        public TypeData GetTypeData(int MainType, int SubType)
         {
             switch ((SectorObject.Main_Type)MainType) 
             {

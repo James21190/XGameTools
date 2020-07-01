@@ -83,6 +83,7 @@
     <Compile Include="SectorObjects\SectorObjectData.cs" />
     <Compile Include="SectorObjects\SectorObjectManager.cs" />
     <Compile Include="SectorObjects\SectorObject.cs" />
+    <Compile Include="SectorObjects\TypeData.cs" />
     <Compile Include="SectorObjects\TypeData_Shield.cs" />
     <Compile Include="SectorObjects\TypeData_Laser.cs" />
     <Compile Include="SectorObjects\TypeData_Bullet.cs" />

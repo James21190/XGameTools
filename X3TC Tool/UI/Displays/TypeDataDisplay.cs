@@ -16,7 +16,7 @@ namespace X3TC_Tool.UI.Displays
     public partial class TypeDataDisplay : Form
     {
         private GameHook m_GameHook;
-        private object m_TypeData;
+        private TypeData m_TypeData;
         private int m_TypeDataMainType;
         public TypeDataDisplay(GameHook gameHook)
         {
@@ -63,23 +63,23 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
+            txtAddress.Text = m_TypeData.pThis.ToString("X");
+            
+            txtClass.Text = m_TypeData.GetObjectClassAsString();
+            txtTypeString.Text = m_TypeData.pTypeString.obj.value;
+            txtNameID.Text = m_TypeData.NameID.ToString();
+            v3dRotationSpeed.Vector = m_TypeData.RotationSpeed;
+            
             switch ((SectorObject.Main_Type)m_TypeDataMainType)
             {
                 case SectorObject.Main_Type.Bullet:
                     var bulletTypeData = (TypeData_Bullet)m_TypeData;
-                    txtAddress.Text = bulletTypeData.pThis.ToString("X");
-                    txtBulletTypeString.Text = bulletTypeData.pTypeName.obj.value;
                     break;
                 case SectorObject.Main_Type.Ship:
                     var shipTypeData = (TypeData_Ship)m_TypeData;
-                    txtAddress.Text = shipTypeData.pThis.ToString("X");
 
-                    v3dRotationSpeed.Vector = shipTypeData.RotationSpeed;
 
-                    txtShipClass.Text = shipTypeData.ObjectClass.ToString();
                     txtShipOriginRace.Text = shipTypeData.OriginRace.ToString();
-                    txtShipTypeString.Text = shipTypeData.pTypeString.obj.value;
-                    txtNameID.Text = shipTypeData.NameID.ToString();
 
                     txtMaxSpeed.Text = shipTypeData.MaxSpeed.ToString();
 
@@ -99,13 +99,9 @@ namespace X3TC_Tool.UI.Displays
                     break;
                 case SectorObject.Main_Type.Laser:
                     var laserTypeData = (TypeData_Laser)m_TypeData;
-                    txtAddress.Text = laserTypeData.pThis.ToString("X");
-                    txtLaserTypeString.Text = laserTypeData.pTypeName.obj.value;
                     break;
                 case SectorObject.Main_Type.Shield:
                     var shieldTypeData = (TypeData_Shield)m_TypeData;
-                    txtAddress.Text = shieldTypeData.pThis.ToString("X");
-                    txtShieldTypeString.Text = shieldTypeData.pTypeName.obj.value;
                     break;
             }
         }
