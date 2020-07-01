@@ -19,7 +19,10 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
         private MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>> ppTypeData_Bullet;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>> ppTypeData_Shield;
         private MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
         private MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
         public MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
@@ -47,9 +50,16 @@ namespace X3TCTools
         public InputBase inputBase { get { return ppInputBase.obj.obj; } }
         public CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
 
-        public TypeData_Ship GetShipTypeData(int SubType)
+        public object GetTypeData(int MainType, int SubType)
         {
-            return ppTypeData_Ship.obj.GetObjectInArray(SubType);
+            switch ((SectorObject.Main_Type)MainType) 
+            {
+                case SectorObject.Main_Type.Bullet: return ppTypeData_Bullet.obj.GetObjectInArray(SubType);
+                case SectorObject.Main_Type.Ship: return ppTypeData_Ship.obj.GetObjectInArray(SubType);
+                case SectorObject.Main_Type.Laser: return ppTypeData_Laser.obj.GetObjectInArray(SubType);
+                case SectorObject.Main_Type.Shield: return ppTypeData_Shield.obj.GetObjectInArray(SubType);
+                default: throw new NotImplementedException();
+            }
         }
 
         #endregion
@@ -74,7 +84,10 @@ namespace X3TCTools
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
+                    ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
                     ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
+                    ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Laser);
+                    ppTypeData_Shield = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Shield);
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
                     ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
                     pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitchArray);
@@ -145,8 +158,10 @@ namespace X3TCTools
             pSectorObjectManager =      0x00604640,
             pCockpitBase =              0x00604638,
             pStoryBase =                0x00604718,
-            pTypeData =                 0x006030e8,
+            pTypeData_Bullet =          0x006030e8,
             pTypeData_Ship =            0x00603104,
+            pTypeData_Laser =           0x00603108,
+            pTypeData_Shield =          0x0060310c,
             pInputBase =                0x0057FDA0,
             pCameraBase =               0x0060464c,
             ProcessEventSwitchArray =   0x004a4d18,

@@ -40,7 +40,7 @@ namespace Common.Vector
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            throw new NotImplementedException();
+
         }
 
         public Vector3(int X, int Y, int Z)

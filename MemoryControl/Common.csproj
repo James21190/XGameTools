@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Logger.cs" />
     <Compile Include="Memory\ApplicationHook.cs" />
+    <Compile Include="Memory\BitField.cs" />
     <Compile Include="Memory\EventManager.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Memory\IMemoryObject.cs" />

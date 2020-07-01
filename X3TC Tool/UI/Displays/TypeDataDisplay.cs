@@ -23,9 +23,10 @@ namespace X3TC_Tool.UI.Displays
             InitializeComponent();
             m_GameHook = gameHook;
 
-            tabControl1.SelectedIndex = -1;
+            tabControl1.SelectedIndex = 0;
             comboBox2.SelectedIndex = -1;
 
+            ReloadSubTypes();
         }
 
         public void LoadTypeData(int MainType, int SubType)
@@ -38,7 +39,7 @@ namespace X3TC_Tool.UI.Displays
             if (comboBox2.SelectedIndex != SubType) comboBox2.SelectedIndex = SubType;
 
             m_TypeDataMainType = MainType;
-            m_TypeData = m_GameHook.GetShipTypeData(SubType);
+            m_TypeData = m_GameHook.GetTypeData(MainType ,SubType);
             Reload();
         }
 
@@ -62,17 +63,64 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            switch (m_TypeDataMainType)
+            switch ((SectorObject.Main_Type)m_TypeDataMainType)
             {
-                case 7:
+                case SectorObject.Main_Type.Bullet:
+                    var bulletTypeData = (TypeData_Bullet)m_TypeData;
+                    txtAddress.Text = bulletTypeData.pThis.ToString("X");
+                    txtBulletTypeString.Text = bulletTypeData.pTypeName.obj.value;
+                    break;
+                case SectorObject.Main_Type.Ship:
                     var shipTypeData = (TypeData_Ship)m_TypeData;
-                    AddressBox.Text = shipTypeData.pThis.ToString("X");
-                    ShipMaxHullBox.Text = shipTypeData.MaxHull.ToString();
-                    ShipOriginRaceBox.Text = shipTypeData.OriginRace.ToString();
-                    ShipClassBox.Text = shipTypeData.ObjectClass.ToString();
+                    txtAddress.Text = shipTypeData.pThis.ToString("X");
+
+                    v3dRotationSpeed.Vector = shipTypeData.RotationSpeed;
+
+                    txtShipClass.Text = shipTypeData.ObjectClass.ToString();
+                    txtShipOriginRace.Text = shipTypeData.OriginRace.ToString();
+                    txtShipTypeString.Text = shipTypeData.pTypeString.obj.value;
+                    txtNameID.Text = shipTypeData.NameID.ToString();
+
+                    txtMaxSpeed.Text = shipTypeData.MaxSpeed.ToString();
+
+                    txtModelID.Text = shipTypeData.ModelID.ToString();
+                    txtHangarSize.Text = shipTypeData.HangarSize.ToString();
+
+                    txtMinimumCargoSpace.Text = shipTypeData.MinimumCargoSpace.ToString();
+                    txtMaximumCargoSpace.Text = shipTypeData.MaximumCargoSpace.ToString();
+
+                    txtShielding.Text = string.Format("{0} x {1}", shipTypeData.MaxShieldCount, shipTypeData.MaxShieldClass.ToString());
+                    txtShieldPowerGenerator.Text = shipTypeData.ShieldPowerGenerator.ToString();
+                    txtShipMaxHull.Text = shipTypeData.MaxHull.ToString();
+
+                    txtEventObjectID.Text = shipTypeData.EventObjectID.ToString();
+                    txtMaxWeaponClass.Text = shipTypeData.MaxWeaponClass.ToString();
+                    LoadTurret(0);
+                    break;
+                case SectorObject.Main_Type.Laser:
+                    var laserTypeData = (TypeData_Laser)m_TypeData;
+                    txtAddress.Text = laserTypeData.pThis.ToString("X");
+                    txtLaserTypeString.Text = laserTypeData.pTypeName.obj.value;
+                    break;
+                case SectorObject.Main_Type.Shield:
+                    var shieldTypeData = (TypeData_Shield)m_TypeData;
+                    txtAddress.Text = shieldTypeData.pThis.ToString("X");
+                    txtShieldTypeString.Text = shieldTypeData.pTypeName.obj.value;
                     break;
             }
-        } 
+        }
+        
+        public void LoadTurret(int turretIndex)
+        {
+            if (numericUpDown1.Value != turretIndex) numericUpDown1.Value = turretIndex;
+            var turretData = ((TypeData_Ship)m_TypeData).TurretDatas[turretIndex];
+
+            for (int i = 0; i < 32; i++)
+            {
+                cklTurretWeapons.SetItemChecked(i, turretData.WeaponCompatability.GetBit(i));
+            }
+        }
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox2.SelectedIndex < 0) return;
@@ -82,6 +130,11 @@ namespace X3TC_Tool.UI.Displays
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReloadSubTypes();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            LoadTurret((int)numericUpDown1.Value);
         }
     }
 }

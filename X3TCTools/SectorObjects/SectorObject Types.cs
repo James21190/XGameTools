@@ -12,7 +12,7 @@ namespace X3TCTools.SectorObjects
         public const int MAIN_TYPE_COUNT = 32;
         public enum Main_Type : ushort
         {
-            Projectile,
+            Bullet,
             Sector,
             Type_2,
             Sun,
@@ -20,7 +20,7 @@ namespace X3TCTools.SectorObjects
             Dock,
             Factory,
             Ship,
-            Weapon,
+            Laser,
             Shield,
             Missile,
             Ware_Energy,
@@ -359,12 +359,12 @@ namespace X3TCTools.SectorObjects
             Teladi_Crystal_Fab_1 = 438
         }
         // Type 7
-        public const int SHIP_SUB_TYPE_COUNT = 373;
+        public const int SHIP_SUB_TYPE_COUNT = 374;
         public enum Ship_Sub_Type
         {
             Argon_Mammoth,
-            Argon_Mercury_1,
-            Argon_Mercury_2,
+            Argon_Mercury,
+            Argon_Mercury_Tanker,
             Argon_Mercury_3,
             Argon_Mercury_4,
             Argon_Mercury_5,
@@ -394,8 +394,13 @@ namespace X3TCTools.SectorObjects
             Argon_Minotaur,
             Argon_Gladiator,
             Fighter_Drone_MKII,
-
-            Small_Orbital_Weapons_Platform = 38,
+            Undefined_Hauler_1,
+            Undefined_Hauler_2,
+            Undefined_Hauler_3,
+            Undefined_Hauler_4,
+            Undefined_Hauler_5,
+            Undefined_Hauler_6,
+            Small_Orbital_Weapons_Platform,
             Medium_Orbital_Weapons_Platform,
             Large_Orbital_Weapons_Platform,
             Split_Elephant,
@@ -428,8 +433,8 @@ namespace X3TCTools.SectorObjects
             Split_Dragon,
             Split_Heavy_Dragon,
             Split_Tiger,
-
-            Split_Viper = 72,
+            Split_Cobra,
+            Split_Viper,
             Paranid_Hercules,
             Paranid_Demeter_1,
             Paranid_Demeter_Tanker,
@@ -459,8 +464,8 @@ namespace X3TCTools.SectorObjects
             Paranid_Nemesis,
             Paranid_Heavy_Nemesis,
             Paranid_Diamos,
-
-            Paranid_Hades = 103,
+            Paranid_Ares,
+            Paranid_Hades,
             Boron_Orca,
             Boron_Dolphin_1,
             Boron_Dolphin_2,
@@ -492,8 +497,8 @@ namespace X3TCTools.SectorObjects
             Boron_Heavy_Hydra,
             Boron_Thresher,
             Boron_Kracken,
-
-            Teladi_Albatross = 136,
+            Boron_Marlin_Hauler,
+            Teladi_Albatross,
             Teladi_Vulture_1,
             Teladi_Vulture_2,
             Teladi_Vulture_3,
@@ -523,8 +528,8 @@ namespace X3TCTools.SectorObjects
             Teladi_Osprey,
             Teladi_Heavy_Osprey,
             Teladi_Shrike,
-
-            Teladi_Peregrine = 167,
+            Teladi_Gannet,
+            Teladi_Peregrine,
             Xenon_J,
             Xenon_K,
             Xenon_L,
@@ -534,40 +539,42 @@ namespace X3TCTools.SectorObjects
             Xenon_P,
             Xenon_PX,
             Xenon_Q,
-
-            Pirate_Falcon = 179,
+            Pirate_Caravel,
+            Pirate_Ship,
+            Pirate_Falcon,
             Pirate_Nova_Raider,
             Pirate_Nova_2,
-            UNKNOWN_Falcon,
-
-            Pirate_Kea = 184,
+            Pirate_Falcon_Vanguard,
+            Pirate_Eclipse,
+            Pirate_Kea,
             Pirate_Blastclaw,
-
-            Pirate_Buster = 186,
+            Pirate_Buster,
             Pirate_Buzzard,
-
-            UNKNOWN_Buzzard = 189,
-
-            Pirate_Elite = 191,
+            Pirate_Buster_Hauler,
+            Pirate_Buzzard_Vanguard,
+            Pirate_Scorpion,
+            Pirate_Elite,
             Pirate_Harrier,
-
-            UNKNOWN_Harrier = 194,
-
-            Pirate_Centaur = 197,
-
-            Pirate_Carrack = 199,
+            Pirate_Harrier_Raider,
+            Pirate_Harrier_Hauler,
+            Pirate_Harrier_Vanguard,
+            Pirate_Kestrel,
+            Pirate_Centaur,
+            Pirate_Osprey,
+            Pirate_Carrack,
             ATF_Odin,
             ATF_Tyr,
             ATF_Thor,
             ATF_Fenrir,
             ATF_Mjollnir,
             ATF_Valkyrie,
-
-            ATF_Vali = 207,
+            ATF_Vidar,
+            ATF_Vali,
             ATF_Aegir,
             ATF_Skirnir,
-
-            Terran_Baldric = 212,
+            ATF_Woden,
+            ATF_Valhalla,
+            Terran_Baldric,
             Terran_Scabbard,
             Terran_Tokyo,
             Terran_Osaka,
@@ -575,16 +582,15 @@ namespace X3TCTools.SectorObjects
             Terran_Cutlass,
             Terran_Sabre,
             Terran_Rapier,
-
-            Terran_Katana = 221,
+            Terran_Keris,
+            Terran_Katana,
             Terran_Yokohama,
             Terran_Clamore,
             Terran_Spitfyre,
             Terran_Springblossom,
-
-            Terran_CPU_Deca = 226,
-
-            Yaki_Chokaro = 228,
+            Terran_Deca,
+            Terran_Deca_Cefa,
+            Yaki_Chokaro,
             Yaki_Susanowa,
             Yaki_Susanowa_Raider,
             Yaki_Susanowa_3,
@@ -604,14 +610,21 @@ namespace X3TCTools.SectorObjects
             Khaak_Scout,
             Khaak_Corvette,
             Khaak_Guardian,
-
-            Gonor_Aran = 250,
+            Khaak_Hive_Queen,
+            Gonor_Ozias,
+            Gonor_Aran,
             Gonor_Ranger,
-
-            OTAS_Boreas = 252,
-
-            OTAS_Solano = 256,
+            OTAS_Boreas,
+            OTAS_Venti,
+            OTAS_Notus_Hauler,
+            OTAS_Eurus,
+            OTAS_Solano,
             OTAS_Zephyrus,
+            OTAS_Skiron,
+            OTAS_Astraeus_Hauler,
+            OTAS_Aquilo,
+            OTAS_Auster_Hauler,
+            OTAS_Sirokos,
 
             Khaak_Cluster = 266,
 
@@ -639,28 +652,50 @@ namespace X3TCTools.SectorObjects
 
             OTAS_Mistral_1 = 309,
             OTAS_Mistral_2,
-
-            Matter_Anti_Matter_Mine = 319,
+            Troop_Training_Ship_Hauler,
+            Civilian_Vessel_Hauler_1,
+            Civilian_Vessel_Hauler_2,
+            Civilian_Vessel_Hauler_3,
+            Starliner_Hauler,
+            Mobile_Repair_Ship,
+            Unknown_Biological_Entity_1,
+            Unknown_Biological_Entity_2,
+            Matter_Anti_Matter_Mine,
 
             Terran_Atmospheric_Lifter = 326,
             Terran_Mobile_Mining_Base_Ship,
             Paranid_Hyperion,
-
-            Argon_Heavy_Centaur_Prototype = 334,
+            Argon_Eclipse_Prototype,
+            Argon_Nova_Prototype,
+            Argon_Express_Advanced,
+            Argon_Mercury_Enhanced,
+            Argon_Mercury_Prototype,
+            Argon_Heavy_Centaur_Prototype,
             Argon_Discoverer_Advanced,
 
             Teladi_Kea_Enhanced = 350,
+            Teladi_Vulture_Prototype,
 
             Teladi_Kite_2 = 354,
 
             Jump_Beacon = 359,
-
-            Terran_Tourus_Lasertower = 368,
-
-            Xperimental_Shuttle = 372
+            Message_Drone,
+            Terran_Deca_Deaf,
+            Terran_Deca_Fade,
+            Terran_Freight_Drone_1,
+            Terran_Freight_Drone_2,
+            Terran_Freight_Drone_3,
+            Small_Orbital_Weapons_Platform_2,
+            Terran_Freight_Drone_4,
+            Terran_Tourus_Lasertower,
+            Terran_Lasertower,
+            Terran_Baldric_Miner,
+            Yaki_Chokaro_Advanced,
+            Xperimental_Shuttle,
+            Aamon_Prototype
         }
         // Type 8
-        public const int WEAPON_SUB_TYPE_COUNT = 35;
+        public const int WEAPON_SUB_TYPE_COUNT = 39;
         public enum Weapon_Sub_Type
         {
             Impulse_Ray_Emitter,
@@ -685,16 +720,23 @@ namespace X3TCTools.SectorObjects
             Starburst_Shockwave_Cannon,
             Photon_Pulse_Cannon,
             Ion_Cannon,
-
-            Incendiary_Bomb_Launcher = 23,
+            Gauss_Cannon,
+            Incendiary_Bomb_Launcher,
             Point_Singularity_Projector,
             Plasma_Beam_Cannon,
-
-            SPARE_LASER_1 = 30,
-
-            Alpha_Kyon_Emitter = 32,
+            TriBeam_Cannon,
+            Fusion_Beam_Cannon,
+            Mobile_Mining_Drill,
+            Tractor_Beam,
+            SPARE_LASER_1,
+            SPARE_LASER_2,
+            Alpha_Kyon_Emitter,
             Beta_Kyon_Emitter,
             Gamma_Kyon_Emitter,
+            Repair_Laser,
+            Experimental_Electro_Magnetic_Plasma_Cannon,
+            Prototype_Matter_Anti_Matter_Launcher,
+            Prototype_Starburst_Shockwave_Cannon,
         }
         // Type 9
         public const int SHIELD_SUB_TYPE_COUNT = 6;
@@ -828,8 +870,8 @@ namespace X3TCTools.SectorObjects
         {
             switch (main_Type)
             {
-                case Main_Type.Projectile: // 0
-                case Main_Type.Weapon: // 8
+                case Main_Type.Bullet: // 0
+                case Main_Type.Laser: // 8
                     return ((Weapon_Sub_Type)SubType).ToString();
                 case Main_Type.Sun: // 3
                     return ((Sun_Sub_Type)SubType).ToString();
@@ -864,8 +906,8 @@ namespace X3TCTools.SectorObjects
         {
             switch(main_Type)
             {
-                case Main_Type.Projectile: // 0
-                case Main_Type.Weapon: // 8
+                case Main_Type.Bullet: // 0
+                case Main_Type.Laser: // 8
                     return WEAPON_SUB_TYPE_COUNT;
                 case Main_Type.Sun: // 3
                     return SUN_SUB_TYPE_COUNT;
