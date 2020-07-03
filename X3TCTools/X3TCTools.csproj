@@ -73,21 +73,24 @@
     <Compile Include="HashTable.cs" />
     <Compile Include="LinkedListStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SectorObjects\Meta\SectorObject_Sector_Meta.cs" />
     <Compile Include="SectorObjects\Meta\ISectorObjectMeta.cs" />
+    <Compile Include="SectorObjects\Meta\SectorObject_Sector_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObjectMetaWithChildren.cs" />
     <Compile Include="SectorObjects\Meta\SectorObject_Ship_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObject_Station_Meta.cs" />
-    <Compile Include="SectorObjects\SectorObject Offsets.cs" />
     <Compile Include="SectorObjects\SectorObject Types.cs" />
     <Compile Include="SectorObjects\SectorObjectData.cs" />
     <Compile Include="SectorObjects\SectorObjectManager.cs" />
     <Compile Include="SectorObjects\SectorObject.cs" />
-    <Compile Include="SectorObjects\TypeData.cs" />
-    <Compile Include="SectorObjects\TypeData_Shield.cs" />
-    <Compile Include="SectorObjects\TypeData_Laser.cs" />
-    <Compile Include="SectorObjects\TypeData_Bullet.cs" />
-    <Compile Include="SectorObjects\TypeData_Ship.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Factory.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Dock.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Sun.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Shield.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Laser.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Bullet.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Ship.cs" />
+    <Compile Include="TextPage.cs" />
     <Compile Include="X3FixedPointValue.cs" />
   </ItemGroup>
   <ItemGroup>

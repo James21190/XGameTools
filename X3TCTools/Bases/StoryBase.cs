@@ -13,6 +13,7 @@ namespace X3TCTools.Bases
     {
 
         public const int ByteSize = 5648;
+        private GameHook m_GameHook;
 
         public MemoryObjectPointer<HashTable<ScriptObject>> pScriptObjectHashTable;
         
@@ -20,7 +21,9 @@ namespace X3TCTools.Bases
 
         public int FunctionArrayCount;
         public EventFunctionStruct[] FunctionArray = new EventFunctionStruct[32];
-        
+
+        public MemoryObjectPointer<HashTable<TextPage>>[] TextHashTableArray;
+
         public MemoryObjectPointer<HashTable<EventObject>> pEventObjectHashTable;
 
         public MemoryObjectPointer<ScriptObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptObject>();
@@ -29,7 +32,6 @@ namespace X3TCTools.Bases
 
         public MemoryObjectPointer<HashTable<ScriptingHashTableObject>> pScriptingHashTableObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingHashTableObject>>();
 
-        private GameHook m_GameHook;
 
         public void SetHook(GameHook gameHook) { m_GameHook = gameHook; }
 
@@ -45,7 +47,11 @@ namespace X3TCTools.Bases
             pEventObjectHashTable = new MemoryObjectPointer<HashTable<EventObject>>();
         }
 
-        
+        public TextPage GetTextPage(int language, int pageID)
+        {
+            var table = TextHashTableArray[language].obj;
+            return table.GetObject(pageID);
+        }
 
         #region IMemoryObject
         public override byte[] GetBytes()
@@ -63,8 +69,12 @@ namespace X3TCTools.Bases
             var collection = new ObjectByteList(Memory, m_hProcess, pThis);
             pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
+            
             FunctionArrayCount = collection.PopInt(0x2c);
             FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);
+
+            TextHashTableArray = collection.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
+
             pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);
             pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptObject>>(0x1434);
             pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>(0x15fc);

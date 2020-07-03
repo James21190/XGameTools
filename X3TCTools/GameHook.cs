@@ -20,6 +20,9 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>> ppTypeData_Bullet;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>> ppTypeData_Sun;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>> ppTypeData_Dock;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>> ppTypeData_Factory;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>> ppTypeData_Shield;
@@ -55,6 +58,9 @@ namespace X3TCTools
             switch ((SectorObject.Main_Type)MainType) 
             {
                 case SectorObject.Main_Type.Bullet: return ppTypeData_Bullet.obj.GetObjectInArray(SubType);
+                case SectorObject.Main_Type.Sun: return ppTypeData_Sun.obj.GetObjectInArray(SubType);
+                case SectorObject.Main_Type.Dock: return ppTypeData_Dock.obj.GetObjectInArray(SubType);
+                case SectorObject.Main_Type.Factory: return ppTypeData_Factory.obj.GetObjectInArray(SubType);
                 case SectorObject.Main_Type.Ship: return ppTypeData_Ship.obj.GetObjectInArray(SubType);
                 case SectorObject.Main_Type.Laser: return ppTypeData_Laser.obj.GetObjectInArray(SubType);
                 case SectorObject.Main_Type.Shield: return ppTypeData_Shield.obj.GetObjectInArray(SubType);
@@ -85,6 +91,9 @@ namespace X3TCTools
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
+                    ppTypeData_Sun = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Sun);
+                    ppTypeData_Dock = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Dock);
+                    ppTypeData_Factory = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Factory);
                     ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
                     ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Laser);
                     ppTypeData_Shield = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Shield);
@@ -159,6 +168,11 @@ namespace X3TCTools
             pCockpitBase =              0x00604638,
             pStoryBase =                0x00604718,
             pTypeData_Bullet =          0x006030e8,
+            pTypeData_1 =               0x006030ec,
+            pTypeData_2 =               0x006030f0,
+            pTypeData_Sun =             0x006030f4,
+            pTypeData_Dock =            0x006030FC,
+            pTypeData_Factory =         0x00603100,
             pTypeData_Ship =            0x00603104,
             pTypeData_Laser =           0x00603108,
             pTypeData_Shield =          0x0060310c,

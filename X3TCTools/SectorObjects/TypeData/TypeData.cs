@@ -10,7 +10,6 @@ namespace X3TCTools.SectorObjects
 {
     public abstract class TypeData : MemoryObject
     {
-
         public Vector3 RotationSpeed;
         public int ObjectClass;
         public int NameID;

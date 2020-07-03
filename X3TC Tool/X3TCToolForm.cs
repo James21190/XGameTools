@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using X3TCTools;
 
 using X3TC_Tool.UI.Displays;
+using X3TC_Tool.UI;
 
 namespace X3TC_Tool
 {
@@ -222,6 +223,12 @@ namespace X3TC_Tool
         private void kCodeViewerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var display = new KCodeViewer(m_GameHook);
+            display.Show();
+        }
+
+        private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var display = new TextPageDisplay(m_GameHook);
             display.Show();
         }
     }

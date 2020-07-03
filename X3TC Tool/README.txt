@@ -22,7 +22,7 @@ X3TC Tool, and its components:
  You are permitted to distribute this software
  and use its components in your own projects as long as:
   - this readme is included in the distribution and its contents is unedited, however it can be extended.
-  - all files included with this software is not malicious.
+  - any additional files included with this software are not malicious.
  
 
 X3 Terran Conflict:

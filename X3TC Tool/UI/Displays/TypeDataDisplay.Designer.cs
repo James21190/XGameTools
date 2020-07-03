@@ -55,7 +55,6 @@
             this.cklTurretWeapons = new System.Windows.Forms.CheckedListBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.txtEventObjectID = new System.Windows.Forms.TextBox();
-            this.v3dRotationSpeed = new Common.UI.Vector3Display();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.txtMaximumCargoSpace = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
@@ -70,12 +69,19 @@
             this.txtShielding = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.txtMaxSpeed = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtNameID = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.v3dRotationSpeed = new Common.UI.Vector3Display();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNameID = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtTypeString = new System.Windows.Forms.TextBox();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.txtMaxPrice = new System.Windows.Forms.TextBox();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.txtMinPrice = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -97,6 +103,9 @@
             this.groupBox8.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox18.SuspendLayout();
+            this.groupBox19.SuspendLayout();
+            this.groupBox20.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -186,7 +195,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.txtShipOriginRace);
-            this.groupBox6.Location = new System.Drawing.Point(130, 3);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(121, 52);
             this.groupBox6.TabIndex = 8;
@@ -219,10 +228,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Controls.Add(this.tabPage10);
-            this.tabControl1.Location = new System.Drawing.Point(12, 128);
+            this.tabControl1.Location = new System.Drawing.Point(139, 128);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 310);
+            this.tabControl1.Size = new System.Drawing.Size(649, 310);
             this.tabControl1.TabIndex = 9;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -230,7 +239,7 @@
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(768, 284);
+            this.tabPage2.Size = new System.Drawing.Size(641, 284);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bullet";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -239,7 +248,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(768, 284);
+            this.tabPage3.Size = new System.Drawing.Size(641, 284);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "1";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -248,7 +257,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(768, 284);
+            this.tabPage4.Size = new System.Drawing.Size(641, 284);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "2";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -257,36 +266,36 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(768, 284);
+            this.tabPage5.Size = new System.Drawing.Size(641, 284);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "3";
+            this.tabPage5.Text = "Sun";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabPage6
             // 
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(768, 284);
+            this.tabPage6.Size = new System.Drawing.Size(641, 284);
             this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "4";
+            this.tabPage6.Text = "Planet";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // tabPage7
             // 
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(768, 284);
+            this.tabPage7.Size = new System.Drawing.Size(641, 284);
             this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "5";
+            this.tabPage7.Text = "Dock";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // tabPage8
             // 
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(768, 284);
+            this.tabPage8.Size = new System.Drawing.Size(641, 284);
             this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "6";
+            this.tabPage8.Text = "Factory";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // tabPage1
@@ -295,7 +304,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 284);
+            this.tabPage1.Size = new System.Drawing.Size(641, 284);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Ship";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -320,7 +329,7 @@
             this.shipPanel.Controls.Add(this.groupBox5);
             this.shipPanel.Location = new System.Drawing.Point(6, 6);
             this.shipPanel.Name = "shipPanel";
-            this.shipPanel.Size = new System.Drawing.Size(756, 272);
+            this.shipPanel.Size = new System.Drawing.Size(629, 272);
             this.shipPanel.TabIndex = 9;
             // 
             // groupBox17
@@ -415,7 +424,7 @@
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.txtEventObjectID);
-            this.groupBox15.Location = new System.Drawing.Point(585, 3);
+            this.groupBox15.Location = new System.Drawing.Point(130, 3);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(121, 52);
             this.groupBox15.TabIndex = 12;
@@ -432,48 +441,6 @@
             this.txtEventObjectID.ReadOnly = true;
             this.txtEventObjectID.Size = new System.Drawing.Size(109, 20);
             this.txtEventObjectID.TabIndex = 0;
-            // 
-            // v3dRotationSpeed
-            // 
-            this.v3dRotationSpeed.DecimalPlaces = 0;
-            this.v3dRotationSpeed.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Location = new System.Drawing.Point(467, 19);
-            this.v3dRotationSpeed.Maximum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.MaximumSize = new System.Drawing.Size(156, 103);
-            this.v3dRotationSpeed.Minimum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            -2147483648});
-            this.v3dRotationSpeed.MinimumSize = new System.Drawing.Size(100, 103);
-            this.v3dRotationSpeed.Name = "v3dRotationSpeed";
-            this.v3dRotationSpeed.ReadOnly = true;
-            this.v3dRotationSpeed.Size = new System.Drawing.Size(121, 103);
-            this.v3dRotationSpeed.TabIndex = 12;
-            this.v3dRotationSpeed.Text = "Rotation Speed";
-            this.v3dRotationSpeed.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // groupBox14
             // 
@@ -622,6 +589,66 @@
             this.txtMaxSpeed.Size = new System.Drawing.Size(109, 20);
             this.txtMaxSpeed.TabIndex = 0;
             // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(641, 284);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "Laser";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(641, 284);
+            this.tabPage10.TabIndex = 9;
+            this.tabPage10.Text = "Shield";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // v3dRotationSpeed
+            // 
+            this.v3dRotationSpeed.DecimalPlaces = 0;
+            this.v3dRotationSpeed.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Location = new System.Drawing.Point(463, 19);
+            this.v3dRotationSpeed.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dRotationSpeed.Minimum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            -2147483648});
+            this.v3dRotationSpeed.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dRotationSpeed.Name = "v3dRotationSpeed";
+            this.v3dRotationSpeed.ReadOnly = true;
+            this.v3dRotationSpeed.Size = new System.Drawing.Size(121, 103);
+            this.v3dRotationSpeed.TabIndex = 12;
+            this.v3dRotationSpeed.Text = "Rotation Speed";
+            this.v3dRotationSpeed.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtNameID);
@@ -642,24 +669,6 @@
             this.txtNameID.ReadOnly = true;
             this.txtNameID.Size = new System.Drawing.Size(109, 20);
             this.txtNameID.TabIndex = 0;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(768, 284);
-            this.tabPage9.TabIndex = 8;
-            this.tabPage9.Text = "Laser";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(768, 284);
-            this.tabPage10.TabIndex = 9;
-            this.tabPage10.Text = "Shield";
-            this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -682,11 +691,77 @@
             this.txtTypeString.Size = new System.Drawing.Size(183, 20);
             this.txtTypeString.TabIndex = 0;
             // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.txtMaxPrice);
+            this.groupBox18.Location = new System.Drawing.Point(12, 128);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(121, 52);
+            this.groupBox18.TabIndex = 8;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Max Price";
+            // 
+            // txtMaxPrice
+            // 
+            this.txtMaxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaxPrice.Location = new System.Drawing.Point(6, 19);
+            this.txtMaxPrice.Name = "txtMaxPrice";
+            this.txtMaxPrice.ReadOnly = true;
+            this.txtMaxPrice.Size = new System.Drawing.Size(109, 20);
+            this.txtMaxPrice.TabIndex = 0;
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.txtPrice);
+            this.groupBox19.Location = new System.Drawing.Point(12, 186);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(121, 52);
+            this.groupBox19.TabIndex = 9;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "Average Price";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPrice.Location = new System.Drawing.Point(6, 19);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
+            this.txtPrice.Size = new System.Drawing.Size(109, 20);
+            this.txtPrice.TabIndex = 0;
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.txtMinPrice);
+            this.groupBox20.Location = new System.Drawing.Point(12, 244);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(121, 52);
+            this.groupBox20.TabIndex = 9;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Minimum Price";
+            // 
+            // txtMinPrice
+            // 
+            this.txtMinPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMinPrice.Location = new System.Drawing.Point(6, 19);
+            this.txtMinPrice.Name = "txtMinPrice";
+            this.txtMinPrice.ReadOnly = true;
+            this.txtMinPrice.Size = new System.Drawing.Size(109, 20);
+            this.txtMinPrice.TabIndex = 0;
+            // 
             // TypeDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox20);
+            this.Controls.Add(this.groupBox19);
+            this.Controls.Add(this.groupBox18);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -732,6 +807,12 @@
             this.groupBox1.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox18.ResumeLayout(false);
+            this.groupBox18.PerformLayout();
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -786,5 +867,11 @@
         private System.Windows.Forms.TextBox txtMaxWeaponClass;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.GroupBox groupBox18;
+        private System.Windows.Forms.TextBox txtMaxPrice;
+        private System.Windows.Forms.GroupBox groupBox19;
+        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.TextBox txtMinPrice;
     }
 }

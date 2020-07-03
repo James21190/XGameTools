@@ -49,21 +49,15 @@ namespace X3TCTools.SectorObjects.Meta
         {
             var collection = new ObjectByteList();
 
-            foreach(var item in Children)
-            {
-                collection.Append(item);
-            }
-
+            collection.Append(Children);
+            
             return collection.GetBytes();
         }
         public override void SetData(byte[] Memory)
         {
             var collection = new ObjectByteList(Memory);
 
-            for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
-            {
-                collection.PopFirst(ref Children[i]);
-            }
+            Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(SectorObject.MAIN_TYPE_COUNT);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

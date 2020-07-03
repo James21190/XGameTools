@@ -46,6 +46,7 @@
             this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dynamicValueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.kCodeViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -56,7 +57,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.kCodeViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -143,7 +144,8 @@
             this.typeDataToolStripMenuItem,
             this.hashTableToolStripMenuItem,
             this.cameraToolStripMenuItem,
-            this.scriptingObjectsToolStripMenuItem});
+            this.scriptingObjectsToolStripMenuItem,
+            this.textPageToolStripMenuItem});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.windowToolStripMenuItem.Text = "Viewers";
@@ -230,6 +232,13 @@
             this.dynamicValueToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
             this.dynamicValueToolStripMenuItem1.Text = "DynamicValue";
             this.dynamicValueToolStripMenuItem1.Click += new System.EventHandler(this.dynamicValueToolStripMenuItem1_Click);
+            // 
+            // kCodeViewerToolStripMenuItem
+            // 
+            this.kCodeViewerToolStripMenuItem.Name = "kCodeViewerToolStripMenuItem";
+            this.kCodeViewerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.kCodeViewerToolStripMenuItem.Text = "KCode Viewer";
+            this.kCodeViewerToolStripMenuItem.Click += new System.EventHandler(this.kCodeViewerToolStripMenuItem_Click);
             // 
             // LoadPlayerShipButton
             // 
@@ -333,12 +342,12 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Full Type";
             // 
-            // kCodeViewerToolStripMenuItem
+            // textPageToolStripMenuItem
             // 
-            this.kCodeViewerToolStripMenuItem.Name = "kCodeViewerToolStripMenuItem";
-            this.kCodeViewerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.kCodeViewerToolStripMenuItem.Text = "KCode Viewer";
-            this.kCodeViewerToolStripMenuItem.Click += new System.EventHandler(this.kCodeViewerToolStripMenuItem_Click);
+            this.textPageToolStripMenuItem.Name = "textPageToolStripMenuItem";
+            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.textPageToolStripMenuItem.Text = "TextPage";
+            this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -400,6 +409,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStripMenuItem kCodeViewerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textPageToolStripMenuItem;
     }
 }
 

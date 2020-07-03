@@ -69,7 +69,13 @@ namespace X3TC_Tool.UI.Displays
             txtTypeString.Text = m_TypeData.pTypeString.obj.value;
             txtNameID.Text = m_TypeData.NameID.ToString();
             v3dRotationSpeed.Vector = m_TypeData.RotationSpeed;
-            
+
+            var priceVariation = (int)(m_TypeData.Price / (float)m_TypeData.PriceRangePercentage/100);
+
+            txtMaxPrice.Text = (m_TypeData.Price + priceVariation).ToString();
+            txtPrice.Text = m_TypeData.Price.ToString();
+            txtMinPrice.Text = (m_TypeData.Price - priceVariation).ToString();
+
             switch ((SectorObject.Main_Type)m_TypeDataMainType)
             {
                 case SectorObject.Main_Type.Bullet:

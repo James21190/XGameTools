@@ -156,6 +156,12 @@
     <Compile Include="UI\Displays\TypeDataDisplay.Designer.cs">
       <DependentUpon>TypeDataDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\TextPageDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TextPageDisplay.Designer.cs">
+      <DependentUpon>TextPageDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\TypeSelectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\TypeDataDisplay.resx">
       <DependentUpon>TypeDataDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TextPageDisplay.resx">
+      <DependentUpon>TextPageDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TypeSelectDialog.resx">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
