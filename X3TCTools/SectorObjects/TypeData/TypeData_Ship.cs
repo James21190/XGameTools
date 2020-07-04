@@ -55,8 +55,8 @@ namespace X3TCTools.SectorObjects
 
             Ranger = 10,
             M6_Corvette,
-
-            M7_Frigate = 13,
+            TP_Personel_Transporter,
+            M7_Frigate,
             TM_Military_Transport,
             M8_Bomber,
         }
@@ -69,7 +69,7 @@ namespace X3TCTools.SectorObjects
 
         public int MaxLaserEnergy;
         public int LaserRechargeRate;
-        public SectorObject.Shield_Sub_Type MaxShieldClass;
+        public int MaxShieldClass;
         public int MaxShieldCount;
 
         public BitField MissileCompatability;
@@ -101,7 +101,7 @@ namespace X3TCTools.SectorObjects
 
             MaxLaserEnergy = collection.PopInt(0x78);
             LaserRechargeRate = collection.PopInt();
-            MaxShieldClass = (SectorObject.Shield_Sub_Type)collection.PopInt();
+            MaxShieldClass = collection.PopInt();
             MaxShieldCount = collection.PopInt();
 
             MissileCompatability = collection.PopIMemoryObject<BitField>(0x8c);
@@ -118,6 +118,11 @@ namespace X3TCTools.SectorObjects
 
             TurretCount = collection.PopInt(0x180);
             TurretDatas = collection.PopIMemoryObjects<TurretData>(10);
+        }
+
+        public override float GetPriceMultiplier()
+        {
+            return 63.924088f;
         }
     }
 }

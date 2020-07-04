@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.SectorObjects
 {
-    public abstract class TypeData : MemoryObject
+    public class TypeData : MemoryObject
     {
         public Vector3 RotationSpeed;
         public int ObjectClass;
@@ -47,7 +47,15 @@ namespace X3TCTools.SectorObjects
         }
         public virtual string GetObjectClassAsString() { return ObjectClass.ToString(); }
 
-        protected abstract void SetUniqueData(ObjectByteList obl);
+        protected virtual void SetUniqueData(ObjectByteList obl)
+        {
+
+        }
+
+        public virtual float GetPriceMultiplier()
+        {
+            return 1;
+        }
 
 
     }

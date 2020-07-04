@@ -43,6 +43,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.txtSunModelID = new System.Windows.Forms.TextBox();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.txtSunAppearenceID = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -71,7 +75,6 @@
             this.txtMaxSpeed = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.v3dRotationSpeed = new Common.UI.Vector3Display();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNameID = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -82,12 +85,38 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.txtMinPrice = new System.Windows.Forms.TextBox();
+            this.v3dRotationSpeed = new Common.UI.Vector3Display();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.tabPage16 = new System.Windows.Forms.TabPage();
+            this.tabPage17 = new System.Windows.Forms.TabPage();
+            this.tabPage18 = new System.Windows.Forms.TabPage();
+            this.tabPage19 = new System.Windows.Forms.TabPage();
+            this.tabPage20 = new System.Windows.Forms.TabPage();
+            this.tabPage21 = new System.Windows.Forms.TabPage();
+            this.tabPage22 = new System.Windows.Forms.TabPage();
+            this.tabPage23 = new System.Windows.Forms.TabPage();
+            this.tabPage24 = new System.Windows.Forms.TabPage();
+            this.tabPage25 = new System.Windows.Forms.TabPage();
+            this.tabPage26 = new System.Windows.Forms.TabPage();
+            this.tabPage27 = new System.Windows.Forms.TabPage();
+            this.tabPage28 = new System.Windows.Forms.TabPage();
+            this.tabPage29 = new System.Windows.Forms.TabPage();
+            this.tabPage30 = new System.Windows.Forms.TabPage();
+            this.tabPage31 = new System.Windows.Forms.TabPage();
+            this.tabPage32 = new System.Windows.Forms.TabPage();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox22.SuspendLayout();
+            this.groupBox21.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.shipPanel.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -228,6 +257,28 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Controls.Add(this.tabPage10);
+            this.tabControl1.Controls.Add(this.tabPage11);
+            this.tabControl1.Controls.Add(this.tabPage12);
+            this.tabControl1.Controls.Add(this.tabPage13);
+            this.tabControl1.Controls.Add(this.tabPage14);
+            this.tabControl1.Controls.Add(this.tabPage15);
+            this.tabControl1.Controls.Add(this.tabPage16);
+            this.tabControl1.Controls.Add(this.tabPage17);
+            this.tabControl1.Controls.Add(this.tabPage18);
+            this.tabControl1.Controls.Add(this.tabPage19);
+            this.tabControl1.Controls.Add(this.tabPage20);
+            this.tabControl1.Controls.Add(this.tabPage21);
+            this.tabControl1.Controls.Add(this.tabPage22);
+            this.tabControl1.Controls.Add(this.tabPage23);
+            this.tabControl1.Controls.Add(this.tabPage24);
+            this.tabControl1.Controls.Add(this.tabPage25);
+            this.tabControl1.Controls.Add(this.tabPage26);
+            this.tabControl1.Controls.Add(this.tabPage27);
+            this.tabControl1.Controls.Add(this.tabPage28);
+            this.tabControl1.Controls.Add(this.tabPage29);
+            this.tabControl1.Controls.Add(this.tabPage30);
+            this.tabControl1.Controls.Add(this.tabPage31);
+            this.tabControl1.Controls.Add(this.tabPage32);
             this.tabControl1.Location = new System.Drawing.Point(139, 128);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -264,12 +315,56 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.groupBox22);
+            this.tabPage5.Controls.Add(this.groupBox21);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(641, 284);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Sun";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.txtSunModelID);
+            this.groupBox22.Location = new System.Drawing.Point(3, 3);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Size = new System.Drawing.Size(121, 52);
+            this.groupBox22.TabIndex = 8;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "Model ID";
+            // 
+            // txtSunModelID
+            // 
+            this.txtSunModelID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSunModelID.Location = new System.Drawing.Point(6, 19);
+            this.txtSunModelID.Name = "txtSunModelID";
+            this.txtSunModelID.ReadOnly = true;
+            this.txtSunModelID.Size = new System.Drawing.Size(109, 20);
+            this.txtSunModelID.TabIndex = 0;
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.txtSunAppearenceID);
+            this.groupBox21.Location = new System.Drawing.Point(3, 61);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(121, 52);
+            this.groupBox21.TabIndex = 7;
+            this.groupBox21.TabStop = false;
+            this.groupBox21.Text = "Appearence ID";
+            // 
+            // txtSunAppearenceID
+            // 
+            this.txtSunAppearenceID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSunAppearenceID.Location = new System.Drawing.Point(6, 19);
+            this.txtSunAppearenceID.Name = "txtSunAppearenceID";
+            this.txtSunAppearenceID.ReadOnly = true;
+            this.txtSunAppearenceID.Size = new System.Drawing.Size(109, 20);
+            this.txtSunAppearenceID.TabIndex = 0;
             // 
             // tabPage6
             // 
@@ -607,48 +702,6 @@
             this.tabPage10.Text = "Shield";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // v3dRotationSpeed
-            // 
-            this.v3dRotationSpeed.DecimalPlaces = 0;
-            this.v3dRotationSpeed.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Location = new System.Drawing.Point(463, 19);
-            this.v3dRotationSpeed.Maximum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.MaximumSize = new System.Drawing.Size(156, 103);
-            this.v3dRotationSpeed.Minimum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            -2147483648});
-            this.v3dRotationSpeed.MinimumSize = new System.Drawing.Size(100, 103);
-            this.v3dRotationSpeed.Name = "v3dRotationSpeed";
-            this.v3dRotationSpeed.ReadOnly = true;
-            this.v3dRotationSpeed.Size = new System.Drawing.Size(121, 103);
-            this.v3dRotationSpeed.TabIndex = 12;
-            this.v3dRotationSpeed.Text = "Rotation Speed";
-            this.v3dRotationSpeed.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtNameID);
@@ -754,6 +807,246 @@
             this.txtMinPrice.Size = new System.Drawing.Size(109, 20);
             this.txtMinPrice.TabIndex = 0;
             // 
+            // v3dRotationSpeed
+            // 
+            this.v3dRotationSpeed.DecimalPlaces = 0;
+            this.v3dRotationSpeed.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Location = new System.Drawing.Point(463, 19);
+            this.v3dRotationSpeed.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.v3dRotationSpeed.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dRotationSpeed.Minimum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            -2147483648});
+            this.v3dRotationSpeed.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dRotationSpeed.Name = "v3dRotationSpeed";
+            this.v3dRotationSpeed.ReadOnly = true;
+            this.v3dRotationSpeed.Size = new System.Drawing.Size(121, 103);
+            this.v3dRotationSpeed.TabIndex = 12;
+            this.v3dRotationSpeed.Text = "Rotation Speed";
+            this.v3dRotationSpeed.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Size = new System.Drawing.Size(641, 284);
+            this.tabPage11.TabIndex = 10;
+            this.tabPage11.Text = "10";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(641, 284);
+            this.tabPage12.TabIndex = 11;
+            this.tabPage12.Text = "11";
+            this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(641, 284);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "12";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // tabPage14
+            // 
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(641, 284);
+            this.tabPage14.TabIndex = 13;
+            this.tabPage14.Text = "13";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // tabPage15
+            // 
+            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Size = new System.Drawing.Size(641, 284);
+            this.tabPage15.TabIndex = 14;
+            this.tabPage15.Text = "14";
+            this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // tabPage16
+            // 
+            this.tabPage16.Location = new System.Drawing.Point(4, 22);
+            this.tabPage16.Name = "tabPage16";
+            this.tabPage16.Size = new System.Drawing.Size(641, 284);
+            this.tabPage16.TabIndex = 15;
+            this.tabPage16.Text = "15";
+            this.tabPage16.UseVisualStyleBackColor = true;
+            // 
+            // tabPage17
+            // 
+            this.tabPage17.Location = new System.Drawing.Point(4, 22);
+            this.tabPage17.Name = "tabPage17";
+            this.tabPage17.Size = new System.Drawing.Size(641, 284);
+            this.tabPage17.TabIndex = 16;
+            this.tabPage17.Text = "16";
+            this.tabPage17.UseVisualStyleBackColor = true;
+            // 
+            // tabPage18
+            // 
+            this.tabPage18.Location = new System.Drawing.Point(4, 22);
+            this.tabPage18.Name = "tabPage18";
+            this.tabPage18.Size = new System.Drawing.Size(641, 284);
+            this.tabPage18.TabIndex = 17;
+            this.tabPage18.Text = "17";
+            this.tabPage18.UseVisualStyleBackColor = true;
+            // 
+            // tabPage19
+            // 
+            this.tabPage19.Location = new System.Drawing.Point(4, 22);
+            this.tabPage19.Name = "tabPage19";
+            this.tabPage19.Size = new System.Drawing.Size(641, 284);
+            this.tabPage19.TabIndex = 18;
+            this.tabPage19.Text = "18";
+            this.tabPage19.UseVisualStyleBackColor = true;
+            // 
+            // tabPage20
+            // 
+            this.tabPage20.Location = new System.Drawing.Point(4, 22);
+            this.tabPage20.Name = "tabPage20";
+            this.tabPage20.Size = new System.Drawing.Size(641, 284);
+            this.tabPage20.TabIndex = 19;
+            this.tabPage20.Text = "19";
+            this.tabPage20.UseVisualStyleBackColor = true;
+            // 
+            // tabPage21
+            // 
+            this.tabPage21.Location = new System.Drawing.Point(4, 22);
+            this.tabPage21.Name = "tabPage21";
+            this.tabPage21.Size = new System.Drawing.Size(641, 284);
+            this.tabPage21.TabIndex = 20;
+            this.tabPage21.Text = "20";
+            this.tabPage21.UseVisualStyleBackColor = true;
+            // 
+            // tabPage22
+            // 
+            this.tabPage22.Location = new System.Drawing.Point(4, 22);
+            this.tabPage22.Name = "tabPage22";
+            this.tabPage22.Size = new System.Drawing.Size(641, 284);
+            this.tabPage22.TabIndex = 21;
+            this.tabPage22.Text = "21";
+            this.tabPage22.UseVisualStyleBackColor = true;
+            // 
+            // tabPage23
+            // 
+            this.tabPage23.Location = new System.Drawing.Point(4, 22);
+            this.tabPage23.Name = "tabPage23";
+            this.tabPage23.Size = new System.Drawing.Size(641, 284);
+            this.tabPage23.TabIndex = 22;
+            this.tabPage23.Text = "22";
+            this.tabPage23.UseVisualStyleBackColor = true;
+            // 
+            // tabPage24
+            // 
+            this.tabPage24.Location = new System.Drawing.Point(4, 22);
+            this.tabPage24.Name = "tabPage24";
+            this.tabPage24.Size = new System.Drawing.Size(641, 284);
+            this.tabPage24.TabIndex = 23;
+            this.tabPage24.Text = "23";
+            this.tabPage24.UseVisualStyleBackColor = true;
+            // 
+            // tabPage25
+            // 
+            this.tabPage25.Location = new System.Drawing.Point(4, 22);
+            this.tabPage25.Name = "tabPage25";
+            this.tabPage25.Size = new System.Drawing.Size(641, 284);
+            this.tabPage25.TabIndex = 24;
+            this.tabPage25.Text = "24";
+            this.tabPage25.UseVisualStyleBackColor = true;
+            // 
+            // tabPage26
+            // 
+            this.tabPage26.Location = new System.Drawing.Point(4, 22);
+            this.tabPage26.Name = "tabPage26";
+            this.tabPage26.Size = new System.Drawing.Size(641, 284);
+            this.tabPage26.TabIndex = 25;
+            this.tabPage26.Text = "25";
+            this.tabPage26.UseVisualStyleBackColor = true;
+            // 
+            // tabPage27
+            // 
+            this.tabPage27.Location = new System.Drawing.Point(4, 22);
+            this.tabPage27.Name = "tabPage27";
+            this.tabPage27.Size = new System.Drawing.Size(641, 284);
+            this.tabPage27.TabIndex = 26;
+            this.tabPage27.Text = "26";
+            this.tabPage27.UseVisualStyleBackColor = true;
+            // 
+            // tabPage28
+            // 
+            this.tabPage28.Location = new System.Drawing.Point(4, 22);
+            this.tabPage28.Name = "tabPage28";
+            this.tabPage28.Size = new System.Drawing.Size(641, 284);
+            this.tabPage28.TabIndex = 27;
+            this.tabPage28.Text = "27";
+            this.tabPage28.UseVisualStyleBackColor = true;
+            // 
+            // tabPage29
+            // 
+            this.tabPage29.Location = new System.Drawing.Point(4, 22);
+            this.tabPage29.Name = "tabPage29";
+            this.tabPage29.Size = new System.Drawing.Size(641, 284);
+            this.tabPage29.TabIndex = 28;
+            this.tabPage29.Text = "28";
+            this.tabPage29.UseVisualStyleBackColor = true;
+            // 
+            // tabPage30
+            // 
+            this.tabPage30.Location = new System.Drawing.Point(4, 22);
+            this.tabPage30.Name = "tabPage30";
+            this.tabPage30.Size = new System.Drawing.Size(641, 284);
+            this.tabPage30.TabIndex = 29;
+            this.tabPage30.Text = "29";
+            this.tabPage30.UseVisualStyleBackColor = true;
+            // 
+            // tabPage31
+            // 
+            this.tabPage31.Location = new System.Drawing.Point(4, 22);
+            this.tabPage31.Name = "tabPage31";
+            this.tabPage31.Size = new System.Drawing.Size(641, 284);
+            this.tabPage31.TabIndex = 30;
+            this.tabPage31.Text = "30";
+            this.tabPage31.UseVisualStyleBackColor = true;
+            // 
+            // tabPage32
+            // 
+            this.tabPage32.Location = new System.Drawing.Point(4, 22);
+            this.tabPage32.Name = "tabPage32";
+            this.tabPage32.Size = new System.Drawing.Size(641, 284);
+            this.tabPage32.TabIndex = 31;
+            this.tabPage32.Text = "31";
+            this.tabPage32.UseVisualStyleBackColor = true;
+            // 
             // TypeDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -781,6 +1074,11 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.shipPanel.ResumeLayout(false);
             this.groupBox17.ResumeLayout(false);
@@ -873,5 +1171,31 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.TextBox txtMinPrice;
+        private System.Windows.Forms.GroupBox groupBox21;
+        private System.Windows.Forms.TextBox txtSunAppearenceID;
+        private System.Windows.Forms.GroupBox groupBox22;
+        private System.Windows.Forms.TextBox txtSunModelID;
+        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.TabPage tabPage15;
+        private System.Windows.Forms.TabPage tabPage16;
+        private System.Windows.Forms.TabPage tabPage17;
+        private System.Windows.Forms.TabPage tabPage18;
+        private System.Windows.Forms.TabPage tabPage19;
+        private System.Windows.Forms.TabPage tabPage20;
+        private System.Windows.Forms.TabPage tabPage21;
+        private System.Windows.Forms.TabPage tabPage22;
+        private System.Windows.Forms.TabPage tabPage23;
+        private System.Windows.Forms.TabPage tabPage24;
+        private System.Windows.Forms.TabPage tabPage25;
+        private System.Windows.Forms.TabPage tabPage26;
+        private System.Windows.Forms.TabPage tabPage27;
+        private System.Windows.Forms.TabPage tabPage28;
+        private System.Windows.Forms.TabPage tabPage29;
+        private System.Windows.Forms.TabPage tabPage30;
+        private System.Windows.Forms.TabPage tabPage31;
+        private System.Windows.Forms.TabPage tabPage32;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using X3TCTools;
 using X3TCTools.SectorObjects;
 
 namespace X3TC_Tool.UI
@@ -33,8 +34,11 @@ namespace X3TC_Tool.UI
 
         public int ParentID { private set; get; } = 0;
 
-        public TypeSelectDialog()
+        private GameHook m_GameHook;
+
+        public TypeSelectDialog(GameHook gameHook)
         {
+            m_GameHook = gameHook;
             InitializeComponent();
         }
 
@@ -55,24 +59,10 @@ namespace X3TC_Tool.UI
                 return;
             }
 
+            var typeCount = m_GameHook.GetTypeDataCount(comboBox1.SelectedIndex);
             
-            switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
-            {
-                default:
-                    return;
-                case SectorObject.Main_Type.Dock: // 5
-                    for (int i = 0; i < SectorObject.DOCK_SUB_TYPE_COUNT; i++)
-                        comboBox2.Items.Add(((SectorObject.Dock_Sub_Type)i).ToString());
-                    break;
-                case SectorObject.Main_Type.Factory: // 6
-                    for (int i = 0; i < SectorObject.FACTORY_SUB_TYPE_COUNT; i++)
-                        comboBox2.Items.Add(((SectorObject.Factory_Sub_Type)i).ToString());
-                    break;
-                case SectorObject.Main_Type.Ship: // 7
-                    for (int i = 0; i < SectorObject.SHIP_SUB_TYPE_COUNT; i++)
-                        comboBox2.Items.Add(((SectorObject.Ship_Sub_Type)i).ToString());
-                    break;
-            }
+            for (int i = 0; i < typeCount; i++)
+                comboBox2.Items.Add((SectorObject.GetSubTypeAsString((SectorObject.Main_Type)comboBox1.SelectedIndex,i)));
             comboBox2.Enabled = true;
         }
 

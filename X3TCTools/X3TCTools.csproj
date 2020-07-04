@@ -74,6 +74,7 @@
     <Compile Include="LinkedListStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectorObjects\Meta\ISectorObjectMeta.cs" />
+    <Compile Include="SectorObjects\Meta\SectorObject_Sun_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObject_Sector_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObjectMetaWithChildren.cs" />
     <Compile Include="SectorObjects\Meta\SectorObject_Ship_Meta.cs" />
@@ -83,6 +84,31 @@
     <Compile Include="SectorObjects\SectorObjectManager.cs" />
     <Compile Include="SectorObjects\SectorObject.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_31.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_29.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_30.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_28.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_27.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_26.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_24.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_25.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_23.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_22.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_21.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_20.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_19.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_18.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_17.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_11.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_16.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_15.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_14.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_13.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_12.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_10.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Planet.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Background.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_1.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Factory.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Dock.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Sun.cs" />
@@ -99,6 +125,9 @@
     </None>
     <None Include="Patches\0.patch">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SectorObjectTypes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

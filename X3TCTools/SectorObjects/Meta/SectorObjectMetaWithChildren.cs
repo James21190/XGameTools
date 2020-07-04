@@ -55,9 +55,11 @@ namespace X3TCTools.SectorObjects.Meta
         }
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(SectorObject.MAIN_TYPE_COUNT);
+
+            SetUniqueData(collection);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -68,10 +70,8 @@ namespace X3TCTools.SectorObjects.Meta
                 Children[i].SetLocation(hProcess, address + LinkedListStart<SectorObject>.ByteSize * i);
             }
         }
-        public override int GetByteSize()
-        {
-            return LinkedListStart<SectorObject>.ByteSize * SectorObject.MAIN_TYPE_COUNT;
-        }
+
+        protected abstract void SetUniqueData(ObjectByteList obl);
         #endregion
     }
 }

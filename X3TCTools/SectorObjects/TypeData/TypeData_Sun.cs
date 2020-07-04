@@ -9,9 +9,12 @@ namespace X3TCTools.SectorObjects
 {
     public class TypeData_Sun : TypeData
     {
+        public int ModelID;
+        public int AppearenceID;
         protected override void SetUniqueData(ObjectByteList obl)
         {
-            
+            ModelID = obl.PopInt();
+            AppearenceID = obl.PopInt();
         }
     }
 }

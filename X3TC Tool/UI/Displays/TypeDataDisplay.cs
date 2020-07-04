@@ -26,6 +26,11 @@ namespace X3TC_Tool.UI.Displays
             tabControl1.SelectedIndex = 0;
             comboBox2.SelectedIndex = -1;
 
+            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            {
+                tabControl1.TabPages[i].Text = ((SectorObject.Main_Type)i).ToString();
+            }
+
             ReloadSubTypes();
         }
 
@@ -54,7 +59,7 @@ namespace X3TC_Tool.UI.Displays
             comboBox2.Enabled = true;
             comboBox2.SelectedIndex = -1;
             comboBox2.Items.Clear();
-            for (int i = 0; i < SectorObject.GetMaxSubType((SectorObject.Main_Type)tabControl1.SelectedIndex); i++)
+            for (int i = 0; i < m_GameHook.GetTypeDataCount(tabControl1.SelectedIndex); i++)
             {
                 comboBox2.Items.Add(SectorObject.GetSubTypeAsString((SectorObject.Main_Type)tabControl1.SelectedIndex, i));
             }
@@ -70,16 +75,22 @@ namespace X3TC_Tool.UI.Displays
             txtNameID.Text = m_TypeData.NameID.ToString();
             v3dRotationSpeed.Vector = m_TypeData.RotationSpeed;
 
-            var priceVariation = (int)(m_TypeData.Price / (float)m_TypeData.PriceRangePercentage/100);
+            int priceVariation = 0;
+            if(m_TypeData.PriceRangePercentage != 0) priceVariation = (int)(m_TypeData.Price / (float)m_TypeData.PriceRangePercentage/100);
 
-            txtMaxPrice.Text = (m_TypeData.Price + priceVariation).ToString();
-            txtPrice.Text = m_TypeData.Price.ToString();
-            txtMinPrice.Text = (m_TypeData.Price - priceVariation).ToString();
+            txtMaxPrice.Text = String.Format("{0:n}",(m_TypeData.Price + priceVariation) * m_TypeData.GetPriceMultiplier());
+            txtPrice.Text = String.Format("{0:n}", m_TypeData.Price * m_TypeData.GetPriceMultiplier());
+            txtMinPrice.Text = String.Format("{0:n}", (m_TypeData.Price - priceVariation) *m_TypeData.GetPriceMultiplier());
 
             switch ((SectorObject.Main_Type)m_TypeDataMainType)
             {
                 case SectorObject.Main_Type.Bullet:
                     var bulletTypeData = (TypeData_Bullet)m_TypeData;
+                    break;
+                case SectorObject.Main_Type.Sun:
+                    var sunTypeData = (TypeData_Sun)m_TypeData;
+                    txtSunModelID.Text = sunTypeData.ModelID.ToString();
+                    txtSunAppearenceID.Text = sunTypeData.AppearenceID.ToString();
                     break;
                 case SectorObject.Main_Type.Ship:
                     var shipTypeData = (TypeData_Ship)m_TypeData;
@@ -95,7 +106,7 @@ namespace X3TC_Tool.UI.Displays
                     txtMinimumCargoSpace.Text = shipTypeData.MinimumCargoSpace.ToString();
                     txtMaximumCargoSpace.Text = shipTypeData.MaximumCargoSpace.ToString();
 
-                    txtShielding.Text = string.Format("{0} x {1}", shipTypeData.MaxShieldCount, shipTypeData.MaxShieldClass.ToString());
+                    txtShielding.Text = string.Format("{0} x {1}", shipTypeData.MaxShieldCount, SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Shield,shipTypeData.MaxShieldClass));
                     txtShieldPowerGenerator.Text = shipTypeData.ShieldPowerGenerator.ToString();
                     txtShipMaxHull.Text = shipTypeData.MaxHull.ToString();
 
