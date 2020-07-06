@@ -48,11 +48,14 @@
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
     <Compile Include="Bases\Scripting\KCodeDissassembler.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\BlankScriptingMemoryObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\ScriptingMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingTextObject.cs" />
     <Compile Include="Bases\Scripting\DynamicValue.cs" />
     <Compile Include="Bases\Scripting\DynamicValueObject Presets.cs" />
     <Compile Include="Bases\Scripting\DynamicValueObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingArrayObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\SectorObject_Ship_ScriptMemoryObject.cs" />
     <Compile Include="Bases\StoryBase\EventFunctionStruct.cs" />
     <Compile Include="Bases\StoryBase\EventObject.cs" />
     <Compile Include="Bases\StoryBase\EventObjectSub.cs" />

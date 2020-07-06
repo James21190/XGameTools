@@ -226,9 +226,9 @@ namespace X3TCTools.Bases
 
         public const int byteSize = 0xfb410;
         // Height of the sector grid.
-        public const int height = 0x14;
+        public const int height = 20;
         // Width of the sector grid.
-        public const int width = 0x15;
+        public const int width = 24;
         // Max recognisable sector id
         public const int maxSectorID = width * height;
 

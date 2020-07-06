@@ -51,6 +51,8 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.ModelCollectionIDBox = new System.Windows.Forms.TextBox();
             this.PositionVectorDisplay = new Common.UI.Vector3Display();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.RaceBox = new System.Windows.Forms.TextBox();
@@ -71,8 +73,7 @@
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.ModelCollectionIDBox = new System.Windows.Forms.TextBox();
+            this.spawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
@@ -81,6 +82,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TargetSpeedBox)).BeginInit();
@@ -91,7 +93,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -331,6 +332,24 @@
             this.panel1.Size = new System.Drawing.Size(589, 405);
             this.panel1.TabIndex = 15;
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.ModelCollectionIDBox);
+            this.groupBox10.Location = new System.Drawing.Point(292, 206);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(121, 52);
+            this.groupBox10.TabIndex = 8;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "ModelID";
+            // 
+            // ModelCollectionIDBox
+            // 
+            this.ModelCollectionIDBox.Location = new System.Drawing.Point(6, 19);
+            this.ModelCollectionIDBox.Name = "ModelCollectionIDBox";
+            this.ModelCollectionIDBox.ReadOnly = true;
+            this.ModelCollectionIDBox.Size = new System.Drawing.Size(109, 20);
+            this.ModelCollectionIDBox.TabIndex = 0;
+            // 
             // PositionVectorDisplay
             // 
             this.PositionVectorDisplay.DecimalPlaces = 0;
@@ -565,7 +584,8 @@
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadToolStripMenuItem,
-            this.otherToolStripMenuItem});
+            this.otherToolStripMenuItem,
+            this.spawnToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(800, 24);
@@ -640,23 +660,12 @@
             this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.TabIndex = 26;
             // 
-            // groupBox10
+            // spawnToolStripMenuItem
             // 
-            this.groupBox10.Controls.Add(this.ModelCollectionIDBox);
-            this.groupBox10.Location = new System.Drawing.Point(292, 206);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(121, 52);
-            this.groupBox10.TabIndex = 8;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "ModelID";
-            // 
-            // ModelIDBox
-            // 
-            this.ModelCollectionIDBox.Location = new System.Drawing.Point(6, 19);
-            this.ModelCollectionIDBox.Name = "ModelIDBox";
-            this.ModelCollectionIDBox.ReadOnly = true;
-            this.ModelCollectionIDBox.Size = new System.Drawing.Size(109, 20);
-            this.ModelCollectionIDBox.TabIndex = 0;
+            this.spawnToolStripMenuItem.Name = "spawnToolStripMenuItem";
+            this.spawnToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.spawnToolStripMenuItem.Text = "Spawn";
+            this.spawnToolStripMenuItem.Click += new System.EventHandler(this.spawnToolStripMenuItem_Click);
             // 
             // SectorObjectDisplay
             // 
@@ -682,6 +691,8 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -694,8 +705,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -747,5 +756,6 @@
         private System.Windows.Forms.ToolStripMenuItem sectorToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox ModelCollectionIDBox;
+        private System.Windows.Forms.ToolStripMenuItem spawnToolStripMenuItem;
     }
 }

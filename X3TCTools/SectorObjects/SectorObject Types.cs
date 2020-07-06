@@ -35,7 +35,7 @@ namespace X3TCTools.SectorObjects
             Camera,
             Special,
 
-            Cocpit = 25,
+            Cockpit = 25,
 
             Debris = 28,
             Wreck,
@@ -67,11 +67,13 @@ namespace X3TCTools.SectorObjects
         {
             var lines = File.ReadAllLines("./SectorObjectTypes.csv");
 
-            if (lines.Length < SubType) goto failed;
+            if (lines.Length <= SubType) goto failed;
 
             var line = lines[SubType];
 
             var names = line.Split(',');
+
+            if (names.Length <= (int)main_Type) goto failed;
 
             var name = names[(int)main_Type];
 

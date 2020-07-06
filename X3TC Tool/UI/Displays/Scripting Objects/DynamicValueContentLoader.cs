@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.Bases.Scripting;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -28,7 +29,7 @@ namespace X3TC_Tool.UI.Displays
                     arrayobj.SetLocation(gameHook.hProcess, (IntPtr)dynamicValue.Value);
                     arrayobj.ReloadFromMemory();
 
-                    var arrayobj_2 = DynamicValueObject.GetBlank("Array", arrayobj.length);
+                    var arrayobj_2 = new BlankScriptingMemoryObject(arrayobj.length);
                     arrayobj_2.SetLocation(gameHook.hProcess, arrayobj.pArray.address);
                     arrayobj_2.ReloadFromMemory();
 

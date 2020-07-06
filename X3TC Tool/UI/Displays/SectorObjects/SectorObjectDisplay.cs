@@ -330,5 +330,15 @@ namespace X3TC_Tool.UI.Displays
         {
 
         }
+
+        private void spawnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var selector = new TypeSelectDialog(m_GameHook);
+            selector.ShowDialog();
+            if (selector.Done)
+            {
+                m_GameHook.gameCodeRunner.CreateSectorObject(selector.MainType, selector.SubType, m_GameHook.sectorObjectManager.GetSpace());
+            }
+        }
     }
 }

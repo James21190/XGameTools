@@ -25,7 +25,7 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>> ppTypeData_Background;
 
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>> ppTypeData_Sun;
-
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>> ppTypeData_Planet;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>> ppTypeData_Dock;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>> ppTypeData_Factory;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
@@ -92,7 +92,7 @@ namespace X3TCTools
                 case SectorObject.Main_Type.Background: return ppTypeData_Background.obj.GetObjectInArray(SubType);
 
                 case SectorObject.Main_Type.Sun: return ppTypeData_Sun.obj.GetObjectInArray(SubType);
-
+                case (SectorObject.Main_Type)4: return ppTypeData_Planet.obj.GetObjectInArray(SubType);
                 case (SectorObject.Main_Type)5: return ppTypeData_Dock.obj.GetObjectInArray(SubType);
                 case (SectorObject.Main_Type)6: return ppTypeData_Factory.obj.GetObjectInArray(SubType);
                 case (SectorObject.Main_Type)7: return ppTypeData_Ship.obj.GetObjectInArray(SubType);
@@ -158,7 +158,7 @@ namespace X3TCTools
                     ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Background);
 
                     ppTypeData_Sun = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Sun);
-
+                    ppTypeData_Planet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Planet);
                     ppTypeData_Dock = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Dock);
                     ppTypeData_Factory = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Factory);
                     ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
@@ -208,6 +208,7 @@ namespace X3TCTools
                     0xC3
                     }, 3);
                     break;
+
                 //case GameVersion.X3AP:
                 //    // Create references to MemoryObjects
                 //    ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
@@ -236,7 +237,8 @@ namespace X3TCTools
                 //    break;
                 default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", gameVersion));
             }
-            
+
+            gameCodeRunner = new GameCodeRunner(this);
 
         }
 
@@ -261,8 +263,9 @@ namespace X3TCTools
             #region TypeData
             pTypeData_Bullet =          0x006030e8,
             pTypeData_1 =               0x006030ec,
-            pTypeData_Background =               0x006030f0,
+            pTypeData_Background =      0x006030f0,
             pTypeData_Sun =             0x006030f4,
+            pTypeData_Planet =          0x006030f8,
             pTypeData_Dock =            0x006030FC,
             pTypeData_Factory =         0x00603100,
             pTypeData_Ship =            0x00603104,

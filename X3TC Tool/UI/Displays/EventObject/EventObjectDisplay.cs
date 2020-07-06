@@ -12,6 +12,7 @@ using X3TCTools;
 using X3TCTools.Bases;
 using X3TCTools.SectorObjects;
 using X3TCTools.Bases.Scripting;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -90,30 +91,30 @@ namespace X3TC_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             DynamicValueObjectDisplay display;
-            DynamicValueObject obj;
+            ScriptingMemoryObject obj;
             switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
             {
                 case SectorObject.Main_Type.Ship:
                     display = new DynamicValueObjectDisplay(m_GameHook);
-                    obj = DynamicValueObject.GetSectorObjectShip();
+                    obj = new SectorObject_Ship_ScriptMemoryObject();
                     obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                     display.LoadObject(obj);
                     display.Show();
                     return;
-                case SectorObject.Main_Type.Dock:
-                    display = new DynamicValueObjectDisplay(m_GameHook);
-                    obj = DynamicValueObject.GetSectorObjectDock();
-                    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                    display.LoadObject(obj);
-                    display.Show();
-                    return;
-                case SectorObject.Main_Type.Gate:
-                    display = new DynamicValueObjectDisplay(m_GameHook);
-                    obj = DynamicValueObject.GetSectorObjectGate();
-                    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                    display.LoadObject(obj);
-                    display.Show();
-                    return;
+                //case SectorObject.Main_Type.Dock:
+                //    display = new DynamicValueObjectDisplay(m_GameHook);
+                //    obj = DynamicValueObject.GetSectorObjectDock();
+                //    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                //    display.LoadObject(obj);
+                //    display.Show();
+                //    return;
+                //case SectorObject.Main_Type.Gate:
+                //    display = new DynamicValueObjectDisplay(m_GameHook);
+                //    obj = DynamicValueObject.GetSectorObjectGate();
+                //    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                //    display.LoadObject(obj);
+                //    display.Show();
+                //    return;
             }
         }
     }
