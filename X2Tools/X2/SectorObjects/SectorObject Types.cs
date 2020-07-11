@@ -18,6 +18,16 @@ namespace X2Tools.X2.SectorObjects
             MainType = (Main_Type)(FullType >> 16);
             SubType = FullType & 0x0000ffff;
         }
+
+        public string GetSubTypeAsString()
+        {
+            switch (MainType)
+            {
+                case Main_Type.Ship: return ((Ship_Sub_Type)SubType).ToString();
+                default: return SubType.ToString();
+            }
+        }
+
         /// <summary>
         /// The number of MainTypes recognised
         /// </summary>

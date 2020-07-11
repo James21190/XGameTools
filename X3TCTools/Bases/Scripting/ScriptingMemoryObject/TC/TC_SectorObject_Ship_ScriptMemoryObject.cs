@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace X3TCTools.Bases.Scripting.ScriptingMemoryObject
+namespace X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC
 {
-    public class SectorObject_Ship_ScriptMemoryObject : ScriptingMemoryObject
+    public class TC_SectorObject_Ship_ScriptMemoryObject : ScriptingMemoryObject
     {
         
-        public SectorObject_Ship_ScriptMemoryObject()
+        public TC_SectorObject_Ship_ScriptMemoryObject()
         {
             VariableCount = 73;
         }

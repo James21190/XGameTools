@@ -137,16 +137,20 @@ namespace X3TCTools
         public GameCodeRunner gameCodeRunner { private set; get; }
         public EventManager eventManager { private set; get; }
 
-        public readonly GameVersion gameVersion;
+        private static GameVersions m_GameVersion;
+        public static GameVersions GameVersion { get { return m_GameVersion; } private set { if (m_GameVersion == GameVersions.None) m_GameVersion = value; } }
 
-        public GameHook(Process process, GameVersion gameVersion)
+        public GameHook(Process process, GameVersions gameVersion)
         {
-            this.gameVersion = gameVersion;
+            if (GameVersion == GameVersions.None)
+                GameVersion = gameVersion;
+            else if (GameVersion != gameVersion)
+                throw new ArgumentException("Game version consistant between game hooks.");
             // Get a handle to the process
             HookIntoProcess(process);
 
-            switch (gameVersion) {
-                case GameVersion.X3TC:
+            switch (GameVersion) {
+                case GameVersions.X3TC:
                     // Create references to MemoryObjects
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorObjectManager);
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
@@ -209,33 +213,72 @@ namespace X3TCTools
                     }, 3);
                     break;
 
-                //case GameVersion.X3AP:
-                //    // Create references to MemoryObjects
-                //    ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
-                //    ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pStoryBase);
-                //    //ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
-                //    //ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
-                //    //ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData);
-                //    ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
-                //    //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
+                case GameVersions.X3AP:
+                    // Create references to MemoryObjects
+                    ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
+                    ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pStoryBase);
+                    ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
+                    //ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
+                    //ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData);
+                    ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
+                    //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
 
-                //    //// Create events
-                //    //eventManager = new EventManager(hProcess);
-                //    //eventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
-                //    //// MOV EAX 0x004b1370
-                //    //0xB8, 0x70, 0x13, 0x4B, 0x00,
-                //    //// CALL EAX
-                //    //0xFF, 0xD0,
-                //    //// MOV EAX 0x004D2D90
-                //    //0xB8, 0x90, 0x2D, 0x4D, 0x00,
-                //    //// CALL EAX
-                //    //0xFF, 0xD0,
-                //    //// RET
-                //    //0xC3
-                //    //}, 3);
+                    #region TypeData
+                    ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Bullet);
 
-                //    break;
-                default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", gameVersion));
+                    ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Background);
+
+                    ppTypeData_Sun = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Sun);
+                    ppTypeData_Planet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Planet);
+                    ppTypeData_Dock = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Dock);
+                    ppTypeData_Factory = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Factory);
+                    ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Ship);
+                    ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Laser);
+                    ppTypeData_Shield = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Shield);
+                    ppTypeData_10 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_10>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_10);
+                    ppTypeData_11 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_11>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_11);
+                    ppTypeData_12 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_12>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_12);
+                    ppTypeData_13 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_13>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_13);
+                    ppTypeData_14 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_14>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_14);
+                    ppTypeData_15 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_15>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_15);
+                    ppTypeData_16 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_16>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_16);
+                    ppTypeData_17 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_17>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_17);
+                    ppTypeData_18 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_18>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_18);
+                    ppTypeData_19 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_19>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_19);
+                    ppTypeData_20 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_20>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_20);
+                    ppTypeData_21 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_21>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_21);
+                    ppTypeData_22 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_22>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_22);
+                    ppTypeData_23 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_23>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_23);
+                    ppTypeData_24 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_24>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_24);
+                    ppTypeData_25 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_25>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_25);
+                    ppTypeData_26 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_26>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_26);
+                    ppTypeData_27 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_27>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_27);
+                    ppTypeData_28 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_28>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_28);
+                    ppTypeData_29 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_29>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_29);
+                    ppTypeData_30 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_30>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_30);
+                    ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_31);
+                    #endregion
+
+                    pTypeDataCountArray = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeDataCountArray);
+
+                    //// Create events
+                    //eventManager = new EventManager(hProcess);
+                    //eventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404acc, new byte[] {
+                    //// MOV EAX 0x004b1370
+                    //0xB8, 0x70, 0x13, 0x4B, 0x00,
+                    //// CALL EAX
+                    //0xFF, 0xD0,
+                    //// MOV EAX 0x004D2D90
+                    //0xB8, 0x90, 0x2D, 0x4D, 0x00,
+                    //// CALL EAX
+                    //0xFF, 0xD0,
+                    //// RET
+                    //0xC3
+                    //}, 3);
+
+                    break;
+                case GameVersions.None: throw new ArgumentNullException("No game version set.");
+                default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", GameVersion));
             }
 
             gameCodeRunner = new GameCodeRunner(this);
@@ -303,14 +346,50 @@ namespace X3TCTools
 
         public enum GlobalAddressesX3AP
         {
-            //pSystemBase = 0,
+            pSystemBase =               0x00609104,
             //pGateSystemObject = 0,
-            pSectorObjectManager = 0x60a6e0,
+            pSectorObjectManager =      0x0060a6e0,
             //pCockpitBase = 0,
-            pStoryBase = 0x60a7b8,
+            pStoryBase =                0x0060a7b8,
             //pTypeData = 0,
-            pInputBase = 0x581e30,
+            pInputBase =                0x00581e30,
             //pCameraBase = 0,
+
+            #region TypeData
+            pTypeData_Bullet =          0x00609188,
+            pTypeData_1 =               0x0060918c,
+            pTypeData_Background =      0x00609190,
+            pTypeData_Sun =             0x00609194,
+            pTypeData_Planet =          0x00609198,
+            pTypeData_Dock =            0x0060919c,
+            pTypeData_Factory =         0x006091a0,
+            pTypeData_Ship =            0x006091a4,
+            pTypeData_Laser =           0x006091a8,
+            pTypeData_Shield =          0x006091ac,
+            pTypeData_10 =              0x006091b0,
+            pTypeData_11 =              0x006091b4,
+            pTypeData_12 =              0x006091b8,
+            pTypeData_13 =              0x006091bc,
+            pTypeData_14 =              0x006091c0,
+            pTypeData_15 =              0x006091c4,
+            pTypeData_16 =              0x006091c8,
+            pTypeData_17 =              0x006091cc,
+            pTypeData_18 =              0x006091d0,
+            pTypeData_19 =              0x006091d4,
+            pTypeData_20 =              0x006091d8,
+            pTypeData_21 =              0x006091dc,
+            pTypeData_22 =              0x006091e0,
+            pTypeData_23 =              0x006091e4,
+            pTypeData_24 =              0x006091e8,
+            pTypeData_25 =              0x006091ec,
+            pTypeData_26 =              0x006091f0,
+            pTypeData_27 =              0x006091f4,
+            pTypeData_28 =              0x006091f8,
+            pTypeData_29 =              0x006091fc,
+            pTypeData_30 =              0x00609200,
+            pTypeData_31 =              0x00609204,
+            #endregion
+            pTypeDataCountArray =       0x00609208,
         }
         public enum RaceID : ushort
         {
@@ -358,8 +437,9 @@ namespace X3TCTools
             }
         }
 
-        public enum GameVersion
+        public enum GameVersions
         {
+            None,
             X3TC,
             X3AP
         }

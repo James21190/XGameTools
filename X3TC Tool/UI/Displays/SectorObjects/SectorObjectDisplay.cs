@@ -129,7 +129,7 @@ namespace X3TC_Tool.UI.Displays
             }
             catch (Exception)
             {
-                AddressBox.Text = "Not Found!";
+                txtAddress.Text = "Not Found!";
                 return;
             }
             LoadObject(obj);
@@ -146,21 +146,22 @@ namespace X3TC_Tool.UI.Displays
 
             m_SectorObject.ReloadFromMemory();
             LoadTree(m_SectorObject.ObjectID);
-            AddressBox.Text = m_SectorObject.pThis.ToString("X");
-            DefaultNameBox.Text = MemoryControl.ReadNullTerminatedString(m_GameHook.hProcess, m_SectorObject.pDefaultName);
-            IDNumericUpDown.Value = m_SectorObject.ObjectID;
-            PositionVectorDisplay.Vector = m_SectorObject.Position_Copy;
-            PositionKmVectorDisplay.X = ((decimal)m_SectorObject.Position_Copy.X)/500000;
-            PositionKmVectorDisplay.Y = ((decimal)m_SectorObject.Position_Copy.Y)/500000;
-            PositionKmVectorDisplay.Z = ((decimal)m_SectorObject.Position_Copy.Z)/500000;
-            RotationVectorDisplay.Vector = m_SectorObject.EulerRotationCopy;
+            txtAddress.Text = m_SectorObject.pThis.ToString("X");
+            txtDefaultName.Text = MemoryControl.ReadNullTerminatedString(m_GameHook.hProcess, m_SectorObject.pDefaultName);
+            nudSectorObjectID.Value = m_SectorObject.ObjectID;
+            v3dPosition.Vector = m_SectorObject.Position_Copy;
+            v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X)/500000;
+            v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y)/500000;
+            v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z)/500000;
+            v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
             EventObjectIDBox.Text = m_SectorObject.EventObjectID.ToString();
-            TypeBox.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
+            txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
 
             SpeedBox.Value = m_SectorObject.Speed;
             TargetSpeedBox.Value = m_SectorObject.TargetSpeed;
+            nudMass.Value = m_SectorObject.Mass;
 
-            RaceBox.Text = m_SectorObject.RaceID.ToString();
+            txtRace.Text = m_SectorObject.RaceID.ToString();
 
             ModelCollectionIDBox.Text = m_SectorObject.ModelCollectionID.ToString();
 
@@ -179,11 +180,11 @@ namespace X3TC_Tool.UI.Displays
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_13));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1} {2} {3}", i++, m_SectorObject.Unknown_14_0, m_SectorObject.Unknown_14_1, m_SectorObject.Unknown_14_2));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_16));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_17));
+            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Mass));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_18));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_19.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_20));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_21.ToString("X")));
+            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.pFirstUnknown.ToString("X")));
+            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.NULL_2));
+            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.pLastUnknown.ToString("X")));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_22));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_23));
             UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_24.ToString("X")));
@@ -201,9 +202,9 @@ namespace X3TC_Tool.UI.Displays
 
 
             // Object relation
-            NextButton.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid;
-            PreviousButton.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid;
-            ParentButton.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid;
+            btnGoNext.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid;
+            btnGoPrevious.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid;
+            btnGoParent.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid;
 
             ReloadChildren();
         
@@ -227,7 +228,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadIDButton_Click(object sender, EventArgs e)
         {
-            LoadObject(Convert.ToInt32(IDNumericUpDown.Value));
+            LoadObject(Convert.ToInt32(nudSectorObjectID.Value));
         }
 
         private void AutoReloader_Tick(object sender, EventArgs e)
@@ -239,7 +240,7 @@ namespace X3TC_Tool.UI.Displays
             else
             {
                 m_SectorObject = null;
-                AddressBox.Text = "Object Destroyed.";
+                txtAddress.Text = "Object Destroyed.";
                 AutoReloadCheckBox.Enabled = false;
                 AutoReloader.Enabled = false;
             }

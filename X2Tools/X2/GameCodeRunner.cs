@@ -91,7 +91,8 @@ namespace X2Tools.X2
 
 
 
-            var newSectorObject = m_GameHook.SectorObjectManager.GetSectorObject(addr);
+            var newSectorObject = new SectorObject();
+            newSectorObject.SetLocation(m_GameHook.hProcess, addr);
             return newSectorObject;
         }
         /// <summary>
@@ -225,9 +226,9 @@ namespace X2Tools.X2
             for(int Sub = 0; Sub < SubMax; Sub++)
             {
                 var SO = CreateSectorObject((SectorObject.Main_Type)MainType, Sub, m_GameHook.SectorObjectManager.GetSpace());
-                var data = SO.GetData();
+                var data = SO.pData.obj;
                 data.Position = new Common.Vector.Vector3(((int)MainType) * Padding, YValue, Sub * Padding);
-                MemoryControl.Write(m_GameHook.hProcess, SO.pData, data.GetBytes());
+                data.WriteToMemory();
             }
 
             

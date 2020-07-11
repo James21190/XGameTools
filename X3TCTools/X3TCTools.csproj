@@ -55,7 +55,7 @@
     <Compile Include="Bases\Scripting\DynamicValueObject Presets.cs" />
     <Compile Include="Bases\Scripting\DynamicValueObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingArrayObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\SectorObject_Ship_ScriptMemoryObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\TC\TC_SectorObject_Ship_ScriptMemoryObject.cs" />
     <Compile Include="Bases\StoryBase\EventFunctionStruct.cs" />
     <Compile Include="Bases\StoryBase\EventObject.cs" />
     <Compile Include="Bases\StoryBase\EventObjectSub.cs" />
@@ -129,7 +129,10 @@
     <None Include="Patches\0.patch">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="SectorObjectTypes.csv">
+    <None Include="X3APSectorObjectTypes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="X3TCSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

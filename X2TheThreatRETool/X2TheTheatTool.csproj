@@ -49,26 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrashWindow.cs">
+    <Compile Include="UI\CrashWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CrashWindow.Designer.cs">
+    <Compile Include="UI\CrashWindow.Designer.cs">
       <DependentUpon>CrashWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Tabs\OtherTab.cs">
+    <Compile Include="UI\Displays\SectorObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Tabs\InjectorTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Tabs\MultiplayerTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Tabs\SectorObjectTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Tabs\TypeDataTab.cs">
-      <SubType>Form</SubType>
+    <Compile Include="UI\Displays\SectorObjectDisplay.Designer.cs">
+      <DependentUpon>SectorObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TypeSelectDialog.cs">
       <SubType>Form</SubType>
@@ -76,15 +67,15 @@
     <Compile Include="UI\TypeSelectDialog.Designer.cs">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="X2RETool.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="X2RETool.Designer.cs">
-      <DependentUpon>X2RETool.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CrashWindow.resx">
+    <Compile Include="X2Tool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="X2Tool.Designer.cs">
+      <DependentUpon>X2Tool.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\CrashWindow.resx">
       <DependentUpon>CrashWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -97,12 +88,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Displays\SectorObjectDisplay.resx">
+      <DependentUpon>SectorObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\TypeSelectDialog.resx">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="X2RETool.resx">
-      <DependentUpon>X2RETool.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="X2Tool.resx">
+      <DependentUpon>X2Tool.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -16,7 +16,7 @@ namespace X2Tools
     /// <summary>
     /// The main hook into the game that contains objects useful in manipulating ram.
     /// </summary>
-    public class GameHook
+    public class GameHook : ApplicationHook
     {
 
         /// <summary>
@@ -26,15 +26,18 @@ namespace X2Tools
         /// <summary>
         /// The game process handle
         /// </summary>
-        public IntPtr hProcess { get; private set; }
 
-        public MemoryObjectPointer<SectorObjectManager> pSectorObjectManager { get; private set; }
+        #region Pointers
+        private MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>> ppSectorObjectManager;
+
+        #endregion
+
         /// <summary>
         /// The object responcible for managing SectorObjects
         /// </summary>
         public SectorObjectManager SectorObjectManager
         {
-            get { return pSectorObjectManager.obj; }
+            get { return ppSectorObjectManager.obj.obj; }
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace X2Tools
         public GameHook(Process GameProcess)
         {
             // Get a handle to the process
-            hProcess = MemoryControl.OpenProcess((uint)MemoryControl.ProcessAccessFlags.All, 0, (uint)GameProcess.Id);
+            HookIntoProcess(GameProcess);
 
             // Initialize code injector
             EventManager = new EventManager(this.hProcess);
@@ -81,7 +84,7 @@ namespace X2Tools
             }, 0);
 
             // Setup Pointers
-            pSectorObjectManager = new MemoryObjectPointer<SectorObjectManager>(hProcess, (IntPtr)GlobalAddresses.pSectorObjectManager);
+            ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddresses.pSectorObjectManager);
 
             // Create main objects
             TypeDataArray = new TypeDataManager(hProcess);

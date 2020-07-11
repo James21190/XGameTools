@@ -30,22 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.AddressBox = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LoadIDButton = new System.Windows.Forms.Button();
-            this.IDNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.nudSectorObjectID = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.DefaultNameBox = new System.Windows.Forms.TextBox();
+            this.txtDefaultName = new System.Windows.Forms.TextBox();
             this.AutoReloader = new System.Windows.Forms.Timer(this.components);
             this.AutoReloadCheckBox = new System.Windows.Forms.CheckBox();
-            this.NextButton = new System.Windows.Forms.Button();
-            this.ParentButton = new System.Windows.Forms.Button();
-            this.PreviousButton = new System.Windows.Forms.Button();
+            this.btnGoNext = new System.Windows.Forms.Button();
+            this.btnGoParent = new System.Windows.Forms.Button();
+            this.btnGoPrevious = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.EventObjectIDBox = new System.Windows.Forms.TextBox();
             this.EventObjectIDLoadButton = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.TypeBox = new System.Windows.Forms.TextBox();
+            this.txtType = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.LastChildButton = new System.Windows.Forms.Button();
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
@@ -53,17 +53,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.ModelCollectionIDBox = new System.Windows.Forms.TextBox();
-            this.PositionVectorDisplay = new Common.UI.Vector3Display();
+            this.v3dPosition = new Common.UI.Vector3Display();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.RaceBox = new System.Windows.Forms.TextBox();
+            this.txtRace = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.TargetSpeedBox = new System.Windows.Forms.NumericUpDown();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.SpeedBox = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoadData = new System.Windows.Forms.Button();
             this.UnknownsListBox = new System.Windows.Forms.ListBox();
-            this.PositionKmVectorDisplay = new Common.UI.Vector3Display();
-            this.RotationVectorDisplay = new Common.UI.Vector3Display();
+            this.v3dPositionKm = new Common.UI.Vector3Display();
+            this.v3dRotation = new Common.UI.Vector3Display();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,12 +71,14 @@
             this.sectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.spawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.nudMass = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -93,11 +95,13 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMass)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.AddressBox);
+            this.groupBox2.Controls.Add(this.txtAddress);
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(121, 52);
@@ -105,18 +109,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Address";
             // 
-            // AddressBox
+            // txtAddress
             // 
-            this.AddressBox.Location = new System.Drawing.Point(6, 19);
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.ReadOnly = true;
-            this.AddressBox.Size = new System.Drawing.Size(109, 20);
-            this.AddressBox.TabIndex = 0;
+            this.txtAddress.Location = new System.Drawing.Point(6, 19);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(109, 20);
+            this.txtAddress.TabIndex = 0;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.LoadIDButton);
-            this.groupBox1.Controls.Add(this.IDNumericUpDown);
+            this.groupBox1.Controls.Add(this.nudSectorObjectID);
             this.groupBox1.Location = new System.Drawing.Point(257, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(178, 52);
@@ -134,21 +138,21 @@
             this.LoadIDButton.UseVisualStyleBackColor = true;
             this.LoadIDButton.Click += new System.EventHandler(this.LoadIDButton_Click);
             // 
-            // IDNumericUpDown
+            // nudSectorObjectID
             // 
-            this.IDNumericUpDown.Location = new System.Drawing.Point(6, 19);
-            this.IDNumericUpDown.Maximum = new decimal(new int[] {
+            this.nudSectorObjectID.Location = new System.Drawing.Point(6, 19);
+            this.nudSectorObjectID.Maximum = new decimal(new int[] {
             -1486618625,
             232830643,
             0,
             0});
-            this.IDNumericUpDown.Name = "IDNumericUpDown";
-            this.IDNumericUpDown.Size = new System.Drawing.Size(85, 20);
-            this.IDNumericUpDown.TabIndex = 0;
+            this.nudSectorObjectID.Name = "nudSectorObjectID";
+            this.nudSectorObjectID.Size = new System.Drawing.Size(85, 20);
+            this.nudSectorObjectID.TabIndex = 0;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.DefaultNameBox);
+            this.groupBox3.Controls.Add(this.txtDefaultName);
             this.groupBox3.Location = new System.Drawing.Point(130, 3);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(121, 52);
@@ -156,13 +160,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Default Name";
             // 
-            // DefaultNameBox
+            // txtDefaultName
             // 
-            this.DefaultNameBox.Location = new System.Drawing.Point(6, 19);
-            this.DefaultNameBox.Name = "DefaultNameBox";
-            this.DefaultNameBox.ReadOnly = true;
-            this.DefaultNameBox.Size = new System.Drawing.Size(109, 20);
-            this.DefaultNameBox.TabIndex = 0;
+            this.txtDefaultName.Location = new System.Drawing.Point(6, 19);
+            this.txtDefaultName.Name = "txtDefaultName";
+            this.txtDefaultName.ReadOnly = true;
+            this.txtDefaultName.Size = new System.Drawing.Size(109, 20);
+            this.txtDefaultName.TabIndex = 0;
             // 
             // AutoReloader
             // 
@@ -180,35 +184,35 @@
             this.AutoReloadCheckBox.UseVisualStyleBackColor = true;
             this.AutoReloadCheckBox.CheckedChanged += new System.EventHandler(this.AutoReloadCheckBox_CheckedChanged);
             // 
-            // NextButton
+            // btnGoNext
             // 
-            this.NextButton.Location = new System.Drawing.Point(258, 61);
-            this.NextButton.Name = "NextButton";
-            this.NextButton.Size = new System.Drawing.Size(90, 23);
-            this.NextButton.TabIndex = 10;
-            this.NextButton.Text = "Go To Next";
-            this.NextButton.UseVisualStyleBackColor = true;
-            this.NextButton.Click += new System.EventHandler(this.NextButton_Click);
+            this.btnGoNext.Location = new System.Drawing.Point(267, 61);
+            this.btnGoNext.Name = "btnGoNext";
+            this.btnGoNext.Size = new System.Drawing.Size(90, 23);
+            this.btnGoNext.TabIndex = 10;
+            this.btnGoNext.Text = "Go To Next";
+            this.btnGoNext.UseVisualStyleBackColor = true;
+            this.btnGoNext.Click += new System.EventHandler(this.NextButton_Click);
             // 
-            // ParentButton
+            // btnGoParent
             // 
-            this.ParentButton.Location = new System.Drawing.Point(258, 119);
-            this.ParentButton.Name = "ParentButton";
-            this.ParentButton.Size = new System.Drawing.Size(90, 23);
-            this.ParentButton.TabIndex = 11;
-            this.ParentButton.Text = "Go To Parent";
-            this.ParentButton.UseVisualStyleBackColor = true;
-            this.ParentButton.Click += new System.EventHandler(this.ParentButton_Click);
+            this.btnGoParent.Location = new System.Drawing.Point(267, 119);
+            this.btnGoParent.Name = "btnGoParent";
+            this.btnGoParent.Size = new System.Drawing.Size(90, 23);
+            this.btnGoParent.TabIndex = 11;
+            this.btnGoParent.Text = "Go To Parent";
+            this.btnGoParent.UseVisualStyleBackColor = true;
+            this.btnGoParent.Click += new System.EventHandler(this.ParentButton_Click);
             // 
-            // PreviousButton
+            // btnGoPrevious
             // 
-            this.PreviousButton.Location = new System.Drawing.Point(258, 90);
-            this.PreviousButton.Name = "PreviousButton";
-            this.PreviousButton.Size = new System.Drawing.Size(90, 23);
-            this.PreviousButton.TabIndex = 12;
-            this.PreviousButton.Text = "Go To Previous";
-            this.PreviousButton.UseVisualStyleBackColor = true;
-            this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
+            this.btnGoPrevious.Location = new System.Drawing.Point(267, 90);
+            this.btnGoPrevious.Name = "btnGoPrevious";
+            this.btnGoPrevious.Size = new System.Drawing.Size(90, 23);
+            this.btnGoPrevious.TabIndex = 12;
+            this.btnGoPrevious.Text = "Go To Previous";
+            this.btnGoPrevious.UseVisualStyleBackColor = true;
+            this.btnGoPrevious.Click += new System.EventHandler(this.PreviousButton_Click);
             // 
             // groupBox4
             // 
@@ -241,7 +245,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.TypeBox);
+            this.groupBox5.Controls.Add(this.txtType);
             this.groupBox5.Location = new System.Drawing.Point(3, 61);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(248, 52);
@@ -249,15 +253,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Type";
             // 
-            // TypeBox
+            // txtType
             // 
-            this.TypeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TypeBox.Location = new System.Drawing.Point(6, 19);
-            this.TypeBox.Name = "TypeBox";
-            this.TypeBox.ReadOnly = true;
-            this.TypeBox.Size = new System.Drawing.Size(236, 20);
-            this.TypeBox.TabIndex = 0;
+            this.txtType.Location = new System.Drawing.Point(6, 19);
+            this.txtType.Name = "txtType";
+            this.txtType.ReadOnly = true;
+            this.txtType.Size = new System.Drawing.Size(236, 20);
+            this.txtType.TabIndex = 0;
             // 
             // groupBox6
             // 
@@ -307,12 +311,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox11);
             this.panel1.Controls.Add(this.groupBox10);
-            this.panel1.Controls.Add(this.PositionVectorDisplay);
+            this.panel1.Controls.Add(this.v3dPosition);
             this.panel1.Controls.Add(this.groupBox9);
             this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox7);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnLoadData);
             this.panel1.Controls.Add(this.UnknownsListBox);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox6);
@@ -320,12 +325,12 @@
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox4);
-            this.panel1.Controls.Add(this.PositionKmVectorDisplay);
-            this.panel1.Controls.Add(this.PreviousButton);
+            this.panel1.Controls.Add(this.v3dPositionKm);
+            this.panel1.Controls.Add(this.btnGoPrevious);
             this.panel1.Controls.Add(this.AutoReloadCheckBox);
-            this.panel1.Controls.Add(this.ParentButton);
-            this.panel1.Controls.Add(this.RotationVectorDisplay);
-            this.panel1.Controls.Add(this.NextButton);
+            this.panel1.Controls.Add(this.btnGoParent);
+            this.panel1.Controls.Add(this.v3dRotation);
+            this.panel1.Controls.Add(this.btnGoNext);
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
@@ -350,43 +355,43 @@
             this.ModelCollectionIDBox.Size = new System.Drawing.Size(109, 20);
             this.ModelCollectionIDBox.TabIndex = 0;
             // 
-            // PositionVectorDisplay
+            // v3dPosition
             // 
-            this.PositionVectorDisplay.DecimalPlaces = 0;
-            this.PositionVectorDisplay.Increment = new decimal(new int[] {
+            this.v3dPosition.DecimalPlaces = 0;
+            this.v3dPosition.Increment = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.PositionVectorDisplay.Location = new System.Drawing.Point(9, 119);
-            this.PositionVectorDisplay.Maximum = new decimal(new int[] {
+            this.v3dPosition.Location = new System.Drawing.Point(9, 119);
+            this.v3dPosition.Maximum = new decimal(new int[] {
             1215752192,
             23,
             0,
             0});
-            this.PositionVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
-            this.PositionVectorDisplay.Minimum = new decimal(new int[] {
+            this.v3dPosition.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dPosition.Minimum = new decimal(new int[] {
             1215752192,
             23,
             0,
             -2147483648});
-            this.PositionVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
-            this.PositionVectorDisplay.Name = "PositionVectorDisplay";
-            this.PositionVectorDisplay.ReadOnly = true;
-            this.PositionVectorDisplay.Size = new System.Drawing.Size(156, 103);
-            this.PositionVectorDisplay.TabIndex = 24;
-            this.PositionVectorDisplay.Text = "Position";
-            this.PositionVectorDisplay.X = new decimal(new int[] {
+            this.v3dPosition.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dPosition.Name = "v3dPosition";
+            this.v3dPosition.ReadOnly = true;
+            this.v3dPosition.Size = new System.Drawing.Size(156, 103);
+            this.v3dPosition.TabIndex = 24;
+            this.v3dPosition.Text = "Position";
+            this.v3dPosition.X = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.PositionVectorDisplay.Y = new decimal(new int[] {
+            this.v3dPosition.Y = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.PositionVectorDisplay.Z = new decimal(new int[] {
+            this.v3dPosition.Z = new decimal(new int[] {
             0,
             0,
             0,
@@ -394,7 +399,7 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.RaceBox);
+            this.groupBox9.Controls.Add(this.txtRace);
             this.groupBox9.Location = new System.Drawing.Point(165, 206);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(121, 52);
@@ -402,13 +407,13 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Race";
             // 
-            // RaceBox
+            // txtRace
             // 
-            this.RaceBox.Location = new System.Drawing.Point(6, 19);
-            this.RaceBox.Name = "RaceBox";
-            this.RaceBox.ReadOnly = true;
-            this.RaceBox.Size = new System.Drawing.Size(109, 20);
-            this.RaceBox.TabIndex = 0;
+            this.txtRace.Location = new System.Drawing.Point(6, 19);
+            this.txtRace.Name = "txtRace";
+            this.txtRace.ReadOnly = true;
+            this.txtRace.Size = new System.Drawing.Size(109, 20);
+            this.txtRace.TabIndex = 0;
             // 
             // groupBox8
             // 
@@ -437,6 +442,7 @@
             0,
             -2147483648});
             this.TargetSpeedBox.Name = "TargetSpeedBox";
+            this.TargetSpeedBox.ReadOnly = true;
             this.TargetSpeedBox.Size = new System.Drawing.Size(109, 20);
             this.TargetSpeedBox.TabIndex = 0;
             // 
@@ -467,18 +473,19 @@
             0,
             -2147483648});
             this.SpeedBox.Name = "SpeedBox";
+            this.SpeedBox.ReadOnly = true;
             this.SpeedBox.Size = new System.Drawing.Size(109, 20);
             this.SpeedBox.TabIndex = 0;
             // 
-            // button1
+            // btnLoadData
             // 
-            this.button1.Location = new System.Drawing.Point(162, 119);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Load Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnLoadData.Location = new System.Drawing.Point(171, 119);
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.Size = new System.Drawing.Size(90, 23);
+            this.btnLoadData.TabIndex = 22;
+            this.btnLoadData.Text = "Load Data";
+            this.btnLoadData.UseVisualStyleBackColor = true;
+            this.btnLoadData.Click += new System.EventHandler(this.button1_Click);
             // 
             // UnknownsListBox
             // 
@@ -488,85 +495,85 @@
             this.UnknownsListBox.Size = new System.Drawing.Size(170, 433);
             this.UnknownsListBox.TabIndex = 21;
             // 
-            // PositionKmVectorDisplay
+            // v3dPositionKm
             // 
-            this.PositionKmVectorDisplay.DecimalPlaces = 2;
-            this.PositionKmVectorDisplay.Increment = new decimal(new int[] {
+            this.v3dPositionKm.DecimalPlaces = 2;
+            this.v3dPositionKm.Increment = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.PositionKmVectorDisplay.Location = new System.Drawing.Point(9, 228);
-            this.PositionKmVectorDisplay.Maximum = new decimal(new int[] {
+            this.v3dPositionKm.Location = new System.Drawing.Point(9, 228);
+            this.v3dPositionKm.Maximum = new decimal(new int[] {
             1215752192,
             23,
             0,
             0});
-            this.PositionKmVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
-            this.PositionKmVectorDisplay.Minimum = new decimal(new int[] {
+            this.v3dPositionKm.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dPositionKm.Minimum = new decimal(new int[] {
             1215752192,
             23,
             0,
             -2147483648});
-            this.PositionKmVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
-            this.PositionKmVectorDisplay.Name = "PositionKmVectorDisplay";
-            this.PositionKmVectorDisplay.ReadOnly = true;
-            this.PositionKmVectorDisplay.Size = new System.Drawing.Size(156, 103);
-            this.PositionKmVectorDisplay.TabIndex = 7;
-            this.PositionKmVectorDisplay.Text = "Position (Km)";
-            this.PositionKmVectorDisplay.X = new decimal(new int[] {
+            this.v3dPositionKm.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dPositionKm.Name = "v3dPositionKm";
+            this.v3dPositionKm.ReadOnly = true;
+            this.v3dPositionKm.Size = new System.Drawing.Size(156, 103);
+            this.v3dPositionKm.TabIndex = 7;
+            this.v3dPositionKm.Text = "Position (Km)";
+            this.v3dPositionKm.X = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.PositionKmVectorDisplay.Y = new decimal(new int[] {
+            this.v3dPositionKm.Y = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.PositionKmVectorDisplay.Z = new decimal(new int[] {
+            this.v3dPositionKm.Z = new decimal(new int[] {
             0,
             0,
             0,
             0});
             // 
-            // RotationVectorDisplay
+            // v3dRotation
             // 
-            this.RotationVectorDisplay.DecimalPlaces = 0;
-            this.RotationVectorDisplay.Increment = new decimal(new int[] {
+            this.v3dRotation.DecimalPlaces = 0;
+            this.v3dRotation.Increment = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.RotationVectorDisplay.Location = new System.Drawing.Point(9, 337);
-            this.RotationVectorDisplay.Maximum = new decimal(new int[] {
+            this.v3dRotation.Location = new System.Drawing.Point(9, 337);
+            this.v3dRotation.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
-            this.RotationVectorDisplay.MaximumSize = new System.Drawing.Size(156, 103);
-            this.RotationVectorDisplay.Minimum = new decimal(new int[] {
+            this.v3dRotation.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dRotation.Minimum = new decimal(new int[] {
             10000000,
             0,
             0,
             -2147483648});
-            this.RotationVectorDisplay.MinimumSize = new System.Drawing.Size(100, 103);
-            this.RotationVectorDisplay.Name = "RotationVectorDisplay";
-            this.RotationVectorDisplay.ReadOnly = true;
-            this.RotationVectorDisplay.Size = new System.Drawing.Size(156, 103);
-            this.RotationVectorDisplay.TabIndex = 9;
-            this.RotationVectorDisplay.Text = "Rotation";
-            this.RotationVectorDisplay.X = new decimal(new int[] {
+            this.v3dRotation.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dRotation.Name = "v3dRotation";
+            this.v3dRotation.ReadOnly = true;
+            this.v3dRotation.Size = new System.Drawing.Size(156, 103);
+            this.v3dRotation.TabIndex = 9;
+            this.v3dRotation.Text = "Rotation";
+            this.v3dRotation.X = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.RotationVectorDisplay.Y = new decimal(new int[] {
+            this.v3dRotation.Y = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.RotationVectorDisplay.Z = new decimal(new int[] {
+            this.v3dRotation.Z = new decimal(new int[] {
             0,
             0,
             0,
@@ -630,6 +637,13 @@
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
+            // spawnToolStripMenuItem
+            // 
+            this.spawnToolStripMenuItem.Name = "spawnToolStripMenuItem";
+            this.spawnToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.spawnToolStripMenuItem.Text = "Spawn";
+            this.spawnToolStripMenuItem.Click += new System.EventHandler(this.spawnToolStripMenuItem_Click);
+            // 
             // treeView1
             // 
             this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -660,12 +674,36 @@
             this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.TabIndex = 26;
             // 
-            // spawnToolStripMenuItem
+            // groupBox11
             // 
-            this.spawnToolStripMenuItem.Name = "spawnToolStripMenuItem";
-            this.spawnToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.spawnToolStripMenuItem.Text = "Spawn";
-            this.spawnToolStripMenuItem.Click += new System.EventHandler(this.spawnToolStripMenuItem_Click);
+            this.groupBox11.Controls.Add(this.nudMass);
+            this.groupBox11.Location = new System.Drawing.Point(165, 264);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(121, 52);
+            this.groupBox11.TabIndex = 8;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Mass";
+            // 
+            // nudMass
+            // 
+            this.nudMass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudMass.Location = new System.Drawing.Point(6, 19);
+            this.nudMass.Maximum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            0});
+            this.nudMass.Minimum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            -2147483648});
+            this.nudMass.Name = "nudMass";
+            this.nudMass.ReadOnly = true;
+            this.nudMass.Size = new System.Drawing.Size(109, 20);
+            this.nudMass.TabIndex = 0;
             // 
             // SectorObjectDisplay
             // 
@@ -681,7 +719,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -705,6 +743,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudMass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -713,31 +753,31 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox AddressBox;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button LoadIDButton;
-        private System.Windows.Forms.NumericUpDown IDNumericUpDown;
+        private System.Windows.Forms.NumericUpDown nudSectorObjectID;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox DefaultNameBox;
-        private Common.UI.Vector3Display PositionKmVectorDisplay;
+        private System.Windows.Forms.TextBox txtDefaultName;
+        private Common.UI.Vector3Display v3dPositionKm;
         private System.Windows.Forms.Timer AutoReloader;
         private System.Windows.Forms.CheckBox AutoReloadCheckBox;
-        private Common.UI.Vector3Display RotationVectorDisplay;
-        private System.Windows.Forms.Button NextButton;
-        private System.Windows.Forms.Button ParentButton;
-        private System.Windows.Forms.Button PreviousButton;
+        private Common.UI.Vector3Display v3dRotation;
+        private System.Windows.Forms.Button btnGoNext;
+        private System.Windows.Forms.Button btnGoParent;
+        private System.Windows.Forms.Button btnGoPrevious;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox EventObjectIDBox;
         private System.Windows.Forms.Button EventObjectIDLoadButton;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox TypeBox;
+        private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox ChildTypeSelectionBox;
         private System.Windows.Forms.Button LastChildButton;
         private System.Windows.Forms.Button FirstChildButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox UnknownsListBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLoadData;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.NumericUpDown TargetSpeedBox;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -747,8 +787,8 @@
         private System.Windows.Forms.ToolStripMenuItem otherToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox RaceBox;
-        private Common.UI.Vector3Display PositionVectorDisplay;
+        private System.Windows.Forms.TextBox txtRace;
+        private Common.UI.Vector3Display v3dPosition;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
@@ -757,5 +797,7 @@
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox ModelCollectionIDBox;
         private System.Windows.Forms.ToolStripMenuItem spawnToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.NumericUpDown nudMass;
     }
 }

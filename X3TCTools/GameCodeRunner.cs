@@ -23,8 +23,8 @@ namespace X3TCTools
         {
             m_GameHook = gameHook;
 
-            switch (m_GameHook.gameVersion) {
-                case GameHook.GameVersion.X3TC:
+            switch (GameHook.GameVersion) {
+                case GameHook.GameVersions.X3TC:
                 pCreateObjectInjection = m_GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
                     break;
             }

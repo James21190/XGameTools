@@ -23,7 +23,7 @@ namespace X2TheThreatRETool
 #endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            m_Form = new X2RETool();
+            m_Form = new X2Tool();
             Application.Run(m_Form);
         }
 

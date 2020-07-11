@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X2Tools.X2.SectorObjects
 {
-    public class InteractionFlags : IMemoryObject
+    public class InteractionFlags : MemoryObject
     {
         public const int ByteSize = 4;
 
@@ -55,7 +55,12 @@ namespace X2Tools.X2.SectorObjects
             SetData(Data);
         }
 
-        public byte[] GetBytes()
+        public InteractionFlags()
+        {
+
+        }
+
+        public override byte[] GetBytes()
         {
 
             uint Value = 0;
@@ -94,12 +99,12 @@ namespace X2Tools.X2.SectorObjects
             return BitConverter.GetBytes(Value);
         }
 
-        public int GetByteSize()
+        public override int GetByteSize()
         {
             return ByteSize;
         }
 
-        public void SetData(byte[] Memory)
+        public override void SetData(byte[] Memory)
         {
             int value = BitConverter.ToInt32(Memory, 0);
             SetData(value);
@@ -170,11 +175,6 @@ namespace X2Tools.X2.SectorObjects
             Unknown31 = (Value & 1) != 0;
             Value = Value >> 1;
             Unknown32 = (Value & 1) != 0;
-        }
-
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            throw new NotImplementedException();
         }
     }
 }

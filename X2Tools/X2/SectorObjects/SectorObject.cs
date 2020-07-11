@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using X2Tools.X2.SectorObjects.Meta;
 using Common.Memory;
+using Common.Vector;
 
 namespace X2Tools.X2.SectorObjects
 {
@@ -30,7 +31,7 @@ namespace X2Tools.X2.SectorObjects
         public MemoryObjectPointer<SectorObject> pNext = new MemoryObjectPointer<SectorObject>();
         public MemoryObjectPointer<SectorObject> pPrevious = new MemoryObjectPointer<SectorObject>();
         public int SectorObjectID;
-        public IntPtr pDefaultName;
+        public MemoryObjectPointer<MemoryString> pDefaultName = new MemoryObjectPointer<MemoryString>();
         public int Speed;
         public int TargetSpeed;
         public Common.Vector.Vector3 Rotation;
@@ -45,7 +46,7 @@ namespace X2Tools.X2.SectorObjects
         public IntPtr pMeta;
         public MemoryObjectPointer<SectorObject> pParent = new MemoryObjectPointer<SectorObject>();
         public Common.Vector.Vector3 StrafePositionDelta;
-        public IntPtr pData;
+        public MemoryObjectPointer<SectorObjectData> pData = new MemoryObjectPointer<SectorObjectData>();
         public int Unknown_6;
         public int Unknown_7;
         public int RunObjectParamID;
@@ -55,7 +56,7 @@ namespace X2Tools.X2.SectorObjects
         public int Unknown_12;
         public int SelectInformation;
         public int Unknown_14;
-        public int ObjectModleID;
+        public int ModelCollectionID;
         public int Unknown_15;
         public int Unknown_16;
         public int Unknown_17;
@@ -87,7 +88,6 @@ namespace X2Tools.X2.SectorObjects
         {
             switch (MainType)
             {
-                case Main_Type.Ship: return ((ShipMeta)GetMetaData()).pFirstChild.address;
                 default: throw new NotImplementedException();
             }
         }
@@ -97,50 +97,56 @@ namespace X2Tools.X2.SectorObjects
         /// <summary>
         /// Loads dynamic data from the sectorobject memory.
         /// </summary>
-        /// <param name="Memory"></param>
-        public override void SetData(byte[] Memory)
+        /// <param name="memory"></param>
+        public override void SetData(byte[] memory)
         {
             // Load object data from memory
-            var collection = new ObjectByteList(Memory);
+            var collection = new ObjectByteList(memory,m_hProcess, pThis);
 
-            collection.PopFirst(ref pNext);
-            collection.PopFirst(ref pPrevious);
+            pNext = collection.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            pPrevious = collection.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            SectorObjectID = collection.PopInt();
+            pDefaultName = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
+            Speed = collection.PopInt();
+            TargetSpeed = collection.PopInt();
+            Rotation = collection.PopIMemoryObject<Vector3>();
+            LocalRotationDelta = collection.PopIMemoryObject<Vector3>();
+            AutoPilotRotationChange = collection.PopIMemoryObject<Vector3>();
+            RaceID = Race.ConvertToRaceID(collection.PopShort());
+            Unknown_4 = collection.PopShort();
+            InteractionFlags = collection.PopIMemoryObject<InteractionFlags>();
+            Unknown_5 = collection.PopInt();
+            MainType = (SectorObject.Main_Type)collection.PopShort();
+            SubType = collection.PopShort();
+            pMeta = (IntPtr)collection.PopInt();
+            pParent = collection.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            StrafePositionDelta = collection.PopIMemoryObject<Vector3>();
+            pData = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
 
-            SectorObjectID = BitConverter.ToInt32(Memory, 8);
-            Speed = BitConverter.ToInt32(Memory, 16);
-            TargetSpeed = BitConverter.ToInt32(Memory, 20);
-            Rotation = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 24), BitConverter.ToInt32(Memory, 28), BitConverter.ToInt32(Memory, 32));
-            LocalRotationDelta = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 36), BitConverter.ToInt32(Memory, 40), BitConverter.ToInt32(Memory, 44));
-            AutoPilotRotationChange = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 48), BitConverter.ToInt32(Memory, 52), BitConverter.ToInt32(Memory, 56));
-            RaceID = Race.ConvertToRaceID(BitConverter.ToInt16(Memory, 60));
-            Unknown_4 = BitConverter.ToInt16(Memory, 62);
-            InteractionFlags = new InteractionFlags(BitConverter.ToInt32(Memory, 64));
-            Unknown_5 = BitConverter.ToInt32(Memory, 68);
-            StrafePositionDelta = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 84), BitConverter.ToInt32(Memory, 88), BitConverter.ToInt32(Memory, 92));
-            Unknown_6 = BitConverter.ToInt32(Memory, 100);
-            Unknown_7 = BitConverter.ToInt32(Memory, 104);
-            RunObjectParamID = BitConverter.ToInt32(Memory, 108);
-            Unknown_9 = BitConverter.ToInt32(Memory, 112);
-            Unknown_10 = BitConverter.ToInt32(Memory, 116);
-            Unknown_11 = BitConverter.ToInt32(Memory, 120);
-            Unknown_12 = BitConverter.ToInt32(Memory, 124);
-            SelectInformation = BitConverter.ToInt32(Memory, 128);
-            Unknown_14 = BitConverter.ToInt32(Memory, 132);
-            ObjectModleID = BitConverter.ToInt32(Memory, 136);
-            Unknown_15 = BitConverter.ToInt32(Memory, 140);
-            Unknown_16 = BitConverter.ToInt32(Memory, 144);
-            Unknown_17 = BitConverter.ToInt32(Memory, 148);
-            Unknown_18 = BitConverter.ToInt32(Memory, 152);
-            p1 = (IntPtr)BitConverter.ToInt32(Memory, 156);
-            Unknown_19 = BitConverter.ToInt32(Memory, 160);
-            p2 = (IntPtr)BitConverter.ToInt32(Memory, 164);
-            PositionCopy = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 168), BitConverter.ToInt32(Memory, 172), BitConverter.ToInt32(Memory, 176));
-            RotationCopy = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 180), BitConverter.ToInt32(Memory, 184), BitConverter.ToInt32(Memory, 188));
-            LocalDeltaRotationCopy = new Common.Vector.Vector3(BitConverter.ToInt32(Memory, 192), BitConverter.ToInt32(Memory, 196), BitConverter.ToInt32(Memory, 200));
-            SpeedCopy = BitConverter.ToInt32(Memory, 204);
-            Hull = BitConverter.ToInt32(Memory, 208);
-            Unknown_20 = BitConverter.ToInt32(Memory, 212);
-            Unknown_21 = BitConverter.ToInt32(Memory, 216);
+            Unknown_6 = BitConverter.ToInt32(memory, 100);
+            Unknown_7 = BitConverter.ToInt32(memory, 104);
+            RunObjectParamID = BitConverter.ToInt32(memory, 108);
+            Unknown_9 = BitConverter.ToInt32(memory, 112);
+            Unknown_10 = BitConverter.ToInt32(memory, 116);
+            Unknown_11 = BitConverter.ToInt32(memory, 120);
+            Unknown_12 = BitConverter.ToInt32(memory, 124);
+            SelectInformation = BitConverter.ToInt32(memory, 128);
+            Unknown_14 = BitConverter.ToInt32(memory, 132);
+            ModelCollectionID = BitConverter.ToInt32(memory, 136);
+            Unknown_15 = BitConverter.ToInt32(memory, 140);
+            Unknown_16 = BitConverter.ToInt32(memory, 144);
+            Unknown_17 = BitConverter.ToInt32(memory, 148);
+            Unknown_18 = BitConverter.ToInt32(memory, 152);
+            p1 = (IntPtr)BitConverter.ToInt32(memory, 156);
+            Unknown_19 = BitConverter.ToInt32(memory, 160);
+            p2 = (IntPtr)BitConverter.ToInt32(memory, 164);
+            PositionCopy = new Common.Vector.Vector3(BitConverter.ToInt32(memory, 168), BitConverter.ToInt32(memory, 172), BitConverter.ToInt32(memory, 176));
+            RotationCopy = new Common.Vector.Vector3(BitConverter.ToInt32(memory, 180), BitConverter.ToInt32(memory, 184), BitConverter.ToInt32(memory, 188));
+            LocalDeltaRotationCopy = new Common.Vector.Vector3(BitConverter.ToInt32(memory, 192), BitConverter.ToInt32(memory, 196), BitConverter.ToInt32(memory, 200));
+            SpeedCopy = BitConverter.ToInt32(memory, 204);
+            Hull = BitConverter.ToInt32(memory, 208);
+            Unknown_20 = BitConverter.ToInt32(memory, 212);
+            Unknown_21 = BitConverter.ToInt32(memory, 216);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -164,7 +170,7 @@ namespace X2Tools.X2.SectorObjects
             Memory.AddRange(BitConverter.GetBytes((int) pNext.address));
             Memory.AddRange(BitConverter.GetBytes((int) pPrevious.address));
             Memory.AddRange(BitConverter.GetBytes((int) SectorObjectID));
-            Memory.AddRange(BitConverter.GetBytes((int) pDefaultName));
+            Memory.AddRange(BitConverter.GetBytes((int) pDefaultName.address));
             Memory.AddRange(BitConverter.GetBytes((int) Speed));
             Memory.AddRange(BitConverter.GetBytes((int) TargetSpeed));
             Memory.AddRange(Rotation.GetBytes());
@@ -179,7 +185,7 @@ namespace X2Tools.X2.SectorObjects
             Memory.AddRange(BitConverter.GetBytes((int) pMeta));
             Memory.AddRange(BitConverter.GetBytes((int) pParent.address));
             Memory.AddRange(StrafePositionDelta.GetBytes());
-            Memory.AddRange(BitConverter.GetBytes((int) pData));
+            Memory.AddRange(BitConverter.GetBytes((int) pData.address));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_6));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_7));
             Memory.AddRange(BitConverter.GetBytes((int) RunObjectParamID));
@@ -189,7 +195,7 @@ namespace X2Tools.X2.SectorObjects
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_12));
             Memory.AddRange(BitConverter.GetBytes((int) SelectInformation));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_14));
-            Memory.AddRange(BitConverter.GetBytes((int) ObjectModleID));
+            Memory.AddRange(BitConverter.GetBytes((int) ModelCollectionID));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_15));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_16));
             Memory.AddRange(BitConverter.GetBytes((int) Unknown_17));
@@ -219,11 +225,6 @@ namespace X2Tools.X2.SectorObjects
             MemoryControl.Write(m_hProcess, pThis+8, GetBytes().Skip(8).ToArray());
         }
 
-        public void SaveData(SectorObject.Data Data)
-        {
-            MemoryControl.Write(m_hProcess, pData, Data.GetBytes());
-        }
-
         #endregion
 
         /// <summary>
@@ -236,12 +237,6 @@ namespace X2Tools.X2.SectorObjects
                 return null;
             switch (MainType)
             {
-                case Main_Type.Ship:
-                    return new ShipMeta(m_hProcess, pMeta);
-                case Main_Type.Sector:
-                    return new SectorMeta(m_hProcess, pMeta);
-                case Main_Type.Projectile:
-                    return new ProjectileMeta(m_hProcess, pMeta);
                 default:
                     throw new NotImplementedException();
             }

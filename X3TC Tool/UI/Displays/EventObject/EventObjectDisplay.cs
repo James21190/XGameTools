@@ -13,6 +13,7 @@ using X3TCTools.Bases;
 using X3TCTools.SectorObjects;
 using X3TCTools.Bases.Scripting;
 using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -92,30 +93,23 @@ namespace X3TC_Tool.UI.Displays
         {
             DynamicValueObjectDisplay display;
             ScriptingMemoryObject obj;
-            switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
+            switch (GameHook.GameVersion) 
             {
-                case SectorObject.Main_Type.Ship:
-                    display = new DynamicValueObjectDisplay(m_GameHook);
-                    obj = new SectorObject_Ship_ScriptMemoryObject();
-                    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                    display.LoadObject(obj);
-                    display.Show();
-                    return;
-                //case SectorObject.Main_Type.Dock:
-                //    display = new DynamicValueObjectDisplay(m_GameHook);
-                //    obj = DynamicValueObject.GetSectorObjectDock();
-                //    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                //    display.LoadObject(obj);
-                //    display.Show();
-                //    return;
-                //case SectorObject.Main_Type.Gate:
-                //    display = new DynamicValueObjectDisplay(m_GameHook);
-                //    obj = DynamicValueObject.GetSectorObjectGate();
-                //    obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                //    display.LoadObject(obj);
-                //    display.Show();
-                //    return;
+                case GameHook.GameVersions.X3TC:
+                    switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
+                    {
+                        case SectorObject.Main_Type.Ship:
+                            obj = new TC_SectorObject_Ship_ScriptMemoryObject();
+                            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                            break;
+                        default: return;
+                    }
+                    break;
+                default: return;
             }
+            display = new DynamicValueObjectDisplay(m_GameHook);
+            display.LoadObject(obj);
+            display.Show();
         }
     }
 }

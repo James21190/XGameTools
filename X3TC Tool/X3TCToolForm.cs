@@ -28,26 +28,26 @@ namespace X3TC_Tool
         {
             // Hook into the game memory
             var processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-            //var processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
-            while (processX3TC == null)
+            var processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
+            while (processX3TC == null && processX3AP == null)
             {
-                var result = MessageBox.Show("X3TC is not currently running!\nPlease launch X3TC and retry.", "Game not running", MessageBoxButtons.RetryCancel);
+                var result = MessageBox.Show("X3TC/X3AP is not currently running!\nPlease launch the game and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
                 {
                     Close();
                     return;
                 }
                 processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-                //processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
+                processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
             }
 
 
             if (processX3TC != null)
-                m_GameHook = new GameHook(processX3TC, GameHook.GameVersion.X3TC);
-            //else if (processX3AP != null)
-            //    m_GameHook = new GameHook(processX3AP, GameHook.GameVersion.X3AP);
+                m_GameHook = new GameHook(processX3TC, GameHook.GameVersions.X3TC);
+            else if (processX3AP != null)
+                m_GameHook = new GameHook(processX3AP, GameHook.GameVersions.X3AP);
 
-            //this.Text += " - Game Version: " + m_GameHook.gameVersion;
+            this.Text += " - Game Version: " + GameHook.GameVersion;
         }
 
         private void X3TCToolForm_FormClosed(object sender, FormClosedEventArgs e)

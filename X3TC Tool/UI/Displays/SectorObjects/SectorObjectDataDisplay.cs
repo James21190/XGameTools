@@ -43,11 +43,14 @@ namespace X3TC_Tool.UI.Displays
 
             ScaleBox.Vector = m_SectorObjectData.ModelScale;
 
+            nudSize.Value = m_SectorObjectData.Size;
+            nudTotalSize.Value = m_SectorObjectData.TotalSize;
+
             // Relations
-            NextButton.Enabled = m_SectorObjectData.pNext.IsValid;
-            PreviousButton.Enabled = m_SectorObjectData.pPrevious.IsValid;
-            FirstChildButton.Enabled = m_SectorObjectData.pFirstChild.IsValid;
-            LastChildButton.Enabled = m_SectorObjectData.pLastChild.IsValid;
+            NextButton.Enabled = m_SectorObjectData.pNext.obj.IsValid;
+            PreviousButton.Enabled = m_SectorObjectData.pPrevious.obj.IsValid;
+            FirstChildButton.Enabled = m_SectorObjectData.pFirstChild.obj.IsValid;
+            LastChildButton.Enabled = m_SectorObjectData.pLastChild.obj.IsValid;
         }
 
         private void button1_Click(object sender, EventArgs e)
