@@ -5,41 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using X3TCTools.SectorObjects;
 
-namespace X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC
+namespace X3TCTools.Bases.Scripting.ScriptingMemoryObject.AP
 {
-    public class TC_SectorObject_Ship_ScriptMemoryObject : ScriptingMemoryObject, IShip_ScriptMemoryObject
+    public class AP_SectorObject_Ship_ScriptMemoryObject : ScriptingMemoryObject, IShip_ScriptMemoryObject
     {
         
-        public TC_SectorObject_Ship_ScriptMemoryObject()
+        public AP_SectorObject_Ship_ScriptMemoryObject()
         {
-            VariableCount = 73;
+            VariableCount = 95;
         }
         
         public enum VariableName
         {
-            SubType = 12,
-
-            CustomShipName = 16,
-
-            Hull = 18,
-
-            InstalledWeapons = 21,
-
-            InstalledShields = 25,
-
-            CargoItemCountHashTable = 33,
-
-            PilotID = 37,
-
-            AdditionalMaxCargoUnits = 69,
-            CurrentCargoUnits,
-            MaximumLaserEnergy,
-            MaximumShield
+            SubType = 14,
+            Cargo = 35
         }
-
-        public int SubType { get { return GetVariableValue(VariableName.SubType); } set { SetVariableValue(VariableName.SubType, value); } }
-        public CargoEntry[] Cargo { get { return GetCargo(); } }
-
 
         public int GetVariableValue(VariableName variableName)
         {
@@ -56,15 +36,17 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC
             return ((VariableName)index).ToString();
         }
 
+        public int SubType { get { return GetVariableValue(VariableName.SubType); } set { SetVariableValue(VariableName.SubType, value); } }
+        public CargoEntry[] Cargo { get { return GetCargo(); } }
 
         public CargoEntry[] GetCargo()
         {
             ReloadFromMemory();
             List<CargoEntry> entries = new List<CargoEntry>();
             var cargoHashTable = new ScriptingHashTableObject();
-            cargoHashTable.SetLocation(m_hProcess, (IntPtr)GetVariableValue((int)VariableName.CargoItemCountHashTable));
+            cargoHashTable.SetLocation(m_hProcess, (IntPtr)GetVariableValue((int)VariableName.Cargo));
             cargoHashTable.ReloadFromMemory();
-            foreach(var id in cargoHashTable.hashTable.ScanContents())
+            foreach (var id in cargoHashTable.hashTable.ScanContents())
             {
                 var type = SectorObject.Full_Type.FromInt(id.Value);
                 var entry = new CargoEntry()

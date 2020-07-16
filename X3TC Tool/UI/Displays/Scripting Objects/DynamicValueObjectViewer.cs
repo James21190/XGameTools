@@ -78,31 +78,17 @@ namespace X3TC_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
 
-            //ScriptingMemoryObject obj;
-            //switch (comboBox1.SelectedIndex)
-            //{
-            //    case 0: // Blank
-            //        obj = DynamicValueObject.GetBlank(textBox1.Text, (int)numericUpDown1.Value);
-            //        obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
-            //        LoadObject(obj);
-            //        break;
-            //    case 1: // Ship
-            //        obj = DynamicValueObject.GetSectorObjectShip();
-            //        obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
-            //        LoadObject(obj);
-            //        break;
-            //    case 2: // Dock
-            //        obj = DynamicValueObject.GetSectorObjectDock();
-            //        obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
-            //        LoadObject(obj);
-            //        break;
-            //    case 3: // Gate
-            //        obj = DynamicValueObject.GetSectorObjectGate();
-            //        obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
-            //        LoadObject(obj);
-            //        break;
-
-            //}
+            ScriptingMemoryObject obj;
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0: // Blank
+                    obj = new BlankScriptingMemoryObject((int)numericUpDown1.Value);
+                    obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
+                    LoadObject(obj);
+                    break;
+                default: return;
+            }
+            LoadObject(obj);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

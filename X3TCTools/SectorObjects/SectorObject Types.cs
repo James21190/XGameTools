@@ -10,6 +10,47 @@ namespace X3TCTools.SectorObjects
     public partial class SectorObject
     {
 
+        public struct Full_Type : IComparable
+        {
+            public Main_Type MainType;
+            public int SubType;
+
+            public int ToInt()
+            {
+                return (((int)MainType) << 16 | SubType);
+            }
+
+            public static Full_Type FromInt(int value)
+            {
+                var type = new Full_Type();
+                type.MainType = (Main_Type)(value >> 16);
+                type.SubType = value & 0x0000ffff;
+                return type;
+            }
+
+            public override string ToString()
+            {
+                return MainType.ToString() + " - " + GetSubTypeAsString(MainType, SubType);
+            }
+
+            public int CompareTo(object obj)
+            {
+                if (obj == null) return 1;
+
+                if (!(obj is Full_Type)) throw new Exception("Type missmatch");
+
+                var type = (Full_Type)obj;
+
+                if (this.MainType > type.MainType) return -1;
+                if (this.MainType < type.MainType) return 1;
+
+                if (this.SubType > type.SubType) return -1;
+                if (this.SubType < type.SubType) return 1;
+
+                return 0;
+            }
+        }
+
         public const int MAIN_TYPE_COUNT = 32;
         public enum Main_Type : ushort
         {

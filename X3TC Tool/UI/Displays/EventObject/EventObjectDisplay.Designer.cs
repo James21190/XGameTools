@@ -42,6 +42,7 @@
             this.AutoReloader = new System.Windows.Forms.Timer(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.chkLoadWithArray = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -179,11 +180,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // chkLoadWithArray
+            // 
+            this.chkLoadWithArray.AutoSize = true;
+            this.chkLoadWithArray.Location = new System.Drawing.Point(206, 128);
+            this.chkLoadWithArray.Name = "chkLoadWithArray";
+            this.chkLoadWithArray.Size = new System.Drawing.Size(138, 17);
+            this.chkLoadWithArray.TabIndex = 9;
+            this.chkLoadWithArray.Text = "Open with array display.";
+            this.chkLoadWithArray.UseVisualStyleBackColor = true;
+            // 
             // EventObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 148);
+            this.Controls.Add(this.chkLoadWithArray);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.AutoReloadCheckBox);
@@ -220,5 +232,6 @@
         private System.Windows.Forms.Timer AutoReloader;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox chkLoadWithArray;
     }
 }

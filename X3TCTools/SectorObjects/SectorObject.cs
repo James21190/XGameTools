@@ -84,6 +84,9 @@ namespace X3TCTools.SectorObjects
         public int Unknown_35;
 
         #endregion
+
+        public decimal[] MetricPosition { get { return new decimal[]{ (decimal)Position_Copy.X / 500000, (decimal)Position_Copy.Y / 500000, (decimal)Position_Copy.Z / 500000 }; } }
+
         public const int ByteSize = 304;
 
         public SectorObject()
