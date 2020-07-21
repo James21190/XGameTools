@@ -51,6 +51,8 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.nudMass = new System.Windows.Forms.NumericUpDown();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.ModelCollectionIDBox = new System.Windows.Forms.TextBox();
             this.v3dPosition = new Common.UI.Vector3Display();
@@ -74,8 +76,7 @@
             this.spawnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.nudMass = new System.Windows.Forms.NumericUpDown();
+            this.labelSectorInfo = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).BeginInit();
@@ -84,6 +85,8 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMass)).BeginInit();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -95,8 +98,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMass)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -334,8 +335,39 @@
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(589, 405);
+            this.panel1.Size = new System.Drawing.Size(589, 392);
             this.panel1.TabIndex = 15;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.nudMass);
+            this.groupBox11.Location = new System.Drawing.Point(165, 264);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(121, 52);
+            this.groupBox11.TabIndex = 8;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Mass";
+            // 
+            // nudMass
+            // 
+            this.nudMass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudMass.Location = new System.Drawing.Point(6, 19);
+            this.nudMass.Maximum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            0});
+            this.nudMass.Minimum = new decimal(new int[] {
+            -1486618625,
+            232830643,
+            0,
+            -2147483648});
+            this.nudMass.Name = "nudMass";
+            this.nudMass.ReadOnly = true;
+            this.nudMass.Size = new System.Drawing.Size(109, 20);
+            this.nudMass.TabIndex = 0;
             // 
             // groupBox10
             // 
@@ -651,7 +683,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(174, 405);
+            this.treeView1.Size = new System.Drawing.Size(174, 392);
             this.treeView1.TabIndex = 25;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -660,7 +692,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(9, 27);
+            this.splitContainer1.Location = new System.Drawing.Point(9, 40);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -670,46 +702,25 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(779, 411);
+            this.splitContainer1.Size = new System.Drawing.Size(779, 398);
             this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.TabIndex = 26;
             // 
-            // groupBox11
+            // labelSectorInfo
             // 
-            this.groupBox11.Controls.Add(this.nudMass);
-            this.groupBox11.Location = new System.Drawing.Point(165, 264);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(121, 52);
-            this.groupBox11.TabIndex = 8;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Mass";
-            // 
-            // nudMass
-            // 
-            this.nudMass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudMass.Location = new System.Drawing.Point(6, 19);
-            this.nudMass.Maximum = new decimal(new int[] {
-            -1486618625,
-            232830643,
-            0,
-            0});
-            this.nudMass.Minimum = new decimal(new int[] {
-            -1486618625,
-            232830643,
-            0,
-            -2147483648});
-            this.nudMass.Name = "nudMass";
-            this.nudMass.ReadOnly = true;
-            this.nudMass.Size = new System.Drawing.Size(109, 20);
-            this.nudMass.TabIndex = 0;
+            this.labelSectorInfo.AutoSize = true;
+            this.labelSectorInfo.Location = new System.Drawing.Point(12, 24);
+            this.labelSectorInfo.Name = "labelSectorInfo";
+            this.labelSectorInfo.Size = new System.Drawing.Size(41, 13);
+            this.labelSectorInfo.TabIndex = 27;
+            this.labelSectorInfo.Text = "Sector:";
             // 
             // SectorObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelSectorInfo);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip1;
@@ -729,6 +740,8 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudMass)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -743,8 +756,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudMass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,5 +810,6 @@
         private System.Windows.Forms.ToolStripMenuItem spawnToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.NumericUpDown nudMass;
+        private System.Windows.Forms.Label labelSectorInfo;
     }
 }

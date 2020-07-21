@@ -63,8 +63,10 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadVariablesButton_Click(object sender, EventArgs e)
         {
-            var display = new DynamicValueArrayDisplay(m_GameHook);
-            display.LoadFrom(m_EventObject.pScriptVariableArr.address, 0, 0);
+            var display = new DynamicValueObjectDisplay(m_GameHook);
+            var obj = new BlankScriptingMemoryObject(10);
+            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+            display.LoadObject(obj);
             display.Show();
         }
 
@@ -102,7 +104,6 @@ namespace X3TC_Tool.UI.Displays
                     {
                         case SectorObject.Main_Type.Ship:
                             obj = new TC_SectorObject_Ship_ScriptMemoryObject();
-                            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                             if (LoadAsArray) break;
                             var shipDisplay = new ScriptMemory_Ship_Display(m_GameHook);
                             shipDisplay.LoadObject((TC_SectorObject_Ship_ScriptMemoryObject)obj);
@@ -114,23 +115,27 @@ namespace X3TC_Tool.UI.Displays
                 case GameHook.GameVersions.X3AP:
                     switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
                     {
+                        case SectorObject.Main_Type.Sector:
+                            obj = new AP_SectorObject_Sector_ScriptMemoryObject();
+                            break;
                         case SectorObject.Main_Type.Ship:
                             obj = new AP_SectorObject_Ship_ScriptMemoryObject();
-                            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                             if (LoadAsArray) break;
+
+                            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                             var shipDisplay = new ScriptMemory_Ship_Display(m_GameHook);
                             shipDisplay.LoadObject((AP_SectorObject_Ship_ScriptMemoryObject)obj);
                             shipDisplay.Show();
                             return;
                         case SectorObject.Main_Type.Dock:
                             obj = new AP_SectorObject_Dock_ScriptMemoryObject();
-                            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                             break;
                         default: return;
                     }
                     break;
                 default: return;
             }
+            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
             DynamicValueObjectDisplay display;
             display = new DynamicValueObjectDisplay(m_GameHook);
             display.LoadObject(obj);

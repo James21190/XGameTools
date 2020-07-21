@@ -11,6 +11,10 @@ using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.SectorObjects;
 
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject.AP;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC;
+
 using Common.Memory;
 
 namespace X3TC_Tool.UI.Displays
@@ -54,7 +58,30 @@ namespace X3TC_Tool.UI.Displays
 
                 foreach(var child in children)
                 {
-                    var a = new TreeNode(child.GetSubTypeAsString());
+                    string name;
+                    switch (child.MainType)
+                    {
+                        case SectorObject.Main_Type.Gate:
+                            IGate_ScriptMemoryObject gateData;
+                            switch (GameHook.GameVersion)
+                            {
+                                //case GameHook.GameVersions.X3TC:
+                                //    break;
+                                case GameHook.GameVersions.X3AP:
+                                    gateData = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
+                                    break;
+                                default:
+                                    goto defaultName;
+
+                            }
+                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), m_GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
+                            break;
+                        default:
+                        defaultName:
+                            name = child.GetSubTypeAsString();
+                            break;
+                    }
+                    TreeNode a = new TreeNode(name);
                     a.Tag = child;
                     a.BackColor = GameHook.GetRaceColor(child.RaceID);
                     if ((int)child.MainType < SectorObject.MAIN_TYPE_COUNT)
@@ -85,7 +112,30 @@ namespace X3TC_Tool.UI.Displays
 
                 foreach (var child in children)
                 {
-                    var a = new TreeNode(child.GetSubTypeAsString());
+                    string name;
+                    switch (child.MainType)
+                    {
+                        case SectorObject.Main_Type.Gate:
+                            IGate_ScriptMemoryObject gateData;
+                            switch (GameHook.GameVersion) 
+                            {
+                                //case GameHook.GameVersions.X3TC:
+                                //    break;
+                                case GameHook.GameVersions.X3AP:
+                                    gateData = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
+                                    break;
+                                default:
+                                    goto defaultName;
+
+                            }
+                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), m_GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
+                            break;
+                        default:
+                            defaultName:
+                            name = child.GetSubTypeAsString();
+                            break;
+                    }
+                    TreeNode a = new TreeNode(name);
                     a.Tag = child;
                     a.BackColor = GameHook.GetRaceColor(child.RaceID);
                     if ((int)child.MainType < SectorObject.MAIN_TYPE_COUNT)
@@ -144,6 +194,26 @@ namespace X3TC_Tool.UI.Displays
         public void Reload()
         {
 
+            // Sector Info
+            var sector = m_GameHook.sectorObjectManager.GetSpace();
+            ISector_ScriptMemoryObject sectorScriptVariables;
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3TC:
+                    // Temp until TC version is implemented
+                    sectorScriptVariables = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Sector_ScriptMemoryObject>(sector.EventObjectID);
+                    break;
+                case GameHook.GameVersions.X3AP:
+                    sectorScriptVariables = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Sector_ScriptMemoryObject>(sector.EventObjectID);
+                    break;
+                default:
+                    goto ObjectInfo;
+            }
+            var sectorName = m_GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.GetSectorX(), (byte)sectorScriptVariables.GetSectorY());
+            labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}",sectorName, sectorScriptVariables.GetSectorX(), sectorScriptVariables.GetSectorY());
+
+            // Object info
+            ObjectInfo:
             m_SectorObject.ReloadFromMemory();
             LoadTree(m_SectorObject.ObjectID);
             txtAddress.Text = m_SectorObject.pThis.ToString("X");

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Common.Memory;
 using X3TCTools.Bases.Scripting;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
 
 namespace X3TCTools.Bases
 {
@@ -51,6 +52,20 @@ namespace X3TCTools.Bases
         {
             var table = TextHashTableArray[language].obj;
             return table.GetObject(pageID);
+        }
+
+        public EventObject GetEventObject(int ID)
+        {
+            var value = ID < 0 ? -ID - 1 : ID;
+            return pEventObjectHashTable.obj.GetObject(value);
+        }
+
+        public T GetEventObjectScriptingVariables<T>(int ID) where T : ScriptingMemoryObject, new()
+        {
+            var obj = new T();
+            obj.SetLocation(m_hProcess, GetEventObject(ID).pScriptVariableArr.address);
+            obj.ReloadFromMemory();
+            return obj;
         }
 
         #region IMemoryObject

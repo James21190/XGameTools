@@ -48,10 +48,14 @@
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
     <Compile Include="Bases\Scripting\KCodeDissassembler.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Gate_ScriptMemoryObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Sector_ScriptMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Ship_ScriptMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Dock_ScriptMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemoryObject\BlankScriptingMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemoryObject\CargoEntry.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\IGate_ScriptMemoryObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemoryObject\ISector_ScriptMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemoryObject\ScriptingMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemoryObject\IShip_ScriptMemoryObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingTextObject.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="LinkedListStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectorObjects\Meta\ISectorObjectMeta.cs" />
+    <Compile Include="SectorObjects\Meta\SectorObject_Gate_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObject_Sun_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObject_Sector_Meta.cs" />
     <Compile Include="SectorObjects\Meta\SectorObjectMetaWithChildren.cs" />
@@ -112,10 +117,10 @@
     <Compile Include="SectorObjects\TypeData\TypeData_14.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_13.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_12.cs" />
-    <Compile Include="SectorObjects\TypeData\TypeData_10.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Missile.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Planet.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Background.cs" />
-    <Compile Include="SectorObjects\TypeData\TypeData_1.cs" />
+    <Compile Include="SectorObjects\TypeData\TypeData_Sector.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Factory.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Dock.cs" />
     <Compile Include="SectorObjects\TypeData\TypeData_Sun.cs" />
@@ -132,6 +137,9 @@
     </None>
     <None Include="Patches\0.patch">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="X3APSectorNames.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="X3APSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

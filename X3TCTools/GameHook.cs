@@ -31,7 +31,7 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>> ppTypeData_Shield;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_10>> ppTypeData_10;
+        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Missile>> ppTypeData_10;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_11>> ppTypeData_11;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_12>> ppTypeData_12;
         private MemoryObjectPointer<MemoryObjectPointer<TypeData_13>> ppTypeData_13;
@@ -60,6 +60,8 @@ namespace X3TCTools
         private MemoryObjectPointer<MemoryInt32> pTypeDataCountArray;
         public MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
         public MemoryObjectPointer<MemoryInt32> pProcessEventSwitch;
+        public MemoryObjectPointer<MemoryInt32> pBytesAllocated;
+        public MemoryObjectPointer<MemoryInt32> pBlocksAllocated;
         #endregion
 
         #region Pointer Objects
@@ -168,7 +170,7 @@ namespace X3TCTools
                     ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
                     ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Laser);
                     ppTypeData_Shield = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Shield);
-                    ppTypeData_10 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_10>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_10);
+                    ppTypeData_10 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Missile>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_10);
                     ppTypeData_11 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_11>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_11);
                     ppTypeData_12 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_12>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_12);
                     ppTypeData_13 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_13>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_13);
@@ -218,7 +220,7 @@ namespace X3TCTools
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
-                    //ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
+                    ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
                     //ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData);
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
                     //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
@@ -235,7 +237,7 @@ namespace X3TCTools
                     ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Ship);
                     ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Laser);
                     ppTypeData_Shield = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Shield);
-                    ppTypeData_10 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_10>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_10);
+                    ppTypeData_10 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Missile>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_10);
                     ppTypeData_11 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_11>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_11);
                     ppTypeData_12 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_12>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_12);
                     ppTypeData_13 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_13>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_13);
@@ -260,6 +262,9 @@ namespace X3TCTools
                     #endregion
 
                     pTypeDataCountArray = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeDataCountArray);
+
+                    pBytesAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.BytesAllocated);
+                    pBlocksAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.BlocksAllocated);
 
                     //// Create events
                     //eventManager = new EventManager(hProcess);
@@ -303,6 +308,11 @@ namespace X3TCTools
             pSectorObjectManager =      0x00604640,
             pCockpitBase =              0x00604638,
             pStoryBase =                0x00604718,
+            pInputBase =                0x0057FDA0,
+            pCameraBase =               0x0060464c,
+            ProcessEventSwitchArray =   0x004a4d18,
+            ProcessEventSwitch =        0x004a4b20,
+
             #region TypeData
             pTypeData_Bullet =          0x006030e8,
             pTypeData_1 =               0x006030ec,
@@ -336,24 +346,23 @@ namespace X3TCTools
             pTypeData_29 =              0x0060315c,
             pTypeData_30 =              0x00603160,
             pTypeData_31 =              0x00603164,
-            #endregion
             pTypeDataCountArray =       0x00603168,
-            pInputBase =                0x0057FDA0,
-            pCameraBase =               0x0060464c,
-            ProcessEventSwitchArray =   0x004a4d18,
-            ProcessEventSwitch =        0x004a4b20
+            #endregion
+
+            BytesAllocated =            0x00604728,
         }
 
         public enum GlobalAddressesX3AP
         {
             pSystemBase =               0x00609104,
-            //pGateSystemObject = 0,
+            pGateSystemObject =         0x0060a6d4,
             pSectorObjectManager =      0x0060a6e0,
             //pCockpitBase = 0,
             pStoryBase =                0x0060a7b8,
-            //pTypeData = 0,
             pInputBase =                0x00581e30,
             //pCameraBase = 0,
+            //ProcessEventSwitchArray = 0,
+            //ProcessEventSwitch = 0,
 
             #region TypeData
             pTypeData_Bullet =          0x00609188,
@@ -388,8 +397,11 @@ namespace X3TCTools
             pTypeData_29 =              0x006091fc,
             pTypeData_30 =              0x00609200,
             pTypeData_31 =              0x00609204,
-            #endregion
             pTypeDataCountArray =       0x00609208,
+            #endregion
+
+            BytesAllocated =            0x0060a7c8,
+            BlocksAllocated =           0x0060abd0,
         }
         public enum RaceID : ushort
         {
@@ -404,9 +416,11 @@ namespace X3TCTools
             Pirate,
             Gonor,
             Player,
+
             Unowned = 12,
             Friendly,
             Unknown,
+
             ATF = 17,
             Terran,
             Yaki,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -254,13 +255,37 @@ namespace X3TCTools.Bases
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public string GetSectorName(byte X, byte Y)
+        public string GetSectorName(int X, int Y)
         {
-            var result = ((SectorName)GetSectorFullPos(X, Y)).ToString();
-            int o;
-            if (int.TryParse(result, out o))
-                return string.Format("({0},{1})", X, Y);
-            return result;
+            string path;
+
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3TC: path = "./X3TCSectorNames.csv"; break;
+                case GameHook.GameVersions.X3AP: path = "./X3APSectorNames.csv"; break;
+                default: throw new Exception();
+            }
+
+            if (!File.Exists(path)) goto failed;
+
+            var lines = File.ReadAllLines(path);
+
+            if (lines.Length <= Y) goto failed;
+
+            var line = lines[Y];
+
+            var names = line.Split(',');
+
+            if (names.Length <= (int)X) goto failed;
+
+            var name = names[(int)X];
+
+            if (string.IsNullOrEmpty(name)) goto failed;
+
+            return name;
+
+        failed:
+            return X + "," + Y;
         }
 
         /// <summary>

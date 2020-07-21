@@ -8,6 +8,8 @@ using Common.Vector;
 using X3TCTools.SectorObjects.Meta;
 
 using X3TCTools.Bases.Scripting;
+using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases;
 
 namespace X3TCTools.SectorObjects
 {
@@ -109,6 +111,7 @@ namespace X3TCTools.SectorObjects
             {
                 case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
                 case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
+                case Main_Type.Gate: meta = new SectorObject_Gate_Meta(); break;
                 case Main_Type.Dock:
                 case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
                 default: return null;

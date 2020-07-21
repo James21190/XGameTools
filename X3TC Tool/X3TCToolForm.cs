@@ -48,6 +48,9 @@ namespace X3TC_Tool
                 m_GameHook = new GameHook(processX3AP, GameHook.GameVersions.X3AP);
 
             this.Text += " - Game Version: " + GameHook.GameVersion;
+
+            // Post hook
+            timer1.Enabled = true;
         }
 
         private void X3TCToolForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -229,6 +232,30 @@ namespace X3TC_Tool
         private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var display = new TextPageDisplay(m_GameHook);
+            display.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // Performance
+            const int max = 100;
+            var blocks = m_GameHook.pBlocksAllocated.obj.Value;
+            var bytes = m_GameHook.pBytesAllocated.obj.Value;
+            lblBlocksAllocated.Text = "Blocks Allocated: " + String.Format("{0:n0}", blocks);
+            lblBytesAllocated.Text = "Bytes Allocated: " + String.Format("{0:n0}", bytes);
+
+            chartPerformance.Series["Blocks Allocated"].Points.Add(blocks);
+            chartPerformance.Series["Bytes Allocated"].Points.Add(bytes);
+
+            if (chartPerformance.Series["Blocks Allocated"].Points.Count > max) { chartPerformance.Series["Blocks Allocated"].Points.RemoveAt(0); }
+            if(chartPerformance.Series["Bytes Allocated"].Points.Count > max) { chartPerformance.Series["Bytes Allocated"].Points.RemoveAt(0); }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var sectorObjectManager = m_GameHook.sectorObjectManager;
+            var display = new SectorObjectDisplay(m_GameHook);
+            display.LoadObject(sectorObjectManager.GetSpace());
             display.Show();
         }
     }

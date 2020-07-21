@@ -115,6 +115,8 @@ namespace X3TCTools.SectorObjects
                 default: throw new Exception();
             }
 
+            if (!File.Exists(path)) goto failed;
+
             var lines = File.ReadAllLines(path);
 
             if (lines.Length <= SubType) goto failed;

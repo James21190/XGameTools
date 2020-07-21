@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ViewStoryBaseButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -47,6 +52,7 @@
             this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dynamicValueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kCodeViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,12 +63,19 @@
             this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chartPerformance = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblBlocksAllocated = new System.Windows.Forms.Label();
+            this.lblBytesAllocated = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPerformance)).BeginInit();
             this.SuspendLayout();
             // 
             // ViewStoryBaseButton
@@ -153,35 +166,35 @@
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.eventObjectToolStripMenuItem.Text = "EventObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
             // 
             // sectorObjectToolStripMenuItem
             // 
             this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.sectorObjectToolStripMenuItem.Text = "SectorObject";
             this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
             // 
             // typeDataToolStripMenuItem
             // 
             this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.typeDataToolStripMenuItem.Text = "TypeData";
             this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
             // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // cameraToolStripMenuItem
             // 
             this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.cameraToolStripMenuItem.Text = "Camera";
             this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
@@ -195,7 +208,7 @@
             this.dynamicValueToolStripMenuItem1,
             this.kCodeViewerToolStripMenuItem});
             this.scriptingObjectsToolStripMenuItem.Name = "scriptingObjectsToolStripMenuItem";
-            this.scriptingObjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scriptingObjectsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.scriptingObjectsToolStripMenuItem.Text = "Scripting Objects";
             // 
             // dynamicValueObjectToolStripMenuItem
@@ -240,10 +253,15 @@
             this.kCodeViewerToolStripMenuItem.Text = "KCode Viewer";
             this.kCodeViewerToolStripMenuItem.Click += new System.EventHandler(this.kCodeViewerToolStripMenuItem_Click);
             // 
+            // textPageToolStripMenuItem
+            // 
+            this.textPageToolStripMenuItem.Name = "textPageToolStripMenuItem";
+            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.textPageToolStripMenuItem.Text = "TextPage";
+            this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
+            // 
             // LoadPlayerShipButton
             // 
-            this.LoadPlayerShipButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.LoadPlayerShipButton.Location = new System.Drawing.Point(218, 27);
             this.LoadPlayerShipButton.Name = "LoadPlayerShipButton";
             this.LoadPlayerShipButton.Size = new System.Drawing.Size(132, 23);
@@ -342,18 +360,80 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Full Type";
             // 
-            // textPageToolStripMenuItem
+            // groupBox4
             // 
-            this.textPageToolStripMenuItem.Name = "textPageToolStripMenuItem";
-            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.textPageToolStripMenuItem.Text = "TextPage";
-            this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
+            this.groupBox4.Controls.Add(this.chartPerformance);
+            this.groupBox4.Controls.Add(this.lblBlocksAllocated);
+            this.groupBox4.Controls.Add(this.lblBytesAllocated);
+            this.groupBox4.Location = new System.Drawing.Point(18, 278);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(854, 271);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Performance";
+            // 
+            // chartPerformance
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartPerformance.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPerformance.Legends.Add(legend1);
+            this.chartPerformance.Location = new System.Drawing.Point(9, 45);
+            this.chartPerformance.Name = "chartPerformance";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series1.Legend = "Legend1";
+            series1.Name = "Bytes Allocated";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
+            series2.Legend = "Legend1";
+            series2.Name = "Blocks Allocated";
+            this.chartPerformance.Series.Add(series1);
+            this.chartPerformance.Series.Add(series2);
+            this.chartPerformance.Size = new System.Drawing.Size(839, 220);
+            this.chartPerformance.TabIndex = 7;
+            this.chartPerformance.Text = "Performance";
+            // 
+            // lblBlocksAllocated
+            // 
+            this.lblBlocksAllocated.AutoSize = true;
+            this.lblBlocksAllocated.Location = new System.Drawing.Point(6, 29);
+            this.lblBlocksAllocated.Name = "lblBlocksAllocated";
+            this.lblBlocksAllocated.Size = new System.Drawing.Size(89, 13);
+            this.lblBlocksAllocated.TabIndex = 1;
+            this.lblBlocksAllocated.Text = "Blocks Allocated:";
+            // 
+            // lblBytesAllocated
+            // 
+            this.lblBytesAllocated.AutoSize = true;
+            this.lblBytesAllocated.Location = new System.Drawing.Point(6, 16);
+            this.lblBytesAllocated.Name = "lblBytesAllocated";
+            this.lblBytesAllocated.Size = new System.Drawing.Size(83, 13);
+            this.lblBytesAllocated.TabIndex = 0;
+            this.lblBytesAllocated.Text = "Bytes Allocated:";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(218, 56);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(132, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Load Sector";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // X3TCToolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.LoadPlayerShipButton);
@@ -373,6 +453,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPerformance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,6 +493,12 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStripMenuItem kCodeViewerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textPageToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblBlocksAllocated;
+        private System.Windows.Forms.Label lblBytesAllocated;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPerformance;
+        private System.Windows.Forms.Button button4;
     }
 }
 
