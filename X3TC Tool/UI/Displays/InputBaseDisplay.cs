@@ -14,25 +14,25 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class InputBaseDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         public InputBaseDisplay(GameHook gameHook)
         {
             InitializeComponent();
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             Reload();
         }
 
         public void Reload()
         {
-            var InputBase = m_GameHook.inputBase;
+            var InputBase = GameHook.inputBase;
 
             EventObjectIDBox.Text = InputBase.EventObjectID.ToString();
         }
 
         private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
         {
-            var display = new EventObjectDisplay(m_GameHook);
-            display.LoadObject(m_GameHook.inputBase.EventObjectID);
+            var display = new EventObjectDisplay();
+            display.LoadObject(GameHook.inputBase.EventObjectID);
             display.Show();
         }
     }

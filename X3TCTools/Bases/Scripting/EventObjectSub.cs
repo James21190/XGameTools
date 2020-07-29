@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Common.Memory;
 
-namespace X3TCTools.Bases
+namespace X3TCTools.Bases.Scripting
 {
     public class EventObjectSub : MemoryObject
     {

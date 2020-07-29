@@ -11,22 +11,20 @@ using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.SectorObjects;
 
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject.AP;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
+
 
 using Common.Memory;
+using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 
 namespace X3TC_Tool.UI.Displays
 {
     public partial class SectorObjectDisplay : Form
     {
-        private GameHook m_GameHook;
         private SectorObject m_SectorObject;
-        public SectorObjectDisplay(GameHook gameHook)
+        public SectorObjectDisplay()
         {
             InitializeComponent();
-            m_GameHook = gameHook;
             for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
             {
                 ChildTypeSelectionBox.Items.Add(((SectorObject.Main_Type)i).ToString());
@@ -38,7 +36,7 @@ namespace X3TC_Tool.UI.Displays
             if(clear)
                 treeView1.Nodes.Clear();
             if(baseSectorObject == null)
-                baseSectorObject = m_GameHook.sectorObjectManager.GetSpace();
+                baseSectorObject = GameHook.sectorObjectManager.GetSpace();
 
 
             var children = baseSectorObject.GetAllChildren(false);
@@ -61,21 +59,21 @@ namespace X3TC_Tool.UI.Displays
                     string name;
                     switch (child.MainType)
                     {
-                        case SectorObject.Main_Type.Gate:
-                            IGate_ScriptMemoryObject gateData;
-                            switch (GameHook.GameVersion)
-                            {
-                                //case GameHook.GameVersions.X3TC:
-                                //    break;
-                                case GameHook.GameVersions.X3AP:
-                                    gateData = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
-                                    break;
-                                default:
-                                    goto defaultName;
+                        //case SectorObject.Main_Type.Gate:
+                        //    IGate_ScriptMemoryObject gateData;
+                        //    switch (GameHook.GameVersion)
+                        //    {
+                        //        //case GameHook.GameVersions.X3TC:
+                        //        //    break;
+                        //        case GameHook.GameVersions.X3AP:
+                        //            gateData = GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
+                        //            break;
+                        //        default:
+                        //            goto defaultName;
 
-                            }
-                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), m_GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
-                            break;
+                        //    }
+                        //    name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
+                        //    break;
                         default:
                         defaultName:
                             name = child.GetSubTypeAsString();
@@ -115,21 +113,21 @@ namespace X3TC_Tool.UI.Displays
                     string name;
                     switch (child.MainType)
                     {
-                        case SectorObject.Main_Type.Gate:
-                            IGate_ScriptMemoryObject gateData;
-                            switch (GameHook.GameVersion) 
-                            {
-                                //case GameHook.GameVersions.X3TC:
-                                //    break;
-                                case GameHook.GameVersions.X3AP:
-                                    gateData = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
-                                    break;
-                                default:
-                                    goto defaultName;
+                        //case SectorObject.Main_Type.Gate:
+                        //    IGate_ScriptMemoryObject gateData;
+                        //    switch (GameHook.GameVersion) 
+                        //    {
+                        //        //case GameHook.GameVersions.X3TC:
+                        //        //    break;
+                        //        case GameHook.GameVersions.X3AP:
+                        //            gateData = GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
+                        //            break;
+                        //        default:
+                        //            goto defaultName;
 
-                            }
-                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), m_GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
-                            break;
+                        //    }
+                        //    name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
+                        //    break;
                         default:
                             defaultName:
                             name = child.GetSubTypeAsString();
@@ -170,7 +168,7 @@ namespace X3TC_Tool.UI.Displays
         }
         public void LoadObject(int ID)
         {
-            var sectorObjectManager = m_GameHook.sectorObjectManager;
+            var sectorObjectManager = GameHook.sectorObjectManager;
             var hashtable = sectorObjectManager.pObjectHashTable.obj;
             SectorObject obj;
             try
@@ -195,29 +193,28 @@ namespace X3TC_Tool.UI.Displays
         {
 
             // Sector Info
-            var sector = m_GameHook.sectorObjectManager.GetSpace();
-            ISector_ScriptMemoryObject sectorScriptVariables;
+            var sector = GameHook.sectorObjectManager.GetSpace();
+            IScriptMemoryObject_Sector sectorScriptVariables;
             switch (GameHook.GameVersion)
             {
-                case GameHook.GameVersions.X3TC:
-                    // Temp until TC version is implemented
-                    sectorScriptVariables = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Sector_ScriptMemoryObject>(sector.EventObjectID);
-                    break;
+                //case GameHook.GameVersions.X3TC:
+                //    sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                //    break;
                 case GameHook.GameVersions.X3AP:
-                    sectorScriptVariables = m_GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Sector_ScriptMemoryObject>(sector.EventObjectID);
+                    sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
                     break;
                 default:
                     goto ObjectInfo;
             }
-            var sectorName = m_GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.GetSectorX(), (byte)sectorScriptVariables.GetSectorY());
-            labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}",sectorName, sectorScriptVariables.GetSectorX(), sectorScriptVariables.GetSectorY());
+            var sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
+            labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
 
             // Object info
             ObjectInfo:
             m_SectorObject.ReloadFromMemory();
             LoadTree(m_SectorObject.ObjectID);
             txtAddress.Text = m_SectorObject.pThis.ToString("X");
-            txtDefaultName.Text = MemoryControl.ReadNullTerminatedString(m_GameHook.hProcess, m_SectorObject.pDefaultName);
+            txtDefaultName.Text = MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName);
             nudSectorObjectID.Value = m_SectorObject.ObjectID;
             v3dPosition.Vector = m_SectorObject.Position_Copy;
             v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X)/500000;
@@ -338,7 +335,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
         {
-            var display = new EventObjectDisplay(m_GameHook);
+            var display = new EventObjectDisplay();
             display.LoadObject(m_SectorObject.EventObjectID);
             display.Show();
         }
@@ -366,14 +363,14 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var display = new SectorObjectDataDisplay(m_GameHook);
+            var display = new SectorObjectDataDisplay();
             display.LoadData(m_SectorObject.pData.obj);
             display.Show();
         }
 
         private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new TypeDataDisplay(m_GameHook);
+            var display = new TypeDataDisplay();
             display.LoadTypeData((int)m_SectorObject.MainType, m_SectorObject.SubType);
             display.Show();
         }
@@ -389,12 +386,12 @@ namespace X3TC_Tool.UI.Displays
 
         private void sectorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadObject(m_GameHook.sectorObjectManager.GetSpace());
+            LoadObject(GameHook.sectorObjectManager.GetSpace());
         }
 
         private void playerShipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadObject(m_GameHook.sectorObjectManager.GetPlayerObject());
+            LoadObject(GameHook.sectorObjectManager.GetPlayerObject());
         }
 
         private void SectorObjectDisplay_Load(object sender, EventArgs e)
@@ -404,11 +401,11 @@ namespace X3TC_Tool.UI.Displays
 
         private void spawnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var selector = new TypeSelectDialog(m_GameHook);
+            var selector = new TypeSelectDialog();
             selector.ShowDialog();
             if (selector.Done)
             {
-                m_GameHook.gameCodeRunner.CreateSectorObject(selector.MainType, selector.SubType, m_GameHook.sectorObjectManager.GetSpace());
+                GameHook.gameCodeRunner.CreateSectorObject(selector.MainType, selector.SubType, GameHook.sectorObjectManager.GetSpace());
             }
         }
     }

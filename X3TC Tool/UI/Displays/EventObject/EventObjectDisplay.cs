@@ -12,28 +12,23 @@ using X3TCTools;
 using X3TCTools.Bases;
 using X3TCTools.SectorObjects;
 using X3TCTools.Bases.Scripting;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject.TC;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject.AP;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
 using X3TC_Tool.UI.Displays.ScriptingMemoryObjects;
+using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 
 namespace X3TC_Tool.UI.Displays
 {
     public partial class EventObjectDisplay : Form
     {
-        private GameHook m_GameHook;
         private EventObject m_EventObject;
-        public EventObjectDisplay(GameHook gameHook)
+        public EventObjectDisplay()
         {
             InitializeComponent();
-            m_GameHook = gameHook;
-            for (int i = 0; i < X3TCTools.SectorObjects.SectorObject.MAIN_TYPE_COUNT; i++)
-                comboBox1.Items.Add((X3TCTools.SectorObjects.SectorObject.Main_Type)i);
         }
 
         public void LoadObject(int ID)
         {
-            var storyBase = m_GameHook.storyBase;
+            var storyBase = GameHook.storyBase;
             var EventObjectHashTable = storyBase.pEventObjectHashTable.obj;
             var value = ID < 0 ? -ID - 1 : ID;
             try
@@ -63,16 +58,16 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadVariablesButton_Click(object sender, EventArgs e)
         {
-            var display = new DynamicValueObjectDisplay(m_GameHook);
-            var obj = new BlankScriptingMemoryObject(10);
-            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+            var display = new DynamicValueObjectDisplay();
+            var obj = new ScriptingMemoryObject(10);
+            obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
             display.LoadObject(obj);
             display.Show();
         }
 
         private void LoadSubButton_Click(object sender, EventArgs e)
         {
-            var display = new EventObjectSubDisplay(m_GameHook);
+            var display = new EventObjectSubDisplay();
             display.LoadObject(m_EventObject.pSub.obj);
             display.Show();
         }
@@ -96,48 +91,52 @@ namespace X3TC_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             ScriptingMemoryObject obj;
-            bool LoadAsArray = chkLoadWithArray.Checked;
             switch (GameHook.GameVersion) 
             {
                 case GameHook.GameVersions.X3TC:
-                    switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
+                    switch (comboBox1.SelectedItem)
                     {
-                        case SectorObject.Main_Type.Ship:
-                            obj = new TC_SectorObject_Ship_ScriptMemoryObject();
-                            if (LoadAsArray) break;
-                            var shipDisplay = new ScriptMemory_Ship_Display(m_GameHook);
-                            shipDisplay.LoadObject((TC_SectorObject_Ship_ScriptMemoryObject)obj);
-                            shipDisplay.Show();
-                            return;
-                        default: return;
+                        default:
+                            obj = new ScriptingMemoryObject();
+                            obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                            obj.ReloadFromMemory();
+                            break;
                     }
                     break;
                 case GameHook.GameVersions.X3AP:
-                    switch ((SectorObject.Main_Type)comboBox1.SelectedIndex)
+                    switch (comboBox1.SelectedItem)
                     {
-                        case SectorObject.Main_Type.Sector:
-                            obj = new AP_SectorObject_Sector_ScriptMemoryObject();
-                            break;
-                        case SectorObject.Main_Type.Ship:
-                            obj = new AP_SectorObject_Ship_ScriptMemoryObject();
-                            if (LoadAsArray) break;
+                        case "Sector":
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
 
-                            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                            var shipDisplay = new ScriptMemory_Ship_Display(m_GameHook);
-                            shipDisplay.LoadObject((AP_SectorObject_Ship_ScriptMemoryObject)obj);
+                            if (chkLoadWithArray.Checked) break;
+
+                            var sectorDisplay = new ScriptMemory_Sector_Display();
+                            sectorDisplay.LoadObject((IScriptMemoryObject_Sector)obj);
+                            sectorDisplay.Show();
+                            return;
+                        case "Ship":
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
+
+                            if (chkLoadWithArray.Checked) break;
+
+                            var shipDisplay = new ScriptMemory_Ship_Display();
+                            shipDisplay.LoadObject((IScriptMemoryObject_Ship)obj);
                             shipDisplay.Show();
                             return;
-                        case SectorObject.Main_Type.Dock:
-                            obj = new AP_SectorObject_Dock_ScriptMemoryObject();
+
+                        default:
+                            obj = new ScriptingMemoryObject();
+                            obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+                            obj.ReloadFromMemory();
                             break;
-                        default: return;
                     }
                     break;
                 default: return;
             }
-            obj.SetLocation(m_GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+
             DynamicValueObjectDisplay display;
-            display = new DynamicValueObjectDisplay(m_GameHook);
+            display = new DynamicValueObjectDisplay();
             display.LoadObject(obj);
             display.Show();
         }

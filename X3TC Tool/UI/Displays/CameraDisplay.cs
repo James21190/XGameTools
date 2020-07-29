@@ -17,11 +17,11 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class CameraDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         private Camera m_Camera;
         public CameraDisplay(GameHook gameHook)
         {
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             InitializeComponent();
         }
 
@@ -34,7 +34,7 @@ namespace X3TC_Tool.UI.Displays
         public void LoadCamera(IntPtr pCamera)
         {
             var camera = new Camera();
-            camera.SetLocation(m_GameHook.hProcess, pCamera);
+            camera.SetLocation(GameHook.hProcess, pCamera);
             LoadCamera(camera);
         }
 

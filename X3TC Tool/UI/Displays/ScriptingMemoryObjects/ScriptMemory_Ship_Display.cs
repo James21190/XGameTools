@@ -10,27 +10,26 @@ using System.Windows.Forms;
 
 using X3TCTools;
 using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
+using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 
 namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 {
     public partial class ScriptMemory_Ship_Display : Form
     {
-        private GameHook m_GameHook;
-        private IShip_ScriptMemoryObject m_Object;
-        public ScriptMemory_Ship_Display(GameHook gameHook)
+        private IScriptMemoryObject_Ship m_Object;
+        public ScriptMemory_Ship_Display()
         {
-            m_GameHook = gameHook;
             InitializeComponent();
 
-            for (int i = 0; i < m_GameHook.GetTypeDataCount(7); i++)
+            for (int i = 0; i < GameHook.GetTypeDataCount(7); i++)
             {
                 cmbSubType.Items.Add(SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Ship, i));
             } 
 
         }
 
-        public void LoadObject(IShip_ScriptMemoryObject obj)
+        public void LoadObject(IScriptMemoryObject_Ship obj)
         {
             m_Object = obj;
             Reload();
@@ -38,9 +37,14 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 
         public void Reload()
         {
-            var cargo = m_Object.GetCargo();
+            var cargo = m_Object.CargoEntries;
             txtCargo.Text = string.Join("\n", cargo);
-            cmbSubType.SelectedIndex = m_Object.GetSubType();
+            cmbSubType.SelectedIndex = m_Object.SubType;
+        }
+
+        private void ScriptMemory_Ship_Display_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

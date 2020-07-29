@@ -15,16 +15,14 @@ using X3TCTools.Bases.Scripting;
 
 namespace X3TC_Tool.UI.Displays
 {
-    public partial class ScriptingHashTableDisplay : Form
-    {
-        private GameHook m_GameHook;
+    public partial class ScriptingHashTableDisplay : Form 
+    { 
 
         private ScriptingHashTable m_HashTable = new ScriptingHashTable();
 
-        public ScriptingHashTableDisplay(GameHook gameHook, string name = null)
+        public ScriptingHashTableDisplay(string name = null)
         {
             InitializeComponent();
-            m_GameHook = gameHook;
             if (name != null)
                 Text = name;
         }
@@ -32,7 +30,7 @@ namespace X3TC_Tool.UI.Displays
         public void LoadTable(IntPtr pHashTable)
         {
             if (AddressBox.Text != pHashTable.ToString("X")) AddressBox.Text = pHashTable.ToString("X");
-            m_HashTable.SetLocation(m_GameHook.hProcess, pHashTable);
+            m_HashTable.SetLocation(GameHook.hProcess, pHashTable);
             m_HashTable.ReloadFromMemory();
             Reload();
         }

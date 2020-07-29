@@ -214,6 +214,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "DynamicValueObjectDisplay";
             this.Text = "DynamicValueObjectViewer";
+            this.Load += new System.EventHandler(this.DynamicValueObjectDisplay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

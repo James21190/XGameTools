@@ -16,23 +16,23 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class KCodeViewer : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         private StoryBase m_StoryBase;
 
         private int m_Offset;
         public KCodeViewer(GameHook gameHook)
         {
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             InitializeComponent();
         }
 
         public void Reload()
         {
-            m_StoryBase = m_GameHook.storyBase;
+            m_StoryBase = GameHook.storyBase;
 
             richTextBox1.Clear();
 
-            var dissassembler = new KCodeDissassembler(m_GameHook);
+            var dissassembler = new KCodeDissassembler();
             var code = dissassembler.Dissassemble(m_Offset);
             foreach (var line in code)
             {

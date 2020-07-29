@@ -16,18 +16,18 @@ namespace X2TheThreatRETool
 {
     public partial class X2Tool : Form
     {
-        GameHook m_GameHook;
+        GameHook GameHook;
         public X2Tool()
         {
             InitializeComponent();
             var process = Process.GetProcessesByName("X2")[0];
-            m_GameHook = new GameHook(process);
+            GameHook = new GameHook(process);
         }
 
         private void btnLoadPlayerShip_Click(object sender, EventArgs e)
         {
-            var display = new SectorObjectDisplay(m_GameHook);
-            display.LoadSectorObject(m_GameHook.SectorObjectManager.GetPlayerShip());
+            var display = new SectorObjectDisplay(GameHook);
+            display.LoadSectorObject(GameHook.SectorObjectManager.GetPlayerShip());
             display.Show();
         }
     }

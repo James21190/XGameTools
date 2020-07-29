@@ -16,11 +16,9 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class SectorObjectDataDisplay : Form
     {
-        private GameHook m_GameHook;
         private SectorObjectData m_SectorObjectData;
-        public SectorObjectDataDisplay(GameHook gameHook)
+        public SectorObjectDataDisplay()
         {
-            m_GameHook = gameHook;
             InitializeComponent();
         }
 
@@ -33,7 +31,7 @@ namespace X3TC_Tool.UI.Displays
         public void LoadData(IntPtr pSectorObjectData)
         {
             m_SectorObjectData = new SectorObjectData();
-            m_SectorObjectData.SetLocation(m_GameHook.hProcess, pSectorObjectData);
+            m_SectorObjectData.SetLocation(GameHook.hProcess, pSectorObjectData);
             Reload();
         }
 

@@ -79,15 +79,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Sub Type";
             // 
-            // TC_ScriptMemory_Ship_Display
+            // ScriptMemory_Ship_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "TC_ScriptMemory_Ship_Display";
+            this.Name = "ScriptMemory_Ship_Display";
             this.Text = "ScriptMemory_Ship_Display";
+            this.Load += new System.EventHandler(this.ScriptMemory_Ship_Display_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);

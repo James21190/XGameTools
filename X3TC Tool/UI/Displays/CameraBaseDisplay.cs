@@ -15,32 +15,32 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class CameraBaseDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         public CameraBaseDisplay(GameHook gameHook)
         {
             InitializeComponent();
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             Reload();
         }
 
         public void Reload()
         {
-            var cameraBase = m_GameHook.cameraBase;
+            var cameraBase = GameHook.cameraBase;
 
             AddressBox.Text = cameraBase.pThis.ToString("X");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay(m_GameHook);
-            display.LoadTable(m_GameHook.cameraBase.pCameraHashTable.address);
+            var display = new HashTableDisplay(GameHook);
+            display.LoadTable(GameHook.cameraBase.pCameraHashTable.address);
             display.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay(m_GameHook);
-            display.LoadTable(m_GameHook.cameraBase.pModelCollectionHashTable.address);
+            var display = new HashTableDisplay(GameHook);
+            display.LoadTable(GameHook.cameraBase.pModelCollectionHashTable.address);
             display.Show();
         }
     }

@@ -8,7 +8,7 @@ using Common.Vector;
 using X3TCTools.SectorObjects.Meta;
 
 using X3TCTools.Bases.Scripting;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
 using X3TCTools.Bases;
 
 namespace X3TCTools.SectorObjects
@@ -87,6 +87,7 @@ namespace X3TCTools.SectorObjects
 
         #endregion
 
+        public EventObject EventObject { get { return GameHook.storyBase.GetEventObject(EventObjectID); } }
         public decimal[] MetricPosition { get { return new decimal[]{ (decimal)Position_Copy.X / 500000, (decimal)Position_Copy.Y / 500000, (decimal)Position_Copy.Z / 500000 }; } }
 
         public const int ByteSize = 304;

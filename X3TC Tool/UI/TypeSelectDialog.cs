@@ -34,11 +34,8 @@ namespace X3TC_Tool.UI
 
         public int ParentID { private set; get; } = 0;
 
-        private GameHook m_GameHook;
-
-        public TypeSelectDialog(GameHook gameHook)
+        public TypeSelectDialog()
         {
-            m_GameHook = gameHook;
             InitializeComponent();
         }
 
@@ -59,7 +56,7 @@ namespace X3TC_Tool.UI
                 return;
             }
 
-            var typeCount = m_GameHook.GetTypeDataCount(comboBox1.SelectedIndex);
+            var typeCount = GameHook.GetTypeDataCount(comboBox1.SelectedIndex);
             
             for (int i = 0; i < typeCount; i++)
                 comboBox2.Items.Add((SectorObject.GetSubTypeAsString((SectorObject.Main_Type)comboBox1.SelectedIndex,i)));

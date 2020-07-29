@@ -15,14 +15,11 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class ScriptingTextObjectDisplay : Form
     {
-        private GameHook m_GameHook;
-
         private ScriptingTextObject m_obj;
 
-        public ScriptingTextObjectDisplay(GameHook gameHook)
+        public ScriptingTextObjectDisplay()
         {
             InitializeComponent();
-            m_GameHook = gameHook;
         }
 
         public void LoadObject(ScriptingTextObject obj)
@@ -34,7 +31,7 @@ namespace X3TC_Tool.UI.Displays
         public void LoadObject(IntPtr address)
         {
             var obj = new ScriptingTextObject();
-            obj.SetLocation(m_GameHook.hProcess, address);
+            obj.SetLocation(GameHook.hProcess, address);
             LoadObject(obj);
         }
 

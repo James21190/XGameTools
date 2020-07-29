@@ -15,26 +15,26 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class StoryBaseDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         private StoryBase m_StoryBase;
         public StoryBaseDisplay(GameHook gameHook)
         {
             InitializeComponent();
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             Reload();
         }
 
         public void Reload()
         {
             // Update instance
-            m_StoryBase = m_GameHook.storyBase;
+            m_StoryBase = GameHook.storyBase;
             m_StoryBase.ReloadFromMemory();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay(m_GameHook);
+            var display = new HashTableDisplay(GameHook);
             display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
             display.Show();
         }
@@ -42,29 +42,43 @@ namespace X3TC_Tool.UI.Displays
         private void button2_Click(object sender, EventArgs e)
         {
             Reload();
-            var display = new ScriptObjectDisplay(m_GameHook);
+            var display = new ScriptObjectDisplay();
             display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
             display.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var display = new DynamicValueArrayDisplay(m_GameHook);
+            var display = new DynamicValueArrayDisplay();
             display.LoadFrom(m_StoryBase.pInstructionArray.address, 0, 0);
             display.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay(m_GameHook);
+            var display = new HashTableDisplay(GameHook);
             display.LoadTable(m_StoryBase.pScriptingArrayObject_HashTable.address);
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay(m_GameHook);
+            var display = new HashTableDisplay(GameHook);
             display.LoadTable(m_StoryBase.pScriptingHashTableObject_HashTable.address);
+            display.Show();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay(GameHook);
+            display.LoadTable(m_StoryBase.TextHashTableArray[44].address);
+            display.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay(GameHook);
+            display.LoadTable(m_StoryBase.pScriptingTextObject_HashTable.address);
             display.Show();
         }
     }

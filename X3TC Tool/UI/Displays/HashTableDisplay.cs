@@ -15,14 +15,14 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class HashTableDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
 
         private HashTable<MemoryInt32> m_HashTable = new HashTable<MemoryInt32>();
 
         public HashTableDisplay(GameHook gameHook, string name = null)
         {
             InitializeComponent();
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             if (name != null)
                 Text = name;
         }
@@ -30,7 +30,7 @@ namespace X3TC_Tool.UI.Displays
         public void LoadTable(IntPtr pHashTable)
         {
             if (AddressBox.Text != pHashTable.ToString("X")) AddressBox.Text = pHashTable.ToString("X");
-            m_HashTable.SetLocation(m_GameHook.hProcess, pHashTable);
+            m_HashTable.SetLocation(GameHook.hProcess, pHashTable);
             m_HashTable.ReloadFromMemory();
             Reload();
         }

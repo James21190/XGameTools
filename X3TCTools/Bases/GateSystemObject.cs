@@ -159,71 +159,6 @@ namespace X3TCTools.Bases
 
         #endregion
 
-        /// <summary>
-        /// All identified sector names.
-        /// </summary>
-        public enum SectorName : ushort
-        {
-            Kingdom_End = 0x0000,
-            Rolks_Drift = 0x0001,
-            Queens_Space = 0x0002,
-            Menelaus_Frontier = 0x0003,
-            Ceos_Buckzoid = 0x0004,
-            Teladi_Gain = 0x0005,
-            Family_Whi = 0x0006,
-            Family_Zein = 0x0106,
-            Thuruks_Pride = 0x0206,
-            Ronkars_Fire = 0x0306,
-            Ronkars_Clouds = 0x0307,
-            Tharkas_Sun = 0x0308,
-            Chos_Defeat = 0x0309,
-            Patriarchs_Keep = 0x0409,
-            Two_Grand = 0x040a,
-            Freedoms_Reach = 0x0704,
-            Xenon_Sector_534 = 0x0011,
-            Xenon_Sector_596 = 0x0013,
-            Three_Worlds = 0x0100,
-            Cloudbase_North_West = 0x0200,
-            Players_Sector = 0x0214,
-            Ringo_Moon = 0x0300,
-            Red_Light = 0x0400,
-            Ckoudbase_South_West = 0x0500,
-            Emperor_Mines = 0x0600,
-            Savage_Spur = 0x0700,
-            Ocracokes_Storm = 0x0800,
-            Senators_Badlands = 0x0900,
-            Weavers_Tempest = 0x0a00,
-            Omicron_Lyrae = 0x060d,
-            Circle_Of_Labor = 0x050d,
-            Heretics_End = 0x040d,
-            Asteroid_Belt = 0x030b,
-            Mars = 0x030c,
-            Venus = 0x020c,
-            The_Moon = 0x020d,
-            Earth = 0x030d,
-            The_Hub = 0x080d,
-            Argon_Prime = 0x0301,
-            Mercury = 0x010c,
-            Jupiter = 0x020b,
-            Saturn = 0x010b,
-            Titan = 0x000b,
-            Uranus = 0x010a,
-            Neptune = 0x0109,
-            Pluto = 0x0108,
-            Oort_Cloud = 0x0107,
-            Terran_Unknown_Sector_2 = 0x090f,
-            Aldrin = 0x0a0d,
-            Aldrin_2 = 0x0a0e,
-            Terran_Unknown_Sector_1 = 0x0a0f,
-            Terran_Unknown_Sector_3 = 0x0a10,
-            Xenon_Sector = 0x0a11,
-            Unknown_Sector_18_9 = 0x0912,
-            Kuiper_Belt = 0x0008,
-            Uranus_2 = 0x000a,
-            Uranus_3 = 0x020a
-
-        }
-
 
         public const int byteSize = 0xfb410;
         // Height of the sector grid.
@@ -261,8 +196,8 @@ namespace X3TCTools.Bases
 
             switch (GameHook.GameVersion)
             {
-                case GameHook.GameVersions.X3TC: path = "./X3TCSectorNames.csv"; break;
-                case GameHook.GameVersions.X3AP: path = "./X3APSectorNames.csv"; break;
+                case GameHook.GameVersions.X3TC: path = "./Data/TC/X3TCSectorNames.csv"; break;
+                case GameHook.GameVersions.X3AP: path = "./Data/AP/X3APSectorNames.csv"; break;
                 default: throw new Exception();
             }
 

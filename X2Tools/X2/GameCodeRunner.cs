@@ -24,17 +24,17 @@ namespace X2Tools.X2
         public IntPtr pObjectClaimInjection { get; private set; }
         public IntPtr pObjectDockInjection { get; private set; }
 
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         public GameCodeRunner(GameHook gameHook)
         {
-            m_GameHook = gameHook;
+            GameHook = gameHook;
 
             // Subscribe all scripts
 
-            pObjectCreationInjection =  m_GameHook.EventManager.Subscribe("OnGameTick", m_ObjectCreationInjection);
-            pObjectDestroyInjection = m_GameHook.EventManager.Subscribe("OnGameTick", m_ObjectDestroyInjection);
-            pObjectClaimInjection = m_GameHook.EventManager.Subscribe("OnGameTick", m_ObjectClaimInjection);
-            pObjectDockInjection = m_GameHook.EventManager.Subscribe("OnGameTick", m_ObjectDockInjection);
+            pObjectCreationInjection =  GameHook.EventManager.Subscribe("OnGameTick", m_ObjectCreationInjection);
+            pObjectDestroyInjection = GameHook.EventManager.Subscribe("OnGameTick", m_ObjectDestroyInjection);
+            pObjectClaimInjection = GameHook.EventManager.Subscribe("OnGameTick", m_ObjectClaimInjection);
+            pObjectDockInjection = GameHook.EventManager.Subscribe("OnGameTick", m_ObjectDockInjection);
         }
 
         #region Game functions
@@ -49,40 +49,40 @@ namespace X2Tools.X2
         public SectorObject CreateSectorObject(SectorObject.Main_Type MainType, int SubType, SectorObject Parent = null)
         {
             // Wait until available
-            while (MemoryControl.ReadInt(m_GameHook.hProcess, pObjectCreationInjection) != 0)
+            while (MemoryControl.ReadInt(GameHook.hProcess, pObjectCreationInjection) != 0)
             {
                 Thread.Sleep(RefreshRate);
             }
 
             // Write the type required
-            MemoryControl.Write(m_GameHook.hProcess, pObjectCreationInjection, BitConverter.GetBytes(SectorObject.ToFullType(MainType, SubType)));
+            MemoryControl.Write(GameHook.hProcess, pObjectCreationInjection, BitConverter.GetBytes(SectorObject.ToFullType(MainType, SubType)));
 
             // Write parent if required
             if (Parent != null)
-                MemoryControl.Write(m_GameHook.hProcess, pObjectCreationInjection + 8, BitConverter.GetBytes((int)Parent.pThis));
+                MemoryControl.Write(GameHook.hProcess, pObjectCreationInjection + 8, BitConverter.GetBytes((int)Parent.pThis));
             else
-                MemoryControl.Write(m_GameHook.hProcess, pObjectCreationInjection + 8, BitConverter.GetBytes((int)0));
+                MemoryControl.Write(GameHook.hProcess, pObjectCreationInjection + 8, BitConverter.GetBytes((int)0));
 
             // Check if type has been written correctly
-            var WrittenType = MemoryControl.ReadInt(m_GameHook.hProcess, pObjectCreationInjection);
+            var WrittenType = MemoryControl.ReadInt(GameHook.hProcess, pObjectCreationInjection);
             if (WrittenType != SectorObject.ToFullType(MainType, SubType))
             {
-                MemoryControl.Write(m_GameHook.hProcess, pObjectClaimInjection, BitConverter.GetBytes(0));
+                MemoryControl.Write(GameHook.hProcess, pObjectClaimInjection, BitConverter.GetBytes(0));
                 throw new Exception(string.Format("Attempted to create incorect type 0x{0} when it should be 0x{1}.", WrittenType.ToString("X"), SectorObject.ToFullType(MainType, SubType).ToString("X")));
             }
 
-            var written = MemoryControl.Read(m_GameHook.hProcess, pObjectCreationInjection,4);
+            var written = MemoryControl.Read(GameHook.hProcess, pObjectCreationInjection,4);
             // Write to start process
-            MemoryControl.Write(m_GameHook.hProcess, pObjectCreationInjection + 12, new byte[] { 1 });
+            MemoryControl.Write(GameHook.hProcess, pObjectCreationInjection + 12, new byte[] { 1 });
 
             IntPtr addr = IntPtr.Zero;
 
             // Wait for flag to clear
-            while (MemoryControl.Read(m_GameHook.hProcess, pObjectCreationInjection + 12, 4)[0] != 0)
+            while (MemoryControl.Read(GameHook.hProcess, pObjectCreationInjection + 12, 4)[0] != 0)
             {
                 Thread.Sleep(RefreshRate);
             }
-            addr = (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, pObjectCreationInjection + 4);
+            addr = (IntPtr)MemoryControl.ReadInt(GameHook.hProcess, pObjectCreationInjection + 4);
 
             if (addr == IntPtr.Zero)
             {
@@ -92,7 +92,7 @@ namespace X2Tools.X2
 
 
             var newSectorObject = new SectorObject();
-            newSectorObject.SetLocation(m_GameHook.hProcess, addr);
+            newSectorObject.SetLocation(GameHook.hProcess, addr);
             return newSectorObject;
         }
         /// <summary>
@@ -104,20 +104,20 @@ namespace X2Tools.X2
         public void DockObject(SectorObject sectorObject, SectorObject Parent)
         {
             // Wait until available
-            while (MemoryControl.ReadInt(m_GameHook.hProcess, pObjectCreationInjection) != 0)
+            while (MemoryControl.ReadInt(GameHook.hProcess, pObjectCreationInjection) != 0)
             {
                 Thread.Sleep(RefreshRate);
             }
 
-            MemoryControl.Write(m_GameHook.hProcess, pObjectDockInjection, BitConverter.GetBytes((int)sectorObject.pThis));
-            MemoryControl.Write(m_GameHook.hProcess, pObjectDockInjection + 4, BitConverter.GetBytes((int)Parent.pThis));
+            MemoryControl.Write(GameHook.hProcess, pObjectDockInjection, BitConverter.GetBytes((int)sectorObject.pThis));
+            MemoryControl.Write(GameHook.hProcess, pObjectDockInjection + 4, BitConverter.GetBytes((int)Parent.pThis));
         }
 
         public void DestroyObject(SectorObject sectorObject)
         {
-            MemoryControl.Write(m_GameHook.hProcess, pObjectDestroyInjection, BitConverter.GetBytes((int)sectorObject.pThis));
-            MemoryControl.Write(m_GameHook.hProcess, pObjectDestroyInjection + 4, new byte[] { 1 });
-            while(MemoryControl.ReadInt(m_GameHook.hProcess, pObjectDestroyInjection + 4) != 0)
+            MemoryControl.Write(GameHook.hProcess, pObjectDestroyInjection, BitConverter.GetBytes((int)sectorObject.pThis));
+            MemoryControl.Write(GameHook.hProcess, pObjectDestroyInjection + 4, new byte[] { 1 });
+            while(MemoryControl.ReadInt(GameHook.hProcess, pObjectDestroyInjection + 4) != 0)
             {
                 Thread.Sleep(RefreshRate);
             }
@@ -225,7 +225,7 @@ namespace X2Tools.X2
 
             for(int Sub = 0; Sub < SubMax; Sub++)
             {
-                var SO = CreateSectorObject((SectorObject.Main_Type)MainType, Sub, m_GameHook.SectorObjectManager.GetSpace());
+                var SO = CreateSectorObject((SectorObject.Main_Type)MainType, Sub, GameHook.SectorObjectManager.GetSpace());
                 var data = SO.pData.obj;
                 data.Position = new Common.Vector.Vector3(((int)MainType) * Padding, YValue, Sub * Padding);
                 data.WriteToMemory();

@@ -15,11 +15,11 @@ namespace X2TheThreatRETool.UI.Displays
 {
     public partial class SectorObjectDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
         private SectorObject m_SectorObject;
         public SectorObjectDisplay(GameHook gameHook)
         {
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             InitializeComponent();
         }
         

@@ -10,10 +10,8 @@ namespace X3TCTools.Bases.Scripting
 {
     public class KCodeDissassembler
     {
-        private GameHook m_GameHook;
-        public KCodeDissassembler(GameHook gameHook)
+        public KCodeDissassembler()
         {
-            m_GameHook = gameHook;
         }
 
         public enum KCodeFunction
@@ -622,13 +620,13 @@ namespace X3TCTools.Bases.Scripting
         {
             byte[] a = new byte[length];
             for (int i = 1; i <= length; i++)
-                a[i-1] = m_GameHook.storyBase.pInstructionArray.GetObjectInArray(instructionOffset + i).Value;
+                a[i-1] = GameHook.storyBase.pInstructionArray.GetObjectInArray(instructionOffset + i).Value;
             return a;
         }
 
         public KCodeFunction GetCode(int instructionOffset)
         {
-            return (KCodeFunction)m_GameHook.pProcessEventSwitch.GetObjectInArray((int)m_GameHook.pProcessEventSwitchArray.GetObjectInArray((int)GetByte(instructionOffset)-1).Value).Value;
+            return (KCodeFunction)GameHook.pProcessEventSwitch.GetObjectInArray((int)GameHook.pProcessEventSwitchArray.GetObjectInArray((int)GetByte(instructionOffset)-1).Value).Value;
         }
 
         private List<int> m_DecompiledOffsets = new List<int>();
@@ -637,7 +635,7 @@ namespace X3TCTools.Bases.Scripting
         {
             if (isStart)
             {
-                m_StoryBase = m_GameHook.storyBase;
+                m_StoryBase = GameHook.storyBase;
                 m_DecompiledOffsets.Clear();
             }
             List<KCodeFunctionLine> lines = new List<KCodeFunctionLine>();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Common.Memory;
 using X3TCTools.Bases.Scripting;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases
 {
@@ -14,7 +14,6 @@ namespace X3TCTools.Bases
     {
 
         public const int ByteSize = 5648;
-        private GameHook m_GameHook;
 
         public MemoryObjectPointer<HashTable<ScriptObject>> pScriptObjectHashTable;
         
@@ -29,12 +28,13 @@ namespace X3TCTools.Bases
 
         public MemoryObjectPointer<ScriptObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptObject>();
 
+
+        public MemoryObjectPointer<HashTable<ScriptingTextObject>> pScriptingTextObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingTextObject>>();
         public MemoryObjectPointer<HashTable<StoryBase15fc>> pScriptingArrayObject_HashTable = new MemoryObjectPointer<HashTable<StoryBase15fc>>();
 
         public MemoryObjectPointer<HashTable<ScriptingHashTableObject>> pScriptingHashTableObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingHashTableObject>>();
 
 
-        public void SetHook(GameHook gameHook) { m_GameHook = gameHook; }
 
         public StoryBase()
         {
@@ -60,9 +60,9 @@ namespace X3TCTools.Bases
             return pEventObjectHashTable.obj.GetObject(value);
         }
 
-        public T GetEventObjectScriptingVariables<T>(int ID) where T : ScriptingMemoryObject, new()
+        public ScriptingMemoryObject GetEventObjectScriptingVariables(int ID)
         {
-            var obj = new T();
+            var obj = new ScriptingMemoryObject();
             obj.SetLocation(m_hProcess, GetEventObject(ID).pScriptVariableArr.address);
             obj.ReloadFromMemory();
             return obj;
@@ -92,8 +92,10 @@ namespace X3TCTools.Bases
 
             pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);
             pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptObject>>(0x1434);
-            pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>(0x15fc);
-            pScriptingHashTableObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingHashTableObject>>>(0x1600);
+
+            pScriptingTextObject_HashTable = collection.PopIMemoryObject <MemoryObjectPointer<HashTable<ScriptingTextObject>>>(0x15f8);
+            pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>();
+            pScriptingHashTableObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingHashTableObject>>>();
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -102,6 +104,8 @@ namespace X3TCTools.Bases
             pInstructionArray.SetLocation(hProcess, address + 0x8);
             pEventObjectHashTable.SetLocation(hProcess, address + 0x12d0);
             pCurrentScriptObject.SetLocation(hProcess, address + 0x1434);
+
+            pScriptingTextObject_HashTable.SetLocation(hProcess, address + 0x15f8);
             pScriptingArrayObject_HashTable.SetLocation(hProcess, address + 0x15fc);
             pScriptingHashTableObject_HashTable.SetLocation(hProcess, address + 0x1600);
             base.SetLocation(hProcess, address);

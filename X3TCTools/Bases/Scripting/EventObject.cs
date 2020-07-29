@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using Common.Memory;
 
 using X3TCTools.Bases.Scripting;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
 
-namespace X3TCTools.Bases
+namespace X3TCTools.Bases.Scripting
 {
     public class EventObject : MemoryObject
     {
@@ -17,7 +18,15 @@ namespace X3TCTools.Bases
         public int NegativeID;
         public int ReferenceCount;
         public MemoryObjectPointer<EventObjectSub> pSub = new MemoryObjectPointer<EventObjectSub>();
-        public MemoryObjectPointer<DynamicValue> pScriptVariableArr = new MemoryObjectPointer<DynamicValue>();
+        public MemoryObjectPointer<ScriptingMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptingMemoryObject>();
+
+        public T GetScriptVariableArrayAsObject<T>() where T : ScriptingMemoryObject,new()
+        {
+            var obj = new T();
+            obj.SetLocation(GameHook.hProcess, pScriptVariableArr.address);
+            obj.ReloadFromMemory();
+            return obj;
+        }
 
         public override byte[] GetBytes()
         {

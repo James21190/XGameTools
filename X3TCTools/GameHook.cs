@@ -15,77 +15,77 @@ namespace X3TCTools
     {
 
         #region Pointers
-        private MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>> ppSectorObjectManager;
-        private MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
-        private MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
-        private MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
+        private static MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>> ppSectorObjectManager;
+        private static MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
+        private static MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
+        private static MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>> ppGateSystemObject;
         #region TypeData
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>> ppTypeData_Bullet;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>> ppTypeData_Bullet;
 
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>> ppTypeData_Background;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>> ppTypeData_Background;
 
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>> ppTypeData_Sun;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>> ppTypeData_Planet;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>> ppTypeData_Dock;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>> ppTypeData_Factory;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>> ppTypeData_Shield;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_Missile>> ppTypeData_10;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_11>> ppTypeData_11;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_12>> ppTypeData_12;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_13>> ppTypeData_13;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_14>> ppTypeData_14;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_15>> ppTypeData_15;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_16>> ppTypeData_16;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_17>> ppTypeData_17;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_18>> ppTypeData_18;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_19>> ppTypeData_19;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_20>> ppTypeData_20;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_21>> ppTypeData_21;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_22>> ppTypeData_22;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_23>> ppTypeData_23;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_24>> ppTypeData_24;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_25>> ppTypeData_25;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_26>> ppTypeData_26;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_27>> ppTypeData_27;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_28>> ppTypeData_28;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_29>> ppTypeData_29;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_30>> ppTypeData_30;
-        private MemoryObjectPointer<MemoryObjectPointer<TypeData_31>> ppTypeData_31;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>> ppTypeData_Sun;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>> ppTypeData_Planet;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>> ppTypeData_Dock;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>> ppTypeData_Factory;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>> ppTypeData_Shield;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Missile>> ppTypeData_10;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_11>> ppTypeData_11;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_12>> ppTypeData_12;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_13>> ppTypeData_13;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_14>> ppTypeData_14;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_15>> ppTypeData_15;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_16>> ppTypeData_16;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_17>> ppTypeData_17;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_18>> ppTypeData_18;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_19>> ppTypeData_19;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_20>> ppTypeData_20;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_21>> ppTypeData_21;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_22>> ppTypeData_22;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_23>> ppTypeData_23;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_24>> ppTypeData_24;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_25>> ppTypeData_25;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_26>> ppTypeData_26;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_27>> ppTypeData_27;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_28>> ppTypeData_28;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_29>> ppTypeData_29;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_30>> ppTypeData_30;
+        private static MemoryObjectPointer<MemoryObjectPointer<TypeData_31>> ppTypeData_31;
 
         #endregion
-        private MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
-        private MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
-        private MemoryObjectPointer<MemoryInt32> pTypeDataCountArray;
-        public MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
-        public MemoryObjectPointer<MemoryInt32> pProcessEventSwitch;
-        public MemoryObjectPointer<MemoryInt32> pBytesAllocated;
-        public MemoryObjectPointer<MemoryInt32> pBlocksAllocated;
+        private static MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
+        private static MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
+        private static MemoryObjectPointer<MemoryInt32> pTypeDataCountArray;
+        public static MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
+        public static MemoryObjectPointer<MemoryInt32> pProcessEventSwitch;
+        public static MemoryObjectPointer<MemoryInt32> pBytesAllocated;
+        public static MemoryObjectPointer<MemoryInt32> pBlocksAllocated;
         #endregion
 
         #region Pointer Objects
         /// <summary>
         /// An up to date representation of the game's SectorObjectManager.
         /// </summary>
-        public SectorObjectManager sectorObjectManager { get { return ppSectorObjectManager.obj.obj; } }
+        public static SectorObjectManager sectorObjectManager { get { return ppSectorObjectManager.obj.obj; } }
         /// <summary>
         /// An up to date representation of the game's SystemBase.
         /// </summary>
-        public SystemBase systemBase { get { return ppSystemBase.obj.obj; } }
+        public static SystemBase systemBase { get { return ppSystemBase.obj.obj; } }
         /// <summary>
         /// An up to date representation of the game's GateSystemObject.
         /// </summary>
-        public GateSystemObject gateSystemObject { get { return ppGateSystemObject.obj.obj; } }
+        public static GateSystemObject gateSystemObject { get { return ppGateSystemObject.obj.obj; } }
         /// <summary>
         /// An up to date representation of the game's StoryBase.
         /// </summary>
-        public StoryBase storyBase { get { var sbase = ppStoryBase.obj.obj; sbase.SetHook(this); return sbase; } }
+        public static StoryBase storyBase { get { var sbase = ppStoryBase.obj.obj; return sbase; } }
 
-        public InputBase inputBase { get { return ppInputBase.obj.obj; } }
-        public CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
+        public static InputBase inputBase { get { return ppInputBase.obj.obj; } }
+        public static CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
 
-        public TypeData GetTypeData(int MainType, int SubType)
+        public static TypeData GetTypeData(int MainType, int SubType)
         {
             switch ((SectorObject.Main_Type)MainType) 
             {
@@ -127,20 +127,23 @@ namespace X3TCTools
             }
         }
 
-        public int GetTypeDataCount(int MainType)
+        public static int GetTypeDataCount(int MainType)
         {
             return pTypeDataCountArray.GetObjectInArray(MainType).Value;
         }
 
         #endregion
+
         /// <summary>
         /// The object responsible for managing code that can be executed by the game.
         /// </summary>
-        public GameCodeRunner gameCodeRunner { private set; get; }
-        public EventManager eventManager { private set; get; }
+        public static GameCodeRunner gameCodeRunner { private set; get; }
+        public static EventManager eventManager { private set; get; }
 
         private static GameVersions m_GameVersion;
         public static GameVersions GameVersion { get { return m_GameVersion; } private set { if (m_GameVersion == GameVersions.None) m_GameVersion = value; } }
+
+        public static new IntPtr hProcess;
 
         public GameHook(Process process, GameVersions gameVersion)
         {
@@ -150,6 +153,7 @@ namespace X3TCTools
                 throw new ArgumentException("Game version consistant between game hooks.");
             // Get a handle to the process
             HookIntoProcess(process);
+            hProcess = base.hProcess;
 
             switch (GameVersion) {
                 case GameVersions.X3TC:
@@ -286,7 +290,7 @@ namespace X3TCTools
                 default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", GameVersion));
             }
 
-            gameCodeRunner = new GameCodeRunner(this);
+            gameCodeRunner = new GameCodeRunner();
 
         }
 
@@ -298,7 +302,7 @@ namespace X3TCTools
 
         public void InitGameCodeRunner()
         {
-            gameCodeRunner = new GameCodeRunner(this);
+            gameCodeRunner = new GameCodeRunner();
         }
 
         public enum GlobalAddressesX3TC

@@ -10,6 +10,7 @@ namespace X3TCTools.Bases.Scripting
 {
     public class DynamicValue : MemoryObject
     {
+
         public const int FlagCount = 15;
         public enum FlagType
         {
@@ -27,6 +28,19 @@ namespace X3TCTools.Bases.Scripting
 
         public FlagType Flag;
         public int Value;
+
+        /// <summary>
+        /// Returns the HashTable that this value points to
+        /// </summary>
+        /// <returns></returns>
+        public ScriptingHashTableObject GetAsHashTableObject()
+        {
+            if (Flag != FlagType.pHashTable) throw new Exception("Object is not a hash table.");
+            var table = new ScriptingHashTableObject();
+            table.SetLocation(m_hProcess, (IntPtr)Value);
+            table.ReloadFromMemory();
+            return table;
+        }
 
         public override byte[] GetBytes()
         {

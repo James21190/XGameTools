@@ -14,6 +14,8 @@ namespace Common.Memory
         protected IntPtr m_hProcess;
         public IntPtr pThis { protected set; get; }
 
+        #region IMemoryObject
+
         /// <summary>
         /// Converts the values within the object into bytes.
         /// </summary>
@@ -30,11 +32,26 @@ namespace Common.Memory
         /// Sets the values of the fields of this object with the values stored in a binary array.
         /// </summary>
         /// <param name="Memory"></param>
-        public abstract void SetData(byte[] Memory);
+        public virtual void SetData(byte[] Memory)
+        {
+            SetDataFromObjectByteList(new ObjectByteList(Memory, m_hProcess, pThis));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Abstracted version of SetData using an ObjectByteList. Called from SetData unless overrided.
+        /// </summary>
+        /// <param name="objectByteList"></param>
+        protected virtual void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Sets the context of the object.
         /// Essential for keeping newly created objects from pointers in context.
+        /// The memory is not automatically reloaded.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="address"></param>

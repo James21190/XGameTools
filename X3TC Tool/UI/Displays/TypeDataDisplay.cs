@@ -15,13 +15,11 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class TypeDataDisplay : Form
     {
-        private GameHook m_GameHook;
         private TypeData m_TypeData;
         private int m_TypeDataMainType;
-        public TypeDataDisplay(GameHook gameHook)
+        public TypeDataDisplay()
         {
             InitializeComponent();
-            m_GameHook = gameHook;
 
             tabControl1.SelectedIndex = 0;
             comboBox2.SelectedIndex = -1;
@@ -44,7 +42,7 @@ namespace X3TC_Tool.UI.Displays
             if (comboBox2.SelectedIndex != SubType) comboBox2.SelectedIndex = SubType;
 
             m_TypeDataMainType = MainType;
-            m_TypeData = m_GameHook.GetTypeData(MainType ,SubType);
+            m_TypeData = GameHook.GetTypeData(MainType ,SubType);
             Reload();
         }
 
@@ -59,7 +57,7 @@ namespace X3TC_Tool.UI.Displays
             comboBox2.Enabled = true;
             comboBox2.SelectedIndex = -1;
             comboBox2.Items.Clear();
-            for (int i = 0; i < m_GameHook.GetTypeDataCount(tabControl1.SelectedIndex); i++)
+            for (int i = 0; i < GameHook.GetTypeDataCount(tabControl1.SelectedIndex); i++)
             {
                 comboBox2.Items.Add(SectorObject.GetSubTypeAsString((SectorObject.Main_Type)tabControl1.SelectedIndex, i));
             }

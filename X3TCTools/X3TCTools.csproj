@@ -48,25 +48,20 @@
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
     <Compile Include="Bases\Scripting\KCodeDissassembler.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Gate_ScriptMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Sector_ScriptMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Ship_ScriptMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\AP\AP_SectorObject_Dock_ScriptMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\BlankScriptingMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\CargoEntry.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\IGate_ScriptMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\ISector_ScriptMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\ScriptingMemoryObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\IShip_ScriptMemoryObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\TC_ScriptingMemory_Variables.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\AP\AP_ScriptingMemory_Variables.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\CargoEntry.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\ScriptingMemoryObject.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Sector.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ship.cs" />
     <Compile Include="Bases\Scripting\ScriptingTextObject.cs" />
     <Compile Include="Bases\Scripting\DynamicValue.cs" />
-    <Compile Include="Bases\Scripting\DynamicValueObject Presets.cs" />
-    <Compile Include="Bases\Scripting\DynamicValueObject.cs" />
     <Compile Include="Bases\Scripting\ScriptingArrayObject.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemoryObject\TC\TC_SectorObject_Ship_ScriptMemoryObject.cs" />
     <Compile Include="Bases\StoryBase\EventFunctionStruct.cs" />
-    <Compile Include="Bases\StoryBase\EventObject.cs" />
-    <Compile Include="Bases\StoryBase\EventObjectSub.cs" />
+    <Compile Include="Bases\Scripting\EventObject.cs" />
+    <Compile Include="Bases\Scripting\EventObjectSub.cs" />
     <Compile Include="Bases\StoryBase\ScriptObject.cs" />
     <Compile Include="Bases\StoryBase.cs" />
     <Compile Include="Bases\StoryBase\StoryBase15fc.cs" />
@@ -132,24 +127,24 @@
     <Compile Include="X3FixedPointValue.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mods\System\CreateObject.x3tccode">
+    <None Include="Data\TC\Mods\System\CreateObject.x3tccode">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Patches\0.patch">
+    <None Include="Data\TC\Patches\0.patch">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="X3APSectorNames.csv">
+    <None Include="Data\AP\X3APSectorNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="X3APSectorObjectTypes.csv">
+    <None Include="Data\AP\X3APSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="X3TCSectorObjectTypes.csv">
+    <None Include="Data\TC\X3TCSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mods\Blank.mod">
+    <Content Include="Data\TC\Mods\Blank.mod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

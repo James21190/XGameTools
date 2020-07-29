@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Common;
+using Common.Memory;
+
+namespace X3TCTools.Bases.Scripting.ScriptingMemory
+{
+    public class ScriptingMemoryObject : MemoryObject
+    {
+        /// <summary>
+        /// Length of the object
+        /// </summary>
+        public int VariableCount { get; private set; }
+        /// <summary>
+        /// List of all variables, comparable to how an array of bytes represents an object.
+        /// </summary>
+        private DynamicValue[] Variables;
+
+        #region Constructors
+        public ScriptingMemoryObject()
+        {
+            VariableCount = 100;
+            Variables = new DynamicValue[100];
+        }
+
+        public ScriptingMemoryObject(int size)
+        {
+            VariableCount = size;
+            Variables = new DynamicValue[size];
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Resizes the object.
+        /// </summary>
+        /// <param name="newSize"></param>
+        public void Resize(int newSize)
+        {
+            VariableCount = newSize;
+            ReloadFromMemory();
+        }
+        public virtual string GetVariableName(int index)
+        {
+            return index.ToString();
+        }
+
+        #region Gets
+        public DynamicValue GetVariable(int index)
+        {
+            return Variables[index];
+        }
+        public int GetVariableValue(int index)
+        {
+            return Variables[index].Value;
+        }
+        #endregion
+
+        #region Sets
+        public void SetVariable(int index, DynamicValue value)
+        {
+            Variables[index] = value;
+        }
+        public void SetVariableValue(int index, int value)
+        {
+            Variables[index].Value = value;
+        }
+        #endregion
+
+        #region IMemoryObject
+        public sealed override byte[] GetBytes()
+        {
+            var collection = new ObjectByteList();
+            collection.Append(Variables);
+            return collection.GetBytes();
+        }
+
+        public sealed override int GetByteSize()
+        {
+            return VariableCount * DynamicValue.ByteSize;
+        }
+
+        public sealed override void SetData(byte[] Memory)
+        {
+            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            Variables = collection.PopIMemoryObjects<DynamicValue>(VariableCount);
+        }
+        #endregion
+    }
+}

@@ -8,12 +8,12 @@ using Common.Memory;
 namespace X3TCTools
 {
     /// <summary>
-    /// The object used for traversing and fetching objects from a hash table
+    /// Represents a hash table.
+    /// Provides methods for traversing and finding objects.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class HashTable<T> : MemoryObject where T : IMemoryObject, new()
     {
-        #region Classes
         public class Entry<t> : MemoryObject where t : IMemoryObject, new()
         {
             public const int ByteSize = 12;
@@ -66,31 +66,54 @@ namespace X3TCTools
             }
             #endregion
         }
-        #endregion
-        #region Constants
+
+        /// <summary>
+        /// The size of the object in bytes.
+        /// </summary>
         public const int ByteSize = 16;
-        #endregion
+
         #region Fields
-        public MemoryObjectPointer<MemoryObjectPointer<Entry<T>>> ppEntry;
+        /// <summary>
+        /// Pointer to an array of pointers for entries.
+        /// </summary>
+        public MemoryObjectPointer<MemoryObjectPointer<Entry<T>>> ppEntry = new MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>();
+        /// <summary>
+        /// The length of the array of pointers.
+        /// </summary>
         public int Length;
+        /// <summary>
+        /// The next available ID for future entries.
+        /// </summary>
         public int NextAvailableID;
+        /// <summary>
+        /// The number of entries currently in the table.
+        /// </summary>
         public int Count;
         #endregion
 
-        public HashTable()
-        {
-            ppEntry = new MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>();
-        }
-
+        /// <summary>
+        /// Returns the object with a given ID.
+        /// Throws an exception if the object is not found.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public T GetObject(int ID)
         {
             return GetEntry(ID).obj;
         }
 
+        /// <summary>
+        /// Returns the address of an object with a given ID.
+        /// Throws an exception if the object is not found.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public IntPtr GetAddress(int ID)
         {
             return GetEntry(ID).address;
         }
+
+        #region Scans
 
         /// <summary>
         /// Returns all ID's stored in the hash table.
@@ -102,6 +125,11 @@ namespace X3TCTools
             return ScanContents(out temp);
         }
 
+        /// <summary>
+        /// Returns all ID's stored in the hash table and the number of null pointers.
+        /// </summary>
+        /// <param name="NumOfNulls"></param>
+        /// <returns></returns>
         public int[] ScanContents(out int NumOfNulls)
         {
             NumOfNulls = 0;
@@ -136,6 +164,8 @@ namespace X3TCTools
 
             return results.ToArray();
         }
+
+        #endregion
 
         /// <summary>
         /// Returns the entry with a given id. Throws an exception if not found.
@@ -183,19 +213,18 @@ namespace X3TCTools
             return ByteSize;
         }
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList collection)
         {
-            var collection = new ObjectByteList(Memory);
-            collection.PopFirst(ref ppEntry);
-            collection.PopFirst(ref Length);
-            collection.PopFirst(ref NextAvailableID);
-            collection.PopFirst(ref Count);
+            ppEntry = collection.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>>();
+            Length = collection.PopInt();
+            NextAvailableID = collection.PopInt();
+            Count = collection.PopInt();
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            ppEntry.SetLocation(hProcess, address);
             base.SetLocation(hProcess, address);
+            ppEntry.SetLocation(hProcess, address);
         }
         #endregion
     }

@@ -18,18 +18,16 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class ScriptObjectDisplay : Form
     {
-        private GameHook m_GameHook;
         private ScriptObject m_ScriptObject;
-        public ScriptObjectDisplay(GameHook gameHook)
+        public ScriptObjectDisplay()
         {
-            m_GameHook = gameHook;
             InitializeComponent();
         }
 
         public void LoadObject(IntPtr pObject)
         {
             var newobj = new ScriptObject();
-            newobj.SetLocation(m_GameHook.hProcess, pObject);
+            newobj.SetLocation(GameHook.hProcess, pObject);
             LoadObject(newobj);
         }
         public void LoadObject(ScriptObject scriptObject)
@@ -40,7 +38,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            var storybase = m_GameHook.storyBase;
+            var storybase = GameHook.storyBase;
             if(m_ScriptObject == null)
             {
                 NextButton.Enabled = false;
@@ -75,7 +73,7 @@ namespace X3TC_Tool.UI.Displays
         public void ReloadDissassembly()
         {
             richTextBox1.Clear();
-            var dissassembler = new KCodeDissassembler(m_GameHook);
+            var dissassembler = new KCodeDissassembler();
             var code = dissassembler.Dissassemble(m_ScriptObject.InstructionOffset);
             foreach (var line in code)
                 richTextBox1.Text += line.ToString(0,DisplayFunctionNamesAsHex);
@@ -98,7 +96,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadIDButton_Click(object sender, EventArgs e)
         {
-            var storybase = m_GameHook.storyBase;
+            var storybase = GameHook.storyBase;
             try
             {
                 var table = storybase.pScriptObjectHashTable.obj;
@@ -114,7 +112,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var display = new DynamicValueArrayDisplay(m_GameHook);
+            var display = new DynamicValueArrayDisplay();
             display.LoadFrom(m_ScriptObject.pStack.address, m_ScriptObject.StackSize, 0);
             display.Show();
         }
@@ -122,7 +120,7 @@ namespace X3TC_Tool.UI.Displays
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             var offset = (int)numericUpDown1.Value;
-            textBox1.Text = (((int)m_GameHook.storyBase.pInstructionArray.address) + offset).ToString("X");
+            textBox1.Text = (((int)GameHook.storyBase.pInstructionArray.address) + offset).ToString("X");
         }
 
         bool DisplayFunctionNamesAsHex = false;

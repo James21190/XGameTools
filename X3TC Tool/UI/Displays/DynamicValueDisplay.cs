@@ -16,13 +16,11 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class DynamicValueArrayDisplay : Form
     {
-        private GameHook m_GameHook;
         private IntPtr m_Address;
         private int m_Depth, m_Height;
-        public DynamicValueArrayDisplay(GameHook gameHook)
+        public DynamicValueArrayDisplay()
         {
             InitializeComponent();
-            m_GameHook = gameHook;
         }
 
         public void LoadFrom(IntPtr address, int ArrayDepth, int ArrayHeight)
@@ -49,7 +47,7 @@ namespace X3TC_Tool.UI.Displays
         private DynamicValue GetDynamicAtIndex(int index)
         {
             var value = new DynamicValue();
-            value.SetLocation(m_GameHook.hProcess, m_Address + (5 * index));
+            value.SetLocation(GameHook.hProcess, m_Address + (5 * index));
             value.ReloadFromMemory();
             return value;
         }
@@ -72,7 +70,7 @@ namespace X3TC_Tool.UI.Displays
                 dv.Flag = (DynamicValue.FlagType)row.Cells[2].Value;
                 dv.Value = (int)row.Cells[4].Value;
 
-                var display = DynamicValueContentLoader.LoadContent(m_GameHook, dv);
+                var display = DynamicValueContentLoader.LoadContent(dv);
                 if (display != null)
                     display.Show();
             }

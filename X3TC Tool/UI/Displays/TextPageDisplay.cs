@@ -16,19 +16,19 @@ namespace X3TC_Tool.UI
 {
     public partial class TextPageDisplay : Form
     {
-        private GameHook m_GameHook;
+        private GameHook GameHook;
 
         private TextPage m_TextPage;
 
         public TextPageDisplay(GameHook gameHook)
         {
-            m_GameHook = gameHook;
+            GameHook = gameHook;
             InitializeComponent();
         }
 
         public void LoadPage(int languageID, int pageID)
         {
-            m_TextPage = m_GameHook.storyBase.GetTextPage(languageID, pageID);
+            m_TextPage = GameHook.storyBase.GetTextPage(languageID, pageID);
             Reload();
         }
 

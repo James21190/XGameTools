@@ -7,8 +7,14 @@ using System.Diagnostics;
 
 namespace Common.Memory
 {
+    /// <summary>
+    /// Base class used to hook into another process.
+    /// </summary>
     public abstract class ApplicationHook
     {
+        /// <summary>
+        /// Handle to the attached process.
+        /// </summary>
         public IntPtr hProcess { private set; get; }
 
         /// <summary>

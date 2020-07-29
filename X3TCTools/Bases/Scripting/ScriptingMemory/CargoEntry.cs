@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using X3TCTools.SectorObjects;
 
-namespace X3TCTools.Bases.Scripting.ScriptingMemoryObject
+namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
     public struct CargoEntry : IComparable
     {

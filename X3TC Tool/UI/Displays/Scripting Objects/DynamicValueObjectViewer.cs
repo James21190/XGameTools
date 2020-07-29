@@ -11,18 +11,16 @@ using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.Bases;
 using X3TCTools.Bases.Scripting;
-using X3TCTools.Bases.Scripting.ScriptingMemoryObject;
+using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TC_Tool.UI.Displays
 {
     public partial class DynamicValueObjectDisplay : Form
     {
-        private GameHook m_GameHook;
         private ScriptingMemoryObject m_object;
-        public DynamicValueObjectDisplay(GameHook gameHook)
+        public DynamicValueObjectDisplay()
         {
             InitializeComponent();
-            m_GameHook = gameHook;
         }
 
         public void LoadObject(ScriptingMemoryObject dynamicValueObject)
@@ -58,7 +56,7 @@ namespace X3TC_Tool.UI.Displays
                 dv.Flag = (DynamicValue.FlagType)row.Cells[1].Value;
                 dv.Value = (int)row.Cells[2].Value;
 
-                var display = DynamicValueContentLoader.LoadContent(m_GameHook, dv);
+                var display = DynamicValueContentLoader.LoadContent(dv);
                 if (display != null)
                     display.Show();
             }
@@ -82,8 +80,8 @@ namespace X3TC_Tool.UI.Displays
             switch (comboBox1.SelectedIndex)
             {
                 case 0: // Blank
-                    obj = new BlankScriptingMemoryObject((int)numericUpDown1.Value);
-                    obj.SetLocation(m_GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
+                    obj = new ScriptingMemoryObject((int)numericUpDown1.Value);
+                    obj.SetLocation(GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
                     LoadObject(obj);
                     break;
                 default: return;
@@ -94,6 +92,11 @@ namespace X3TC_Tool.UI.Displays
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             button1.Enabled = comboBox1.SelectedIndex > -1;
+        }
+
+        private void DynamicValueObjectDisplay_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

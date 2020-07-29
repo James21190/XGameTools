@@ -13,19 +13,16 @@ namespace X3TCTools
 {
     public class GameCodeRunner
     {
-        private GameHook m_GameHook;
-
         private const int WaitTime = 10;
 
         private IntPtr pCreateObjectInjection;
 
-        public GameCodeRunner(GameHook gameHook)
+        public GameCodeRunner()
         {
-            m_GameHook = gameHook;
 
             switch (GameHook.GameVersion) {
                 case GameHook.GameVersions.X3TC:
-                pCreateObjectInjection = m_GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
+                pCreateObjectInjection = GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Mods\\System\\CreateObject.x3tccode"));
                     break;
             }
         }
@@ -45,16 +42,16 @@ namespace X3TCTools
             }
 
             if(parent != null)
-                MemoryControl.Write(m_GameHook.hProcess, pCreateObjectInjection + 4, BitConverter.GetBytes((int)parent.pThis));
-            MemoryControl.Write(m_GameHook.hProcess, pCreateObjectInjection, BitConverter.GetBytes((int)SectorObject.ToFullType(mainType, subType)));
+                MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection + 4, BitConverter.GetBytes((int)parent.pThis));
+            MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection, BitConverter.GetBytes((int)SectorObject.ToFullType(mainType, subType)));
 
-            MemoryControl.Write(m_GameHook.hProcess, pCreateObjectInjection + 12, BitConverter.GetBytes((int)1));
+            MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection + 12, BitConverter.GetBytes((int)1));
 
-            while (MemoryControl.ReadInt(m_GameHook.hProcess, pCreateObjectInjection + 12) != 0)
+            while (MemoryControl.ReadInt(GameHook.hProcess, pCreateObjectInjection + 12) != 0)
                 Thread.Sleep(WaitTime);
 
             var result = new SectorObject();
-            result.SetLocation(m_GameHook.hProcess, (IntPtr)MemoryControl.ReadInt(m_GameHook.hProcess, pCreateObjectInjection + 8));
+            result.SetLocation(GameHook.hProcess, (IntPtr)MemoryControl.ReadInt(GameHook.hProcess, pCreateObjectInjection + 8));
 
             return result;
         }
