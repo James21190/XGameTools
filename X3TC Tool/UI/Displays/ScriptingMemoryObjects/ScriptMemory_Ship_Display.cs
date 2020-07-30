@@ -12,6 +12,7 @@ using X3TCTools;
 using X3TCTools.SectorObjects;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
 using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
+using X3TCTools.Bases.Scripting;
 
 namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 {
@@ -45,6 +46,13 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
         private void ScriptMemory_Ship_Display_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var display = new EventObjectDisplay();
+            display.LoadObject(m_Object.ParentSectorEventObjectID, EventObjectDisplay.LoadAsItems.Sector);
+            display.Show();
         }
     }
 }

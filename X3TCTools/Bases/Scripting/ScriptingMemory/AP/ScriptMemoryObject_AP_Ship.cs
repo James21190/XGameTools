@@ -30,6 +30,8 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
                 return entries;
             }
         }
+        public int ParentSectorEventObjectID { get { return GetVariableValue((int)AP_Ship_Variables.ParentSectorEventObjectID); } }
+        public EventObject ParentSectorEventObject { get { return GameHook.storyBase.GetEventObject(ParentSectorEventObjectID); } }
 
         public override string GetVariableName(int index)
         {

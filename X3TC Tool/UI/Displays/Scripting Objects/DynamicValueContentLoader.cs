@@ -24,18 +24,18 @@ namespace X3TC_Tool.UI.Displays
                     display_hash.LoadTable(hashtableobj.hashTable.pThis);
 
                     return display_hash;
-                //case DynamicValue.FlagType.pArray:
-                //    var arrayobj = new ScriptingArrayObject();
-                //    arrayobj.SetLocation(GameHook.hProcess, (IntPtr)dynamicValue.Value);
-                //    arrayobj.ReloadFromMemory();
+                case DynamicValue.FlagType.pArray:
+                    var scriptingArrayObject = new ScriptingArrayObject();
+                    scriptingArrayObject.SetLocation(GameHook.hProcess, (IntPtr)dynamicValue.Value);
+                    scriptingArrayObject.ReloadFromMemory();
 
-                //    var arrayobj_2 = new BlankScriptingMemoryObject(arrayobj.length);
-                //    arrayobj_2.SetLocation(GameHook.hProcess, arrayobj.pArray.address);
-                //    arrayobj_2.ReloadFromMemory();
+                    var arrayObj = new ScriptingMemoryObject(scriptingArrayObject.length);
+                    arrayObj.SetLocation(GameHook.hProcess, (IntPtr)scriptingArrayObject.pArray.address);
+                    arrayObj.ReloadFromMemory();
 
-                //    var display_array = new DynamicValueObjectDisplay(gameHook);
-                //    display_array.LoadObject(arrayobj_2);
-                //    return display_array;
+                    var arrayDisplay = new DynamicValueObjectDisplay();
+                    arrayDisplay.LoadObject(arrayObj);
+                    return arrayDisplay;
                 case DynamicValue.FlagType.pTextObject:
                     var display_text = new ScriptingTextObjectDisplay();
                     display_text.LoadObject((IntPtr)dynamicValue.Value);

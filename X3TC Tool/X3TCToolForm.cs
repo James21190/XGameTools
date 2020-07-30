@@ -12,6 +12,7 @@ using X3TCTools;
 
 using X3TC_Tool.UI.Displays;
 using X3TC_Tool.UI;
+using X3TCTools.Bases.Scripting;
 
 namespace X3TC_Tool
 {
@@ -256,6 +257,13 @@ namespace X3TC_Tool
             var sectorObjectManager = GameHook.sectorObjectManager;
             var display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.GetSpace());
+            display.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var display = new EventObjectDisplay();
+            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().EventObjectID, EventObjectDisplay.LoadAsItems.Ship);
             display.Show();
         }
     }

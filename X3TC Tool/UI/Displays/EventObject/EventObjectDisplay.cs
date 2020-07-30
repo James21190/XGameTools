@@ -20,10 +20,22 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class EventObjectDisplay : Form
     {
+        public enum LoadAsItems
+        {
+            Ship,
+            Sector,
+            Dock,
+            Ware
+        }
         private EventObject m_EventObject;
         public EventObjectDisplay()
         {
             InitializeComponent();
+            int i = 0;
+            while (((LoadAsItems)(i)).ToString() != i.ToString())
+            {
+                comboBox1.Items.Add((LoadAsItems)i++);
+            }
         }
 
         public void LoadObject(int ID)
@@ -41,6 +53,12 @@ namespace X3TC_Tool.UI.Displays
                 return;
             }
             Reload();
+        }
+
+        public void LoadObject(int id, LoadAsItems defaultType)
+        {
+            LoadObject(id);
+            comboBox1.SelectedIndex = (int)defaultType;
         }
 
         public void Reload()
@@ -94,7 +112,7 @@ namespace X3TC_Tool.UI.Displays
             switch (GameHook.GameVersion) 
             {
                 case GameHook.GameVersions.X3TC:
-                    switch (comboBox1.SelectedItem)
+                    switch ((LoadAsItems)comboBox1.SelectedIndex)
                     {
                         default:
                             obj = new ScriptingMemoryObject();
@@ -104,9 +122,9 @@ namespace X3TC_Tool.UI.Displays
                     }
                     break;
                 case GameHook.GameVersions.X3AP:
-                    switch (comboBox1.SelectedItem)
+                    switch ((LoadAsItems)comboBox1.SelectedIndex)
                     {
-                        case "Sector":
+                        case LoadAsItems.Sector:
                             obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
 
                             if (chkLoadWithArray.Checked) break;
@@ -115,7 +133,7 @@ namespace X3TC_Tool.UI.Displays
                             sectorDisplay.LoadObject((IScriptMemoryObject_Sector)obj);
                             sectorDisplay.Show();
                             return;
-                        case "Ship":
+                        case LoadAsItems.Ship:
                             obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
 
                             if (chkLoadWithArray.Checked) break;
@@ -124,6 +142,9 @@ namespace X3TC_Tool.UI.Displays
                             shipDisplay.LoadObject((IScriptMemoryObject_Ship)obj);
                             shipDisplay.Show();
                             return;
+                        case LoadAsItems.Ware:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ware>();
+                            break;
 
                         default:
                             obj = new ScriptingMemoryObject();
@@ -139,6 +160,11 @@ namespace X3TC_Tool.UI.Displays
             display = new DynamicValueObjectDisplay();
             display.LoadObject(obj);
             display.Show();
+        }
+
+        private void EventObjectDisplay_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

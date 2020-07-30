@@ -10,5 +10,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
     {
         int SubType { get; }
         CargoEntry[] CargoEntries { get; }
+        int ParentSectorEventObjectID { get; }
+        EventObject ParentSectorEventObject { get; }
     }
 }

@@ -163,11 +163,6 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Ship",
-            "Sector",
-            "Dock",
-            "Ware"});
             this.comboBox1.Location = new System.Drawing.Point(139, 101);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(97, 21);
@@ -211,6 +206,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "EventObjectDisplay";
             this.Text = "EventObjectDisplay";
+            this.Load += new System.EventHandler(this.EventObjectDisplay_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).EndInit();
             this.groupBox2.ResumeLayout(false);

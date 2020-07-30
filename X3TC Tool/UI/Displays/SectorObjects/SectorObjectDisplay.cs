@@ -59,21 +59,21 @@ namespace X3TC_Tool.UI.Displays
                     string name;
                     switch (child.MainType)
                     {
-                        //case SectorObject.Main_Type.Gate:
-                        //    IGate_ScriptMemoryObject gateData;
-                        //    switch (GameHook.GameVersion)
-                        //    {
-                        //        //case GameHook.GameVersions.X3TC:
-                        //        //    break;
-                        //        case GameHook.GameVersions.X3AP:
-                        //            gateData = GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
-                        //            break;
-                        //        default:
-                        //            goto defaultName;
+                        case SectorObject.Main_Type.Gate:
+                            IScriptMemoryObject_Gate gateData;
+                            switch (GameHook.GameVersion)
+                            {
+                                //case GameHook.GameVersions.X3TC:
+                                //    break;
+                                case GameHook.GameVersions.X3AP:
+                                    gateData = child.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
+                                    break;
+                                default:
+                                    goto defaultName;
 
-                        //    }
-                        //    name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
-                        //    break;
+                            }
+                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.DestSectorX, gateData.DestSectorY));
+                            break;
                         default:
                         defaultName:
                             name = child.GetSubTypeAsString();
@@ -113,23 +113,23 @@ namespace X3TC_Tool.UI.Displays
                     string name;
                     switch (child.MainType)
                     {
-                        //case SectorObject.Main_Type.Gate:
-                        //    IGate_ScriptMemoryObject gateData;
-                        //    switch (GameHook.GameVersion) 
-                        //    {
-                        //        //case GameHook.GameVersions.X3TC:
-                        //        //    break;
-                        //        case GameHook.GameVersions.X3AP:
-                        //            gateData = GameHook.storyBase.GetEventObjectScriptingVariables<AP_SectorObject_Gate_ScriptMemoryObject>(child.EventObjectID);
-                        //            break;
-                        //        default:
-                        //            goto defaultName;
+                        case SectorObject.Main_Type.Gate:
+                            IScriptMemoryObject_Gate gateData;
+                            switch (GameHook.GameVersion)
+                            {
+                                //case GameHook.GameVersions.X3TC:
+                                //    break;
+                                case GameHook.GameVersions.X3AP:
+                                    gateData = child.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
+                                    break;
+                                default:
+                                    goto defaultName;
 
-                        //    }
-                        //    name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.GetDestSectorX(), gateData.GetDestSectorY()));
-                        //    break;
+                            }
+                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.DestSectorX, gateData.DestSectorY));
+                            break;
                         default:
-                            defaultName:
+                        defaultName:
                             name = child.GetSubTypeAsString();
                             break;
                     }
