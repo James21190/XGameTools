@@ -29,7 +29,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
     }
     public enum AP_Ship_Variables
     {
-        ParentSectorEventObjectID = 2,
+        /// <summary>
+        /// The ID of the EventObject that the ship is currently in.
+        /// </summary>
+        CurrentSectorEventObjectID = 1,
+        /// <summary>
+        /// The ID of the EventObject that the ship was in previously in.
+        /// </summary>
+        PreviousSectorEventObjectID,
 
         SubType = 14,
 
@@ -43,7 +50,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
     }
     public enum AP_Ware_Variables
     {
-        ParentSectorEventObjectID = 2,
+        /// <summary>
+        /// The ID of the EventObject that the ship is currently in.
+        /// </summary>
+        CurrentSectorEventObjectID = 1,
+        /// <summary>
+        /// The ID of the EventObject that the ship was in previously in.
+        /// </summary>
+        PreviousSectorEventObjectID,
 
         Amount = 6,
         MainType,

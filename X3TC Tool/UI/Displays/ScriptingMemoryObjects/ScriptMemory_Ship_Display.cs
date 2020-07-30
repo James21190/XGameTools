@@ -51,7 +51,14 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
         private void button1_Click(object sender, EventArgs e)
         {
             var display = new EventObjectDisplay();
-            display.LoadObject(m_Object.ParentSectorEventObjectID, EventObjectDisplay.LoadAsItems.Sector);
+            display.LoadObject(m_Object.PreviousSectorEventObjectID, EventObjectDisplay.LoadAsItems.Sector);
+            display.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var display = new EventObjectDisplay();
+            display.LoadObject(m_Object.CurrentSectorEventObjectID, EventObjectDisplay.LoadAsItems.Sector);
             display.Show();
         }
     }
