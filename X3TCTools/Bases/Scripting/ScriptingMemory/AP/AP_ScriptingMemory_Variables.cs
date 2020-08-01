@@ -40,7 +40,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 
         SubType = 14,
 
-        CustomName = 18,
+        CustomShipName = 18,
 
         WeaponArray = 23,
 
@@ -48,6 +48,21 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 
         Cargo = 35
     }
+
+    public enum AP_Factory_Variables
+    {
+        /// <summary>
+        /// The ID of the EventObject that the ship is currently in.
+        /// </summary>
+        CurrentSectorEventObjectID = 1,
+        /// <summary>
+        /// The ID of the EventObject that the ship was in previously in.
+        /// </summary>
+        PreviousSectorEventObjectID,
+
+        SubType = 13,
+    }
+
     public enum AP_Ware_Variables
     {
         /// <summary>

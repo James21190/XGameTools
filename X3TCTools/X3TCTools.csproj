@@ -53,6 +53,10 @@
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Gate.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Gate.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Sector.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ship.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ware.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\TC_ScriptingMemory_Variables.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\AP\AP_ScriptingMemory_Variables.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\CargoEntry.cs" />
@@ -140,6 +144,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\AP\X3APSectorObjectTypes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TC\X3TCSectorNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\TC\X3TCSectorObjectTypes.csv">

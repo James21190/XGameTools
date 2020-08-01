@@ -39,6 +39,7 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
         public void Reload()
         {
             var cargo = m_Object.CargoEntries;
+            Array.Sort(cargo);
             txtCargo.Text = string.Join("\n", cargo);
             cmbSubType.SelectedIndex = m_Object.SubType;
         }

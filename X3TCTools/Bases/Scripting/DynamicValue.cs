@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X3TCTools.Bases.Scripting
 {
-    public class DynamicValue : MemoryObject
+    public class DynamicValue : MemoryObject, IComparable
     {
 
         public const int FlagCount = 15;
@@ -66,7 +66,24 @@ namespace X3TCTools.Bases.Scripting
 
         public override string ToString()
         {
-            return Flag + "-" + Value.ToString("X");
+            return Flag + "(" + Value.ToString() + ")";
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            if (!(obj is DynamicValue)) throw new Exception("Type missmatch");
+
+            var type = (DynamicValue)obj;
+
+            if (this.Flag > type.Flag) return -1;
+            if (this.Flag < type.Flag) return 1;
+
+            if (this.Value > type.Value) return -1;
+            if (this.Value < type.Value) return 1;
+
+            return 0;
         }
 
         public static bool operator==(DynamicValue a, DynamicValue b)

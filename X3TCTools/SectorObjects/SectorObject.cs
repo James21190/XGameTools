@@ -13,7 +13,7 @@ using X3TCTools.Bases;
 
 namespace X3TCTools.SectorObjects
 {
-    public partial class SectorObject : MemoryObject
+    public partial class SectorObject : MemoryObject, IComparable
     {        
         public bool IsValid
         {
@@ -345,5 +345,48 @@ namespace X3TCTools.SectorObjects
 
         }
 
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            if (!(obj is SectorObject)) throw new Exception("Type missmatch");
+
+            var type = (SectorObject)obj;
+
+            if (this.MainType > type.MainType) return -1;
+            if (this.MainType < type.MainType) return 1;
+
+            if (this.SubType > type.SubType) return -1;
+            if (this.SubType < type.SubType) return 1;
+
+            if (this.ObjectID > type.ObjectID) return -1;
+            if (this.ObjectID < type.ObjectID) return 1;
+
+            return 0;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+
+            if (!(obj is SectorObject)) throw new Exception("Type missmatch");
+
+            var sectorObject = (SectorObject)obj;
+            return ObjectID == sectorObject.ObjectID;
+        }
+
+        public static bool operator== (SectorObject a, SectorObject b)
+        {
+            if (object.ReferenceEquals(a, null))
+            {
+                return object.ReferenceEquals(b, null);
+            }
+
+            return a.Equals(b);
+        }
+        public static bool operator!=(SectorObject a, SectorObject b)
+        {
+            return !(a == b);
+        }
     }
 }

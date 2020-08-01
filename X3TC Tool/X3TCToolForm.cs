@@ -238,18 +238,18 @@ namespace X3TC_Tool
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // Performance
-            const int max = 100;
-            var blocks = GameHook.pBlocksAllocated.obj.Value;
-            var bytes = GameHook.pBytesAllocated.obj.Value;
-            lblBlocksAllocated.Text = "Blocks Allocated: " + String.Format("{0:n0}", blocks);
-            lblBytesAllocated.Text = "Bytes Allocated: " + String.Format("{0:n0}", bytes);
+            //// Performance
+            //const int max = 100;
+            //var blocks = GameHook.pBlocksAllocated.obj.Value;
+            //var bytes = GameHook.pBytesAllocated.obj.Value;
+            //lblBlocksAllocated.Text = "Blocks Allocated: " + String.Format("{0:n0}", blocks);
+            //lblBytesAllocated.Text = "Bytes Allocated: " + String.Format("{0:n0}", bytes);
 
-            chartPerformance.Series["Blocks Allocated"].Points.Add(blocks);
-            chartPerformance.Series["Bytes Allocated"].Points.Add(bytes);
+            //chartPerformance.Series["Blocks Allocated"].Points.Add(blocks);
+            //chartPerformance.Series["Bytes Allocated"].Points.Add(bytes);
 
-            if (chartPerformance.Series["Blocks Allocated"].Points.Count > max) { chartPerformance.Series["Blocks Allocated"].Points.RemoveAt(0); }
-            if(chartPerformance.Series["Bytes Allocated"].Points.Count > max) { chartPerformance.Series["Bytes Allocated"].Points.RemoveAt(0); }
+            //if (chartPerformance.Series["Blocks Allocated"].Points.Count > max) { chartPerformance.Series["Blocks Allocated"].Points.RemoveAt(0); }
+            //if(chartPerformance.Series["Bytes Allocated"].Points.Count > max) { chartPerformance.Series["Bytes Allocated"].Points.RemoveAt(0); }
         }
 
         private void button4_Click(object sender, EventArgs e)

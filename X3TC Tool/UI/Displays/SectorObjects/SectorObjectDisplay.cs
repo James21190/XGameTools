@@ -15,6 +15,7 @@ using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 
 using Common.Memory;
+using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
 using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 
 namespace X3TC_Tool.UI.Displays
@@ -31,141 +32,76 @@ namespace X3TC_Tool.UI.Displays
             }
         }
 
-        private void LoadTree(int AutoLoadID = 0, bool clear = true, SectorObject baseSectorObject = null, TreeNode baseNode = null)
+
+        private void LoadTree(int autoLoadID = 0, SectorObject baseSectorObject = null)
         {
-            if(clear)
-                treeView1.Nodes.Clear();
-            if(baseSectorObject == null)
-                baseSectorObject = GameHook.sectorObjectManager.GetSpace();
+            // If base is null, assume it to be space.
+            if (baseSectorObject == null) baseSectorObject = GameHook.sectorObjectManager.GetSpace();
 
-
-            var children = baseSectorObject.GetAllChildren(false);
-
-            if (children.Count() == 0)
-                return;
-
-            Queue<TreeNode> ToRemove = new Queue<TreeNode>();
-
-            if(baseNode == null)
-            {
-                
-                IsLoadingTree = true;
-                for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
-                    treeView1.Nodes.Add("Type " + ((SectorObject.Main_Type)i).ToString());
-                treeView1.Nodes.Add("Invalid MainType");
-
-                foreach(var child in children)
-                {
-                    string name;
-                    switch (child.MainType)
-                    {
-                        case SectorObject.Main_Type.Gate:
-                            IScriptMemoryObject_Gate gateData;
-                            switch (GameHook.GameVersion)
-                            {
-                                //case GameHook.GameVersions.X3TC:
-                                //    break;
-                                case GameHook.GameVersions.X3AP:
-                                    gateData = child.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
-                                    break;
-                                default:
-                                    goto defaultName;
-
-                            }
-                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.DestSectorX, gateData.DestSectorY));
-                            break;
-                        default:
-                        defaultName:
-                            name = child.GetSubTypeAsString();
-                            break;
-                    }
-                    TreeNode a = new TreeNode(name);
-                    a.Tag = child;
-                    a.BackColor = GameHook.GetRaceColor(child.RaceID);
-                    if ((int)child.MainType < SectorObject.MAIN_TYPE_COUNT)
-                    {
-                        treeView1.Nodes[(int)child.MainType].Nodes.Add(a);
-                        if(child.ObjectID == AutoLoadID)
-                        {
-                            treeView1.SelectedNode = a;
-                        }
-                        LoadTree(AutoLoadID, false, child, a);
-                    }
-                    else
-                        treeView1.Nodes[SectorObject.MAIN_TYPE_COUNT].Nodes.Add(a);
-                }
-                // Remove empty nodes.
-                foreach (TreeNode node in treeView1.Nodes)
-                {
-                    if (node.Nodes.Count == 0)
-                        ToRemove.Enqueue(node);
-                }
-                IsLoadingTree = false;
-            }
-            else
-            {
-                for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
-                    baseNode.Nodes.Add("Type " + ((SectorObject.Main_Type)i).ToString());
-                baseNode.Nodes.Add("Invalid MainType");
-
-                foreach (var child in children)
-                {
-                    string name;
-                    switch (child.MainType)
-                    {
-                        case SectorObject.Main_Type.Gate:
-                            IScriptMemoryObject_Gate gateData;
-                            switch (GameHook.GameVersion)
-                            {
-                                //case GameHook.GameVersions.X3TC:
-                                //    break;
-                                case GameHook.GameVersions.X3AP:
-                                    gateData = child.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
-                                    break;
-                                default:
-                                    goto defaultName;
-
-                            }
-                            name = string.Format("{0} ({1})", child.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateData.DestSectorX, gateData.DestSectorY));
-                            break;
-                        default:
-                        defaultName:
-                            name = child.GetSubTypeAsString();
-                            break;
-                    }
-                    TreeNode a = new TreeNode(name);
-                    a.Tag = child;
-                    a.BackColor = GameHook.GetRaceColor(child.RaceID);
-                    if ((int)child.MainType < SectorObject.MAIN_TYPE_COUNT)
-                    {
-                        baseNode.Nodes[(int)child.MainType].Nodes.Add(a);
-                        if (child.ObjectID == AutoLoadID)
-                        {
-                            treeView1.SelectedNode = a;
-                        }
-                        LoadTree(AutoLoadID, false, child, a);
-                    }
-                    else
-                        baseNode.Nodes[SectorObject.MAIN_TYPE_COUNT].Nodes.Add(a);
-
-                }
-
-                // Remove empty nodes.
-                foreach (TreeNode node in baseNode.Nodes)
-                {
-                    if (node.Nodes.Count == 0)
-                        ToRemove.Enqueue(node);
-                }
-            }
-
-            while(ToRemove.Count > 0)
-            {
-                treeView1.Nodes.Remove(ToRemove.Dequeue());
-
-            }
-
+            treeView1.Nodes.Clear();
+            TreeNode selectedNode;
+            treeView1.Nodes.Add(GenerateTreeNode(baseSectorObject, autoLoadID, out selectedNode));
+            if (selectedNode != null) treeView1.SelectedNode = selectedNode;
 
         }
+        private TreeNode GenerateTreeNode(SectorObject baseSectorObject, int selectedID, out TreeNode selectedNode)
+        {
+            string sectorObjectName;
+            switch (baseSectorObject.MainType)
+            {
+                case SectorObject.Main_Type.Gate:
+                    IScriptMemoryObject_Gate gateScriptMemoryObject;
+                    switch (GameHook.GameVersion) 
+                    {
+                        case GameHook.GameVersions.X3AP:
+                            gateScriptMemoryObject = baseSectorObject.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
+                            break;
+                        case GameHook.GameVersions.X3TC:
+                            gateScriptMemoryObject = baseSectorObject.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
+                            break;
+                        default: throw new Exception();
+                    }
+                    sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(),GameHook.gateSystemObject.GetSectorName(gateScriptMemoryObject.DestSectorX,gateScriptMemoryObject.DestSectorY));
+                    break;
+                default: sectorObjectName = baseSectorObject.GetSubTypeAsString(); break;
+            }
+
+            TreeNode newNode = new TreeNode(sectorObjectName);
+            //Add tag
+            newNode.Tag = baseSectorObject;
+
+            // If sectorObject is selected object, set selectedNode
+            selectedNode = (baseSectorObject.ObjectID == selectedID) ? newNode : null;
+
+
+            // Give node a color based on it's owning race.
+            newNode.BackColor = GameHook.GetRaceColor(baseSectorObject.RaceID);
+            
+            // Append children to the tree.
+            for (int mainType = 0; mainType < SectorObject.MAIN_TYPE_COUNT; mainType++)
+            {
+                var children = baseSectorObject.GetAllChildrenWithType(mainType);
+
+                // Sort children
+                Array.Sort(children);
+                Array.Reverse(children);
+
+                if (children.Length > 0) // Check if node will have contents, if so continue.
+                {
+                    var childNode = newNode.Nodes.Add(string.Format("Type {0} ({1})", ((SectorObject.Main_Type)mainType).ToString(), children.Length));
+
+                    foreach (var child in children)
+                    {
+                        TreeNode childSelectedNode;
+                        childNode.Nodes.Add(GenerateTreeNode(child, selectedID, out childSelectedNode));
+                        if (childSelectedNode != null) selectedNode = childSelectedNode;
+                    }
+                }
+            }
+
+            return newNode;
+        }
+
         public void LoadObject(int ID)
         {
             var sectorObjectManager = GameHook.sectorObjectManager;
@@ -197,9 +133,9 @@ namespace X3TC_Tool.UI.Displays
             IScriptMemoryObject_Sector sectorScriptVariables;
             switch (GameHook.GameVersion)
             {
-                //case GameHook.GameVersions.X3TC:
-                //    sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
-                //    break;
+                case GameHook.GameVersions.X3TC:
+                    sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                    break;
                 case GameHook.GameVersions.X3AP:
                     sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
                     break;
@@ -209,17 +145,19 @@ namespace X3TC_Tool.UI.Displays
             var sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
             labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
 
-            // Object info
-            ObjectInfo:
+        ObjectInfo:
+            // Reload from memory to ensure it is up to date.
             m_SectorObject.ReloadFromMemory();
-            LoadTree(m_SectorObject.ObjectID);
+            // Load tree if not auto reloading
+            if (!AutoReloadCheckBox.Checked)
+                LoadTree(m_SectorObject.ObjectID);
             txtAddress.Text = m_SectorObject.pThis.ToString("X");
             txtDefaultName.Text = MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName);
             nudSectorObjectID.Value = m_SectorObject.ObjectID;
             v3dPosition.Vector = m_SectorObject.Position_Copy;
-            v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X)/500000;
-            v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y)/500000;
-            v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z)/500000;
+            v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;
+            v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
+            v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
             v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
             EventObjectIDBox.Text = m_SectorObject.EventObjectID.ToString();
             txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
@@ -269,9 +207,10 @@ namespace X3TC_Tool.UI.Displays
 
 
             // Object relation
-            btnGoNext.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid;
-            btnGoPrevious.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid;
-            btnGoParent.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid;
+            // If auto reloading, disable buttons
+            btnGoNext.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid && !AutoReloadCheckBox.Enabled;
+            btnGoPrevious.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid && !AutoReloadCheckBox.Enabled;
+            btnGoParent.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid && !AutoReloadCheckBox.Enabled;
 
             ReloadChildren();
         
@@ -308,14 +247,16 @@ namespace X3TC_Tool.UI.Displays
             {
                 m_SectorObject = null;
                 txtAddress.Text = "Object Destroyed.";
-                AutoReloadCheckBox.Enabled = false;
-                AutoReloader.Enabled = false;
+                AutoReloadCheckBox.Checked = false;
             }
         }
 
         private void AutoReloadCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             AutoReloader.Enabled = AutoReloadCheckBox.Checked;
+            treeView1.Enabled =
+                groupBox6.Enabled=
+                !AutoReloadCheckBox.Checked;
         }
 
         private void NextButton_Click(object sender, EventArgs e)
@@ -375,13 +316,13 @@ namespace X3TC_Tool.UI.Displays
             display.Show();
         }
 
-        bool IsLoadingTree = false;
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (IsLoadingTree)
-                return;
-            if(e.Node.Tag != null)
-                LoadObject((SectorObject)e.Node.Tag);
+
+            if (e.Node.Tag == null) return;
+            var newSO = (SectorObject)e.Node.Tag;
+            if (m_SectorObject == newSO) return;
+            LoadObject(newSO);
         }
 
         private void sectorToolStripMenuItem_Click(object sender, EventArgs e)

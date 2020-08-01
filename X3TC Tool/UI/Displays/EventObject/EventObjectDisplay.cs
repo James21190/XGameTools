@@ -14,6 +14,7 @@ using X3TCTools.SectorObjects;
 using X3TCTools.Bases.Scripting;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
 using X3TC_Tool.UI.Displays.ScriptingMemoryObjects;
+using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
 using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 
 namespace X3TC_Tool.UI.Displays
@@ -114,6 +115,27 @@ namespace X3TC_Tool.UI.Displays
                 case GameHook.GameVersions.X3TC:
                     switch ((LoadAsItems)comboBox1.SelectedIndex)
                     {
+                        case LoadAsItems.Sector:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+
+                            if (chkLoadWithArray.Checked) break;
+
+                            var sectorDisplay = new ScriptMemory_Sector_Display();
+                            sectorDisplay.LoadObject((IScriptMemoryObject_Sector)obj);
+                            sectorDisplay.Show();
+                            return;
+                        case LoadAsItems.Ship:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>();
+
+                            if (chkLoadWithArray.Checked) break;
+
+                            var shipDisplay = new ScriptMemory_Ship_Display();
+                            shipDisplay.LoadObject((IScriptMemoryObject_Ship)obj);
+                            shipDisplay.Show();
+                            return;
+                        case LoadAsItems.Ware:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ware>();
+                            break;
                         default:
                             obj = new ScriptingMemoryObject();
                             obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);

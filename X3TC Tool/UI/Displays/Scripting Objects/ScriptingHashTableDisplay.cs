@@ -53,12 +53,11 @@ namespace X3TC_Tool.UI.Displays
         {
             listBox1.Items.Clear();
             int NumOfInvalids;
-            foreach(var item in m_HashTable.ScanContents(out NumOfInvalids))
+            var contents = m_HashTable.ScanContents(out NumOfInvalids);
+            Array.Sort(contents);
+            foreach (var item in contents)
             {
-                var lb = new ListViewItem();
-                lb.Text = item.ToString();
-                lb.Tag = item;
-                listBox1.Items.Add(lb);
+                listBox1.Items.Add(item);
             }
             ScannerLabel.Text = string.Format("{0} results found! {1} additional entries were found with null pointers. {2} in total.", listBox1.Items.Count, NumOfInvalids, NumOfInvalids + listBox1.Items.Count) ;
         }
@@ -85,7 +84,7 @@ namespace X3TC_Tool.UI.Displays
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex < 0 || listBox1.SelectedIndex >= listBox1.Items.Count) return;
-            LoadEntry((DynamicValue)((ListViewItem)listBox1.SelectedItem).Tag);
+            LoadEntry((DynamicValue)(listBox1.SelectedItem));
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
