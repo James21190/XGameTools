@@ -18,13 +18,13 @@ namespace X3TCTools.Bases.Scripting
         public int NegativeID;
         public int ReferenceCount;
         public MemoryObjectPointer<EventObjectSub> pSub = new MemoryObjectPointer<EventObjectSub>();
-        public MemoryObjectPointer<ScriptingMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptingMemoryObject>();
+        public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
 
-        public T GetScriptVariableArrayAsObject<T>() where T : ScriptingMemoryObject,new()
+        public T GetScriptVariableArrayAsObject<T>() where T : ScriptMemoryObject,new()
         {
             var obj = new T();
             obj.SetLocation(GameHook.hProcess, pScriptVariableArr.address);
-            obj.ReloadFromMemory();
+            obj.Resize(pSub.obj.ScriptVariableCount);
             return obj;
         }
 

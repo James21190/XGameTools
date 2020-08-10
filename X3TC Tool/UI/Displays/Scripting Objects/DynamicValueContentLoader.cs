@@ -29,7 +29,7 @@ namespace X3TC_Tool.UI.Displays
                     scriptingArrayObject.SetLocation(GameHook.hProcess, (IntPtr)dynamicValue.Value);
                     scriptingArrayObject.ReloadFromMemory();
 
-                    var arrayObj = new ScriptingMemoryObject(scriptingArrayObject.length);
+                    var arrayObj = new ScriptMemoryObject(scriptingArrayObject.length);
                     arrayObj.SetLocation(GameHook.hProcess, (IntPtr)scriptingArrayObject.pArray.address);
                     arrayObj.ReloadFromMemory();
 

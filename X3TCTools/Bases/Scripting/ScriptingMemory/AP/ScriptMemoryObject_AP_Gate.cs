@@ -9,7 +9,7 @@ using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 {
-    public class ScriptMemoryObject_AP_Gate : ScriptingMemoryObject, IScriptMemoryObject_Gate
+    public class ScriptMemoryObject_AP_Gate : ScriptMemoryObject, IScriptMemoryObject_Gate
     {
         public int DestSectorX
         {

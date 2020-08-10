@@ -12,18 +12,20 @@ using X3TCTools;
 using X3TCTools.Bases;
 using X3TCTools.Bases.Scripting;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
+using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
+using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 
 namespace X3TC_Tool.UI.Displays
 {
     public partial class DynamicValueObjectDisplay : Form
     {
-        private ScriptingMemoryObject m_object;
+        private ScriptMemoryObject m_object;
         public DynamicValueObjectDisplay()
         {
             InitializeComponent();
         }
 
-        public void LoadObject(ScriptingMemoryObject dynamicValueObject)
+        public void LoadObject(ScriptMemoryObject dynamicValueObject)
         {
             m_object = dynamicValueObject;
             Reload();
@@ -73,19 +75,52 @@ namespace X3TC_Tool.UI.Displays
             }
         }
 
+        private enum Presets
+        {
+            Blank,
+            PositionData_12,
+            SectorData
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
-            ScriptingMemoryObject obj;
-            switch (comboBox1.SelectedIndex)
+            ScriptMemoryObject obj;
+            switch(GameHook.GameVersion)
             {
-                case 0: // Blank
-                    obj = new ScriptingMemoryObject((int)numericUpDown1.Value);
-                    obj.SetLocation(GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
-                    LoadObject(obj);
+                case GameHook.GameVersions.X3AP:
+                    switch ((Presets)comboBox1.SelectedIndex)
+                    {
+                        case Presets.Blank: // Blank
+                            obj = new ScriptMemoryObject((int)numericUpDown1.Value);
+                            break;
+                        case Presets.PositionData_12:
+                            obj = new ScriptMemoryObject_AP_PositionData_12();
+                            break;
+                        case Presets.SectorData:
+                            obj = new ScriptMemoryObject_AP_SectorData();
+                            break;
+                        default: return;
+                    }
+                    break;
+                case GameHook.GameVersions.X3TC:
+                    switch ((Presets)comboBox1.SelectedIndex)
+                    {
+                        case Presets.Blank: // Blank
+                            obj = new ScriptMemoryObject((int)numericUpDown1.Value);
+                            break;
+                        case Presets.PositionData_12:
+                            obj = new ScriptMemoryObject_TC_PositionData_12();
+                            break;
+                        case Presets.SectorData:
+                            obj = new ScriptMemoryObject_TC_SectorData();
+                            break;
+                        default: return;
+                    }
                     break;
                 default: return;
             }
+            obj.SetLocation(GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
             LoadObject(obj);
         }
 
@@ -96,7 +131,11 @@ namespace X3TC_Tool.UI.Displays
 
         private void DynamicValueObjectDisplay_Load(object sender, EventArgs e)
         {
-
+            int i = 0;
+            while (((Presets)(i)).ToString() != i.ToString())
+            {
+                comboBox1.Items.Add((Presets)i++);
+            }
         }
     }
 }

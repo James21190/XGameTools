@@ -60,9 +60,9 @@ namespace X3TCTools.Bases
             return pEventObjectHashTable.obj.GetObject(value);
         }
 
-        public ScriptingMemoryObject GetEventObjectScriptingVariables(int ID)
+        public ScriptMemoryObject GetEventObjectScriptingVariables(int ID)
         {
-            var obj = new ScriptingMemoryObject();
+            var obj = new ScriptMemoryObject();
             obj.SetLocation(m_hProcess, GetEventObject(ID).pScriptVariableArr.address);
             obj.ReloadFromMemory();
             return obj;

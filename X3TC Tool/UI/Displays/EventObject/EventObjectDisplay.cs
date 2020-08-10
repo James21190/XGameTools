@@ -26,7 +26,9 @@ namespace X3TC_Tool.UI.Displays
             Ship,
             Sector,
             Dock,
-            Ware
+            Factory,
+            Gate,
+            Ware,
         }
         private EventObject m_EventObject;
         public EventObjectDisplay()
@@ -78,7 +80,7 @@ namespace X3TC_Tool.UI.Displays
         private void LoadVariablesButton_Click(object sender, EventArgs e)
         {
             var display = new DynamicValueObjectDisplay();
-            var obj = new ScriptingMemoryObject(10);
+            var obj = new ScriptMemoryObject(m_EventObject.pSub.obj.ScriptVariableCount);
             obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
             display.LoadObject(obj);
             display.Show();
@@ -109,7 +111,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ScriptingMemoryObject obj;
+            ScriptMemoryObject obj;
             switch (GameHook.GameVersion) 
             {
                 case GameHook.GameVersions.X3TC:
@@ -136,8 +138,18 @@ namespace X3TC_Tool.UI.Displays
                         case LoadAsItems.Ware:
                             obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ware>();
                             break;
+                        case LoadAsItems.Dock:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Dock>();
+                            break;
+                        case LoadAsItems.Factory:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Factory>();
+                            break;
+                        case LoadAsItems.Gate:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
+                            break;
+
                         default:
-                            obj = new ScriptingMemoryObject();
+                            obj = new ScriptMemoryObject();
                             obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                             obj.ReloadFromMemory();
                             break;
@@ -167,9 +179,18 @@ namespace X3TC_Tool.UI.Displays
                         case LoadAsItems.Ware:
                             obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ware>();
                             break;
+                        case LoadAsItems.Dock:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Dock>();
+                            break;
+                        case LoadAsItems.Factory:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Factory>();
+                            break;
+                        case LoadAsItems.Gate:
+                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
+                            break;
 
                         default:
-                            obj = new ScriptingMemoryObject();
+                            obj = new ScriptMemoryObject();
                             obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
                             obj.ReloadFromMemory();
                             break;

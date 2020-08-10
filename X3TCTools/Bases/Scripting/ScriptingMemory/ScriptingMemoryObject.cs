@@ -9,7 +9,7 @@ using Common.Memory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
-    public class ScriptingMemoryObject : MemoryObject
+    public class ScriptMemoryObject : MemoryObject
     {
         /// <summary>
         /// Length of the object
@@ -21,13 +21,13 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         private DynamicValue[] Variables;
 
         #region Constructors
-        public ScriptingMemoryObject()
+        public ScriptMemoryObject()
         {
-            VariableCount = 100;
-            Variables = new DynamicValue[100];
+            VariableCount = 0;
+            Variables = new DynamicValue[0];
         }
 
-        public ScriptingMemoryObject(int size)
+        public ScriptMemoryObject(int size)
         {
             VariableCount = size;
             Variables = new DynamicValue[size];

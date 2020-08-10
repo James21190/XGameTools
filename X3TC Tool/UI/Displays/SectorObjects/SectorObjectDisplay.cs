@@ -277,7 +277,19 @@ namespace X3TC_Tool.UI.Displays
         private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
         {
             var display = new EventObjectDisplay();
-            display.LoadObject(m_SectorObject.EventObjectID);
+            EventObjectDisplay.LoadAsItems loadAsItems = (EventObjectDisplay.LoadAsItems)(-1);
+
+            switch (m_SectorObject.MainType)
+            {
+                case SectorObject.Main_Type.Sector: loadAsItems = EventObjectDisplay.LoadAsItems.Sector; break;
+                case SectorObject.Main_Type.Dock: loadAsItems = EventObjectDisplay.LoadAsItems.Dock; break;
+                case SectorObject.Main_Type.Ship: loadAsItems = EventObjectDisplay.LoadAsItems.Ship; break;
+                case SectorObject.Main_Type.Factory: loadAsItems = EventObjectDisplay.LoadAsItems.Factory; break;
+                case SectorObject.Main_Type.Gate: loadAsItems = EventObjectDisplay.LoadAsItems.Gate; break;
+            }
+
+            if ((int)loadAsItems != -1) display.LoadObject(m_SectorObject.EventObjectID, loadAsItems);
+            else display.LoadObject(m_SectorObject.EventObjectID);
             display.Show();
         }
 

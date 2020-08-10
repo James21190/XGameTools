@@ -7,7 +7,7 @@ using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
-    public class ScriptMemoryObject_TC_Sector : ScriptingMemoryObject, IScriptMemoryObject_Sector
+    public class ScriptMemoryObject_TC_Sector : ScriptMemoryObject, IScriptMemoryObject_Sector
     {
         public int SectorX
         {
@@ -23,7 +23,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
             } 
         }
 
-        public ScriptMemoryObject_TC_Sector() : base(56)
+        public ScriptMemoryObject_TC_Sector() : base(55)
         {
 
         }

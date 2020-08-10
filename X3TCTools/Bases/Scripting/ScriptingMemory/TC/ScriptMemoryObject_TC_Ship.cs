@@ -9,7 +9,7 @@ using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
-    public class ScriptMemoryObject_TC_Ship : ScriptingMemoryObject, IScriptMemoryObject_Ship
+    public class ScriptMemoryObject_TC_Ship : ScriptMemoryObject, IScriptMemoryObject_Ship
     {
         public int SubType { get { return GetVariableValue((int)TC_Ship_Variables.SubType); } }
         public CargoEntry[] CargoEntries

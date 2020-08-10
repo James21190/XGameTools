@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 using X3TCTools.SectorObjects;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
 
-namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
+namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
-    public class ScriptMemoryObject_AP_Ware : ScriptMemoryObject//, IScriptMemoryObject_Ware
+    public class ScriptMemoryObject_TC_SectorData : ScriptMemoryObject
     {
+        public const int VariableCount = 9;
         public override string GetVariableName(int index)
         {
-            return ((AP_Ware_Variables)index).ToString();
+            return ((TC_SectorData_Variables)index).ToString();
         }
-        public ScriptMemoryObject_AP_Ware() : base(12)
+        public ScriptMemoryObject_TC_SectorData() : base(VariableCount)
         {
 
         }
