@@ -149,4 +149,12 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         OwnerRace,
         SectorEventObjectID,
     }
+    public enum TC_RaceData_Variables
+    {
+        RaceID,
+        ASectorEventObjectID,
+
+        RaceRelationsArray = 3,
+        OwnedShipEventObjectIDHashTable,
+    }
 }

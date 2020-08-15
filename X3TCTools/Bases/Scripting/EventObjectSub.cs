@@ -57,7 +57,7 @@ namespace X3TCTools.Bases.Scripting
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            pNext.SetLocation(hProcess, address);
+            pNext.SetLocation(hProcess, address + 0x14);
         }
     }
 }

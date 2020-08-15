@@ -11,8 +11,9 @@ using System.Windows.Forms;
 using Common.Memory;
 using X3TCTools;
 using X3TCTools.Bases;
-using X3TCTools.Bases.Scripting;
-
+using X3TCTools.Bases.Scripting.KCode;
+using X3TCTools.Bases.Scripting.KCode.AP;
+using X3TCTools.Bases.Scripting.KCode.TC;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -64,6 +65,15 @@ namespace X3TC_Tool.UI.Displays
             // Instruction
             InstructionOffsetBox.Text = m_ScriptObject.InstructionOffset.ToString();
             numericUpDown1.Value = m_ScriptObject.InstructionOffset;
+            // Function Name
+            KCodeDissassembler dissassembler;
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;
+                case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
+                default: throw new Exception();
+            }
+            txtFunctionName.Text = dissassembler.GetFunctionName((int)m_ScriptObject.InstructionOffset);
 
 
             // Load dissassembly
@@ -73,10 +83,21 @@ namespace X3TC_Tool.UI.Displays
         public void ReloadDissassembly()
         {
             richTextBox1.Clear();
-            var dissassembler = new KCodeDissassembler();
-            var code = dissassembler.Dissassemble(m_ScriptObject.InstructionOffset);
-            foreach (var line in code)
-                richTextBox1.Text += line.ToString(0,DisplayFunctionNamesAsHex);
+            KCodeDissassembler dissassembler;
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
+                case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;
+                default: return;
+            }
+            var code = dissassembler.Decompile(m_ScriptObject);
+
+            foreach(var line in code)
+            {
+                if (!checkBox1.Checked)
+                    richTextBox1.Text += line.ToString("C") + "\n";
+                else richTextBox1.Text += line.ToString("CX") + "\n";
+            }
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -123,12 +144,14 @@ namespace X3TC_Tool.UI.Displays
             textBox1.Text = (((int)GameHook.storyBase.pInstructionArray.address) + offset).ToString("X");
         }
 
-        bool DisplayFunctionNamesAsHex = false;
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            DisplayFunctionNamesAsHex = checkBox1.Checked;
             ReloadDissassembly();
+        }
+
+        private void ScriptObjectDisplay_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -130,20 +130,27 @@ namespace X3TC_Tool.UI.Displays
 
             // Sector Info
             var sector = GameHook.sectorObjectManager.GetSpace();
-            IScriptMemoryObject_Sector sectorScriptVariables;
-            switch (GameHook.GameVersion)
+            try
             {
-                case GameHook.GameVersions.X3TC:
-                    sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
-                    break;
-                case GameHook.GameVersions.X3AP:
-                    sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
-                    break;
-                default:
-                    goto ObjectInfo;
+                IScriptMemoryObject_Sector sectorScriptVariables;
+                switch (GameHook.GameVersion)
+                {
+                    case GameHook.GameVersions.X3TC:
+                        sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                        break;
+                    case GameHook.GameVersions.X3AP:
+                        sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
+                        break;
+                    default:
+                        goto ObjectInfo;
+                }
+                var sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
+                labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
             }
-            var sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
-            labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
+            catch (Exception)
+            {
+                labelSectorInfo.Text = "Sector: Invalid ScriptObject";
+            }
 
         ObjectInfo:
             // Reload from memory to ensure it is up to date.

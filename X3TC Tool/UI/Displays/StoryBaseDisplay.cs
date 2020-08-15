@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -79,6 +80,29 @@ namespace X3TC_Tool.UI.Displays
         {
             var display = new HashTableDisplay(GameHook);
             display.LoadTable(m_StoryBase.pScriptingTextObject_HashTable.address);
+            display.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay(GameHook);
+            display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
+            display.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
+
+            listBox1.Items.Clear();
+            listBox1.Items.AddRange(ScriptObjects);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex < 0 || listBox1.SelectedIndex >= listBox1.Items.Count) return;
+            var display = new ScriptObjectDisplay();
+            display.LoadObject((ScriptObject)listBox1.Items[listBox1.SelectedIndex]);
             display.Show();
         }
     }

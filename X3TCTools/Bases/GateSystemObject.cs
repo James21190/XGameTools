@@ -205,7 +205,7 @@ namespace X3TCTools.Bases
 
             var lines = File.ReadAllLines(path);
 
-            if (lines.Length <= Y) goto failed;
+            if (lines.Length <= Y || Y < 0) goto failed;
 
             var line = lines[Y];
 

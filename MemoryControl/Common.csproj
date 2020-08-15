@@ -49,6 +49,7 @@
     <Compile Include="Memory\EventManager.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="Memory\IMemoryObject.cs" />
+    <Compile Include="Memory\IValidateable.cs" />
     <Compile Include="Memory\MemoryControl.cs" />
     <Compile Include="Memory\Basic Types.cs" />
     <Compile Include="Memory\MemoryObject.cs" />

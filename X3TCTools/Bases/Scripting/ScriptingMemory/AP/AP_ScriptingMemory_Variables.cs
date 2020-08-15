@@ -49,18 +49,21 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
     {
         Sector_X,
         Sector_Y,
-        SectorDataEventObjectID,
+        OwningRaceDataEventObjectID,
 
         ShipEventObjectIDHashTable = 3,
-
-        SunEventObjectIDHashTable = 5,
+        PlanetEventObjectIDHashTable,
+        SunEventObjectIDHashTable,
         DockEventObjectIDHashTable,
         FactoryEventObjectIDHashTable,
+        AsteroidEventObjectIDHashTable,
 
         GateEventObjectIDHashTable = 10,
         GateEventObjectIDArray,
 
-        DebrisEventObjectIDHashTable = 14
+        DebrisEventObjectIDHashTable = 14,
+
+        BackgroundID = 29,
     }
     public enum AP_Ship_Variables
     {
@@ -86,6 +89,8 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         InstalledShieldArray,
 
         Cargo = 35,
+
+        OwningRaceDataEventObjectID = 41,
 
         CurrentCargoVolume = 72,
     }
@@ -132,9 +137,12 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         Rotation_Gamma,
     }
 
-    public enum AP_SectorData_Variables
+    public enum AP_RaceData_Variables
     {
-        OwnerRace,
-        SectorEventObjectID,
+        RaceID,
+        ASectorEventObjectID,
+
+        RaceRelationsArray = 3,
+        OwnedShipEventObjectIDHashTable,
     }
 }

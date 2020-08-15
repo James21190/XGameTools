@@ -226,8 +226,6 @@ namespace X3TC_Tool
 
         private void kCodeViewerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new KCodeViewer(GameHook);
-            display.Show();
         }
 
         private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -264,6 +262,12 @@ namespace X3TC_Tool
         {
             var display = new EventObjectDisplay();
             display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().EventObjectID, EventObjectDisplay.LoadAsItems.Ship);
+            display.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var display = new GateSystemObjectDisplay();
             display.Show();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
-    public interface IScriptMemoryObject_Ship
+    public interface IScriptMemoryObject_Ship : IMemoryObject, IValidateable
     {
         /// <summary>
         /// The object SubType of the ship.
@@ -34,5 +35,8 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         /// The current sector's EventObject.
         /// </summary>
         EventObject CurrentSectorEventObject { get; }
+
+        int OwnerDataEventObjectID { get; }
+        EventObject OwnerDataEventObject { get; }
     }
 }

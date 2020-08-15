@@ -118,12 +118,14 @@ namespace X3TC_Tool.UI.Displays
                     switch ((LoadAsItems)comboBox1.SelectedIndex)
                     {
                         case LoadAsItems.Sector:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                            if (chkLoadWithArray.Checked)
+                            {
+                                obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                                break;
+                            }
 
-                            if (chkLoadWithArray.Checked) break;
-
-                            var sectorDisplay = new ScriptMemory_Sector_Display();
-                            sectorDisplay.LoadObject((IScriptMemoryObject_Sector)obj);
+                            var sectorDisplay = new EventObject_Sector_Display();
+                            sectorDisplay.LoadObject(m_EventObject);
                             sectorDisplay.Show();
                             return;
                         case LoadAsItems.Ship:
@@ -131,8 +133,8 @@ namespace X3TC_Tool.UI.Displays
 
                             if (chkLoadWithArray.Checked) break;
 
-                            var shipDisplay = new ScriptMemory_Ship_Display();
-                            shipDisplay.LoadObject((IScriptMemoryObject_Ship)obj);
+                            var shipDisplay = new EventObject_Ship_Display();
+                            shipDisplay.LoadObject(m_EventObject);
                             shipDisplay.Show();
                             return;
                         case LoadAsItems.Ware:
@@ -159,21 +161,27 @@ namespace X3TC_Tool.UI.Displays
                     switch ((LoadAsItems)comboBox1.SelectedIndex)
                     {
                         case LoadAsItems.Sector:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
 
-                            if (chkLoadWithArray.Checked) break;
+                            if (chkLoadWithArray.Checked)
+                            {
+                                obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
+                                break;
+                            }
 
-                            var sectorDisplay = new ScriptMemory_Sector_Display();
-                            sectorDisplay.LoadObject((IScriptMemoryObject_Sector)obj);
+
+                            var sectorDisplay = new EventObject_Sector_Display();
+                            sectorDisplay.LoadObject(m_EventObject);
                             sectorDisplay.Show();
                             return;
                         case LoadAsItems.Ship:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
+                            if (chkLoadWithArray.Checked)
+                            {
+                                obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
+                                break;
+                            }
 
-                            if (chkLoadWithArray.Checked) break;
-
-                            var shipDisplay = new ScriptMemory_Ship_Display();
-                            shipDisplay.LoadObject((IScriptMemoryObject_Ship)obj);
+                            var shipDisplay = new EventObject_Ship_Display();
+                            shipDisplay.LoadObject(m_EventObject);
                             shipDisplay.Show();
                             return;
                         case LoadAsItems.Ware:

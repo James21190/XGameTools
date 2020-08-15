@@ -162,6 +162,7 @@ namespace X3TCTools
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
+                    
                     #region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
 
@@ -197,11 +198,15 @@ namespace X3TCTools
                     ppTypeData_30 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_30>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_30);
                     ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_31);
                     #endregion
+
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
                     ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
                     pTypeDataCountArray = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeDataCountArray);
                     pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitchArray);
                     pProcessEventSwitch = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitch);
+
+                    pBytesAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.BytesAllocated);
+                    //pBlocksAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.BlocksAllocated);
 
                     // Create events
                     eventManager = new EventManager(hProcess);
@@ -225,9 +230,6 @@ namespace X3TCTools
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
-                    //ppTypeData = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData);
-                    ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
-                    //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
 
                     #region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Bullet);
@@ -265,7 +267,11 @@ namespace X3TCTools
                     ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_31);
                     #endregion
 
+                    ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
+                    //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
                     pTypeDataCountArray = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeDataCountArray);
+                    pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3AP.ProcessEventSwitchArray);
+                    pProcessEventSwitch = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.ProcessEventSwitch);
 
                     pBytesAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.BytesAllocated);
                     pBlocksAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.BlocksAllocated);
@@ -303,6 +309,23 @@ namespace X3TCTools
         public void InitGameCodeRunner()
         {
             gameCodeRunner = new GameCodeRunner();
+        }
+
+        public enum Language
+        {
+            Russian = 7,
+            
+            French = 33,
+            Spanish,
+            
+            Italian = 39,
+            
+            Czech = 42,
+            
+            English = 44,
+            
+            Polish = 48,
+            German,
         }
 
         public enum GlobalAddressesX3TC
@@ -361,12 +384,12 @@ namespace X3TCTools
             pSystemBase =               0x00609104,
             pGateSystemObject =         0x0060a6d4,
             pSectorObjectManager =      0x0060a6e0,
-            //pCockpitBase = 0,
+            pCockpitBase =              0x0060a6d8,
             pStoryBase =                0x0060a7b8,
             pInputBase =                0x00581e30,
             //pCameraBase = 0,
-            //ProcessEventSwitchArray = 0,
-            //ProcessEventSwitch = 0,
+            ProcessEventSwitchArray =   0x004a5aa8,
+            ProcessEventSwitch =        0x004a58b0,
 
             #region TypeData
             pTypeData_Bullet =          0x00609188,

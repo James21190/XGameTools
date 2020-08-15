@@ -68,6 +68,31 @@ namespace X3TCTools.Bases
             return obj;
         }
 
+        public ScriptObject[] GetScriptObjectsWithReferenceTo(int EventObjectID)
+        {
+            var negativeID = EventObjectID < 0 ? EventObjectID : -1 - EventObjectID;
+            List<ScriptObject> results = new List<ScriptObject>();
+
+            foreach (var id in pScriptObjectHashTable.obj.ScanContents())
+            {
+                try
+                {
+                    var ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
+                    var EventObject = ScriptObject.pEventObject.obj;
+                    if (EventObject.NegativeID == negativeID)
+                    { 
+                        results.Add(ScriptObject);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return results.ToArray();
+        }
+
         #region IMemoryObject
         public override byte[] GetBytes()
         {

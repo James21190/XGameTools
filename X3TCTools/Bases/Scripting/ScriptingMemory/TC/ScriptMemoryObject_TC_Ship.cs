@@ -36,6 +36,18 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
         public int CurrentSectorEventObjectID { get { return GetVariableValue((int)TC_Ship_Variables.CurrentSectorEventObjectID); } }
         public EventObject CurrentSectorEventObject { get { return GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID); } }
 
+        public bool IsValid
+        {
+            get
+            {
+                return SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
+            }
+        }
+
+        public int OwnerDataEventObjectID => throw new NotImplementedException();
+
+        public EventObject OwnerDataEventObject => throw new NotImplementedException();
+
         public override string GetVariableName(int index)
         {
             return ((TC_Ship_Variables)index).ToString();

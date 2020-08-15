@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
-    public interface IScriptMemoryObject_Factory : IMemoryObject
+    public interface IScriptMemoryObject_RaceData : IMemoryObject
     {
+
     }
 }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Common.Memory;
 
 using X3TCTools.Bases.Scripting;
+using X3TCTools.Bases.Scripting.KCode;
+using X3TCTools.Bases.Scripting.KCode.AP;
+using X3TCTools.Bases.Scripting.KCode.TC;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases
@@ -71,8 +74,24 @@ namespace X3TCTools.Bases
         {
             base.SetLocation(hProcess, address);
             pNext.SetLocation(hProcess, address);
-            pPrevious.SetLocation(hProcess, address);
+            pPrevious.SetLocation(hProcess, address + 0x4);
+
+            pStack.SetLocation(hProcess, address + 0x14);
+
+            pEventObject.SetLocation(hProcess, address + 0x3c);
         }
         #endregion
+
+        public override string ToString()
+        {
+            KCodeDissassembler dissassembler;
+            switch(GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
+                case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;
+                default: return "ScriptObject " + ID;
+            }
+            return string.Format("ScriptObject {0} - {1}", ID, dissassembler.GetFunctionName(InstructionOffset));
+        }
     }
 }

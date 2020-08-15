@@ -79,7 +79,7 @@ namespace X3TC_Tool.UI.Displays
         {
             Blank,
             PositionData_12,
-            SectorData
+            RaceData
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,8 +97,8 @@ namespace X3TC_Tool.UI.Displays
                         case Presets.PositionData_12:
                             obj = new ScriptMemoryObject_AP_PositionData_12();
                             break;
-                        case Presets.SectorData:
-                            obj = new ScriptMemoryObject_AP_SectorData();
+                        case Presets.RaceData:
+                            obj = new ScriptMemoryObject_AP_RaceData();
                             break;
                         default: return;
                     }
@@ -112,8 +112,8 @@ namespace X3TC_Tool.UI.Displays
                         case Presets.PositionData_12:
                             obj = new ScriptMemoryObject_TC_PositionData_12();
                             break;
-                        case Presets.SectorData:
-                            obj = new ScriptMemoryObject_TC_SectorData();
+                        case Presets.RaceData:
+                            obj = new ScriptMemoryObject_TC_RaceData();
                             break;
                         default: return;
                     }

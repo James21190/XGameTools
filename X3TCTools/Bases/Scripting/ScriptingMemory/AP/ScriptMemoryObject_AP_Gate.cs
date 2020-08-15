@@ -21,11 +21,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
             get { return GetVariableValue((int)AP_Gate_Variables.Dest_Sector_Y); }
         }
 
+        public int DestSectorDataEventObjectID { get { return GetVariableValue((int)AP_Gate_Variables.DestSectorDataEventObjectID); } }
+        public EventObject DestSectorDataEventObject { get { return GameHook.storyBase.GetEventObject(DestSectorDataEventObjectID); } }
+
         public override string GetVariableName(int index)
         {
             return ((AP_Gate_Variables)index).ToString();
         }
-        public ScriptMemoryObject_AP_Gate() : base()
+        public ScriptMemoryObject_AP_Gate() : base(20)
         {
 
         }

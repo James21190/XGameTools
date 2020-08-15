@@ -3,6 +3,7 @@
 	- Added CameraBase and Camera classes.
 	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
 	- Added KCode dissassembler.
+	- Added maintype check to SectorObject.IsValid.
 	- Rotation matricise now inherit from MemoryObject.
 	- Reduced and renamed unknowns in SectorObject.
 	- Seperated UI into multiple forms for faster loading and a better look.
@@ -10,7 +11,6 @@
 	- HashTable now inherits from MemoryObject.
 	- Recreated SectorObject meta objects.
 	- Fixed handle to the game remaining open after the tool application closes.
-	- Added maintype check to SectorObject.IsValid.
 
 Alpha 4:
 	- Added an executable patching system for easy implementation of optimised code.

@@ -71,6 +71,12 @@
     <Compile Include="UI\Displays\DynamicValueEditorDisplay.Designer.cs">
       <DependentUpon>DynamicValueEditorDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Displays\GateSystemObjectDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\GateSystemObjectDisplay.Designer.cs">
+      <DependentUpon>GateSystemObjectDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Displays\Scripting Objects\DynamicValueContentLoader.cs" />
     <Compile Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.cs">
       <SubType>Form</SubType>
@@ -89,12 +95,6 @@
     </Compile>
     <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Displays\Scripting Objects\KCodeViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Displays\Scripting Objects\KCodeViewer.Designer.cs">
-      <DependentUpon>KCodeViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -120,17 +120,23 @@
     <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\ScriptMemory_Sector_Display.cs">
+    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_RaceData_Display.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\ScriptMemory_Sector_Display.Designer.cs">
-      <DependentUpon>ScriptMemory_Sector_Display.cs</DependentUpon>
+    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_RaceData_Display.Designer.cs">
+      <DependentUpon>EventObject_RaceData_Display.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\ScriptMemory_Ship_Display.cs">
+    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Sector_Display.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\ScriptMemory_Ship_Display.Designer.cs">
-      <DependentUpon>ScriptMemory_Ship_Display.cs</DependentUpon>
+    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Sector_Display.Designer.cs">
+      <DependentUpon>EventObject_Sector_Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Ship_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Ship_Display.Designer.cs">
+      <DependentUpon>EventObject_Ship_Display.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\ScriptObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -200,6 +206,9 @@
     <EmbeddedResource Include="UI\Displays\DynamicValueEditorDisplay.resx">
       <DependentUpon>DynamicValueEditorDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\GateSystemObjectDisplay.resx">
+      <DependentUpon>GateSystemObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.resx">
       <DependentUpon>DynamicValueObjectViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,9 +217,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\EventObject\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\Scripting Objects\KCodeViewer.resx">
-      <DependentUpon>KCodeViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.resx">
       <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>
@@ -224,11 +230,14 @@
     <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\ScriptMemory_Sector_Display.resx">
-      <DependentUpon>ScriptMemory_Sector_Display.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_RaceData_Display.resx">
+      <DependentUpon>EventObject_RaceData_Display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\ScriptMemory_Ship_Display.resx">
-      <DependentUpon>ScriptMemory_Ship_Display.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_Sector_Display.resx">
+      <DependentUpon>EventObject_Sector_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_Ship_Display.resx">
+      <DependentUpon>EventObject_Ship_Display.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\ScriptObjectDisplay.resx">
       <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>

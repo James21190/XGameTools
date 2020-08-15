@@ -11,6 +11,10 @@ using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting
 {
+    /// <summary>
+    /// The EventObject is an object within the game that keeps track of variables used by the scripting engine.
+    /// It keeps track of how many variables are stored and the amount of ScriptObjects that reference it.
+    /// </summary>
     public class EventObject : MemoryObject
     {
         public const int ByteSize = 16;
@@ -43,21 +47,19 @@ namespace X3TCTools.Bases.Scripting
             return ByteSize;
         }
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            var collection = new ObjectByteList(Memory);
-
-            collection.PopFirst(ref NegativeID);
-            collection.PopFirst(ref ReferenceCount);
-            collection.PopFirst(ref pSub);
-            collection.PopFirst(ref pScriptVariableArr.address);
+            NegativeID = objectByteList.PopInt();
+            ReferenceCount = objectByteList.PopInt();
+            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<EventObjectSub>>();
+            pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptMemoryObject>>();
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            pScriptVariableArr.SetLocation(hProcess, address+8);
-            pSub.SetLocation(hProcess, address+12);
+            pScriptVariableArr.SetLocation(hProcess, address+ 0x8);
+            pSub.SetLocation(hProcess, address+ 0xc);
         }
 
     }

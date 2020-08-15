@@ -47,19 +47,26 @@
     <Compile Include="Bases\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
-    <Compile Include="Bases\Scripting\KCodeDissassembler.cs" />
+    <Compile Include="Bases\Scripting\KCode\AP\APKCodeDissassembler_Functions.cs" />
+    <Compile Include="Bases\Scripting\KCode\AP\APKCodeDissassembler_KCode_Functions.cs" />
+    <Compile Include="Bases\Scripting\KCode\KCodeDissassembler.cs" />
+    <Compile Include="Bases\Scripting\KCode\TC\TCKCodeDissassembler.cs" />
+    <Compile Include="Bases\Scripting\KCode\AP\APKCodeDissassembler.cs" />
+    <Compile Include="Bases\Scripting\KCode\TC\TCKCodeDissassembler_KCode_Functions.cs" />
+    <Compile Include="Bases\Scripting\KCode\TC\TCKCodeDissassembler_Functions.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Factory.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Dock.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Gate.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_SectorData.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_PositionData_12.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ware.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Factory.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Gate.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Dock.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
-    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_SectorData.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_PositionData_12.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Dock.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Factory.cs" />
@@ -89,6 +96,12 @@
     </Compile>
     <Compile Include="DynamicValueDisplay.Designer.cs">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventObjectPannel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EventObjectPannel.Designer.cs">
+      <DependentUpon>EventObjectPannel.cs</DependentUpon>
     </Compile>
     <Compile Include="GameCodeRunner.cs" />
     <Compile Include="GameHook.cs" />
@@ -171,6 +184,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventObjectPannel.resx">
+      <DependentUpon>EventObjectPannel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
