@@ -119,10 +119,5 @@ namespace X3TCTools.SectorObjects
             TurretCount = collection.PopInt(0x180);
             TurretDatas = collection.PopIMemoryObjects<TurretData>(10);
         }
-
-        public override float GetPriceMultiplier()
-        {
-            return 63.924088f;
-        }
     }
 }

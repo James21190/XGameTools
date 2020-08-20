@@ -47,6 +47,8 @@
     <Compile Include="Bases\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData_Player.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData_Player.cs" />
     <Compile Include="Bases\Scripting\KCode\AP\APKCodeDissassembler_Functions.cs" />
     <Compile Include="Bases\Scripting\KCode\AP\APKCodeDissassembler_KCode_Functions.cs" />
     <Compile Include="Bases\Scripting\KCode\KCodeDissassembler.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Dock.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Factory.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Gate.cs" />
+    <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData_Player.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Sector.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ship.cs" />
     <Compile Include="Bases\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ware.cs" />

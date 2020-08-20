@@ -44,6 +44,15 @@ namespace X3TCsTool
             IDNumericUpDown.Value = m_EventObject.NegativeID;
             AddressBox.Text = m_EventObject.pThis.ToString("X");
             ScriptsOnStackBox.Text = m_EventObject.ReferenceCount.ToString();
+
+            ReloadSub();
+        }
+
+        private void ReloadSub()
+        {
+            var sub = m_EventObject.pSub.obj;
+            txtSubAddress.Text = sub.pThis.ToString("X");
+            txtSubID.Text = sub.ID.ToString();
         }
 
         private void LoadIDButton_Click(object sender, EventArgs e)

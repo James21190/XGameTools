@@ -29,6 +29,8 @@ namespace X3TC_Tool.UI.Displays
             Factory,
             Gate,
             Ware,
+            RaceData,
+            RaceData_Player,
         }
         private EventObject m_EventObject;
         public EventObjectDisplay()
@@ -52,9 +54,10 @@ namespace X3TC_Tool.UI.Displays
             }
             catch (Exception)
             {
-                AddressBox.Text = "Not Found!";
-                return;
+                m_EventObject = null;
             }
+
+            eventObjectPannel1.EventObject = m_EventObject;
             Reload();
         }
 
@@ -66,15 +69,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            IDNumericUpDown.Value = -m_EventObject.NegativeID-1;
-            AddressBox.Text = m_EventObject.pThis.ToString("X");
-            ScriptsOnStackBox.Text = m_EventObject.ReferenceCount.ToString();
             LoadVariablesButton.Enabled = m_EventObject.pScriptVariableArr.IsValid;
-        }
-
-        private void LoadIDButton_Click(object sender, EventArgs e)
-        {
-            LoadObject(Convert.ToInt32(IDNumericUpDown.Value));
         }
 
         private void LoadVariablesButton_Click(object sender, EventArgs e)
@@ -109,103 +104,69 @@ namespace X3TC_Tool.UI.Displays
             button1.Enabled = (comboBox1.SelectedIndex >= 0) ;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public static ScriptMemoryObject GetScriptMemoryObjectType(LoadAsItems type)
         {
-            ScriptMemoryObject obj;
-            switch (GameHook.GameVersion) 
+            switch (GameHook.GameVersion)
             {
                 case GameHook.GameVersions.X3TC:
-                    switch ((LoadAsItems)comboBox1.SelectedIndex)
+                    switch (type)
                     {
-                        case LoadAsItems.Sector:
-                            if (chkLoadWithArray.Checked)
-                            {
-                                obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
-                                break;
-                            }
 
-                            var sectorDisplay = new EventObject_Sector_Display();
-                            sectorDisplay.LoadObject(m_EventObject);
-                            sectorDisplay.Show();
-                            return;
-                        case LoadAsItems.Ship:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>();
-
-                            if (chkLoadWithArray.Checked) break;
-
-                            var shipDisplay = new EventObject_Ship_Display();
-                            shipDisplay.LoadObject(m_EventObject);
-                            shipDisplay.Show();
-                            return;
-                        case LoadAsItems.Ware:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ware>();
-                            break;
-                        case LoadAsItems.Dock:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Dock>();
-                            break;
-                        case LoadAsItems.Factory:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Factory>();
-                            break;
-                        case LoadAsItems.Gate:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
-                            break;
-
-                        default:
-                            obj = new ScriptMemoryObject();
-                            obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                            obj.ReloadFromMemory();
-                            break;
                     }
                     break;
                 case GameHook.GameVersions.X3AP:
-                    switch ((LoadAsItems)comboBox1.SelectedIndex)
+                    switch (type)
                     {
-                        case LoadAsItems.Sector:
-
-                            if (chkLoadWithArray.Checked)
-                            {
-                                obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
-                                break;
-                            }
-
-
-                            var sectorDisplay = new EventObject_Sector_Display();
-                            sectorDisplay.LoadObject(m_EventObject);
-                            sectorDisplay.Show();
-                            return;
-                        case LoadAsItems.Ship:
-                            if (chkLoadWithArray.Checked)
-                            {
-                                obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
-                                break;
-                            }
-
-                            var shipDisplay = new EventObject_Ship_Display();
-                            shipDisplay.LoadObject(m_EventObject);
-                            shipDisplay.Show();
-                            return;
-                        case LoadAsItems.Ware:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ware>();
-                            break;
-                        case LoadAsItems.Dock:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Dock>();
-                            break;
-                        case LoadAsItems.Factory:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Factory>();
-                            break;
-                        case LoadAsItems.Gate:
-                            obj = m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
-                            break;
-
-                        default:
-                            obj = new ScriptMemoryObject();
-                            obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
-                            obj.ReloadFromMemory();
-                            break;
+                        case LoadAsItems.Sector: return new ScriptMemoryObject_AP_Sector();
+                        case LoadAsItems.Ship: return new ScriptMemoryObject_AP_Ship();
+                        case LoadAsItems.Factory: return new ScriptMemoryObject_AP_Factory();
+                        case LoadAsItems.Gate: return new ScriptMemoryObject_AP_Gate();
+                        case LoadAsItems.Dock: return new ScriptMemoryObject_AP_Dock();
+                        case LoadAsItems.RaceData: return new ScriptMemoryObject_AP_RaceData();
+                        case LoadAsItems.RaceData_Player: return new ScriptMemoryObject_AP_RaceData_Player();
                     }
                     break;
-                default: return;
             }
+            return new ScriptMemoryObject();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ScriptMemoryObject obj = GetScriptMemoryObjectType((LoadAsItems)comboBox1.SelectedIndex);
+            obj.SetLocation(GameHook.hProcess, m_EventObject.pScriptVariableArr.address);
+            obj.ReloadFromMemory();
+            obj.Resize(m_EventObject.pSub.obj.ScriptVariableCount);
+
+            if (!chkLoadWithArray.Checked)
+                switch ((LoadAsItems)comboBox1.SelectedIndex)
+                {
+                    case LoadAsItems.Sector:
+                        var sectorDisplay = new EventObject_Sector_Display();
+                        sectorDisplay.LoadObject(m_EventObject);
+                        sectorDisplay.Show();
+                        return;
+                    case LoadAsItems.Ship:
+                        var shipDisplay = new EventObject_Ship_Display();
+                        shipDisplay.LoadObject(m_EventObject);
+                        shipDisplay.Show();
+                        return;
+                    case LoadAsItems.RaceData:
+                    case LoadAsItems.RaceData_Player:
+                        var raceDataDisplay = new EventObject_RaceData_Display();
+                        raceDataDisplay.LoadObject(m_EventObject);
+                        raceDataDisplay.Show();
+                        return;
+                    case LoadAsItems.Factory:
+                        var factoryDataDisplay = new EventObject_Factory_Display();
+                        factoryDataDisplay.LoadObject(m_EventObject);
+                        factoryDataDisplay.Show();
+                        return;
+                    case LoadAsItems.Dock:
+                        var dockDataDisplay = new EventObject_Dock_Display();
+                        dockDataDisplay.LoadObject(m_EventObject);
+                        dockDataDisplay.Show();
+                        return;
+                }
 
             DynamicValueObjectDisplay display;
             display = new DynamicValueObjectDisplay();
@@ -216,6 +177,12 @@ namespace X3TC_Tool.UI.Displays
         private void EventObjectDisplay_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void eventObjectPannel1_EventObjectLoaded(object sender, EventArgs e)
+        {
+            m_EventObject = eventObjectPannel1.EventObject;
+            Reload();
         }
     }
 }

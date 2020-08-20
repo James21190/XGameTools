@@ -12,6 +12,8 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         int SectorX { get; }
         int SectorY { get; }
 
+        int BackgroundID { get; }
+
         int OwningRaceDataEventObjectID { get; }
         EventObject OwningRaceDataEventObject { get; }
 

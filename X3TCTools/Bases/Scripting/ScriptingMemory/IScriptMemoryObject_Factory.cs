@@ -9,5 +9,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
     public interface IScriptMemoryObject_Factory : IMemoryObject
     {
+        int SubType { get; }
+        StationCargoEntry[] Cargo { get; }
     }
 }

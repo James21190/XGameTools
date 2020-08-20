@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 {
-    partial class EventObject_Ship_Display
+    partial class EventObject_Factory_Display
     {
         /// <summary>
         /// Required designer variable.
@@ -50,7 +50,7 @@
             this.txtCargo.Location = new System.Drawing.Point(6, 19);
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.ReadOnly = true;
-            this.txtCargo.Size = new System.Drawing.Size(255, 247);
+            this.txtCargo.Size = new System.Drawing.Size(295, 247);
             this.txtCargo.TabIndex = 0;
             this.txtCargo.Text = "";
             // 
@@ -61,7 +61,7 @@
             this.groupBox1.Controls.Add(this.txtCargo);
             this.groupBox1.Location = new System.Drawing.Point(12, 166);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(267, 272);
+            this.groupBox1.Size = new System.Drawing.Size(307, 272);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cargo";
@@ -118,7 +118,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(285, 166);
+            this.button3.Location = new System.Drawing.Point(325, 166);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(147, 23);
             this.button3.TabIndex = 5;
@@ -134,7 +134,7 @@
             this.eventObjectPannel1.Size = new System.Drawing.Size(460, 148);
             this.eventObjectPannel1.TabIndex = 6;
             // 
-            // EventObject_Ship_Display
+            // EventObject_Factory_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -144,7 +144,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "EventObject_Ship_Display";
+            this.Name = "EventObject_Factory_Display";
             this.Text = "ScriptMemory_Ship_Display";
             this.Load += new System.EventHandler(this.EventObject_Ship_Display_Load);
             this.groupBox1.ResumeLayout(false);

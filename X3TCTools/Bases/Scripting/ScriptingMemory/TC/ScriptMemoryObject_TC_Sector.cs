@@ -35,6 +35,8 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject GateEventObjectHashTableObject => throw new NotImplementedException();
 
+        public int BackgroundID => throw new NotImplementedException();
+
         public ScriptMemoryObject_TC_Sector() : base(55)
         {
 

@@ -29,11 +29,13 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 
         InstalledShieldArray = 19,
 
+        CargoHashTable = 20,
+
         Hull = 24,
 
         ShieldStrength = 32,
 
-        Cargo = 44
+        CargoPriceHashTable = 44
     }
     public enum AP_Gate_Variables
     {
@@ -107,6 +109,9 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         /// </summary>
         PreviousSectorEventObjectID,
 
+        CargoHashTable = 20,
+        CargoPriceHashTable,
+
         SubType = 13,
     }
 
@@ -141,8 +146,26 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
     {
         RaceID,
         ASectorEventObjectID,
-
-        RaceRelationsArray = 3,
+        OwnedSectorEventObjectIDHashTable,
+        RaceRelationsArray,
         OwnedShipEventObjectIDHashTable,
+    }
+
+    public enum AP_RaceData_Player_Variables
+    {
+        CreditBalance,
+
+        RaceRelationsArray = 2,
+        CurrentSectorEventObjectID,
+        PreviousSectorEventObjectID,
+        CurrentSectorX,
+        CurrentSectorY,
+
+        RaceDataWithSectorEventObjectIDHashTable = 14,
+        RaceDataEventObjectIDHashTable,
+
+        OwnedShipEventObjectIDHashTable = 19,
+
+        OwnedStationEventObjectIDHashTable = 23,
     }
 }

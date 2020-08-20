@@ -76,9 +76,9 @@ namespace X3TC_Tool.UI.Displays
             int priceVariation = 0;
             if(m_TypeData.PriceRangePercentage != 0) priceVariation = (int)(m_TypeData.Price / (float)m_TypeData.PriceRangePercentage/100);
 
-            txtMaxPrice.Text = String.Format("{0:n}",(m_TypeData.Price + priceVariation) * m_TypeData.GetPriceMultiplier());
-            txtPrice.Text = String.Format("{0:n}", m_TypeData.Price * m_TypeData.GetPriceMultiplier());
-            txtMinPrice.Text = String.Format("{0:n}", (m_TypeData.Price - priceVariation) *m_TypeData.GetPriceMultiplier());
+            txtMaxPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 1));
+            txtPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 0.5m));
+            txtMinPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType,comboBox2.SelectedIndex, 0));
 
             switch ((SectorObject.Main_Type)m_TypeDataMainType)
             {

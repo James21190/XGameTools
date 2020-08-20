@@ -157,4 +157,9 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         RaceRelationsArray = 3,
         OwnedShipEventObjectIDHashTable,
     }
+
+    public enum TC_RaceData_Player_Variables
+    {
+
+    }
 }

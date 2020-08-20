@@ -58,6 +58,15 @@ namespace Common.Memory
             }
         }
 
+        public A GetObjAsType<A>() where A : IMemoryObject, new()
+        {
+            var obj = new A();
+            obj.SetLocation(m_hProcess, address);
+            obj.ReloadFromMemory();
+            return obj;
+        }
+
+
         /// <summary>
         /// Is false when the pointer is null.
         /// </summary>

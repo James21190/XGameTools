@@ -12,6 +12,7 @@ using X3TCTools.Bases.Scripting;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
 using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
 using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
+using X3TCTools.SectorObjects;
 
 namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 {
@@ -39,6 +40,9 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
         public EventObject_Sector_Display()
         {
             InitializeComponent();
+
+            for (int i = 0; i < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Background); i++)
+                comboBox1.Items.Add(SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Background, i));
         }
 
         public void LoadObject(EventObject eventObject)
@@ -50,6 +54,7 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 
         public void Reload()
         {
+            comboBox1.SelectedIndex = m_SectorData.BackgroundID;
             vector2Display1.X = m_SectorData.SectorX;
             vector2Display1.Y = m_SectorData.SectorY;
             textBox1.Text = GameHook.gateSystemObject.GetSectorName(m_SectorData.SectorX, m_SectorData.SectorY);
@@ -60,6 +65,17 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
             var display = new EventObject_RaceData_Display();
             display.LoadObject(m_SectorData.OwningRaceDataEventObject);
             display.Show();
+        }
+
+        private void eventObjectPannel1_EventObjectLoaded(object sender, EventArgs e)
+        {
+            m_EventObject = eventObjectPannel1.EventObject;
+            Reload();
+        }
+
+        private void EventObject_Sector_Display_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

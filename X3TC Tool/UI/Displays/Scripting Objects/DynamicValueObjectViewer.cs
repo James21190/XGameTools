@@ -50,6 +50,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             var row = dataGridView1.Rows[e.RowIndex];
             if (e.ColumnIndex == dataGridView1.Columns["ViewColumn"].Index && e.RowIndex >= 0)
             {
@@ -79,47 +80,14 @@ namespace X3TC_Tool.UI.Displays
         {
             Blank,
             PositionData_12,
-            RaceData
+            RaceData,
+            RaceData_Player
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            ScriptMemoryObject obj;
-            switch(GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3AP:
-                    switch ((Presets)comboBox1.SelectedIndex)
-                    {
-                        case Presets.Blank: // Blank
-                            obj = new ScriptMemoryObject((int)numericUpDown1.Value);
-                            break;
-                        case Presets.PositionData_12:
-                            obj = new ScriptMemoryObject_AP_PositionData_12();
-                            break;
-                        case Presets.RaceData:
-                            obj = new ScriptMemoryObject_AP_RaceData();
-                            break;
-                        default: return;
-                    }
-                    break;
-                case GameHook.GameVersions.X3TC:
-                    switch ((Presets)comboBox1.SelectedIndex)
-                    {
-                        case Presets.Blank: // Blank
-                            obj = new ScriptMemoryObject((int)numericUpDown1.Value);
-                            break;
-                        case Presets.PositionData_12:
-                            obj = new ScriptMemoryObject_TC_PositionData_12();
-                            break;
-                        case Presets.RaceData:
-                            obj = new ScriptMemoryObject_TC_RaceData();
-                            break;
-                        default: return;
-                    }
-                    break;
-                default: return;
-            }
+            ScriptMemoryObject obj = EventObjectDisplay.GetScriptMemoryObjectType((EventObjectDisplay.LoadAsItems)comboBox1.SelectedIndex);
             obj.SetLocation(GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
             LoadObject(obj);
         }
@@ -132,9 +100,9 @@ namespace X3TC_Tool.UI.Displays
         private void DynamicValueObjectDisplay_Load(object sender, EventArgs e)
         {
             int i = 0;
-            while (((Presets)(i)).ToString() != i.ToString())
+            while (((EventObjectDisplay.LoadAsItems)(i)).ToString() != i.ToString())
             {
-                comboBox1.Items.Add((Presets)i++);
+                comboBox1.Items.Add((EventObjectDisplay.LoadAsItems)i++);
             }
         }
     }

@@ -27,4 +27,25 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
             return Type.ToString() + " X " + Count;
         }
     }
+
+    public struct StationCargoEntry : IComparable
+    {
+        public SectorObject.Full_Type Type;
+        public int Count;
+        public int Capacity;
+        public int Price;
+        public int CompareTo(object obj)
+        {
+            if (obj == null) return 1;
+
+            if (!(obj is StationCargoEntry)) throw new Exception("Type missmatch");
+            return ((StationCargoEntry)obj).Type.CompareTo(this.Type);
+
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} X {1}/{2} at {3}Cr",Type.ToString(),Count,Capacity, Price);
+        }
+    }
 }

@@ -136,5 +136,9 @@ namespace X3TCTools.SectorObjects
             failed:
             return SubType.ToString();
         }
+
+        #region TypeData
+        
+        #endregion
     }
 }

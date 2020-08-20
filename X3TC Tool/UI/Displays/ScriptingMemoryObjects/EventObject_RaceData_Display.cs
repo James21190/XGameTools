@@ -50,7 +50,13 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 
         public void Reload()
         {
+            textBox1.Text = m_RaceData.RaceID.ToString();
+        }
 
+        private void eventObjectPannel1_EventObjectLoaded(object sender, EventArgs e)
+        {
+            m_EventObject = eventObjectPannel1.EventObject;
+            Reload();
         }
     }
 }

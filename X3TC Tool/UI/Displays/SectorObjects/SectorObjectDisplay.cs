@@ -41,7 +41,11 @@ namespace X3TC_Tool.UI.Displays
             treeView1.Nodes.Clear();
             TreeNode selectedNode;
             treeView1.Nodes.Add(GenerateTreeNode(baseSectorObject, autoLoadID, out selectedNode));
-            if (selectedNode != null) treeView1.SelectedNode = selectedNode;
+            if (selectedNode != null)
+            {
+                treeView1.SelectedNode = selectedNode;
+                selectedNode.Expand();
+            }
 
         }
         private TreeNode GenerateTreeNode(SectorObject baseSectorObject, int selectedID, out TreeNode selectedNode)

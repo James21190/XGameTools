@@ -35,10 +35,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.LoadIDButton = new System.Windows.Forms.Button();
             this.IDNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtSubAddress = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtSubID = new System.Windows.Forms.TextBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -115,21 +123,77 @@
             this.IDNumericUpDown.Size = new System.Drawing.Size(107, 20);
             this.IDNumericUpDown.TabIndex = 0;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.groupBox6);
+            this.groupBox4.Controls.Add(this.groupBox5);
+            this.groupBox4.Location = new System.Drawing.Point(3, 61);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(454, 84);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Sub";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtSubAddress);
+            this.groupBox5.Location = new System.Drawing.Point(6, 19);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(121, 52);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Address";
+            // 
+            // txtSubAddress
+            // 
+            this.txtSubAddress.Location = new System.Drawing.Point(6, 19);
+            this.txtSubAddress.Name = "txtSubAddress";
+            this.txtSubAddress.ReadOnly = true;
+            this.txtSubAddress.Size = new System.Drawing.Size(109, 20);
+            this.txtSubAddress.TabIndex = 0;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtSubID);
+            this.groupBox6.Location = new System.Drawing.Point(133, 19);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(121, 52);
+            this.groupBox6.TabIndex = 6;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "ID";
+            // 
+            // txtSubID
+            // 
+            this.txtSubID.Location = new System.Drawing.Point(6, 19);
+            this.txtSubID.Name = "txtSubID";
+            this.txtSubID.ReadOnly = true;
+            this.txtSubID.Size = new System.Drawing.Size(109, 20);
+            this.txtSubID.TabIndex = 0;
+            // 
             // EventObjectPannel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "EventObjectPannel";
-            this.Size = new System.Drawing.Size(460, 59);
+            this.Size = new System.Drawing.Size(460, 148);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -143,5 +207,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button LoadIDButton;
         private System.Windows.Forms.NumericUpDown IDNumericUpDown;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtSubID;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtSubAddress;
     }
 }

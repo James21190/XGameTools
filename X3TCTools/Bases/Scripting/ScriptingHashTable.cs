@@ -82,6 +82,19 @@ namespace X3TCTools.Bases.Scripting
             ppEntry = new MemoryObjectPointer<MemoryObjectPointer<Entry>>();
         }
 
+        public bool ContainsObject(DynamicValue ID)
+        {
+            try
+            {
+                GetObject(ID);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public DynamicValue GetObject(DynamicValue ID)
         {
             return GetEntry(ID);

@@ -23,6 +23,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
             } 
         }
 
+        public int BackgroundID
+        {
+            get
+            {
+                return GetVariableValue((int)AP_Sector_Variables.BackgroundID);
+            }
+        }
+
         public int OwningRaceDataEventObjectID { get { return GetVariableValue((int)AP_Sector_Variables.OwningRaceDataEventObjectID); } }
         public EventObject OwningRaceDataEventObject { get { return GameHook.storyBase.GetEventObject(OwningRaceDataEventObjectID); } }
 

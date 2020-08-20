@@ -20,7 +20,11 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get { var table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
 
 
-        public int RaceID { get { return GetVariableValue((int)AP_RaceData_Variables.RaceID); } }
+        public GameHook.RaceID RaceID { get { return (GameHook.RaceID)GetVariableValue((int)AP_RaceData_Variables.RaceID); } }
+
+        public int pOwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
 
         public override string GetVariableName(int index)
         {

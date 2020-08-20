@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.LoadIDButton = new System.Windows.Forms.Button();
-            this.IDNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.AddressBox = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.ScriptsOnStackBox = new System.Windows.Forms.TextBox();
             this.LoadSubButton = new System.Windows.Forms.Button();
             this.LoadVariablesButton = new System.Windows.Forms.Button();
             this.AutoReloadCheckBox = new System.Windows.Forms.CheckBox();
@@ -43,89 +36,12 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.chkLoadWithArray = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.eventObjectPannel1 = new X3TCsTool.EventObjectPannel();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.LoadIDButton);
-            this.groupBox1.Controls.Add(this.IDNumericUpDown);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 52);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ID";
-            // 
-            // LoadIDButton
-            // 
-            this.LoadIDButton.Location = new System.Drawing.Point(119, 16);
-            this.LoadIDButton.Name = "LoadIDButton";
-            this.LoadIDButton.Size = new System.Drawing.Size(75, 23);
-            this.LoadIDButton.TabIndex = 1;
-            this.LoadIDButton.Text = "Load";
-            this.LoadIDButton.UseVisualStyleBackColor = true;
-            this.LoadIDButton.Click += new System.EventHandler(this.LoadIDButton_Click);
-            // 
-            // IDNumericUpDown
-            // 
-            this.IDNumericUpDown.Location = new System.Drawing.Point(6, 19);
-            this.IDNumericUpDown.Maximum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            0});
-            this.IDNumericUpDown.Minimum = new decimal(new int[] {
-            1000000000,
-            0,
-            0,
-            -2147483648});
-            this.IDNumericUpDown.Name = "IDNumericUpDown";
-            this.IDNumericUpDown.Size = new System.Drawing.Size(107, 20);
-            this.IDNumericUpDown.TabIndex = 0;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.AddressBox);
-            this.groupBox2.Location = new System.Drawing.Point(212, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(121, 52);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Address";
-            // 
-            // AddressBox
-            // 
-            this.AddressBox.Location = new System.Drawing.Point(6, 19);
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.ReadOnly = true;
-            this.AddressBox.Size = new System.Drawing.Size(109, 20);
-            this.AddressBox.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.ScriptsOnStackBox);
-            this.groupBox3.Location = new System.Drawing.Point(12, 70);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(121, 52);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "ReferenceCount";
-            // 
-            // ScriptsOnStackBox
-            // 
-            this.ScriptsOnStackBox.Location = new System.Drawing.Point(6, 19);
-            this.ScriptsOnStackBox.Name = "ScriptsOnStackBox";
-            this.ScriptsOnStackBox.ReadOnly = true;
-            this.ScriptsOnStackBox.Size = new System.Drawing.Size(109, 20);
-            this.ScriptsOnStackBox.TabIndex = 0;
             // 
             // LoadSubButton
             // 
-            this.LoadSubButton.Location = new System.Drawing.Point(139, 70);
+            this.LoadSubButton.Location = new System.Drawing.Point(12, 166);
             this.LoadSubButton.Name = "LoadSubButton";
             this.LoadSubButton.Size = new System.Drawing.Size(97, 23);
             this.LoadSubButton.TabIndex = 2;
@@ -135,7 +51,7 @@
             // 
             // LoadVariablesButton
             // 
-            this.LoadVariablesButton.Location = new System.Drawing.Point(242, 70);
+            this.LoadVariablesButton.Location = new System.Drawing.Point(115, 166);
             this.LoadVariablesButton.Name = "LoadVariablesButton";
             this.LoadVariablesButton.Size = new System.Drawing.Size(102, 23);
             this.LoadVariablesButton.TabIndex = 4;
@@ -146,7 +62,7 @@
             // AutoReloadCheckBox
             // 
             this.AutoReloadCheckBox.AutoSize = true;
-            this.AutoReloadCheckBox.Location = new System.Drawing.Point(18, 128);
+            this.AutoReloadCheckBox.Location = new System.Drawing.Point(12, 224);
             this.AutoReloadCheckBox.Name = "AutoReloadCheckBox";
             this.AutoReloadCheckBox.Size = new System.Drawing.Size(85, 17);
             this.AutoReloadCheckBox.TabIndex = 5;
@@ -163,7 +79,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(139, 101);
+            this.comboBox1.Location = new System.Drawing.Point(12, 195);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(97, 21);
             this.comboBox1.TabIndex = 6;
@@ -172,7 +88,7 @@
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(242, 99);
+            this.button1.Location = new System.Drawing.Point(115, 193);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 23);
             this.button1.TabIndex = 7;
@@ -183,50 +99,43 @@
             // chkLoadWithArray
             // 
             this.chkLoadWithArray.AutoSize = true;
-            this.chkLoadWithArray.Location = new System.Drawing.Point(206, 128);
+            this.chkLoadWithArray.Location = new System.Drawing.Point(103, 224);
             this.chkLoadWithArray.Name = "chkLoadWithArray";
             this.chkLoadWithArray.Size = new System.Drawing.Size(138, 17);
             this.chkLoadWithArray.TabIndex = 9;
             this.chkLoadWithArray.Text = "Open with array display.";
             this.chkLoadWithArray.UseVisualStyleBackColor = true;
             // 
+            // eventObjectPannel1
+            // 
+            this.eventObjectPannel1.EventObject = null;
+            this.eventObjectPannel1.Location = new System.Drawing.Point(12, 12);
+            this.eventObjectPannel1.Name = "eventObjectPannel1";
+            this.eventObjectPannel1.Size = new System.Drawing.Size(460, 148);
+            this.eventObjectPannel1.TabIndex = 10;
+            this.eventObjectPannel1.EventObjectLoaded += new System.EventHandler(this.eventObjectPannel1_EventObjectLoaded);
+            // 
             // EventObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 148);
+            this.ClientSize = new System.Drawing.Size(480, 253);
+            this.Controls.Add(this.eventObjectPannel1);
             this.Controls.Add(this.chkLoadWithArray);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.AutoReloadCheckBox);
             this.Controls.Add(this.LoadVariablesButton);
             this.Controls.Add(this.LoadSubButton);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Name = "EventObjectDisplay";
             this.Text = "EventObjectDisplay";
             this.Load += new System.EventHandler(this.EventObjectDisplay_Load);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button LoadIDButton;
-        private System.Windows.Forms.NumericUpDown IDNumericUpDown;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox AddressBox;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox ScriptsOnStackBox;
         private System.Windows.Forms.Button LoadSubButton;
         private System.Windows.Forms.Button LoadVariablesButton;
         private System.Windows.Forms.CheckBox AutoReloadCheckBox;
@@ -234,5 +143,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox chkLoadWithArray;
+        private X3TCsTool.EventObjectPannel eventObjectPannel1;
     }
 }
