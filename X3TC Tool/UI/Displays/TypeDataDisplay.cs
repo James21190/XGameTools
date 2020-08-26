@@ -74,7 +74,9 @@ namespace X3TC_Tool.UI.Displays
             v3dRotationSpeed.Vector = m_TypeData.RotationSpeed;
 
             int priceVariation = 0;
-            if(m_TypeData.PriceRangePercentage != 0) priceVariation = (int)(m_TypeData.Price / (float)m_TypeData.PriceRangePercentage/100);
+            if(m_TypeData.PriceRangePercentage != 0) priceVariation = (int)(m_TypeData.RelVal / (float)m_TypeData.PriceRangePercentage/100);
+
+            txtRelVal.Text = m_TypeData.RelVal.ToString();
 
             txtMaxPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 1));
             txtPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 0.5m));

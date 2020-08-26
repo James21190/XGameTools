@@ -41,7 +41,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(478, 12);
+            this.button1.Location = new System.Drawing.Point(487, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(147, 23);
             this.button1.TabIndex = 1;
@@ -57,7 +57,7 @@
             0,
             0,
             0});
-            this.vector2Display1.Location = new System.Drawing.Point(12, 77);
+            this.vector2Display1.Location = new System.Drawing.Point(12, 245);
             this.vector2Display1.Maximum = new decimal(new int[] {
             100,
             0,
@@ -100,7 +100,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(174, 77);
+            this.groupBox1.Location = new System.Drawing.Point(174, 245);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(298, 50);
             this.groupBox1.TabIndex = 4;
@@ -110,7 +110,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(174, 133);
+            this.groupBox2.Location = new System.Drawing.Point(174, 301);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(298, 50);
             this.groupBox2.TabIndex = 5;
@@ -133,9 +133,10 @@
             // 
             this.eventObjectPannel1.EventObject = null;
             this.eventObjectPannel1.Location = new System.Drawing.Point(12, 12);
+            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
             this.eventObjectPannel1.Name = "eventObjectPannel1";
-            this.eventObjectPannel1.Size = new System.Drawing.Size(460, 59);
-            this.eventObjectPannel1.TabIndex = 0;
+            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.eventObjectPannel1.TabIndex = 6;
             this.eventObjectPannel1.EventObjectLoaded += new System.EventHandler(this.eventObjectPannel1_EventObjectLoaded);
             // 
             // EventObject_Sector_Display
@@ -143,11 +144,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.eventObjectPannel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.vector2Display1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.eventObjectPannel1);
             this.Name = "EventObject_Sector_Display";
             this.Text = "ScriptMemory_Sector_Display";
             this.Load += new System.EventHandler(this.EventObject_Sector_Display_Load);
@@ -159,13 +160,12 @@
         }
 
         #endregion
-
-        private X3TCsTool.EventObjectPannel eventObjectPannel1;
         private System.Windows.Forms.Button button1;
         private Common.UI.Vector2Display vector2Display1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private X3TCsTool.EventObjectPannel eventObjectPannel1;
     }
 }

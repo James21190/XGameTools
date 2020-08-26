@@ -20,6 +20,21 @@ namespace X3TCsTool
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event EventHandler EventObjectLoaded;
 
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool ReadOnly 
+        {
+            get
+            {
+                 return IDNumericUpDown.ReadOnly;
+            }
+            set
+            {
+                IDNumericUpDown.ReadOnly = value;
+                LoadIDButton.Enabled = !value;
+            }
+        }
+
         public EventObject EventObject
         {
             get
@@ -52,7 +67,9 @@ namespace X3TCsTool
         {
             var sub = m_EventObject.pSub.obj;
             txtSubAddress.Text = sub.pThis.ToString("X");
-            txtSubID.Text = sub.ID.ToString();
+            txtSubTypeID.Text = sub.ID.ToString();
+            txtSubLength.Text = sub.ScriptVariableCount.ToString();
+            txtSubType.Text = m_EventObject.ObjectType.ToString();
         }
 
         private void LoadIDButton_Click(object sender, EventArgs e)

@@ -75,17 +75,6 @@
             this.txtMaxSpeed = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtNameID = new System.Windows.Forms.TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.txtTypeString = new System.Windows.Forms.TextBox();
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.txtMaxPrice = new System.Windows.Forms.TextBox();
-            this.groupBox19 = new System.Windows.Forms.GroupBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.txtMinPrice = new System.Windows.Forms.TextBox();
-            this.v3dRotationSpeed = new Common.UI.Vector3Display();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.tabPage13 = new System.Windows.Forms.TabPage();
@@ -108,6 +97,19 @@
             this.tabPage30 = new System.Windows.Forms.TabPage();
             this.tabPage31 = new System.Windows.Forms.TabPage();
             this.tabPage32 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNameID = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtTypeString = new System.Windows.Forms.TextBox();
+            this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.txtMaxPrice = new System.Windows.Forms.TextBox();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.txtMinPrice = new System.Windows.Forms.TextBox();
+            this.v3dRotationSpeed = new Common.UI.Vector3Display();
+            this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.txtRelVal = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -135,6 +137,7 @@
             this.groupBox18.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox20.SuspendLayout();
+            this.groupBox23.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -702,153 +705,6 @@
             this.tabPage10.Text = "Shield";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtNameID);
-            this.groupBox1.Location = new System.Drawing.Point(340, 70);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 52);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Name ID";
-            // 
-            // txtNameID
-            // 
-            this.txtNameID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNameID.Location = new System.Drawing.Point(6, 19);
-            this.txtNameID.Name = "txtNameID";
-            this.txtNameID.ReadOnly = true;
-            this.txtNameID.Size = new System.Drawing.Size(109, 20);
-            this.txtNameID.TabIndex = 0;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.txtTypeString);
-            this.groupBox7.Location = new System.Drawing.Point(12, 70);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(195, 52);
-            this.groupBox7.TabIndex = 8;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Type String";
-            // 
-            // txtTypeString
-            // 
-            this.txtTypeString.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTypeString.Location = new System.Drawing.Point(6, 19);
-            this.txtTypeString.Name = "txtTypeString";
-            this.txtTypeString.ReadOnly = true;
-            this.txtTypeString.Size = new System.Drawing.Size(183, 20);
-            this.txtTypeString.TabIndex = 0;
-            // 
-            // groupBox18
-            // 
-            this.groupBox18.Controls.Add(this.txtMaxPrice);
-            this.groupBox18.Location = new System.Drawing.Point(12, 128);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(121, 52);
-            this.groupBox18.TabIndex = 8;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "Max Price";
-            // 
-            // txtMaxPrice
-            // 
-            this.txtMaxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaxPrice.Location = new System.Drawing.Point(6, 19);
-            this.txtMaxPrice.Name = "txtMaxPrice";
-            this.txtMaxPrice.ReadOnly = true;
-            this.txtMaxPrice.Size = new System.Drawing.Size(109, 20);
-            this.txtMaxPrice.TabIndex = 0;
-            // 
-            // groupBox19
-            // 
-            this.groupBox19.Controls.Add(this.txtPrice);
-            this.groupBox19.Location = new System.Drawing.Point(12, 186);
-            this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(121, 52);
-            this.groupBox19.TabIndex = 9;
-            this.groupBox19.TabStop = false;
-            this.groupBox19.Text = "Average Price";
-            // 
-            // txtPrice
-            // 
-            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(6, 19);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.ReadOnly = true;
-            this.txtPrice.Size = new System.Drawing.Size(109, 20);
-            this.txtPrice.TabIndex = 0;
-            // 
-            // groupBox20
-            // 
-            this.groupBox20.Controls.Add(this.txtMinPrice);
-            this.groupBox20.Location = new System.Drawing.Point(12, 244);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(121, 52);
-            this.groupBox20.TabIndex = 9;
-            this.groupBox20.TabStop = false;
-            this.groupBox20.Text = "Minimum Price";
-            // 
-            // txtMinPrice
-            // 
-            this.txtMinPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMinPrice.Location = new System.Drawing.Point(6, 19);
-            this.txtMinPrice.Name = "txtMinPrice";
-            this.txtMinPrice.ReadOnly = true;
-            this.txtMinPrice.Size = new System.Drawing.Size(109, 20);
-            this.txtMinPrice.TabIndex = 0;
-            // 
-            // v3dRotationSpeed
-            // 
-            this.v3dRotationSpeed.DecimalPlaces = 0;
-            this.v3dRotationSpeed.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Location = new System.Drawing.Point(463, 19);
-            this.v3dRotationSpeed.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-            this.v3dRotationSpeed.MaximumSize = new System.Drawing.Size(156, 103);
-            this.v3dRotationSpeed.Minimum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            -2147483648});
-            this.v3dRotationSpeed.MinimumSize = new System.Drawing.Size(100, 103);
-            this.v3dRotationSpeed.Name = "v3dRotationSpeed";
-            this.v3dRotationSpeed.ReadOnly = true;
-            this.v3dRotationSpeed.Size = new System.Drawing.Size(121, 103);
-            this.v3dRotationSpeed.TabIndex = 12;
-            this.v3dRotationSpeed.Text = "Rotation Speed";
-            this.v3dRotationSpeed.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotationSpeed.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
             // tabPage11
             // 
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
@@ -1047,11 +903,180 @@
             this.tabPage32.Text = "31";
             this.tabPage32.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtNameID);
+            this.groupBox1.Location = new System.Drawing.Point(340, 70);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(121, 52);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Name ID";
+            // 
+            // txtNameID
+            // 
+            this.txtNameID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNameID.Location = new System.Drawing.Point(6, 19);
+            this.txtNameID.Name = "txtNameID";
+            this.txtNameID.ReadOnly = true;
+            this.txtNameID.Size = new System.Drawing.Size(109, 20);
+            this.txtNameID.TabIndex = 0;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.txtTypeString);
+            this.groupBox7.Location = new System.Drawing.Point(12, 70);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(195, 52);
+            this.groupBox7.TabIndex = 8;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Type String";
+            // 
+            // txtTypeString
+            // 
+            this.txtTypeString.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTypeString.Location = new System.Drawing.Point(6, 19);
+            this.txtTypeString.Name = "txtTypeString";
+            this.txtTypeString.ReadOnly = true;
+            this.txtTypeString.Size = new System.Drawing.Size(183, 20);
+            this.txtTypeString.TabIndex = 0;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.txtMaxPrice);
+            this.groupBox18.Location = new System.Drawing.Point(12, 186);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(121, 52);
+            this.groupBox18.TabIndex = 8;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "Max Price";
+            // 
+            // txtMaxPrice
+            // 
+            this.txtMaxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaxPrice.Location = new System.Drawing.Point(6, 19);
+            this.txtMaxPrice.Name = "txtMaxPrice";
+            this.txtMaxPrice.ReadOnly = true;
+            this.txtMaxPrice.Size = new System.Drawing.Size(109, 20);
+            this.txtMaxPrice.TabIndex = 0;
+            // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.txtPrice);
+            this.groupBox19.Location = new System.Drawing.Point(12, 244);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(121, 52);
+            this.groupBox19.TabIndex = 9;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "Average Price";
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPrice.Location = new System.Drawing.Point(6, 19);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.ReadOnly = true;
+            this.txtPrice.Size = new System.Drawing.Size(109, 20);
+            this.txtPrice.TabIndex = 0;
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.txtMinPrice);
+            this.groupBox20.Location = new System.Drawing.Point(12, 302);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(121, 52);
+            this.groupBox20.TabIndex = 9;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Minimum Price";
+            // 
+            // txtMinPrice
+            // 
+            this.txtMinPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMinPrice.Location = new System.Drawing.Point(6, 19);
+            this.txtMinPrice.Name = "txtMinPrice";
+            this.txtMinPrice.ReadOnly = true;
+            this.txtMinPrice.Size = new System.Drawing.Size(109, 20);
+            this.txtMinPrice.TabIndex = 0;
+            // 
+            // v3dRotationSpeed
+            // 
+            this.v3dRotationSpeed.DecimalPlaces = 0;
+            this.v3dRotationSpeed.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Location = new System.Drawing.Point(463, 19);
+            this.v3dRotationSpeed.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.v3dRotationSpeed.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dRotationSpeed.Minimum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            -2147483648});
+            this.v3dRotationSpeed.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dRotationSpeed.Name = "v3dRotationSpeed";
+            this.v3dRotationSpeed.ReadOnly = true;
+            this.v3dRotationSpeed.Size = new System.Drawing.Size(121, 103);
+            this.v3dRotationSpeed.TabIndex = 12;
+            this.v3dRotationSpeed.Text = "Rotation Speed";
+            this.v3dRotationSpeed.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotationSpeed.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // groupBox23
+            // 
+            this.groupBox23.Controls.Add(this.txtRelVal);
+            this.groupBox23.Location = new System.Drawing.Point(12, 128);
+            this.groupBox23.Name = "groupBox23";
+            this.groupBox23.Size = new System.Drawing.Size(121, 52);
+            this.groupBox23.TabIndex = 9;
+            this.groupBox23.TabStop = false;
+            this.groupBox23.Text = "Relative Value";
+            // 
+            // txtRelVal
+            // 
+            this.txtRelVal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRelVal.Location = new System.Drawing.Point(6, 19);
+            this.txtRelVal.Name = "txtRelVal";
+            this.txtRelVal.ReadOnly = true;
+            this.txtRelVal.Size = new System.Drawing.Size(109, 20);
+            this.txtRelVal.TabIndex = 0;
+            // 
             // TypeDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox23);
             this.Controls.Add(this.groupBox20);
             this.Controls.Add(this.groupBox19);
             this.Controls.Add(this.groupBox18);
@@ -1111,6 +1136,8 @@
             this.groupBox19.PerformLayout();
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
+            this.groupBox23.ResumeLayout(false);
+            this.groupBox23.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1197,5 +1224,7 @@
         private System.Windows.Forms.TabPage tabPage30;
         private System.Windows.Forms.TabPage tabPage31;
         private System.Windows.Forms.TabPage tabPage32;
+        private System.Windows.Forms.GroupBox groupBox23;
+        private System.Windows.Forms.TextBox txtRelVal;
     }
 }

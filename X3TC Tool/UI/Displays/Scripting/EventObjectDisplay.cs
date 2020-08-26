@@ -25,8 +25,7 @@ namespace X3TC_Tool.UI.Displays
         {
             Ship,
             Sector,
-            Dock,
-            Factory,
+            Station,
             Gate,
             Ware,
             RaceData,
@@ -58,13 +57,43 @@ namespace X3TC_Tool.UI.Displays
             }
 
             eventObjectPannel1.EventObject = m_EventObject;
+
+            switch (m_EventObject.ObjectType)
+            {
+
+            }
+
             Reload();
         }
 
+
+        public void LoadObject(EventObject eventObject)
+        {
+            m_EventObject = eventObject;
+            eventObjectPannel1.EventObject = eventObject;
+
+            switch (eventObject.ObjectType)
+            {
+
+            }
+
+            Reload();
+        }
+
+        public void LoadAsType(LoadAsItems type)
+        {
+            comboBox1.SelectedIndex = (int)type;
+        }
+
+        public void LoadObject(EventObject eventObject, LoadAsItems defaultType)
+        {
+            LoadObject(eventObject);
+            LoadAsType(defaultType);
+        }
         public void LoadObject(int id, LoadAsItems defaultType)
         {
             LoadObject(id);
-            comboBox1.SelectedIndex = (int)defaultType;
+            LoadAsType(defaultType);
         }
 
         public void Reload()
@@ -119,9 +148,8 @@ namespace X3TC_Tool.UI.Displays
                     {
                         case LoadAsItems.Sector: return new ScriptMemoryObject_AP_Sector();
                         case LoadAsItems.Ship: return new ScriptMemoryObject_AP_Ship();
-                        case LoadAsItems.Factory: return new ScriptMemoryObject_AP_Factory();
                         case LoadAsItems.Gate: return new ScriptMemoryObject_AP_Gate();
-                        case LoadAsItems.Dock: return new ScriptMemoryObject_AP_Dock();
+                        case LoadAsItems.Station: return new ScriptMemoryObject_AP_Station();
                         case LoadAsItems.RaceData: return new ScriptMemoryObject_AP_RaceData();
                         case LoadAsItems.RaceData_Player: return new ScriptMemoryObject_AP_RaceData_Player();
                     }
@@ -156,13 +184,8 @@ namespace X3TC_Tool.UI.Displays
                         raceDataDisplay.LoadObject(m_EventObject);
                         raceDataDisplay.Show();
                         return;
-                    case LoadAsItems.Factory:
-                        var factoryDataDisplay = new EventObject_Factory_Display();
-                        factoryDataDisplay.LoadObject(m_EventObject);
-                        factoryDataDisplay.Show();
-                        return;
-                    case LoadAsItems.Dock:
-                        var dockDataDisplay = new EventObject_Dock_Display();
+                    case LoadAsItems.Station:
+                        var dockDataDisplay = new EventObject_Station_Display();
                         dockDataDisplay.LoadObject(m_EventObject);
                         dockDataDisplay.Show();
                         return;

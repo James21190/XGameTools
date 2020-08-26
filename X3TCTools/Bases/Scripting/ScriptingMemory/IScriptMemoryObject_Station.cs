@@ -1,0 +1,29 @@
+﻿using Common.Memory;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace X3TCTools.Bases.Scripting.ScriptingMemory
+{
+    public interface IScriptMemoryObject_Station : IMemoryObject
+    {
+        int MainType { get; }
+        int SubType { get; }
+
+        /// <summary>
+        /// The EventObject ID for the current sector's EventObject.
+        /// </summary>
+        int CurrentSectorEventObjectID { get; }
+        /// <summary>
+        /// The current sector's EventObject.
+        /// </summary>
+        EventObject CurrentSectorEventObject { get; }
+
+        int pCargoHashTable { get; }
+        ScriptingHashTableObject CargoHashTable { get; }
+
+        CargoEntry[] Cargo { get; }
+    }
+}

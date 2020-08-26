@@ -26,7 +26,7 @@ namespace X3TC_Tool.UI
             InitializeComponent();
         }
 
-        public void LoadPage(int languageID, int pageID)
+        public void LoadPage(GameHook.Language languageID, int pageID)
         {
             m_TextPage = GameHook.storyBase.GetTextPage(languageID, pageID);
             Reload();
@@ -39,7 +39,7 @@ namespace X3TC_Tool.UI
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            LoadPage((int)nudLanguageID.Value, (int)nudPageID.Value);
+            LoadPage((GameHook.Language)nudLanguageID.Value, (int)nudPageID.Value);
         }
     }
 }

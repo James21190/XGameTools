@@ -163,14 +163,14 @@ namespace X3TC_Tool.UI.Displays
             if (!AutoReloadCheckBox.Checked)
                 LoadTree(m_SectorObject.ObjectID);
             txtAddress.Text = m_SectorObject.pThis.ToString("X");
-            txtDefaultName.Text = MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName);
+            txtDefaultName.Text = GameHook.storyBase.ParseText(GameHook.Language.English, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
             nudSectorObjectID.Value = m_SectorObject.ObjectID;
             v3dPosition.Vector = m_SectorObject.Position_Copy;
             v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;
             v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
             v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
             v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
-            EventObjectIDBox.Text = m_SectorObject.EventObjectID.ToString();
+            eventObjectPannel1.EventObject = m_SectorObject.EventObject;
             txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
 
             SpeedBox.Value = m_SectorObject.Speed;
@@ -180,41 +180,6 @@ namespace X3TC_Tool.UI.Displays
             txtRace.Text = m_SectorObject.RaceID.ToString();
 
             ModelCollectionIDBox.Text = m_SectorObject.ModelCollectionID.ToString();
-
-            // Unknowns
-            UnknownsListBox.Items.Clear();
-            int i = 4;
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_4.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_5));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_6));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_7));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_8));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_9.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_10.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_11));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_12));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_13));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1} {2} {3}", i++, m_SectorObject.Unknown_14_0, m_SectorObject.Unknown_14_1, m_SectorObject.Unknown_14_2));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_16));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Mass));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_18));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.pFirstUnknown.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.NULL_2));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.pLastUnknown.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_22));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_23));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_24.ToString("X")));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_25));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_26));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_27));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_28));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_29));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_30));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_31));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_32));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_33));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_34));
-            UnknownsListBox.Items.Add(string.Format("Unknown {0} - {1}", i++, m_SectorObject.Unknown_35));
 
 
             // Object relation
@@ -285,25 +250,6 @@ namespace X3TC_Tool.UI.Displays
             LoadObject(m_SectorObject.pParent.obj);
         }
 
-        private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
-        {
-            var display = new EventObjectDisplay();
-            EventObjectDisplay.LoadAsItems loadAsItems = (EventObjectDisplay.LoadAsItems)(-1);
-
-            switch (m_SectorObject.MainType)
-            {
-                case SectorObject.Main_Type.Sector: loadAsItems = EventObjectDisplay.LoadAsItems.Sector; break;
-                case SectorObject.Main_Type.Dock: loadAsItems = EventObjectDisplay.LoadAsItems.Dock; break;
-                case SectorObject.Main_Type.Ship: loadAsItems = EventObjectDisplay.LoadAsItems.Ship; break;
-                case SectorObject.Main_Type.Factory: loadAsItems = EventObjectDisplay.LoadAsItems.Factory; break;
-                case SectorObject.Main_Type.Gate: loadAsItems = EventObjectDisplay.LoadAsItems.Gate; break;
-            }
-
-            if ((int)loadAsItems != -1) display.LoadObject(m_SectorObject.EventObjectID, loadAsItems);
-            else display.LoadObject(m_SectorObject.EventObjectID);
-            display.Show();
-        }
-
         private void ChildTypeSelectionBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReloadChildren();
@@ -371,6 +317,25 @@ namespace X3TC_Tool.UI.Displays
             {
                 GameHook.gameCodeRunner.CreateSectorObject(selector.MainType, selector.SubType, GameHook.sectorObjectManager.GetSpace());
             }
+        }
+
+        private void btnLoadEventObject_Click(object sender, EventArgs e)
+        {
+            var display = new EventObjectDisplay();
+            EventObjectDisplay.LoadAsItems loadAsItems = (EventObjectDisplay.LoadAsItems)(-1);
+
+            switch (m_SectorObject.MainType)
+            {
+                case SectorObject.Main_Type.Sector: loadAsItems = EventObjectDisplay.LoadAsItems.Sector; break;
+                case SectorObject.Main_Type.Ship: loadAsItems = EventObjectDisplay.LoadAsItems.Ship; break;
+                case SectorObject.Main_Type.Dock:
+                case SectorObject.Main_Type.Factory: loadAsItems = EventObjectDisplay.LoadAsItems.Station; break;
+                case SectorObject.Main_Type.Gate: loadAsItems = EventObjectDisplay.LoadAsItems.Gate; break;
+            }
+
+            if ((int)loadAsItems != -1) display.LoadObject(m_SectorObject.EventObjectID, loadAsItems);
+            else display.LoadObject(m_SectorObject.EventObjectID);
+            display.Show();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Common.Memory;
@@ -48,10 +49,54 @@ namespace X3TCTools.Bases
             pEventObjectHashTable = new MemoryObjectPointer<HashTable<EventObject>>();
         }
 
-        public TextPage GetTextPage(int language, int pageID)
+        public TextPage GetTextPage(GameHook.Language language, int pageID)
         {
-            var table = TextHashTableArray[language].obj;
+            var table = TextHashTableArray[(int)language].obj;
             return table.GetObject(pageID);
+        }
+
+        public string GetText(GameHook.Language language, int pageID, int txtID)
+        {
+            // Temporary until text page has been implemented.
+            switch (pageID)
+            {
+                case 17:
+                    switch (txtID)
+                    {
+                        case 2911: return "Drone";
+                        case 3531: return "Falcon";
+                        case 4351: return "Jaguar";
+
+                        case 6652: return "Seeker Missile";
+
+                        case 7740: return "Production Complex";
+                        case 7817: return "Light Shield";
+                        case 7818: return "Medium Shield";
+                        case 7819: return "Heavy Shield";
+
+                        case 10022: return "Prototype";
+                        case 10024: return "Enhanced";
+
+                        case 16041: return "Shipyard";
+                    }
+                    break;
+            }
+            return "";
+        }
+
+        public string ParseText(GameHook.Language language, string txt)
+        {
+            Regex regex = new Regex(@"\{.*?\}");
+            MatchCollection matches = regex.Matches(txt);
+
+            foreach(Match match in matches)
+            {
+                var numbers = match.Value.Trim('{','}').Split(',');
+                var replacement = GetText(language, Convert.ToInt32(numbers[0]), Convert.ToInt32(numbers[1]));
+                if(!string.IsNullOrWhiteSpace(replacement))
+                    txt = txt.Replace(match.Value, "(" + replacement + ")");
+            }
+            return txt;
         }
 
         public EventObject GetEventObject(int ID)

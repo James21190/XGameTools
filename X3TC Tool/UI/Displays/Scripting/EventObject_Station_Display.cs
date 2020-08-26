@@ -18,15 +18,15 @@ using Common.Memory;
 
 namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 {
-    public partial class EventObject_Dock_Display : Form
+    public partial class EventObject_Station_Display : Form
     {
         EventObject m_EventObject;
-        IScriptMemoryObject_Dock m_DockData { get {
-                IScriptMemoryObject_Dock obj;
+        IScriptMemoryObject_Station m_DockData { get {
+                IScriptMemoryObject_Station obj;
                 switch (GameHook.GameVersion)
                 {
-                    case GameHook.GameVersions.X3TC: obj = new ScriptMemoryObject_TC_Dock(); break;
-                    case GameHook.GameVersions.X3AP: obj = new ScriptMemoryObject_AP_Dock(); break;
+                    case GameHook.GameVersions.X3TC: obj = new ScriptMemoryObject_TC_Station(); break;
+                    case GameHook.GameVersions.X3AP: obj = new ScriptMemoryObject_AP_Station(); break;
                     default: throw new Exception();
                 }
 
@@ -35,15 +35,9 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 
                 return obj;
             } }
-        public EventObject_Dock_Display()
+        public EventObject_Station_Display()
         {
             InitializeComponent();
-
-            for (int i = 0; i < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Dock); i++)
-            {
-                cmbSubType.Items.Add(SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Dock, i));
-            } 
-
         }
 
         public void LoadObject(EventObject eventObject)
@@ -60,6 +54,10 @@ namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
             var cargo = m_DockData.Cargo;
             Array.Sort(cargo);
             txtCargo.Text = string.Join("\n", cargo);
+            for (int i = 0; i < GameHook.GetTypeDataCount((int)m_DockData.MainType); i++)
+            {
+                cmbSubType.Items.Add(SectorObject.GetSubTypeAsString((SectorObject.Main_Type)m_DockData.MainType, i));
+            }
             cmbSubType.SelectedIndex = m_DockData.SubType;
         }
 

@@ -41,9 +41,6 @@
             this.btnGoNext = new System.Windows.Forms.Button();
             this.btnGoParent = new System.Windows.Forms.Button();
             this.btnGoPrevious = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.EventObjectIDBox = new System.Windows.Forms.TextBox();
-            this.EventObjectIDLoadButton = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtType = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -63,7 +60,6 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.SpeedBox = new System.Windows.Forms.NumericUpDown();
             this.btnLoadData = new System.Windows.Forms.Button();
-            this.UnknownsListBox = new System.Windows.Forms.ListBox();
             this.v3dPositionKm = new Common.UI.Vector3Display();
             this.v3dRotation = new Common.UI.Vector3Display();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -77,11 +73,13 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelSectorInfo = new System.Windows.Forms.Label();
+            this.eventObjectPannel1 = new X3TCsTool.EventObjectPannel();
+            this.btnLoadEventObject = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -98,6 +96,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -177,7 +176,7 @@
             // AutoReloadCheckBox
             // 
             this.AutoReloadCheckBox.AutoSize = true;
-            this.AutoReloadCheckBox.Location = new System.Drawing.Point(625, 3);
+            this.AutoReloadCheckBox.Location = new System.Drawing.Point(441, 3);
             this.AutoReloadCheckBox.Name = "AutoReloadCheckBox";
             this.AutoReloadCheckBox.Size = new System.Drawing.Size(85, 17);
             this.AutoReloadCheckBox.TabIndex = 8;
@@ -214,35 +213,6 @@
             this.btnGoPrevious.Text = "Go To Previous";
             this.btnGoPrevious.UseVisualStyleBackColor = true;
             this.btnGoPrevious.Click += new System.EventHandler(this.PreviousButton_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.EventObjectIDBox);
-            this.groupBox4.Controls.Add(this.EventObjectIDLoadButton);
-            this.groupBox4.Location = new System.Drawing.Point(441, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(178, 52);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "EventObject ID";
-            // 
-            // EventObjectIDBox
-            // 
-            this.EventObjectIDBox.Location = new System.Drawing.Point(6, 19);
-            this.EventObjectIDBox.Name = "EventObjectIDBox";
-            this.EventObjectIDBox.ReadOnly = true;
-            this.EventObjectIDBox.Size = new System.Drawing.Size(85, 20);
-            this.EventObjectIDBox.TabIndex = 1;
-            // 
-            // EventObjectIDLoadButton
-            // 
-            this.EventObjectIDLoadButton.Location = new System.Drawing.Point(97, 17);
-            this.EventObjectIDLoadButton.Name = "EventObjectIDLoadButton";
-            this.EventObjectIDLoadButton.Size = new System.Drawing.Size(75, 23);
-            this.EventObjectIDLoadButton.TabIndex = 1;
-            this.EventObjectIDLoadButton.Text = "Load";
-            this.EventObjectIDLoadButton.UseVisualStyleBackColor = true;
-            this.EventObjectIDLoadButton.Click += new System.EventHandler(this.EventObjectIDLoadButton_Click);
             // 
             // groupBox5
             // 
@@ -312,30 +282,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox11);
             this.panel1.Controls.Add(this.groupBox10);
             this.panel1.Controls.Add(this.v3dPosition);
+            this.panel1.Controls.Add(this.AutoReloadCheckBox);
             this.panel1.Controls.Add(this.groupBox9);
             this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox7);
             this.panel1.Controls.Add(this.btnLoadData);
-            this.panel1.Controls.Add(this.UnknownsListBox);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox6);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox3);
-            this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.v3dPositionKm);
             this.panel1.Controls.Add(this.btnGoPrevious);
-            this.panel1.Controls.Add(this.AutoReloadCheckBox);
             this.panel1.Controls.Add(this.btnGoParent);
             this.panel1.Controls.Add(this.v3dRotation);
             this.panel1.Controls.Add(this.btnGoNext);
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(589, 392);
+            this.panel1.Size = new System.Drawing.Size(812, 653);
             this.panel1.TabIndex = 15;
             // 
             // groupBox11
@@ -519,14 +488,6 @@
             this.btnLoadData.UseVisualStyleBackColor = true;
             this.btnLoadData.Click += new System.EventHandler(this.button1_Click);
             // 
-            // UnknownsListBox
-            // 
-            this.UnknownsListBox.FormattingEnabled = true;
-            this.UnknownsListBox.Location = new System.Drawing.Point(419, 175);
-            this.UnknownsListBox.Name = "UnknownsListBox";
-            this.UnknownsListBox.Size = new System.Drawing.Size(170, 433);
-            this.UnknownsListBox.TabIndex = 21;
-            // 
             // v3dPositionKm
             // 
             this.v3dPositionKm.DecimalPlaces = 2;
@@ -615,7 +576,7 @@
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(812, 24);
             this.menuStrip1.TabIndex = 23;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -627,7 +588,7 @@
             this.spawnToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip2.Size = new System.Drawing.Size(1089, 24);
             this.menuStrip2.TabIndex = 16;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -683,7 +644,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(174, 392);
+            this.treeView1.Size = new System.Drawing.Size(240, 653);
             this.treeView1.TabIndex = 25;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -702,8 +663,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(779, 398);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.Size = new System.Drawing.Size(1068, 659);
+            this.splitContainer1.SplitterDistance = 246;
             this.splitContainer1.TabIndex = 26;
             // 
             // labelSectorInfo
@@ -715,11 +676,42 @@
             this.labelSectorInfo.TabIndex = 27;
             this.labelSectorInfo.Text = "Sector:";
             // 
+            // eventObjectPannel1
+            // 
+            this.eventObjectPannel1.EventObject = null;
+            this.eventObjectPannel1.Location = new System.Drawing.Point(10, 48);
+            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
+            this.eventObjectPannel1.Name = "eventObjectPannel1";
+            this.eventObjectPannel1.ReadOnly = true;
+            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.eventObjectPannel1.TabIndex = 25;
+            // 
+            // btnLoadEventObject
+            // 
+            this.btnLoadEventObject.Location = new System.Drawing.Point(10, 19);
+            this.btnLoadEventObject.Name = "btnLoadEventObject";
+            this.btnLoadEventObject.Size = new System.Drawing.Size(111, 23);
+            this.btnLoadEventObject.TabIndex = 26;
+            this.btnLoadEventObject.Text = "Load in viewer";
+            this.btnLoadEventObject.UseVisualStyleBackColor = true;
+            this.btnLoadEventObject.Click += new System.EventHandler(this.btnLoadEventObject_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.eventObjectPannel1);
+            this.groupBox4.Controls.Add(this.btnLoadEventObject);
+            this.groupBox4.Location = new System.Drawing.Point(292, 264);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(481, 281);
+            this.groupBox4.TabIndex = 27;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "EventObject";
+            // 
             // SectorObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1089, 711);
             this.Controls.Add(this.labelSectorInfo);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip2);
@@ -733,8 +725,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -756,6 +746,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -777,9 +768,6 @@
         private System.Windows.Forms.Button btnGoNext;
         private System.Windows.Forms.Button btnGoParent;
         private System.Windows.Forms.Button btnGoPrevious;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox EventObjectIDBox;
-        private System.Windows.Forms.Button EventObjectIDLoadButton;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -787,7 +775,6 @@
         private System.Windows.Forms.Button LastChildButton;
         private System.Windows.Forms.Button FirstChildButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListBox UnknownsListBox;
         private System.Windows.Forms.Button btnLoadData;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.NumericUpDown TargetSpeedBox;
@@ -811,5 +798,8 @@
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.NumericUpDown nudMass;
         private System.Windows.Forms.Label labelSectorInfo;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private X3TCsTool.EventObjectPannel eventObjectPannel1;
+        private System.Windows.Forms.Button btnLoadEventObject;
     }
 }

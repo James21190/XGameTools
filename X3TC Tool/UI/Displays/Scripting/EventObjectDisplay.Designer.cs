@@ -41,7 +41,7 @@
             // 
             // LoadSubButton
             // 
-            this.LoadSubButton.Location = new System.Drawing.Point(12, 166);
+            this.LoadSubButton.Location = new System.Drawing.Point(12, 245);
             this.LoadSubButton.Name = "LoadSubButton";
             this.LoadSubButton.Size = new System.Drawing.Size(97, 23);
             this.LoadSubButton.TabIndex = 2;
@@ -51,7 +51,7 @@
             // 
             // LoadVariablesButton
             // 
-            this.LoadVariablesButton.Location = new System.Drawing.Point(115, 166);
+            this.LoadVariablesButton.Location = new System.Drawing.Point(115, 245);
             this.LoadVariablesButton.Name = "LoadVariablesButton";
             this.LoadVariablesButton.Size = new System.Drawing.Size(102, 23);
             this.LoadVariablesButton.TabIndex = 4;
@@ -62,7 +62,7 @@
             // AutoReloadCheckBox
             // 
             this.AutoReloadCheckBox.AutoSize = true;
-            this.AutoReloadCheckBox.Location = new System.Drawing.Point(12, 224);
+            this.AutoReloadCheckBox.Location = new System.Drawing.Point(12, 303);
             this.AutoReloadCheckBox.Name = "AutoReloadCheckBox";
             this.AutoReloadCheckBox.Size = new System.Drawing.Size(85, 17);
             this.AutoReloadCheckBox.TabIndex = 5;
@@ -79,7 +79,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 195);
+            this.comboBox1.Location = new System.Drawing.Point(12, 274);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(97, 21);
             this.comboBox1.TabIndex = 6;
@@ -88,7 +88,7 @@
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(115, 193);
+            this.button1.Location = new System.Drawing.Point(115, 272);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 23);
             this.button1.TabIndex = 7;
@@ -99,7 +99,7 @@
             // chkLoadWithArray
             // 
             this.chkLoadWithArray.AutoSize = true;
-            this.chkLoadWithArray.Location = new System.Drawing.Point(103, 224);
+            this.chkLoadWithArray.Location = new System.Drawing.Point(103, 303);
             this.chkLoadWithArray.Name = "chkLoadWithArray";
             this.chkLoadWithArray.Size = new System.Drawing.Size(138, 17);
             this.chkLoadWithArray.TabIndex = 9;
@@ -110,8 +110,9 @@
             // 
             this.eventObjectPannel1.EventObject = null;
             this.eventObjectPannel1.Location = new System.Drawing.Point(12, 12);
+            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
             this.eventObjectPannel1.Name = "eventObjectPannel1";
-            this.eventObjectPannel1.Size = new System.Drawing.Size(460, 148);
+            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
             this.eventObjectPannel1.TabIndex = 10;
             this.eventObjectPannel1.EventObjectLoaded += new System.EventHandler(this.eventObjectPannel1_EventObjectLoaded);
             // 
@@ -119,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 253);
+            this.ClientSize = new System.Drawing.Size(484, 328);
             this.Controls.Add(this.eventObjectPannel1);
             this.Controls.Add(this.chkLoadWithArray);
             this.Controls.Add(this.button1);

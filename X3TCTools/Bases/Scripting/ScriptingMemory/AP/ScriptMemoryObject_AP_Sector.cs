@@ -40,6 +40,11 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         public int pGateEventObjectHashTableObject { get { return GetVariableValue((int)AP_Sector_Variables.GateEventObjectIDHashTable); } }
         public ScriptingHashTableObject GateEventObjectHashTableObject { get { var table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pGateEventObjectHashTableObject); table.ReloadFromMemory(); return table; } }
 
+        public bool IsValid
+        {
+            get { return SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height; }
+        }
+
         public ScriptMemoryObject_AP_Sector() : base(56)
         {
 

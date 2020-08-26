@@ -35,6 +35,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject RaceDataEventObjectIDHashTable => throw new NotImplementedException();
 
+        public int pOwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public ScriptingHashTableObject OwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public int pOwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
+
         public override string GetVariableName(int index)
         {
             return ((TC_RaceData_Player_Variables)index).ToString();

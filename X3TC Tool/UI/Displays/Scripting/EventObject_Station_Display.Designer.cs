@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Displays.ScriptingMemoryObjects
 {
-    partial class EventObject_Ship_Display
+    partial class EventObject_Station_Display
     {
         /// <summary>
         /// Required designer variable.
@@ -50,18 +50,19 @@
             this.txtCargo.Location = new System.Drawing.Point(6, 19);
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.ReadOnly = true;
-            this.txtCargo.Size = new System.Drawing.Size(255, 247);
+            this.txtCargo.Size = new System.Drawing.Size(314, 116);
             this.txtCargo.TabIndex = 0;
             this.txtCargo.Text = "";
+            this.txtCargo.WordWrap = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.txtCargo);
-            this.groupBox1.Location = new System.Drawing.Point(12, 166);
+            this.groupBox1.Location = new System.Drawing.Point(12, 245);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(267, 272);
+            this.groupBox1.Size = new System.Drawing.Size(326, 141);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cargo";
@@ -78,7 +79,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cmbSubType);
-            this.groupBox2.Location = new System.Drawing.Point(478, 12);
+            this.groupBox2.Location = new System.Drawing.Point(344, 245);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(137, 54);
             this.groupBox2.TabIndex = 2;
@@ -89,7 +90,7 @@
             // 
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Location = new System.Drawing.Point(621, 12);
+            this.groupBox3.Location = new System.Drawing.Point(344, 304);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(214, 54);
             this.groupBox3.TabIndex = 3;
@@ -118,7 +119,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(285, 166);
+            this.button3.Location = new System.Drawing.Point(344, 364);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(147, 23);
             this.button3.TabIndex = 5;
@@ -130,21 +131,23 @@
             // 
             this.eventObjectPannel1.EventObject = null;
             this.eventObjectPannel1.Location = new System.Drawing.Point(12, 12);
+            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
             this.eventObjectPannel1.Name = "eventObjectPannel1";
-            this.eventObjectPannel1.Size = new System.Drawing.Size(460, 148);
+            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
             this.eventObjectPannel1.TabIndex = 6;
+            this.eventObjectPannel1.EventObjectLoaded += new System.EventHandler(this.eventObjectPannel1_EventObjectLoaded);
             // 
-            // EventObject_Ship_Display
+            // EventObject_Dock_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 450);
+            this.ClientSize = new System.Drawing.Size(565, 398);
             this.Controls.Add(this.eventObjectPannel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "EventObject_Ship_Display";
+            this.Name = "EventObject_Dock_Display";
             this.Text = "ScriptMemory_Ship_Display";
             this.Load += new System.EventHandler(this.EventObject_Ship_Display_Load);
             this.groupBox1.ResumeLayout(false);

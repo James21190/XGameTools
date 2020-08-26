@@ -21,22 +21,6 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 
         SubType = 6,
     }
-    public enum AP_Dock_Variables
-    {
-        PositionData,
-
-        SubType = 13,
-
-        InstalledShieldArray = 19,
-
-        CargoHashTable = 20,
-
-        Hull = 24,
-
-        ShieldStrength = 32,
-
-        CargoPriceHashTable = 44
-    }
     public enum AP_Gate_Variables
     {
         PositionData,
@@ -97,7 +81,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         CurrentCargoVolume = 72,
     }
 
-    public enum AP_Factory_Variables
+    public enum AP_Station_Variables
     {
         PositionData,
         /// <summary>
@@ -109,10 +93,12 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         /// </summary>
         PreviousSectorEventObjectID,
 
-        CargoHashTable = 20,
-        CargoPriceHashTable,
+        MainType = 12,
+        SubType,
 
-        SubType = 13,
+        CargoHashTable = 20,
+
+        //CargoPriceHashTable = 44,
     }
 
     public enum AP_Ware_Variables
@@ -149,6 +135,10 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         OwnedSectorEventObjectIDHashTable,
         RaceRelationsArray,
         OwnedShipEventObjectIDHashTable,
+        OwnedMilitaryShipEventObjectIDHashTable,
+        OwnedShipyardsEventObjectIDHashTable,
+        OwnedStationEventObjectIDHashTable,
+
     }
 
     public enum AP_RaceData_Player_Variables

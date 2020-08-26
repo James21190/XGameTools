@@ -34,6 +34,15 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 
         public ScriptingHashTableObject RaceDataEventObjectIDHashTable { get { var table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pRaceDataEventObjectIDHashTable); table.ReloadFromMemory(); return table; } }
 
+        public int pOwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public ScriptingHashTableObject OwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public int pOwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
+
+        public ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
+
+
         public override string GetVariableName(int index)
         {
             return ((AP_RaceData_Player_Variables)index).ToString();

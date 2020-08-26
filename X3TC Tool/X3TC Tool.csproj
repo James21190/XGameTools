@@ -84,16 +84,16 @@
     <Compile Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.Designer.cs">
       <DependentUpon>DynamicValueObjectViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\EventObject\EventObjectDisplay.cs">
+    <Compile Include="UI\Displays\Scripting\EventObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\EventObject\EventObjectDisplay.Designer.cs">
+    <Compile Include="UI\Displays\Scripting\EventObjectDisplay.Designer.cs">
       <DependentUpon>EventObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.cs">
+    <Compile Include="UI\Displays\Scripting\EventObjectSubDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\EventObject\EventObjectSubDisplay.Designer.cs">
+    <Compile Include="UI\Displays\Scripting\EventObjectSubDisplay.Designer.cs">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.cs">
@@ -120,35 +120,35 @@
     <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Dock_Display.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_Station_Display.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Dock_Display.Designer.cs">
-      <DependentUpon>EventObject_Dock_Display.cs</DependentUpon>
+    <Compile Include="UI\Displays\Scripting\EventObject_Station_Display.Designer.cs">
+      <DependentUpon>EventObject_Station_Display.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_RaceData_Display.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_RaceData_Display.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_RaceData_Display.Designer.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_RaceData_Display.Designer.cs">
       <DependentUpon>EventObject_RaceData_Display.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Sector_Display.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_Sector_Display.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Sector_Display.Designer.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_Sector_Display.Designer.cs">
       <DependentUpon>EventObject_Sector_Display.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Factory_Display.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_Ship_Display.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Factory_Display.Designer.cs">
-      <DependentUpon>EventObject_Factory_Display.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Ship_Display.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Displays\ScriptingMemoryObjects\EventObject_Ship_Display.Designer.cs">
+    <Compile Include="UI\Displays\Scripting\EventObject_Ship_Display.Designer.cs">
       <DependentUpon>EventObject_Ship_Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting\IRaceData_Panel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Displays\Scripting\IRaceData_Panel.Designer.cs">
+      <DependentUpon>IRaceData_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\ScriptObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -224,10 +224,10 @@
     <EmbeddedResource Include="UI\Displays\Scripting Objects\DynamicValueObjectViewer.resx">
       <DependentUpon>DynamicValueObjectViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\EventObject\EventObjectDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\Scripting\EventObjectDisplay.resx">
       <DependentUpon>EventObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\EventObject\EventObjectSubDisplay.resx">
+    <EmbeddedResource Include="UI\Displays\Scripting\EventObjectSubDisplay.resx">
       <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\Scripting Objects\ScriptingTextObjectDisplay.resx">
@@ -242,20 +242,20 @@
     <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_Dock_Display.resx">
-      <DependentUpon>EventObject_Dock_Display.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Displays\Scripting\EventObject_Station_Display.resx">
+      <DependentUpon>EventObject_Station_Display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_RaceData_Display.resx">
+    <EmbeddedResource Include="UI\Displays\Scripting\EventObject_RaceData_Display.resx">
       <DependentUpon>EventObject_RaceData_Display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_Sector_Display.resx">
+    <EmbeddedResource Include="UI\Displays\Scripting\EventObject_Sector_Display.resx">
       <DependentUpon>EventObject_Sector_Display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_Factory_Display.resx">
-      <DependentUpon>EventObject_Factory_Display.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\ScriptingMemoryObjects\EventObject_Ship_Display.resx">
+    <EmbeddedResource Include="UI\Displays\Scripting\EventObject_Ship_Display.resx">
       <DependentUpon>EventObject_Ship_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Displays\Scripting\IRaceData_Panel.resx">
+      <DependentUpon>IRaceData_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\ScriptObjectDisplay.resx">
       <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>

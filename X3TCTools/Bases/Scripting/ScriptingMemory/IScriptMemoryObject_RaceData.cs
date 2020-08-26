@@ -12,8 +12,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         int ASectorEventObjectID { get; }
         EventObject ASectorEventObject { get; }
 
+        int pOwnedSectorEventObjectIDHashTableObject { get; }
+        ScriptingHashTableObject OwnedSectorEventObjectIDHashTableObject { get; }
+
         int pOwnedShipEventObjectIDHashTableObject { get; }
         ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get; }
+
+        int pOwnedShipyardEventObjectIDHashTableObject { get; }
+        ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject { get; }
 
         int pOwnedStationEventObjectIDHashTableObject { get; }
         ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get; }

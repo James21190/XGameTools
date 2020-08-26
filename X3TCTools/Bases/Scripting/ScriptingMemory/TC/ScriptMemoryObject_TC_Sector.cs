@@ -37,6 +37,10 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 
         public int BackgroundID => throw new NotImplementedException();
 
+        public bool IsValid
+        {
+            get { return SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height; }
+        }
         public ScriptMemoryObject_TC_Sector() : base(55)
         {
 

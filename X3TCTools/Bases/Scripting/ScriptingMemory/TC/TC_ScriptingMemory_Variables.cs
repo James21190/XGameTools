@@ -31,21 +31,6 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         /// </summary>
         PreviousSectorEventObjectID,
     }
-    public enum TC_Dock_Variables
-    {
-        PositionData,
-        /// <summary>
-        /// The ID of the EventObject that the ship is currently in.
-        /// </summary>
-        CurrentSectorEventObjectID,
-        /// <summary>
-        /// The ID of the EventObject that the ship was in previously in.
-        /// </summary>
-        PreviousSectorEventObjectID,
-
-        Shielding = 19,
-        Cargo = 44
-    }
     public enum TC_Gate_Variables
     {
         PositionData,
@@ -104,7 +89,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         MaximumShield
     }
 
-    public enum TC_Factory_Variables
+    public enum TC_Station_Variables
     {
         PositionData,
         /// <summary>

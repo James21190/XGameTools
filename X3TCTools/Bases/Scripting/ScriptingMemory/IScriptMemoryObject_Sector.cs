@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
-    public interface IScriptMemoryObject_Sector : IMemoryObject
+    public interface IScriptMemoryObject_Sector : IMemoryObject, IValidateable
     {
         int SectorX { get; }
         int SectorY { get; }
