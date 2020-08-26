@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
+﻿using Common.Memory;
+using System;
 
 namespace X3TCTools.SectorObjects
 {
@@ -59,11 +55,14 @@ namespace X3TCTools.SectorObjects
         /// <returns></returns>
         public SectorObject GetSpace()
         {
-            var so = GetSectorObject(pFirst);
-            while(so.MainType != SectorObject.Main_Type.Sector)
+            SectorObject so = GetSectorObject(pFirst);
+            while (so.MainType != SectorObject.Main_Type.Sector)
             {
                 if (so.pNext.address == IntPtr.Zero)
+                {
                     return null;
+                }
+
                 so = so.pNext.obj;
             }
             return so;
@@ -72,7 +71,10 @@ namespace X3TCTools.SectorObjects
         public SectorObject GetPlayerObject()
         {
             if (!pPlayerShip.IsValid)
+            {
                 throw new Exception("Player ship not found!");
+            }
+
             return pPlayerShip.obj;
         }
 
@@ -88,7 +90,7 @@ namespace X3TCTools.SectorObjects
         /// <returns></returns>
         public SectorObject GetSectorObject(IntPtr address)
         {
-            var value = new SectorObject();
+            SectorObject value = new SectorObject();
             value.SetLocation(m_hProcess, address);
             value.ReloadFromMemory();
             return value;
@@ -103,8 +105,8 @@ namespace X3TCTools.SectorObjects
         /// <returns></returns>
         public SectorObject GetSectorObject(int objectID)
         {
-            var table = pObjectHashTable.obj;
-            var value = table.GetObject(objectID);
+            HashTable<SectorObject> table = pObjectHashTable.obj;
+            SectorObject value = table.GetObject(objectID);
             return value;
 
         }
@@ -117,7 +119,7 @@ namespace X3TCTools.SectorObjects
         #region Memory
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(Unknown_1);
             collection.Append(Unknown_2);
             collection.Append(pFirst);
@@ -155,9 +157,9 @@ namespace X3TCTools.SectorObjects
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.SetData(Memory);
-            
+
             collection.PopFirst(ref Unknown_1);
             collection.PopFirst(ref Unknown_2);
             collection.PopFirst(ref pFirst);
@@ -189,7 +191,7 @@ namespace X3TCTools.SectorObjects
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             pObjectHashTable.SetLocation(hProcess, address + 0x14);
-            pPlayerShip.SetLocation(hProcess, address +0x38);
+            pPlayerShip.SetLocation(hProcess, address + 0x38);
             base.SetLocation(hProcess, address);
         }
         #endregion

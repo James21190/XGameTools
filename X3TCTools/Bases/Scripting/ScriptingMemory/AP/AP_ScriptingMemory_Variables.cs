@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
+﻿namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 {
     public enum AP_Sun_Variables
     {
@@ -96,9 +90,9 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
         MainType = 12,
         SubType,
 
-        CargoHashTable = 20,
+        OwningRaceDataEventObjectID = 15,
 
-        //CargoPriceHashTable = 44,
+        CargoHashTable = 20,
     }
 
     public enum AP_Ware_Variables

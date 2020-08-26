@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common.Memory;
+using System;
 using System.Windows.Forms;
-
 using X3TCTools;
-using Common.Memory;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -24,12 +16,18 @@ namespace X3TC_Tool.UI.Displays
             InitializeComponent();
             GameHook = gameHook;
             if (name != null)
+            {
                 Text = name;
+            }
         }
 
         public void LoadTable(IntPtr pHashTable)
         {
-            if (AddressBox.Text != pHashTable.ToString("X")) AddressBox.Text = pHashTable.ToString("X");
+            if (AddressBox.Text != pHashTable.ToString("X"))
+            {
+                AddressBox.Text = pHashTable.ToString("X");
+            }
+
             m_HashTable.SetLocation(GameHook.hProcess, pHashTable);
             m_HashTable.ReloadFromMemory();
             Reload();
@@ -53,21 +51,25 @@ namespace X3TC_Tool.UI.Displays
         {
             listBox1.Items.Clear();
             int NumOfInvalids;
-            foreach(var item in m_HashTable.ScanContents(out NumOfInvalids))
+            foreach (int item in m_HashTable.ScanContents(out NumOfInvalids))
             {
                 listBox1.Items.Add(item);
             }
-            ScannerLabel.Text = string.Format("{0} results found! {1} additional entries were found with null pointers. {2} in total.", listBox1.Items.Count, NumOfInvalids, NumOfInvalids + listBox1.Items.Count) ;
+            ScannerLabel.Text = string.Format("{0} results found! {1} additional entries were found with null pointers. {2} in total.", listBox1.Items.Count, NumOfInvalids, NumOfInvalids + listBox1.Items.Count);
         }
 
         public void LoadEntry(int id)
         {
-            if (EntryIDSelector.Value != id) EntryIDSelector.Value = id;
+            if (EntryIDSelector.Value != id)
+            {
+                EntryIDSelector.Value = id;
+            }
+
             try
             {
                 textBox2.Text = m_HashTable.GetAddress(id).ToString("X");
             }
-            catch(Exception e)
+            catch (Exception)
             {
                 textBox2.Text = "Not Found!";
             }
@@ -80,7 +82,11 @@ namespace X3TC_Tool.UI.Displays
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex < 0 || listBox1.SelectedIndex >= listBox1.Items.Count) return;
+            if (listBox1.SelectedIndex < 0 || listBox1.SelectedIndex >= listBox1.Items.Count)
+            {
+                return;
+            }
+
             LoadEntry(Convert.ToInt32(listBox1.SelectedItem.ToString()));
         }
     }

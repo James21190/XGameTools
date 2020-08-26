@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
 
 namespace X3TCTools
 {
@@ -37,7 +34,7 @@ namespace X3TCTools
             #region IMemoryObject
             public override byte[] GetBytes()
             {
-                var collection = new ObjectByteList();
+                ObjectByteList collection = new ObjectByteList();
                 collection.Append(pNext.address);
                 collection.Append(ObjectID);
                 collection.Append(pObject.address);
@@ -51,7 +48,7 @@ namespace X3TCTools
 
             public override void SetData(byte[] Memory)
             {
-                var collection = new ObjectByteList();
+                ObjectByteList collection = new ObjectByteList();
                 collection.Append(Memory);
                 collection.PopFirst(ref pNext.address);
                 collection.PopFirst(ref ObjectID);
@@ -136,11 +133,11 @@ namespace X3TCTools
             List<int> results = new List<int>();
             for (int i = 0; i < Length; i++)
             {
-                var pEntry = ppEntry.GetObjectInArray(i);
+                MemoryObjectPointer<Entry<T>> pEntry = ppEntry.GetObjectInArray(i);
                 if (pEntry.IsValid)
                 {
 
-                    var entry = pEntry.obj;
+                    Entry<T> entry = pEntry.obj;
                     while (true)
                     {
                         if (entry.pObject.IsValid)
@@ -152,7 +149,11 @@ namespace X3TCTools
                             NumOfNulls++;
                         }
 
-                        if (!entry.pNext.IsValid) break;
+                        if (!entry.pNext.IsValid)
+                        {
+                            break;
+                        }
+
                         entry = entry.pNext.obj;
                     }
 
@@ -174,18 +175,23 @@ namespace X3TCTools
         /// <returns></returns>
         private MemoryObjectPointer<T> GetEntry(int ID)
         {
-            var index = GetIndex(ID);
+            int index = GetIndex(ID);
 
-            var pEntry = ppEntry.GetObjectInArray(index);
+            MemoryObjectPointer<Entry<T>> pEntry = ppEntry.GetObjectInArray(index);
 
-            if(!pEntry.IsValid)
+            if (!pEntry.IsValid)
+            {
                 throw new Exception("Object not found in hash table");
+            }
 
-            var entry = pEntry.obj;
+            Entry<T> entry = pEntry.obj;
             while (entry.ObjectID != ID)
             {
                 if (!entry.pNext.IsValid)
+                {
                     throw new Exception("Object not found in hash table");
+                }
+
                 entry = entry.pNext.obj;
             }
             return entry.pObject;
@@ -199,7 +205,7 @@ namespace X3TCTools
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(ppEntry.address);
             collection.Append(Length);
             collection.Append(NextAvailableID);

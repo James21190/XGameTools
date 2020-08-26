@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
-
+﻿using Common.Memory;
 using Common.Vector;
+using System;
 
 namespace X3TCTools.Bases
 {
@@ -50,7 +44,7 @@ namespace X3TCTools.Bases
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            ObjectByteList collection = new ObjectByteList(Memory);
 
             collection.GoTo(0x28);
             collection.PopFirst(ref ID);

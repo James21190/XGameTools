@@ -1,9 +1,4 @@
 ﻿using Common.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
@@ -24,6 +19,9 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         int pCargoHashTable { get; }
         ScriptingHashTableObject CargoHashTable { get; }
 
-        CargoEntry[] Cargo { get; }
+        int OwnerDataEventObjectID { get; }
+        EventObject OwnerDataEventObject { get; }
+
+        CargoEntry[] CargoEntries { get; }
     }
 }

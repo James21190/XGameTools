@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3TCTools;
 
 namespace X3TC_Tool.UI.Displays
@@ -24,14 +17,14 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            var InputBase = GameHook.inputBase;
+            X3TCTools.Bases.InputBase InputBase = GameHook.inputBase;
 
             EventObjectIDBox.Text = InputBase.EventObjectID.ToString();
         }
 
         private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
         {
-            var display = new EventObjectDisplay();
+            EventObjectDisplay display = new EventObjectDisplay();
             display.LoadObject(GameHook.inputBase.EventObjectID);
             display.Show();
         }

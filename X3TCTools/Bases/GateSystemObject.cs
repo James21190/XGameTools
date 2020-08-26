@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
+﻿using Common.Memory;
 using Common.Vector;
+using System;
+using System.IO;
 
 namespace X3TCTools.Bases
 {
@@ -48,7 +43,7 @@ namespace X3TCTools.Bases
                 #region IMemoryObject
                 public byte[] GetBytes()
                 {
-                    var Collection = new ObjectByteList();
+                    ObjectByteList Collection = new ObjectByteList();
                     Collection.Append(DstSecX);
                     Collection.Append(DstSecY);
                     Collection.Append(DstGateID);
@@ -68,7 +63,7 @@ namespace X3TCTools.Bases
 
                 public void SetData(byte[] Memory)
                 {
-                    var collection = new ObjectByteList(Memory);
+                    ObjectByteList collection = new ObjectByteList(Memory);
                     collection.PopFirst(ref DstSecX);
                     collection.PopFirst(ref DstSecY);
                     collection.PopFirst(ref DstGateID);
@@ -92,19 +87,19 @@ namespace X3TCTools.Bases
 
             public SectorData()
             {
-                for(int i = 0; i < 6; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     gateData[i] = new GateData();
                 }
             }
 
-            
+
 
             #region IMemoryObject
 
             public byte[] GetBytes()
             {
-                var collection = new ObjectByteList();
+                ObjectByteList collection = new ObjectByteList();
                 collection.Append(unknown_1);
                 collection.Append((short)owner);
                 collection.Append(unknown_2);
@@ -125,7 +120,7 @@ namespace X3TCTools.Bases
 
             public void SetData(byte[] Memory)
             {
-                var collection = new ObjectByteList(Memory);
+                ObjectByteList collection = new ObjectByteList(Memory);
 
                 for (int i = 0; i < 6; i++)
                 {
@@ -201,21 +196,33 @@ namespace X3TCTools.Bases
                 default: throw new Exception();
             }
 
-            if (!File.Exists(path)) goto failed;
+            if (!File.Exists(path))
+            {
+                goto failed;
+            }
 
-            var lines = File.ReadAllLines(path);
+            string[] lines = File.ReadAllLines(path);
 
-            if (lines.Length <= Y || Y < 0) goto failed;
+            if (lines.Length <= Y || Y < 0)
+            {
+                goto failed;
+            }
 
-            var line = lines[Y];
+            string line = lines[Y];
 
-            var names = line.Split(',');
+            string[] names = line.Split(',');
 
-            if (names.Length <= (int)X) goto failed;
+            if (names.Length <= X)
+            {
+                goto failed;
+            }
 
-            var name = names[(int)X];
+            string name = names[X];
 
-            if (string.IsNullOrEmpty(name)) goto failed;
+            if (string.IsNullOrEmpty(name))
+            {
+                goto failed;
+            }
 
             return name;
 
@@ -231,7 +238,7 @@ namespace X3TCTools.Bases
         /// <returns></returns>
         public int GetSectorFullPos(byte X, byte Y)
         {
-            return (ushort)((byte)Y << 8 | (byte)X);
+            return (ushort)(Y << 8 | X);
         }
 
         /// <summary>
@@ -242,13 +249,13 @@ namespace X3TCTools.Bases
         /// <returns></returns>
         public SectorData GetSector(short X, short Y)
         {
-            return sectorData[Y + X * (width-1)];
+            return sectorData[Y + X * (width - 1)];
         }
 
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(byteSize);
             collection.Append(unknown_1);
             collection.Append(unknown_2);
@@ -264,12 +271,13 @@ namespace X3TCTools.Bases
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            ObjectByteList collection = new ObjectByteList(Memory);
             collection.PopFirst(ref gateSystemFunctionIndex);
             collection.PopFirst(ref unknown_1);
             collection.PopFirst(ref unknown_2);
             collection.PopFirst(ref unknown_3);
-            for (int i = 0; i < maxSectorID; i++) {
+            for (int i = 0; i < maxSectorID; i++)
+            {
                 collection.PopFirst(ref sectorData[i]);
             }
         }

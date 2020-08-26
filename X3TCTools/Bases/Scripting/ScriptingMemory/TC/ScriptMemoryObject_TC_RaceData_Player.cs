@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
@@ -13,7 +6,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
     {
         public const int VariableCount = 49;
 
-        public GameHook.RaceID RaceID { get { return GameHook.RaceID.Player; } }
+        public GameHook.RaceID RaceID => GameHook.RaceID.Player;
 
         public int ASectorEventObjectID => throw new NotImplementedException();
 

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
-
-namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
+﻿namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
     public class ScriptMemoryObject_TC_Ware : ScriptMemoryObject//, IScriptMemoryObject_Ware
     {

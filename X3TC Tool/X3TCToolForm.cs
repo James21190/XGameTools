@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3TCTools;
-
-using X3TC_Tool.UI.Displays;
 using X3TC_Tool.UI;
-using X3TCTools.Bases.Scripting;
+using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
+using X3TC_Tool.UI.Displays;
+using X3TCTools;
 
 namespace X3TC_Tool
 {
@@ -28,11 +21,11 @@ namespace X3TC_Tool
         private void Form1_Load(object sender, EventArgs e)
         {
             // Hook into the game memory
-            var processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-            var processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
+            Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
+            Process processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
             while (processX3TC == null && processX3AP == null)
             {
-                var result = MessageBox.Show("X3TC/X3AP is not currently running!\nPlease launch the game and retry.", "Game not running", MessageBoxButtons.RetryCancel);
+                DialogResult result = MessageBox.Show("X3TC/X3AP is not currently running!\nPlease launch the game and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
                 {
                     Close();
@@ -44,11 +37,15 @@ namespace X3TC_Tool
 
 
             if (processX3TC != null)
+            {
                 GameHook = new GameHook(processX3TC, GameHook.GameVersions.X3TC);
+            }
             else if (processX3AP != null)
+            {
                 GameHook = new GameHook(processX3AP, GameHook.GameVersions.X3AP);
+            }
 
-            this.Text += " - Game Version: " + GameHook.GameVersion;
+            Text += " - Game Version: " + GameHook.GameVersion;
 
             // Post hook
             timer1.Enabled = true;
@@ -56,7 +53,7 @@ namespace X3TC_Tool
 
         private void X3TCToolForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            while(Application.OpenForms.Count > 0)
+            while (Application.OpenForms.Count > 0)
             {
                 Application.OpenForms[0].Close();
             }
@@ -70,7 +67,7 @@ namespace X3TC_Tool
         }
         private void LoadStoryBaseDisplay(object sender, EventArgs e)
         {
-            if(m_StoryBaseDisplay == null)
+            if (m_StoryBaseDisplay == null)
             {
                 m_StoryBaseDisplay = new StoryBaseDisplay(GameHook);
                 m_StoryBaseDisplay.FormClosed += OnStoryBaseDisplayClosed;
@@ -97,32 +94,32 @@ namespace X3TC_Tool
 
         private void LoadEventObjectDisplay(object sender, EventArgs e)
         {
-            var viewer = new EventObjectDisplay();
+            EventObjectDisplay viewer = new EventObjectDisplay();
             viewer.Show();
         }
 
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
-            var sectorObjectManager = GameHook.sectorObjectManager;
-            var display = new SectorObjectDisplay();
+            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
         }
 
         private void sectorObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new SectorObjectDisplay();
+            SectorObjectDisplay display = new SectorObjectDisplay();
             display.Show();
         }
 
         private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new TypeDataDisplay();
+            TypeDataDisplay display = new TypeDataDisplay();
             display.Show();
         }
 
-        InputBaseDisplay m_InputBaseDisplay = null;
+        private InputBaseDisplay m_InputBaseDisplay = null;
 
         public void OnInputBaseDisplayClosed(object sender, EventArgs e)
         {
@@ -141,11 +138,11 @@ namespace X3TC_Tool
 
         private void hashTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay(GameHook);
             display.Show();
         }
 
-        CameraBaseDisplay m_CameraBaseDisplay = null;
+        private CameraBaseDisplay m_CameraBaseDisplay = null;
 
         public void OnCameraBaseDisplayClosed(object sender, EventArgs e)
         {
@@ -164,14 +161,14 @@ namespace X3TC_Tool
 
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new CameraDisplay(GameHook);
+            CameraDisplay display = new CameraDisplay(GameHook);
             display.Show();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label1.Text = "SETA: x" + trackBar1.Value;
-            var systembase = GameHook.systemBase;
+            X3TCTools.Bases.SystemBase systembase = GameHook.systemBase;
             systembase.SETAValue.Value = trackBar1.Value;
             systembase.SaveSETA();
         }
@@ -183,19 +180,19 @@ namespace X3TC_Tool
 
         private void scriptObjectToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var display = new ScriptObjectDisplay();
+            ScriptObjectDisplay display = new ScriptObjectDisplay();
             display.Show();
         }
 
         private void dynamicValueToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var viewer = new DynamicValueArrayDisplay();
+            DynamicValueArrayDisplay viewer = new DynamicValueArrayDisplay();
             viewer.Show();
         }
 
         private void scriptingHashTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new ScriptingHashTableDisplay();
+            ScriptingHashTableDisplay display = new ScriptingHashTableDisplay();
             display.Show();
         }
 
@@ -205,8 +202,6 @@ namespace X3TC_Tool
 
         private void dynamicValueObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new DynamicValueObjectDisplay();
-            display.Show();
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -218,8 +213,8 @@ namespace X3TC_Tool
         {
             X3TCTools.SectorObjects.SectorObject.Main_Type main;
             int sub;
-            X3TCTools.SectorObjects.SectorObject.FromFullType(int.Parse(textBox1.Text, System.Globalization.NumberStyles.HexNumber),out main, out sub);
-            var subname = X3TCTools.SectorObjects.SectorObject.GetSubTypeAsString(main, sub);
+            X3TCTools.SectorObjects.SectorObject.FromFullType(int.Parse(textBox1.Text, System.Globalization.NumberStyles.HexNumber), out main, out sub);
+            string subname = X3TCTools.SectorObjects.SectorObject.GetSubTypeAsString(main, sub);
             textBox2.Text = main.ToString() + "-" + subname;
 
         }
@@ -230,7 +225,7 @@ namespace X3TC_Tool
 
         private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var display = new TextPageDisplay(GameHook);
+            TextPageDisplay display = new TextPageDisplay(GameHook);
             display.Show();
         }
 
@@ -252,22 +247,22 @@ namespace X3TC_Tool
 
         private void button4_Click(object sender, EventArgs e)
         {
-            var sectorObjectManager = GameHook.sectorObjectManager;
-            var display = new SectorObjectDisplay();
+            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.GetSpace());
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var display = new EventObjectDisplay();
-            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().EventObjectID, EventObjectDisplay.LoadAsItems.Ship);
+            EventObjectDisplay display = new EventObjectDisplay();
+            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().EventObjectID);
             display.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var display = new GateSystemObjectDisplay();
+            GateSystemObjectDisplay display = new GateSystemObjectDisplay();
             display.Show();
         }
     }

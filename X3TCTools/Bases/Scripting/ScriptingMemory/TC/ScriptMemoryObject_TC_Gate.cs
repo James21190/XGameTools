@@ -1,25 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
-
-namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
+﻿namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
     public class ScriptMemoryObject_TC_Gate : ScriptMemoryObject, IScriptMemoryObject_Gate
     {
-        public int DestSectorX
-        {
-            get { return GetVariableValue((int)TC_Gate_Variables.Dest_Sector_X); }
-        }
+        public int DestSectorX => GetVariableValue((int)TC_Gate_Variables.Dest_Sector_X);
 
-        public int DestSectorY
-        {
-            get { return GetVariableValue((int)TC_Gate_Variables.Dest_Sector_Y); }
-        }
+        public int DestSectorY => GetVariableValue((int)TC_Gate_Variables.Dest_Sector_Y);
 
         public override string GetVariableName(int index)
         {

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
-using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
-
-namespace X3TCTools.Bases.Scripting
+﻿namespace X3TCTools.Bases.Scripting
 {
     public partial class EventObject
     {
@@ -28,9 +20,10 @@ namespace X3TCTools.Bases.Scripting
             Ship_Unknown_3,
             Ship_Unknown_4,
             Ship_Unknown_5,
+            Ship_Unknown_6,
 
             Sector,
-            
+
             Planet,
 
             Sun,

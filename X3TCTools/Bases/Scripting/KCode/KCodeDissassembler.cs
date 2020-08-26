@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.KCode
 {
@@ -34,12 +31,14 @@ namespace X3TCTools.Bases.Scripting.KCode
             {
                 case FunctionParameter.Byte: return ReadBytes(1)[0];
                 case FunctionParameter.InStackShortRelativeOffset:
-                case FunctionParameter.Short: return BitConverter.ToInt16(ReadBytes(2),0);
+                case FunctionParameter.Short: return BitConverter.ToInt16(ReadBytes(2), 0);
                 case FunctionParameter.Int: return BitConverter.ToInt32(ReadBytes(4), 0);
                 case FunctionParameter.DynamicValue:
-                    var dynamicValue = new DynamicValue();
-                    dynamicValue.Flag = (DynamicValue.FlagType)ReadByte();
-                    dynamicValue.Value = BitConverter.ToInt32(ReadBytes(4), 0);
+                    DynamicValue dynamicValue = new DynamicValue
+                    {
+                        Flag = (DynamicValue.FlagType)ReadByte(),
+                        Value = BitConverter.ToInt32(ReadBytes(4), 0)
+                    };
                     return dynamicValue;
                 default: throw new Exception();
             }
@@ -47,9 +46,9 @@ namespace X3TCTools.Bases.Scripting.KCode
 
         private byte[] ReadBytes(int count)
         {
-            var result = new byte[count];
+            byte[] result = new byte[count];
 
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 result[i] = ReadByte();
             }
@@ -71,7 +70,10 @@ namespace X3TCTools.Bases.Scripting.KCode
         {
             DynamicValue[] scriptStack = new DynamicValue[scriptObject.StackSize];
             for (int i = 0; i < scriptObject.StackSize; i++)
+            {
                 scriptStack[i] = scriptObject.pStack.GetObjectInArray(-i);
+            }
+
             SetData(scriptObject.InstructionOffset, scriptObject.CurrentStackIndex, scriptStack);
             return Decompile();
         }
@@ -125,9 +127,15 @@ namespace X3TCTools.Bases.Scripting.KCode
         public DynamicValue GetValueInStack(int index)
         {
             if (index > 0)
+            {
                 index = -index;
+            }
+
             if (-index < 0 || -index >= ScriptStack.Length)
+            {
                 return new DynamicValue() { Flag = DynamicValue.FlagType.NULL, Value = 0 };
+            }
+
             return ScriptStack[-index];
         }
 
@@ -142,9 +150,9 @@ namespace X3TCTools.Bases.Scripting.KCode
             string indentString = new string(' ', indent * 4);
             for (int i = 0; i < paramString.Length; i++)
             {
-                switch (CalledFunction.Parameters[i]) 
+                switch (CalledFunction.Parameters[i])
                 {
-                    case FunctionParameter.InStackShortRelativeOffset: paramString[i] = string.Format("Stack{0}({1})",(StartingStackIndex + (short)Parameters[i]), GetValueInStack((StartingStackIndex + (short)Parameters[i]))); break;
+                    case FunctionParameter.InStackShortRelativeOffset: paramString[i] = string.Format("Stack{0}({1})", (StartingStackIndex + (short)Parameters[i]), GetValueInStack((StartingStackIndex + (short)Parameters[i]))); break;
                     default: paramString[i] = Parameters[i].ToString(); break;
                 }
             }
@@ -168,10 +176,13 @@ namespace X3TCTools.Bases.Scripting.KCode
                     break;
             }
             if (Sub != null)
-                foreach (var item in Sub)
+            {
+                foreach (FunctionCallData item in Sub)
                 {
                     line += string.Format("\n{0}", item.ToString(format, indent + 1));
                 }
+            }
+
             return line;
         }
     }
@@ -196,7 +207,7 @@ namespace X3TCTools.Bases.Scripting.KCode
         public int StackIndexChange;
         public string Comments;
 
-        public FunctionData(string name, int address, bool isEnd, FunctionParameter[] parameters, int additionalSkips,int stackIndexChange, string comments)
+        public FunctionData(string name, int address, bool isEnd, FunctionParameter[] parameters, int additionalSkips, int stackIndexChange, string comments)
         {
             Name = name;
             Address = address;
@@ -224,7 +235,7 @@ namespace X3TCTools.Bases.Scripting.KCode
             {
                 case "A": return Address.ToString();
                 case "X": return Address.ToString("X");
-                default: return this.ToString();
+                default: return ToString();
             }
         }
     }

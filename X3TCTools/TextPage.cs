@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
+﻿using Common.Memory;
+using System;
 
 namespace X3TCTools
 {
@@ -68,12 +63,12 @@ namespace X3TCTools
 
         public const int ByteSize = 12;
 
-        public TextEntry[] textEntries 
-        { 
+        public TextEntry[] textEntries
+        {
             get
             {
                 TextEntry[] result = new TextEntry[Count];
-                for(int i = 0; i < Count; i++)
+                for (int i = 0; i < Count; i++)
                 {
                     result[i] = pEntries.GetObjectInArray(i);
                 }

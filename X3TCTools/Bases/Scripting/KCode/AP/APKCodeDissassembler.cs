@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.KCode.AP
 {
@@ -26,10 +23,12 @@ namespace X3TCTools.Bases.Scripting.KCode.AP
                     result.Add(new FunctionCallData() { Address = InstructionOffset, CalledFunction = new FunctionData("GOTO", 0, true, new FunctionParameter[] { FunctionParameter.Int }, 0, 0, ""), Parameters = new object[] { InstructionOffset } });
                     break;
                 }
-                else visitedAddresses.Add(InstructionOffset);
+                else
+                {
+                    visitedAddresses.Add(InstructionOffset);
+                }
 
-
-                var functionData = InterperateInstructionAddress(GetNextFunctionAddress());
+                FunctionData functionData = InterperateInstructionAddress(GetNextFunctionAddress());
 
                 // Parameters
                 object[] functionParams = null;
@@ -39,7 +38,7 @@ namespace X3TCTools.Bases.Scripting.KCode.AP
 
                     for (int i = 0; i < functionParams.Length; i++)
                     {
-                        switch ((APKCodeInstructionAddress)functionData.Address)
+                        switch (functionData.Address)
                         {
                             //case APKCodeFunctionAddress.CopyValueToTop:
                             //    if (i == 0) functionParams[i] = (short)((short)GetNextParameter(functionData.Parameters[i]) - 1);
@@ -61,11 +60,11 @@ namespace X3TCTools.Bases.Scripting.KCode.AP
 
                 // Clone arrays
                 Array.Copy(ScriptStack, stackCopy, stackCopy.Length);
-                var functionCallDataStackClone = new DynamicValue[ScriptStack.Length];
+                DynamicValue[] functionCallDataStackClone = new DynamicValue[ScriptStack.Length];
                 Array.Copy(ScriptStack, functionCallDataStackClone, functionCallDataStackClone.Length);
 
                 // Check for branches or any other special behaviour.
-                switch ((APKCodeInstructionAddress)functionData.Address)
+                switch (functionData.Address)
                 {
                     //case TCKCodeFunctionAddress.PopMultiple: StackOffset += (short)functionParams[0]; break;
                     //
@@ -79,17 +78,22 @@ namespace X3TCTools.Bases.Scripting.KCode.AP
                 result.Add(new FunctionCallData() { Address = baseInstructionOffset, StartingStackIndex = baseStackOffset, CalledFunction = functionData, Parameters = functionParams, Sub = subCalls, ScriptStack = functionCallDataStackClone });
 
 
-                if (functionData.IsEnd) break;
+                if (functionData.IsEnd)
+                {
+                    break;
+                }
             }
             return result.ToArray();
         }
 
         protected override FunctionData InterperateInstructionAddress(int functionAddress)
         {
-            foreach (var item in functions)
+            foreach (FunctionData item in functions)
             {
                 if (item.Address == functionAddress)
+                {
                     return item;
+                }
             }
             return new FunctionData("UNDEFINED[0x" + functionAddress.ToString("X") + "]", functionAddress, true, new FunctionParameter[0], 0, 0, "Function not defined. Unable to continue");
         }

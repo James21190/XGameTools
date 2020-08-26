@@ -1,10 +1,6 @@
 ﻿using Common.Memory;
 using Common.Vector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCTools.SectorObjects
 {
@@ -23,12 +19,12 @@ namespace X3TCTools.SectorObjects
         public MemoryObjectPointer<MemoryString> pTypeString;
 
         public const int ByteSize = 3512;
-        public override sealed byte[] GetBytes()
+        public sealed override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
 
-        public override sealed int GetByteSize()
+        public sealed override int GetByteSize()
         {
             return ByteSize;
         }
@@ -65,9 +61,17 @@ namespace X3TCTools.SectorObjects
         {
             TypeData typeData = GameHook.GetTypeData((int)mainType, subType);
 
-            var result = (int)Math.Floor(20000m / typeData.RelVal);
-            if (result % 2 != 0) result -= 1;
-            if (result < 2) result = 2;
+            int result = (int)Math.Floor(20000m / typeData.RelVal);
+            if (result % 2 != 0)
+            {
+                result -= 1;
+            }
+
+            if (result < 2)
+            {
+                result = 2;
+            }
+
             return result;
         }
 
@@ -113,15 +117,21 @@ namespace X3TCTools.SectorObjects
         /// <returns></returns>
         public static int GetPrice(SectorObject.Main_Type mainType, int subType, decimal percentPrice)
         {
-            var typeData = GameHook.GetTypeData((int)mainType, subType);
-            var price = GetPriceAsCredits(mainType, typeData.RelVal);
+            TypeData typeData = GameHook.GetTypeData((int)mainType, subType);
+            int price = GetPriceAsCredits(mainType, typeData.RelVal);
             decimal fraction = (typeData.PriceRangePercentage / 100m);
             decimal minimum = price * (1 - fraction);
             decimal maximum = price * (1 + fraction);
-            var difference = (maximum - minimum) * percentPrice;
-            var result = minimum + difference;
-            if (percentPrice < 0.5m) return (int)Math.Ceiling(result);
-            else return (int)Math.Floor(result);
+            decimal difference = (maximum - minimum) * percentPrice;
+            decimal result = minimum + difference;
+            if (percentPrice < 0.5m)
+            {
+                return (int)Math.Ceiling(result);
+            }
+            else
+            {
+                return (int)Math.Floor(result);
+            }
         }
     }
 }

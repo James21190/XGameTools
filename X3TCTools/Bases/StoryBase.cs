@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-using Common.Memory;
 using X3TCTools.Bases.Scripting;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
 
@@ -17,7 +13,7 @@ namespace X3TCTools.Bases
         public const int ByteSize = 5648;
 
         public MemoryObjectPointer<HashTable<ScriptObject>> pScriptObjectHashTable;
-        
+
         public MemoryObjectPointer<MemoryByte> pInstructionArray;
 
         public int FunctionArrayCount;
@@ -39,7 +35,7 @@ namespace X3TCTools.Bases
 
         public StoryBase()
         {
-            for(int i = 0; i < FunctionArray.Length; i++)
+            for (int i = 0; i < FunctionArray.Length; i++)
             {
                 FunctionArray[i] = new EventFunctionStruct();
             }
@@ -51,7 +47,7 @@ namespace X3TCTools.Bases
 
         public TextPage GetTextPage(GameHook.Language language, int pageID)
         {
-            var table = TextHashTableArray[(int)language].obj;
+            HashTable<TextPage> table = TextHashTableArray[(int)language].obj;
             return table.GetObject(pageID);
         }
 
@@ -89,25 +85,27 @@ namespace X3TCTools.Bases
             Regex regex = new Regex(@"\{.*?\}");
             MatchCollection matches = regex.Matches(txt);
 
-            foreach(Match match in matches)
+            foreach (Match match in matches)
             {
-                var numbers = match.Value.Trim('{','}').Split(',');
-                var replacement = GetText(language, Convert.ToInt32(numbers[0]), Convert.ToInt32(numbers[1]));
-                if(!string.IsNullOrWhiteSpace(replacement))
+                string[] numbers = match.Value.Trim('{', '}').Split(',');
+                string replacement = GetText(language, Convert.ToInt32(numbers[0]), Convert.ToInt32(numbers[1]));
+                if (!string.IsNullOrWhiteSpace(replacement))
+                {
                     txt = txt.Replace(match.Value, "(" + replacement + ")");
+                }
             }
             return txt;
         }
 
         public EventObject GetEventObject(int ID)
         {
-            var value = ID < 0 ? -ID - 1 : ID;
+            int value = ID < 0 ? -ID - 1 : ID;
             return pEventObjectHashTable.obj.GetObject(value);
         }
 
         public ScriptMemoryObject GetEventObjectScriptingVariables(int ID)
         {
-            var obj = new ScriptMemoryObject();
+            ScriptMemoryObject obj = new ScriptMemoryObject();
             obj.SetLocation(m_hProcess, GetEventObject(ID).pScriptVariableArr.address);
             obj.ReloadFromMemory();
             return obj;
@@ -115,17 +113,17 @@ namespace X3TCTools.Bases
 
         public ScriptObject[] GetScriptObjectsWithReferenceTo(int EventObjectID)
         {
-            var negativeID = EventObjectID < 0 ? EventObjectID : -1 - EventObjectID;
+            int negativeID = EventObjectID < 0 ? EventObjectID : -1 - EventObjectID;
             List<ScriptObject> results = new List<ScriptObject>();
 
-            foreach (var id in pScriptObjectHashTable.obj.ScanContents())
+            foreach (int id in pScriptObjectHashTable.obj.ScanContents())
             {
                 try
                 {
-                    var ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
-                    var EventObject = ScriptObject.pEventObject.obj;
+                    ScriptObject ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
+                    EventObject EventObject = ScriptObject.pEventObject.obj;
                     if (EventObject.NegativeID == negativeID)
-                    { 
+                    {
                         results.Add(ScriptObject);
                     }
                 }
@@ -151,10 +149,10 @@ namespace X3TCTools.Bases
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
             pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
-            
+
             FunctionArrayCount = collection.PopInt(0x2c);
             FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);
 
@@ -163,7 +161,7 @@ namespace X3TCTools.Bases
             pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);
             pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptObject>>(0x1434);
 
-            pScriptingTextObject_HashTable = collection.PopIMemoryObject <MemoryObjectPointer<HashTable<ScriptingTextObject>>>(0x15f8);
+            pScriptingTextObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTextObject>>>(0x15f8);
             pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>();
             pScriptingHashTableObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingHashTableObject>>>();
         }

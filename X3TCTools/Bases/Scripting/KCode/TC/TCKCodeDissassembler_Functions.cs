@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace X3TCTools.Bases.Scripting.KCode.TC
+﻿namespace X3TCTools.Bases.Scripting.KCode.TC
 {
     public partial class TCKCodeDissassembler
     {
@@ -16,7 +10,7 @@ namespace X3TCTools.Bases.Scripting.KCode.TC
             Push3 = 0x004a2dd4,
             PushByte = 0x004a2de6,
             PushShort = 0x004a2de6,
-            PushInt = 0x004A2E0E, 
+            PushInt = 0x004A2E0E,
             PushNewDynamicValue0xe = 0x004a2e21,
             JumpIfTrue6 = 0x004A4932,
             JumpIfFalse6 = 0x004a4949,

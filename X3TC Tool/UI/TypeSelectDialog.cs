@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.SectorObjects;
@@ -42,7 +35,9 @@ namespace X3TC_Tool.UI
         private void TypeSelectDialog_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            {
                 comboBox1.Items.Add(((SectorObject.Main_Type)i).ToString());
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,16 +45,19 @@ namespace X3TC_Tool.UI
             comboBox2.Items.Clear();
             comboBox2.SelectedIndex = -1;
 
-            if(comboBox1.SelectedIndex == -1)
+            if (comboBox1.SelectedIndex == -1)
             {
                 comboBox2.Enabled = false;
                 return;
             }
 
-            var typeCount = GameHook.GetTypeDataCount(comboBox1.SelectedIndex);
-            
+            int typeCount = GameHook.GetTypeDataCount(comboBox1.SelectedIndex);
+
             for (int i = 0; i < typeCount; i++)
-                comboBox2.Items.Add((SectorObject.GetSubTypeAsString((SectorObject.Main_Type)comboBox1.SelectedIndex,i)));
+            {
+                comboBox2.Items.Add((SectorObject.GetSubTypeAsString((SectorObject.Main_Type)comboBox1.SelectedIndex, i)));
+            }
+
             comboBox2.Enabled = true;
         }
 
@@ -69,7 +67,7 @@ namespace X3TC_Tool.UI
             SubType = comboBox2.SelectedIndex;
             ParentID = Convert.ToInt32(numericUpDown1.Value);
             Done = true;
-            this.Close();
+            Close();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)

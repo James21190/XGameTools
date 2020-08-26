@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
     public class ScriptMemoryObject_TC_Ship : ScriptMemoryObject, IScriptMemoryObject_Ship
     {
-        public int SubType { get { return GetVariableValue((int)TC_Ship_Variables.SubType); } }
+        public int SubType => GetVariableValue((int)TC_Ship_Variables.SubType);
         public CargoEntry[] CargoEntries
         {
             get
             {
-                var cargoItems = GetVariable((int)TC_Ship_Variables.Cargo).GetAsHashTableObject();
+                ScriptingHashTableObject cargoItems = GetVariable((int)TC_Ship_Variables.Cargo).GetAsHashTableObject();
                 CargoEntry[] entries = new CargoEntry[cargoItems.hashTable.Count];
                 int i = 0;
-                foreach (var id in cargoItems.hashTable.ScanContents())
+                foreach (DynamicValue id in cargoItems.hashTable.ScanContents())
                 {
                     entries[i++] = new CargoEntry()
                     {
@@ -30,19 +25,13 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
                 return entries;
             }
         }
-        public int PreviousSectorEventObjectID { get { return GetVariableValue((int)TC_Ship_Variables.PreviousSectorEventObjectID); } }
-        public EventObject PreviousSectorEventObject { get { return GameHook.storyBase.GetEventObject(PreviousSectorEventObjectID); } }
+        public int PreviousSectorEventObjectID => GetVariableValue((int)TC_Ship_Variables.PreviousSectorEventObjectID);
+        public EventObject PreviousSectorEventObject => GameHook.storyBase.GetEventObject(PreviousSectorEventObjectID);
 
-        public int CurrentSectorEventObjectID { get { return GetVariableValue((int)TC_Ship_Variables.CurrentSectorEventObjectID); } }
-        public EventObject CurrentSectorEventObject { get { return GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID); } }
+        public int CurrentSectorEventObjectID => GetVariableValue((int)TC_Ship_Variables.CurrentSectorEventObjectID);
+        public EventObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
 
-        public bool IsValid
-        {
-            get
-            {
-                return SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
-            }
-        }
+        public bool IsValid => SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
 
         public int OwnerDataEventObjectID => throw new NotImplementedException();
 

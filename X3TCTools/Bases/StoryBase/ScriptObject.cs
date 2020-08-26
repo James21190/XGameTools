@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
-
+﻿using Common.Memory;
+using System;
 using X3TCTools.Bases.Scripting;
 using X3TCTools.Bases.Scripting.KCode;
 using X3TCTools.Bases.Scripting.KCode.AP;
 using X3TCTools.Bases.Scripting.KCode.TC;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases
 {
@@ -37,7 +31,7 @@ namespace X3TCTools.Bases
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(pNext);
             collection.Append(pPrevious);
             collection.Append(ID);
@@ -53,7 +47,7 @@ namespace X3TCTools.Bases
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
             pNext.address = collection.PopIntPtr();
             pPrevious.address = collection.PopIntPtr();
             ID = collection.PopInt();
@@ -85,7 +79,7 @@ namespace X3TCTools.Bases
         public override string ToString()
         {
             KCodeDissassembler dissassembler;
-            switch(GameHook.GameVersion)
+            switch (GameHook.GameVersion)
             {
                 case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
                 case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;

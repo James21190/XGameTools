@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
+﻿using Common.Memory;
 using Common.Vector;
-using X3TCTools.SectorObjects.Meta;
-
+using System;
+using System.Collections.Generic;
 using X3TCTools.Bases.Scripting;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
-using X3TCTools.Bases;
+using X3TCTools.SectorObjects.Meta;
 
 namespace X3TCTools.SectorObjects
 {
     public partial class SectorObject : MemoryObject, IComparable
-    {        
-        public bool IsValid
-        {
-            get
-            {
-                return (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero && (int)MainType < MAIN_TYPE_COUNT);
-            }
-        }
+    {
+        public bool IsValid => (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero && (int)MainType < MAIN_TYPE_COUNT);
 
         #region Memory Fields
         public MemoryObjectPointer<SectorObject> pNext;
@@ -87,8 +75,8 @@ namespace X3TCTools.SectorObjects
 
         #endregion
 
-        public EventObject EventObject { get { return GameHook.storyBase.GetEventObject(EventObjectID); } }
-        public decimal[] MetricPosition { get { return new decimal[]{ (decimal)Position_Copy.X / 500000, (decimal)Position_Copy.Y / 500000, (decimal)Position_Copy.Z / 500000 }; } }
+        public EventObject EventObject => GameHook.storyBase.GetEventObject(EventObjectID);
+        public decimal[] MetricPosition => new decimal[] { (decimal)Position_Copy.X / 500000, (decimal)Position_Copy.Y / 500000, (decimal)Position_Copy.Z / 500000 };
 
         public const int ByteSize = 304;
 
@@ -108,7 +96,7 @@ namespace X3TCTools.SectorObjects
         public ISectorObjectMeta GetMeta()
         {
             ISectorObjectMeta meta;
-            switch(MainType)
+            switch (MainType)
             {
                 case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
                 case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
@@ -136,16 +124,21 @@ namespace X3TCTools.SectorObjects
         public SectorObject[] GetAllChildrenWithType(int main_Type)
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();
-            var meta = GetMeta();
+            ISectorObjectMeta meta = GetMeta();
             if (meta == null)
+            {
                 return sectorObjects.ToArray();
-            var so = meta.GetFirstChild((SectorObject.Main_Type)main_Type);
-            if(so != null)
+            }
+
+            SectorObject so = meta.GetFirstChild((SectorObject.Main_Type)main_Type);
+            if (so != null)
+            {
                 while (so.IsValid)
                 {
                     sectorObjects.Add(so);
                     so = so.pNext.obj;
                 }
+            }
 
             return sectorObjects.ToArray();
         }
@@ -153,13 +146,15 @@ namespace X3TCTools.SectorObjects
         public SectorObject[] GetAllChildren(bool TraverseDown)
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();
-            for (int main_Type = 0; main_Type < MAIN_TYPE_COUNT; main_Type++) 
+            for (int main_Type = 0; main_Type < MAIN_TYPE_COUNT; main_Type++)
             {
-                foreach(var child in GetAllChildrenWithType(main_Type))
+                foreach (SectorObject child in GetAllChildrenWithType(main_Type))
                 {
                     sectorObjects.Add(child);
                     if (TraverseDown)
+                    {
                         sectorObjects.AddRange(child.GetAllChildren(true));
+                    }
                 }
             }
 
@@ -170,7 +165,7 @@ namespace X3TCTools.SectorObjects
 
         public SectorObjectData GetData()
         {
-            var data = new SectorObjectData();
+            SectorObjectData data = new SectorObjectData();
             data.SetLocation(m_hProcess, pData.address);
             return data;
 
@@ -180,7 +175,7 @@ namespace X3TCTools.SectorObjects
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
 
             collection.Append(pNext.address);
             collection.Append(pPrevious.address);
@@ -253,7 +248,7 @@ namespace X3TCTools.SectorObjects
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            ObjectByteList collection = new ObjectByteList(Memory);
 
             collection.PopFirst(ref pNext);
             collection.PopFirst(ref pPrevious);
@@ -337,45 +332,78 @@ namespace X3TCTools.SectorObjects
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            pNext.SetLocation(hProcess,address);
-            pPrevious.SetLocation(hProcess, address+0x4);
-            pParent.SetLocation(hProcess, address+0x54);
+            pNext.SetLocation(hProcess, address);
+            pPrevious.SetLocation(hProcess, address + 0x4);
+            pParent.SetLocation(hProcess, address + 0x54);
             DynamicValue.SetLocation(hProcess, address);
-            pData.SetLocation(hProcess, address+0x70);
+            pData.SetLocation(hProcess, address + 0x70);
 
         }
 
         public int CompareTo(object obj)
         {
-            if (obj == null) return 1;
+            if (obj == null)
+            {
+                return 1;
+            }
 
-            if (!(obj is SectorObject)) throw new Exception("Type missmatch");
+            if (!(obj is SectorObject))
+            {
+                throw new Exception("Type missmatch");
+            }
 
-            var type = (SectorObject)obj;
+            SectorObject type = (SectorObject)obj;
 
-            if (this.MainType > type.MainType) return -1;
-            if (this.MainType < type.MainType) return 1;
+            if (MainType > type.MainType)
+            {
+                return -1;
+            }
 
-            if (this.SubType > type.SubType) return -1;
-            if (this.SubType < type.SubType) return 1;
+            if (MainType < type.MainType)
+            {
+                return 1;
+            }
 
-            if (this.ObjectID > type.ObjectID) return -1;
-            if (this.ObjectID < type.ObjectID) return 1;
+            if (SubType > type.SubType)
+            {
+                return -1;
+            }
+
+            if (SubType < type.SubType)
+            {
+                return 1;
+            }
+
+            if (ObjectID > type.ObjectID)
+            {
+                return -1;
+            }
+
+            if (ObjectID < type.ObjectID)
+            {
+                return 1;
+            }
 
             return 0;
         }
 
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
+            if (obj == null)
+            {
+                return false;
+            }
 
-            if (!(obj is SectorObject)) throw new Exception("Type missmatch");
+            if (!(obj is SectorObject))
+            {
+                throw new Exception("Type missmatch");
+            }
 
-            var sectorObject = (SectorObject)obj;
+            SectorObject sectorObject = (SectorObject)obj;
             return ObjectID == sectorObject.ObjectID;
         }
 
-        public static bool operator== (SectorObject a, SectorObject b)
+        public static bool operator ==(SectorObject a, SectorObject b)
         {
             if (object.ReferenceEquals(a, null))
             {
@@ -384,7 +412,7 @@ namespace X3TCTools.SectorObjects
 
             return a.Equals(b);
         }
-        public static bool operator!=(SectorObject a, SectorObject b)
+        public static bool operator !=(SectorObject a, SectorObject b)
         {
             return !(a == b);
         }

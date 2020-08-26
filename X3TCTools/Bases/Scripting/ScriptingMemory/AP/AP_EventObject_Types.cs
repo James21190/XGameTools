@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace X3TCTools.Bases.Scripting
+﻿namespace X3TCTools.Bases.Scripting
 {
     public partial class EventObject
     {
         public enum AP_EventObject_Type
         {
-            RaceData_Player = 400,
-            RaceData,
+            RaceData = 400,
+            RaceData_2,
+            RaceData_Player,
+            RaceData_3,
+            RaceData_4,
+            RaceData_5,
 
             Sector = 2001,
             Planet,
@@ -24,7 +22,8 @@ namespace X3TCTools.Bases.Scripting
 
             Ship_2 = 2024,
 
-            Ship_Player = 2026,
+            Ship_6 = 2025,
+            Ship_Player,
 
             Ship_3 = 2030,
             Ship_4,

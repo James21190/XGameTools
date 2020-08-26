@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
+﻿using Common.Memory;
+using System;
 
 namespace X3TCTools
 {
@@ -13,7 +8,7 @@ namespace X3TCTools
     /// Notabaly used for children of an object.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LinkedListStart<T> : MemoryObject where T:IMemoryObject, new()
+    public class LinkedListStart<T> : MemoryObject where T : IMemoryObject, new()
     {
 
         public const int ByteSize = 12;
@@ -27,7 +22,7 @@ namespace X3TCTools
 
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(pFirst);
             collection.Append(NullValue);
             collection.Append(pLast);
@@ -41,7 +36,7 @@ namespace X3TCTools
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
             pFirst = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();

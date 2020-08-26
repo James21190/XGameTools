@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
@@ -25,7 +18,11 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject CargoHashTable => throw new NotImplementedException();
 
-        public CargoEntry[] Cargo => throw new NotImplementedException();
+        public CargoEntry[] CargoEntries => throw new NotImplementedException();
+
+        public int OwnerDataEventObjectID => throw new NotImplementedException();
+
+        public EventObject OwnerDataEventObject => throw new NotImplementedException();
 
         public override string GetVariableName(int index)
         {

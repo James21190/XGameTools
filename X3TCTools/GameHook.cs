@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Common.Memory;
+using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
-using X3TCTools.SectorObjects;
-using X3TCTools.Bases;
 using System.Drawing;
+using X3TCTools.Bases;
+using X3TCTools.SectorObjects;
 
 namespace X3TCTools
 {
@@ -68,26 +64,26 @@ namespace X3TCTools
         /// <summary>
         /// An up to date representation of the game's SectorObjectManager.
         /// </summary>
-        public static SectorObjectManager sectorObjectManager { get { return ppSectorObjectManager.obj.obj; } }
+        public static SectorObjectManager sectorObjectManager => ppSectorObjectManager.obj.obj;
         /// <summary>
         /// An up to date representation of the game's SystemBase.
         /// </summary>
-        public static SystemBase systemBase { get { return ppSystemBase.obj.obj; } }
+        public static SystemBase systemBase => ppSystemBase.obj.obj;
         /// <summary>
         /// An up to date representation of the game's GateSystemObject.
         /// </summary>
-        public static GateSystemObject gateSystemObject { get { return ppGateSystemObject.obj.obj; } }
+        public static GateSystemObject gateSystemObject => ppGateSystemObject.obj.obj;
         /// <summary>
         /// An up to date representation of the game's StoryBase.
         /// </summary>
-        public static StoryBase storyBase { get { var sbase = ppStoryBase.obj.obj; return sbase; } }
+        public static StoryBase storyBase { get { StoryBase sbase = ppStoryBase.obj.obj; return sbase; } }
 
-        public static InputBase inputBase { get { return ppInputBase.obj.obj; } }
-        public static CameraBase cameraBase { get { return ppCameraBase.obj.obj; } }
+        public static InputBase inputBase => ppInputBase.obj.obj;
+        public static CameraBase cameraBase => ppCameraBase.obj.obj;
 
         public static TypeData GetTypeData(int MainType, int SubType)
         {
-            switch ((SectorObject.Main_Type)MainType) 
+            switch ((SectorObject.Main_Type)MainType)
             {
                 case SectorObject.Main_Type.Bullet: return ppTypeData_Bullet.obj.GetObjectInArray(SubType);
 
@@ -141,28 +137,33 @@ namespace X3TCTools
         public static EventManager eventManager { private set; get; }
 
         private static GameVersions m_GameVersion;
-        public static GameVersions GameVersion { get { return m_GameVersion; } private set { if (m_GameVersion == GameVersions.None) m_GameVersion = value; } }
+        public static GameVersions GameVersion { get => m_GameVersion; private set { if (m_GameVersion == GameVersions.None) { m_GameVersion = value; } } }
 
         public static new IntPtr hProcess;
 
         public GameHook(Process process, GameVersions gameVersion)
         {
             if (GameVersion == GameVersions.None)
+            {
                 GameVersion = gameVersion;
+            }
             else if (GameVersion != gameVersion)
+            {
                 throw new ArgumentException("Game version consistant between game hooks.");
+            }
             // Get a handle to the process
             HookIntoProcess(process);
             hProcess = base.hProcess;
 
-            switch (GameVersion) {
+            switch (GameVersion)
+            {
                 case GameVersions.X3TC:
                     // Create references to MemoryObjects
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorObjectManager);
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
-                    
+
                     #region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
 
@@ -303,7 +304,9 @@ namespace X3TCTools
         ~GameHook()
         {
             if (hProcess != IntPtr.Zero)
+            {
                 Unhook();
+            }
         }
 
         public void InitGameCodeRunner()
@@ -314,121 +317,121 @@ namespace X3TCTools
         public enum Language
         {
             Russian = 7,
-            
+
             French = 33,
             Spanish,
-            
+
             Italian = 39,
-            
+
             Czech = 42,
-            
+
             English = 44,
-            
+
             Polish = 48,
             German,
         }
 
         public enum GlobalAddressesX3TC
         {
-            pSystemBase =               0x00603064,
-            pGateSystemObject =         0x00604634,
-            pSectorObjectManager =      0x00604640,
-            pCockpitBase =              0x00604638,
-            pStoryBase =                0x00604718,
-            pInputBase =                0x0057FDA0,
-            pCameraBase =               0x0060464c,
-            ProcessEventSwitchArray =   0x004a4d18,
-            ProcessEventSwitch =        0x004a4b20,
+            pSystemBase = 0x00603064,
+            pGateSystemObject = 0x00604634,
+            pSectorObjectManager = 0x00604640,
+            pCockpitBase = 0x00604638,
+            pStoryBase = 0x00604718,
+            pInputBase = 0x0057FDA0,
+            pCameraBase = 0x0060464c,
+            ProcessEventSwitchArray = 0x004a4d18,
+            ProcessEventSwitch = 0x004a4b20,
 
             #region TypeData
-            pTypeData_Bullet =          0x006030e8,
-            pTypeData_1 =               0x006030ec,
-            pTypeData_Background =      0x006030f0,
-            pTypeData_Sun =             0x006030f4,
-            pTypeData_Planet =          0x006030f8,
-            pTypeData_Dock =            0x006030FC,
-            pTypeData_Factory =         0x00603100,
-            pTypeData_Ship =            0x00603104,
-            pTypeData_Laser =           0x00603108,
-            pTypeData_Shield =          0x0060310c,
-            pTypeData_10=               0x00603110,
-            pTypeData_11=               0x00603114,
-            pTypeData_12=               0x00603118,
-            pTypeData_13=               0x0060311c,
-            pTypeData_14=               0x00603120,
-            pTypeData_15=               0x00603124,
-            pTypeData_16 =              0x00603128,
-            pTypeData_17 =              0x0060312c,
-            pTypeData_18 =              0x00603130,
-            pTypeData_19 =              0x00603134,
-            pTypeData_20 =              0x00603138,
-            pTypeData_21 =              0x0060313c,
-            pTypeData_22 =              0x00603140,
-            pTypeData_23 =              0x00603144,
-            pTypeData_24 =              0x00603148,
-            pTypeData_25 =              0x0060314c,
-            pTypeData_26 =              0x00603150,
-            pTypeData_27 =              0x00603154,
-            pTypeData_28 =              0x00603158,
-            pTypeData_29 =              0x0060315c,
-            pTypeData_30 =              0x00603160,
-            pTypeData_31 =              0x00603164,
-            pTypeDataCountArray =       0x00603168,
+            pTypeData_Bullet = 0x006030e8,
+            pTypeData_1 = 0x006030ec,
+            pTypeData_Background = 0x006030f0,
+            pTypeData_Sun = 0x006030f4,
+            pTypeData_Planet = 0x006030f8,
+            pTypeData_Dock = 0x006030FC,
+            pTypeData_Factory = 0x00603100,
+            pTypeData_Ship = 0x00603104,
+            pTypeData_Laser = 0x00603108,
+            pTypeData_Shield = 0x0060310c,
+            pTypeData_10 = 0x00603110,
+            pTypeData_11 = 0x00603114,
+            pTypeData_12 = 0x00603118,
+            pTypeData_13 = 0x0060311c,
+            pTypeData_14 = 0x00603120,
+            pTypeData_15 = 0x00603124,
+            pTypeData_16 = 0x00603128,
+            pTypeData_17 = 0x0060312c,
+            pTypeData_18 = 0x00603130,
+            pTypeData_19 = 0x00603134,
+            pTypeData_20 = 0x00603138,
+            pTypeData_21 = 0x0060313c,
+            pTypeData_22 = 0x00603140,
+            pTypeData_23 = 0x00603144,
+            pTypeData_24 = 0x00603148,
+            pTypeData_25 = 0x0060314c,
+            pTypeData_26 = 0x00603150,
+            pTypeData_27 = 0x00603154,
+            pTypeData_28 = 0x00603158,
+            pTypeData_29 = 0x0060315c,
+            pTypeData_30 = 0x00603160,
+            pTypeData_31 = 0x00603164,
+            pTypeDataCountArray = 0x00603168,
             #endregion
 
-            BytesAllocated =            0x00604728,
+            BytesAllocated = 0x00604728,
         }
 
         public enum GlobalAddressesX3AP
         {
-            pSystemBase =               0x00609104,
-            pGateSystemObject =         0x0060a6d4,
-            pSectorObjectManager =      0x0060a6e0,
-            pCockpitBase =              0x0060a6d8,
-            pStoryBase =                0x0060a7b8,
-            pInputBase =                0x00581e30,
+            pSystemBase = 0x00609104,
+            pGateSystemObject = 0x0060a6d4,
+            pSectorObjectManager = 0x0060a6e0,
+            pCockpitBase = 0x0060a6d8,
+            pStoryBase = 0x0060a7b8,
+            pInputBase = 0x00581e30,
             //pCameraBase = 0,
-            ProcessEventSwitchArray =   0x004a5aa8,
-            ProcessEventSwitch =        0x004a58b0,
+            ProcessEventSwitchArray = 0x004a5aa8,
+            ProcessEventSwitch = 0x004a58b0,
 
             #region TypeData
-            pTypeData_Bullet =          0x00609188,
-            pTypeData_1 =               0x0060918c,
-            pTypeData_Background =      0x00609190,
-            pTypeData_Sun =             0x00609194,
-            pTypeData_Planet =          0x00609198,
-            pTypeData_Dock =            0x0060919c,
-            pTypeData_Factory =         0x006091a0,
-            pTypeData_Ship =            0x006091a4,
-            pTypeData_Laser =           0x006091a8,
-            pTypeData_Shield =          0x006091ac,
-            pTypeData_10 =              0x006091b0,
-            pTypeData_11 =              0x006091b4,
-            pTypeData_12 =              0x006091b8,
-            pTypeData_13 =              0x006091bc,
-            pTypeData_14 =              0x006091c0,
-            pTypeData_15 =              0x006091c4,
-            pTypeData_16 =              0x006091c8,
-            pTypeData_17 =              0x006091cc,
-            pTypeData_18 =              0x006091d0,
-            pTypeData_19 =              0x006091d4,
-            pTypeData_20 =              0x006091d8,
-            pTypeData_21 =              0x006091dc,
-            pTypeData_22 =              0x006091e0,
-            pTypeData_23 =              0x006091e4,
-            pTypeData_24 =              0x006091e8,
-            pTypeData_25 =              0x006091ec,
-            pTypeData_26 =              0x006091f0,
-            pTypeData_27 =              0x006091f4,
-            pTypeData_28 =              0x006091f8,
-            pTypeData_29 =              0x006091fc,
-            pTypeData_30 =              0x00609200,
-            pTypeData_31 =              0x00609204,
-            pTypeDataCountArray =       0x00609208,
+            pTypeData_Bullet = 0x00609188,
+            pTypeData_1 = 0x0060918c,
+            pTypeData_Background = 0x00609190,
+            pTypeData_Sun = 0x00609194,
+            pTypeData_Planet = 0x00609198,
+            pTypeData_Dock = 0x0060919c,
+            pTypeData_Factory = 0x006091a0,
+            pTypeData_Ship = 0x006091a4,
+            pTypeData_Laser = 0x006091a8,
+            pTypeData_Shield = 0x006091ac,
+            pTypeData_10 = 0x006091b0,
+            pTypeData_11 = 0x006091b4,
+            pTypeData_12 = 0x006091b8,
+            pTypeData_13 = 0x006091bc,
+            pTypeData_14 = 0x006091c0,
+            pTypeData_15 = 0x006091c4,
+            pTypeData_16 = 0x006091c8,
+            pTypeData_17 = 0x006091cc,
+            pTypeData_18 = 0x006091d0,
+            pTypeData_19 = 0x006091d4,
+            pTypeData_20 = 0x006091d8,
+            pTypeData_21 = 0x006091dc,
+            pTypeData_22 = 0x006091e0,
+            pTypeData_23 = 0x006091e4,
+            pTypeData_24 = 0x006091e8,
+            pTypeData_25 = 0x006091ec,
+            pTypeData_26 = 0x006091f0,
+            pTypeData_27 = 0x006091f4,
+            pTypeData_28 = 0x006091f8,
+            pTypeData_29 = 0x006091fc,
+            pTypeData_30 = 0x00609200,
+            pTypeData_31 = 0x00609204,
+            pTypeDataCountArray = 0x00609208,
             #endregion
 
-            BytesAllocated =            0x0060a7c8,
-            BlocksAllocated =           0x0060abd0,
+            BytesAllocated = 0x0060a7c8,
+            BlocksAllocated = 0x0060abd0,
         }
         public enum RaceID : ushort
         {

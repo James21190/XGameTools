@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.KCode.TC
 {
@@ -10,7 +7,7 @@ namespace X3TCTools.Bases.Scripting.KCode.TC
     {
 
         protected override FunctionCallData[] _Decompile(ref List<int> visitedAddresses)
-        {           
+        {
             List<FunctionCallData> result = new List<FunctionCallData>();
             TCKCodeDissassembler dissassembler = new TCKCodeDissassembler();
             DynamicValue[] stackCopy = new DynamicValue[ScriptStack.Length];
@@ -21,33 +18,41 @@ namespace X3TCTools.Bases.Scripting.KCode.TC
                 int baseStackOffset = StackOffset;
 
                 // Check if address has already been decompiled
-                if (visitedAddresses.Contains(InstructionOffset)) {
+                if (visitedAddresses.Contains(InstructionOffset))
+                {
                     result.Add(new FunctionCallData() { Address = InstructionOffset, CalledFunction = new FunctionData("GOTO", 0, true, new FunctionParameter[] { FunctionParameter.Int }, 0, 0, ""), Parameters = new object[] { InstructionOffset } });
                     break;
                 }
-                else visitedAddresses.Add(InstructionOffset);
+                else
+                {
+                    visitedAddresses.Add(InstructionOffset);
+                }
 
-
-                var functionData = InterperateInstructionAddress(GetNextFunctionAddress());
+                FunctionData functionData = InterperateInstructionAddress(GetNextFunctionAddress());
 
                 // Parameters
                 object[] functionParams = null;
-                if (functionData.Parameters.Length > 0) {
+                if (functionData.Parameters.Length > 0)
+                {
                     functionParams = new object[functionData.Parameters.Length];
 
                     for (int i = 0; i < functionParams.Length; i++)
                     {
-                        switch ((TCKCodeInstructionAddress)functionData.Address) 
+                        switch ((TCKCodeInstructionAddress)functionData.Address)
                         {
                             case TCKCodeInstructionAddress.CopyValueToTop:
-                                if( i == 0) functionParams[i] = (short)((short)GetNextParameter(functionData.Parameters[i]) - 1);
+                                if (i == 0)
+                                {
+                                    functionParams[i] = (short)((short)GetNextParameter(functionData.Parameters[i]) - 1);
+                                }
+
                                 break;
-                            default:  functionParams[i] = GetNextParameter(functionData.Parameters[i]); break;
+                            default: functionParams[i] = GetNextParameter(functionData.Parameters[i]); break;
                         }
                     }
                 }
 
-                if(functionData.MaunalAddressOffset > 0)
+                if (functionData.MaunalAddressOffset > 0)
                 {
                     InstructionOffset = baseInstructionOffset + functionData.MaunalAddressOffset;
                 }
@@ -59,7 +64,7 @@ namespace X3TCTools.Bases.Scripting.KCode.TC
 
                 // Clone arrays
                 Array.Copy(ScriptStack, stackCopy, stackCopy.Length);
-                var functionCallDataStackClone = new DynamicValue[ScriptStack.Length];
+                DynamicValue[] functionCallDataStackClone = new DynamicValue[ScriptStack.Length];
                 Array.Copy(ScriptStack, functionCallDataStackClone, functionCallDataStackClone.Length);
 
                 // Check for branches or any other special behaviour.
@@ -74,22 +79,27 @@ namespace X3TCTools.Bases.Scripting.KCode.TC
                     case TCKCodeInstructionAddress.JumpIfFalse: subCalls = dissassembler.Decompile((int)functionParams[0], StackOffset, ScriptStack, ref visitedAddresses); break;
                 }
 
-                result.Add(new FunctionCallData() { Address = baseInstructionOffset, StartingStackIndex = baseStackOffset, CalledFunction = functionData, Parameters = functionParams, Sub = subCalls, ScriptStack = functionCallDataStackClone});
+                result.Add(new FunctionCallData() { Address = baseInstructionOffset, StartingStackIndex = baseStackOffset, CalledFunction = functionData, Parameters = functionParams, Sub = subCalls, ScriptStack = functionCallDataStackClone });
 
 
-                if (functionData.IsEnd) break;
+                if (functionData.IsEnd)
+                {
+                    break;
+                }
             }
             return result.ToArray();
         }
 
         protected override FunctionData InterperateInstructionAddress(int functionAddress)
         {
-            foreach(var item in functions)
+            foreach (FunctionData item in functions)
             {
                 if (item.Address == functionAddress)
+                {
                     return item;
+                }
             }
-            return new FunctionData("UNDEFINED[0x"+ functionAddress.ToString("X") + "]", functionAddress, true, new FunctionParameter[0],0,0, "Function not defined. Unable to continue");
+            return new FunctionData("UNDEFINED[0x" + functionAddress.ToString("X") + "]", functionAddress, true, new FunctionParameter[0], 0, 0, "Function not defined. Unable to continue");
         }
     }
 }

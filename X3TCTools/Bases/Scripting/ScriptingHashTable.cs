@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
 
 namespace X3TCTools.Bases.Scripting
 {
@@ -37,7 +34,7 @@ namespace X3TCTools.Bases.Scripting
             #region IMemoryObject
             public override byte[] GetBytes()
             {
-                var collection = new ObjectByteList();
+                ObjectByteList collection = new ObjectByteList();
                 collection.Append(pNext.address);
                 collection.Append(id);
                 collection.Append(value);
@@ -51,7 +48,7 @@ namespace X3TCTools.Bases.Scripting
 
             public override void SetData(byte[] Memory)
             {
-                var collection = new ObjectByteList(Memory);
+                ObjectByteList collection = new ObjectByteList(Memory);
                 collection.PopFirst(ref pNext.address);
                 collection.PopFirst(ref id);
                 collection.PopFirst(ref value);
@@ -121,16 +118,20 @@ namespace X3TCTools.Bases.Scripting
             List<DynamicValue> results = new List<DynamicValue>();
             for (int i = 0; i < Length; i++)
             {
-                var pEntry = ppEntry.GetObjectInArray(i);
+                MemoryObjectPointer<Entry> pEntry = ppEntry.GetObjectInArray(i);
                 if (pEntry.IsValid)
                 {
 
-                    var entry = pEntry.obj;
+                    Entry entry = pEntry.obj;
                     while (true)
                     {
                         results.Add(entry.id);
 
-                        if (!entry.pNext.IsValid) break;
+                        if (!entry.pNext.IsValid)
+                        {
+                            break;
+                        }
+
                         entry = entry.pNext.obj;
                     }
 
@@ -147,18 +148,23 @@ namespace X3TCTools.Bases.Scripting
         /// <returns></returns>
         private DynamicValue GetEntry(DynamicValue ID)
         {
-            var index = GetIndex(ID.Value);
+            int index = GetIndex(ID.Value);
 
-            var pEntry = ppEntry.GetObjectInArray(index);
+            MemoryObjectPointer<Entry> pEntry = ppEntry.GetObjectInArray(index);
 
-            if(!pEntry.IsValid)
+            if (!pEntry.IsValid)
+            {
                 throw new Exception("Object not found in hash table");
+            }
 
-            var entry = pEntry.obj;
+            Entry entry = pEntry.obj;
             while (entry.id != ID)
             {
                 if (!entry.pNext.IsValid)
+                {
                     throw new Exception("Object not found in hash table");
+                }
+
                 entry = entry.pNext.obj;
             }
             return entry.value;
@@ -172,7 +178,7 @@ namespace X3TCTools.Bases.Scripting
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(ppEntry.address);
             collection.Append(Length);
             collection.Append(NextAvailableID);
@@ -188,7 +194,7 @@ namespace X3TCTools.Bases.Scripting
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            ObjectByteList collection = new ObjectByteList(Memory);
             collection.PopFirst(ref ppEntry);
             collection.PopFirst(ref Length);
             collection.PopFirst(ref NextAvailableID);

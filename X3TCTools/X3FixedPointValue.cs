@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
+﻿using Common.Memory;
+using System;
 
 namespace X3TCTools
 {
@@ -14,29 +9,17 @@ namespace X3TCTools
 
         public uint FixedPointValue
         {
-            get
-            {
-                return Convert.ToUInt32(m_value * FixedPointUnit);
-            }
-            set
-            {
-                m_value = value / FixedPointUnit;
-            }
+            get => Convert.ToUInt32(m_value * FixedPointUnit);
+            set => m_value = value / FixedPointUnit;
         }
 
         public decimal Value
         {
-            get
-            {
-                return m_value;
-            }
-            set
-            {
-                m_value = value;
-            }
+            get => m_value;
+            set => m_value = value;
         }
 
-        public static decimal ConvertFromInt(int value) 
+        public static decimal ConvertFromInt(int value)
         {
             return value / FixedPointUnit;
         }

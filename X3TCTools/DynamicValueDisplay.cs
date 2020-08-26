@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using X3TCTools;
-using X3TCTools.Bases;
 using X3TCTools.Bases.Scripting;
 
 
@@ -21,24 +12,15 @@ namespace X3TCTools
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
-            get
-            {
-                return groupBox1.Text;
-            }
-            set
-            {
-                groupBox1.Text = value;
-            }
+            get => groupBox1.Text;
+            set => groupBox1.Text = value;
         }
 
         private DynamicValue m_DynamicValue;
-        
+
         public DynamicValue Value
         {
-            get
-            {
-                return m_DynamicValue;
-            }
+            get => m_DynamicValue;
             set
             {
                 m_DynamicValue = value != null ? value : new DynamicValue();
@@ -48,8 +30,10 @@ namespace X3TCTools
 
         private void Reload()
         {
-            if((int)m_DynamicValue.Flag < DynamicValue.FlagCount)
+            if ((int)m_DynamicValue.Flag < DynamicValue.FlagCount)
+            {
                 FlagBox.SelectedIndex = (int)m_DynamicValue.Flag;
+            }
             else
             {
                 FlagBox.Items.Add(m_DynamicValue.Flag);
@@ -61,7 +45,7 @@ namespace X3TCTools
         public DynamicValueDisplay()
         {
             InitializeComponent();
-            for(int i = 0; i < DynamicValue.FlagCount; i++)
+            for (int i = 0; i < DynamicValue.FlagCount; i++)
             {
                 FlagBox.Items.Add((DynamicValue.FlagType)i);
             }

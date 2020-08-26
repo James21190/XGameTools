@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
+﻿using Common.Memory;
+using System;
 
 namespace X3TCTools.SectorObjects.Meta
 {
@@ -14,7 +9,7 @@ namespace X3TCTools.SectorObjects.Meta
 
         public SectorObjectMetaWithChildren()
         {
-            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
             {
                 Children[i] = new LinkedListStart<SectorObject>();
             }
@@ -27,8 +22,12 @@ namespace X3TCTools.SectorObjects.Meta
         /// <returns></returns>
         public SectorObject GetFirstChild(SectorObject.Main_Type main_Type)
         {
-            var list = Children[(int)main_Type];
-            if (!list.pFirst.IsValid || !list.pFirst.obj.IsValid) return null;
+            LinkedListStart<SectorObject> list = Children[(int)main_Type];
+            if (!list.pFirst.IsValid || !list.pFirst.obj.IsValid)
+            {
+                return null;
+            }
+
             return list.pFirst.obj;
         }
 
@@ -39,23 +38,27 @@ namespace X3TCTools.SectorObjects.Meta
         /// <returns></returns>
         public SectorObject GetLastChild(SectorObject.Main_Type main_Type)
         {
-            var list = Children[(int)main_Type];
-            if (!list.pLast.IsValid || !list.pLast.obj.IsValid) return null;
+            LinkedListStart<SectorObject> list = Children[(int)main_Type];
+            if (!list.pLast.IsValid || !list.pLast.obj.IsValid)
+            {
+                return null;
+            }
+
             return list.pLast.obj;
         }
 
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
 
             collection.Append(Children);
-            
+
             return collection.GetBytes();
         }
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(SectorObject.MAIN_TYPE_COUNT);
 
@@ -65,7 +68,7 @@ namespace X3TCTools.SectorObjects.Meta
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
             {
                 Children[i].SetLocation(hProcess, address + LinkedListStart<SectorObject>.ByteSize * i);
             }

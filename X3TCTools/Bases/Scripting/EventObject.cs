@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common.Memory;
-
-using X3TCTools.Bases.Scripting;
+﻿using Common.Memory;
+using System;
 using X3TCTools.Bases.Scripting.ScriptingMemory;
-using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
-using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
 
 namespace X3TCTools.Bases.Scripting
 {
@@ -26,13 +17,19 @@ namespace X3TCTools.Bases.Scripting
         public MemoryObjectPointer<EventObjectSub> pSub = new MemoryObjectPointer<EventObjectSub>();
         public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
 
-        public EventObject_Type ObjectType { get
+        public EventObject_Type ObjectType
+        {
+            get
             {
                 switch (GameHook.GameVersion)
                 {
                     case GameHook.GameVersions.X3AP:
                         switch ((AP_EventObject_Type)pSub.obj.ID)
                         {
+                            case AP_EventObject_Type.RaceData_2:
+                            case AP_EventObject_Type.RaceData_3:
+                            case AP_EventObject_Type.RaceData_4:
+                            case AP_EventObject_Type.RaceData_5:
                             case AP_EventObject_Type.RaceData: return EventObject_Type.RaceData;
                             case AP_EventObject_Type.RaceData_Player: return EventObject_Type.RaceData_Player;
 
@@ -57,10 +54,11 @@ namespace X3TCTools.Bases.Scripting
                             case AP_EventObject_Type.Ship_4: return EventObject_Type.Ship_Unknown_4;
                             case AP_EventObject_Type.Ship_5: return EventObject_Type.Ship_Unknown_5;
                             case AP_EventObject_Type.Ship_Player: return EventObject_Type.Ship_Player;
+                            case AP_EventObject_Type.Ship_6: return EventObject_Type.Ship_Unknown_6;
                         }
                         break;
                     case GameHook.GameVersions.X3TC:
-                        switch ((TC_EventObject_Type)pSub.obj.ID)
+                        switch (pSub.obj.ID)
                         {
 
                         }
@@ -70,9 +68,9 @@ namespace X3TCTools.Bases.Scripting
             }
         }
 
-        public T GetScriptVariableArrayAsObject<T>() where T : ScriptMemoryObject,new()
+        public T GetScriptVariableArrayAsObject<T>() where T : ScriptMemoryObject, new()
         {
-            var obj = new T();
+            T obj = new T();
             obj.SetLocation(GameHook.hProcess, pScriptVariableArr.address);
             obj.Resize(pSub.obj.ScriptVariableCount);
             return obj;
@@ -80,7 +78,7 @@ namespace X3TCTools.Bases.Scripting
 
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(NegativeID);
             collection.Append(ReferenceCount);
             collection.Append(pSub);
@@ -104,8 +102,8 @@ namespace X3TCTools.Bases.Scripting
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            pScriptVariableArr.SetLocation(hProcess, address+ 0x8);
-            pSub.SetLocation(hProcess, address+ 0xc);
+            pScriptVariableArr.SetLocation(hProcess, address + 0x8);
+            pSub.SetLocation(hProcess, address + 0xc);
         }
 
     }

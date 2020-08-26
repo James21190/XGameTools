@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace X3TCTools.Bases.Scripting.KCode.TC
+﻿namespace X3TCTools.Bases.Scripting.KCode.TC
 {
     public partial class TCKCodeDissassembler
     {
         public enum TCKCodeFunctionOffsets
         {
             Sector = 535865,
-            
+
             Ship_Standby = 231642,
             Ship_Idling = 709975,
             Ship_Dock_At = 708487,
@@ -30,7 +24,10 @@ namespace X3TCTools.Bases.Scripting.KCode.TC
         public override string GetFunctionName(int functionStartInstructionAddress)
         {
             if (((TCKCodeFunctionOffsets)functionStartInstructionAddress).ToString() == functionStartInstructionAddress.ToString())
+            {
                 return "Unknown function " + functionStartInstructionAddress.ToString();
+            }
+
             return ((TCKCodeFunctionOffsets)functionStartInstructionAddress).ToString();
         }
     }

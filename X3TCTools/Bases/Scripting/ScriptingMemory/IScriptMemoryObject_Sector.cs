@@ -1,9 +1,4 @@
 ﻿using Common.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
@@ -22,6 +17,9 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
 
         int pGateEventObjectHashTableObject { get; }
         ScriptingHashTableObject GateEventObjectHashTableObject { get; }
+
+        int OwnerDataEventObjectID { get; }
+        EventObject OwnerDataEventObject { get; }
 
     }
 }

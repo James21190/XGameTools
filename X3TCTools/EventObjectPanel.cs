@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3TCTools.Bases.Scripting;
 using X3TCTools;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
+using X3TCTools.Bases.Scripting;
 
 namespace X3TCsTool
 {
@@ -22,12 +15,9 @@ namespace X3TCsTool
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public bool ReadOnly 
+        public bool ReadOnly
         {
-            get
-            {
-                 return IDNumericUpDown.ReadOnly;
-            }
+            get => IDNumericUpDown.ReadOnly;
             set
             {
                 IDNumericUpDown.ReadOnly = value;
@@ -37,10 +27,7 @@ namespace X3TCsTool
 
         public EventObject EventObject
         {
-            get
-            {
-                return m_EventObject;
-            }
+            get => m_EventObject;
             set
             {
                 m_EventObject = value;
@@ -54,7 +41,11 @@ namespace X3TCsTool
 
         private void Reload()
         {
-            if (m_EventObject == null) return;
+            if (m_EventObject == null)
+            {
+                return;
+            }
+
             m_EventObject.ReloadFromMemory();
             IDNumericUpDown.Value = m_EventObject.NegativeID;
             AddressBox.Text = m_EventObject.pThis.ToString("X");
@@ -65,7 +56,7 @@ namespace X3TCsTool
 
         private void ReloadSub()
         {
-            var sub = m_EventObject.pSub.obj;
+            EventObjectSub sub = m_EventObject.pSub.obj;
             txtSubAddress.Text = sub.pThis.ToString("X");
             txtSubTypeID.Text = sub.ID.ToString();
             txtSubLength.Text = sub.ScriptVariableCount.ToString();
@@ -77,8 +68,10 @@ namespace X3TCsTool
             try
             {
                 EventObject = GameHook.storyBase.GetEventObject((int)IDNumericUpDown.Value);
-                if(EventObjectLoaded != null)
+                if (EventObjectLoaded != null)
+                {
                     EventObjectLoaded(this, EventArgs.Empty);
+                }
             }
             catch (Exception)
             {

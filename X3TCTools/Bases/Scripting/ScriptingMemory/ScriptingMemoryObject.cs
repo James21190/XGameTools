@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Common;
-using Common.Memory;
+﻿using Common.Memory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory
 {
@@ -74,7 +67,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         #region IMemoryObject
         public sealed override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(Variables);
             return collection.GetBytes();
         }
@@ -86,7 +79,7 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
 
         public sealed override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
             Variables = collection.PopIMemoryObjects<DynamicValue>(VariableCount);
         }
         #endregion

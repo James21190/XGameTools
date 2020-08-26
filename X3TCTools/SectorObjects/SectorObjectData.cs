@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common.Memory;
 using Common.Vector;
-using Common.Memory;
+using System;
 
 namespace X3TCTools.SectorObjects
 {
@@ -163,18 +159,12 @@ namespace X3TCTools.SectorObjects
             MemoryControl.Write(m_hProcess, pThis + 0x80, ModelScale);
         }
 
-        public bool IsValid
-        {
-            get
-            {
-                return pNext.IsValid && pPrevious.IsValid;
-            }
-        }
+        public bool IsValid => pNext.IsValid && pPrevious.IsValid;
 
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
 
             collection.Append(pNext);
             collection.Append(pPrevious);
@@ -328,7 +318,7 @@ namespace X3TCTools.SectorObjects
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
 
             pNext = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
             pPrevious = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
@@ -477,9 +467,9 @@ namespace X3TCTools.SectorObjects
         {
             base.SetLocation(hProcess, address);
             pNext.SetLocation(hProcess, address);
-            pPrevious.SetLocation(hProcess, address+0x4);
-            pFirstChild.SetLocation(hProcess, address+0xC);
-            pLastChild.SetLocation(hProcess, address+0x14);
+            pPrevious.SetLocation(hProcess, address + 0x4);
+            pFirstChild.SetLocation(hProcess, address + 0xC);
+            pLastChild.SetLocation(hProcess, address + 0x14);
         }
         #endregion
     }

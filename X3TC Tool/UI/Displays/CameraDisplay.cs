@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using X3TCTools;
 using X3TCTools.Bases;
-using Common.Memory;
 
 
 namespace X3TC_Tool.UI.Displays
@@ -33,7 +25,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void LoadCamera(IntPtr pCamera)
         {
-            var camera = new Camera();
+            Camera camera = new Camera();
             camera.SetLocation(GameHook.hProcess, pCamera);
             LoadCamera(camera);
         }

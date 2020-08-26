@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace X3TCTools.SectorObjects
@@ -22,9 +18,11 @@ namespace X3TCTools.SectorObjects
 
             public static Full_Type FromInt(int value)
             {
-                var type = new Full_Type();
-                type.MainType = (Main_Type)(value >> 16);
-                type.SubType = value & 0x0000ffff;
+                Full_Type type = new Full_Type
+                {
+                    MainType = (Main_Type)(value >> 16),
+                    SubType = value & 0x0000ffff
+                };
                 return type;
             }
 
@@ -35,17 +33,37 @@ namespace X3TCTools.SectorObjects
 
             public int CompareTo(object obj)
             {
-                if (obj == null) return 1;
+                if (obj == null)
+                {
+                    return 1;
+                }
 
-                if (!(obj is Full_Type)) throw new Exception("Type missmatch");
+                if (!(obj is Full_Type))
+                {
+                    throw new Exception("Type missmatch");
+                }
 
-                var type = (Full_Type)obj;
+                Full_Type type = (Full_Type)obj;
 
-                if (this.MainType > type.MainType) return -1;
-                if (this.MainType < type.MainType) return 1;
+                if (MainType > type.MainType)
+                {
+                    return -1;
+                }
 
-                if (this.SubType > type.SubType) return -1;
-                if (this.SubType < type.SubType) return 1;
+                if (MainType < type.MainType)
+                {
+                    return 1;
+                }
+
+                if (SubType > type.SubType)
+                {
+                    return -1;
+                }
+
+                if (SubType < type.SubType)
+                {
+                    return 1;
+                }
 
                 return 0;
             }
@@ -115,30 +133,42 @@ namespace X3TCTools.SectorObjects
                 default: throw new Exception();
             }
 
-            if (!File.Exists(path)) goto failed;
+            if (!File.Exists(path))
+            {
+                goto failed;
+            }
 
-            var lines = File.ReadAllLines(path);
+            string[] lines = File.ReadAllLines(path);
 
-            if (lines.Length <= SubType) goto failed;
+            if (lines.Length <= SubType)
+            {
+                goto failed;
+            }
 
-            var line = lines[SubType];
+            string line = lines[SubType];
 
-            var names = line.Split(',');
+            string[] names = line.Split(',');
 
-            if (names.Length <= (int)main_Type) goto failed;
+            if (names.Length <= (int)main_Type)
+            {
+                goto failed;
+            }
 
-            var name = names[(int)main_Type];
+            string name = names[(int)main_Type];
 
-            if (string.IsNullOrEmpty(name)) goto failed;
+            if (string.IsNullOrEmpty(name))
+            {
+                goto failed;
+            }
 
             return name;
 
-            failed:
+        failed:
             return SubType.ToString();
         }
 
         #region TypeData
-        
+
         #endregion
     }
 }

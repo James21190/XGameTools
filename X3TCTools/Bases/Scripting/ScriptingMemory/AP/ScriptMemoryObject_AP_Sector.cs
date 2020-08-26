@@ -1,49 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 {
     public class ScriptMemoryObject_AP_Sector : ScriptMemoryObject, IScriptMemoryObject_Sector
     {
-        public int SectorX
-        {
-            get
-            {
-                return GetVariableValue((int)AP_Sector_Variables.Sector_X);
-            }
-        }
+        public int SectorX => GetVariableValue((int)AP_Sector_Variables.Sector_X);
 
-        public int SectorY { get
-            {
-                return GetVariableValue((int)AP_Sector_Variables.Sector_Y);
-            } 
-        }
+        public int SectorY => GetVariableValue((int)AP_Sector_Variables.Sector_Y);
 
-        public int BackgroundID
-        {
-            get
-            {
-                return GetVariableValue((int)AP_Sector_Variables.BackgroundID);
-            }
-        }
+        public int BackgroundID => GetVariableValue((int)AP_Sector_Variables.BackgroundID);
 
-        public int OwningRaceDataEventObjectID { get { return GetVariableValue((int)AP_Sector_Variables.OwningRaceDataEventObjectID); } }
-        public EventObject OwningRaceDataEventObject { get { return GameHook.storyBase.GetEventObject(OwningRaceDataEventObjectID); } }
+        public int OwningRaceDataEventObjectID => GetVariableValue((int)AP_Sector_Variables.OwningRaceDataEventObjectID);
+        public EventObject OwningRaceDataEventObject => GameHook.storyBase.GetEventObject(OwningRaceDataEventObjectID);
 
-        public int pShipEventObjectHashTableObject { get { return GetVariableValue((int)AP_Sector_Variables.ShipEventObjectIDHashTable); } }
-        public ScriptingHashTableObject ShipEventObjectHashTableObject { get { var table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pShipEventObjectHashTableObject); table.ReloadFromMemory(); return table; } }
+        public int pShipEventObjectHashTableObject => GetVariableValue((int)AP_Sector_Variables.ShipEventObjectIDHashTable);
+        public ScriptingHashTableObject ShipEventObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pShipEventObjectHashTableObject); table.ReloadFromMemory(); return table; } }
 
-        public int pGateEventObjectHashTableObject { get { return GetVariableValue((int)AP_Sector_Variables.GateEventObjectIDHashTable); } }
-        public ScriptingHashTableObject GateEventObjectHashTableObject { get { var table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pGateEventObjectHashTableObject); table.ReloadFromMemory(); return table; } }
+        public int pGateEventObjectHashTableObject => GetVariableValue((int)AP_Sector_Variables.GateEventObjectIDHashTable);
+        public ScriptingHashTableObject GateEventObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pGateEventObjectHashTableObject); table.ReloadFromMemory(); return table; } }
 
-        public bool IsValid
-        {
-            get { return SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height; }
-        }
+        public bool IsValid => SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height;
+
+        public int OwnerDataEventObjectID => GetVariableValue((int)AP_Sector_Variables.OwningRaceDataEventObjectID);
+        public EventObject OwnerDataEventObject => GameHook.storyBase.GetEventObject(OwnerDataEventObjectID);
 
         public ScriptMemoryObject_AP_Sector() : base(56)
         {

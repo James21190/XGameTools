@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using X3TCTools.SectorObjects;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 {
@@ -13,14 +6,14 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
     {
         public const int VariableCount = 9;
 
-        public int ASectorEventObjectID { get { return GetVariableValue((int)TC_RaceData_Variables.ASectorEventObjectID); } }
-        public EventObject ASectorEventObject { get { return GameHook.storyBase.GetEventObject(ASectorEventObjectID); } }
+        public int ASectorEventObjectID => GetVariableValue((int)TC_RaceData_Variables.ASectorEventObjectID);
+        public EventObject ASectorEventObject => GameHook.storyBase.GetEventObject(ASectorEventObjectID);
 
-        public int pOwnedShipEventObjectIDHashTableObject { get { return GetVariableValue((int)TC_RaceData_Variables.OwnedShipEventObjectIDHashTable); } }
-        public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get { var table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
+        public int pOwnedShipEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedShipEventObjectIDHashTable);
+        public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
 
 
-        public GameHook.RaceID RaceID { get { return (GameHook.RaceID)GetVariableValue((int)TC_RaceData_Variables.RaceID); } }
+        public GameHook.RaceID RaceID => (GameHook.RaceID)GetVariableValue((int)TC_RaceData_Variables.RaceID);
 
         public int pOwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
 
