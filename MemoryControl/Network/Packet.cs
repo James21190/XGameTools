@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common.Memory;
+using System;
 using System.IO;
-using System.Net;
-
-using Common.Memory;
 
 namespace Common.Network
 {
@@ -19,12 +13,12 @@ namespace Common.Network
         public void SetData(byte[] data)
         {
             this.data = data;
-            this.dataLength = data.Length;
+            dataLength = data.Length;
         }
 
         public byte[] ToBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(packetType);
             collection.Append(data.Length);
             collection.Append(data);

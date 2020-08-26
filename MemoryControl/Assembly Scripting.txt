@@ -3,7 +3,7 @@
 	'/': Comment
 	'-': Macro
 
-Register:
+Registers:
 	"EAX"
 	"EBX"
 	"ECX"

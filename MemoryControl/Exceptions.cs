@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
-    public class AddressNullException: Exception
+    public class AddressNullException : Exception
     {
         public new string Message = "Game memory pointer is null.";
     }
 
-    public class SystemModCodeMissingException: Exception
+    public class SystemModCodeMissingException : Exception
     {
         public new string Message = "A system mod file is missing.";
     }

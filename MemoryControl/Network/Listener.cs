@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading;
 
 namespace Common.Network
 {
@@ -15,11 +8,11 @@ namespace Common.Network
     /// </summary>
     public class Listener
     {
-        TcpListener m_Listener;
-        TcpClient[] m_Clients;
-        int m_Port;
-        int m_MaxConnections;
-        int m_NextAvailableID = 0;
+        private TcpListener m_Listener;
+        private TcpClient[] m_Clients;
+        private int m_Port;
+        private int m_MaxConnections;
+        private int m_NextAvailableID = 0;
         public Listener(int port, int maxConnections)
         {
             m_Port = port;
@@ -33,17 +26,17 @@ namespace Common.Network
 
         public int ListenForNew()
         {
-            var newClient = m_Listener.AcceptTcpClient();
-            var index = m_NextAvailableID++;
+            TcpClient newClient = m_Listener.AcceptTcpClient();
+            int index = m_NextAvailableID++;
             m_Clients[index] = newClient;
             return index;
         }
 
         public void SendTo(int id, byte[] data)
         {
-            var client = m_Clients[id];
-            var stream = client.GetStream();
-            stream.Write(data,0, data.Length);
+            TcpClient client = m_Clients[id];
+            NetworkStream stream = client.GetStream();
+            stream.Write(data, 0, data.Length);
         }
     }
 }

@@ -14,14 +14,11 @@ namespace Common.Memory
             public readonly byte[] Code;
 
 
-            public int Length { get
-                {
-                    return DataHeaderSize + Code.Length;
-                } }
+            public int Length => DataHeaderSize + Code.Length;
 
             public GameCode(string Path)
             {
-                var data = ScriptAssembler.ParseScript(File.ReadAllLines(Path));
+                ScriptAssembler.ScriptCode data = ScriptAssembler.ParseScript(File.ReadAllLines(Path));
                 DataHeaderSize = data.DataSize;
                 Name = data.Name;
                 IntendedEvent = data.Event;
@@ -38,10 +35,10 @@ namespace Common.Memory
             /// <returns></returns>
             public IntPtr WriteNewToMemory(IntPtr hProcess, byte[] Footer)
             {
-                var pCode = MemoryControl.AllocateMemory(hProcess, 5 + Length + Footer.Length);
+                IntPtr pCode = MemoryControl.AllocateMemory(hProcess, 5 + Length + Footer.Length);
 
                 byte[] buffer = new byte[5 + Length + Footer.Length];
-                for(int i = 0; i < DataHeaderSize; i++)
+                for (int i = 0; i < DataHeaderSize; i++)
                 {
                     buffer[i] = 0;
                 }
@@ -92,11 +89,11 @@ namespace Common.Memory
                 // 0: pNext
                 // 4: pCode
 
-                var pCode = Code.WriteNewToMemory(m_hProcess, new byte[] { 0xc3 });
-                var pEntry = GameEvent.EventMain.WriteNewToMemory(m_hProcess, new byte[] { 0xc3 });
+                IntPtr pCode = Code.WriteNewToMemory(m_hProcess, new byte[] { 0xc3 });
+                IntPtr pEntry = GameEvent.EventMain.WriteNewToMemory(m_hProcess, new byte[] { 0xc3 });
                 if (Count > 0)
                 {
-                    var last = GetIndexPointer(Count - 1);
+                    IntPtr last = GetIndexPointer(Count - 1);
                     MemoryControl.Write(m_hProcess, last, BitConverter.GetBytes((int)pEntry + 8));
                     MemoryControl.Write(m_hProcess, last + 4, BitConverter.GetBytes((int)pCode + Code.DataHeaderSize));
                 }
@@ -131,7 +128,7 @@ namespace Common.Memory
             {
                 m_hProcess = hProcess;
                 this.EventName = EventName;
-                var pInjection = EventMain.WriteNewToMemory(m_hProcess, Footer);
+                IntPtr pInjection = EventMain.WriteNewToMemory(m_hProcess, Footer);
 
                 m_List = new GameCodeList(pInjection, hProcess);
 
@@ -173,7 +170,7 @@ namespace Common.Memory
         public EventManager(IntPtr hProcess)
         {
             m_hProcess = hProcess;
-            
+
         }
 
         public void CreateNewEvent(string EventName, IntPtr Address, byte[] Footer, byte NOPLength)
@@ -183,9 +180,14 @@ namespace Common.Memory
 
         public GameEvent GetEvent(string EventName)
         {
-            foreach (var item in m_Events)
+            foreach (GameEvent item in m_Events)
+            {
                 if (item.EventName == EventName)
+                {
                     return item;
+                }
+            }
+
             throw new Exception("Event not found.");
         }
 
@@ -196,7 +198,7 @@ namespace Common.Memory
 
         public IntPtr Subscribe(string EventName, GameCode Code)
         {
-            var p = GetEvent(EventName).Subscribe(Code);
+            IntPtr p = GetEvent(EventName).Subscribe(Code);
 
             m_Subscriptions.Add(new SubscriptionData()
             {

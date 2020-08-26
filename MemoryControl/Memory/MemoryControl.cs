@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Memory
 {
@@ -19,21 +17,21 @@ namespace Common.Memory
         public static extern int CloseHandle(IntPtr hObject);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+        private static IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr GetModuleHandle(string lpModuleName);
+        private static IntPtr GetModuleHandle(string lpModuleName);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint flAllocationType, uint flProtect);
+        private static IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint flAllocationType, uint flProtect);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern int WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, uint size, int lpNumberOfBytesWritten);
+        private static int WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, uint size, int lpNumberOfBytesWritten);
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+        private static bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttribute, IntPtr dwStackSize, IntPtr lpStartAddress,
+        private static IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttribute, IntPtr dwStackSize, IntPtr lpStartAddress,
             IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
 
         public enum PageProtectionFlags
@@ -76,9 +74,9 @@ namespace Common.Memory
         {
             byte[] buffer = new byte[Bytes];
             int BytesToRead = Bytes;
-            ReadProcessMemory(hProcess, (IntPtr)Address, buffer, Bytes, ref BytesToRead);
+            ReadProcessMemory(hProcess, Address, buffer, Bytes, ref BytesToRead);
             return buffer;
-            
+
         }
 
         /// <summary>
@@ -100,7 +98,7 @@ namespace Common.Memory
         /// <param name="memoryObject"></param>
         public static void ReadIMemoryObject(IntPtr hProcess, IntPtr address, ref IMemoryObject memoryObject)
         {
-            var data = Read(hProcess, address, memoryObject.GetByteSize());
+            byte[] data = Read(hProcess, address, memoryObject.GetByteSize());
             memoryObject.SetData(data);
         }
 
@@ -114,7 +112,7 @@ namespace Common.Memory
         {
             List<byte> bytes = new List<byte>();
             byte value = Read(hProcess, Address, 1)[0];
-            for(int i = 1; value != 0x0; i++)
+            for (int i = 1; value != 0x0; i++)
             {
                 bytes.Add(value);
                 value = Read(hProcess, Address + i, 1)[0];
@@ -136,7 +134,7 @@ namespace Common.Memory
         /// <returns></returns>
         public static MemoryObjectPointer<T> ReadPointer<T>(IntPtr hProcess, IntPtr Address) where T : IMemoryObject, new()
         {
-            return new MemoryObjectPointer<T>(hProcess, (IntPtr)ReadInt(hProcess,Address));
+            return new MemoryObjectPointer<T>(hProcess, (IntPtr)ReadInt(hProcess, Address));
         }
 
         #region Writes
@@ -154,7 +152,7 @@ namespace Common.Memory
 
         public static void Write(IntPtr hProcess, IntPtr baseAddress, IntPtr offset, IMemoryObject memoryObject)
         {
-            var address = (IntPtr)((int)baseAddress + (int)offset);
+            IntPtr address = (IntPtr)((int)baseAddress + (int)offset);
             Write(hProcess, address, memoryObject);
         }
 
@@ -200,7 +198,10 @@ namespace Common.Memory
         public static void CopyToArray(ref byte[] Arr, IMemoryObject memoryObject, int Index)
         {
             if (Index + memoryObject.GetByteSize() > Arr.Length)
+            {
                 throw new IndexOutOfRangeException();
+            }
+
             Array.Copy(memoryObject.GetBytes(), 0, Arr, Index, memoryObject.GetByteSize());
         }
 

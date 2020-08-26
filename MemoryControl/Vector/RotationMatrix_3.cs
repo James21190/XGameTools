@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
 
 namespace Common.Vector
 {
@@ -11,35 +8,22 @@ namespace Common.Vector
     {
         public const int ByteSize = 36;
 
-        public double[,] Matrix = new double[3,3];
+        public double[,] Matrix = new double[3, 3];
 
         public RotationMatrix_3()
         {
-            for(int x = 0; x < 3; x++)
-                for(int y = 0; y < 3; y++)
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
                 {
-                    Matrix[x,y] = 0;
+                    Matrix[x, y] = 0;
                 }
+            }
         }
 
-        public Vector3 X { get
-            {
-                return new Vector3((int)Matrix[0, 0], (int)Matrix[0, 1], (int)Matrix[0, 2]);
-            } }
-        public Vector3 Y
-        {
-            get
-            {
-                return new Vector3((int)Matrix[1, 0], (int)Matrix[1, 1], (int)Matrix[1, 2]);
-            }
-        }
-        public Vector3 Z
-        {
-            get
-            {
-                return new Vector3((int)Matrix[2, 0], (int)Matrix[2, 1], (int)Matrix[2, 2]);
-            }
-        }
+        public Vector3 X => new Vector3((int)Matrix[0, 0], (int)Matrix[0, 1], (int)Matrix[0, 2]);
+        public Vector3 Y => new Vector3((int)Matrix[1, 0], (int)Matrix[1, 1], (int)Matrix[1, 2]);
+        public Vector3 Z => new Vector3((int)Matrix[2, 0], (int)Matrix[2, 1], (int)Matrix[2, 2]);
 
         public RotationMatrix_3(Vector3 A, Vector3 B, Vector3 C)
         {
@@ -76,15 +60,15 @@ namespace Common.Vector
         {
             List<byte> arr = new List<byte>();
 
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0,0])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0,1])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0,2])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1,0])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1,1])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1,2])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2,0])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2,1])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2,2])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 0])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 1])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 2])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 0])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 1])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 2])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 0])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 1])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 2])));
 
             return arr.ToArray();
         }
@@ -96,7 +80,7 @@ namespace Common.Vector
 
         public static RotationMatrix_3 operator *(RotationMatrix_3 A, RotationMatrix_3 B)
         {
-            var matrix = new RotationMatrix_3();
+            RotationMatrix_3 matrix = new RotationMatrix_3();
 
             for (int i = 0; i < 3; i++)
             {
@@ -114,7 +98,7 @@ namespace Common.Vector
 
         public static RotationMatrix_3 NewRotateAroundX(double radians)
         {
-            var matrix = new RotationMatrix_3();
+            RotationMatrix_3 matrix = new RotationMatrix_3();
             matrix.Matrix[1, 1] = Math.Cos(radians);
             matrix.Matrix[1, 2] = Math.Sin(radians);
             matrix.Matrix[2, 1] = -(Math.Sin(radians));
@@ -123,7 +107,7 @@ namespace Common.Vector
         }
         public static RotationMatrix_3 NewRotateAroundY(double radians)
         {
-            var matrix = new RotationMatrix_3();
+            RotationMatrix_3 matrix = new RotationMatrix_3();
             matrix.Matrix[0, 0] = Math.Cos(radians);
             matrix.Matrix[0, 2] = -(Math.Sin(radians));
             matrix.Matrix[2, 0] = Math.Sin(radians);
@@ -132,7 +116,7 @@ namespace Common.Vector
         }
         public static RotationMatrix_3 NewRotateAroundZ(double radians)
         {
-            var matrix = new RotationMatrix_3();
+            RotationMatrix_3 matrix = new RotationMatrix_3();
             matrix.Matrix[0, 0] = Math.Cos(radians);
             matrix.Matrix[0, 1] = Math.Sin(radians);
             matrix.Matrix[1, 0] = -(Math.Sin(radians));

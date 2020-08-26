@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Common.UI
 {
-    public partial class Vector2Display: UserControl
+    public partial class Vector2Display : UserControl
     {
         [DefaultValue(false)]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal Increment
         {
-            get
-            {
-                return numericUpDown1.Increment;
-            }
+            get => numericUpDown1.Increment;
             set
             {
                 numericUpDown1.Increment = value;
@@ -33,10 +24,7 @@ namespace Common.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DecimalPlaces
         {
-            get
-            {
-                return numericUpDown1.DecimalPlaces;
-            }
+            get => numericUpDown1.DecimalPlaces;
             set
             {
                 numericUpDown1.DecimalPlaces = value;
@@ -48,10 +36,7 @@ namespace Common.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly
         {
-            get
-            {
-                return numericUpDown1.ReadOnly;
-            }
+            get => numericUpDown1.ReadOnly;
             set
             {
                 numericUpDown1.ReadOnly = value;
@@ -62,49 +47,28 @@ namespace Common.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
-            get
-            {
-                return groupBox1.Text;
-            }
-            set
-            {
-                groupBox1.Text = value;
-            }
+            get => groupBox1.Text;
+            set => groupBox1.Text = value;
         }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal X
         {
-            get
-            {
-                return numericUpDown1.Value;
-            }
-            set
-            {
-                numericUpDown1.Value = value;
-            }
+            get => numericUpDown1.Value;
+            set => numericUpDown1.Value = value;
         }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal Y
         {
-            get
-            {
-                return numericUpDown2.Value;
-            }
-            set
-            {
-                numericUpDown2.Value = value;
-            }
+            get => numericUpDown2.Value;
+            set => numericUpDown2.Value = value;
         }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal Minimum
         {
-            get
-            {
-                return numericUpDown1.Minimum;
-            }
+            get => numericUpDown1.Minimum;
             set
             {
                 numericUpDown1.Minimum = value;
@@ -115,10 +79,7 @@ namespace Common.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal Maximum
         {
-            get
-            {
-                return numericUpDown1.Maximum;
-            }
+            get => numericUpDown1.Maximum;
             set
             {
                 numericUpDown1.Maximum = value;
@@ -128,10 +89,7 @@ namespace Common.UI
 
         public Common.Vector.Vector2 Vector
         {
-            get
-            {
-                return new Common.Vector.Vector2(Convert.ToInt32(X),Convert.ToInt32(Y));
-            }
+            get => new Common.Vector.Vector2(Convert.ToInt32(X), Convert.ToInt32(Y));
             set
             {
                 X = value.X;

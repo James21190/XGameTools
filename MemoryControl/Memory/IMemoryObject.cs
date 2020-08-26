@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Memory
 {
-    public interface IMemoryObject
+    public interface IBinaryObject
     {
         /// <summary>
         /// Returns the size of the object in bytes.
@@ -23,7 +19,10 @@ namespace Common.Memory
         /// </summary>
         /// <returns></returns>
         byte[] GetBytes();
+    }
 
+    public interface IMemoryObject : IBinaryObject
+    {
         void SetLocation(IntPtr hProcess, IntPtr address);
 
         /// <summary>

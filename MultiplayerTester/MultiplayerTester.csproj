@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BB2C62F0-0E3B-4B23-97AC-603EE6244D21}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>X3TCMultiplayerComponents</RootNamespace>
-    <AssemblyName>X3TCMultiplayerComponents</AssemblyName>
+    <ProjectGuid>{E87474F9-17BD-4BE1-ACC4-FE103C8BA5C1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MultiplayerTester</RootNamespace>
+    <AssemblyName>MultiplayerTester</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,16 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MultiplayerClient.cs" />
-    <Compile Include="MultiplayerServer.cs" />
-    <Compile Include="OOS\OOSManager.cs" />
-    <Compile Include="Packets\SectorObjectUpdatePacket.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MemoryControl\Common.csproj">
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\X3TCMultiplayerComponents\X3TCMultiplayerComponents.csproj">
+      <Project>{bb2c62f0-0e3b-4b23-97ac-603ee6244d21}</Project>
+      <Name>X3TCMultiplayerComponents</Name>
     </ProjectReference>
     <ProjectReference Include="..\X3TCTools\X3TCTools.csproj">
       <Project>{5d48fefb-8ffc-45b8-a09c-8ef0e109be51}</Project>

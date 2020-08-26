@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
 
 namespace Common.Vector
 {
@@ -11,16 +8,18 @@ namespace Common.Vector
     {
         public const int ByteSize = 0x30;
 
-        public double[,] Matrix = new double[3,4];
+        public double[,] Matrix = new double[3, 4];
 
         #region Constructors
         public RotationMatrix_4()
         {
             for (int x = 0; x < 3; x++)
+            {
                 for (int y = 0; y < 3; y++)
                 {
                     Matrix[x, y] = 0;
                 }
+            }
         }
 
         public RotationMatrix_4(Vector4 A, Vector4 B, Vector4 C)
@@ -61,17 +60,17 @@ namespace Common.Vector
         {
             List<byte> arr = new List<byte>();
 
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0,0])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0,1])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0,2])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 0])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 1])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 2])));
             arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[0, 3])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1,0])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1,1])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1,2])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 0])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 1])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 2])));
             arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[1, 3])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2,0])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2,1])));
-            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2,2])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 0])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 1])));
+            arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 2])));
             arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 3])));
 
             return arr.ToArray();
@@ -84,24 +83,9 @@ namespace Common.Vector
         #endregion
 
         #region Vectors
-        public Vector4 X { get
-            {
-                return new Vector4((int)Matrix[0, 0], (int)Matrix[0, 1], (int)Matrix[0, 2], (int)Matrix[0,3]);
-            } }
-        public Vector4 Y
-        {
-            get
-            {
-                return new Vector4((int)Matrix[1, 0], (int)Matrix[1, 1], (int)Matrix[1, 2], (int)Matrix[1,3]);
-            }
-        }
-        public Vector4 Z
-        {
-            get
-            {
-                return new Vector4((int)Matrix[2, 0], (int)Matrix[2, 1], (int)Matrix[2, 2], (int)Matrix[2,3]);
-            }
-        }
+        public Vector4 X => new Vector4((int)Matrix[0, 0], (int)Matrix[0, 1], (int)Matrix[0, 2], (int)Matrix[0, 3]);
+        public Vector4 Y => new Vector4((int)Matrix[1, 0], (int)Matrix[1, 1], (int)Matrix[1, 2], (int)Matrix[1, 3]);
+        public Vector4 Z => new Vector4((int)Matrix[2, 0], (int)Matrix[2, 1], (int)Matrix[2, 2], (int)Matrix[2, 3]);
 
         #endregion
     }

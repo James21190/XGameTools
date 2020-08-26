@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Memory
 {
@@ -77,7 +74,7 @@ namespace Common.Memory
     public class MemoryByte : MemoryObject
     {
         public byte Value = 0;
-        
+
         public override byte[] GetBytes()
         {
             return new byte[] { Value };
@@ -100,28 +97,28 @@ namespace Common.Memory
 
         public override byte[] GetBytes()
         {
-            var bytes = new byte[value.Length + 1];
-            for(int i = 0; i < value.Length; i++)
+            byte[] bytes = new byte[value.Length + 1];
+            for (int i = 0; i < value.Length; i++)
             {
                 bytes[i] = (byte)value.ToArray()[i];
             }
             bytes[value.Length] = 0;
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(bytes);
             return collection.GetBytes();
         }
 
         public override int GetByteSize()
         {
-            return value == null ? 100 : value.Length+1;
+            return value == null ? 100 : value.Length + 1;
         }
 
         public override void SetData(byte[] Memory)
         {
             value = "";
-            var collection = new ObjectByteList(Memory);
-            var character = (char)collection.PopByte();
-            while(character != 0)
+            ObjectByteList collection = new ObjectByteList(Memory);
+            char character = (char)collection.PopByte();
+            while (character != 0)
             {
                 value += character;
                 character = (char)collection.PopByte();

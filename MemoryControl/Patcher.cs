@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Common
 {
@@ -30,7 +27,7 @@ namespace Common
         private static byte[] _StringArrToByteArr(string[] arr)
         {
             byte[] res = new byte[arr.Length];
-            for(int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 res[i] = byte.Parse(arr[i], System.Globalization.NumberStyles.HexNumber);
             }
@@ -53,7 +50,7 @@ namespace Common
             string[] output = new string[patchPaths.Length];
             File.Copy(originalPath, destPath, true);
             int i = 0;
-            foreach(var patch in patchPaths)
+            foreach (string patch in patchPaths)
             {
 
                 output[i++] = PatchExe(destPath, destPath, patch, exeBaseOffset, bytesBeforeBase);
@@ -76,10 +73,10 @@ namespace Common
         {
             List<Patch> patches = new List<Patch>();
             // Get all patch objects
-            foreach(var line in File.ReadAllLines(patchPath))
+            foreach (string line in File.ReadAllLines(patchPath))
             {
-                var comp = line.Split(':');
-                var patch = new Patch() { notes = comp[0], address = int.Parse(comp[1], System.Globalization.NumberStyles.HexNumber), bytes = _StringArrToByteArr(comp[2].Split(' ')) };
+                string[] comp = line.Split(':');
+                Patch patch = new Patch() { notes = comp[0], address = int.Parse(comp[1], System.Globalization.NumberStyles.HexNumber), bytes = _StringArrToByteArr(comp[2].Split(' ')) };
                 patches.Add(patch);
             }
 
@@ -87,9 +84,9 @@ namespace Common
 
             byte[] file = File.ReadAllBytes(originalPath);
 
-            foreach (var patch in patches)
+            foreach (Patch patch in patches)
             {
-                var patchBase = patch.address - exeBaseOffset + bytesBeforeBase;
+                int patchBase = patch.address - exeBaseOffset + bytesBeforeBase;
                 for (int i = 0; i < patch.bytes.Length; i++)
                 {
                     file[patchBase + i] = patch.bytes[i];

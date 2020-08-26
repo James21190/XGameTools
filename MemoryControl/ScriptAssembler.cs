@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
@@ -42,10 +39,10 @@ namespace Common
             // '/' Comments
             // '-' Is macro
             // Number is direct assembly
-            
+
             List<byte> Instructions = new List<byte>();
 
-            var filecode = new ScriptCode()
+            ScriptCode filecode = new ScriptCode()
             {
                 DataSize = 0,
                 Name = "Unnamed",
@@ -53,7 +50,7 @@ namespace Common
                 Code = null
             };
             // Itterate through every line
-            foreach (var line in Script)
+            foreach (string line in Script)
             {
                 // If line is not blank and line is not a comment
                 if (!string.IsNullOrWhiteSpace(line) && line[0] != '/')
@@ -61,15 +58,21 @@ namespace Common
                     // If line is meta data
                     if (line[0] == '#')
                     {
-                        var parsed = line.Trim('#', ' ').Split(':');
+                        string[] parsed = line.Trim('#', ' ').Split(':');
                         if (parsed.Length != 2)
+                        {
                             throw new InvalidModCodeMetaException();
+                        }
+
                         switch (parsed[0].ToUpper())
                         {
                             case "DATA":
                                 int result;
                                 if (int.TryParse(parsed[1], out result))
+                                {
                                     filecode.DataSize = result;
+                                }
+
                                 break;
                             case "EVENT":
                                 filecode.Event = parsed[1];
@@ -83,22 +86,25 @@ namespace Common
                         }
                     }
                     // If line is a macro
-                    else if(line[0] == '-')
+                    else if (line[0] == '-')
                     {
-                        var code = line.Trim('-',' ').Split(' ');
+                        string[] code = line.Trim('-', ' ').Split(' ');
                         if (code.Length < 1)
+                        {
                             throw new ArgumentException();
+                        }
+
                         switch (code[0].ToUpper())
                         {
                             // FarCall <Address> <Register>
                             case "FARCALL":
                                 Instructions.AddRange(FarCall((IntPtr)int.Parse(code[1], System.Globalization.NumberStyles.HexNumber), RegisterParse(code[2])));
                                 break;
-                                // Mov <Register> <Value>
-                                // Mov <Register> <Register>
+                            // Mov <Register> <Value>
+                            // Mov <Register> <Register>
                             case "MOV":
                                 uint res;
-                                if(uint.TryParse(code[2],System.Globalization.NumberStyles.HexNumber, null, out res))
+                                if (uint.TryParse(code[2], System.Globalization.NumberStyles.HexNumber, null, out res))
                                 {
                                     Instructions.AddRange(SetRegister(RegisterParse(code[1]), res));
                                 }
@@ -107,19 +113,22 @@ namespace Common
                                     Instructions.AddRange(SetRegister(RegisterParse(code[1]), RegisterParse(code[2])));
                                 }
                                 break;
-                                // Nop <count>
+                            // Nop <count>
                             case "NOP":
                                 int count = int.Parse(code[1], System.Globalization.NumberStyles.HexNumber);
                                 byte[] temp = new byte[count];
                                 for (int i = 0; i < count; i++)
+                                {
                                     temp[i] = 0x90;
+                                }
+
                                 Instructions.AddRange(temp);
                                 break;
-                                // Pop <Register>
+                            // Pop <Register>
                             case "POP":
                                 Instructions.AddRange(Pop(RegisterParse(code[1])));
                                 break;
-                                // Push <Register>
+                            // Push <Register>
                             case "PUSH":
                                 Instructions.AddRange(Push(RegisterParse(code[1])));
                                 break;
@@ -128,13 +137,15 @@ namespace Common
                         }
                     }
                     // If line is numeric
-                    else 
+                    else
                     {
-                        var code = line.Split(' ');
-                        foreach (var instruction in code)
+                        string[] code = line.Split(' ');
+                        foreach (string instruction in code)
                         {
                             if (!string.IsNullOrWhiteSpace(instruction))
+                            {
                                 Instructions.Add(byte.Parse(instruction, System.Globalization.NumberStyles.HexNumber));
+                            }
                         }
                     }
                 }
@@ -174,11 +185,11 @@ namespace Common
                     return new byte[] { 0x52 };
                 case x86Register.pEAX:
                     return new byte[] { 0xff, 0x30 };
-                case x86Register.pEBX: 
+                case x86Register.pEBX:
                     return new byte[] { 0xff, 0x33 };
-                case x86Register.pECX: 
+                case x86Register.pECX:
                     return new byte[] { 0xff, 0x31 };
-                case x86Register.pEDX: 
+                case x86Register.pEDX:
                     return new byte[] { 0xff, 0x32 };
                 default: throw new ArgumentException(string.Format("Register {0} not supported.", register.ToString()));
             }
@@ -274,71 +285,217 @@ namespace Common
             }
 
             // EAX
-                 if (DestRegister == x86Register.EAX && Register == x86Register.EAX)  Instructions.Add(0xc0);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.EBX)  Instructions.Add(0xc3);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.ECX)  Instructions.Add(0xc1);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.EDX)  Instructions.Add(0xc2);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pEAX) Instructions.Add(0x00);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pEBX) Instructions.Add(0x03);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pECX) Instructions.Add(0x01);
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pEDX) Instructions.Add(0x02);
-                                                                                                  
+            if (DestRegister == x86Register.EAX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0xc0);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0xc3);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0xc1);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0xc2);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.pEAX)
+            {
+                Instructions.Add(0x00);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.pEBX)
+            {
+                Instructions.Add(0x03);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.pECX)
+            {
+                Instructions.Add(0x01);
+            }
+            else if (DestRegister == x86Register.EAX && Register == x86Register.pEDX)
+            {
+                Instructions.Add(0x02);
+            }
+
             // EBX                                                                              
-            else if (DestRegister == x86Register.EBX && Register == x86Register.EAX)  Instructions.Add(0xd8);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.EBX)  Instructions.Add(0xdb);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.ECX)  Instructions.Add(0xd9);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.EDX)  Instructions.Add(0xDA);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pEAX) Instructions.Add(0x18);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pEBX) Instructions.Add(0x1b);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pECX) Instructions.Add(0x19);
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pEDX) Instructions.Add(0x1a);
-                                                                                                  
+            else if (DestRegister == x86Register.EBX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0xd8);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0xdb);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0xd9);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0xDA);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.pEAX)
+            {
+                Instructions.Add(0x18);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.pEBX)
+            {
+                Instructions.Add(0x1b);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.pECX)
+            {
+                Instructions.Add(0x19);
+            }
+            else if (DestRegister == x86Register.EBX && Register == x86Register.pEDX)
+            {
+                Instructions.Add(0x1a);
+            }
+
             // ECX                                                                                
-            else if (DestRegister == x86Register.ECX && Register == x86Register.EAX)  Instructions.Add(0xc8);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.EBX)  Instructions.Add(0xcb);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.ECX)  Instructions.Add(0xc9);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.EDX)  Instructions.Add(0xca);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pEAX) Instructions.Add(0x08);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pEBX) Instructions.Add(0x0b);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pECX) Instructions.Add(0x09);
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pEDX) Instructions.Add(0x0a);
-                                                                                                
+            else if (DestRegister == x86Register.ECX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0xc8);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0xcb);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0xc9);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0xca);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.pEAX)
+            {
+                Instructions.Add(0x08);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.pEBX)
+            {
+                Instructions.Add(0x0b);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.pECX)
+            {
+                Instructions.Add(0x09);
+            }
+            else if (DestRegister == x86Register.ECX && Register == x86Register.pEDX)
+            {
+                Instructions.Add(0x0a);
+            }
+
             // EDX                                                                            
-            else if (DestRegister == x86Register.EDX && Register == x86Register.EAX)  Instructions.Add(0xd0);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.EBX)  Instructions.Add(0xd3);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.ECX)  Instructions.Add(0xd1);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.EDX)  Instructions.Add(0xd2);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pEAX) Instructions.Add(0x10);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pEBX) Instructions.Add(0x13);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pECX) Instructions.Add(0x11);
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pEDX) Instructions.Add(0x12);
+            else if (DestRegister == x86Register.EDX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0xd0);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0xd3);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0xd1);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0xd2);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.pEAX)
+            {
+                Instructions.Add(0x10);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.pEBX)
+            {
+                Instructions.Add(0x13);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.pECX)
+            {
+                Instructions.Add(0x11);
+            }
+            else if (DestRegister == x86Register.EDX && Register == x86Register.pEDX)
+            {
+                Instructions.Add(0x12);
+            }
 
 
 
             // pEAX
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.EAX)  Instructions.Add(0x00);
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.EBX)  Instructions.Add(0x18);
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.ECX)  Instructions.Add(0x08);
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.EDX)  Instructions.Add(0x10);
+            else if (DestRegister == x86Register.pEAX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0x00);
+            }
+            else if (DestRegister == x86Register.pEAX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0x18);
+            }
+            else if (DestRegister == x86Register.pEAX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0x08);
+            }
+            else if (DestRegister == x86Register.pEAX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0x10);
+            }
 
             // pEBX                                                                              
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.EAX)  Instructions.Add(0x03);
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.EBX)  Instructions.Add(0x1b);
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.ECX)  Instructions.Add(0x0b);
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.EDX)  Instructions.Add(0x13);
+            else if (DestRegister == x86Register.pEBX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0x03);
+            }
+            else if (DestRegister == x86Register.pEBX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0x1b);
+            }
+            else if (DestRegister == x86Register.pEBX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0x0b);
+            }
+            else if (DestRegister == x86Register.pEBX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0x13);
+            }
 
             // pECX                                                                                
-            else if (DestRegister == x86Register.pECX && Register == x86Register.EAX)  Instructions.Add(0x01);
-            else if (DestRegister == x86Register.pECX && Register == x86Register.EBX)  Instructions.Add(0x19);
-            else if (DestRegister == x86Register.pECX && Register == x86Register.ECX)  Instructions.Add(0x09);
-            else if (DestRegister == x86Register.pECX && Register == x86Register.EDX)  Instructions.Add(0x11);
+            else if (DestRegister == x86Register.pECX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0x01);
+            }
+            else if (DestRegister == x86Register.pECX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0x19);
+            }
+            else if (DestRegister == x86Register.pECX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0x09);
+            }
+            else if (DestRegister == x86Register.pECX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0x11);
+            }
             // pEDX                                                                            
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.EAX)  Instructions.Add(0x02);
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.EBX)  Instructions.Add(0x1a);
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.ECX)  Instructions.Add(0x0a);
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.EDX)  Instructions.Add(0x12);
-
-            else throw new NotImplementedException(string.Format("SetRegister: Combination of {0} and {1} not implemented or invalid.", DestRegister.ToString(), Register.ToString()));
+            else if (DestRegister == x86Register.pEDX && Register == x86Register.EAX)
+            {
+                Instructions.Add(0x02);
+            }
+            else if (DestRegister == x86Register.pEDX && Register == x86Register.EBX)
+            {
+                Instructions.Add(0x1a);
+            }
+            else if (DestRegister == x86Register.pEDX && Register == x86Register.ECX)
+            {
+                Instructions.Add(0x0a);
+            }
+            else if (DestRegister == x86Register.pEDX && Register == x86Register.EDX)
+            {
+                Instructions.Add(0x12);
+            }
+            else
+            {
+                throw new NotImplementedException(string.Format("SetRegister: Combination of {0} and {1} not implemented or invalid.", DestRegister.ToString(), Register.ToString()));
+            }
 
             return Instructions.ToArray();
         }

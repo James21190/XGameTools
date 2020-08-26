@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 {
@@ -26,6 +27,34 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.AP
 
         public GameHook.RaceID RaceID => (GameHook.RaceID)GetVariableValue((int)AP_RaceData_Variables.RaceID);
 
+
+        public EventObject[] Ships
+        {
+            get
+            {
+                EventObject[] ships = new EventObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
+                int i = 0;
+                foreach (DynamicValue shipID in OwnedShipEventObjectIDHashTableObject.hashTable.ScanContents())
+                {
+                    ships[i++] = GameHook.storyBase.GetEventObject(shipID.Value);
+                }
+                return ships;
+            }
+        }
+
+        public EventObject[] Stations
+        {
+            get
+            {
+                EventObject[] stations = new EventObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
+                int i = 0;
+                foreach (DynamicValue shipID in OwnedStationEventObjectIDHashTableObject.hashTable.ScanContents())
+                {
+                    stations[i++] = GameHook.storyBase.GetEventObject(shipID.Value);
+                }
+                return stations;
+            }
+        }
 
         public override string GetVariableName(int index)
         {

@@ -36,6 +36,47 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
 
+        public EventObject[] Ships
+        {
+            get
+            {
+                EventObject[] ships = new EventObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
+                int i = 0;
+                foreach (DynamicValue shipID in OwnedShipEventObjectIDHashTableObject.hashTable.ScanContents())
+                {
+                    ships[i++] = GameHook.storyBase.GetEventObject(shipID.Value);
+                }
+                return ships;
+            }
+        }
+
+        public EventObject[] Stations
+        {
+            get
+            {
+                EventObject[] stations = new EventObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
+                int i = 0;
+                foreach (DynamicValue stationID in OwnedStationEventObjectIDHashTableObject.hashTable.ScanContents())
+                {
+                    stations[i++] = GameHook.storyBase.GetEventObject(stationID.Value);
+                }
+                return stations;
+            }
+        }
+
+        public EventObject[] Races
+        {
+            get
+            {
+                EventObject[] races = new EventObject[RaceDataEventObjectIDHashTable.hashTable.Count];
+                int i = 0;
+                foreach (DynamicValue raceID in RaceDataEventObjectIDHashTable.hashTable.ScanContents())
+                {
+                    races[i++] = GameHook.storyBase.GetEventObject(raceID.Value);
+                }
+                return races;
+            }
+        }
         public override string GetVariableName(int index)
         {
             return ((TC_RaceData_Player_Variables)index).ToString();

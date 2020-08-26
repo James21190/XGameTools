@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Common.Memory
 {
@@ -33,7 +30,7 @@ namespace Common.Memory
 
         public void HookIntoProcess(string processName)
         {
-            var process = Process.GetProcessesByName(processName).FirstOrDefault();
+            Process process = Process.GetProcessesByName(processName).FirstOrDefault();
             HookIntoProcess(process);
         }
 

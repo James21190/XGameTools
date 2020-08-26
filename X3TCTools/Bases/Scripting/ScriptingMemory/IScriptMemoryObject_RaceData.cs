@@ -19,7 +19,8 @@ namespace X3TCTools.Bases.Scripting.ScriptingMemory
         int pOwnedStationEventObjectIDHashTableObject { get; }
         ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get; }
 
-
+        EventObject[] Ships { get; }
+        EventObject[] Stations { get; }
         GameHook.RaceID RaceID { get; }
     }
 }

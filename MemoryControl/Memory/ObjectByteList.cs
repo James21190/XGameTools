@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Memory
 {
@@ -67,7 +65,7 @@ namespace Common.Memory
         [Obsolete("This method is no longer supported. Please use PopBytes instead.")]
         public void PopFirst(ref byte[] arr)
         {
-            for(int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 arr[i] = m_Data[m_ReadPointer++];
             }
@@ -178,7 +176,7 @@ namespace Common.Memory
         [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
         public void PopFirst<T>(ref T[] arr) where T : IMemoryObject
         {
-            for(int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 byte[] data = new byte[arr[i].GetByteSize()];
                 PopFirst(ref data);
@@ -187,7 +185,7 @@ namespace Common.Memory
         }
 
         [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
-        public void PopFirst<T>(ref T[] arr, int GoToOffset) where T: IMemoryObject
+        public void PopFirst<T>(ref T[] arr, int GoToOffset) where T : IMemoryObject
         {
             GoTo(GoToOffset);
             PopFirst(ref arr);
@@ -206,18 +204,18 @@ namespace Common.Memory
             }
         }
         [Obsolete("This method is no longer supported. Please use PopIMemoryObjects instead.")]
-        public void PopFirst<T>(ref T[,] arr, int GoToOffset) where T:IMemoryObject
+        public void PopFirst<T>(ref T[,] arr, int GoToOffset) where T : IMemoryObject
         {
             GoTo(GoToOffset);
             PopFirst(ref arr);
         }
-        
+
         [Obsolete("This method is no longer supported. Please use PopIMemoryObject instead.")]
         public void PopFirst<T>(ref T obj) where T : IMemoryObject
         {
             byte[] data = new byte[obj.GetByteSize()];
 
-            for(int i = 0; i < obj.GetByteSize(); i++)
+            for (int i = 0; i < obj.GetByteSize(); i++)
             {
                 data[i] = m_Data[m_ReadPointer++];
             }
@@ -225,7 +223,7 @@ namespace Common.Memory
             obj.SetData(data);
         }
         [Obsolete("This method is no longer supported. Please use PopIMemoryObject instead.")]
-        public void PopFirst<T>(ref T value, int GoToOffset) where T: IMemoryObject
+        public void PopFirst<T>(ref T value, int GoToOffset) where T : IMemoryObject
         {
             GoTo(GoToOffset);
             PopFirst(ref value);
@@ -264,14 +262,14 @@ namespace Common.Memory
         }
         public void Append<T>(T[] arr) where T : IMemoryObject
         {
-            foreach(var obj in arr)
+            foreach (T obj in arr)
             {
                 Append(obj.GetBytes());
             }
         }
         public void Append<T>(T[,] arr) where T : IMemoryObject
         {
-            foreach (var obj in arr)
+            foreach (T obj in arr)
             {
                 Append(obj.GetBytes());
             }
@@ -291,7 +289,7 @@ namespace Common.Memory
 
         public byte[] PopBytes(int Count)
         {
-            var result = m_Data.Skip(m_ReadPointer).Take(Count).ToArray();
+            byte[] result = m_Data.Skip(m_ReadPointer).Take(Count).ToArray();
             m_ReadPointer += Count;
             return result;
         }
@@ -303,7 +301,7 @@ namespace Common.Memory
 
         public short[] PopShorts(int Count)
         {
-            var arr = new short[Count];
+            short[] arr = new short[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -320,7 +318,7 @@ namespace Common.Memory
 
         public ushort[] PopUShorts(int Count)
         {
-            var arr = new ushort[Count];
+            ushort[] arr = new ushort[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -337,7 +335,7 @@ namespace Common.Memory
 
         public int[] PopInts(int Count)
         {
-            var arr = new int[Count];
+            int[] arr = new int[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -354,7 +352,7 @@ namespace Common.Memory
 
         public uint[] PopUInts(int Count)
         {
-            var arr = new uint[Count];
+            uint[] arr = new uint[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -371,7 +369,7 @@ namespace Common.Memory
 
         public IntPtr[] PopIntPtrs(int Count)
         {
-            var arr = new IntPtr[Count];
+            IntPtr[] arr = new IntPtr[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -388,7 +386,7 @@ namespace Common.Memory
 
         public long[] PopLongs(int Count)
         {
-            var arr = new long[Count];
+            long[] arr = new long[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -405,7 +403,7 @@ namespace Common.Memory
 
         public ulong[] PopULongs(int Count)
         {
-            var arr = new ulong[Count];
+            ulong[] arr = new ulong[Count];
 
             for (int i = 0; i < Count; i++)
             {
@@ -417,7 +415,7 @@ namespace Common.Memory
 
         public T PopIMemoryObject<T>() where T : IMemoryObject, new()
         {
-            var memoryObject = new T();
+            T memoryObject = new T();
 
             memoryObject.SetLocation(m_hProcess, pThis + m_ReadPointer);
             memoryObject.SetData(PopBytes(memoryObject.GetByteSize()));
@@ -425,11 +423,11 @@ namespace Common.Memory
             return memoryObject;
         }
 
-        public T[] PopIMemoryObjects<T>(int Count) where T: IMemoryObject, new()
+        public T[] PopIMemoryObjects<T>(int Count) where T : IMemoryObject, new()
         {
-            var memoryObjects = new T[Count];
+            T[] memoryObjects = new T[Count];
 
-            for(int i = 0; i < Count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 memoryObjects[i] = new T();
                 memoryObjects[i].SetLocation(m_hProcess, pThis + m_ReadPointer);

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Memory
 {
@@ -10,7 +6,7 @@ namespace Common.Memory
     /// A pointer that points to an IMemoryObject in a process's memory.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public sealed class MemoryObjectPointer<T> :MemoryObject where T : IMemoryObject, new()
+    public sealed class MemoryObjectPointer<T> : MemoryObject where T : IMemoryObject, new()
     {
 
         #region Constructors
@@ -23,13 +19,13 @@ namespace Common.Memory
         public MemoryObjectPointer(IntPtr hProcess)
         {
             m_hProcess = hProcess;
-            this.address = IntPtr.Zero;
+            address = IntPtr.Zero;
         }
 
         public MemoryObjectPointer()
         {
             m_hProcess = IntPtr.Zero;
-            this.address = IntPtr.Zero;
+            address = IntPtr.Zero;
         }
 
         #endregion
@@ -47,20 +43,17 @@ namespace Common.Memory
         {
             get
             {
-                var obj = new T();
+                T obj = new T();
                 obj.SetLocation(m_hProcess, address);
                 obj.ReloadFromMemory();
                 return obj;
             }
-            set
-            {
-                MemoryControl.Write(m_hProcess, address, value.GetBytes());
-            }
+            set => MemoryControl.Write(m_hProcess, address, value.GetBytes());
         }
 
         public A GetObjAsType<A>() where A : IMemoryObject, new()
         {
-            var obj = new A();
+            A obj = new A();
             obj.SetLocation(m_hProcess, address);
             obj.ReloadFromMemory();
             return obj;
@@ -70,13 +63,7 @@ namespace Common.Memory
         /// <summary>
         /// Is false when the pointer is null.
         /// </summary>
-        public bool IsValid
-        {
-            get
-            {
-                return (address != IntPtr.Zero);
-            }
-        }
+        public bool IsValid => (address != IntPtr.Zero);
 
         public override string ToString()
         {
@@ -90,8 +77,8 @@ namespace Common.Memory
         /// <returns></returns>
         public T GetObjectInArray(int Index)
         {
-            var obj = new T();
-            var newAddress = address + (Index * obj.GetByteSize());
+            T obj = new T();
+            IntPtr newAddress = address + (Index * obj.GetByteSize());
             obj.SetLocation(m_hProcess, newAddress);
             obj.ReloadFromMemory();
             return obj;

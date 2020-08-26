@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Common.Memory;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Memory;
 
 
 namespace Common.Vector
@@ -20,7 +17,7 @@ namespace Common.Vector
             this.Y = Y;
         }
 
-        public static bool operator == (Vector2 V1, Vector2 V2)
+        public static bool operator ==(Vector2 V1, Vector2 V2)
         {
             return (
                 V1.X == V2.X &&
@@ -28,7 +25,7 @@ namespace Common.Vector
                 );
         }
 
-        public static bool operator != (Vector2 V1, Vector2 V2)
+        public static bool operator !=(Vector2 V1, Vector2 V2)
         {
             return !(V1 == V2);
         }

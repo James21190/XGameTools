@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Common
 {
@@ -32,11 +28,13 @@ namespace Common
         public string[] GetMessages(MessageSeverity MinimumSeverity)
         {
             List<string> messages = new List<string>();
-            var log = m_log.ToArray();
-            foreach(var message in log)
+            LogMessage[] log = m_log.ToArray();
+            foreach (LogMessage message in log)
             {
-                if((int)message.Severity <= (int)MinimumSeverity)
-                    messages.Add(string.Format("[{0}] {1}",message.Severity.ToString(),message.Message));
+                if ((int)message.Severity <= (int)MinimumSeverity)
+                {
+                    messages.Add(string.Format("[{0}] {1}", message.Severity.ToString(), message.Message));
+                }
             }
             return messages.ToArray();
         }

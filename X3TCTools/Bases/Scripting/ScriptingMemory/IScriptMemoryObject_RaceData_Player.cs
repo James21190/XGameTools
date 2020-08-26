@@ -6,5 +6,7 @@
         ScriptingHashTableObject RaceDataWithSectorsEventObjectIDHashTable { get; }
         int pRaceDataEventObjectIDHashTable { get; }
         ScriptingHashTableObject RaceDataEventObjectIDHashTable { get; }
+
+        EventObject[] Races { get; }
     }
 }
