@@ -1,4 +1,5 @@
-﻿using X3TCTools.Bases.Scripting;
+﻿
+using X3TCTools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {

@@ -17,7 +17,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             AddressBox.Text = sectorObjectManager.pThis.ToString("X");
 
             LoadPlayerButton.Enabled = sectorObjectManager.pPlayerShip.IsValid;
@@ -25,7 +25,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadPlayerButton_Click(object sender, EventArgs e)
         {
-            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
@@ -33,7 +33,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             HashTableDisplay display = new HashTableDisplay(GameHook, "SectorObject Hash Table");
             display.LoadTable(sectorObjectManager.pObjectHashTable.address);
             display.Show();

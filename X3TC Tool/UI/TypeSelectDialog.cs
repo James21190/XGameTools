@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using X3TCTools;
-using X3TCTools.SectorObjects;
+using X3TCTools.Sector_Objects;
 
 namespace X3TC_Tool.UI
 {

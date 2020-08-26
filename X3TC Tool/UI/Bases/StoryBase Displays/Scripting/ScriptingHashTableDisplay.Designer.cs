@@ -1,4 +1,6 @@
-﻿namespace X3TC_Tool.UI.Displays
+﻿using X3TCTools.Bases.StoryBase_Objects.Scripting;
+
+namespace X3TC_Tool.UI.Displays
 {
     partial class ScriptingHashTableDisplay
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            X3TCTools.Bases.Scripting.DynamicValue dynamicValue5 = new X3TCTools.Bases.Scripting.DynamicValue();
-            X3TCTools.Bases.Scripting.DynamicValue dynamicValue6 = new X3TCTools.Bases.Scripting.DynamicValue();
+            DynamicValue dynamicValue5 = new DynamicValue();
+            DynamicValue dynamicValue6 = new DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();

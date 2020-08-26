@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 using X3TCTools;
-using X3TCTools.Bases.Scripting;
+
+using X3TCTools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3TC_Tool.UI.Displays
 {

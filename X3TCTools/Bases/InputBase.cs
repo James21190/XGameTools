@@ -1,6 +1,7 @@
 ﻿using Common.Memory;
 using Common.Vector;
 using System;
+using X3TCTools.Generics;
 
 namespace X3TCTools.Bases
 {

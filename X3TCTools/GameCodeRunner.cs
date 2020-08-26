@@ -1,7 +1,7 @@
 ﻿using Common.Memory;
 using System;
 using System.Threading;
-using X3TCTools.SectorObjects;
+using X3TCTools.Sector_Objects;
 
 namespace X3TCTools
 {

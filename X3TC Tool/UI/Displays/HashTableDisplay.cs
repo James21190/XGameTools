@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using X3TCTools;
+using X3TCTools.Generics;
 
 namespace X3TC_Tool.UI.Displays
 {

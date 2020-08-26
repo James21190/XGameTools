@@ -3,7 +3,8 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using X3TCTools.Bases;
-using X3TCTools.SectorObjects;
+using X3TCTools.Bases.StoryBase_Objects;
+using X3TCTools.Sector_Objects;
 
 namespace X3TCTools
 {

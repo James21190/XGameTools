@@ -101,7 +101,7 @@ namespace X3TC_Tool
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
-            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
@@ -211,10 +211,10 @@ namespace X3TC_Tool
 
         private void button3_Click(object sender, EventArgs e)
         {
-            X3TCTools.SectorObjects.SectorObject.Main_Type main;
+            X3TCTools.Sector_Objects.SectorObject.Main_Type main;
             int sub;
-            X3TCTools.SectorObjects.SectorObject.FromFullType(int.Parse(textBox1.Text, System.Globalization.NumberStyles.HexNumber), out main, out sub);
-            string subname = X3TCTools.SectorObjects.SectorObject.GetSubTypeAsString(main, sub);
+            X3TCTools.Sector_Objects.SectorObject.FromFullType(int.Parse(textBox1.Text, System.Globalization.NumberStyles.HexNumber), out main, out sub);
+            string subname = X3TCTools.Sector_Objects.SectorObject.GetSubTypeAsString(main, sub);
             textBox2.Text = main.ToString() + "-" + subname;
 
         }
@@ -247,7 +247,7 @@ namespace X3TC_Tool
 
         private void button4_Click(object sender, EventArgs e)
         {
-            X3TCTools.SectorObjects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.GetSpace());
             display.Show();

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 using X3TCTools;
-
+using X3TCTools.Bases.StoryBase_Objects;
 
 namespace X3TC_Tool.UI
 {

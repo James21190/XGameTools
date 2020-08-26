@@ -2,9 +2,12 @@
 using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.Bases;
-using X3TCTools.Bases.Scripting.KCode;
-using X3TCTools.Bases.Scripting.KCode.AP;
-using X3TCTools.Bases.Scripting.KCode.TC;
+using X3TCTools.Bases.StoryBase_Objects;
+using X3TCTools.Bases.StoryBase_Objects.Scripting;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode.AP;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode.TC;
+using X3TCTools.Generics;
 
 namespace X3TC_Tool.UI.Displays
 {
