@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using X3TCTools;
-using X3TCTools.Bases.Scripting;
-using X3TCTools.Bases.Scripting.ScriptingMemory;
-using X3TCTools.Bases.Scripting.ScriptingMemory.AP;
-using X3TCTools.Bases.Scripting.ScriptingMemory.TC;
+using X3TCTools.Bases.StoryBase_Objects.Scripting;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
 namespace X3TCMultiplayerComponents.OOS
 {
@@ -25,21 +25,27 @@ namespace X3TCMultiplayerComponents.OOS
 
                 public void FromShipData(IScriptMemoryObject_Ship shipData)
                 {
-                    SubType = (short)shipData.SubType;
-                    IScriptMemoryObject_Sector sectorData;
-                    switch (GameHook.GameVersion)
+                    try
                     {
-                        case GameHook.GameVersions.X3AP: sectorData = shipData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>(); break;
-                        case GameHook.GameVersions.X3TC: sectorData = shipData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>(); break;
-                        default: throw new Exception();
+                        SubType = (short)shipData.SubType;
+                        IScriptMemoryObject_Sector sectorData;
+                        switch (GameHook.GameVersion)
+                        {
+                            case GameHook.GameVersions.X3AP: sectorData = shipData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>(); break;
+                            case GameHook.GameVersions.X3TC: sectorData = shipData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>(); break;
+                            default: throw new Exception();
+                        }
+                        SectorX = (byte)sectorData.SectorX;
+                        SectorY = (byte)sectorData.SectorY;
+
+                        PositionX = 0;
+                        PositionY = 0;
+                        PositionZ = 0;
                     }
-                    SectorX = (byte)sectorData.SectorX;
-                    SectorY = (byte)sectorData.SectorY;
+                    catch (Exception)
+                    {
 
-                    PositionX = 0;
-                    PositionY = 0;
-                    PositionZ = 0;
-
+                    }
                 }
 
                 public const int ByteSize = 16;

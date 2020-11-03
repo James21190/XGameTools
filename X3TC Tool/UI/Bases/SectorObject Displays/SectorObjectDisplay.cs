@@ -189,6 +189,7 @@ namespace X3TC_Tool.UI.Displays
             btnGoNext.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid && !AutoReloadCheckBox.Enabled;
             btnGoPrevious.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid && !AutoReloadCheckBox.Enabled;
             btnGoParent.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid && !AutoReloadCheckBox.Enabled;
+            
 
             ReloadChildren();
 

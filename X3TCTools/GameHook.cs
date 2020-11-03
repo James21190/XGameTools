@@ -294,8 +294,10 @@ namespace X3TCTools
                     //}, 3);
 
                     break;
-                case GameVersions.None: throw new ArgumentNullException("No game version set.");
-                default: throw new NotImplementedException(string.Format("{0} game version is not currently supported.", GameVersion));
+                case GameVersions.X3R:
+                    throw new GameVersionNotSupportedException();
+                    break;
+                default: throw new GameVersionInvalidException();
             }
 
             gameCodeRunner = new GameCodeRunner();
@@ -485,6 +487,7 @@ namespace X3TCTools
         public enum GameVersions
         {
             None,
+            X3R,
             X3TC,
             X3AP
         }

@@ -33,7 +33,7 @@ namespace X3TCTools.Sector_Objects
         public int Unknown_8;
         public Vector3 PositionStrafeDelta;
         public int Unknown_9;
-        public MemoryObjectPointer<SectorObjectData> pData;
+        public MemoryObjectPointer<RenderObject> pData;
         public int Unknown_10;
         public int Unknown_11;
         public int _RelatedToEvents_1;
@@ -75,7 +75,20 @@ namespace X3TCTools.Sector_Objects
 
         #endregion
 
-        public EventObject EventObject => GameHook.storyBase.GetEventObject(EventObjectID);
+        public EventObject EventObject
+        {
+            get
+            {
+                try
+                {
+                    return GameHook.storyBase.GetEventObject(EventObjectID);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
         public decimal[] MetricPosition => new decimal[] { (decimal)Position_Copy.X / 500000, (decimal)Position_Copy.Y / 500000, (decimal)Position_Copy.Z / 500000 };
 
         public const int ByteSize = 304;
@@ -86,7 +99,7 @@ namespace X3TCTools.Sector_Objects
             pPrevious = new MemoryObjectPointer<SectorObject>();
             pParent = new MemoryObjectPointer<SectorObject>();
             DynamicValue = new DynamicValue();
-            pData = new MemoryObjectPointer<SectorObjectData>();
+            pData = new MemoryObjectPointer<RenderObject>();
         }
 
         /// <summary>
@@ -163,9 +176,9 @@ namespace X3TCTools.Sector_Objects
 
         #endregion
 
-        public SectorObjectData GetData()
+        public RenderObject GetData()
         {
-            SectorObjectData data = new SectorObjectData();
+            RenderObject data = new RenderObject();
             data.SetLocation(m_hProcess, pData.address);
             return data;
 
@@ -370,6 +383,16 @@ namespace X3TCTools.Sector_Objects
             }
 
             if (SubType < type.SubType)
+            {
+                return 1;
+            }
+
+            if (RaceID > type.RaceID)
+            {
+                return -1;
+            }
+
+            if (RaceID < type.RaceID)
             {
                 return 1;
             }

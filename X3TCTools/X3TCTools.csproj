@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bases\CameraBase Objects\BodyData.cs" />
+    <Compile Include="Bases\CameraBase Objects\BodyData_Sub.cs" />
     <Compile Include="Bases\CameraBase Objects\CameraBase.cs" />
     <Compile Include="Bases\CameraBase Objects\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
@@ -106,9 +108,11 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\UI\EventObjectPanel.Designer.cs">
       <DependentUpon>EventObjectPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions.cs" />
     <Compile Include="GameCodeRunner.cs" />
     <Compile Include="GameHook.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingHashTable.cs" />
+    <Compile Include="Generics\Generics Exceptions.cs" />
     <Compile Include="Generics\HashTable.cs" />
     <Compile Include="Generics\LinkedListStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,7 +124,7 @@
     <Compile Include="Bases\Sector Objects\Meta\SectorObject_Ship_Meta.cs" />
     <Compile Include="Bases\Sector Objects\Meta\SectorObject_Station_Meta.cs" />
     <Compile Include="Bases\Sector Objects\SectorObject Types.cs" />
-    <Compile Include="Bases\Sector Objects\SectorObjectData.cs" />
+    <Compile Include="Bases\Sector Objects\RenderObject.cs" />
     <Compile Include="Bases\Sector Objects\SectorObjectManager.cs" />
     <Compile Include="Bases\Sector Objects\SectorObject.cs" />
     <Compile Include="Bases\Sector Objects\TypeData\TypeData.cs" />

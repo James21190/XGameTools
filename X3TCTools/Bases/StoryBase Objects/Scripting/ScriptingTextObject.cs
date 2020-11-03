@@ -29,5 +29,10 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             unknown_1 = collection.PopInt();
             pText = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
         }
+
+        public override string ToString()
+        {
+            return string.Format("TextObject \"{0}\"", pText.obj.value);
+        }
     }
 }

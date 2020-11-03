@@ -10,6 +10,7 @@ using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
 using X3TCTools.Bases.StoryBase_Objects;
 using X3TCTools.Bases.StoryBase_Objects.Scripting;
 using X3TCTools.Generics;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
 namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
@@ -110,7 +111,12 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
                 case GameHook.GameVersions.X3TC:
                     switch (type)
                     {
-
+                        case LoadAsItems.Sector: return new ScriptMemoryObject_TC_Sector();
+                        case LoadAsItems.Ship: return new ScriptMemoryObject_TC_Ship();
+                        case LoadAsItems.Gate: return new ScriptMemoryObject_TC_Gate();
+                        case LoadAsItems.Station: return new ScriptMemoryObject_TC_Station();
+                        case LoadAsItems.RaceData: return new ScriptMemoryObject_TC_RaceData();
+                        case LoadAsItems.RaceData_Player: return new ScriptMemoryObject_TC_RaceData_Player();
                     }
                     break;
                 case GameHook.GameVersions.X3AP:

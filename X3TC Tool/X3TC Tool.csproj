@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpDisasm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDisasm.1.1.11\lib\net45\SharpDisasm.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -47,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\Bases\CameraBase Displays\BodyDataDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\CameraBase Displays\BodyDataDisplay.Designer.cs">
+      <DependentUpon>BodyDataDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\Cargo_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,16 +93,16 @@
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.Designer.cs">
       <DependentUpon>ScriptMemoryObject_Raw_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\CameraBaseDisplay.cs">
+    <Compile Include="UI\Bases\CameraBase Displays\CameraBaseDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\CameraBaseDisplay.Designer.cs">
+    <Compile Include="UI\Bases\CameraBase Displays\CameraBaseDisplay.Designer.cs">
       <DependentUpon>CameraBaseDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\CameraDisplay.cs">
+    <Compile Include="UI\Bases\CameraBase Displays\CameraDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\CameraDisplay.Designer.cs">
+    <Compile Include="UI\Bases\CameraBase Displays\CameraDisplay.Designer.cs">
       <DependentUpon>CameraDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.cs">
@@ -200,6 +209,12 @@
       <DependentUpon>TextPageDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\IReloadableDisplay.cs" />
+    <Compile Include="UI\MemoryObjectDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MemoryObjectDisplay.Designer.cs">
+      <DependentUpon>MemoryObjectDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\TypeSelectDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +229,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UI\Bases\CameraBase Displays\BodyDataDisplay.resx">
+      <DependentUpon>BodyDataDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\Cargo_Panel.resx">
       <DependentUpon>Cargo_Panel.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,10 +250,10 @@
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.resx">
       <DependentUpon>ScriptMemoryObject_Raw_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\CameraBaseDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\CameraBase Displays\CameraBaseDisplay.resx">
       <DependentUpon>CameraBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\CameraDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\CameraBase Displays\CameraDisplay.resx">
       <DependentUpon>CameraDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.resx">
@@ -289,6 +307,9 @@
     <EmbeddedResource Include="UI\Displays\TextPageDisplay.resx">
       <DependentUpon>TextPageDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\MemoryObjectDisplay.resx">
+      <DependentUpon>MemoryObjectDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\TypeSelectDialog.resx">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +325,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

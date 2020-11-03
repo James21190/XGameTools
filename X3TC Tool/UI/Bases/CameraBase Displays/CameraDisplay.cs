@@ -9,11 +9,9 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class CameraDisplay : Form
     {
-        private GameHook GameHook;
         private Camera m_Camera;
-        public CameraDisplay(GameHook gameHook)
+        public CameraDisplay()
         {
-            GameHook = gameHook;
             InitializeComponent();
         }
 

@@ -3,9 +3,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using X3TC_Tool.UI;
+using X3TC_Tool.UI.Bases.CameraBase_Displays;
 using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3TC_Tool.UI.Displays;
 using X3TCTools;
+using X3TCTools.Bases.CameraBase_Objects;
 
 namespace X3TC_Tool
 {
@@ -23,16 +25,18 @@ namespace X3TC_Tool
             // Hook into the game memory
             Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
             Process processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
-            while (processX3TC == null && processX3AP == null)
+            Process processX3R = Process.GetProcessesByName("X3").FirstOrDefault();
+            while (processX3TC == null && processX3AP == null && processX3R == null)
             {
-                DialogResult result = MessageBox.Show("X3TC/X3AP is not currently running!\nPlease launch the game and retry.", "Game not running", MessageBoxButtons.RetryCancel);
+                DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3R, X3TC, or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
                 {
-                    Close();
-                    return;
+                    //Close();
+                    break;
                 }
                 processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
                 processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
+                processX3R = Process.GetProcessesByName("X3").FirstOrDefault();
             }
 
 
@@ -44,8 +48,18 @@ namespace X3TC_Tool
             {
                 GameHook = new GameHook(processX3AP, GameHook.GameVersions.X3AP);
             }
+            else if(processX3R != null)
+            {
+                GameHook = new GameHook(processX3R, GameHook.GameVersions.X3R);
+            }
 
             Text += " - Game Version: " + GameHook.GameVersion;
+
+            if(GameHook == null)
+            {
+                GameHookMenuStrip.Enabled = false;
+                GameHookPanel.Enabled = false;
+            }
 
             // Post hook
             timer1.Enabled = true;
@@ -138,7 +152,7 @@ namespace X3TC_Tool
 
         private void hashTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay();
             display.Show();
         }
 
@@ -153,7 +167,7 @@ namespace X3TC_Tool
         {
             if (m_CameraBaseDisplay == null)
             {
-                m_CameraBaseDisplay = new CameraBaseDisplay(GameHook);
+                m_CameraBaseDisplay = new CameraBaseDisplay();
                 m_CameraBaseDisplay.FormClosed += OnCameraBaseDisplayClosed;
                 m_CameraBaseDisplay.Show();
             }
@@ -161,7 +175,7 @@ namespace X3TC_Tool
 
         private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CameraDisplay display = new CameraDisplay(GameHook);
+            CameraDisplay display = new CameraDisplay();
             display.Show();
         }
 
@@ -262,8 +276,12 @@ namespace X3TC_Tool
 
         private void button6_Click(object sender, EventArgs e)
         {
-            GateSystemObjectDisplay display = new GateSystemObjectDisplay();
-            display.Show();
+            new GateSystemObjectDisplay().Show();
+        }
+
+        private void bodyDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new BodyDataDisplay().Show();
         }
     }
 }

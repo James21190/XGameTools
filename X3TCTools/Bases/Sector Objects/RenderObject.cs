@@ -4,23 +4,23 @@ using System;
 
 namespace X3TCTools.Sector_Objects
 {
-    public class SectorObjectData : MemoryObject
+    public class RenderObject : MemoryObject
     {
         public const int ByteSize = 624;
 
-        public MemoryObjectPointer<SectorObjectData> pNext = new MemoryObjectPointer<SectorObjectData>();
-        public MemoryObjectPointer<SectorObjectData> pPrevious = new MemoryObjectPointer<SectorObjectData>();
+        public MemoryObjectPointer<RenderObject> pNext = new MemoryObjectPointer<RenderObject>();
+        public MemoryObjectPointer<RenderObject> pPrevious = new MemoryObjectPointer<RenderObject>();
         public int Unknown_3; // 0x8
-        public MemoryObjectPointer<SectorObjectData> pFirstChild = new MemoryObjectPointer<SectorObjectData>();
-        public int Unknown_5; // 0x10
-        public MemoryObjectPointer<SectorObjectData> pLastChild = new MemoryObjectPointer<SectorObjectData>();
-        public int Unknown_7; // 0x18
+        public MemoryObjectPointer<RenderObject> pFirstChild = new MemoryObjectPointer<RenderObject>();
+        public int ChildListNull; // 0x10
+        public MemoryObjectPointer<RenderObject> pLastChild = new MemoryObjectPointer<RenderObject>();
+        public MemoryObjectPointer<RenderObject> pParent = new MemoryObjectPointer<RenderObject>(); // 0x18
         public int Unknown_8;
         public int Unknown_9; // 0x20
         public int Unknown_10;
-        public int Unknown_11; // 0x28
+        public int ID; // 0x28
         public int Unknown_12;
-        public Vector3 Position; // 0x30
+        public Vector3 ParentRelativePosition; // 0x30
         public int Unknown_16; // 0x3c
         public RotationMatrix_4 rotationMatrix = new RotationMatrix_4(); // 0x40
         public int Size; // 0x70
@@ -33,130 +33,116 @@ namespace X3TCTools.Sector_Objects
         public int Unknown_38;
         public int Unknown_39; //98
         public int Unknown_40;
-        public int Unknown_41; // a0
+        public int ThisSize; // a0
         public int TotalSize;
         public int Unknown_43; // a8
         public int Unknown_44;
-        public int Unknown_45;
-        public int Unknown_46;
-        public int Unknown_47;
+        public Vector3 AbsolutePosition; // b0
         public int Unknown_48;
-        public int Unknown_49;
-        public int Unknown_50;
-        public int Unknown_51;
-        public int Unknown_52;
-        public int Unknown_53;
-        public int Unknown_54;
-        public int Unknown_55;
-        public int Unknown_56;
-        public int Unknown_57;
-        public int Unknown_58;
-        public int Unknown_59;
-        public int Unknown_60;
-        public int Unknown_61;
+        public RotationMatrix_4 RotationMatrix_2; // c0
+        public int Unknown_61; // f0
         public int Unknown_62;
         public int Unknown_63;
         public int Unknown_64;
-        public int Unknown_65;
+        public int Unknown_65; // 100
         public int Unknown_66;
         public int Unknown_67;
         public int Unknown_68;
-        public int Unknown_69;
+        public int Unknown_69; // 110
         public int Unknown_70;
         public int Unknown_71;
         public int Unknown_72;
-        public int Unknown_73;
-        public int Unknown_74;
+        public int Unknown_73; // 120
+        public int TypeDependentValue;
         public int Unknown_75;
-        public int Unknown_76;
-        public int Unknown_77;
+        public int LightParameters;
+        public int Flags; // 130
         public int Unknown_78;
-        public int Unknown_79;
+        public int SectorObjectSize;
         public int Unknown_80;
-        public int Unknown_81;
+        public int ModelID; // 140
         public int Unknown_82;
         public int Unknown_83;
         public int Unknown_84;
-        public int Unknown_85;
-        public int Unknown_86;
-        public int Unknown_87;
-        public int Unknown_88;
-        public int Unknown_89;
-        public int Unknown_90;
+        public short LightColor_A; // 150
+        public short LightColor_B;
+        public short LightColor_C;
+        public short Unknown_86;
+        public int LightRange;
+        public Vector3 LightAttenuation;
         public int Unknown_91;
         public int Unknown_92;
-        public int Unknown_93;
+        public int Unknown_93; // 170
         public int Unknown_94;
         public int Unknown_95;
         public int Unknown_96;
-        public int Unknown_97;
+        public int Unknown_97; // 180
         public int Unknown_98;
         public int Unknown_99;
         public int Unknown_100;
-        public int Unknown_101;
+        public int Unknown_101; // 190
         public int Unknown_102;
         public int Unknown_103;
         public int Unknown_104;
-        public int Unknown_105;
+        public int Unknown_105; // 1a0
         public int Unknown_106;
         public int Unknown_107;
         public int Unknown_108;
-        public int Unknown_109;
+        public int Unknown_109; // 1b0
         public int Unknown_110;
         public int Unknown_111;
         public int Unknown_112;
-        public int Unknown_113;
+        public int Unknown_113; // 1c0
         public int Unknown_114;
-        public int Unknown_115;
-        public int Unknown_116;
-        public int Unknown_117;
+        public Vector3 Unknown_115;
         public int Unknown_118;
         public int Unknown_119;
         public int Unknown_120;
-        public int Unknown_121;
+        public int Unknown_121; // 1e0
         public int Unknown_122;
         public int Unknown_123;
         public int Unknown_124;
-        public int Unknown_125;
+        public int Unknown_125; // 1f0
         public int Unknown_126;
         public int Unknown_127;
         public int Unknown_128;
-        public int Unknown_129;
+        public int Unknown_129; // 200
         public int Unknown_130;
         public int Unknown_131;
         public int Unknown_132;
-        public int Unknown_133;
+        public int Unknown_133; // 210
         public int Unknown_134;
         public int Unknown_135;
         public int Unknown_136;
-        public int Unknown_137;
+        public int Unknown_137; // 220
         public int Unknown_138;
         public int Unknown_139;
         public int Unknown_140;
-        public int Unknown_141;
+        public int Unknown_141; // 230
         public int Unknown_142;
         public int Unknown_143;
         public int Unknown_144;
-        public int Unknown_145;
+        public int Unknown_145; // 240
         public int Unknown_146;
         public int Unknown_147;
         public int Unknown_148;
-        public int Unknown_149;
+        public int FunctionIndex; // 250
         public int Unknown_150;
-        public int Unknown_151;
+        public int ModelCollectionID;
         public int Unknown_152;
-        public int Unknown_153;
+        public int Unknown_153; // 260
         public int Unknown_154;
         public int Unknown_155;
-        public int Unknown_156;
-
-        public SectorObjectData()
+        public int Unknown_156; // 26c
+        public RenderObject()
         {
         }
 
         public void Save()
         {
             MemoryControl.Write(m_hProcess, pThis + 0x80, ModelScale);
+
+            MemoryControl.Write(m_hProcess, pThis + 0x140, ModelID);
         }
 
         public bool IsValid => pNext.IsValid && pPrevious.IsValid;
@@ -170,15 +156,15 @@ namespace X3TCTools.Sector_Objects
             collection.Append(pPrevious);
             collection.Append(Unknown_3);
             collection.Append(pFirstChild);
-            collection.Append(Unknown_5);
+            collection.Append(ChildListNull);
             collection.Append(pLastChild);
-            collection.Append(Unknown_7);
+            collection.Append(pParent);
             collection.Append(Unknown_8);
             collection.Append(Unknown_9);
             collection.Append(Unknown_10);
-            collection.Append(Unknown_11);
+            collection.Append(ID);
             collection.Append(Unknown_12);
-            collection.Append(Position);
+            collection.Append(ParentRelativePosition);
             collection.Append(Unknown_16);
             collection.Append(rotationMatrix);
             collection.Append(Size);
@@ -191,26 +177,12 @@ namespace X3TCTools.Sector_Objects
             collection.Append(Unknown_38);
             collection.Append(Unknown_39);
             collection.Append(Unknown_40);
-            collection.Append(Unknown_41);
+            collection.Append(ThisSize);
             collection.Append(TotalSize);
             collection.Append(Unknown_43);
             collection.Append(Unknown_44);
-            collection.Append(Unknown_45);
-            collection.Append(Unknown_46);
-            collection.Append(Unknown_47);
+            collection.Append(AbsolutePosition);
             collection.Append(Unknown_48);
-            collection.Append(Unknown_49);
-            collection.Append(Unknown_50);
-            collection.Append(Unknown_51);
-            collection.Append(Unknown_52);
-            collection.Append(Unknown_53);
-            collection.Append(Unknown_54);
-            collection.Append(Unknown_55);
-            collection.Append(Unknown_56);
-            collection.Append(Unknown_57);
-            collection.Append(Unknown_58);
-            collection.Append(Unknown_59);
-            collection.Append(Unknown_60);
             collection.Append(Unknown_61);
             collection.Append(Unknown_62);
             collection.Append(Unknown_63);
@@ -224,23 +196,23 @@ namespace X3TCTools.Sector_Objects
             collection.Append(Unknown_71);
             collection.Append(Unknown_72);
             collection.Append(Unknown_73);
-            collection.Append(Unknown_74);
+            collection.Append(TypeDependentValue);
             collection.Append(Unknown_75);
-            collection.Append(Unknown_76);
-            collection.Append(Unknown_77);
+            collection.Append(LightParameters);
+            collection.Append(Flags);
             collection.Append(Unknown_78);
-            collection.Append(Unknown_79);
+            collection.Append(SectorObjectSize);
             collection.Append(Unknown_80);
-            collection.Append(Unknown_81);
+            collection.Append(ModelID);
             collection.Append(Unknown_82);
             collection.Append(Unknown_83);
             collection.Append(Unknown_84);
-            collection.Append(Unknown_85);
+            collection.Append(LightColor_A);
+            collection.Append(LightColor_B);
+            collection.Append(LightColor_C);
             collection.Append(Unknown_86);
-            collection.Append(Unknown_87);
-            collection.Append(Unknown_88);
-            collection.Append(Unknown_89);
-            collection.Append(Unknown_90);
+            collection.Append(LightRange);
+            collection.Append(LightAttenuation);
             collection.Append(Unknown_91);
             collection.Append(Unknown_92);
             collection.Append(Unknown_93);
@@ -266,8 +238,6 @@ namespace X3TCTools.Sector_Objects
             collection.Append(Unknown_113);
             collection.Append(Unknown_114);
             collection.Append(Unknown_115);
-            collection.Append(Unknown_116);
-            collection.Append(Unknown_117);
             collection.Append(Unknown_118);
             collection.Append(Unknown_119);
             collection.Append(Unknown_120);
@@ -299,9 +269,9 @@ namespace X3TCTools.Sector_Objects
             collection.Append(Unknown_146);
             collection.Append(Unknown_147);
             collection.Append(Unknown_148);
-            collection.Append(Unknown_149);
+            collection.Append(FunctionIndex);
             collection.Append(Unknown_150);
-            collection.Append(Unknown_151);
+            collection.Append(ModelCollectionID);
             collection.Append(Unknown_152);
             collection.Append(Unknown_153);
             collection.Append(Unknown_154);
@@ -320,19 +290,19 @@ namespace X3TCTools.Sector_Objects
         {
             ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
 
-            pNext = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
-            pPrevious = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
+            pNext = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            pPrevious = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
             Unknown_3 = collection.PopInt();
-            pFirstChild = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
-            Unknown_5 = collection.PopInt();
-            pLastChild = collection.PopIMemoryObject<MemoryObjectPointer<SectorObjectData>>();
-            Unknown_7 = collection.PopInt();
+            pFirstChild = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            ChildListNull = collection.PopInt();
+            pLastChild = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            pParent = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
             Unknown_8 = collection.PopInt();
             Unknown_9 = collection.PopInt();
             Unknown_10 = collection.PopInt();
-            Unknown_11 = collection.PopInt();
+            ID = collection.PopInt();
             Unknown_12 = collection.PopInt();
-            Position = collection.PopIMemoryObject<Vector3>();
+            ParentRelativePosition = collection.PopIMemoryObject<Vector3>();
             Unknown_16 = collection.PopInt();
             rotationMatrix = collection.PopIMemoryObject<RotationMatrix_4>();
             Size = collection.PopInt();
@@ -345,26 +315,13 @@ namespace X3TCTools.Sector_Objects
             Unknown_38 = collection.PopInt();
             Unknown_39 = collection.PopInt();
             Unknown_40 = collection.PopInt();
-            Unknown_41 = collection.PopInt();
+            ThisSize = collection.PopInt();
             TotalSize = collection.PopInt();
             Unknown_43 = collection.PopInt();
             Unknown_44 = collection.PopInt();
-            Unknown_45 = collection.PopInt();
-            Unknown_46 = collection.PopInt();
-            Unknown_47 = collection.PopInt();
+            AbsolutePosition = collection.PopIMemoryObject<Vector3>();
             Unknown_48 = collection.PopInt();
-            Unknown_49 = collection.PopInt();
-            Unknown_50 = collection.PopInt();
-            Unknown_51 = collection.PopInt();
-            Unknown_52 = collection.PopInt();
-            Unknown_53 = collection.PopInt();
-            Unknown_54 = collection.PopInt();
-            Unknown_55 = collection.PopInt();
-            Unknown_56 = collection.PopInt();
-            Unknown_57 = collection.PopInt();
-            Unknown_58 = collection.PopInt();
-            Unknown_59 = collection.PopInt();
-            Unknown_60 = collection.PopInt();
+            RotationMatrix_2 = collection.PopIMemoryObject<RotationMatrix_4>();
             Unknown_61 = collection.PopInt();
             Unknown_62 = collection.PopInt();
             Unknown_63 = collection.PopInt();
@@ -378,23 +335,23 @@ namespace X3TCTools.Sector_Objects
             Unknown_71 = collection.PopInt();
             Unknown_72 = collection.PopInt();
             Unknown_73 = collection.PopInt();
-            Unknown_74 = collection.PopInt();
+            TypeDependentValue = collection.PopInt();
             Unknown_75 = collection.PopInt();
-            Unknown_76 = collection.PopInt();
-            Unknown_77 = collection.PopInt();
+            LightParameters = collection.PopInt();
+            Flags = collection.PopInt();
             Unknown_78 = collection.PopInt();
-            Unknown_79 = collection.PopInt();
+            SectorObjectSize = collection.PopInt();
             Unknown_80 = collection.PopInt();
-            Unknown_81 = collection.PopInt();
+            ModelID = collection.PopInt();
             Unknown_82 = collection.PopInt();
             Unknown_83 = collection.PopInt();
             Unknown_84 = collection.PopInt();
-            Unknown_85 = collection.PopInt();
-            Unknown_86 = collection.PopInt();
-            Unknown_87 = collection.PopInt();
-            Unknown_88 = collection.PopInt();
-            Unknown_89 = collection.PopInt();
-            Unknown_90 = collection.PopInt();
+            LightColor_A = collection.PopShort();
+            LightColor_B = collection.PopShort();
+            LightColor_C = collection.PopShort();
+            Unknown_86 = collection.PopShort();
+            LightRange = collection.PopInt();
+            LightAttenuation = collection.PopIMemoryObject<Vector3>();
             Unknown_91 = collection.PopInt();
             Unknown_92 = collection.PopInt();
             Unknown_93 = collection.PopInt();
@@ -419,9 +376,7 @@ namespace X3TCTools.Sector_Objects
             Unknown_112 = collection.PopInt();
             Unknown_113 = collection.PopInt();
             Unknown_114 = collection.PopInt();
-            Unknown_115 = collection.PopInt();
-            Unknown_116 = collection.PopInt();
-            Unknown_117 = collection.PopInt();
+            Unknown_115 = collection.PopIMemoryObject<Vector3>();
             Unknown_118 = collection.PopInt();
             Unknown_119 = collection.PopInt();
             Unknown_120 = collection.PopInt();
@@ -453,9 +408,9 @@ namespace X3TCTools.Sector_Objects
             Unknown_146 = collection.PopInt();
             Unknown_147 = collection.PopInt();
             Unknown_148 = collection.PopInt();
-            Unknown_149 = collection.PopInt();
+            FunctionIndex = collection.PopInt();
             Unknown_150 = collection.PopInt();
-            Unknown_151 = collection.PopInt();
+            ModelCollectionID = collection.PopInt();
             Unknown_152 = collection.PopInt();
             Unknown_153 = collection.PopInt();
             Unknown_154 = collection.PopInt();

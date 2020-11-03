@@ -6,15 +6,18 @@ namespace X3TCTools.Sector_Objects
 {
     public class TypeData : MemoryObject
     {
+        public int BodyID;
         public Vector3 RotationSpeed;
         public int ObjectClass;
         public int NameID;
-
+        public int WareVolume;
         /// <summary>
         /// The relative value of the type. Used to calculate storage in docks and factories, and price in credits.
         /// </summary>
         public int RelVal;
         public int PriceRangePercentage;
+
+        public int WareSizeClass;
 
         public MemoryObjectPointer<MemoryString> pTypeString;
 
@@ -32,12 +35,16 @@ namespace X3TCTools.Sector_Objects
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
+            BodyID = objectByteList.PopInt();
+
             RotationSpeed = objectByteList.PopIMemoryObject<Vector3>(0x8);
             ObjectClass = objectByteList.PopInt();
             NameID = objectByteList.PopInt();
-
-            RelVal = objectByteList.PopInt(0x20);
+            WareVolume = objectByteList.PopInt();
+            RelVal = objectByteList.PopInt();
             PriceRangePercentage = objectByteList.PopInt();
+
+            WareSizeClass = objectByteList.PopInt(0x2c);
 
             pTypeString = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x40);
 

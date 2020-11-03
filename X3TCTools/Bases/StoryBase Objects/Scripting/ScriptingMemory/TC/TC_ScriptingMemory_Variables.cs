@@ -77,6 +77,8 @@
 
         PilotID = 37,
 
+        OwningRaceDataEventObjectID = 38,
+
         AdditionalMaxCargoUnits = 69,
         CurrentCargoUnits,
         MaximumLaserEnergy,
@@ -139,6 +141,18 @@
 
     public enum TC_RaceData_Player_Variables
     {
+        CreditBalance,
+        RaceRelationsArray,
+        CurrentSectorEventObjectID,
+        PreviousSectorEventObjectID,
+        CurrentSectorX,
+        CurrentSectorY,
 
+        RaceDataWithSectorEventObjectIDHashTable = 13,
+        RaceDataEventObjectIDHashTable,
+
+        OwnedShipEventObjectIDHashTable = 18,
+
+        OwnedStationEventObjectIDHashTable = 22,
     }
 }

@@ -81,10 +81,16 @@ namespace X3TC_Tool.UI.Displays
             txtPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 0.5m));
             txtMinPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 0));
 
+            txtBodyID.Text = m_TypeData.BodyID.ToString();
+
             switch ((SectorObject.Main_Type)m_TypeDataMainType)
             {
                 case SectorObject.Main_Type.Bullet:
                     TypeData_Bullet bulletTypeData = (TypeData_Bullet)m_TypeData;
+                    break;
+                case SectorObject.Main_Type.Background:
+                    TypeData_Background backgroundTypeData = (TypeData_Background)m_TypeData;
+                    txtBackgroundName.Text = backgroundTypeData.pName.obj.value;
                     break;
                 case SectorObject.Main_Type.Sun:
                     TypeData_Sun sunTypeData = (TypeData_Sun)m_TypeData;
@@ -99,7 +105,7 @@ namespace X3TC_Tool.UI.Displays
 
                     txtMaxSpeed.Text = shipTypeData.MaxSpeed.ToString();
 
-                    txtModelID.Text = shipTypeData.ModelID.ToString();
+                    txtShipModeCollectionlID.Text = shipTypeData.ModelID.ToString();
                     txtHangarSize.Text = shipTypeData.HangarSize.ToString();
 
                     txtMinimumCargoSpace.Text = shipTypeData.MinimumCargoSpace.ToString();
@@ -112,6 +118,14 @@ namespace X3TC_Tool.UI.Displays
                     txtEventObjectID.Text = shipTypeData.EventObjectID.ToString();
                     txtMaxWeaponClass.Text = shipTypeData.MaxWeaponClass.ToString();
                     LoadTurret(0);
+                    break;
+                case SectorObject.Main_Type.Factory:
+                    TypeData_Factory factoryTypeData = (TypeData_Factory)m_TypeData;
+
+                    txtFactoryOriginRace.Text = factoryTypeData.OriginRace.ToString();
+
+                    txtFactoryHullValue.Text = factoryTypeData.HullCargoValue.ToString();
+                    txtFactoryMaxHull.Text = String.Format("{0:n}", factoryTypeData.MaxHull.ToString());
                     break;
                 case SectorObject.Main_Type.Laser:
                     TypeData_Laser laserTypeData = (TypeData_Laser)m_TypeData;

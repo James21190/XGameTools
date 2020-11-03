@@ -2,22 +2,17 @@
 #include "pch.h"
 
 #include "discord/discord.h"
-#include "SectorObjectManager.h"
 
 #include "DiscordMain.h"
 
 using namespace discord;
-using namespace X3TC::SectorObjects;
 
-DWORD WINAPI MainTread(HMODULE hModule) {
+void Inject() {
+    // Injects code into the main game loop to call the Tick function.
+}
 
-    DiscordStart();
-
-    while (true) {
-        DiscordTick();
-    }
-
-    return 0;
+void Tick() {
+    // Code that will be executed every tick;
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -28,7 +23,8 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)MainTread, hModule, 0, nullptr));
+        Inject();
+        break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:

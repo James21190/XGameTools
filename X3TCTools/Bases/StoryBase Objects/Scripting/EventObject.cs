@@ -23,8 +23,9 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             {
                 switch (GameHook.GameVersion)
                 {
-                    case GameHook.GameVersions.X3AP:
-                        switch ((AP_EventObject_Type)pSub.obj.ID)
+                    //case GameHook.GameVersions.X3AP:
+                    default:  
+                    switch ((AP_EventObject_Type)pSub.obj.ID)
                         {
                             case AP_EventObject_Type.RaceData_2:
                             case AP_EventObject_Type.RaceData_3:
@@ -57,12 +58,12 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
                             case AP_EventObject_Type.Ship_6: return EventObject_Type.Ship_Unknown_6;
                         }
                         break;
-                    case GameHook.GameVersions.X3TC:
-                        switch (pSub.obj.ID)
-                        {
+                    //case GameHook.GameVersions.X3TC:
+                    //    switch (pSub.obj.ID)
+                    //    {
 
-                        }
-                        break;
+                    //    }
+                    //    break;
                 }
                 return EventObject_Type.Unknown;
             }

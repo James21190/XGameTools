@@ -41,11 +41,17 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.nudTotalSize = new System.Windows.Forms.NumericUpDown();
+            this.btnParent = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnViewModelData = new System.Windows.Forms.Button();
+            this.nudModelID = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalSize)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudModelID)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -175,10 +181,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nudSize.Location = new System.Drawing.Point(6, 19);
             this.nudSize.Maximum = new decimal(new int[] {
-            99999999,
-            0,
+            1316134911,
+            2328,
             0,
             0});
+            this.nudSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nudSize.Name = "nudSize";
             this.nudSize.ReadOnly = true;
             this.nudSize.Size = new System.Drawing.Size(144, 20);
@@ -211,20 +222,78 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nudTotalSize.Location = new System.Drawing.Point(6, 19);
             this.nudTotalSize.Maximum = new decimal(new int[] {
-            99999999,
-            0,
+            1316134911,
+            2328,
             0,
             0});
+            this.nudTotalSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nudTotalSize.Name = "nudTotalSize";
             this.nudTotalSize.ReadOnly = true;
             this.nudTotalSize.Size = new System.Drawing.Size(144, 20);
             this.nudTotalSize.TabIndex = 19;
+            // 
+            // btnParent
+            // 
+            this.btnParent.Location = new System.Drawing.Point(116, 128);
+            this.btnParent.Name = "btnParent";
+            this.btnParent.Size = new System.Drawing.Size(98, 23);
+            this.btnParent.TabIndex = 22;
+            this.btnParent.Text = "Go To Parent";
+            this.btnParent.UseVisualStyleBackColor = true;
+            this.btnParent.Click += new System.EventHandler(this.btnParent_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnViewModelData);
+            this.groupBox4.Controls.Add(this.nudModelID);
+            this.groupBox4.Location = new System.Drawing.Point(382, 128);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(204, 46);
+            this.groupBox4.TabIndex = 21;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "ModelID";
+            // 
+            // btnViewModelData
+            // 
+            this.btnViewModelData.Location = new System.Drawing.Point(123, 16);
+            this.btnViewModelData.Name = "btnViewModelData";
+            this.btnViewModelData.Size = new System.Drawing.Size(75, 23);
+            this.btnViewModelData.TabIndex = 23;
+            this.btnViewModelData.Text = "View";
+            this.btnViewModelData.UseVisualStyleBackColor = true;
+            this.btnViewModelData.Click += new System.EventHandler(this.btnViewModelData_Click);
+            // 
+            // nudModelID
+            // 
+            this.nudModelID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudModelID.Location = new System.Drawing.Point(6, 19);
+            this.nudModelID.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.nudModelID.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.nudModelID.Name = "nudModelID";
+            this.nudModelID.Size = new System.Drawing.Size(111, 20);
+            this.nudModelID.TabIndex = 19;
             // 
             // SectorObjectDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.btnParent);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
@@ -242,6 +311,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalSize)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudModelID)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,5 +332,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown nudTotalSize;
+        private System.Windows.Forms.Button btnParent;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown nudModelID;
+        private System.Windows.Forms.Button btnViewModelData;
     }
 }

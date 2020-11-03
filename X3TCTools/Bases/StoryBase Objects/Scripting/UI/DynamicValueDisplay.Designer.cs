@@ -29,29 +29,42 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ValueBox = new System.Windows.Forms.TextBox();
+            this.DecimalValueBox = new System.Windows.Forms.NumericUpDown();
             this.FlagBox = new System.Windows.Forms.ComboBox();
+            this.ValueBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DecimalValueBox)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.DecimalValueBox);
             this.groupBox1.Controls.Add(this.FlagBox);
             this.groupBox1.Controls.Add(this.ValueBox);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(173, 75);
+            this.groupBox1.Size = new System.Drawing.Size(173, 102);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // ValueBox
+            // DecimalValueBox
             // 
-            this.ValueBox.Location = new System.Drawing.Point(6, 45);
-            this.ValueBox.Name = "ValueBox";
-            this.ValueBox.Size = new System.Drawing.Size(161, 20);
-            this.ValueBox.TabIndex = 2;
-            this.ValueBox.TextChanged += new System.EventHandler(this.ValueBox_TextChanged);
+            this.DecimalValueBox.Location = new System.Drawing.Point(6, 71);
+            this.DecimalValueBox.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.DecimalValueBox.Minimum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            -2147483648});
+            this.DecimalValueBox.Name = "DecimalValueBox";
+            this.DecimalValueBox.Size = new System.Drawing.Size(161, 20);
+            this.DecimalValueBox.TabIndex = 4;
+            this.DecimalValueBox.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // FlagBox
             // 
@@ -63,15 +76,25 @@
             this.FlagBox.TabIndex = 3;
             this.FlagBox.SelectedIndexChanged += new System.EventHandler(this.FlagBox_SelectedIndexChanged);
             // 
+            // ValueBox
+            // 
+            this.ValueBox.Location = new System.Drawing.Point(6, 45);
+            this.ValueBox.Name = "ValueBox";
+            this.ValueBox.Size = new System.Drawing.Size(161, 20);
+            this.ValueBox.TabIndex = 2;
+            this.ValueBox.TextChanged += new System.EventHandler(this.ValueBox_TextChanged);
+            // 
             // DynamicValueDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
+            this.MinimumSize = new System.Drawing.Size(179, 108);
             this.Name = "DynamicValueDisplay";
-            this.Size = new System.Drawing.Size(179, 83);
+            this.Size = new System.Drawing.Size(179, 108);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DecimalValueBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -81,5 +104,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox ValueBox;
         private System.Windows.Forms.ComboBox FlagBox;
+        private System.Windows.Forms.NumericUpDown DecimalValueBox;
     }
 }

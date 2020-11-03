@@ -32,7 +32,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public bool IsValid => SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
 
-        public int OwnerDataEventObjectID => throw new NotImplementedException();
+        public int OwnerDataEventObjectID => GetVariableValue((int)TC_Ship_Variables.OwningRaceDataEventObjectID);
 
         public EventObject OwnerDataEventObject => throw new NotImplementedException();
 

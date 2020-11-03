@@ -48,6 +48,9 @@
             this.ChildTypeSelectionBox = new System.Windows.Forms.ComboBox();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.eventObjectPannel1 = new X3TCsTool.EventObjectPannel();
+            this.btnLoadEventObject = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.nudMass = new System.Windows.Forms.NumericUpDown();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -73,9 +76,6 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelSectorInfo = new System.Windows.Forms.Label();
-            this.eventObjectPannel1 = new X3TCsTool.EventObjectPannel();
-            this.btnLoadEventObject = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).BeginInit();
@@ -83,6 +83,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMass)).BeginInit();
             this.groupBox10.SuspendLayout();
@@ -96,7 +97,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -121,7 +121,7 @@
             // 
             this.groupBox1.Controls.Add(this.LoadIDButton);
             this.groupBox1.Controls.Add(this.nudSectorObjectID);
-            this.groupBox1.Location = new System.Drawing.Point(257, 3);
+            this.groupBox1.Location = new System.Drawing.Point(130, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(178, 52);
             this.groupBox1.TabIndex = 5;
@@ -153,7 +153,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtDefaultName);
-            this.groupBox3.Location = new System.Drawing.Point(130, 3);
+            this.groupBox3.Location = new System.Drawing.Point(624, 78);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(121, 52);
             this.groupBox3.TabIndex = 6;
@@ -186,7 +186,7 @@
             // 
             // btnGoNext
             // 
-            this.btnGoNext.Location = new System.Drawing.Point(267, 61);
+            this.btnGoNext.Location = new System.Drawing.Point(292, 61);
             this.btnGoNext.Name = "btnGoNext";
             this.btnGoNext.Size = new System.Drawing.Size(90, 23);
             this.btnGoNext.TabIndex = 10;
@@ -196,7 +196,7 @@
             // 
             // btnGoParent
             // 
-            this.btnGoParent.Location = new System.Drawing.Point(267, 119);
+            this.btnGoParent.Location = new System.Drawing.Point(292, 119);
             this.btnGoParent.Name = "btnGoParent";
             this.btnGoParent.Size = new System.Drawing.Size(90, 23);
             this.btnGoParent.TabIndex = 11;
@@ -206,7 +206,7 @@
             // 
             // btnGoPrevious
             // 
-            this.btnGoPrevious.Location = new System.Drawing.Point(267, 90);
+            this.btnGoPrevious.Location = new System.Drawing.Point(292, 90);
             this.btnGoPrevious.Name = "btnGoPrevious";
             this.btnGoPrevious.Size = new System.Drawing.Size(90, 23);
             this.btnGoPrevious.TabIndex = 12;
@@ -219,7 +219,7 @@
             this.groupBox5.Controls.Add(this.txtType);
             this.groupBox5.Location = new System.Drawing.Point(3, 61);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(248, 52);
+            this.groupBox5.Size = new System.Drawing.Size(283, 52);
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Type";
@@ -231,7 +231,7 @@
             this.txtType.Location = new System.Drawing.Point(6, 19);
             this.txtType.Name = "txtType";
             this.txtType.ReadOnly = true;
-            this.txtType.Size = new System.Drawing.Size(236, 20);
+            this.txtType.Size = new System.Drawing.Size(271, 20);
             this.txtType.TabIndex = 0;
             // 
             // groupBox6
@@ -304,8 +304,39 @@
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(812, 653);
+            this.panel1.Size = new System.Drawing.Size(813, 653);
             this.panel1.TabIndex = 15;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.eventObjectPannel1);
+            this.groupBox4.Controls.Add(this.btnLoadEventObject);
+            this.groupBox4.Location = new System.Drawing.Point(292, 264);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(481, 281);
+            this.groupBox4.TabIndex = 27;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "EventObject";
+            // 
+            // eventObjectPannel1
+            // 
+            this.eventObjectPannel1.EventObject = null;
+            this.eventObjectPannel1.Location = new System.Drawing.Point(10, 48);
+            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
+            this.eventObjectPannel1.Name = "eventObjectPannel1";
+            this.eventObjectPannel1.ReadOnly = true;
+            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.eventObjectPannel1.TabIndex = 25;
+            // 
+            // btnLoadEventObject
+            // 
+            this.btnLoadEventObject.Location = new System.Drawing.Point(10, 19);
+            this.btnLoadEventObject.Name = "btnLoadEventObject";
+            this.btnLoadEventObject.Size = new System.Drawing.Size(111, 23);
+            this.btnLoadEventObject.TabIndex = 26;
+            this.btnLoadEventObject.Text = "Load in viewer";
+            this.btnLoadEventObject.UseVisualStyleBackColor = true;
+            this.btnLoadEventObject.Click += new System.EventHandler(this.btnLoadEventObject_Click);
             // 
             // groupBox11
             // 
@@ -482,9 +513,9 @@
             // 
             this.btnLoadData.Location = new System.Drawing.Point(171, 119);
             this.btnLoadData.Name = "btnLoadData";
-            this.btnLoadData.Size = new System.Drawing.Size(90, 23);
+            this.btnLoadData.Size = new System.Drawing.Size(115, 23);
             this.btnLoadData.TabIndex = 22;
-            this.btnLoadData.Text = "Load Data";
+            this.btnLoadData.Text = "Load RenderObject";
             this.btnLoadData.UseVisualStyleBackColor = true;
             this.btnLoadData.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -576,7 +607,7 @@
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(812, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(813, 24);
             this.menuStrip1.TabIndex = 23;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -644,7 +675,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(240, 653);
+            this.treeView1.Size = new System.Drawing.Size(239, 653);
             this.treeView1.TabIndex = 25;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -664,7 +695,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(1068, 659);
-            this.splitContainer1.SplitterDistance = 246;
+            this.splitContainer1.SplitterDistance = 245;
             this.splitContainer1.TabIndex = 26;
             // 
             // labelSectorInfo
@@ -675,37 +706,6 @@
             this.labelSectorInfo.Size = new System.Drawing.Size(41, 13);
             this.labelSectorInfo.TabIndex = 27;
             this.labelSectorInfo.Text = "Sector:";
-            // 
-            // eventObjectPannel1
-            // 
-            this.eventObjectPannel1.EventObject = null;
-            this.eventObjectPannel1.Location = new System.Drawing.Point(10, 48);
-            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
-            this.eventObjectPannel1.Name = "eventObjectPannel1";
-            this.eventObjectPannel1.ReadOnly = true;
-            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
-            this.eventObjectPannel1.TabIndex = 25;
-            // 
-            // btnLoadEventObject
-            // 
-            this.btnLoadEventObject.Location = new System.Drawing.Point(10, 19);
-            this.btnLoadEventObject.Name = "btnLoadEventObject";
-            this.btnLoadEventObject.Size = new System.Drawing.Size(111, 23);
-            this.btnLoadEventObject.TabIndex = 26;
-            this.btnLoadEventObject.Text = "Load in viewer";
-            this.btnLoadEventObject.UseVisualStyleBackColor = true;
-            this.btnLoadEventObject.Click += new System.EventHandler(this.btnLoadEventObject_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.eventObjectPannel1);
-            this.groupBox4.Controls.Add(this.btnLoadEventObject);
-            this.groupBox4.Location = new System.Drawing.Point(292, 264);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(481, 281);
-            this.groupBox4.TabIndex = 27;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "EventObject";
             // 
             // SectorObjectDisplay
             // 
@@ -730,6 +730,7 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudMass)).EndInit();
             this.groupBox10.ResumeLayout(false);
@@ -746,7 +747,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -181,7 +181,7 @@ namespace X3TCTools.Generics
 
             if (!pEntry.IsValid)
             {
-                throw new Exception("Object not found in hash table");
+                throw new HashTableElementNotFoundException(ID);
             }
 
             Entry<T> entry = pEntry.obj;
@@ -189,7 +189,7 @@ namespace X3TCTools.Generics
             {
                 if (!entry.pNext.IsValid)
                 {
-                    throw new Exception("Object not found in hash table");
+                    throw new HashTableElementNotFoundException(ID);
                 }
 
                 entry = entry.pNext.obj;

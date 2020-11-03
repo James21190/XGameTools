@@ -12,13 +12,13 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public EventObject ASectorEventObject => throw new NotImplementedException();
 
-        public int pOwnedShipEventObjectIDHashTableObject => throw new NotImplementedException();
+        public int pOwnedShipEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Player_Variables.OwnedShipEventObjectIDHashTable);
 
-        public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr) pOwnedShipEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; }}
 
-        public int pOwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
+        public int pOwnedStationEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Player_Variables.OwnedStationEventObjectIDHashTable);
 
-        public ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr) pOwnedStationEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; }}
 
         public int pRaceDataWithSectorsEventObjectIDHashTable => throw new NotImplementedException();
 

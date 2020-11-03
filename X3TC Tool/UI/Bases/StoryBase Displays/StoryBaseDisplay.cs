@@ -29,7 +29,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay( "StoryBase - EventObjects");
             display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
             display.Show();
         }
@@ -51,35 +51,35 @@ namespace X3TC_Tool.UI.Displays
 
         private void button4_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting Arrays");
             display.LoadTable(m_StoryBase.pScriptingArrayObject_HashTable.address);
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting HashTables");
             display.LoadTable(m_StoryBase.pScriptingHashTableObject_HashTable.address);
             display.Show();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay();
             display.LoadTable(m_StoryBase.TextHashTableArray[44].address);
             display.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay("StoryBase - Scripting TextObjects");
             display.LoadTable(m_StoryBase.pScriptingTextObject_HashTable.address);
             display.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay(GameHook);
+            HashTableDisplay display = new HashTableDisplay();
             display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
             display.Show();
         }

@@ -65,6 +65,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
                         case 4351: return "Jaguar";
 
                         case 6652: return "Seeker Missile";
+                        case 6654: return "High Yield";
 
                         case 7740: return "Production Complex";
                         case 7817: return "Light Shield";

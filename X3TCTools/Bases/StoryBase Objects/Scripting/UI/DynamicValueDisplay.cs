@@ -39,6 +39,7 @@ namespace X3TCTools
                 FlagBox.SelectedIndex = DynamicValue.FlagCount;
             }
             ValueBox.Text = m_DynamicValue.Value.ToString("X");
+            DecimalValueBox.Value = m_DynamicValue.Value;
         }
 
         public DynamicValueDisplay()
@@ -65,6 +66,11 @@ namespace X3TCTools
             {
                 m_DynamicValue.Value = 0;
             }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            m_DynamicValue.Value = (int)DecimalValueBox.Value;
         }
     }
 }

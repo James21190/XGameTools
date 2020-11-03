@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using X3TC_Tool.UI.Bases.CameraBase_Displays;
 using X3TCTools;
 using X3TCTools.Sector_Objects;
 
@@ -7,13 +8,13 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class SectorObjectDataDisplay : Form
     {
-        private SectorObjectData m_SectorObjectData;
+        private RenderObject m_SectorObjectData;
         public SectorObjectDataDisplay()
         {
             InitializeComponent();
         }
 
-        public void LoadData(SectorObjectData sectorObjectData)
+        public void LoadData(RenderObject sectorObjectData)
         {
             m_SectorObjectData = sectorObjectData;
             Reload();
@@ -21,7 +22,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void LoadData(IntPtr pSectorObjectData)
         {
-            m_SectorObjectData = new SectorObjectData();
+            m_SectorObjectData = new RenderObject();
             m_SectorObjectData.SetLocation(GameHook.hProcess, pSectorObjectData);
             Reload();
         }
@@ -35,11 +36,14 @@ namespace X3TC_Tool.UI.Displays
             nudSize.Value = m_SectorObjectData.Size;
             nudTotalSize.Value = m_SectorObjectData.TotalSize;
 
+            nudModelID.Value = m_SectorObjectData.ModelID;
+
             // Relations
             NextButton.Enabled = m_SectorObjectData.pNext.obj.IsValid;
             PreviousButton.Enabled = m_SectorObjectData.pPrevious.obj.IsValid;
             FirstChildButton.Enabled = m_SectorObjectData.pFirstChild.obj.IsValid;
             LastChildButton.Enabled = m_SectorObjectData.pLastChild.obj.IsValid;
+            btnParent.Enabled = m_SectorObjectData.pParent.obj.IsValid;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,7 +74,20 @@ namespace X3TC_Tool.UI.Displays
         private void button2_Click(object sender, EventArgs e)
         {
             m_SectorObjectData.ModelScale = ScaleBox.Vector;
+            m_SectorObjectData.ModelID = (int)nudModelID.Value;
             m_SectorObjectData.Save();
+        }
+
+        private void btnParent_Click(object sender, EventArgs e)
+        {
+            LoadData(m_SectorObjectData.pParent.obj);
+        }
+
+        private void btnViewModelData_Click(object sender, EventArgs e)
+        {
+            var display = new BodyDataDisplay();
+            display.LoadBodyData(m_SectorObjectData.ModelID);
+            display.Show();
         }
     }
 }

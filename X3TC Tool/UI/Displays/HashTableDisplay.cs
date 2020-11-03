@@ -8,17 +8,14 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class HashTableDisplay : Form
     {
-        private GameHook GameHook;
-
         private HashTable<MemoryInt32> m_HashTable = new HashTable<MemoryInt32>();
 
-        public HashTableDisplay(GameHook gameHook, string name = null)
+        public HashTableDisplay(string title = null)
         {
             InitializeComponent();
-            GameHook = gameHook;
-            if (name != null)
+            if (title != null)
             {
-                Text = name;
+                SetTitle(title);
             }
         }
 
@@ -46,6 +43,7 @@ namespace X3TC_Tool.UI.Displays
         private void LoadButton_Click(object sender, EventArgs e)
         {
             LoadTable((IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
+            SetTitle("0x" + AddressBox);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -89,6 +87,11 @@ namespace X3TC_Tool.UI.Displays
             }
 
             LoadEntry(Convert.ToInt32(listBox1.SelectedItem.ToString()));
+        }
+
+        public void SetTitle(string title)
+        {
+            Text = string.Format("HashTable View : {0}", title);
         }
     }
 }

@@ -30,8 +30,8 @@ namespace X3TC_Tool.UI.Displays
         /// </summary>
         private void InitializeComponent()
         {
-            DynamicValue dynamicValue5 = new DynamicValue();
-            DynamicValue dynamicValue6 = new DynamicValue();
+            X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue1 = new X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue();
+            X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue2 = new X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();
@@ -149,15 +149,17 @@ namespace X3TC_Tool.UI.Displays
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 48);
+            this.listBox1.Location = new System.Drawing.Point(6, 63);
             this.listBox1.MultiColumn = true;
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(357, 134);
+            this.listBox1.Size = new System.Drawing.Size(357, 121);
             this.listBox1.TabIndex = 7;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.ScannerLabel);
             this.groupBox5.Controls.Add(this.listBox1);
@@ -195,24 +197,24 @@ namespace X3TC_Tool.UI.Displays
             this.groupBox6.Controls.Add(this.groupBox7);
             this.groupBox6.Location = new System.Drawing.Point(393, 12);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(218, 307);
+            this.groupBox6.Size = new System.Drawing.Size(218, 380);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Entry";
             // 
             // dynamicValueDisplay1
             // 
-            this.dynamicValueDisplay1.Location = new System.Drawing.Point(27, 185);
+            this.dynamicValueDisplay1.Location = new System.Drawing.Point(27, 209);
             this.dynamicValueDisplay1.Name = "dynamicValueDisplay1";
-            this.dynamicValueDisplay1.Size = new System.Drawing.Size(179, 83);
+            this.dynamicValueDisplay1.Size = new System.Drawing.Size(179, 110);
             this.dynamicValueDisplay1.TabIndex = 3;
             this.dynamicValueDisplay1.Text = "Value";
-            this.dynamicValueDisplay1.Value = dynamicValue5;
+            this.dynamicValueDisplay1.Value = dynamicValue1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 164);
+            this.label1.Location = new System.Drawing.Point(6, 186);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 6;
@@ -220,7 +222,7 @@ namespace X3TC_Tool.UI.Displays
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(60, 159);
+            this.textBox2.Location = new System.Drawing.Point(60, 183);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(146, 20);
@@ -232,7 +234,7 @@ namespace X3TC_Tool.UI.Displays
             this.groupBox7.Controls.Add(this.button2);
             this.groupBox7.Location = new System.Drawing.Point(6, 17);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(200, 136);
+            this.groupBox7.Size = new System.Drawing.Size(200, 160);
             this.groupBox7.TabIndex = 5;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "ID";
@@ -241,14 +243,14 @@ namespace X3TC_Tool.UI.Displays
             // 
             this.IDBox.Location = new System.Drawing.Point(8, 16);
             this.IDBox.Name = "IDBox";
-            this.IDBox.Size = new System.Drawing.Size(179, 83);
+            this.IDBox.Size = new System.Drawing.Size(179, 110);
             this.IDBox.TabIndex = 2;
             this.IDBox.Text = "ID";
-            this.IDBox.Value = dynamicValue6;
+            this.IDBox.Value = dynamicValue2;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(112, 99);
+            this.button2.Location = new System.Drawing.Point(112, 132);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -267,7 +269,6 @@ namespace X3TC_Tool.UI.Displays
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.MaximumSize = new System.Drawing.Size(629, 370);
             this.MinimumSize = new System.Drawing.Size(629, 370);
             this.Name = "ScriptingHashTableDisplay";
             this.Text = "ScriptingHashTableDisplay";

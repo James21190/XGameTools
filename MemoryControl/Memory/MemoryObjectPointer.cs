@@ -51,6 +51,14 @@ namespace Common.Memory
             set => MemoryControl.Write(m_hProcess, address, value.GetBytes());
         }
 
+        public T this[int index]
+        {
+            get
+            {
+                return GetObjectInArray(index);
+            }
+        }
+
         public A GetObjAsType<A>() where A : IMemoryObject, new()
         {
             A obj = new A();
