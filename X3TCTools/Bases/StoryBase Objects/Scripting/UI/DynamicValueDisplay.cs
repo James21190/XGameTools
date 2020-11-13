@@ -27,8 +27,10 @@ namespace X3TCTools
             }
         }
 
+        bool reloading = false;
         private void Reload()
         {
+            reloading = true;
             if ((int)m_DynamicValue.Flag < DynamicValue.FlagCount)
             {
                 FlagBox.SelectedIndex = (int)m_DynamicValue.Flag;
@@ -40,6 +42,7 @@ namespace X3TCTools
             }
             ValueBox.Text = m_DynamicValue.Value.ToString("X");
             DecimalValueBox.Value = m_DynamicValue.Value;
+            reloading = false;
         }
 
         public DynamicValueDisplay()
@@ -58,6 +61,7 @@ namespace X3TCTools
 
         private void ValueBox_TextChanged(object sender, EventArgs e)
         {
+            if (reloading) return;
             try
             {
                 m_DynamicValue.Value = int.Parse(ValueBox.Text, System.Globalization.NumberStyles.HexNumber);
@@ -66,11 +70,14 @@ namespace X3TCTools
             {
                 m_DynamicValue.Value = 0;
             }
+            Reload();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
+            if (reloading) return;
             m_DynamicValue.Value = (int)DecimalValueBox.Value;
+            Reload();
         }
     }
 }

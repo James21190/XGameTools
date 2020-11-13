@@ -71,21 +71,23 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
 
             switch (m_EventObject.ObjectType)
             {
-                case EventObject.EventObject_Type.Sector: typePanel = new IScriptMemoryObject_Sector_Panel(); break;
-                case EventObject.EventObject_Type.Ship_Unknown_1:
-                case EventObject.EventObject_Type.Ship_Unknown_2:
-                case EventObject.EventObject_Type.Ship_Unknown_3:
-                case EventObject.EventObject_Type.Ship_Unknown_4:
-                case EventObject.EventObject_Type.Ship_Unknown_5:
-                case EventObject.EventObject_Type.Ship_Unknown_6:
-                case EventObject.EventObject_Type.Ship_Player: typePanel = new IScriptMemoryObject_Ship_Panel(); break;
-                case EventObject.EventObject_Type.Station_Equipment:
+                case EventObject.EventObject_Type.Sector:
+                    typePanel = new IScriptMemoryObject_Sector_Panel(); break;
+                case EventObject.EventObject_Type.Ship_M1:
+                case EventObject.EventObject_Type.Ship_M2:
+                case EventObject.EventObject_Type.Ship_M3:
+                case EventObject.EventObject_Type.Ship_M4:
+                case EventObject.EventObject_Type.Ship_M5:
+                case EventObject.EventObject_Type.Ship_M6:
+                case EventObject.EventObject_Type.Ship_M7:
+                case EventObject.EventObject_Type.Ship_TS:
+                    typePanel = new IScriptMemoryObject_Ship_Panel(); break;
                 case EventObject.EventObject_Type.Station_Factory:
-                case EventObject.EventObject_Type.Station_Shipyard:
-                case EventObject.EventObject_Type.Station_Trading:
-                case EventObject.EventObject_Type.Station_Unknown_3: typePanel = new IScriptMemoryObject_Station_Panel(); break;
-                case EventObject.EventObject_Type.RaceData: typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
-                case EventObject.EventObject_Type.RaceData_Player: typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
+                    typePanel = new IScriptMemoryObject_Station_Panel(); break;
+                case EventObject.EventObject_Type.RaceData:
+                    typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
+                case EventObject.EventObject_Type.RaceData_Player:
+                    typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
                 default: return;
             }
 

@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Displays
 {
-    partial class SectorObjectDataDisplay
+    partial class RenderObjectDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,9 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnViewModelData = new System.Windows.Forms.Button();
             this.nudModelID = new System.Windows.Forms.NumericUpDown();
+            this.vec3Saturation = new Common.UI.Vector3Display();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.nudHue = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -52,6 +55,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalSize)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudModelID)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHue)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -287,11 +292,86 @@
             this.nudModelID.Size = new System.Drawing.Size(111, 20);
             this.nudModelID.TabIndex = 19;
             // 
-            // SectorObjectDataDisplay
+            // vec3Saturation
+            // 
+            this.vec3Saturation.DecimalPlaces = 0;
+            this.vec3Saturation.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.vec3Saturation.Location = new System.Drawing.Point(12, 286);
+            this.vec3Saturation.Maximum = new decimal(new int[] {
+            -1530494977,
+            232830,
+            0,
+            0});
+            this.vec3Saturation.MaximumSize = new System.Drawing.Size(156, 103);
+            this.vec3Saturation.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3Saturation.MinimumSize = new System.Drawing.Size(100, 103);
+            this.vec3Saturation.Name = "vec3Saturation";
+            this.vec3Saturation.ReadOnly = true;
+            this.vec3Saturation.Size = new System.Drawing.Size(156, 103);
+            this.vec3Saturation.TabIndex = 23;
+            this.vec3Saturation.Text = "Saturation";
+            this.vec3Saturation.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3Saturation.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3Saturation.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.nudHue);
+            this.groupBox5.Location = new System.Drawing.Point(12, 234);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(156, 46);
+            this.groupBox5.TabIndex = 21;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Hue";
+            // 
+            // nudHue
+            // 
+            this.nudHue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudHue.Location = new System.Drawing.Point(6, 19);
+            this.nudHue.Maximum = new decimal(new int[] {
+            1316134911,
+            2328,
+            0,
+            0});
+            this.nudHue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.nudHue.Name = "nudHue";
+            this.nudHue.ReadOnly = true;
+            this.nudHue.Size = new System.Drawing.Size(144, 20);
+            this.nudHue.TabIndex = 19;
+            // 
+            // RenderObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.vec3Saturation);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnParent);
             this.Controls.Add(this.groupBox3);
@@ -303,8 +383,8 @@
             this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.groupBox2);
-            this.Name = "SectorObjectDataDisplay";
-            this.Text = "SectorObjectDataDisplay";
+            this.Name = "RenderObjectDisplay";
+            this.Text = "RenderObjectDisplay";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).EndInit();
@@ -313,6 +393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTotalSize)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudModelID)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudHue)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -336,5 +418,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.NumericUpDown nudModelID;
         private System.Windows.Forms.Button btnViewModelData;
+        private Common.UI.Vector3Display vec3Saturation;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.NumericUpDown nudHue;
     }
 }

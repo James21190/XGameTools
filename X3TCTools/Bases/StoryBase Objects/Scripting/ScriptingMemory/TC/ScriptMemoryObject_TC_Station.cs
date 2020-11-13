@@ -1,4 +1,5 @@
 ﻿using System;
+using X3TCTools.Sector_Objects;
 
 namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 {
@@ -6,23 +7,41 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
     {
         public new const int VariableCount = 53;
 
-        public int MainType => throw new NotImplementedException();
+        public int MainType => GetVariableValue((int)TC_Station_Variables.MainType);
 
-        public int SubType => throw new NotImplementedException();
+        public int SubType => GetVariableValue((int)TC_Station_Variables.SubType);
 
-        public int CurrentSectorEventObjectID => throw new NotImplementedException();
+        public int CurrentSectorEventObjectID => GetVariableValue((int)TC_Station_Variables.CurrentSectorEventObjectID);
 
-        public EventObject CurrentSectorEventObject => throw new NotImplementedException();
+        public EventObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
 
-        public int pCargoHashTable => throw new NotImplementedException();
+        public int pCargoHashTable => GetVariable((int)TC_Station_Variables.CargoHashTable).Value;
 
-        public ScriptingHashTableObject CargoHashTable => throw new NotImplementedException();
+        public ScriptingHashTableObject CargoHashTable => GetVariable((int)TC_Station_Variables.CargoHashTable).GetAsHashTableObject();
 
-        public CargoEntry[] CargoEntries => throw new NotImplementedException();
+        public CargoEntry[] CargoEntries
+        {
+            get
+            {
+                ScriptingHashTableObject cargoItems = CargoHashTable;
+                CargoEntry[] entries = new CargoEntry[cargoItems.hashTable.Count];
+                int i = 0;
+                foreach (DynamicValue id in cargoItems.hashTable.ScanContents())
+                {
+                    SectorObject.Full_Type entryType = SectorObject.Full_Type.FromInt(id.Value);
+                    int entryCapacity = TypeData.GetDockWareCapacity(entryType.MainType, entryType.SubType);
+                    entries[i++] = new CargoEntry()
+                    {
+                        Type = entryType,
+                        Count = cargoItems.hashTable.GetObject(id).Value
+                    };
+                }
+                return entries;
+            }
+        }
 
-        public int OwnerDataEventObjectID => throw new NotImplementedException();
-
-        public EventObject OwnerDataEventObject => throw new NotImplementedException();
+        public int OwnerDataEventObjectID => GetVariableValue((int)TC_Station_Variables.OwningRaceDataEventObjectID);
+        public EventObject OwnerDataEventObject => GameHook.storyBase.GetEventObject(OwnerDataEventObjectID);
 
         public override string GetVariableName(int index)
         {

@@ -4,34 +4,29 @@
     {
         public enum EventObject_Type
         {
-            Unknown,
-            Unknown_Ship,
-            Unknown_Station,
-
-            Station_Trading,
-            Station_Equipment,
-            Station_Factory,
-            Station_Shipyard,
-            Station_Unknown_3,
-
-            Ship_Player,
-            Ship_Unknown_1,
-            Ship_Unknown_2,
-            Ship_Unknown_3,
-            Ship_Unknown_4,
-            Ship_Unknown_5,
-            Ship_Unknown_6,
-
-            Sector,
-
-            Planet,
-
-            Sun,
-
-            Gate,
-
-            RaceData,
+            RaceData = 401,
             RaceData_Player,
+
+            Sector = 2001,
+
+            Station_Factory = 2006,
+
+            Asteroid = 2012,
+
+            Gate = 2014,
+
+            Ship_M1 = 2021,
+            Ship_M2,
+            Ship_M3,
+            Ship_M4,
+            Ship_M5,
+            Ship_M6,
+            Ship_M7,
+
+            Ship_TS = 2031,
+            Ship_TL,
+
+            Ship_Spacefly = 2070,
         }
     }
 }

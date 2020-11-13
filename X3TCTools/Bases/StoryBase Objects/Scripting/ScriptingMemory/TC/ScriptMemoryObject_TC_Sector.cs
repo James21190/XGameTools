@@ -20,7 +20,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject GateEventObjectHashTableObject => throw new NotImplementedException();
 
-        public int BackgroundID => throw new NotImplementedException();
+        public int BackgroundID => GetVariableValue((int)TC_Sector_Variables.BackgroundID);
 
         public bool IsValid => SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height;
 

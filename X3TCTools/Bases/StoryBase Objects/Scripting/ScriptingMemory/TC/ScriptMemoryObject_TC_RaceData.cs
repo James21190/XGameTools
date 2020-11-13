@@ -15,9 +15,9 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public GameHook.RaceID RaceID => (GameHook.RaceID)GetVariableValue((int)TC_RaceData_Variables.RaceID);
 
-        public int pOwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
+        public int pOwnedStationEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedStationEventObjectIDHashTable);
 
-        public ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedStationEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
 
         public int pOwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
 

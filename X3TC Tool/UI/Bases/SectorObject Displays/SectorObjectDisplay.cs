@@ -287,7 +287,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SectorObjectDataDisplay display = new SectorObjectDataDisplay();
+            RenderObjectDisplay display = new RenderObjectDisplay();
             display.LoadData(m_SectorObject.pData.obj);
             display.Show();
         }

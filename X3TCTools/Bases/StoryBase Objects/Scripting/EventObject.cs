@@ -19,51 +19,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
         {
             get
             {
-                switch (GameHook.GameVersion)
-                {
-                    //case GameHook.GameVersions.X3AP:
-                    default:  
-                    switch ((AP_EventObject_Type)pSub.obj.ID)
-                        {
-                            case AP_EventObject_Type.RaceData_2:
-                            case AP_EventObject_Type.RaceData_3:
-                            case AP_EventObject_Type.RaceData_4:
-                            case AP_EventObject_Type.RaceData_5:
-                            case AP_EventObject_Type.RaceData: return EventObject_Type.RaceData;
-                            case AP_EventObject_Type.RaceData_Player: return EventObject_Type.RaceData_Player;
-
-                            case AP_EventObject_Type.Sector: return EventObject_Type.Sector;
-
-                            case AP_EventObject_Type.Planet: return EventObject_Type.Planet;
-
-                            case AP_EventObject_Type.Sun: return EventObject_Type.Sun;
-
-                            case AP_EventObject_Type.Gate: return EventObject_Type.Gate;
-
-                            case AP_EventObject_Type.Station_Trading: return EventObject_Type.Station_Trading;
-                            case AP_EventObject_Type.Station_Equipment: return EventObject_Type.Station_Equipment;
-                            case AP_EventObject_Type.Station_Shipyard: return EventObject_Type.Station_Shipyard;
-                            case AP_EventObject_Type.Station_Factory: return EventObject_Type.Station_Factory;
-
-                            case AP_EventObject_Type.Station_3: return EventObject_Type.Station_Unknown_3;
-
-                            case AP_EventObject_Type.Ship_1: return EventObject_Type.Ship_Unknown_1;
-                            case AP_EventObject_Type.Ship_2: return EventObject_Type.Ship_Unknown_2;
-                            case AP_EventObject_Type.Ship_3: return EventObject_Type.Ship_Unknown_3;
-                            case AP_EventObject_Type.Ship_4: return EventObject_Type.Ship_Unknown_4;
-                            case AP_EventObject_Type.Ship_5: return EventObject_Type.Ship_Unknown_5;
-                            case AP_EventObject_Type.Ship_Player: return EventObject_Type.Ship_Player;
-                            case AP_EventObject_Type.Ship_6: return EventObject_Type.Ship_Unknown_6;
-                        }
-                        break;
-                    //case GameHook.GameVersions.X3TC:
-                    //    switch (pSub.obj.ID)
-                    //    {
-
-                    //    }
-                    //    break;
-                }
-                return EventObject_Type.Unknown;
+                return (EventObject_Type)pSub.obj.ID;
             }
         }
 

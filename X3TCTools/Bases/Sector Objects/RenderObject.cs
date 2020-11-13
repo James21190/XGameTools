@@ -91,8 +91,8 @@ namespace X3TCTools.Sector_Objects
         public int Unknown_111;
         public int Unknown_112;
         public int Unknown_113; // 1c0
-        public int Unknown_114;
-        public Vector3 Unknown_115;
+        public int Hue;
+        public Vector3 Saturation;
         public int Unknown_118;
         public int Unknown_119;
         public int Unknown_120;
@@ -234,8 +234,8 @@ namespace X3TCTools.Sector_Objects
             collection.Append(Unknown_111);
             collection.Append(Unknown_112);
             collection.Append(Unknown_113);
-            collection.Append(Unknown_114);
-            collection.Append(Unknown_115);
+            collection.Append(Hue);
+            collection.Append(Saturation);
             collection.Append(Unknown_118);
             collection.Append(Unknown_119);
             collection.Append(Unknown_120);
@@ -370,8 +370,8 @@ namespace X3TCTools.Sector_Objects
             Unknown_111 = collection.PopInt();
             Unknown_112 = collection.PopInt();
             Unknown_113 = collection.PopInt();
-            Unknown_114 = collection.PopInt();
-            Unknown_115 = collection.PopIMemoryObject<Vector3>();
+            Hue = collection.PopInt();
+            Saturation = collection.PopIMemoryObject<Vector3>();
             Unknown_118 = collection.PopInt();
             Unknown_119 = collection.PopInt();
             Unknown_120 = collection.PopInt();

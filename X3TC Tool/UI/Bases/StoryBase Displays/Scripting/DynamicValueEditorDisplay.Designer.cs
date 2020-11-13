@@ -30,7 +30,7 @@ namespace X3TC_Tool.UI.Displays
         /// </summary>
         private void InitializeComponent()
         {
-            DynamicValue dynamicValue1 = new DynamicValue();
+            X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue1 = new X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dynamicValueDisplay1 = new X3TCTools.DynamicValueDisplay();
@@ -38,7 +38,7 @@ namespace X3TC_Tool.UI.Displays
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 101);
+            this.button1.Location = new System.Drawing.Point(12, 126);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -48,7 +48,7 @@ namespace X3TC_Tool.UI.Displays
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(116, 101);
+            this.button2.Location = new System.Drawing.Point(116, 126);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -59,8 +59,9 @@ namespace X3TC_Tool.UI.Displays
             // dynamicValueDisplay1
             // 
             this.dynamicValueDisplay1.Location = new System.Drawing.Point(12, 12);
+            this.dynamicValueDisplay1.MinimumSize = new System.Drawing.Size(179, 108);
             this.dynamicValueDisplay1.Name = "dynamicValueDisplay1";
-            this.dynamicValueDisplay1.Size = new System.Drawing.Size(179, 83);
+            this.dynamicValueDisplay1.Size = new System.Drawing.Size(179, 108);
             this.dynamicValueDisplay1.TabIndex = 2;
             this.dynamicValueDisplay1.Text = "Value";
             this.dynamicValueDisplay1.Value = dynamicValue1;
@@ -69,7 +70,7 @@ namespace X3TC_Tool.UI.Displays
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(196, 130);
+            this.ClientSize = new System.Drawing.Size(196, 181);
             this.Controls.Add(this.dynamicValueDisplay1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

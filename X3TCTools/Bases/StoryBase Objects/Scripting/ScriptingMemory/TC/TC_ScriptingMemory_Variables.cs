@@ -50,6 +50,8 @@
 
         DockEventObjectIDHashTable = 6,
         FactoryEventObjectIDHashTable,
+
+        BackgroundID = 29,
     }
     public enum TC_Ship_Variables
     {
@@ -72,6 +74,9 @@
         WeaponArray = 21,
 
         ShieldArray = 25,
+
+        Hue = 28,
+        Saturation,
 
         Cargo = 33,
 
@@ -96,6 +101,13 @@
         /// The ID of the EventObject that the ship was in previously in.
         /// </summary>
         PreviousSectorEventObjectID,
+
+        MainType = 10,
+        SubType,
+
+        OwningRaceDataEventObjectID = 13,
+
+        CargoHashTable = 18,
     }
 
     public enum TC_Ware_Variables
@@ -137,6 +149,8 @@
 
         RaceRelationsArray = 3,
         OwnedShipEventObjectIDHashTable,
+
+        OwnedStationEventObjectIDHashTable = 7,
     }
 
     public enum TC_RaceData_Player_Variables
