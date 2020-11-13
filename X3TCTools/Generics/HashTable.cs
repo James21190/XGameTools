@@ -13,9 +13,6 @@ namespace X3TCTools.Generics
     {
         public class Entry<t> : MemoryObject where t : IMemoryObject, new()
         {
-            public const int ByteSize = 12;
-
-
             public MemoryObjectPointer<Entry<t>> pNext;
             public int ObjectID;
             public MemoryObjectPointer<t> pObject;
@@ -41,10 +38,7 @@ namespace X3TCTools.Generics
                 return collection.GetBytes();
             }
 
-            public override int GetByteSize()
-            {
-                return ByteSize;
-            }
+            public override int ByteSize => 12;
 
             public override void SetData(byte[] Memory)
             {
@@ -63,11 +57,6 @@ namespace X3TCTools.Generics
             }
             #endregion
         }
-
-        /// <summary>
-        /// The size of the object in bytes.
-        /// </summary>
-        public const int ByteSize = 16;
 
         #region Fields
         /// <summary>
@@ -214,10 +203,7 @@ namespace X3TCTools.Generics
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 16;
 
         protected override void SetDataFromObjectByteList(ObjectByteList collection)
         {

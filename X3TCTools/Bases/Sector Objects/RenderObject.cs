@@ -6,8 +6,6 @@ namespace X3TCTools.Sector_Objects
 {
     public class RenderObject : MemoryObject
     {
-        public const int ByteSize = 624;
-
         public MemoryObjectPointer<RenderObject> pNext = new MemoryObjectPointer<RenderObject>();
         public MemoryObjectPointer<RenderObject> pPrevious = new MemoryObjectPointer<RenderObject>();
         public int Unknown_3; // 0x8
@@ -281,10 +279,7 @@ namespace X3TCTools.Sector_Objects
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 624;
 
         public override void SetData(byte[] Memory)
         {

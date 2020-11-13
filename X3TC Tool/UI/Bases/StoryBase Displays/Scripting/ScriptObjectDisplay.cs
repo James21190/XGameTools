@@ -4,10 +4,8 @@ using X3TCTools;
 using X3TCTools.Bases;
 using X3TCTools.Bases.StoryBase_Objects;
 using X3TCTools.Bases.StoryBase_Objects.Scripting;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode.AP;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode.TC;
 using X3TCTools.Generics;
+using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode;
 
 namespace X3TC_Tool.UI.Displays
 {
@@ -67,15 +65,6 @@ namespace X3TC_Tool.UI.Displays
             InstructionOffsetBox.Text = m_ScriptObject.InstructionOffset.ToString();
             numericUpDown1.Value = m_ScriptObject.InstructionOffset;
             // Function Name
-            KCodeDissassembler dissassembler;
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;
-                case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
-                default: throw new Exception();
-            }
-            txtFunctionName.Text = dissassembler.GetFunctionName(m_ScriptObject.InstructionOffset);
-
 
             // Load dissassembly
             ReloadDissassembly();
@@ -83,26 +72,12 @@ namespace X3TC_Tool.UI.Displays
 
         public void ReloadDissassembly()
         {
-            richTextBox1.Clear();
-            KCodeDissassembler dissassembler;
-            switch (GameHook.GameVersion)
+            richTextBox1.Text = "";
+            var disassembler = new KDisassembler(FunctionDefinitionLibrary.GetKFunctionDefinitions(GameHook.GameVersion));
+            var instructions = disassembler.Disassemble(m_ScriptObject.InstructionOffset);
+            foreach(var item in instructions)
             {
-                case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
-                case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;
-                default: return;
-            }
-            FunctionCallData[] code = dissassembler.Decompile(m_ScriptObject);
-
-            foreach (FunctionCallData line in code)
-            {
-                if (!checkBox1.Checked)
-                {
-                    richTextBox1.Text += line.ToString("C") + "\n";
-                }
-                else
-                {
-                    richTextBox1.Text += line.ToString("CX") + "\n";
-                }
+                richTextBox1.Text += item.ToString(checkBox1.Checked) + "\n";
             }
         }
 

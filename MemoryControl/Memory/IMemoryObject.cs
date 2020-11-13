@@ -5,10 +5,10 @@ namespace Common.Memory
     public interface IBinaryObject
     {
         /// <summary>
-        /// Returns the size of the object in bytes.
+        /// The size of the object in bytes.
         /// </summary>
         /// <returns></returns>
-        int GetByteSize();
+        int ByteSize { get; }
         /// <summary>
         /// Sets values in the object from a byte array.
         /// </summary>

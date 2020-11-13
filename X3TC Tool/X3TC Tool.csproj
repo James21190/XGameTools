@@ -221,6 +221,12 @@
     <Compile Include="UI\TypeSelectDialog.Designer.cs">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\x86Disassembler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\x86Disassembler.Designer.cs">
+      <DependentUpon>x86Disassembler.cs</DependentUpon>
+    </Compile>
     <Compile Include="X3TCToolForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -312,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TypeSelectDialog.resx">
       <DependentUpon>TypeSelectDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\x86Disassembler.resx">
+      <DependentUpon>x86Disassembler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="X3TCToolForm.resx">
       <DependentUpon>X3TCToolForm.cs</DependentUpon>

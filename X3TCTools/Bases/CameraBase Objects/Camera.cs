@@ -6,8 +6,6 @@ namespace X3TCTools.Bases
 {
     public class Camera : MemoryObject
     {
-        public const int ByteSize = 1936;
-
         public int ID;
 
         public int FunctionIndex;
@@ -37,10 +35,7 @@ namespace X3TCTools.Bases
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 1936;
 
         public override void SetData(byte[] Memory)
         {

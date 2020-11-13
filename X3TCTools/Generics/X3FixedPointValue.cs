@@ -35,10 +35,7 @@ namespace X3TCTools.Generics
             return BitConverter.GetBytes(FixedPointValue);
         }
 
-        public int GetByteSize()
-        {
-            return 4;
-        }
+        public int ByteSize => 4;
 
         public void SetData(byte[] Memory)
         {

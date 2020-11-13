@@ -46,10 +46,7 @@
             return m_Value;
         }
 
-        public override int GetByteSize()
-        {
-            return m_Length;
-        }
+        public override int ByteSize => m_Length;
 
         public override void SetData(byte[] Memory)
         {

@@ -5,10 +5,13 @@
 
 #include "DiscordMain.h"
 
+#include "../X3TC/X3TCLib.h"
+
 using namespace discord;
 
 void Inject() {
     // Injects code into the main game loop to call the Tick function.
+    auto a = new X3TC::Sector::SectorObject(0x00070000);
 }
 
 void Tick() {

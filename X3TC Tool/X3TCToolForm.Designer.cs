@@ -50,6 +50,7 @@
             this.dynamicValueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kCodeViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bodyDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,7 +65,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.GameHookPanel = new System.Windows.Forms.Panel();
-            this.bodyDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.x86DisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -167,7 +168,8 @@
             this.cameraToolStripMenuItem,
             this.scriptingObjectsToolStripMenuItem,
             this.textPageToolStripMenuItem,
-            this.bodyDataToolStripMenuItem});
+            this.bodyDataToolStripMenuItem,
+            this.x86DisassemblerToolStripMenuItem});
             this.GameHookMenuStrip.Name = "GameHookMenuStrip";
             this.GameHookMenuStrip.Size = new System.Drawing.Size(79, 20);
             this.GameHookMenuStrip.Text = "GameHook";
@@ -268,6 +270,13 @@
             this.textPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.textPageToolStripMenuItem.Text = "TextPage";
             this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
+            // 
+            // bodyDataToolStripMenuItem
+            // 
+            this.bodyDataToolStripMenuItem.Name = "bodyDataToolStripMenuItem";
+            this.bodyDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bodyDataToolStripMenuItem.Text = "BodyData";
+            this.bodyDataToolStripMenuItem.Click += new System.EventHandler(this.bodyDataToolStripMenuItem_Click);
             // 
             // LoadPlayerShipButton
             // 
@@ -410,12 +419,12 @@
             this.GameHookPanel.Size = new System.Drawing.Size(860, 522);
             this.GameHookPanel.TabIndex = 9;
             // 
-            // bodyDataToolStripMenuItem
+            // x86DisassemblerToolStripMenuItem
             // 
-            this.bodyDataToolStripMenuItem.Name = "bodyDataToolStripMenuItem";
-            this.bodyDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bodyDataToolStripMenuItem.Text = "BodyData";
-            this.bodyDataToolStripMenuItem.Click += new System.EventHandler(this.bodyDataToolStripMenuItem_Click);
+            this.x86DisassemblerToolStripMenuItem.Name = "x86DisassemblerToolStripMenuItem";
+            this.x86DisassemblerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.x86DisassemblerToolStripMenuItem.Text = "x86 Disassembler";
+            this.x86DisassemblerToolStripMenuItem.Click += new System.EventHandler(this.x86DisassemblerToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -482,6 +491,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel GameHookPanel;
         private System.Windows.Forms.ToolStripMenuItem bodyDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem x86DisassemblerToolStripMenuItem;
     }
 }
 

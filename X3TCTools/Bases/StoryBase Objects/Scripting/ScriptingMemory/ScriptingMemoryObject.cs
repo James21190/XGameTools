@@ -72,9 +72,12 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
             return collection.GetBytes();
         }
 
-        public sealed override int GetByteSize()
+        public sealed override int ByteSize
         {
-            return VariableCount * DynamicValue.ByteSize;
+            get
+            {
+                return VariableCount * DynamicValue.ByteSizeConst;
+            }
         }
 
         public sealed override void SetData(byte[] Memory)

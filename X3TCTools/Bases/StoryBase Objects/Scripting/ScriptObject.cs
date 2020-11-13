@@ -1,8 +1,5 @@
 ﻿using Common.Memory;
 using System;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode.AP;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode.TC;
 
 namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 {
@@ -25,8 +22,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 
         #region IMemoryObject
 
-        public const int ByteSize = 64;
-
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
@@ -39,10 +34,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 64;
 
         public override void SetData(byte[] Memory)
         {
@@ -77,14 +69,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 
         public override string ToString()
         {
-            KCodeDissassembler dissassembler;
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3AP: dissassembler = new APKCodeDissassembler(); break;
-                case GameHook.GameVersions.X3TC: dissassembler = new TCKCodeDissassembler(); break;
-                default: return "ScriptObject " + ID;
-            }
-            return string.Format("ScriptObject {0} - {1}", ID, dissassembler.GetFunctionName(InstructionOffset));
+            return string.Format("ScriptObject {0} - {1}", ID, InstructionOffset);
         }
     }
 }

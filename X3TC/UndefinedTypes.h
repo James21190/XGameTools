@@ -1,0 +1,13 @@
+#pragma once
+
+namespace X3TC {
+	namespace Generics {
+		typedef unsigned char   undefined;
+		typedef unsigned char    undefined1;
+		typedef unsigned short    undefined2;
+		typedef unsigned int    undefined3;
+		typedef unsigned int    undefined4;
+		typedef unsigned long long    undefined6;
+		typedef unsigned long long    undefined8;
+	}
+}

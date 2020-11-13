@@ -19,10 +19,10 @@ namespace Common.Memory
         public abstract byte[] GetBytes();
 
         /// <summary>
-        /// Returns the size of the object in bytes.
+        /// The size of the object in bytes.
         /// </summary>
         /// <returns></returns>
-        public abstract int GetByteSize();
+        public abstract int ByteSize { get; }
 
         /// <summary>
         /// Sets the values of the fields of this object with the values stored in a binary array.
@@ -62,7 +62,7 @@ namespace Common.Memory
         /// </summary>
         public void ReloadFromMemory()
         {
-            SetData(MemoryControl.Read(m_hProcess, pThis, GetByteSize()));
+            SetData(MemoryControl.Read(m_hProcess, pThis, ByteSize ));
         }
 
         /// <summary>

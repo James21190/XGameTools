@@ -5,8 +5,6 @@ namespace X3TCTools.Bases.StoryBase_Objects
 {
     public class EventFunctionStruct : MemoryObject
     {
-        public const int ByteSize = 24;
-
         public IntPtr pPrimaryFunction;
         public IntPtr pFunction2;
         public IntPtr pFunction3;
@@ -19,10 +17,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 24;
 
         public override void SetData(byte[] Memory)
         {

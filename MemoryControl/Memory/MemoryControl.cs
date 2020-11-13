@@ -98,7 +98,7 @@ namespace Common.Memory
         /// <param name="memoryObject"></param>
         public static void ReadIMemoryObject(IntPtr hProcess, IntPtr address, ref IMemoryObject memoryObject)
         {
-            byte[] data = Read(hProcess, address, memoryObject.GetByteSize());
+            byte[] data = Read(hProcess, address, memoryObject.ByteSize);
             memoryObject.SetData(data);
         }
 
@@ -197,18 +197,18 @@ namespace Common.Memory
 
         public static void CopyToArray(ref byte[] Arr, IMemoryObject memoryObject, int Index)
         {
-            if (Index + memoryObject.GetByteSize() > Arr.Length)
+            if (Index + memoryObject.ByteSize > Arr.Length)
             {
                 throw new IndexOutOfRangeException();
             }
 
-            Array.Copy(memoryObject.GetBytes(), 0, Arr, Index, memoryObject.GetByteSize());
+            Array.Copy(memoryObject.GetBytes(), 0, Arr, Index, memoryObject.ByteSize);
         }
 
         public static void ToObject(ref IMemoryObject obj, byte[] Arr, int Index)
         {
-            byte[] arr = new byte[obj.GetByteSize()];
-            Array.Copy(Arr, Index, arr, 0, obj.GetByteSize());
+            byte[] arr = new byte[obj.ByteSize];
+            Array.Copy(Arr, Index, arr, 0, obj.ByteSize);
 
             obj.SetData(arr);
 

@@ -7,9 +7,6 @@ namespace X3TCTools.Bases
 {
     public class InputBase : MemoryObject
     {
-
-        public const int ByteSize = 0x531;
-
         public int X2FunctionIndex;
 
         public int Paused;
@@ -30,10 +27,7 @@ namespace X3TCTools.Bases
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 0x531;
 
         public override void SetData(byte[] Memory)
         {

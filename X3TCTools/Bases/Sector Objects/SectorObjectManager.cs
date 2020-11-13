@@ -9,8 +9,6 @@ namespace X3TCTools.Sector_Objects
     /// </summary>
     public class SectorObjectManager : MemoryObject
     {
-        public const int ByteSize = 0x68;
-
         #region Memory Fields
         public int Unknown_1;
         public int Unknown_2;
@@ -151,10 +149,7 @@ namespace X3TCTools.Sector_Objects
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 0x68;
 
         public override void SetData(byte[] Memory)
         {

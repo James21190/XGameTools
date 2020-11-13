@@ -10,9 +10,6 @@ namespace X3TCTools.Bases.StoryBase_Objects
 {
     public class StoryBase : MemoryObject
     {
-
-        public const int ByteSize = 5648;
-
         public MemoryObjectPointer<HashTable<ScriptObject>> pScriptObjectHashTable;
 
         public MemoryObjectPointer<MemoryByte> pInstructionArray;
@@ -99,6 +96,16 @@ namespace X3TCTools.Bases.StoryBase_Objects
             return txt;
         }
 
+        public int GetScriptingFunctionAddressFromInstruction(byte instruction)
+        {
+            return GameHook.pProcessEventSwitch[GameHook.pProcessEventSwitchArray[instruction - 1].Value].Value;
+        }
+
+        public int GetScriptingFunctionAddressFromInstructionIndex(int index)
+        {
+            return GetScriptingFunctionAddressFromInstruction(pInstructionArray[index].Value);
+        }
+
         public EventObject GetEventObject(int ID)
         {
             int value = ID < 0 ? -ID - 1 : ID;
@@ -144,10 +151,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 5648;
 
         public override void SetData(byte[] Memory)
         {

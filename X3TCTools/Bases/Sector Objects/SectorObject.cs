@@ -91,7 +91,6 @@ namespace X3TCTools.Sector_Objects
         }
         public decimal[] MetricPosition => new decimal[] { (decimal)Position_Copy.X / 500000, (decimal)Position_Copy.Y / 500000, (decimal)Position_Copy.Z / 500000 };
 
-        public const int ByteSize = 304;
 
         public SectorObject()
         {
@@ -254,10 +253,7 @@ namespace X3TCTools.Sector_Objects
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 304;
 
         public override void SetData(byte[] Memory)
         {

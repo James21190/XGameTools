@@ -5,9 +5,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 {
     public class ScriptingArrayObject : MemoryObject
     {
-
-        public const int ByteSize = 32;
-
         public int id;
 
         public int length;
@@ -20,10 +17,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 32;
 
         public override void SetData(byte[] Memory)
         {

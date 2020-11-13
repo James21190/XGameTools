@@ -5,9 +5,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 {
     public class ScriptingTextObject : MemoryObject
     {
-
-        public const int ByteSize = 12;
-
         public int id;
         public int unknown_1;
         public MemoryObjectPointer<MemoryString> pText = new MemoryObjectPointer<MemoryString>();
@@ -17,10 +14,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 12;
 
         public override void SetData(byte[] Memory)
         {

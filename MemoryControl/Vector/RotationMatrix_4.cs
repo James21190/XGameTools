@@ -6,7 +6,7 @@ namespace Common.Vector
 {
     public class RotationMatrix_4 : MemoryObject
     {
-        public const int ByteSize = 0x30;
+        public override int ByteSize => 0x30;
 
         public double[,] Matrix = new double[3, 4];
 
@@ -74,11 +74,6 @@ namespace Common.Vector
             arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 3])));
 
             return arr.ToArray();
-        }
-
-        public override int GetByteSize()
-        {
-            return ByteSize;
         }
         #endregion
 

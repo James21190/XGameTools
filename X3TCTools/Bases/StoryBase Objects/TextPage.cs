@@ -15,10 +15,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
                     throw new NotImplementedException();
                 }
 
-                public override int GetByteSize()
-                {
-                    return 4;
-                }
+                public override int ByteSize => 4;
 
                 protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
                 {
@@ -42,10 +39,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
                 throw new NotImplementedException();
             }
 
-            public override int GetByteSize()
-            {
-                return 12;
-            }
+            public override int ByteSize => 12;
             protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
             {
                 ID = objectByteList.PopInt();
@@ -60,8 +54,6 @@ namespace X3TCTools.Bases.StoryBase_Objects
         public int Count;
         public MemoryObjectPointer<TextEntry> pEntries = new MemoryObjectPointer<TextEntry>();
         public int Unknown;
-
-        public const int ByteSize = 12;
 
         public TextEntry[] textEntries
         {
@@ -81,10 +73,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 12;
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {

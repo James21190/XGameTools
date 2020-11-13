@@ -13,17 +13,13 @@ namespace X3TCTools.Sector_Objects
 
             public BitField WeaponCompatability;
 
-            public const int ByteSize = 312;
 
             public override byte[] GetBytes()
             {
                 throw new NotImplementedException();
             }
 
-            public override int GetByteSize()
-            {
-                return ByteSize;
-            }
+            public override int ByteSize => 312;
 
             public override void SetData(byte[] Memory)
             {

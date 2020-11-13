@@ -14,8 +14,6 @@ namespace X3TCTools.Bases
 
         public class SectorData : IMemoryObject
         {
-
-            public const int ByteSize = 0xe0;
             public GateData[] gateData { get; } = new GateData[6];
             public short unknown_1;
             public GameHook.RaceID owner;
@@ -28,9 +26,6 @@ namespace X3TCTools.Bases
             public int unknown_8;
             public class GateData : IMemoryObject
             {
-
-                public const int ByteSize = 32;
-
                 public byte DstSecX;
                 public byte DstSecY;
                 public ushort DstGateID;
@@ -56,10 +51,7 @@ namespace X3TCTools.Bases
                     return Collection.GetBytes();
                 }
 
-                public int GetByteSize()
-                {
-                    return ByteSize;
-                }
+                public int ByteSize => 32;
 
                 public void SetData(byte[] Memory)
                 {
@@ -113,10 +105,8 @@ namespace X3TCTools.Bases
                 return collection.GetBytes();
             }
 
-            public int GetByteSize()
-            {
-                return ByteSize;
-            }
+            public static int ByteSizeConst = 0xe0;
+            public int ByteSize => ByteSizeConst;
 
             public void SetData(byte[] Memory)
             {
@@ -154,8 +144,6 @@ namespace X3TCTools.Bases
 
         #endregion
 
-
-        public const int byteSize = 0xfb410;
         // Height of the sector grid.
         public const int height = 20;
         // Width of the sector grid.
@@ -256,7 +244,7 @@ namespace X3TCTools.Bases
         public override byte[] GetBytes()
         {
             ObjectByteList collection = new ObjectByteList();
-            collection.Append(byteSize);
+            collection.Append(gateSystemFunctionIndex);
             collection.Append(unknown_1);
             collection.Append(unknown_2);
             collection.Append(unknown_3);
@@ -264,10 +252,7 @@ namespace X3TCTools.Bases
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return byteSize;
-        }
+        public override int ByteSize => 0xfb410;
 
         public override void SetData(byte[] Memory)
         {

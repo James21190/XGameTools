@@ -10,9 +10,6 @@ namespace X3TCTools.Generics
     /// <typeparam name="T"></typeparam>
     public class LinkedListStart<T> : MemoryObject where T : IMemoryObject, new()
     {
-
-        public const int ByteSize = 12;
-
         // Pointer to the first object.
         public MemoryObjectPointer<T> pFirst = new MemoryObjectPointer<T>();
         // Null value used when no objects are in the list.
@@ -29,10 +26,8 @@ namespace X3TCTools.Generics
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public const int ByteSizeConst = 12;
+        public override int ByteSize => ByteSizeConst;
 
         public override void SetData(byte[] Memory)
         {

@@ -21,16 +21,12 @@ namespace X3TCTools.Sector_Objects
 
         public MemoryObjectPointer<MemoryString> pTypeString;
 
-        public const int ByteSize = 3512;
         public sealed override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
 
-        public sealed override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 3512;
 
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)

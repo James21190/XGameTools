@@ -317,7 +317,7 @@
             // 
             this.groupBox6.Controls.Add(this.numericUpDown1);
             this.groupBox6.Controls.Add(this.textBox1);
-            this.groupBox6.Location = new System.Drawing.Point(555, 128);
+            this.groupBox6.Location = new System.Drawing.Point(555, 70);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(130, 78);
             this.groupBox6.TabIndex = 14;
@@ -327,9 +327,9 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.txtFunctionName);
-            this.groupBox7.Location = new System.Drawing.Point(555, 70);
+            this.groupBox7.Location = new System.Drawing.Point(229, 70);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(130, 52);
+            this.groupBox7.Size = new System.Drawing.Size(167, 52);
             this.groupBox7.TabIndex = 8;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Function Name";
@@ -339,7 +339,7 @@
             this.txtFunctionName.Location = new System.Drawing.Point(6, 19);
             this.txtFunctionName.Name = "txtFunctionName";
             this.txtFunctionName.ReadOnly = true;
-            this.txtFunctionName.Size = new System.Drawing.Size(118, 20);
+            this.txtFunctionName.Size = new System.Drawing.Size(155, 20);
             this.txtFunctionName.TabIndex = 0;
             // 
             // ScriptObjectDisplay
@@ -357,6 +357,7 @@
             this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.groupBox2);
+            this.MaximumSize = new System.Drawing.Size(713, 555);
             this.Name = "ScriptObjectDisplay";
             this.Text = "ScriptObjectDisplay";
             this.Load += new System.EventHandler(this.ScriptObjectDisplay_Load);

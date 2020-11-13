@@ -7,8 +7,6 @@ namespace X3TCTools.Bases
 {
     public class CameraBase : MemoryObject
     {
-        public const int ByteSize = 27208;
-
         public MemoryObjectPointer<HashTable<Camera>> pCameraHashTable = new MemoryObjectPointer<HashTable<Camera>>();
         public MemoryObjectPointer<HashTable<MemoryInt32>> pSceneHashTable = new MemoryObjectPointer<HashTable<MemoryInt32>>();
         public MemoryObjectPointer<HashTable<BodyData>> pBodyHashTable = new MemoryObjectPointer<HashTable<BodyData>>();
@@ -29,10 +27,7 @@ namespace X3TCTools.Bases
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 27208;
 
         public override void SetData(byte[] Memory)
         {

@@ -19,8 +19,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             pObject0xe = 14
         }
 
-        public const int ByteSize = 5;
-
         public FlagType Flag;
         public int Value;
 
@@ -49,10 +47,8 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public const int ByteSizeConst = 5;
+        public override int ByteSize => ByteSizeConst;
 
         public override void SetData(byte[] Memory)
         {

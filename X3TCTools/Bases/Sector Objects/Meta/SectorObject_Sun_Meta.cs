@@ -9,10 +9,7 @@ namespace X3TCTools.Sector_Objects.Meta
             throw new NotImplementedException();
         }
 
-        public int GetByteSize()
-        {
-            return 0x8;
-        }
+        public int ByteSize => 8;
 
         public SectorObject GetFirstChild(SectorObject.Main_Type main_Type)
         {

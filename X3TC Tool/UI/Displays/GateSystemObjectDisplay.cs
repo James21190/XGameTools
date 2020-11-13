@@ -19,7 +19,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void LoadSectorData(int index)
         {
-            int pData = (int)GameHook.gateSystemObject.pThis + 0x10 + (GateSystemObject.SectorData.ByteSize * index);
+            int pData = (int)GameHook.gateSystemObject.pThis + 0x10 + (GateSystemObject.SectorData.ByteSizeConst * index);
             textBox1.Text = pData.ToString("X");
         }
     }

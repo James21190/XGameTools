@@ -10,8 +10,6 @@ namespace X3TCTools.Bases.CameraBase_Objects
 {
     public class BodyData : MemoryObject
     {
-        public const int ByteSize = 0x60;
-
         public int ID;
         public MemoryObjectPointer<MemoryObjectPointer<BodyData_Sub>> ppSub;
         public short SubLength;
@@ -21,10 +19,7 @@ namespace X3TCTools.Bases.CameraBase_Objects
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 0x60;
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {

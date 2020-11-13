@@ -86,7 +86,7 @@ namespace Common.Memory
         public T GetObjectInArray(int Index)
         {
             T obj = new T();
-            IntPtr newAddress = address + (Index * obj.GetByteSize());
+            IntPtr newAddress = address + (Index * obj.ByteSize);
             obj.SetLocation(m_hProcess, newAddress);
             obj.ReloadFromMemory();
             return obj;
@@ -103,10 +103,7 @@ namespace Common.Memory
         }
 
         #region IMemoryObject
-        public override int GetByteSize()
-        {
-            return 4;
-        }
+        public override int ByteSize => 4;
 
         public override void SetData(byte[] Memory)
         {

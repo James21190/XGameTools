@@ -283,5 +283,10 @@ namespace X3TC_Tool
         {
             new BodyDataDisplay().Show();
         }
+
+        private void x86DisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new x86Disassembler().Show();
+        }
     }
 }

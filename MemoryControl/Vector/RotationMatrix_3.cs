@@ -6,7 +6,6 @@ namespace Common.Vector
 {
     public class RotationMatrix_3 : MemoryObject
     {
-        public const int ByteSize = 36;
 
         public double[,] Matrix = new double[3, 3];
 
@@ -73,10 +72,7 @@ namespace Common.Vector
             return arr.ToArray();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 36;
 
         public static RotationMatrix_3 operator *(RotationMatrix_3 A, RotationMatrix_3 B)
         {

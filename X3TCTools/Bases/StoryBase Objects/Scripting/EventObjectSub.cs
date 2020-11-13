@@ -5,8 +5,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 {
     public class EventObjectSub : MemoryObject
     {
-        public const int ByteSize = 52;
-
         public int ID;
         public int Unknown_1;
         public IntPtr pSelf;
@@ -26,10 +24,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 52;
 
         public override void SetData(byte[] Memory)
         {

@@ -14,10 +14,7 @@ namespace Common.Memory
             return BitConverter.GetBytes(Value);
         }
 
-        public override int GetByteSize()
-        {
-            return 8;
-        }
+        public override int ByteSize => 8;
 
         public override void SetData(byte[] Memory)
         {
@@ -35,10 +32,7 @@ namespace Common.Memory
             return BitConverter.GetBytes(Value);
         }
 
-        public override int GetByteSize()
-        {
-            return 4;
-        }
+        public override int ByteSize => 4;
 
         public override void SetData(byte[] Memory)
         {
@@ -57,10 +51,7 @@ namespace Common.Memory
             return BitConverter.GetBytes(Value);
         }
 
-        public override int GetByteSize()
-        {
-            return 2;
-        }
+        public override int ByteSize => 2;
 
         public override void SetData(byte[] Memory)
         {
@@ -80,10 +71,7 @@ namespace Common.Memory
             return new byte[] { Value };
         }
 
-        public override int GetByteSize()
-        {
-            return 1;
-        }
+        public override int ByteSize => 1;
 
         public override void SetData(byte[] Memory)
         {
@@ -108,9 +96,12 @@ namespace Common.Memory
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
+        public override int ByteSize
         {
-            return value == null ? 100 : value.Length + 1;
+            get
+            {
+                return value == null ? 100 : value.Length + 1;
+            }
         }
 
         public override void SetData(byte[] Memory)

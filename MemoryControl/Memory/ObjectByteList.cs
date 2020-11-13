@@ -29,10 +29,7 @@ namespace Common.Memory
         }
 
         #region IMemoryObject
-        public override int GetByteSize()
-        {
-            return m_Data.Count();
-        }
+        public override int ByteSize => m_Data.Count();
 
         public override void SetData(byte[] Memory)
         {
@@ -178,7 +175,7 @@ namespace Common.Memory
         {
             for (int i = 0; i < arr.Length; i++)
             {
-                byte[] data = new byte[arr[i].GetByteSize()];
+                byte[] data = new byte[arr[i].ByteSize];
                 PopFirst(ref data);
                 arr[i].SetData(data);
             }
@@ -197,7 +194,7 @@ namespace Common.Memory
             {
                 for (int y = 0; y < arr.GetLength(1); y++)
                 {
-                    byte[] data = new byte[arr[x, y].GetByteSize()];
+                    byte[] data = new byte[arr[x, y].ByteSize];
                     PopFirst(ref data);
                     arr[x, y].SetData(data);
                 }
@@ -213,9 +210,9 @@ namespace Common.Memory
         [Obsolete("This method is no longer supported. Please use PopIMemoryObject instead.")]
         public void PopFirst<T>(ref T obj) where T : IMemoryObject
         {
-            byte[] data = new byte[obj.GetByteSize()];
+            byte[] data = new byte[obj.ByteSize];
 
-            for (int i = 0; i < obj.GetByteSize(); i++)
+            for (int i = 0; i < obj.ByteSize; i++)
             {
                 data[i] = m_Data[m_ReadPointer++];
             }
@@ -418,7 +415,7 @@ namespace Common.Memory
             T memoryObject = new T();
 
             memoryObject.SetLocation(m_hProcess, pThis + m_ReadPointer);
-            memoryObject.SetData(PopBytes(memoryObject.GetByteSize()));
+            memoryObject.SetData(PopBytes(memoryObject.ByteSize));
 
             return memoryObject;
         }
@@ -431,7 +428,7 @@ namespace Common.Memory
             {
                 memoryObjects[i] = new T();
                 memoryObjects[i].SetLocation(m_hProcess, pThis + m_ReadPointer);
-                memoryObjects[i].SetData(PopBytes(memoryObjects[i].GetByteSize()));
+                memoryObjects[i].SetData(PopBytes(memoryObjects[i].ByteSize));
             }
 
             return memoryObjects;

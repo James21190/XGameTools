@@ -6,8 +6,6 @@ namespace X3TCTools.Bases.StoryBase_Objects
 {
     public class StoryBase15fc : MemoryObject
     {
-        public const int ByteSize = 20;
-
         public int ID;
         public int Unknown_1;
         public int Unknown_2;
@@ -27,10 +25,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 20;
 
         public override void SetData(byte[] Memory)
         {

@@ -7,7 +7,6 @@ namespace Common.Vector
 {
     public struct Vector2 : IMemoryObject
     {
-        public const int ByteSize = 8;
         public int X;
         public int Y;
 
@@ -62,10 +61,7 @@ namespace Common.Vector
             Y = BitConverter.ToInt32(Memory, 4);
         }
 
-        public int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public int ByteSize => 8;
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {

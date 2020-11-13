@@ -71,7 +71,7 @@ namespace X3TCTools.Sector_Objects.Meta
             base.SetLocation(hProcess, address);
             for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
             {
-                Children[i].SetLocation(hProcess, address + LinkedListStart<SectorObject>.ByteSize * i);
+                Children[i].SetLocation(hProcess, address + LinkedListStart<SectorObject>.ByteSizeConst * i);
             }
         }
 

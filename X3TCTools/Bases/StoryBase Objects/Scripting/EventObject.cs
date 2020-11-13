@@ -10,8 +10,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
     /// </summary>
     public partial class EventObject : MemoryObject
     {
-        public const int ByteSize = 16;
-
         public int NegativeID;
         public int ReferenceCount;
         public MemoryObjectPointer<EventObjectSub> pSub = new MemoryObjectPointer<EventObjectSub>();
@@ -87,10 +85,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 16;
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {

@@ -6,11 +6,7 @@ namespace X3TCTools.Bases
 {
     public class SystemBase : MemoryObject
     {
-        public const int ByteSize = 1960;
-
-        public byte[] top = new byte[204];
         public X3FixedPointValue SETAValue = new X3FixedPointValue();
-        public byte[] bottom = new byte[ByteSize - 204 - 4];
 
         public SystemBase()
         {
@@ -26,28 +22,14 @@ namespace X3TCTools.Bases
 
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
-
-            collection.Append(top);
-            collection.Append(SETAValue);
-            collection.Append(bottom);
-
-            return collection.GetBytes();
+            throw new NotImplementedException();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 1960;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList();
-            collection.SetData(Memory);
-
-            collection.PopFirst(ref top);
-            collection.PopFirst(ref SETAValue);
-            collection.PopFirst(ref bottom);
+            SETAValue = objectByteList.PopIMemoryObject<X3FixedPointValue>(204);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

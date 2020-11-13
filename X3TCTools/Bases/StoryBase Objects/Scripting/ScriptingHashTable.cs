@@ -13,9 +13,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
         #region Classes
         public class Entry : MemoryObject
         {
-            public const int ByteSize = 14;
-
-
             public MemoryObjectPointer<Entry> pNext;
             public DynamicValue id;
             public DynamicValue value;
@@ -41,10 +38,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
                 return collection.GetBytes();
             }
 
-            public override int GetByteSize()
-            {
-                return ByteSize;
-            }
+            public override int ByteSize => 14;
 
             public override void SetData(byte[] Memory)
             {
@@ -63,9 +57,6 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             }
             #endregion
         }
-        #endregion
-        #region Constants
-        public const int ByteSize = 16;
         #endregion
         #region Fields
         public MemoryObjectPointer<MemoryObjectPointer<Entry>> ppEntry;
@@ -187,10 +178,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             return collection.GetBytes();
         }
 
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
+        public override int ByteSize => 16;
 
         public override void SetData(byte[] Memory)
         {
