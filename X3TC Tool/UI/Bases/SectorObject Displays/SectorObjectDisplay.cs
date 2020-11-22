@@ -45,7 +45,7 @@ namespace X3TC_Tool.UI.Displays
         private TreeNode GenerateTreeNode(SectorObject baseSectorObject, int selectedID, out TreeNode selectedNode)
         {
             string sectorObjectName;
-            switch (baseSectorObject.MainType)
+            switch (baseSectorObject.ObjectType.MainTypeEnum)
             {
                 case SectorObject.Main_Type.Gate:
                     IScriptMemoryObject_Gate gateScriptMemoryObject;
@@ -165,7 +165,7 @@ namespace X3TC_Tool.UI.Displays
             }
 
             txtAddress.Text = m_SectorObject.pThis.ToString("X");
-            txtDefaultName.Text = GameHook.storyBase.ParseText(GameHook.Language.English, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+            txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
             nudSectorObjectID.Value = m_SectorObject.ObjectID;
             v3dPosition.Vector = m_SectorObject.Position_Copy;
             v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;
@@ -173,7 +173,7 @@ namespace X3TC_Tool.UI.Displays
             v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
             v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
             eventObjectPannel1.EventObject = m_SectorObject.EventObject;
-            txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.MainType.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.MainType, m_SectorObject.SubType);
+            txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.ObjectType.MainTypeEnum.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.ObjectType.MainTypeEnum, m_SectorObject.ObjectType.SubType);
 
             SpeedBox.Value = m_SectorObject.Speed;
             TargetSpeedBox.Value = m_SectorObject.TargetSpeed;
@@ -295,7 +295,7 @@ namespace X3TC_Tool.UI.Displays
         private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TypeDataDisplay display = new TypeDataDisplay();
-            display.LoadTypeData((int)m_SectorObject.MainType, m_SectorObject.SubType);
+            display.LoadTypeData((int)m_SectorObject.ObjectType.MainTypeEnum, m_SectorObject.ObjectType.SubType);
             display.Show();
         }
 

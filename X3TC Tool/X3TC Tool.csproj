@@ -75,6 +75,12 @@
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Sector_Panel.Designer.cs">
       <DependentUpon>IScriptMemoryObject_Sector_Panel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Headquarters_Panel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Headquarters_Panel.Designer.cs">
+      <DependentUpon>IScriptMemoryObject_Headquarters_Panel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Station_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,10 +208,10 @@
     <Compile Include="UI\Displays\TypeDataDisplay.Designer.cs">
       <DependentUpon>TypeDataDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\TextPageDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\TextPageDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\TextPageDisplay.Designer.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\TextPageDisplay.Designer.cs">
       <DependentUpon>TextPageDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\IReloadableDisplay.cs" />
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Sector_Panel.resx">
       <DependentUpon>IScriptMemoryObject_Sector_Panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Headquarters_Panel.resx">
+      <DependentUpon>IScriptMemoryObject_Headquarters_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Station_Panel.resx">
       <DependentUpon>IScriptMemoryObject_Station_Panel.cs</DependentUpon>
@@ -310,7 +319,7 @@
     <EmbeddedResource Include="UI\Displays\TypeDataDisplay.resx">
       <DependentUpon>TypeDataDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\TextPageDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\TextPageDisplay.resx">
       <DependentUpon>TextPageDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MemoryObjectDisplay.resx">

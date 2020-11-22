@@ -17,7 +17,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
                 {
                     entries[i++] = new CargoEntry()
                     {
-                        Type = SectorObject.Full_Type.FromInt(id.Value),
+                        Type = SectorObject.SectorObjectType.FromInt(id.Value),
                         Count = cargoItems.hashTable.GetObject(id).Value
                     };
                 }
@@ -25,16 +25,16 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
             }
         }
         public int PreviousSectorEventObjectID => GetVariableValue((int)TC_Ship_Variables.PreviousSectorEventObjectID);
-        public EventObject PreviousSectorEventObject => GameHook.storyBase.GetEventObject(PreviousSectorEventObjectID);
+        public ScriptingObject PreviousSectorEventObject => GameHook.storyBase.GetEventObject(PreviousSectorEventObjectID);
 
         public int CurrentSectorEventObjectID => GetVariableValue((int)TC_Ship_Variables.CurrentSectorEventObjectID);
-        public EventObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
+        public ScriptingObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
 
         public bool IsValid => SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
 
         public int OwnerDataEventObjectID => GetVariableValue((int)TC_Ship_Variables.OwningRaceDataEventObjectID);
 
-        public EventObject OwnerDataEventObject => throw new NotImplementedException();
+        public ScriptingObject OwnerDataEventObject => throw new NotImplementedException();
 
         public override string GetVariableName(int index)
         {

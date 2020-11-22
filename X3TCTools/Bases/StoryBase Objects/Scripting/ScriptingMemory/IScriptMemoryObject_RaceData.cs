@@ -5,7 +5,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
     public interface IScriptMemoryObject_RaceData : IMemoryObject
     {
         int ASectorEventObjectID { get; }
-        EventObject ASectorEventObject { get; }
+        ScriptingObject ASectorEventObject { get; }
 
         int pOwnedSectorEventObjectIDHashTableObject { get; }
         ScriptingHashTableObject OwnedSectorEventObjectIDHashTableObject { get; }
@@ -19,8 +19,8 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         int pOwnedStationEventObjectIDHashTableObject { get; }
         ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get; }
 
-        EventObject[] Ships { get; }
-        EventObject[] Stations { get; }
+        ScriptingObject[] Ships { get; }
+        ScriptingObject[] Stations { get; }
         GameHook.RaceID RaceID { get; }
     }
 }

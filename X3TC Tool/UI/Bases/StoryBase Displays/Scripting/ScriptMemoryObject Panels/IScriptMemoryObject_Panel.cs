@@ -5,6 +5,6 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
 {
     public interface IScriptMemoryObject_Panel : IReloadableDisplay
     {
-        void LoadObject(EventObject eventObject);
+        void LoadObject(ScriptingObject eventObject);
     }
 }

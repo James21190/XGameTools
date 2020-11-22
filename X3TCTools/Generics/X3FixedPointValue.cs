@@ -6,6 +6,7 @@ namespace X3TCTools.Generics
     public struct X3FixedPointValue : IMemoryObject
     {
         private decimal m_value;
+        private IntPtr m_hProcess, pThis;
 
         public uint FixedPointValue
         {
@@ -44,7 +45,8 @@ namespace X3TCTools.Generics
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            throw new NotImplementedException();
+            m_hProcess = hProcess;
+            pThis = address;
         }
 
         public void ReloadFromMemory()

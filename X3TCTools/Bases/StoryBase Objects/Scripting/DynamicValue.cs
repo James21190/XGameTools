@@ -39,6 +39,23 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
             return table;
         }
 
+        /// <summary>
+        /// Returns the TextObject that this value points to
+        /// </summary>
+        /// <returns></returns>
+        public ScriptingTextObject GetAsTextObject()
+        {
+            if (Flag != FlagType.pTextObject)
+            {
+                throw new Exception("Object is not a text object.");
+            }
+
+            ScriptingTextObject textObject = new ScriptingTextObject();
+            textObject.SetLocation(m_hProcess, (IntPtr)Value);
+            textObject.ReloadFromMemory();
+            return textObject;
+        }
+
         public override byte[] GetBytes()
         {
             ObjectByteList collection = new ObjectByteList();

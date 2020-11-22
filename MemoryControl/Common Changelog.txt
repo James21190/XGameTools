@@ -1,16 +1,17 @@
-﻿1.5.0.0
+﻿1.5.0.0 (22/11/2020)
 	- Added comments to more methods and objects.
 	- Added MemoryByte, MemoryInt16, MemoryInt32, and MemoryInt64, which are basic types that derive from MemoryObject.
+	- Added Vector UI.
+	- Added ReloadFromMemory() to IMemoryObject.
 	- Added Vector2 struct.
 	- Added GoTo(address) to ObjectByteList.
 	- Added DecimalPlaces and Increment to vector displays.
 	- Added WriteToMemory in MemoryObject.
 	- Added protected method to MemoryObject to simplify memory reads.
 	- Added method to MemoryObjectPointer to request a different type than the one assigned.
+	- Added 
 	- Reworked ObjectByteList methods. Previous Pop methods are now depreciated.
 	- Completed ApplicationHook abstract class.
-	- Added Vector2Display and Vector4Display form components.
-	- Added ReloadFromMemory() to IMemoryObject.
 	- SetLocation in MemoryObject will no longer reload values from memory.
 	- Removed flawed network classes.
 

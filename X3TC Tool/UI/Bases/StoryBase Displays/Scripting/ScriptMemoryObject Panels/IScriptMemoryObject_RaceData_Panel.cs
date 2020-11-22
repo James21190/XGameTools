@@ -26,7 +26,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
 
         private struct ShipData : IComparable
         {
-            public EventObject eventObject;
+            public ScriptingObject eventObject;
             public IScriptMemoryObject_Ship ship;
             public IScriptMemoryObject_Sector sector;
 
@@ -81,7 +81,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
 
         private struct StationData : IComparable
         {
-            public EventObject eventObject;
+            public ScriptingObject eventObject;
             public IScriptMemoryObject_Station factory;
             public IScriptMemoryObject_Sector sector;
 
@@ -149,7 +149,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
         }
 
         private IScriptMemoryObject_RaceData m_Data;
-        public void LoadObject(EventObject eventObject)
+        public void LoadObject(ScriptingObject eventObject)
         {
             switch (GameHook.GameVersion)
             {
@@ -178,7 +178,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
             {
                 try
                 {
-                    EventObject eventObject = GameHook.storyBase.GetEventObject(shipID.Value);
+                    ScriptingObject eventObject = GameHook.storyBase.GetEventObject(shipID.Value);
                     IScriptMemoryObject_Ship shipData;
                     IScriptMemoryObject_Sector sectorData;
                     switch (GameHook.GameVersion)
@@ -231,7 +231,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
             {
                 try
                 {
-                    EventObject eventObject = GameHook.storyBase.GetEventObject(factoryID.Value);
+                    ScriptingObject eventObject = GameHook.storyBase.GetEventObject(factoryID.Value);
                     IScriptMemoryObject_Station factoryData;
                     IScriptMemoryObject_Sector sectorData;
                     switch (GameHook.GameVersion)
@@ -286,7 +286,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
             }
 
             EventObjectDisplay display = new EventObjectDisplay();
-            display.LoadObject((EventObject)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
+            display.LoadObject((ScriptingObject)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
             display.Show();
         }
 
@@ -298,7 +298,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
             }
 
             EventObjectDisplay display = new EventObjectDisplay();
-            display.LoadObject((EventObject)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
+            display.LoadObject((ScriptingObject)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
             display.Show();
         }
     }

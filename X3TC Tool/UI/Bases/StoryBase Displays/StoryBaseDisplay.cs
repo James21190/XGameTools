@@ -30,7 +30,7 @@ namespace X3TC_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay( "StoryBase - EventObjects");
-            display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
+            display.LoadTable(m_StoryBase.pEventObjectHashTable.address);
             display.Show();
         }
 
@@ -86,7 +86,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button8_Click(object sender, EventArgs e)
         {
-            ScriptObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
+            TaskObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
 
             listBox1.Items.Clear();
             listBox1.Items.AddRange(ScriptObjects);
@@ -100,8 +100,27 @@ namespace X3TC_Tool.UI.Displays
             }
 
             ScriptObjectDisplay display = new ScriptObjectDisplay();
-            display.LoadObject((ScriptObject)listBox1.Items[listBox1.SelectedIndex]);
+            display.LoadObject((TaskObject)listBox1.Items[listBox1.SelectedIndex]);
             display.Show();
+        }
+
+        private void ReloadScriptFunction(int index)
+        {
+            var functions = GameHook.storyBase.FunctionArray[index];
+
+            txtPrimaryFunction.Text = functions.pPrimaryFunction.ToString("X");
+            txtRegistrationFunction.Text = functions.pFunction2.ToString("X");
+            txtFunction3.Text = functions.pFunction3.ToString("X");
+            txtFunction4.Text = functions.pFunction4.ToString("X");
+            txtFunctionUnknown.Text = functions.Index.ToString("X");
+
+            txtDefinedFunctions.Text = string.Join("\n", functions.FunctionNames);
+
+        }
+
+        private void nudFunctionIndex_ValueChanged(object sender, EventArgs e)
+        {
+            ReloadScriptFunction((int)nudFunctionIndex.Value);
         }
     }
 }

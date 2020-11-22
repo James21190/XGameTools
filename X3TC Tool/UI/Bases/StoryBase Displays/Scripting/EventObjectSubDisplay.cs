@@ -12,8 +12,8 @@ namespace X3TC_Tool.UI.Displays
             InitializeComponent();
         }
 
-        private EventObjectSub m_EventObjectSub;
-        public void LoadObject(EventObjectSub eventObjectSub)
+        private ScriptingObjectSub m_EventObjectSub;
+        public void LoadObject(ScriptingObjectSub eventObjectSub)
         {
             m_EventObjectSub = eventObjectSub;
             Reload();
@@ -23,7 +23,7 @@ namespace X3TC_Tool.UI.Displays
         {
             AddressBox.Text = m_EventObjectSub.pThis.ToString("X");
 
-            IDBox.Text = m_EventObjectSub.ID.ToString();
+            IDBox.Text = m_EventObjectSub.Class.ToString();
             SelfBox.Text = m_EventObjectSub.pSelf.ToString("X");
             NextIDTextBox.Text = m_EventObjectSub.NextID.ToString();
             ScriptVariableCountBox.Text = m_EventObjectSub.ScriptVariableCount.ToString();

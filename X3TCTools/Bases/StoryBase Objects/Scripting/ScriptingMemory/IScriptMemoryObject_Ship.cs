@@ -20,7 +20,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         /// <summary>
         /// The previous sector's EventObject.
         /// </summary>
-        EventObject PreviousSectorEventObject { get; }
+        ScriptingObject PreviousSectorEventObject { get; }
 
         /// <summary>
         /// The EventObject ID for the current sector's EventObject.
@@ -29,9 +29,9 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         /// <summary>
         /// The current sector's EventObject.
         /// </summary>
-        EventObject CurrentSectorEventObject { get; }
+        ScriptingObject CurrentSectorEventObject { get; }
 
         int OwnerDataEventObjectID { get; }
-        EventObject OwnerDataEventObject { get; }
+        ScriptingObject OwnerDataEventObject { get; }
     }
 }

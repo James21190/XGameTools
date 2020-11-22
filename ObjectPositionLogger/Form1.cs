@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 
 using X3TCTools;
-using X3TCTools.SectorObjects;
+using X3TCTools.Sector_Objects;
 
 namespace ObjectPositionLogger
 {
@@ -50,13 +50,13 @@ namespace ObjectPositionLogger
         public void LogSector()
         {
             var timeNow = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            var sector = m_GameHook.sectorObjectManager.GetSpace();
+            var sector = GameHook.sectorObjectManager.GetSpace();
 
             var children = sector.GetAllChildren(false);
 
             foreach(var child in children)
             {
-                var dir = BaseOutputPath + child.MainType.ToString() + "/";
+                var dir = BaseOutputPath + child.ObjectType.MainTypeEnum.ToString() + "/";
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
                 var text = string.Format("{0},{1},{2},{3}\n",timeNow,child.MetricPosition[0].ToString("F"), child.MetricPosition[1].ToString("F"), child.MetricPosition[2].ToString("F"));
                 File.AppendAllText(dir + child.GetSubTypeAsString() + ".csv", text);

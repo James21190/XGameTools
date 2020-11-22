@@ -80,7 +80,7 @@
 
         Cargo = 33,
 
-        PilotID = 37,
+        JobID = 35,
 
         OwningRaceDataEventObjectID = 38,
 
@@ -108,6 +108,38 @@
         OwningRaceDataEventObjectID = 13,
 
         CargoHashTable = 18,
+
+        Credits = 28,
+
+        CustomName = 46,
+    }
+
+
+    // Inherits Station
+    public enum TC_Headquarters_Variables
+    {
+        PositionData,
+        /// <summary>
+        /// The ID of the EventObject that the ship is currently in.
+        /// </summary>
+        CurrentSectorEventObjectID,
+        /// <summary>
+        /// The ID of the EventObject that the ship was in previously in.
+        /// </summary>
+        PreviousSectorEventObjectID,
+
+        MainType = 10,
+        SubType,
+
+        OwningRaceDataEventObjectID = 13,
+
+        CargoHashTable = 18,
+
+        Credits = 28,
+
+        CustomName = 46,
+
+        AvailableBlueprintHashTable = 55,
     }
 
     public enum TC_Ware_Variables

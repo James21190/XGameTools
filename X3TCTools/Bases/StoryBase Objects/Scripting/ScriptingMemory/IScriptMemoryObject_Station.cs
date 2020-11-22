@@ -14,13 +14,13 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         /// <summary>
         /// The current sector's EventObject.
         /// </summary>
-        EventObject CurrentSectorEventObject { get; }
+        ScriptingObject CurrentSectorEventObject { get; }
 
         int pCargoHashTable { get; }
         ScriptingHashTableObject CargoHashTable { get; }
 
         int OwnerDataEventObjectID { get; }
-        EventObject OwnerDataEventObject { get; }
+        ScriptingObject OwnerDataEventObject { get; }
 
         CargoEntry[] CargoEntries { get; }
     }

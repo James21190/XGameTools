@@ -8,18 +8,18 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
     /// The EventObject is an object within the game that keeps track of variables used by the scripting engine.
     /// It keeps track of how many variables are stored and the amount of ScriptObjects that reference it.
     /// </summary>
-    public partial class EventObject : MemoryObject
+    public partial class ScriptingObject : MemoryObject
     {
         public int NegativeID;
         public int ReferenceCount;
-        public MemoryObjectPointer<EventObjectSub> pSub = new MemoryObjectPointer<EventObjectSub>();
+        public MemoryObjectPointer<ScriptingObjectSub> pSub = new MemoryObjectPointer<ScriptingObjectSub>();
         public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
 
         public EventObject_Type ObjectType
         {
             get
             {
-                return (EventObject_Type)pSub.obj.ID;
+                return (EventObject_Type)pSub.obj.Class;
             }
         }
 
@@ -47,7 +47,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
         {
             NegativeID = objectByteList.PopInt();
             ReferenceCount = objectByteList.PopInt();
-            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<EventObjectSub>>();
+            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptingObjectSub>>();
             pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptMemoryObject>>();
         }
 

@@ -22,7 +22,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Typ
         }
 
         private IScriptMemoryObject_Station m_Data;
-        public void LoadObject(EventObject eventObject)
+        public void LoadObject(ScriptingObject eventObject)
         {
             switch (GameHook.GameVersion)
             {

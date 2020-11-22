@@ -26,8 +26,9 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
             Ware,
             RaceData,
             RaceData_Player,
+            Headquarters,
         }
-        private EventObject m_EventObject;
+        private ScriptingObject m_EventObject;
         public EventObjectDisplay()
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
         public void LoadObject(int ID)
         {
             StoryBase storyBase = GameHook.storyBase;
-            HashTable<EventObject> EventObjectHashTable = storyBase.pEventObjectHashTable.obj;
+            HashTable<ScriptingObject> EventObjectHashTable = storyBase.pEventObjectHashTable.obj;
             int value = ID < 0 ? -ID - 1 : ID;
             try
             {
@@ -47,7 +48,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
                 m_EventObject = null;
             }
         }
-        public void LoadObject(EventObject eventObject)
+        public void LoadObject(ScriptingObject eventObject)
         {
             m_EventObject = eventObject;
             eventObjectPannel1.EventObject = eventObject;
@@ -71,22 +72,29 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
 
             switch (m_EventObject.ObjectType)
             {
-                case EventObject.EventObject_Type.Sector:
+                case ScriptingObject.EventObject_Type.Sector:
                     typePanel = new IScriptMemoryObject_Sector_Panel(); break;
-                case EventObject.EventObject_Type.Ship_M1:
-                case EventObject.EventObject_Type.Ship_M2:
-                case EventObject.EventObject_Type.Ship_M3:
-                case EventObject.EventObject_Type.Ship_M4:
-                case EventObject.EventObject_Type.Ship_M5:
-                case EventObject.EventObject_Type.Ship_M6:
-                case EventObject.EventObject_Type.Ship_M7:
-                case EventObject.EventObject_Type.Ship_TS:
+                case ScriptingObject.EventObject_Type.Ship_M1:
+                case ScriptingObject.EventObject_Type.Ship_M2:
+                case ScriptingObject.EventObject_Type.Ship_M3:
+                case ScriptingObject.EventObject_Type.Ship_M4:
+                case ScriptingObject.EventObject_Type.Ship_M5:
+                case ScriptingObject.EventObject_Type.Ship_M6:
+                case ScriptingObject.EventObject_Type.Ship_M7:
+                case ScriptingObject.EventObject_Type.Ship_TS:
                     typePanel = new IScriptMemoryObject_Ship_Panel(); break;
-                case EventObject.EventObject_Type.Station_Factory:
+                case ScriptingObject.EventObject_Type.Station_Factory:
                     typePanel = new IScriptMemoryObject_Station_Panel(); break;
-                case EventObject.EventObject_Type.RaceData:
+                case ScriptingObject.EventObject_Type.Headquarters:
+                    typePanel = new IScriptMemoryObject_Headquarters_Panel(); break;
+                case ScriptingObject.EventObject_Type.RaceData_0:
+                case ScriptingObject.EventObject_Type.RaceData_1:
+                case ScriptingObject.EventObject_Type.RaceData_2:
+                case ScriptingObject.EventObject_Type.RaceData_3:
+                case ScriptingObject.EventObject_Type.RaceData_4:
+                case ScriptingObject.EventObject_Type.RaceData_5:
                     typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
-                case EventObject.EventObject_Type.RaceData_Player:
+                case ScriptingObject.EventObject_Type.RaceData_Player:
                     typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
                 default: return;
             }
@@ -119,6 +127,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
                         case LoadAsItems.Station: return new ScriptMemoryObject_TC_Station();
                         case LoadAsItems.RaceData: return new ScriptMemoryObject_TC_RaceData();
                         case LoadAsItems.RaceData_Player: return new ScriptMemoryObject_TC_RaceData_Player();
+                        case LoadAsItems.Headquarters: return new ScriptMemoryObject_TC_Headquarters();
                     }
                     break;
                 case GameHook.GameVersions.X3AP:
@@ -145,6 +154,16 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
         {
             m_EventObject = eventObjectPannel1.EventObject;
             Reload();
+        }
+
+        private void scriptMemoryObject_Raw_Panel1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tmrAutoReload_Tick(object sender, EventArgs e)
+        {
+            scriptMemoryObject_Raw_Panel1.Reload();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         int BackgroundID { get; }
 
         int OwningRaceDataEventObjectID { get; }
-        EventObject OwningRaceDataEventObject { get; }
+        ScriptingObject OwningRaceDataEventObject { get; }
 
         int pShipEventObjectHashTableObject { get; }
         ScriptingHashTableObject ShipEventObjectHashTableObject { get; }
@@ -19,7 +19,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         ScriptingHashTableObject GateEventObjectHashTableObject { get; }
 
         int OwnerDataEventObjectID { get; }
-        EventObject OwnerDataEventObject { get; }
+        ScriptingObject OwnerDataEventObject { get; }
 
     }
 }

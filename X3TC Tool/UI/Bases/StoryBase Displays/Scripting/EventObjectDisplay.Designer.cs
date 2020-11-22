@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.eventObjectPannel1 = new X3TCsTool.EventObjectPannel();
+            this.components = new System.ComponentModel.Container();
+            this.eventObjectPannel1 = new X3TCTool.EventObjectPannel();
             this.typeBackPanel = new System.Windows.Forms.Panel();
+            this.tmrAutoReload = new System.Windows.Forms.Timer(this.components);
             this.scriptMemoryObject_Raw_Panel1 = new X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
             this.SuspendLayout();
             // 
@@ -55,6 +57,12 @@
             this.typeBackPanel.Size = new System.Drawing.Size(431, 491);
             this.typeBackPanel.TabIndex = 12;
             // 
+            // tmrAutoReload
+            // 
+            this.tmrAutoReload.Enabled = true;
+            this.tmrAutoReload.Interval = 1000;
+            this.tmrAutoReload.Tick += new System.EventHandler(this.tmrAutoReload_Tick);
+            // 
             // scriptMemoryObject_Raw_Panel1
             // 
             this.scriptMemoryObject_Raw_Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -63,6 +71,7 @@
             this.scriptMemoryObject_Raw_Panel1.Name = "scriptMemoryObject_Raw_Panel1";
             this.scriptMemoryObject_Raw_Panel1.Size = new System.Drawing.Size(588, 258);
             this.scriptMemoryObject_Raw_Panel1.TabIndex = 11;
+            this.scriptMemoryObject_Raw_Panel1.Load += new System.EventHandler(this.scriptMemoryObject_Raw_Panel1_Load);
             // 
             // EventObjectDisplay
             // 
@@ -80,8 +89,9 @@
         }
 
         #endregion
-        private X3TCsTool.EventObjectPannel eventObjectPannel1;
+        private X3TCTool.EventObjectPannel eventObjectPannel1;
         private ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel scriptMemoryObject_Raw_Panel1;
         private System.Windows.Forms.Panel typeBackPanel;
+        private System.Windows.Forms.Timer tmrAutoReload;
     }
 }

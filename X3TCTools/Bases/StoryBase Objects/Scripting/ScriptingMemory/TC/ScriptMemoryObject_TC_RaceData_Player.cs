@@ -10,7 +10,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int ASectorEventObjectID => throw new NotImplementedException();
 
-        public EventObject ASectorEventObject => throw new NotImplementedException();
+        public ScriptingObject ASectorEventObject => throw new NotImplementedException();
 
         public int pOwnedShipEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Player_Variables.OwnedShipEventObjectIDHashTable);
 
@@ -24,9 +24,9 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject RaceDataWithSectorsEventObjectIDHashTable => throw new NotImplementedException();
 
-        public int pRaceDataEventObjectIDHashTable => throw new NotImplementedException();
+        public int pRaceDataEventObjectIDHashTable => GetVariableValue((int)TC_RaceData_Player_Variables.RaceDataEventObjectIDHashTable);
 
-        public ScriptingHashTableObject RaceDataEventObjectIDHashTable => throw new NotImplementedException();
+        public ScriptingHashTableObject RaceDataEventObjectIDHashTable { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pRaceDataEventObjectIDHashTable); table.ReloadFromMemory(); return table; } }
 
         public int pOwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
 
@@ -36,11 +36,11 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
 
-        public EventObject[] Ships
+        public ScriptingObject[] Ships
         {
             get
             {
-                EventObject[] ships = new EventObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
+                ScriptingObject[] ships = new ScriptingObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue shipID in OwnedShipEventObjectIDHashTableObject.hashTable.ScanContents())
                 {
@@ -50,11 +50,11 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
             }
         }
 
-        public EventObject[] Stations
+        public ScriptingObject[] Stations
         {
             get
             {
-                EventObject[] stations = new EventObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
+                ScriptingObject[] stations = new ScriptingObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue stationID in OwnedStationEventObjectIDHashTableObject.hashTable.ScanContents())
                 {
@@ -64,11 +64,11 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
             }
         }
 
-        public EventObject[] Races
+        public ScriptingObject[] Races
         {
             get
             {
-                EventObject[] races = new EventObject[RaceDataEventObjectIDHashTable.hashTable.Count];
+                ScriptingObject[] races = new ScriptingObject[RaceDataEventObjectIDHashTable.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue raceID in RaceDataEventObjectIDHashTable.hashTable.ScanContents())
                 {

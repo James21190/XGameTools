@@ -62,11 +62,13 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_PositionData_12.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ware.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Headquarters.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Station.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Gate.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Headquarters.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\TC_EventObject_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_PositionData_12.cs" />
@@ -87,8 +89,8 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingArrayObject.cs" />
     <Compile Include="Bases\StoryBase Objects\EventFunctionStruct.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\EventObject.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\EventObjectSub.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptObject.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObjectSub.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\TaskObject.cs" />
     <Compile Include="Bases\StoryBase Objects\StoryBase.cs" />
     <Compile Include="Bases\StoryBase Objects\StoryBase15fc.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingHashTableObject.cs" />

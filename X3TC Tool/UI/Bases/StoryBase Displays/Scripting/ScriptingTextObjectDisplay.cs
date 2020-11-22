@@ -35,5 +35,10 @@ namespace X3TC_Tool.UI.Displays
             IDBox.Value = m_obj.id;
             textBox1.Text = m_obj.pText.obj.value;
         }
+
+        private void ScriptingTextObjectDisplay_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

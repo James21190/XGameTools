@@ -39,8 +39,30 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button8 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtPrimaryFunction = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.txtRegistrationFunction = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.txtFunction3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
+            this.txtFunction4 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDefinedFunctions = new System.Windows.Forms.RichTextBox();
+            this.txtFunctionUnknown = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nudFunctionIndex = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudFunctionIndex)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -163,11 +185,205 @@
             this.numericUpDown1.Size = new System.Drawing.Size(108, 20);
             this.numericUpDown1.TabIndex = 10;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.nudFunctionIndex);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.groupBox3);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.txtFunctionUnknown);
+            this.groupBox2.Controls.Add(this.button12);
+            this.groupBox2.Controls.Add(this.txtFunction4);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.button11);
+            this.groupBox2.Controls.Add(this.txtFunction3);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.button10);
+            this.groupBox2.Controls.Add(this.txtRegistrationFunction);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.button9);
+            this.groupBox2.Controls.Add(this.txtPrimaryFunction);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Location = new System.Drawing.Point(12, 190);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(557, 193);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Script Functions";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Primary Function";
+            // 
+            // txtPrimaryFunction
+            // 
+            this.txtPrimaryFunction.Location = new System.Drawing.Point(118, 45);
+            this.txtPrimaryFunction.Name = "txtPrimaryFunction";
+            this.txtPrimaryFunction.ReadOnly = true;
+            this.txtPrimaryFunction.Size = new System.Drawing.Size(100, 20);
+            this.txtPrimaryFunction.TabIndex = 1;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(224, 43);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 2;
+            this.button9.Text = "Load";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(224, 72);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 5;
+            this.button10.Text = "Load";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // txtRegistrationFunction
+            // 
+            this.txtRegistrationFunction.Location = new System.Drawing.Point(118, 74);
+            this.txtRegistrationFunction.Name = "txtRegistrationFunction";
+            this.txtRegistrationFunction.ReadOnly = true;
+            this.txtRegistrationFunction.Size = new System.Drawing.Size(100, 20);
+            this.txtRegistrationFunction.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 77);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Registration Function";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(224, 101);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 8;
+            this.button11.Text = "Load";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // txtFunction3
+            // 
+            this.txtFunction3.Location = new System.Drawing.Point(118, 103);
+            this.txtFunction3.Name = "txtFunction3";
+            this.txtFunction3.ReadOnly = true;
+            this.txtFunction3.Size = new System.Drawing.Size(100, 20);
+            this.txtFunction3.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 106);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Function 3";
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(224, 130);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 11;
+            this.button12.Text = "Load";
+            this.button12.UseVisualStyleBackColor = true;
+            // 
+            // txtFunction4
+            // 
+            this.txtFunction4.Location = new System.Drawing.Point(118, 132);
+            this.txtFunction4.Name = "txtFunction4";
+            this.txtFunction4.ReadOnly = true;
+            this.txtFunction4.Size = new System.Drawing.Size(100, 20);
+            this.txtFunction4.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Function4";
+            // 
+            // txtDefinedFunctions
+            // 
+            this.txtDefinedFunctions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDefinedFunctions.Location = new System.Drawing.Point(6, 19);
+            this.txtDefinedFunctions.Name = "txtDefinedFunctions";
+            this.txtDefinedFunctions.Size = new System.Drawing.Size(234, 143);
+            this.txtDefinedFunctions.TabIndex = 12;
+            this.txtDefinedFunctions.Text = "";
+            // 
+            // txtFunctionUnknown
+            // 
+            this.txtFunctionUnknown.Location = new System.Drawing.Point(118, 161);
+            this.txtFunctionUnknown.Name = "txtFunctionUnknown";
+            this.txtFunctionUnknown.ReadOnly = true;
+            this.txtFunctionUnknown.Size = new System.Drawing.Size(100, 20);
+            this.txtFunctionUnknown.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 164);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Unknown";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.txtDefinedFunctions);
+            this.groupBox3.Location = new System.Drawing.Point(305, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(246, 168);
+            this.groupBox3.TabIndex = 15;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Defined Functions";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Index";
+            // 
+            // nudFunctionIndex
+            // 
+            this.nudFunctionIndex.Location = new System.Drawing.Point(118, 19);
+            this.nudFunctionIndex.Maximum = new decimal(new int[] {
+            31,
+            0,
+            0,
+            0});
+            this.nudFunctionIndex.Name = "nudFunctionIndex";
+            this.nudFunctionIndex.Size = new System.Drawing.Size(100, 20);
+            this.nudFunctionIndex.TabIndex = 17;
+            this.nudFunctionIndex.ValueChanged += new System.EventHandler(this.nudFunctionIndex_ValueChanged);
+            // 
             // StoryBaseDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button3);
@@ -178,6 +394,10 @@
             this.Text = "StoryBaseDisplay";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudFunctionIndex)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -195,5 +415,24 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.NumericUpDown nudFunctionIndex;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RichTextBox txtDefinedFunctions;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtFunctionUnknown;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox txtFunction4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.TextBox txtFunction3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TextBox txtRegistrationFunction;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox txtPrimaryFunction;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -10,7 +10,8 @@ namespace X3TCTools.Bases.StoryBase_Objects
 {
     public class StoryBase : MemoryObject
     {
-        public MemoryObjectPointer<HashTable<ScriptObject>> pScriptObjectHashTable;
+        #region Memory
+        public MemoryObjectPointer<HashTable<TaskObject>> pScriptObjectHashTable;
 
         public MemoryObjectPointer<MemoryByte> pInstructionArray;
 
@@ -19,9 +20,9 @@ namespace X3TCTools.Bases.StoryBase_Objects
 
         public MemoryObjectPointer<HashTable<TextPage>>[] TextHashTableArray;
 
-        public MemoryObjectPointer<HashTable<EventObject>> pEventObjectHashTable;
+        public MemoryObjectPointer<HashTable<ScriptingObject>> pEventObjectHashTable;
 
-        public MemoryObjectPointer<ScriptObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptObject>();
+        public MemoryObjectPointer<TaskObject> pCurrentScriptObject = new MemoryObjectPointer<TaskObject>();
 
 
         public MemoryObjectPointer<HashTable<ScriptingTextObject>> pScriptingTextObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingTextObject>>();
@@ -29,6 +30,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
 
         public MemoryObjectPointer<HashTable<ScriptingHashTableObject>> pScriptingHashTableObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingHashTableObject>>();
 
+        #endregion
 
 
         public StoryBase()
@@ -38,64 +40,86 @@ namespace X3TCTools.Bases.StoryBase_Objects
                 FunctionArray[i] = new EventFunctionStruct();
             }
 
-            pScriptObjectHashTable = new MemoryObjectPointer<HashTable<ScriptObject>>();
+            pScriptObjectHashTable = new MemoryObjectPointer<HashTable<TaskObject>>();
             pInstructionArray = new MemoryObjectPointer<MemoryByte>();
-            pEventObjectHashTable = new MemoryObjectPointer<HashTable<EventObject>>();
+            pEventObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingObject>>();
         }
 
+        #region Text Pages
+
+        /// <summary>
+        /// Returns a text page with a given language and page.
+        /// </summary>
+        /// <param name="language"></param>
+        /// <param name="pageID"></param>
+        /// <returns></returns>
         public TextPage GetTextPage(GameHook.Language language, int pageID)
         {
             HashTable<TextPage> table = TextHashTableArray[(int)language].obj;
             return table.GetObject(pageID);
         }
 
+        /// <summary>
+        /// Returns an unparsed text from a page.
+        /// </summary>
+        /// <param name="language"></param>
+        /// <param name="pageID"></param>
+        /// <param name="txtID"></param>
+        /// <returns></returns>
         public string GetText(GameHook.Language language, int pageID, int txtID)
         {
-            // Temporary until text page has been implemented.
-            switch (pageID)
-            {
-                case 17:
-                    switch (txtID)
-                    {
-                        case 2911: return "Drone";
-                        case 3531: return "Falcon";
-                        case 4351: return "Jaguar";
-
-                        case 6652: return "Seeker Missile";
-                        case 6654: return "High Yield";
-
-                        case 7740: return "Production Complex";
-                        case 7817: return "Light Shield";
-                        case 7818: return "Medium Shield";
-                        case 7819: return "Heavy Shield";
-
-                        case 10022: return "Prototype";
-                        case 10024: return "Enhanced";
-
-                        case 16041: return "Shipyard";
-                    }
-                    break;
-            }
-            return "";
+            var page = GetTextPage(language, pageID);
+            return page.GetText(txtID);
         }
 
-        public string ParseText(GameHook.Language language, string txt)
+        /// <summary>
+        /// Returns a parsed text from a page.
+        /// </summary>
+        /// <param name="language"></param>
+        /// <param name="txt"></param>
+        /// <param name="previous"></param>
+        /// <returns></returns>
+        private string _GetParsedText(GameHook.Language language, string txt, List<int> previous)
         {
+            if (previous == null)
+                previous = new List<int>();
             Regex regex = new Regex(@"\{.*?\}");
             MatchCollection matches = regex.Matches(txt);
 
             foreach (Match match in matches)
             {
                 string[] numbers = match.Value.Trim('{', '}').Split(',');
-                string replacement = GetText(language, Convert.ToInt32(numbers[0]), Convert.ToInt32(numbers[1]));
-                if (!string.IsNullOrWhiteSpace(replacement))
+                if (numbers.Length == 2)
                 {
-                    txt = txt.Replace(match.Value, "(" + replacement + ")");
+                    int page;
+                    int id;
+                    if (int.TryParse(numbers[0], out page) && int.TryParse(numbers[1], out id) && !previous.Contains(id))
+                    {
+                        previous.Add(id);
+                        string replacement = GetText(language, page, id);
+                        if (!string.IsNullOrWhiteSpace(replacement))
+                        {
+                            txt = txt.Replace(match.Value, replacement);
+                        }
+                        txt = _GetParsedText(language, txt, previous);
+                    }
                 }
             }
             return txt;
+
+        }
+        /// <summary>
+        /// Returns a parsed text from a page.
+        /// </summary>
+        /// <param name="language"></param>
+        /// <param name="txt"></param>
+        /// <returns></returns>
+        public string GetParsedText(GameHook.Language language, string txt)
+        {
+            return _GetParsedText(language, txt, null);
         }
 
+        #endregion
         public int GetScriptingFunctionAddressFromInstruction(byte instruction)
         {
             return GameHook.pProcessEventSwitch[GameHook.pProcessEventSwitchArray[instruction - 1].Value].Value;
@@ -106,7 +130,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             return GetScriptingFunctionAddressFromInstruction(pInstructionArray[index].Value);
         }
 
-        public EventObject GetEventObject(int ID)
+        public ScriptingObject GetEventObject(int ID)
         {
             int value = ID < 0 ? -ID - 1 : ID;
             return pEventObjectHashTable.obj.GetObject(value);
@@ -120,17 +144,17 @@ namespace X3TCTools.Bases.StoryBase_Objects
             return obj;
         }
 
-        public ScriptObject[] GetScriptObjectsWithReferenceTo(int EventObjectID)
+        public TaskObject[] GetScriptObjectsWithReferenceTo(int EventObjectID)
         {
             int negativeID = EventObjectID < 0 ? EventObjectID : -1 - EventObjectID;
-            List<ScriptObject> results = new List<ScriptObject>();
+            List<TaskObject> results = new List<TaskObject>();
 
             foreach (int id in pScriptObjectHashTable.obj.ScanContents())
             {
                 try
                 {
-                    ScriptObject ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
-                    EventObject EventObject = ScriptObject.pEventObject.obj;
+                    TaskObject ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
+                    ScriptingObject EventObject = ScriptObject.pEventObject.obj;
                     if (EventObject.NegativeID == negativeID)
                     {
                         results.Add(ScriptObject);
@@ -156,7 +180,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
         public override void SetData(byte[] Memory)
         {
             ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
-            pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptObject>>>();
+            pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<TaskObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
 
             FunctionArrayCount = collection.PopInt(0x2c);
@@ -164,8 +188,8 @@ namespace X3TCTools.Bases.StoryBase_Objects
 
             TextHashTableArray = collection.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
 
-            pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<EventObject>>>(0x12d0);
-            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptObject>>(0x1434);
+            pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingObject>>>(0x12d0);
+            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<TaskObject>>(0x1434);
 
             pScriptingTextObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTextObject>>>(0x15f8);
             pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>();

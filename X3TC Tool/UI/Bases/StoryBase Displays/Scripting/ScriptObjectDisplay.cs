@@ -11,7 +11,7 @@ namespace X3TC_Tool.UI.Displays
 {
     public partial class ScriptObjectDisplay : Form
     {
-        private ScriptObject m_ScriptObject;
+        private TaskObject m_ScriptObject;
         public ScriptObjectDisplay()
         {
             InitializeComponent();
@@ -19,11 +19,11 @@ namespace X3TC_Tool.UI.Displays
 
         public void LoadObject(IntPtr pObject)
         {
-            ScriptObject newobj = new ScriptObject();
+            TaskObject newobj = new TaskObject();
             newobj.SetLocation(GameHook.hProcess, pObject);
             LoadObject(newobj);
         }
-        public void LoadObject(ScriptObject scriptObject)
+        public void LoadObject(TaskObject scriptObject)
         {
             m_ScriptObject = scriptObject;
             Reload();
@@ -101,8 +101,8 @@ namespace X3TC_Tool.UI.Displays
             StoryBase storybase = GameHook.storyBase;
             try
             {
-                HashTable<ScriptObject> table = storybase.pScriptObjectHashTable.obj;
-                ScriptObject obj = table.GetObject((int)IDNumericUpDown.Value);
+                HashTable<TaskObject> table = storybase.pScriptObjectHashTable.obj;
+                TaskObject obj = table.GetObject((int)IDNumericUpDown.Value);
                 LoadObject(obj);
             }
             catch (Exception)

@@ -35,11 +35,17 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ParsedTextColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLanguageID)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPageID)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -103,11 +109,45 @@
             this.btnLoad.UseVisualStyleBackColor = true;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AddressColumn,
+            this.IDColumn,
+            this.TextColumn,
+            this.ParsedTextColumn});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 126);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(776, 312);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.Name = "AddressColumn";
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.Name = "IDColumn";
+            // 
+            // TextColumn
+            // 
+            this.TextColumn.HeaderText = "Text";
+            this.TextColumn.Name = "TextColumn";
+            // 
+            // ParsedTextColumn
+            // 
+            this.ParsedTextColumn.HeaderText = "Parsed Text";
+            this.ParsedTextColumn.Name = "ParsedTextColumn";
+            // 
             // TextPageDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -120,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudPageID)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -133,5 +174,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddressColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TextColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ParsedTextColumn;
     }
 }

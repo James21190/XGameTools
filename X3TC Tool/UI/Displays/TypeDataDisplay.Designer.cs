@@ -41,9 +41,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox27 = new System.Windows.Forms.GroupBox();
             this.txtBackgroundName = new System.Windows.Forms.TextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.txtSunModelID = new System.Windows.Forms.TextBox();
@@ -60,6 +60,12 @@
             this.txtFactoryHullValue = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.shipPanel = new System.Windows.Forms.Panel();
+            this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtShipRETime = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.WareColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.txtMaxWeaponClass = new System.Windows.Forms.TextBox();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
@@ -120,14 +126,16 @@
             this.txtRelVal = new System.Windows.Forms.TextBox();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
             this.txtBodyID = new System.Windows.Forms.TextBox();
+            this.groupBox29 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.groupBox27.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBox27.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox22.SuspendLayout();
             this.groupBox21.SuspendLayout();
@@ -137,6 +145,8 @@
             this.groupBox24.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.shipPanel.SuspendLayout();
+            this.groupBox30.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox17.SuspendLayout();
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -155,6 +165,7 @@
             this.groupBox20.SuspendLayout();
             this.groupBox23.SuspendLayout();
             this.groupBox28.SuspendLayout();
+            this.groupBox29.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -202,7 +213,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtClass);
-            this.groupBox4.Location = new System.Drawing.Point(213, 70);
+            this.groupBox4.Location = new System.Drawing.Point(594, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(121, 52);
             this.groupBox4.TabIndex = 6;
@@ -302,7 +313,7 @@
             this.tabControl1.Location = new System.Drawing.Point(139, 128);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(649, 310);
+            this.tabControl1.Size = new System.Drawing.Size(822, 471);
             this.tabControl1.TabIndex = 9;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -310,7 +321,7 @@
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(641, 284);
+            this.tabPage2.Size = new System.Drawing.Size(814, 445);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bullet";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -319,10 +330,20 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(641, 284);
+            this.tabPage3.Size = new System.Drawing.Size(814, 445);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "1";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBox27);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(814, 445);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "2";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // groupBox27
             // 
@@ -345,23 +366,13 @@
             this.txtBackgroundName.Size = new System.Drawing.Size(170, 20);
             this.txtBackgroundName.TabIndex = 0;
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.groupBox27);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(641, 284);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "2";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.groupBox22);
             this.tabPage5.Controls.Add(this.groupBox21);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(641, 284);
+            this.tabPage5.Size = new System.Drawing.Size(814, 445);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Sun";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -412,7 +423,7 @@
             // 
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(641, 284);
+            this.tabPage6.Size = new System.Drawing.Size(814, 445);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Planet";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -421,7 +432,7 @@
             // 
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(641, 284);
+            this.tabPage7.Size = new System.Drawing.Size(814, 445);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Dock";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -433,7 +444,7 @@
             this.tabPage8.Controls.Add(this.groupBox24);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(641, 284);
+            this.tabPage8.Size = new System.Drawing.Size(814, 445);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Factory";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -504,7 +515,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(641, 284);
+            this.tabPage1.Size = new System.Drawing.Size(814, 445);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Ship";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -515,6 +526,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.shipPanel.AutoScroll = true;
+            this.shipPanel.Controls.Add(this.groupBox30);
             this.shipPanel.Controls.Add(this.groupBox17);
             this.shipPanel.Controls.Add(this.groupBox16);
             this.shipPanel.Controls.Add(this.groupBox15);
@@ -529,13 +541,69 @@
             this.shipPanel.Controls.Add(this.groupBox5);
             this.shipPanel.Location = new System.Drawing.Point(6, 6);
             this.shipPanel.Name = "shipPanel";
-            this.shipPanel.Size = new System.Drawing.Size(629, 272);
+            this.shipPanel.Size = new System.Drawing.Size(802, 433);
             this.shipPanel.TabIndex = 9;
+            // 
+            // groupBox30
+            // 
+            this.groupBox30.Controls.Add(this.label1);
+            this.groupBox30.Controls.Add(this.txtShipRETime);
+            this.groupBox30.Controls.Add(this.dataGridView1);
+            this.groupBox30.Location = new System.Drawing.Point(197, 119);
+            this.groupBox30.Name = "groupBox30";
+            this.groupBox30.Size = new System.Drawing.Size(308, 431);
+            this.groupBox30.TabIndex = 15;
+            this.groupBox30.TabStop = false;
+            this.groupBox30.Text = "HQ Production (Approx)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Time";
+            // 
+            // txtShipRETime
+            // 
+            this.txtShipRETime.Location = new System.Drawing.Point(42, 19);
+            this.txtShipRETime.Name = "txtShipRETime";
+            this.txtShipRETime.ReadOnly = true;
+            this.txtShipRETime.Size = new System.Drawing.Size(260, 20);
+            this.txtShipRETime.TabIndex = 15;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.WareColumn,
+            this.CountColumn});
+            this.dataGridView1.Location = new System.Drawing.Point(6, 45);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(296, 380);
+            this.dataGridView1.TabIndex = 14;
+            // 
+            // WareColumn
+            // 
+            this.WareColumn.HeaderText = "Ware";
+            this.WareColumn.Name = "WareColumn";
+            this.WareColumn.ReadOnly = true;
+            // 
+            // CountColumn
+            // 
+            this.CountColumn.HeaderText = "Count";
+            this.CountColumn.Name = "CountColumn";
+            this.CountColumn.ReadOnly = true;
             // 
             // groupBox17
             // 
             this.groupBox17.Controls.Add(this.txtMaxWeaponClass);
-            this.groupBox17.Location = new System.Drawing.Point(511, 61);
+            this.groupBox17.Location = new System.Drawing.Point(511, 3);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(121, 52);
             this.groupBox17.TabIndex = 11;
@@ -557,7 +625,7 @@
             // 
             this.groupBox16.Controls.Add(this.numericUpDown1);
             this.groupBox16.Controls.Add(this.cklTurretWeapons);
-            this.groupBox16.Location = new System.Drawing.Point(511, 119);
+            this.groupBox16.Location = new System.Drawing.Point(511, 61);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(195, 489);
             this.groupBox16.TabIndex = 13;
@@ -645,7 +713,7 @@
             // groupBox14
             // 
             this.groupBox14.Controls.Add(this.txtMaximumCargoSpace);
-            this.groupBox14.Location = new System.Drawing.Point(384, 119);
+            this.groupBox14.Location = new System.Drawing.Point(384, 61);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(121, 52);
             this.groupBox14.TabIndex = 11;
@@ -666,7 +734,7 @@
             // groupBox13
             // 
             this.groupBox13.Controls.Add(this.txtMinimumCargoSpace);
-            this.groupBox13.Location = new System.Drawing.Point(384, 61);
+            this.groupBox13.Location = new System.Drawing.Point(384, 3);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(121, 52);
             this.groupBox13.TabIndex = 10;
@@ -687,7 +755,7 @@
             // groupBox12
             // 
             this.groupBox12.Controls.Add(this.txtHangarSize);
-            this.groupBox12.Location = new System.Drawing.Point(257, 119);
+            this.groupBox12.Location = new System.Drawing.Point(257, 61);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(121, 52);
             this.groupBox12.TabIndex = 11;
@@ -729,7 +797,7 @@
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.txtShipModeCollectionlID);
-            this.groupBox10.Location = new System.Drawing.Point(257, 61);
+            this.groupBox10.Location = new System.Drawing.Point(257, 3);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(121, 52);
             this.groupBox10.TabIndex = 10;
@@ -793,7 +861,7 @@
             // 
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(641, 284);
+            this.tabPage9.Size = new System.Drawing.Size(814, 445);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Laser";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -802,7 +870,7 @@
             // 
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(641, 284);
+            this.tabPage10.Size = new System.Drawing.Size(814, 445);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Shield";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -811,7 +879,7 @@
             // 
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(641, 284);
+            this.tabPage11.Size = new System.Drawing.Size(814, 445);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "10";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -820,7 +888,7 @@
             // 
             this.tabPage12.Location = new System.Drawing.Point(4, 22);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(641, 284);
+            this.tabPage12.Size = new System.Drawing.Size(814, 445);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "11";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -829,7 +897,7 @@
             // 
             this.tabPage13.Location = new System.Drawing.Point(4, 22);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(641, 284);
+            this.tabPage13.Size = new System.Drawing.Size(814, 445);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "12";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -838,7 +906,7 @@
             // 
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(641, 284);
+            this.tabPage14.Size = new System.Drawing.Size(814, 445);
             this.tabPage14.TabIndex = 13;
             this.tabPage14.Text = "13";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -847,7 +915,7 @@
             // 
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(641, 284);
+            this.tabPage15.Size = new System.Drawing.Size(814, 445);
             this.tabPage15.TabIndex = 14;
             this.tabPage15.Text = "14";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -856,7 +924,7 @@
             // 
             this.tabPage16.Location = new System.Drawing.Point(4, 22);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(641, 284);
+            this.tabPage16.Size = new System.Drawing.Size(814, 445);
             this.tabPage16.TabIndex = 15;
             this.tabPage16.Text = "15";
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -865,7 +933,7 @@
             // 
             this.tabPage17.Location = new System.Drawing.Point(4, 22);
             this.tabPage17.Name = "tabPage17";
-            this.tabPage17.Size = new System.Drawing.Size(641, 284);
+            this.tabPage17.Size = new System.Drawing.Size(814, 445);
             this.tabPage17.TabIndex = 16;
             this.tabPage17.Text = "16";
             this.tabPage17.UseVisualStyleBackColor = true;
@@ -874,7 +942,7 @@
             // 
             this.tabPage18.Location = new System.Drawing.Point(4, 22);
             this.tabPage18.Name = "tabPage18";
-            this.tabPage18.Size = new System.Drawing.Size(641, 284);
+            this.tabPage18.Size = new System.Drawing.Size(814, 445);
             this.tabPage18.TabIndex = 17;
             this.tabPage18.Text = "17";
             this.tabPage18.UseVisualStyleBackColor = true;
@@ -883,7 +951,7 @@
             // 
             this.tabPage19.Location = new System.Drawing.Point(4, 22);
             this.tabPage19.Name = "tabPage19";
-            this.tabPage19.Size = new System.Drawing.Size(641, 284);
+            this.tabPage19.Size = new System.Drawing.Size(814, 445);
             this.tabPage19.TabIndex = 18;
             this.tabPage19.Text = "18";
             this.tabPage19.UseVisualStyleBackColor = true;
@@ -892,7 +960,7 @@
             // 
             this.tabPage20.Location = new System.Drawing.Point(4, 22);
             this.tabPage20.Name = "tabPage20";
-            this.tabPage20.Size = new System.Drawing.Size(641, 284);
+            this.tabPage20.Size = new System.Drawing.Size(814, 445);
             this.tabPage20.TabIndex = 19;
             this.tabPage20.Text = "19";
             this.tabPage20.UseVisualStyleBackColor = true;
@@ -901,7 +969,7 @@
             // 
             this.tabPage21.Location = new System.Drawing.Point(4, 22);
             this.tabPage21.Name = "tabPage21";
-            this.tabPage21.Size = new System.Drawing.Size(641, 284);
+            this.tabPage21.Size = new System.Drawing.Size(814, 445);
             this.tabPage21.TabIndex = 20;
             this.tabPage21.Text = "20";
             this.tabPage21.UseVisualStyleBackColor = true;
@@ -910,7 +978,7 @@
             // 
             this.tabPage22.Location = new System.Drawing.Point(4, 22);
             this.tabPage22.Name = "tabPage22";
-            this.tabPage22.Size = new System.Drawing.Size(641, 284);
+            this.tabPage22.Size = new System.Drawing.Size(814, 445);
             this.tabPage22.TabIndex = 21;
             this.tabPage22.Text = "21";
             this.tabPage22.UseVisualStyleBackColor = true;
@@ -919,7 +987,7 @@
             // 
             this.tabPage23.Location = new System.Drawing.Point(4, 22);
             this.tabPage23.Name = "tabPage23";
-            this.tabPage23.Size = new System.Drawing.Size(641, 284);
+            this.tabPage23.Size = new System.Drawing.Size(814, 445);
             this.tabPage23.TabIndex = 22;
             this.tabPage23.Text = "22";
             this.tabPage23.UseVisualStyleBackColor = true;
@@ -928,7 +996,7 @@
             // 
             this.tabPage24.Location = new System.Drawing.Point(4, 22);
             this.tabPage24.Name = "tabPage24";
-            this.tabPage24.Size = new System.Drawing.Size(641, 284);
+            this.tabPage24.Size = new System.Drawing.Size(814, 445);
             this.tabPage24.TabIndex = 23;
             this.tabPage24.Text = "23";
             this.tabPage24.UseVisualStyleBackColor = true;
@@ -937,7 +1005,7 @@
             // 
             this.tabPage25.Location = new System.Drawing.Point(4, 22);
             this.tabPage25.Name = "tabPage25";
-            this.tabPage25.Size = new System.Drawing.Size(641, 284);
+            this.tabPage25.Size = new System.Drawing.Size(814, 445);
             this.tabPage25.TabIndex = 24;
             this.tabPage25.Text = "24";
             this.tabPage25.UseVisualStyleBackColor = true;
@@ -946,7 +1014,7 @@
             // 
             this.tabPage26.Location = new System.Drawing.Point(4, 22);
             this.tabPage26.Name = "tabPage26";
-            this.tabPage26.Size = new System.Drawing.Size(641, 284);
+            this.tabPage26.Size = new System.Drawing.Size(814, 445);
             this.tabPage26.TabIndex = 25;
             this.tabPage26.Text = "25";
             this.tabPage26.UseVisualStyleBackColor = true;
@@ -955,7 +1023,7 @@
             // 
             this.tabPage27.Location = new System.Drawing.Point(4, 22);
             this.tabPage27.Name = "tabPage27";
-            this.tabPage27.Size = new System.Drawing.Size(641, 284);
+            this.tabPage27.Size = new System.Drawing.Size(814, 445);
             this.tabPage27.TabIndex = 26;
             this.tabPage27.Text = "26";
             this.tabPage27.UseVisualStyleBackColor = true;
@@ -964,7 +1032,7 @@
             // 
             this.tabPage28.Location = new System.Drawing.Point(4, 22);
             this.tabPage28.Name = "tabPage28";
-            this.tabPage28.Size = new System.Drawing.Size(641, 284);
+            this.tabPage28.Size = new System.Drawing.Size(814, 445);
             this.tabPage28.TabIndex = 27;
             this.tabPage28.Text = "27";
             this.tabPage28.UseVisualStyleBackColor = true;
@@ -973,7 +1041,7 @@
             // 
             this.tabPage29.Location = new System.Drawing.Point(4, 22);
             this.tabPage29.Name = "tabPage29";
-            this.tabPage29.Size = new System.Drawing.Size(641, 284);
+            this.tabPage29.Size = new System.Drawing.Size(814, 445);
             this.tabPage29.TabIndex = 28;
             this.tabPage29.Text = "28";
             this.tabPage29.UseVisualStyleBackColor = true;
@@ -982,7 +1050,7 @@
             // 
             this.tabPage30.Location = new System.Drawing.Point(4, 22);
             this.tabPage30.Name = "tabPage30";
-            this.tabPage30.Size = new System.Drawing.Size(641, 284);
+            this.tabPage30.Size = new System.Drawing.Size(814, 445);
             this.tabPage30.TabIndex = 29;
             this.tabPage30.Text = "29";
             this.tabPage30.UseVisualStyleBackColor = true;
@@ -991,7 +1059,7 @@
             // 
             this.tabPage31.Location = new System.Drawing.Point(4, 22);
             this.tabPage31.Name = "tabPage31";
-            this.tabPage31.Size = new System.Drawing.Size(641, 284);
+            this.tabPage31.Size = new System.Drawing.Size(814, 445);
             this.tabPage31.TabIndex = 30;
             this.tabPage31.Text = "30";
             this.tabPage31.UseVisualStyleBackColor = true;
@@ -1000,7 +1068,7 @@
             // 
             this.tabPage32.Location = new System.Drawing.Point(4, 22);
             this.tabPage32.Name = "tabPage32";
-            this.tabPage32.Size = new System.Drawing.Size(641, 284);
+            this.tabPage32.Size = new System.Drawing.Size(814, 445);
             this.tabPage32.TabIndex = 31;
             this.tabPage32.Text = "31";
             this.tabPage32.UseVisualStyleBackColor = true;
@@ -1008,12 +1076,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtNameID);
-            this.groupBox1.Location = new System.Drawing.Point(340, 70);
+            this.groupBox1.Location = new System.Drawing.Point(213, 70);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(121, 52);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Name ID";
+            this.groupBox1.Text = "Default Name ID";
             // 
             // txtNameID
             // 
@@ -1118,7 +1186,7 @@
             0,
             0,
             0});
-            this.v3dRotationSpeed.Location = new System.Drawing.Point(463, 19);
+            this.v3dRotationSpeed.Location = new System.Drawing.Point(721, 12);
             this.v3dRotationSpeed.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -1176,9 +1244,9 @@
             // groupBox28
             // 
             this.groupBox28.Controls.Add(this.txtBodyID);
-            this.groupBox28.Location = new System.Drawing.Point(590, 19);
+            this.groupBox28.Location = new System.Drawing.Point(461, 12);
             this.groupBox28.Name = "groupBox28";
-            this.groupBox28.Size = new System.Drawing.Size(121, 52);
+            this.groupBox28.Size = new System.Drawing.Size(127, 52);
             this.groupBox28.TabIndex = 9;
             this.groupBox28.TabStop = false;
             this.groupBox28.Text = "BodyID";
@@ -1191,14 +1259,36 @@
             this.txtBodyID.Location = new System.Drawing.Point(6, 19);
             this.txtBodyID.Name = "txtBodyID";
             this.txtBodyID.ReadOnly = true;
-            this.txtBodyID.Size = new System.Drawing.Size(109, 20);
+            this.txtBodyID.Size = new System.Drawing.Size(115, 20);
             this.txtBodyID.TabIndex = 0;
+            // 
+            // groupBox29
+            // 
+            this.groupBox29.Controls.Add(this.textBox1);
+            this.groupBox29.Location = new System.Drawing.Point(340, 70);
+            this.groupBox29.Name = "groupBox29";
+            this.groupBox29.Size = new System.Drawing.Size(248, 52);
+            this.groupBox29.TabIndex = 8;
+            this.groupBox29.TabStop = false;
+            this.groupBox29.Text = "Default Name";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(236, 20);
+            this.textBox1.TabIndex = 0;
             // 
             // TypeDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(973, 611);
+            this.Controls.Add(this.groupBox29);
             this.Controls.Add(this.groupBox28);
             this.Controls.Add(this.groupBox23);
             this.Controls.Add(this.groupBox20);
@@ -1212,7 +1302,7 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Name = "TypeDataDisplay";
-            this.Text = "TypeDataDisplay";
+            this.Text = "TypeData";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1223,9 +1313,9 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.groupBox27.ResumeLayout(false);
             this.groupBox27.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.groupBox22.ResumeLayout(false);
             this.groupBox22.PerformLayout();
@@ -1240,6 +1330,9 @@
             this.groupBox24.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.shipPanel.ResumeLayout(false);
+            this.groupBox30.ResumeLayout(false);
+            this.groupBox30.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();
             this.groupBox16.ResumeLayout(false);
@@ -1274,6 +1367,8 @@
             this.groupBox23.PerformLayout();
             this.groupBox28.ResumeLayout(false);
             this.groupBox28.PerformLayout();
+            this.groupBox29.ResumeLayout(false);
+            this.groupBox29.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1372,5 +1467,13 @@
         private System.Windows.Forms.TextBox txtBackgroundName;
         private System.Windows.Forms.GroupBox groupBox28;
         private System.Windows.Forms.TextBox txtBodyID;
+        private System.Windows.Forms.GroupBox groupBox29;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox30;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WareColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CountColumn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtShipRETime;
     }
 }

@@ -100,7 +100,7 @@ namespace Common.Memory
         {
             get
             {
-                return value == null ? 100 : value.Length + 1;
+                return value == null ? 10000 : value.Length + 1;
             }
         }
 

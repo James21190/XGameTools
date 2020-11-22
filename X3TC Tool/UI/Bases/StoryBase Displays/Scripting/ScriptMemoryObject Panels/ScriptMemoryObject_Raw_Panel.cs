@@ -26,18 +26,31 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
 
         public void Reload()
         {
+            if (m_object == null)
+            {
+                AddressBox.Text = "Not Found!";
+                dataGridView1.Rows.Clear();
+                return;
+            }
             m_object.ReloadFromMemory();
 
             AddressBox.Text = m_object.pThis.ToString("X");
             //textBox1.Text = m_object.name;
             numericUpDown1.Value = m_object.VariableCount;
 
-            dataGridView1.Rows.Clear();
-
-            for (int i = 0; i < m_object.VariableCount; i++)
+            int count = dataGridView1.Rows.Count;
+            int rowIndex;
+            for (rowIndex = 0; rowIndex < m_object.VariableCount; rowIndex++)
             {
-                DynamicValue value = m_object.GetVariable(i);
-                dataGridView1.Rows.Add(m_object.GetVariableName(i), value.Flag, value.Value, value.Value.ToString("X"));
+                DynamicValue value = m_object.GetVariable(rowIndex);
+                if (rowIndex < count)
+                    dataGridView1.Rows[rowIndex].SetValues(m_object.GetVariableName(rowIndex), value.Flag, value.Value, value.Value.ToString("X"));
+                else
+                    dataGridView1.Rows.Add(m_object.GetVariableName(rowIndex), value.Flag, value.Value, value.Value.ToString("X"));
+            }
+            for (int i = 0; i < count - rowIndex; i++)
+            {
+                dataGridView1.Rows.RemoveAt(rowIndex);
             }
         }
 

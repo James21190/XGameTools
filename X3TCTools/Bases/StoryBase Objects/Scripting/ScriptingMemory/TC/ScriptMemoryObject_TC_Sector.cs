@@ -10,7 +10,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int OwningRaceDataEventObjectID => throw new NotImplementedException();
 
-        public EventObject OwningRaceDataEventObject => throw new NotImplementedException();
+        public ScriptingObject OwningRaceDataEventObject => throw new NotImplementedException();
 
         public int pShipEventObjectHashTableObject => throw new NotImplementedException();
 
@@ -26,7 +26,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int OwnerDataEventObjectID => throw new NotImplementedException();
 
-        public EventObject OwnerDataEventObject => throw new NotImplementedException();
+        public ScriptingObject OwnerDataEventObject => throw new NotImplementedException();
 
         public ScriptMemoryObject_TC_Sector() : base(55)
         {

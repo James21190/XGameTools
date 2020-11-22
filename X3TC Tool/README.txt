@@ -10,14 +10,7 @@ X3TC Tool, and its components:
  Because the tool is still in development, all components are subject to change.
 
  Main Features:
-  - SectorObject Viewer.
-  - Code injector.
- 
- Code injector:
-  The code injector injects binary directly into the game loop. Code can be read
-  from a text file as shown in the mods folder. This tool is extreamly powerful and
-  can be used maliciously. Do not run any code files unless you trust the file's
-  source.
+  - Game memory viewers.
  
  You are permitted to distribute this software
  and use its components in your own projects as long as:
@@ -34,7 +27,6 @@ X3 Terran Conflict:
  
  EGOSOFT support modding and tools and allows distribution.
  
- 
 Contact:
- Email: TheHamezContact@gmail.com
- Discord: https://discord.gg/ePfXcze
+    Discord: TheHamez#0845
+    Egosoft Discord: https://discord.gg/SCjyaJc

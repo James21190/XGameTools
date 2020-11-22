@@ -41,7 +41,7 @@ namespace X3TCTools
                 MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection + 4, BitConverter.GetBytes((int)parent.pThis));
             }
 
-            MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection, BitConverter.GetBytes(SectorObject.ToFullType(mainType, subType)));
+            MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection, new SectorObject.SectorObjectType(mainType, subType).GetBytes());
 
             MemoryControl.Write(GameHook.hProcess, pCreateObjectInjection + 12, BitConverter.GetBytes(1));
 

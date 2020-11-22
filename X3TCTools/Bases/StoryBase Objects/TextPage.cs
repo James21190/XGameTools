@@ -1,5 +1,6 @@
 ﻿using Common.Memory;
 using System;
+using X3TCTools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3TCTools.Bases.StoryBase_Objects
 {
@@ -23,15 +24,14 @@ namespace X3TCTools.Bases.StoryBase_Objects
                 }
             }
             public int ID;
-            public byte Unknown_1;
-            public MemoryObjectPointer<Txt> Index = new MemoryObjectPointer<Txt>();
+            public DynamicValue value;
             public byte Unknown_2;
             public byte Unknown_3;
             public byte Unknown_4;
 
             public override string ToString()
             {
-                return "Entry " + ID + ":" + Index.obj.U_1;
+                return "Entry " + ID;
             }
 
             public override byte[] GetBytes()
@@ -43,8 +43,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
             {
                 ID = objectByteList.PopInt();
-                Unknown_1 = objectByteList.PopByte();
-                Index = objectByteList.PopIMemoryObject<MemoryObjectPointer<Txt>>();
+                value = objectByteList.PopIMemoryObject<DynamicValue>();
                 Unknown_2 = objectByteList.PopByte();
                 Unknown_3 = objectByteList.PopByte();
                 Unknown_4 = objectByteList.PopByte();
@@ -66,6 +65,21 @@ namespace X3TCTools.Bases.StoryBase_Objects
                 }
                 return result;
             }
+        }
+
+        private ScriptingTextObject _GetTextObject(int id)
+        {
+            for(int i = 0; i < Count; i++)
+            {
+                var entry = pEntries.GetObjectInArray(i);
+                if (entry.ID == id) return entry.value.GetAsTextObject();
+            }
+            throw new IndexOutOfRangeException();
+        }
+
+        public string GetText(int id)
+        {
+            return _GetTextObject(id).pText.obj.value;
         }
 
         public override byte[] GetBytes()

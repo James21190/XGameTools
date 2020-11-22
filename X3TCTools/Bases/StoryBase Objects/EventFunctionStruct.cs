@@ -1,5 +1,6 @@
 ﻿using Common.Memory;
 using System;
+using System.Collections.Generic;
 
 namespace X3TCTools.Bases.StoryBase_Objects
 {
@@ -9,9 +10,25 @@ namespace X3TCTools.Bases.StoryBase_Objects
         public IntPtr pFunction2;
         public IntPtr pFunction3;
         public IntPtr pFunction4;
-        public IntPtr ppString;
+        public MemoryObjectPointer<MemoryObjectPointer<MemoryString>> ppString = new MemoryObjectPointer<MemoryObjectPointer<MemoryString>>();
         public int Index;
 
+        public string[] FunctionNames
+        {
+            get
+            {
+                List<string> result = new List<string>();
+                int i = 0;
+                while (true)
+                {
+                    var pString = ppString[i++];
+                    if (pString.address == IntPtr.Zero)
+                        break;
+                    result.Add(pString.obj.value);
+                }
+                return result.ToArray();
+            }
+        }
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
@@ -19,20 +36,20 @@ namespace X3TCTools.Bases.StoryBase_Objects
 
         public override int ByteSize => 24;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList(Memory);
-            collection.PopFirst(ref pPrimaryFunction);
-            collection.PopFirst(ref pFunction2);
-            collection.PopFirst(ref pFunction3);
-            collection.PopFirst(ref pFunction4);
-            collection.PopFirst(ref ppString);
-            collection.PopFirst(ref Index);
+            pPrimaryFunction = objectByteList.PopIntPtr();
+            pFunction2 = objectByteList.PopIntPtr();
+            pFunction3 = objectByteList.PopIntPtr();
+            pFunction4 = objectByteList.PopIntPtr();
+            ppString = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<MemoryString>>>();
+            Index = objectByteList.PopInt();
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
+            ppString.SetLocation(hProcess, address + 0x10);
         }
     }
 }

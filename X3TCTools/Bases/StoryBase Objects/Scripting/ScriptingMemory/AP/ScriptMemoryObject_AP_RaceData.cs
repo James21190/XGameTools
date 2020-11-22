@@ -7,7 +7,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         public const int VariableCount = 9;
 
         public int ASectorEventObjectID => GetVariableValue((int)AP_RaceData_Variables.ASectorEventObjectID);
-        public EventObject ASectorEventObject => GameHook.storyBase.GetEventObject(ASectorEventObjectID);
+        public ScriptingObject ASectorEventObject => GameHook.storyBase.GetEventObject(ASectorEventObjectID);
 
         public int pOwnedShipEventObjectIDHashTableObject => GetVariableValue((int)AP_RaceData_Variables.OwnedShipEventObjectIDHashTable);
         public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
@@ -27,11 +27,11 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         public GameHook.RaceID RaceID => (GameHook.RaceID)GetVariableValue((int)AP_RaceData_Variables.RaceID);
 
 
-        public EventObject[] Ships
+        public ScriptingObject[] Ships
         {
             get
             {
-                EventObject[] ships = new EventObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
+                ScriptingObject[] ships = new ScriptingObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue shipID in OwnedShipEventObjectIDHashTableObject.hashTable.ScanContents())
                 {
@@ -41,11 +41,11 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
             }
         }
 
-        public EventObject[] Stations
+        public ScriptingObject[] Stations
         {
             get
             {
-                EventObject[] stations = new EventObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
+                ScriptingObject[] stations = new ScriptingObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue shipID in OwnedStationEventObjectIDHashTableObject.hashTable.ScanContents())
                 {

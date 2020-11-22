@@ -73,6 +73,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ScriptingTextObjectDisplay";
             this.Text = "ScriptingArrayObjectDisplay";
+            this.Load += new System.EventHandler(this.ScriptingTextObjectDisplay_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IDBox)).EndInit();
             this.ResumeLayout(false);

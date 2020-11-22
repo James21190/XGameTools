@@ -37,40 +37,36 @@
             this.ViewSectorObjectManagerButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.GameHookMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.eventObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sectorObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.typeDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptingObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dynamicValueObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptObjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectorObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectorObjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.typeDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.renderObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storyBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingObjectsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.eventObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingTextObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dynamicValueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.kCodeViewerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bodyDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bodyDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.x86DisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.GameHookPanel = new System.Windows.Forms.Panel();
-            this.x86DisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.GameHookPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,122 +157,145 @@
             // GameHookMenuStrip
             // 
             this.GameHookMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eventObjectToolStripMenuItem,
-            this.sectorObjectToolStripMenuItem,
-            this.typeDataToolStripMenuItem,
             this.hashTableToolStripMenuItem,
-            this.cameraToolStripMenuItem,
-            this.scriptingObjectsToolStripMenuItem,
-            this.textPageToolStripMenuItem,
-            this.bodyDataToolStripMenuItem,
+            this.sectorObjectsToolStripMenuItem,
+            this.storyBaseToolStripMenuItem,
+            this.cameraBaseToolStripMenuItem,
             this.x86DisassemblerToolStripMenuItem});
             this.GameHookMenuStrip.Name = "GameHookMenuStrip";
             this.GameHookMenuStrip.Size = new System.Drawing.Size(79, 20);
             this.GameHookMenuStrip.Text = "GameHook";
             // 
-            // eventObjectToolStripMenuItem
-            // 
-            this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.eventObjectToolStripMenuItem.Text = "EventObject";
-            this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.LoadEventObjectDisplay);
-            // 
-            // sectorObjectToolStripMenuItem
-            // 
-            this.sectorObjectToolStripMenuItem.Name = "sectorObjectToolStripMenuItem";
-            this.sectorObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sectorObjectToolStripMenuItem.Text = "SectorObject";
-            this.sectorObjectToolStripMenuItem.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem_Click);
-            // 
-            // typeDataToolStripMenuItem
-            // 
-            this.typeDataToolStripMenuItem.Name = "typeDataToolStripMenuItem";
-            this.typeDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.typeDataToolStripMenuItem.Text = "TypeData";
-            this.typeDataToolStripMenuItem.Click += new System.EventHandler(this.typeDataToolStripMenuItem_Click);
-            // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
-            // cameraToolStripMenuItem
+            // sectorObjectsToolStripMenuItem
             // 
-            this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
-            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cameraToolStripMenuItem.Text = "Camera";
-            this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
+            this.sectorObjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sectorObjectToolStripMenuItem1,
+            this.typeDataToolStripMenuItem1,
+            this.renderObjectToolStripMenuItem});
+            this.sectorObjectsToolStripMenuItem.Name = "sectorObjectsToolStripMenuItem";
+            this.sectorObjectsToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.sectorObjectsToolStripMenuItem.Text = "Sector Objects";
             // 
-            // scriptingObjectsToolStripMenuItem
+            // sectorObjectToolStripMenuItem1
             // 
-            this.scriptingObjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dynamicValueObjectToolStripMenuItem,
-            this.scriptObjectToolStripMenuItem1,
+            this.sectorObjectToolStripMenuItem1.Name = "sectorObjectToolStripMenuItem1";
+            this.sectorObjectToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.sectorObjectToolStripMenuItem1.Text = "SectorObject";
+            this.sectorObjectToolStripMenuItem1.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem1_Click);
+            // 
+            // typeDataToolStripMenuItem1
+            // 
+            this.typeDataToolStripMenuItem1.Name = "typeDataToolStripMenuItem1";
+            this.typeDataToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.typeDataToolStripMenuItem1.Text = "TypeData";
+            this.typeDataToolStripMenuItem1.Click += new System.EventHandler(this.typeDataToolStripMenuItem1_Click);
+            // 
+            // renderObjectToolStripMenuItem
+            // 
+            this.renderObjectToolStripMenuItem.Name = "renderObjectToolStripMenuItem";
+            this.renderObjectToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.renderObjectToolStripMenuItem.Text = "RenderObject";
+            this.renderObjectToolStripMenuItem.Click += new System.EventHandler(this.renderObjectToolStripMenuItem_Click);
+            // 
+            // storyBaseToolStripMenuItem
+            // 
+            this.storyBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scriptingObjectsToolStripMenuItem1,
+            this.textPageToolStripMenuItem});
+            this.storyBaseToolStripMenuItem.Name = "storyBaseToolStripMenuItem";
+            this.storyBaseToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.storyBaseToolStripMenuItem.Text = "StoryBase Objects";
+            // 
+            // scriptingObjectsToolStripMenuItem1
+            // 
+            this.scriptingObjectsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eventObjectToolStripMenuItem,
+            this.scriptObjectToolStripMenuItem,
             this.scriptingHashTableToolStripMenuItem,
-            this.scriptingArrayToolStripMenuItem,
-            this.dynamicValueToolStripMenuItem1,
-            this.kCodeViewerToolStripMenuItem});
-            this.scriptingObjectsToolStripMenuItem.Name = "scriptingObjectsToolStripMenuItem";
-            this.scriptingObjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptingObjectsToolStripMenuItem.Text = "Scripting Objects";
+            this.scriptingTextObjectToolStripMenuItem,
+            this.scriptingArrayToolStripMenuItem});
+            this.scriptingObjectsToolStripMenuItem1.Name = "scriptingObjectsToolStripMenuItem1";
+            this.scriptingObjectsToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
+            this.scriptingObjectsToolStripMenuItem1.Text = "Scripting Objects";
             // 
-            // dynamicValueObjectToolStripMenuItem
+            // eventObjectToolStripMenuItem
             // 
-            this.dynamicValueObjectToolStripMenuItem.Name = "dynamicValueObjectToolStripMenuItem";
-            this.dynamicValueObjectToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.dynamicValueObjectToolStripMenuItem.Text = "DynamicValueObject";
-            this.dynamicValueObjectToolStripMenuItem.Click += new System.EventHandler(this.dynamicValueObjectToolStripMenuItem_Click);
+            this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.eventObjectToolStripMenuItem.Text = "EventObject";
+            this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.eventObjectToolStripMenuItem_Click);
             // 
-            // scriptObjectToolStripMenuItem1
+            // scriptObjectToolStripMenuItem
             // 
-            this.scriptObjectToolStripMenuItem1.Name = "scriptObjectToolStripMenuItem1";
-            this.scriptObjectToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
-            this.scriptObjectToolStripMenuItem1.Text = "ScriptObject";
-            this.scriptObjectToolStripMenuItem1.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem1_Click);
+            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
+            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
+            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
             // 
             // scriptingHashTableToolStripMenuItem
             // 
             this.scriptingHashTableToolStripMenuItem.Name = "scriptingHashTableToolStripMenuItem";
-            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.scriptingHashTableToolStripMenuItem.Text = "ScriptingHashTable";
             this.scriptingHashTableToolStripMenuItem.Click += new System.EventHandler(this.scriptingHashTableToolStripMenuItem_Click);
+            // 
+            // scriptingTextObjectToolStripMenuItem
+            // 
+            this.scriptingTextObjectToolStripMenuItem.Name = "scriptingTextObjectToolStripMenuItem";
+            this.scriptingTextObjectToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.scriptingTextObjectToolStripMenuItem.Text = "ScriptingTextObject";
+            this.scriptingTextObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptingTextObjectToolStripMenuItem_Click);
             // 
             // scriptingArrayToolStripMenuItem
             // 
             this.scriptingArrayToolStripMenuItem.Name = "scriptingArrayToolStripMenuItem";
-            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.scriptingArrayToolStripMenuItem.Text = "ScriptingArray";
             this.scriptingArrayToolStripMenuItem.Click += new System.EventHandler(this.scriptingArrayToolStripMenuItem_Click);
-            // 
-            // dynamicValueToolStripMenuItem1
-            // 
-            this.dynamicValueToolStripMenuItem1.Name = "dynamicValueToolStripMenuItem1";
-            this.dynamicValueToolStripMenuItem1.Size = new System.Drawing.Size(184, 22);
-            this.dynamicValueToolStripMenuItem1.Text = "DynamicValue";
-            this.dynamicValueToolStripMenuItem1.Click += new System.EventHandler(this.dynamicValueToolStripMenuItem1_Click);
-            // 
-            // kCodeViewerToolStripMenuItem
-            // 
-            this.kCodeViewerToolStripMenuItem.Name = "kCodeViewerToolStripMenuItem";
-            this.kCodeViewerToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.kCodeViewerToolStripMenuItem.Text = "KCode Viewer";
-            this.kCodeViewerToolStripMenuItem.Click += new System.EventHandler(this.kCodeViewerToolStripMenuItem_Click);
             // 
             // textPageToolStripMenuItem
             // 
             this.textPageToolStripMenuItem.Name = "textPageToolStripMenuItem";
-            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.textPageToolStripMenuItem.Text = "TextPage";
             this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
             // 
-            // bodyDataToolStripMenuItem
+            // cameraBaseToolStripMenuItem
             // 
-            this.bodyDataToolStripMenuItem.Name = "bodyDataToolStripMenuItem";
-            this.bodyDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.bodyDataToolStripMenuItem.Text = "BodyData";
-            this.bodyDataToolStripMenuItem.Click += new System.EventHandler(this.bodyDataToolStripMenuItem_Click);
+            this.cameraBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cameraToolStripMenuItem1,
+            this.bodyDataToolStripMenuItem1});
+            this.cameraBaseToolStripMenuItem.Name = "cameraBaseToolStripMenuItem";
+            this.cameraBaseToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.cameraBaseToolStripMenuItem.Text = "CameraBase";
+            // 
+            // cameraToolStripMenuItem1
+            // 
+            this.cameraToolStripMenuItem1.Name = "cameraToolStripMenuItem1";
+            this.cameraToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.cameraToolStripMenuItem1.Text = "Camera";
+            this.cameraToolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem1_Click);
+            // 
+            // bodyDataToolStripMenuItem1
+            // 
+            this.bodyDataToolStripMenuItem1.Name = "bodyDataToolStripMenuItem1";
+            this.bodyDataToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.bodyDataToolStripMenuItem1.Text = "BodyData";
+            this.bodyDataToolStripMenuItem1.Click += new System.EventHandler(this.bodyDataToolStripMenuItem1_Click);
+            // 
+            // x86DisassemblerToolStripMenuItem
+            // 
+            this.x86DisassemblerToolStripMenuItem.Name = "x86DisassemblerToolStripMenuItem";
+            this.x86DisassemblerToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.x86DisassemblerToolStripMenuItem.Text = "x86 Disassembler";
+            this.x86DisassemblerToolStripMenuItem.Click += new System.EventHandler(this.x86DisassemblerToolStripMenuItem_Click);
             // 
             // LoadPlayerShipButton
             // 
@@ -330,54 +349,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "SETA: x1";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(517, 102);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(264, 73);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Type Lookup";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(9, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(249, 20);
-            this.textBox2.TabIndex = 3;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(187, 17);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(71, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Search";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(62, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Full Type";
-            // 
             // timer1
             // 
             this.timer1.Interval = 500;
@@ -410,7 +381,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GameHookPanel.Controls.Add(this.groupBox1);
             this.GameHookPanel.Controls.Add(this.button5);
-            this.GameHookPanel.Controls.Add(this.groupBox3);
             this.GameHookPanel.Controls.Add(this.LoadPlayerShipButton);
             this.GameHookPanel.Controls.Add(this.groupBox2);
             this.GameHookPanel.Controls.Add(this.button4);
@@ -418,13 +388,6 @@
             this.GameHookPanel.Name = "GameHookPanel";
             this.GameHookPanel.Size = new System.Drawing.Size(860, 522);
             this.GameHookPanel.TabIndex = 9;
-            // 
-            // x86DisassemblerToolStripMenuItem
-            // 
-            this.x86DisassemblerToolStripMenuItem.Name = "x86DisassemblerToolStripMenuItem";
-            this.x86DisassemblerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.x86DisassemblerToolStripMenuItem.Text = "x86 Disassembler";
-            this.x86DisassemblerToolStripMenuItem.Click += new System.EventHandler(this.x86DisassemblerToolStripMenuItem_Click);
             // 
             // X3TCToolForm
             // 
@@ -445,8 +408,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.GameHookPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -459,39 +420,36 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem GameHookMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem eventObjectToolStripMenuItem;
         private System.Windows.Forms.Button ViewSectorObjectManagerButton;
         private System.Windows.Forms.Button LoadPlayerShipButton;
-        private System.Windows.Forms.ToolStripMenuItem sectorObjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem hashTableToolStripMenuItem;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ToolStripMenuItem scriptingObjectsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem scriptingHashTableToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem scriptingArrayToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dynamicValueToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem dynamicValueObjectToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ToolStripMenuItem kCodeViewerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem textPageToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel GameHookPanel;
-        private System.Windows.Forms.ToolStripMenuItem bodyDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem x86DisassemblerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem storyBaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingObjectsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem eventObjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sectorObjectsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sectorObjectToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem scriptingHashTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingTextObjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingArrayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renderObjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cameraBaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem bodyDataToolStripMenuItem1;
     }
 }
 

@@ -27,6 +27,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void LoadTypeData(int MainType, int SubType)
         {
+            Text = string.Format("TypeData - {0} - {1}", ((SectorObject.Main_Type)MainType).ToString(), SectorObject.GetSubTypeAsString((SectorObject.Main_Type)MainType, SubType));
             if (tabControl1.SelectedIndex != MainType)
             {
                 tabControl1.SelectedIndex = MainType;
@@ -47,6 +48,7 @@ namespace X3TC_Tool.UI.Displays
             if (tabControl1.SelectedIndex == -1)
             {
                 comboBox2.Enabled = false;
+                
                 return;
             }
 
@@ -62,11 +64,13 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
+
             txtAddress.Text = m_TypeData.pThis.ToString("X");
 
             txtClass.Text = m_TypeData.GetObjectClassAsString();
             txtTypeString.Text = m_TypeData.pTypeString.obj.value;
-            txtNameID.Text = m_TypeData.NameID.ToString();
+            txtNameID.Text = m_TypeData.DefaultNameID.ToString();
+            textBox1.Text = m_TypeData.DefaultName;
             v3dRotationSpeed.Vector = m_TypeData.RotationSpeed;
 
             int priceVariation = 0;
@@ -77,9 +81,9 @@ namespace X3TC_Tool.UI.Displays
 
             txtRelVal.Text = m_TypeData.RelVal.ToString();
 
-            txtMaxPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 1));
-            txtPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 0.5m));
-            txtMinPrice.Text = String.Format("{0:n}", TypeData.GetPrice((SectorObject.Main_Type)m_TypeDataMainType, comboBox2.SelectedIndex, 0));
+            txtMaxPrice.Text = String.Format("{0:n}", m_TypeData.GetPrice(1));
+            txtPrice.Text = String.Format("{0:n}", m_TypeData.GetPrice(0.5m));
+            txtMinPrice.Text = String.Format("{0:n}", m_TypeData.GetPrice(0));
 
             txtBodyID.Text = m_TypeData.BodyID.ToString();
 
@@ -111,13 +115,25 @@ namespace X3TC_Tool.UI.Displays
                     txtMinimumCargoSpace.Text = shipTypeData.MinimumCargoSpace.ToString();
                     txtMaximumCargoSpace.Text = shipTypeData.MaximumCargoSpace.ToString();
 
-                    txtShielding.Text = string.Format("{0} x {1}", shipTypeData.MaxShieldCount, SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Shield, shipTypeData.MaxShieldClass));
+                    if (shipTypeData.MaxShieldClass >= 0)
+                        txtShielding.Text = string.Format("{0} x {1}", shipTypeData.MaxShieldCount, SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Shield, shipTypeData.MaxShieldClass));
+                    else
+                        txtShielding.Text = "None";
                     txtShieldPowerGenerator.Text = shipTypeData.ShieldPowerGenerator.ToString();
                     txtShipMaxHull.Text = shipTypeData.MaxHull.ToString();
 
                     txtEventObjectID.Text = shipTypeData.EventObjectID.ToString();
                     txtMaxWeaponClass.Text = shipTypeData.MaxWeaponClass.ToString();
                     LoadTurret(0);
+
+                    // HQ Production
+                    var time = shipTypeData.GetProductionTime();
+                    txtShipRETime.Text = string.Format("{0}-{1}:{2}:{3}", time.Days, time.Hours, time.Minutes, time.Seconds);
+                    dataGridView1.Rows.Clear();
+                    foreach(var item in shipTypeData.GetProductionMaterials())
+                    {
+                        dataGridView1.Rows.Add(item.WareType.ToString(), item.Count);
+                    }
                     break;
                 case SectorObject.Main_Type.Factory:
                     TypeData_Factory factoryTypeData = (TypeData_Factory)m_TypeData;
@@ -163,6 +179,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Text = "TypeData";
             ReloadSubTypes();
         }
 

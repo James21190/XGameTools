@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3TCTools;
 
 namespace X3TC_Tool.UI.Displays

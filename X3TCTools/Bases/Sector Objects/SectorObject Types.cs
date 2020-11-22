@@ -1,34 +1,95 @@
 ﻿using System;
 using System.IO;
+using Common.Memory;
 
 namespace X3TCTools.Sector_Objects
 {
     public partial class SectorObject
     {
-
-        public struct Full_Type : IComparable
+        public class SectorObjectType : MemoryObject, IComparable
         {
-            public Main_Type MainType;
-            public int SubType;
+            public Main_Type MainTypeEnum
+            {
+                get
+                {
+                    return (Main_Type)MainType;
+                }
+                set
+                {
+                    MainType = (short)value;
+                }
+            }
+            public short MainType;
+            public short SubType;
+
+            public TypeData typeData => GameHook.GetTypeData(this);
+
+            public SectorObjectType()
+            {
+
+            }
+            public SectorObjectType(short mainType, short subType)
+            {
+                MainType = mainType;
+                SubType = subType;
+            }
+            public SectorObjectType(short mainType, int subType)
+            {
+                MainType = mainType;
+                SubType = (short)subType;
+            }
+            public SectorObjectType(int mainType, short subType)
+            {
+                MainType = (short)mainType;
+                SubType = subType;
+            }
+            public SectorObjectType(int mainType, int subType)
+            {
+                MainType = (short)mainType;
+                SubType = (short)subType;
+            }
+            public SectorObjectType(Main_Type mainType, short subType)
+            {
+                MainTypeEnum = mainType;
+                SubType = subType;
+            }
+            public SectorObjectType(Main_Type mainType, int subType)
+            {
+                MainTypeEnum = mainType;
+                SubType = (short)subType;
+            }
+
 
             public int ToInt()
             {
                 return (((int)MainType) << 16 | SubType);
             }
 
-            public static Full_Type FromInt(int value)
+            public static SectorObjectType[] GetAllOfMainType(SectorObject.Main_Type mainType)
             {
-                Full_Type type = new Full_Type
+                int max = GameHook.GetTypeDataCount((int)mainType);
+                var array = new SectorObjectType[max];
+                for(int i = 0; i < max; i++)
                 {
-                    MainType = (Main_Type)(value >> 16),
-                    SubType = value & 0x0000ffff
+                    array[i] = new SectorObjectType(mainType, i);
+                }
+
+                return array;
+            }
+
+            public static SectorObjectType FromInt(int value)
+            {
+                SectorObjectType type = new SectorObjectType
+                {
+                    MainType = (short)(value >> 16),
+                    SubType = (short)(value & 0x0000ffff)
                 };
                 return type;
             }
 
             public override string ToString()
             {
-                return MainType.ToString() + " - " + GetSubTypeAsString(MainType, SubType);
+                return MainTypeEnum.ToString() + " - " + GetSubTypeAsString(MainTypeEnum, SubType);
             }
 
             public int CompareTo(object obj)
@@ -38,19 +99,19 @@ namespace X3TCTools.Sector_Objects
                     return 1;
                 }
 
-                if (!(obj is Full_Type))
+                if (!(obj is SectorObjectType))
                 {
                     throw new Exception("Type missmatch");
                 }
 
-                Full_Type type = (Full_Type)obj;
+                SectorObjectType type = (SectorObjectType)obj;
 
-                if (MainType > type.MainType)
+                if (MainTypeEnum > type.MainTypeEnum)
                 {
                     return -1;
                 }
 
-                if (MainType < type.MainType)
+                if (MainTypeEnum < type.MainTypeEnum)
                 {
                     return 1;
                 }
@@ -66,6 +127,18 @@ namespace X3TCTools.Sector_Objects
                 }
 
                 return 0;
+            }
+
+            public override int ByteSize => 4;
+            protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+            {
+                MainTypeEnum = (Main_Type)objectByteList.PopShort();
+                SubType = objectByteList.PopShort();
+            }
+
+            public override byte[] GetBytes()
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -102,24 +175,13 @@ namespace X3TCTools.Sector_Objects
             Ship_Wreck
         }
 
-        public static int ToFullType(Main_Type MainType, int SubType)
-        {
-            return (((int)MainType) << 16 | SubType);
-        }
-
-        public static void FromFullType(int FullType, out Main_Type MainType, out int SubType)
-        {
-            MainType = (Main_Type)(FullType >> 16);
-            SubType = FullType & 0x0000ffff;
-        }
-
         /// <summary>
         /// Returns the object's subtype in as a string. Takes maintype into account.
         /// </summary>
         /// <returns></returns>
         public string GetSubTypeAsString()
         {
-            return (GetSubTypeAsString(MainType, SubType));
+            return (GetSubTypeAsString(ObjectType.MainTypeEnum, ObjectType.SubType));
         }
 
         public static string GetSubTypeAsString(Main_Type main_Type, int SubType)

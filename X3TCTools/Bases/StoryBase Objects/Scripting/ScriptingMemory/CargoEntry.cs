@@ -6,7 +6,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 {
     public struct CargoEntry : IComparable
     {
-        public SectorObject.Full_Type Type;
+        public SectorObject.SectorObjectType Type;
         public int Count;
 
         public int CompareTo(object obj)

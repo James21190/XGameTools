@@ -4,6 +4,8 @@
 	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
 	- Added KCode dissassembler.
 	- Added maintype check to SectorObject.IsValid.
+	- Renamed EventObject to ScriptingObject.
+	- Renamed ScriptObject to ScriptnigTaskObject.
 	- Rotation matricise now inherit from MemoryObject.
 	- Reduced and renamed unknowns in SectorObject.
 	- Seperated UI into multiple forms for faster loading and a better look.

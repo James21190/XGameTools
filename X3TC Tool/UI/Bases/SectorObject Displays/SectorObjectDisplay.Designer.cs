@@ -49,7 +49,7 @@
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.eventObjectPannel1 = new X3TCsTool.EventObjectPannel();
+            this.eventObjectPannel1 = new X3TCTool.EventObjectPannel();
             this.btnLoadEventObject = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.nudMass = new System.Windows.Forms.NumericUpDown();
@@ -799,7 +799,7 @@
         private System.Windows.Forms.NumericUpDown nudMass;
         private System.Windows.Forms.Label labelSectorInfo;
         private System.Windows.Forms.GroupBox groupBox4;
-        private X3TCsTool.EventObjectPannel eventObjectPannel1;
+        private X3TCTool.EventObjectPannel eventObjectPannel1;
         private System.Windows.Forms.Button btnLoadEventObject;
     }
 }

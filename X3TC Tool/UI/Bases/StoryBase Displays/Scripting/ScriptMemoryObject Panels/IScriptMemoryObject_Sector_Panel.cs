@@ -20,7 +20,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
         }
 
         private IScriptMemoryObject_Sector m_Data;
-        public void LoadObject(EventObject eventObject)
+        public void LoadObject(ScriptingObject eventObject)
         {
             switch (GameHook.GameVersion)
             {

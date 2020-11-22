@@ -1,4 +1,4 @@
-﻿namespace X3TCsTool
+﻿namespace X3TCTool
 {
     partial class EventObjectPannel
     {

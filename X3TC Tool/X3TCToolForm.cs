@@ -23,10 +23,8 @@ namespace X3TC_Tool
         private void Form1_Load(object sender, EventArgs e)
         {
             // Hook into the game memory
-            Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-            Process processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
-            Process processX3R = Process.GetProcessesByName("X3").FirstOrDefault();
-            while (processX3TC == null && processX3AP == null && processX3R == null)
+            GameHook = GameHook.DefaultHook();
+            while (GameHook == null)
             {
                 DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3R, X3TC, or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
@@ -34,23 +32,7 @@ namespace X3TC_Tool
                     //Close();
                     break;
                 }
-                processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-                processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
-                processX3R = Process.GetProcessesByName("X3").FirstOrDefault();
-            }
-
-
-            if (processX3TC != null)
-            {
-                GameHook = new GameHook(processX3TC, GameHook.GameVersions.X3TC);
-            }
-            else if (processX3AP != null)
-            {
-                GameHook = new GameHook(processX3AP, GameHook.GameVersions.X3AP);
-            }
-            else if(processX3R != null)
-            {
-                GameHook = new GameHook(processX3R, GameHook.GameVersions.X3R);
+                GameHook = GameHook.DefaultHook();
             }
 
             Text += " - Game Version: " + GameHook.GameVersion;
@@ -106,30 +88,12 @@ namespace X3TC_Tool
         #endregion
 
 
-        private void LoadEventObjectDisplay(object sender, EventArgs e)
-        {
-            EventObjectDisplay viewer = new EventObjectDisplay();
-            viewer.Show();
-        }
-
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
             X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
-            display.Show();
-        }
-
-        private void sectorObjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SectorObjectDisplay display = new SectorObjectDisplay();
-            display.Show();
-        }
-
-        private void typeDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TypeDataDisplay display = new TypeDataDisplay();
             display.Show();
         }
 
@@ -192,57 +156,6 @@ namespace X3TC_Tool
             trackBar1.Maximum = checkBox1.Checked ? 20 : 10;
         }
 
-        private void scriptObjectToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            ScriptObjectDisplay display = new ScriptObjectDisplay();
-            display.Show();
-        }
-
-        private void dynamicValueToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            DynamicValueArrayDisplay viewer = new DynamicValueArrayDisplay();
-            viewer.Show();
-        }
-
-        private void scriptingHashTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ScriptingHashTableDisplay display = new ScriptingHashTableDisplay();
-            display.Show();
-        }
-
-        private void scriptingArrayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void dynamicValueObjectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            X3TCTools.Sector_Objects.SectorObject.Main_Type main;
-            int sub;
-            X3TCTools.Sector_Objects.SectorObject.FromFullType(int.Parse(textBox1.Text, System.Globalization.NumberStyles.HexNumber), out main, out sub);
-            string subname = X3TCTools.Sector_Objects.SectorObject.GetSubTypeAsString(main, sub);
-            textBox2.Text = main.ToString() + "-" + subname;
-
-        }
-
-        private void kCodeViewerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TextPageDisplay display = new TextPageDisplay(GameHook);
-            display.Show();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             //// Performance
@@ -287,6 +200,61 @@ namespace X3TC_Tool
         private void x86DisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new x86Disassembler().Show();
+        }
+
+        private void eventObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new EventObjectDisplay().Show();
+        }
+
+        private void scriptObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptObjectDisplay().Show();
+        }
+
+        private void sectorObjectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new SectorObjectDisplay().Show();
+        }
+
+        private void typeDataToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new TypeDataDisplay().Show();
+        }
+
+        private void scriptingHashTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptingHashTableDisplay().Show();
+        }
+
+        private void scriptingTextObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptingTextObjectDisplay().Show();
+        }
+
+        private void scriptingArrayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new DynamicValueDisplay().Show();
+        }
+
+        private void renderObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new RenderObjectDisplay().Show();
+        }
+
+        private void cameraToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new CameraDisplay().Show();
+        }
+
+        private void bodyDataToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new BodyDataDisplay().Show();
+        }
+
+        private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TextPageDisplay().Show();
         }
     }
 }

@@ -7,6 +7,6 @@
         int pRaceDataEventObjectIDHashTable { get; }
         ScriptingHashTableObject RaceDataEventObjectIDHashTable { get; }
 
-        EventObject[] Races { get; }
+        ScriptingObject[] Races { get; }
     }
 }

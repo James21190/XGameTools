@@ -55,7 +55,7 @@ namespace X3TCTools.Sector_Objects
         public SectorObject GetSpace()
         {
             SectorObject so = GetSectorObject(pFirst);
-            while (so.MainType != SectorObject.Main_Type.Sector)
+            while (so.ObjectType.MainTypeEnum != SectorObject.Main_Type.Sector)
             {
                 if (so.pNext.address == IntPtr.Zero)
                 {

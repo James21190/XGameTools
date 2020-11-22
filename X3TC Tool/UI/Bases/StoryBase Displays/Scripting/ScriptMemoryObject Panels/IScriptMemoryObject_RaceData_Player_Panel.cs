@@ -13,7 +13,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
     {
         private struct RaceData : IComparable
         {
-            public EventObject eventObject;
+            public ScriptingObject eventObject;
             public GameHook.RaceID raceID;
 
             public int CompareTo(object obj)
@@ -55,7 +55,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
         }
 
         private IScriptMemoryObject_RaceData_Player m_Data;
-        public void LoadObject(EventObject eventObject)
+        public void LoadObject(ScriptingObject eventObject)
         {
             switch (GameHook.GameVersion)
             {
@@ -75,7 +75,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
             {
                 try
                 {
-                    EventObject eventObject = GameHook.storyBase.GetEventObject(raceID.Value);
+                    ScriptingObject eventObject = GameHook.storyBase.GetEventObject(raceID.Value);
                     IScriptMemoryObject_RaceData raceData;
                     switch (GameHook.GameVersion)
                     {

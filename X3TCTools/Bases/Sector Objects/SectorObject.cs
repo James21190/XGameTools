@@ -9,7 +9,7 @@ namespace X3TCTools.Sector_Objects
 {
     public partial class SectorObject : MemoryObject, IComparable
     {
-        public bool IsValid => (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero && (int)MainType < MAIN_TYPE_COUNT);
+        public bool IsValid => (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero && (int)ObjectType.MainTypeEnum < MAIN_TYPE_COUNT);
 
         #region Memory Fields
         public MemoryObjectPointer<SectorObject> pNext;
@@ -24,8 +24,7 @@ namespace X3TCTools.Sector_Objects
         public GameHook.RaceID RaceID;
         public int Unknown_4;
         public int Unknown_5;
-        public Main_Type MainType;
-        public short SubType;
+        public SectorObjectType ObjectType;
         public int Unknown_6;
         public IntPtr pMeta;
         public MemoryObjectPointer<SectorObject> pParent;
@@ -75,7 +74,7 @@ namespace X3TCTools.Sector_Objects
 
         #endregion
 
-        public EventObject EventObject
+        public ScriptingObject EventObject
         {
             get
             {
@@ -97,6 +96,7 @@ namespace X3TCTools.Sector_Objects
             pNext = new MemoryObjectPointer<SectorObject>();
             pPrevious = new MemoryObjectPointer<SectorObject>();
             pParent = new MemoryObjectPointer<SectorObject>();
+            ObjectType = new SectorObjectType();
             DynamicValue = new DynamicValue();
             pData = new MemoryObjectPointer<RenderObject>();
         }
@@ -108,7 +108,7 @@ namespace X3TCTools.Sector_Objects
         public ISectorObjectMeta GetMeta()
         {
             ISectorObjectMeta meta;
-            switch (MainType)
+            switch (ObjectType.MainTypeEnum)
             {
                 case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
                 case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
@@ -201,8 +201,7 @@ namespace X3TCTools.Sector_Objects
             collection.Append((int)RaceID);
             collection.Append(Unknown_4);
             collection.Append(Unknown_5);
-            collection.Append((short)MainType);
-            collection.Append(SubType);
+            collection.Append(ObjectType);
             collection.Append(Unknown_6);
             collection.Append(pMeta);
             collection.Append(pParent);
@@ -274,9 +273,7 @@ namespace X3TCTools.Sector_Objects
             RaceID = (GameHook.RaceID)tempint;
             collection.PopFirst(ref Unknown_4);
             collection.PopFirst(ref Unknown_5);
-            collection.PopFirst(ref tempshort);
-            MainType = (Main_Type)tempshort;
-            collection.PopFirst(ref SubType);
+            collection.PopFirst(ref ObjectType);
             collection.PopFirst(ref Unknown_6);
             collection.PopFirst(ref pMeta);
             collection.PopFirst(ref pParent);
@@ -363,22 +360,22 @@ namespace X3TCTools.Sector_Objects
 
             SectorObject type = (SectorObject)obj;
 
-            if (MainType > type.MainType)
+            if (ObjectType.MainTypeEnum > type.ObjectType.MainTypeEnum)
             {
                 return -1;
             }
 
-            if (MainType < type.MainType)
+            if (ObjectType.MainTypeEnum < type.ObjectType.MainTypeEnum)
             {
                 return 1;
             }
 
-            if (SubType > type.SubType)
+            if (ObjectType.SubType > type.ObjectType.SubType)
             {
                 return -1;
             }
 
-            if (SubType < type.SubType)
+            if (ObjectType.SubType < type.ObjectType.SubType)
             {
                 return 1;
             }

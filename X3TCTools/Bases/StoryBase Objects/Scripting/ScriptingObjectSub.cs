@@ -3,14 +3,14 @@ using System;
 
 namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 {
-    public class EventObjectSub : MemoryObject
+    public class ScriptingObjectSub : MemoryObject
     {
-        public int ID;
+        public int Class;
         public int Unknown_1;
         public IntPtr pSelf;
         public int Unknown_2;
         public int NextID;
-        public MemoryObjectPointer<EventObjectSub> pNext = new MemoryObjectPointer<EventObjectSub>();
+        public MemoryObjectPointer<ScriptingObjectSub> pNext = new MemoryObjectPointer<ScriptingObjectSub>();
         public int Unknown_3;
         public int ScriptVariableCount;
         public int Unknown_4;
@@ -29,7 +29,7 @@ namespace X3TCTools.Bases.StoryBase_Objects.Scripting
         public override void SetData(byte[] Memory)
         {
             ObjectByteList collection = new ObjectByteList(Memory);
-            collection.PopFirst(ref ID);
+            collection.PopFirst(ref Class);
             collection.PopFirst(ref Unknown_1);
             collection.PopFirst(ref pSelf);
             collection.PopFirst(ref Unknown_2);

@@ -4,11 +4,11 @@ using System.Windows.Forms;
 using X3TCTools;
 using X3TCTools.Bases.StoryBase_Objects.Scripting;
 
-namespace X3TCsTool
+namespace X3TCTool
 {
     public partial class EventObjectPannel : UserControl
     {
-        private EventObject m_EventObject;
+        private ScriptingObject m_EventObject;
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event EventHandler EventObjectLoaded;
@@ -25,7 +25,7 @@ namespace X3TCsTool
             }
         }
 
-        public EventObject EventObject
+        public ScriptingObject EventObject
         {
             get => m_EventObject;
             set
@@ -56,9 +56,9 @@ namespace X3TCsTool
 
         private void ReloadSub()
         {
-            EventObjectSub sub = m_EventObject.pSub.obj;
+            ScriptingObjectSub sub = m_EventObject.pSub.obj;
             txtSubAddress.Text = sub.pThis.ToString("X");
-            txtSubTypeID.Text = sub.ID.ToString();
+            txtSubTypeID.Text = sub.Class.ToString();
             txtSubLength.Text = sub.ScriptVariableCount.ToString();
             txtSubType.Text = m_EventObject.ObjectType.ToString();
         }
