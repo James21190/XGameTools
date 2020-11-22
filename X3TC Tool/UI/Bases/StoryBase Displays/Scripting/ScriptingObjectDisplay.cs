@@ -14,7 +14,7 @@ using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
 namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
-    public partial class EventObjectDisplay : Form
+    public partial class ScriptingObjectDisplay : Form
     {
         public enum LoadAsItems
         {
@@ -29,7 +29,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
             Headquarters,
         }
         private ScriptingObject m_EventObject;
-        public EventObjectDisplay()
+        public ScriptingObjectDisplay()
         {
             InitializeComponent();
         }

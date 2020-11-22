@@ -130,17 +130,17 @@
       <DependentUpon>GateSystemObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueContentLoader.cs" />
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\EventObjectDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\EventObjectDisplay.Designer.cs">
-      <DependentUpon>EventObjectDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptingObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\EventObjectSubDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectSubDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\EventObjectSubDisplay.Designer.cs">
-      <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectSubDisplay.Designer.cs">
+      <DependentUpon>ScriptingObjectSubDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTextObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -280,11 +280,11 @@
     <EmbeddedResource Include="UI\Displays\GateSystemObjectDisplay.resx">
       <DependentUpon>GateSystemObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\EventObjectDisplay.resx">
-      <DependentUpon>EventObjectDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectDisplay.resx">
+      <DependentUpon>ScriptingObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\EventObjectSubDisplay.resx">
-      <DependentUpon>EventObjectSubDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectSubDisplay.resx">
+      <DependentUpon>ScriptingObjectSubDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTextObjectDisplay.resx">
       <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>

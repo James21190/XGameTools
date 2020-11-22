@@ -11,7 +11,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
     public class StoryBase : MemoryObject
     {
         #region Memory
-        public MemoryObjectPointer<HashTable<TaskObject>> pScriptObjectHashTable;
+        public MemoryObjectPointer<HashTable<ScriptingTaskObject>> pScriptObjectHashTable;
 
         public MemoryObjectPointer<MemoryByte> pInstructionArray;
 
@@ -22,7 +22,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
 
         public MemoryObjectPointer<HashTable<ScriptingObject>> pEventObjectHashTable;
 
-        public MemoryObjectPointer<TaskObject> pCurrentScriptObject = new MemoryObjectPointer<TaskObject>();
+        public MemoryObjectPointer<ScriptingTaskObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptingTaskObject>();
 
 
         public MemoryObjectPointer<HashTable<ScriptingTextObject>> pScriptingTextObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingTextObject>>();
@@ -40,7 +40,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
                 FunctionArray[i] = new EventFunctionStruct();
             }
 
-            pScriptObjectHashTable = new MemoryObjectPointer<HashTable<TaskObject>>();
+            pScriptObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingTaskObject>>();
             pInstructionArray = new MemoryObjectPointer<MemoryByte>();
             pEventObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingObject>>();
         }
@@ -144,16 +144,16 @@ namespace X3TCTools.Bases.StoryBase_Objects
             return obj;
         }
 
-        public TaskObject[] GetScriptObjectsWithReferenceTo(int EventObjectID)
+        public ScriptingTaskObject[] GetScriptObjectsWithReferenceTo(int EventObjectID)
         {
             int negativeID = EventObjectID < 0 ? EventObjectID : -1 - EventObjectID;
-            List<TaskObject> results = new List<TaskObject>();
+            List<ScriptingTaskObject> results = new List<ScriptingTaskObject>();
 
             foreach (int id in pScriptObjectHashTable.obj.ScanContents())
             {
                 try
                 {
-                    TaskObject ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
+                    ScriptingTaskObject ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
                     ScriptingObject EventObject = ScriptObject.pEventObject.obj;
                     if (EventObject.NegativeID == negativeID)
                     {
@@ -180,7 +180,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
         public override void SetData(byte[] Memory)
         {
             ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
-            pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<TaskObject>>>();
+            pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTaskObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
 
             FunctionArrayCount = collection.PopInt(0x2c);
@@ -189,7 +189,7 @@ namespace X3TCTools.Bases.StoryBase_Objects
             TextHashTableArray = collection.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
 
             pEventObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingObject>>>(0x12d0);
-            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<TaskObject>>(0x1434);
+            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptingTaskObject>>(0x1434);
 
             pScriptingTextObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTextObject>>>(0x15f8);
             pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>();

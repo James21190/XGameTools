@@ -285,7 +285,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
                 return;
             }
 
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject((ScriptingObject)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
             display.Show();
         }
@@ -297,7 +297,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
                 return;
             }
 
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject((ScriptingObject)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
             display.Show();
         }

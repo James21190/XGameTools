@@ -101,11 +101,11 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\UI\DynamicValueDisplay.Designer.cs">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bases\StoryBase Objects\Scripting\UI\EventObjectPanel.cs">
+    <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Bases\StoryBase Objects\Scripting\UI\EventObjectPanel.Designer.cs">
-      <DependentUpon>EventObjectPanel.cs</DependentUpon>
+    <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.Designer.cs">
+      <DependentUpon>ScriptingObjectPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Exceptions.cs" />
     <Compile Include="GameCodeRunner.cs" />
@@ -191,8 +191,8 @@
     <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\EventObjectPanel.resx">
-      <DependentUpon>EventObjectPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.resx">
+      <DependentUpon>ScriptingObjectPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -9,21 +9,21 @@ using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode;
 
 namespace X3TC_Tool.UI.Displays
 {
-    public partial class ScriptObjectDisplay : Form
+    public partial class ScriptingTaskObjectDisplay : Form
     {
-        private TaskObject m_ScriptObject;
-        public ScriptObjectDisplay()
+        private ScriptingTaskObject m_ScriptObject;
+        public ScriptingTaskObjectDisplay()
         {
             InitializeComponent();
         }
 
         public void LoadObject(IntPtr pObject)
         {
-            TaskObject newobj = new TaskObject();
+            ScriptingTaskObject newobj = new ScriptingTaskObject();
             newobj.SetLocation(GameHook.hProcess, pObject);
             LoadObject(newobj);
         }
-        public void LoadObject(TaskObject scriptObject)
+        public void LoadObject(ScriptingTaskObject scriptObject)
         {
             m_ScriptObject = scriptObject;
             Reload();
@@ -101,8 +101,8 @@ namespace X3TC_Tool.UI.Displays
             StoryBase storybase = GameHook.storyBase;
             try
             {
-                HashTable<TaskObject> table = storybase.pScriptObjectHashTable.obj;
-                TaskObject obj = table.GetObject((int)IDNumericUpDown.Value);
+                HashTable<ScriptingTaskObject> table = storybase.pScriptObjectHashTable.obj;
+                ScriptingTaskObject obj = table.GetObject((int)IDNumericUpDown.Value);
                 LoadObject(obj);
             }
             catch (Exception)

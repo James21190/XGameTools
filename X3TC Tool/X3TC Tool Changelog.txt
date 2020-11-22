@@ -4,6 +4,8 @@
 	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
 	- Added KCode dissassembler.
 	- Added maintype check to SectorObject.IsValid.
+	- Added partial methods to getting the price of types in TypeData (This method is incomplete).
+	- Added methods for getting HQ production resources to TypeData-Ship.
 	- Renamed EventObject to ScriptingObject.
 	- Renamed ScriptObject to ScriptnigTaskObject.
 	- Rotation matricise now inherit from MemoryObject.

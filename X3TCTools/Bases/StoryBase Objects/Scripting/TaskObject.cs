@@ -3,10 +3,10 @@ using System;
 
 namespace X3TCTools.Bases.StoryBase_Objects.Scripting
 {
-    public class TaskObject : MemoryObject
+    public class ScriptingTaskObject : MemoryObject
     {
-        public MemoryObjectPointer<TaskObject> pNext = new MemoryObjectPointer<TaskObject>();
-        public MemoryObjectPointer<TaskObject> pPrevious = new MemoryObjectPointer<TaskObject>();
+        public MemoryObjectPointer<ScriptingTaskObject> pNext = new MemoryObjectPointer<ScriptingTaskObject>();
+        public MemoryObjectPointer<ScriptingTaskObject> pPrevious = new MemoryObjectPointer<ScriptingTaskObject>();
         public int ID;
 
         public int StackSize;

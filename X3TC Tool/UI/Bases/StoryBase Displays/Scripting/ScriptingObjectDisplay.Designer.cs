@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
-    partial class EventObjectDisplay
+    partial class ScriptingObjectDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -73,7 +73,7 @@
             this.scriptMemoryObject_Raw_Panel1.TabIndex = 11;
             this.scriptMemoryObject_Raw_Panel1.Load += new System.EventHandler(this.scriptMemoryObject_Raw_Panel1_Load);
             // 
-            // EventObjectDisplay
+            // ScriptingObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -81,8 +81,8 @@
             this.Controls.Add(this.scriptMemoryObject_Raw_Panel1);
             this.Controls.Add(this.typeBackPanel);
             this.Controls.Add(this.eventObjectPannel1);
-            this.Name = "EventObjectDisplay";
-            this.Text = "EventObjectDisplay";
+            this.Name = "ScriptingObjectDisplay";
+            this.Text = "ScriptingObjectDisplay";
             this.Load += new System.EventHandler(this.EventObjectDisplay_Load);
             this.ResumeLayout(false);
 

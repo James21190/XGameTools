@@ -45,21 +45,21 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
 
         private void button2_Click(object sender, System.EventArgs e)
         {
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(m_Data.CurrentSectorEventObject);
             display.Show();
         }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(m_Data.PreviousSectorEventObject);
             display.Show();
         }
 
         private void button3_Click(object sender, System.EventArgs e)
         {
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(m_Data.OwnerDataEventObjectID);
             display.Show();
         }

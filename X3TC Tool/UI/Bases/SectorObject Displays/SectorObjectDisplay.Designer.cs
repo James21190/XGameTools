@@ -316,7 +316,7 @@
             this.groupBox4.Size = new System.Drawing.Size(481, 281);
             this.groupBox4.TabIndex = 27;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "EventObject";
+            this.groupBox4.Text = "ScriptingObject";
             // 
             // eventObjectPannel1
             // 

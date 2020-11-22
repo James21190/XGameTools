@@ -1,4 +1,4 @@
-﻿Last updated: 1st Jan 2020
+﻿Last updated: 22nd NOV 2020
 
 X3TC Tool, and its components:
  Copyright (©) 2019-2020 James Burdett, No Rights Reserved
@@ -24,9 +24,16 @@ X3 Terran Conflict:
  
  Portions utilize Microsoft Windows Media Technologies.
  Copyright 1999-2002 Microsoft Corporation. All Rights Reserved.
+
+X3 Albion Prelude:
+ Copyright EGOSOFT 2017 all rights reserved
  
- EGOSOFT support modding and tools and allows distribution.
+ Portions utilize Microsoft Windows Media Technologies.
+ Copyright 1999-2002 Microsoft Corporation. All Rights Reserved.
  
+
+EGOSOFT support modding and tools and allows distribution.
+
 Contact:
     Discord: TheHamez#0845
     Egosoft Discord: https://discord.gg/SCjyaJc

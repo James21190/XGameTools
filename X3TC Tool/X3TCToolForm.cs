@@ -182,7 +182,7 @@ namespace X3TC_Tool
 
         private void button5_Click(object sender, EventArgs e)
         {
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().EventObjectID);
             display.Show();
         }
@@ -204,12 +204,12 @@ namespace X3TC_Tool
 
         private void eventObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new EventObjectDisplay().Show();
+            new ScriptingObjectDisplay().Show();
         }
 
         private void scriptObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ScriptObjectDisplay().Show();
+            new ScriptingTaskObjectDisplay().Show();
         }
 
         private void sectorObjectToolStripMenuItem1_Click(object sender, EventArgs e)

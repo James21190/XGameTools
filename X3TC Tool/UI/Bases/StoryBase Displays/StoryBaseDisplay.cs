@@ -37,7 +37,7 @@ namespace X3TC_Tool.UI.Displays
         private void button2_Click(object sender, EventArgs e)
         {
             Reload();
-            ScriptObjectDisplay display = new ScriptObjectDisplay();
+            ScriptingTaskObjectDisplay display = new ScriptingTaskObjectDisplay();
             display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
             display.Show();
         }
@@ -86,7 +86,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void button8_Click(object sender, EventArgs e)
         {
-            TaskObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
+            ScriptingTaskObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
 
             listBox1.Items.Clear();
             listBox1.Items.AddRange(ScriptObjects);
@@ -99,8 +99,8 @@ namespace X3TC_Tool.UI.Displays
                 return;
             }
 
-            ScriptObjectDisplay display = new ScriptObjectDisplay();
-            display.LoadObject((TaskObject)listBox1.Items[listBox1.SelectedIndex]);
+            ScriptingTaskObjectDisplay display = new ScriptingTaskObjectDisplay();
+            display.LoadObject((ScriptingTaskObject)listBox1.Items[listBox1.SelectedIndex]);
             display.Show();
         }
 

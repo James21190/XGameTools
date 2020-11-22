@@ -24,7 +24,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
         {
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(GameHook.inputBase.EventObjectID);
             display.Show();
         }

@@ -1,6 +1,6 @@
 ﻿namespace X3TC_Tool.UI.Displays
 {
-    partial class ScriptObjectDisplay
+    partial class ScriptingTaskObjectDisplay
     {
         /// <summary>
         /// Required designer variable.

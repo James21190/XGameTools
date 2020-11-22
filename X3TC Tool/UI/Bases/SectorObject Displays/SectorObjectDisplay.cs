@@ -343,7 +343,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void btnLoadEventObject_Click(object sender, EventArgs e)
         {
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(m_SectorObject.EventObjectID);
             display.Show();
         }

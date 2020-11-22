@@ -116,7 +116,7 @@ namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Pan
                 return;
             }
 
-            EventObjectDisplay display = new EventObjectDisplay();
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(((RaceData)lstRaces.Items[lstRaces.SelectedIndex]).eventObject);
             display.Show();
         }
