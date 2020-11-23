@@ -1,9 +1,9 @@
 ﻿using Common.Memory;
 using Common.Vector;
 using System;
-using X3TCTools.Generics;
+using X3Tools.Generics;
 
-namespace X3TCTools.Bases
+namespace X3Tools.Bases
 {
     public class InputBase : MemoryObject
     {

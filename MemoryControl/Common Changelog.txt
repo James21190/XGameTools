@@ -1,4 +1,7 @@
-﻿1.5.0.0 (22/11/2020)
+﻿1.6.0.0
+	- Reordered message serverity in Logger class.
+
+1.5.0.0 (22/11/2020)
 	- Added comments to more methods and objects.
 	- Added MemoryByte, MemoryInt16, MemoryInt32, and MemoryInt64, which are basic types that derive from MemoryObject.
 	- Added Vector UI.

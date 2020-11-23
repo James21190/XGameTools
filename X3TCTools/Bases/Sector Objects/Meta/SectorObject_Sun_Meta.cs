@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X3TCTools.Sector_Objects.Meta
+namespace X3Tools.Sector_Objects.Meta
 {
     public class SectorObject_Sun_Meta : ISectorObjectMeta
     {

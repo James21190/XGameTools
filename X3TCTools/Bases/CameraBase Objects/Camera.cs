@@ -2,7 +2,7 @@
 using Common.Vector;
 using System;
 
-namespace X3TCTools.Bases
+namespace X3Tools.Bases
 {
     public class Camera : MemoryObject
     {

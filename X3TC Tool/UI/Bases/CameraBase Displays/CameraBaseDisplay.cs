@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TC_Tool.UI.Bases.CameraBase_Displays;
-using X3TCTools;
-using X3TCTools.Generics;
+using X3_Tool.UI.Bases.CameraBase_Displays;
+using X3Tools;
+using X3Tools.Generics;
 
-namespace X3TC_Tool.UI.Displays
+namespace X3_Tool.UI.Displays
 {
     public partial class CameraBaseDisplay : Form
     {
@@ -16,7 +16,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            X3TCTools.Bases.CameraBase cameraBase = GameHook.cameraBase;
+            X3Tools.Bases.CameraBase cameraBase = GameHook.cameraBase;
 
             AddressBox.Text = cameraBase.pThis.ToString("X");
         }

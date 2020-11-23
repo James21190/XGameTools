@@ -1,6 +1,6 @@
-﻿using X3TCTools.Sector_Objects;
+﻿using X3Tools.Sector_Objects;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
+namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
 {
     public class ScriptMemoryObject_AP_Station : ScriptMemoryObject, IScriptMemoryObject_Station
     {

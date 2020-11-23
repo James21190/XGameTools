@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI
+﻿namespace X3_Tool.UI
 {
     partial class x86Disassembler
     {

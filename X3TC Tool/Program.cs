@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace X3TC_Tool
+namespace X3_Tool
 {
     internal static class Program
     {
@@ -13,7 +13,7 @@ namespace X3TC_Tool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new X3TCToolForm());
+            Application.Run(new X3ToolForm());
         }
     }
 }

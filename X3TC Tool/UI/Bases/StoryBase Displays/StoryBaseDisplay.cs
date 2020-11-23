@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using X3TCTools;
-using X3TCTools.Bases;
-using X3TCTools.Bases.StoryBase_Objects;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
+using X3Tools;
+using X3Tools.Bases;
+using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
 
-namespace X3TC_Tool.UI.Displays
+namespace X3_Tool.UI.Displays
 {
     public partial class StoryBaseDisplay : Form
     {

@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3TCTools;
-using X3TCTools.Bases.CameraBase_Objects;
-using X3TCTools.Generics;
+using X3Tools;
+using X3Tools.Bases.CameraBase_Objects;
+using X3Tools.Generics;
 
-namespace X3TC_Tool.UI.Bases.CameraBase_Displays
+namespace X3_Tool.UI.Bases.CameraBase_Displays
 {
     public partial class BodyDataDisplay : Form
     {

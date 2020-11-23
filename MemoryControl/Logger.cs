@@ -6,11 +6,11 @@ namespace Common
     {
         public enum MessageSeverity
         {
-            Exception,
-            Error,
+            Debug,
             Warning,
+            Error,
+            Exception,
             Message,
-            Debug
         }
         public struct LogMessage
         {

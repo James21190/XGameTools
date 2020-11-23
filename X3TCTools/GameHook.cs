@@ -3,12 +3,12 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using X3TCTools.Bases;
-using X3TCTools.Bases.StoryBase_Objects;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
-using X3TCTools.Sector_Objects;
+using X3Tools.Bases;
+using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Sector_Objects;
 
-namespace X3TCTools
+namespace X3Tools
 {
     public class GameHook : ApplicationHook
     {

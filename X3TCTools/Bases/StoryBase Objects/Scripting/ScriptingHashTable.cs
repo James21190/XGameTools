@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting
+namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     /// <summary>
     /// The object used for traversing and fetching objects from a hash table

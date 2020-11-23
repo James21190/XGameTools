@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using X3TCTools;
-using X3TCTools.Sector_Objects;
+using X3Tools;
+using X3Tools.Sector_Objects;
 
 namespace TypeNameDumper
 {

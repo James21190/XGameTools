@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3TCTools;
+using X3Tools;
 using Common.Memory;
 
-namespace X3TC_Tool.UI
+namespace X3_Tool.UI
 {
     public partial class MemoryObjectDisplay : Form
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TC_Tool.UI.Displays;
-using X3TCTools;
+using X3_Tool.UI.Displays;
+using X3Tools;
 
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
 
-namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
+namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     public partial class ScriptMemoryObject_Raw_Panel : UserControl
     {

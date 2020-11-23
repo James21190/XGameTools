@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
+﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     partial class IScriptMemoryObject_RaceData_Player_Panel
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.RaceDataPanel = new X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.IScriptMemoryObject_RaceData_Panel();
+            this.RaceDataPanel = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.IScriptMemoryObject_RaceData_Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lstRaces = new System.Windows.Forms.ListBox();
             this.groupBox3.SuspendLayout();

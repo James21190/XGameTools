@@ -1,7 +1,7 @@
 ﻿using Common.Memory;
 using System;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting
+namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     public class ScriptingObjectSub : MemoryObject
     {

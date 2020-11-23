@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace X3TC_Tool.Properties
+namespace X3_Tool.Properties
 {
 
 

@@ -1,8 +1,8 @@
 ﻿using Common.Memory;
 using System;
-using X3TCTools.Generics;
+using X3Tools.Generics;
 
-namespace X3TCTools.Sector_Objects.Meta
+namespace X3Tools.Sector_Objects.Meta
 {
     public abstract class SectorObjectMetaWithChildren : MemoryObject, ISectorObjectMeta
     {

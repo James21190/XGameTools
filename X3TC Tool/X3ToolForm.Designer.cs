@@ -1,6 +1,6 @@
-﻿namespace X3TC_Tool
+﻿namespace X3_Tool
 {
-    partial class X3TCToolForm
+    partial class X3ToolForm
     {
         /// <summary>
         /// Required designer variable.
@@ -49,6 +49,7 @@
             this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingTextObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingDisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -220,7 +221,8 @@
             this.scriptObjectToolStripMenuItem,
             this.scriptingHashTableToolStripMenuItem,
             this.scriptingTextObjectToolStripMenuItem,
-            this.scriptingArrayToolStripMenuItem});
+            this.scriptingArrayToolStripMenuItem,
+            this.scriptingDisassemblerToolStripMenuItem});
             this.scriptingObjectsToolStripMenuItem1.Name = "scriptingObjectsToolStripMenuItem1";
             this.scriptingObjectsToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
             this.scriptingObjectsToolStripMenuItem1.Text = "Scripting Objects";
@@ -228,37 +230,44 @@
             // eventObjectToolStripMenuItem
             // 
             this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.eventObjectToolStripMenuItem.Text = "EventObject";
+            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.eventObjectToolStripMenuItem.Text = "ScriptingObject";
             this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.eventObjectToolStripMenuItem_Click);
             // 
             // scriptObjectToolStripMenuItem
             // 
             this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
-            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.scriptObjectToolStripMenuItem.Text = "ScriptObject";
+            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.scriptObjectToolStripMenuItem.Text = "ScriptingTaskObject";
             this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
             // 
             // scriptingHashTableToolStripMenuItem
             // 
             this.scriptingHashTableToolStripMenuItem.Name = "scriptingHashTableToolStripMenuItem";
-            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.scriptingHashTableToolStripMenuItem.Text = "ScriptingHashTable";
             this.scriptingHashTableToolStripMenuItem.Click += new System.EventHandler(this.scriptingHashTableToolStripMenuItem_Click);
             // 
             // scriptingTextObjectToolStripMenuItem
             // 
             this.scriptingTextObjectToolStripMenuItem.Name = "scriptingTextObjectToolStripMenuItem";
-            this.scriptingTextObjectToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.scriptingTextObjectToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.scriptingTextObjectToolStripMenuItem.Text = "ScriptingTextObject";
             this.scriptingTextObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptingTextObjectToolStripMenuItem_Click);
             // 
             // scriptingArrayToolStripMenuItem
             // 
             this.scriptingArrayToolStripMenuItem.Name = "scriptingArrayToolStripMenuItem";
-            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.scriptingArrayToolStripMenuItem.Text = "ScriptingArray";
             this.scriptingArrayToolStripMenuItem.Click += new System.EventHandler(this.scriptingArrayToolStripMenuItem_Click);
+            // 
+            // scriptingDisassemblerToolStripMenuItem
+            // 
+            this.scriptingDisassemblerToolStripMenuItem.Name = "scriptingDisassemblerToolStripMenuItem";
+            this.scriptingDisassemblerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.scriptingDisassemblerToolStripMenuItem.Text = "ScriptingDisassembler";
+            this.scriptingDisassemblerToolStripMenuItem.Click += new System.EventHandler(this.scriptingDisassemblerToolStripMenuItem_Click);
             // 
             // textPageToolStripMenuItem
             // 
@@ -399,7 +408,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "X3TCToolForm";
-            this.Text = "X3 Terran Confict Tool - Alpha 5";
+            this.Text = "X3 Tool - Alpha 6";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.X3TCToolForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -450,6 +459,7 @@
         private System.Windows.Forms.ToolStripMenuItem cameraBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem bodyDataToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem scriptingDisassemblerToolStripMenuItem;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
+namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 {
     public class ScriptMemoryObject_TC_RaceData : ScriptMemoryObject, IScriptMemoryObject_RaceData
     {

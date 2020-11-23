@@ -1,9 +1,9 @@
 ﻿using Common.Memory;
 using System;
 using System.Threading;
-using X3TCTools.Sector_Objects;
+using X3Tools.Sector_Objects;
 
-namespace X3TCTools
+namespace X3Tools
 {
     public class GameCodeRunner
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace X3TCTools.Generics
+namespace X3Tools.Generics
 {
     public class HashTableElementNotFoundException : Exception
     {

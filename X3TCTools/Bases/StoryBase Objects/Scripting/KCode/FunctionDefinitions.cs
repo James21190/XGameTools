@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting.KCode
+namespace X3Tools.Bases.StoryBase_Objects.Scripting.KCode
 {
     public static class FunctionDefinitionLibrary
     {

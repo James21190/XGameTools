@@ -1,15 +1,15 @@
 ﻿using Common.Memory;
 using System;
 using System.Windows.Forms;
-using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
-using X3TCTools;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
-using X3TCTools.Generics;
-using X3TCTools.Sector_Objects;
+using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
+using X3Tools;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
+using X3Tools.Generics;
+using X3Tools.Sector_Objects;
 
-namespace X3TC_Tool.UI.Displays
+namespace X3_Tool.UI.Displays
 {
     public partial class SectorObjectDisplay : Form
     {
@@ -202,7 +202,7 @@ namespace X3TC_Tool.UI.Displays
                 goto failed;
             }
 
-            X3TCTools.Sector_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
+            X3Tools.Sector_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
             if (meta == null || meta.GetFirstChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex) == null || meta.GetLastChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex) == null)
             {
                 goto failed;
@@ -267,7 +267,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void FirstChildButton_Click(object sender, EventArgs e)
         {
-            X3TCTools.Sector_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
+            X3Tools.Sector_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
             SectorObject child = meta.GetFirstChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex);
             if (child != null)
             {
@@ -277,7 +277,7 @@ namespace X3TC_Tool.UI.Displays
 
         private void LastChildButton_Click(object sender, EventArgs e)
         {
-            X3TCTools.Sector_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
+            X3Tools.Sector_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
             SectorObject child = meta.GetLastChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex);
             if (child != null)
             {

@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI.Bases.CameraBase_Displays
+﻿namespace X3_Tool.UI.Bases.CameraBase_Displays
 {
     partial class BodyDataDisplay
     {

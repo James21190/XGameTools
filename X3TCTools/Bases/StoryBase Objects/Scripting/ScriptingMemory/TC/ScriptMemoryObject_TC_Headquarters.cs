@@ -1,7 +1,7 @@
 ﻿using System;
-using X3TCTools.Sector_Objects;
+using X3Tools.Sector_Objects;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
+namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 {
     public class ScriptMemoryObject_TC_Headquarters : ScriptMemoryObject, IScriptMemoryObject_Headquarters
     {

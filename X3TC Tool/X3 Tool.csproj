@@ -56,6 +56,12 @@
     <Compile Include="UI\Bases\CameraBase Displays\BodyDataDisplay.Designer.cs">
       <DependentUpon>BodyDataDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.Designer.cs">
+      <DependentUpon>ScriptingDisassemblerDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\Cargo_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,11 +178,11 @@
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.Designer.cs">
       <DependentUpon>IScriptMemoryObject_RaceData_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptObjectDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTaskObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptObjectDisplay.Designer.cs">
-      <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTaskObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptingTaskObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\SectorObject Displays\RenderObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -233,16 +239,19 @@
     <Compile Include="UI\x86Disassembler.Designer.cs">
       <DependentUpon>x86Disassembler.cs</DependentUpon>
     </Compile>
-    <Compile Include="X3TCToolForm.cs">
+    <Compile Include="X3ToolForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="X3TCToolForm.Designer.cs">
-      <DependentUpon>X3TCToolForm.cs</DependentUpon>
+    <Compile Include="X3ToolForm.Designer.cs">
+      <DependentUpon>X3ToolForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="UI\Bases\CameraBase Displays\BodyDataDisplay.resx">
       <DependentUpon>BodyDataDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.resx">
+      <DependentUpon>ScriptingDisassemblerDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\Cargo_Panel.resx">
       <DependentUpon>Cargo_Panel.cs</DependentUpon>
@@ -301,8 +310,8 @@
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.resx">
       <DependentUpon>IScriptMemoryObject_RaceData_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptObjectDisplay.resx">
-      <DependentUpon>ScriptObjectDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTaskObjectDisplay.resx">
+      <DependentUpon>ScriptingTaskObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\SectorObject Displays\RenderObjectDisplay.resx">
       <DependentUpon>RenderObjectDisplay.cs</DependentUpon>
@@ -331,8 +340,8 @@
     <EmbeddedResource Include="UI\x86Disassembler.resx">
       <DependentUpon>x86Disassembler.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="X3TCToolForm.resx">
-      <DependentUpon>X3TCToolForm.cs</DependentUpon>
+    <EmbeddedResource Include="X3ToolForm.resx">
+      <DependentUpon>X3ToolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -362,9 +371,9 @@
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\X3TCTools\X3TCTools.csproj">
+    <ProjectReference Include="..\X3TCTools\X3Tools.csproj">
       <Project>{5d48fefb-8ffc-45b8-a09c-8ef0e109be51}</Project>
-      <Name>X3TCTools</Name>
+      <Name>X3Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

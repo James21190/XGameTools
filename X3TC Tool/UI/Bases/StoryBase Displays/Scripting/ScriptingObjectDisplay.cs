@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels;
-using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels;
-using X3TCTools;
-using X3TCTools.Bases;
+using X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels;
+using X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels;
+using X3Tools;
+using X3Tools.Bases;
 
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
-using X3TCTools.Bases.StoryBase_Objects;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
-using X3TCTools.Generics;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Generics;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
-namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
+namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
     public partial class ScriptingObjectDisplay : Form
     {

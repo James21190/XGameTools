@@ -1,9 +1,9 @@
 ﻿using Common.Memory;
 using System;
 using System.CodeDom.Compiler;
-using X3TCTools.Generics;
+using X3Tools.Generics;
 
-namespace X3TCTools.Bases
+namespace X3Tools.Bases
 {
     public class SystemBase : MemoryObject
     {

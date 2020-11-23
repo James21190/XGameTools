@@ -1,6 +1,6 @@
-﻿using X3TCTools.Bases.StoryBase_Objects.Scripting;
+﻿using X3Tools.Bases.StoryBase_Objects.Scripting;
 
-namespace X3TC_Tool.UI.Displays
+namespace X3_Tool.UI.Displays
 {
     partial class DynamicValueEditorDisplay
     {
@@ -30,10 +30,10 @@ namespace X3TC_Tool.UI.Displays
         /// </summary>
         private void InitializeComponent()
         {
-            X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue1 = new X3TCTools.Bases.StoryBase_Objects.Scripting.DynamicValue();
+            X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dynamicValueDisplay1 = new X3TCTools.DynamicValueDisplay();
+            this.dynamicValueDisplay1 = new X3Tools.DynamicValueDisplay();
             this.SuspendLayout();
             // 
             // button1
@@ -85,6 +85,6 @@ namespace X3TC_Tool.UI.Displays
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private X3TCTools.DynamicValueDisplay dynamicValueDisplay1;
+        private X3Tools.DynamicValueDisplay dynamicValueDisplay1;
     }
 }

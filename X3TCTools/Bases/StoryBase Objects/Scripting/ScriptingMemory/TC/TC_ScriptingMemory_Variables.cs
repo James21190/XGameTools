@@ -1,4 +1,4 @@
-﻿namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
+﻿namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 {
     public enum TC_Sun_Variables
     {

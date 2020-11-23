@@ -1,6 +1,6 @@
 ﻿using Common.Memory;
 
-namespace X3TCTools.Sector_Objects
+namespace X3Tools.Sector_Objects
 {
     public class TypeData_20 : TypeData
     {

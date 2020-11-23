@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace X3TCTools.Generics
+namespace X3Tools.Generics
 {
     /// <summary>
     /// Represents a hash table.

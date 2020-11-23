@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
+﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
     partial class ScriptingObjectDisplay
     {
@@ -32,7 +32,7 @@
             this.eventObjectPannel1 = new X3TCTool.EventObjectPannel();
             this.typeBackPanel = new System.Windows.Forms.Panel();
             this.tmrAutoReload = new System.Windows.Forms.Timer(this.components);
-            this.scriptMemoryObject_Raw_Panel1 = new X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
+            this.scriptMemoryObject_Raw_Panel1 = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
             this.SuspendLayout();
             // 
             // eventObjectPannel1

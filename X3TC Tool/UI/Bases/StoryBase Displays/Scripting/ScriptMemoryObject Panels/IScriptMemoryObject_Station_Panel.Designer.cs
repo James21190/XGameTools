@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels
+﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels
 {
     partial class IScriptMemoryObject_Station_Panel
     {
@@ -34,7 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbSubType = new System.Windows.Forms.ComboBox();
-            this.cargo_Panel1 = new X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.Cargo_Panel();
+            this.cargo_Panel1 = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.Cargo_Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbMainType = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();

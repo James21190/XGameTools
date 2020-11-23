@@ -3,7 +3,7 @@ using Common.Vector;
 using System;
 using System.ComponentModel;
 
-namespace X3TCTools.Sector_Objects
+namespace X3Tools.Sector_Objects
 {
     public class TypeData : MemoryObject
     {

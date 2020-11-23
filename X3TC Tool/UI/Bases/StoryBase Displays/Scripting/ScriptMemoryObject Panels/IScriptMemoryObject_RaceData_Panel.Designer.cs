@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
+﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     partial class IScriptMemoryObject_RaceData_Panel
     {

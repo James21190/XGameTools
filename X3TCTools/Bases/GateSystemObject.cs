@@ -3,7 +3,7 @@ using Common.Vector;
 using System;
 using System.IO;
 
-namespace X3TCTools.Bases
+namespace X3Tools.Bases
 {
     /// <summary>
     /// Main object that represents the GateSystemObject.

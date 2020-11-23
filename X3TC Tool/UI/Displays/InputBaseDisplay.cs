@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
-using X3TCTools;
+using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
+using X3Tools;
 
-namespace X3TC_Tool.UI.Displays
+namespace X3_Tool.UI.Displays
 {
     public partial class InputBaseDisplay : Form
     {
@@ -17,7 +17,7 @@ namespace X3TC_Tool.UI.Displays
 
         public void Reload()
         {
-            X3TCTools.Bases.InputBase InputBase = GameHook.inputBase;
+            X3Tools.Bases.InputBase InputBase = GameHook.inputBase;
 
             EventObjectIDBox.Text = InputBase.EventObjectID.ToString();
         }

@@ -1,4 +1,4 @@
-﻿namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
+﻿namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
 {
     public class ScriptMemoryObject_AP_Ware : ScriptMemoryObject//, IScriptMemoryObject_Ware
     {

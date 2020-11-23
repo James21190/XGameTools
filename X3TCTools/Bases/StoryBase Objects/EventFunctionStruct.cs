@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace X3TCTools.Bases.StoryBase_Objects
+namespace X3Tools.Bases.StoryBase_Objects
 {
     public class EventFunctionStruct : MemoryObject
     {

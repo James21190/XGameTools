@@ -1,8 +1,8 @@
 ﻿using System;
 
-using X3TCTools.Sector_Objects;
+using X3Tools.Sector_Objects;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
+namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 {
     public struct CargoEntry : IComparable
     {

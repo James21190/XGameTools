@@ -1,8 +1,8 @@
 ﻿using Common.Memory;
 using System;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting
+namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     /// <summary>
     /// The EventObject is an object within the game that keeps track of variables used by the scripting engine.

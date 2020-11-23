@@ -2,20 +2,21 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using X3TC_Tool.UI;
-using X3TC_Tool.UI.Bases.CameraBase_Displays;
-using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
-using X3TC_Tool.UI.Displays;
-using X3TCTools;
-using X3TCTools.Bases.CameraBase_Objects;
+using X3_Tool.UI;
+using X3_Tool.UI.Bases.CameraBase_Displays;
+using X3_Tool.UI.Bases.StoryBase_Displays;
+using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
+using X3_Tool.UI.Displays;
+using X3Tools;
+using X3Tools.Bases.CameraBase_Objects;
 
-namespace X3TC_Tool
+namespace X3_Tool
 {
-    public partial class X3TCToolForm : Form
+    public partial class X3ToolForm : Form
     {
         private GameHook GameHook;
 
-        public X3TCToolForm()
+        public X3ToolForm()
         {
             InitializeComponent();
         }
@@ -91,7 +92,7 @@ namespace X3TC_Tool
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
-            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
@@ -146,7 +147,7 @@ namespace X3TC_Tool
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label1.Text = "SETA: x" + trackBar1.Value;
-            X3TCTools.Bases.SystemBase systembase = GameHook.systemBase;
+            X3Tools.Bases.SystemBase systembase = GameHook.systemBase;
             systembase.SETAValue.Value = trackBar1.Value;
             systembase.SaveSETA();
         }
@@ -174,7 +175,7 @@ namespace X3TC_Tool
 
         private void button4_Click(object sender, EventArgs e)
         {
-            X3TCTools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.GetSpace());
             display.Show();
@@ -255,6 +256,11 @@ namespace X3TC_Tool
         private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new TextPageDisplay().Show();
+        }
+
+        private void scriptingDisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptingDisassemblerDisplay().Show();
         }
     }
 }

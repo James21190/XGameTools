@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TCTools;
-using X3TCTools.Bases;
-using X3TCTools.Bases.StoryBase_Objects;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
-using X3TCTools.Generics;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.KCode;
+using X3Tools;
+using X3Tools.Bases;
+using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Generics;
+using X3Tools.Bases.StoryBase_Objects.Scripting.KCode;
+using X3_Tool.UI.Bases.StoryBase_Displays;
 
-namespace X3TC_Tool.UI.Displays
+namespace X3_Tool.UI.Displays
 {
     public partial class ScriptingTaskObjectDisplay : Form
     {
@@ -65,20 +66,6 @@ namespace X3TC_Tool.UI.Displays
             InstructionOffsetBox.Text = m_ScriptObject.InstructionOffset.ToString();
             numericUpDown1.Value = m_ScriptObject.InstructionOffset;
             // Function Name
-
-            // Load dissassembly
-            ReloadDissassembly();
-        }
-
-        public void ReloadDissassembly()
-        {
-            richTextBox1.Text = "";
-            var disassembler = new KDisassembler(FunctionDefinitionLibrary.GetKFunctionDefinitions(GameHook.GameVersion));
-            var instructions = disassembler.Disassemble(m_ScriptObject.InstructionOffset);
-            foreach(var item in instructions)
-            {
-                richTextBox1.Text += item.ToString(checkBox1.Checked) + "\n";
-            }
         }
 
         private void LoadButton_Click(object sender, EventArgs e)
@@ -125,14 +112,16 @@ namespace X3TC_Tool.UI.Displays
             textBox1.Text = (((int)GameHook.storyBase.pInstructionArray.address) + offset).ToString("X");
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            ReloadDissassembly();
-        }
-
         private void ScriptObjectDisplay_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var display = new ScriptingDisassemblerDisplay();
+            display.LoadAddress(m_ScriptObject.InstructionOffset);
+            display.Show();
         }
     }
 }

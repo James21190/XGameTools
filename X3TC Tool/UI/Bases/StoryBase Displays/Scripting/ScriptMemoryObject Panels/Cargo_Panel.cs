@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
 
-namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
+namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     public partial class Cargo_Panel : UserControl, IReloadableDisplay
     {

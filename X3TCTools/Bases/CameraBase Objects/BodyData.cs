@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Common.Memory;
 
 
-namespace X3TCTools.Bases.CameraBase_Objects
+namespace X3Tools.Bases.CameraBase_Objects
 {
     public class BodyData : MemoryObject
     {

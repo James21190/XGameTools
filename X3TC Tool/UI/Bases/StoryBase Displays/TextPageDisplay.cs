@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using X3TCTools;
-using X3TCTools.Bases.StoryBase_Objects;
-using X3TCTools.Generics;
+using X3Tools;
+using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Generics;
 
-namespace X3TC_Tool.UI
+namespace X3_Tool.UI
 {
     public partial class TextPageDisplay : Form
     {

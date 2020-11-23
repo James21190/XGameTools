@@ -1,4 +1,4 @@
-﻿namespace X3TCTools
+﻿namespace X3Tools
 {
     partial class DynamicValueDisplay
     {

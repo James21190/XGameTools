@@ -2,10 +2,10 @@
 using Common.Vector;
 using System;
 using System.Collections.Generic;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
-using X3TCTools.Sector_Objects.Meta;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Sector_Objects.Meta;
 
-namespace X3TCTools.Sector_Objects
+namespace X3Tools.Sector_Objects
 {
     public partial class SectorObject : MemoryObject, IComparable
     {

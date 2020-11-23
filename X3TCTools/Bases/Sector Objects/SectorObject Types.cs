@@ -2,7 +2,7 @@
 using System.IO;
 using Common.Memory;
 
-namespace X3TCTools.Sector_Objects
+namespace X3Tools.Sector_Objects
 {
     public partial class SectorObject
     {

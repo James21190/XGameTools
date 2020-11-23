@@ -1,4 +1,8 @@
-﻿Alpha 5:
+﻿Alpha 6:
+	- Renamed namespaces to remove TC.
+	- Moved scripting disassembly to it's own form.
+
+Alpha 5 (22/11/2020):
 	- Added TypeData class.
 	- Added CameraBase and Camera classes.
 	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.

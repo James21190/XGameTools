@@ -1,7 +1,7 @@
 ﻿using Common.Memory;
 using System;
 
-namespace X3TCTools.Generics
+namespace X3Tools.Generics
 {
     public struct X3FixedPointValue : IMemoryObject
     {

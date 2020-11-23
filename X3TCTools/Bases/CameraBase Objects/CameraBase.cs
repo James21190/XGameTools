@@ -1,9 +1,9 @@
 ﻿using Common.Memory;
 using System;
-using X3TCTools.Bases.CameraBase_Objects;
-using X3TCTools.Generics;
+using X3Tools.Bases.CameraBase_Objects;
+using X3Tools.Generics;
 
-namespace X3TCTools.Bases
+namespace X3Tools.Bases
 {
     public class CameraBase : MemoryObject
     {

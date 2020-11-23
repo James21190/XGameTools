@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
-using X3TCTools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3TCTools.Generics;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Generics;
 
-namespace X3TCTools.Bases.StoryBase_Objects
+namespace X3Tools.Bases.StoryBase_Objects
 {
     public class StoryBase : MemoryObject
     {

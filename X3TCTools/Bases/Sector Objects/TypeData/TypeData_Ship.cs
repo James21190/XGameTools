@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace X3TCTools.Sector_Objects
+namespace X3Tools.Sector_Objects
 {
     public class TypeData_Ship : TypeData
     {

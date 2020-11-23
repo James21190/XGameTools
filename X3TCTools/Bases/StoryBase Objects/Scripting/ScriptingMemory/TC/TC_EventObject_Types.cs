@@ -1,4 +1,4 @@
-﻿namespace X3TCTools.Bases.StoryBase_Objects.Scripting
+﻿namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     public partial class ScriptingObject
     {

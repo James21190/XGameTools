@@ -2,7 +2,7 @@
 using Common.Vector;
 using System;
 
-namespace X3TCTools.Sector_Objects
+namespace X3Tools.Sector_Objects
 {
     public class RenderObject : MemoryObject
     {

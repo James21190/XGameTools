@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using X3TCTools;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
+using X3Tools;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3TCTool
 {

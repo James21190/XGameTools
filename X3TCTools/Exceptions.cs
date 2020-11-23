@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace X3TCTools
+namespace X3Tools
 {
     public class GameVersionInvalidException : Exception
     {

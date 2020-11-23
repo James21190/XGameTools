@@ -1,6 +1,6 @@
 ﻿using Common.Memory;
 
-namespace X3TCTools.Sector_Objects.Meta
+namespace X3Tools.Sector_Objects.Meta
 {
     internal class SectorObject_Station_Meta : SectorObjectMetaWithChildren
     {

@@ -1,7 +1,7 @@
 ﻿using Common.Memory;
 using System;
 
-namespace X3TCTools.Generics
+namespace X3Tools.Generics
 {
     /// <summary>
     /// Top of a linked list for objects. Holds pointers to both the first and last object in a list.
