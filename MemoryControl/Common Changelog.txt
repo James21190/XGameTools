@@ -1,4 +1,5 @@
 ﻿1.6.0.0
+	- Added dll injection method to ApplicationHook.
 	- Reordered message serverity in Logger class.
 
 1.5.0.0 (22/11/2020)

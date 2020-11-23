@@ -1,4 +1,5 @@
 ﻿Alpha 6:
+	- Added dll injector.
 	- Renamed namespaces to remove TC.
 	- Moved scripting disassembly to it's own form.
 

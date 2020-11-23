@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 
 namespace Common.Memory
 {
@@ -32,6 +33,15 @@ namespace Common.Memory
         {
             Process process = Process.GetProcessesByName(processName).FirstOrDefault();
             HookIntoProcess(process);
+        }
+
+        public IntPtr InjectDll(string absolutePath)
+        {
+            var pPath = MemoryControl.AllocateMemory(hProcess, absolutePath.Length + 1);
+            var plibaddr = MemoryControl.GetProcAddress(MemoryControl.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            MemoryControl.Write(hProcess, pPath, Encoding.Default.GetBytes(absolutePath));
+            var hInjection = MemoryControl.CreateRemoteThread(hProcess, IntPtr.Zero, IntPtr.Zero, plibaddr, pPath, 0, IntPtr.Zero);
+            return hInjection;
         }
 
         /// <summary>

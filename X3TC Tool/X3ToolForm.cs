@@ -262,5 +262,12 @@ namespace X3_Tool
         {
             new ScriptingDisassemblerDisplay().Show();
         }
+
+        private void dLLInjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialogue = new OpenFileDialog();
+            if (dialogue.ShowDialog() == DialogResult.OK)
+                GameHook.InjectDll(dialogue.FileName);
+        }
     }
 }

@@ -64,6 +64,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.GameHookPanel = new System.Windows.Forms.Panel();
+            this.dLLInjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -148,7 +149,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.GameHookMenuStrip});
+            this.GameHookMenuStrip,
+            this.dLLInjectToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(884, 24);
@@ -398,7 +400,14 @@
             this.GameHookPanel.Size = new System.Drawing.Size(860, 522);
             this.GameHookPanel.TabIndex = 9;
             // 
-            // X3TCToolForm
+            // dLLInjectToolStripMenuItem
+            // 
+            this.dLLInjectToolStripMenuItem.Name = "dLLInjectToolStripMenuItem";
+            this.dLLInjectToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.dLLInjectToolStripMenuItem.Text = "DLL Inject";
+            this.dLLInjectToolStripMenuItem.Click += new System.EventHandler(this.dLLInjectToolStripMenuItem_Click);
+            // 
+            // X3ToolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -407,7 +416,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(900, 600);
-            this.Name = "X3TCToolForm";
+            this.Name = "X3ToolForm";
             this.Text = "X3 Tool - Alpha 6";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.X3TCToolForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -460,6 +469,7 @@
         private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem bodyDataToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem scriptingDisassemblerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dLLInjectToolStripMenuItem;
     }
 }
 
