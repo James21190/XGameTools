@@ -24,17 +24,17 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
                 return entries;
             }
         }
-        public int PreviousSectorEventObjectID => GetVariableValue((int)TC_Ship_Variables.PreviousSectorEventObjectID);
-        public ScriptingObject PreviousSectorEventObject => GameHook.storyBase.GetEventObject(PreviousSectorEventObjectID);
+        public int PreviousSectorScriptingObjectID => GetVariableValue((int)TC_Ship_Variables.PreviousSectorScriptingObjectID);
+        public ScriptingObject PreviousSectorScriptingObject => GameHook.storyBase.GetScriptingObject(PreviousSectorScriptingObjectID);
 
-        public int CurrentSectorEventObjectID => GetVariableValue((int)TC_Ship_Variables.CurrentSectorEventObjectID);
-        public ScriptingObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
+        public int CurrentSectorScriptingObjectID => GetVariableValue((int)TC_Ship_Variables.CurrentSectorScriptingObjectID);
+        public ScriptingObject CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
 
         public bool IsValid => SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
 
-        public int OwnerDataEventObjectID => GetVariableValue((int)TC_Ship_Variables.OwningRaceDataEventObjectID);
+        public int OwnerDataScriptingObjectID => GetVariableValue((int)TC_Ship_Variables.OwningRaceDataScriptingObjectID);
 
-        public ScriptingObject OwnerDataEventObject => throw new NotImplementedException();
+        public ScriptingObject OwnerDataScriptingObject => throw new NotImplementedException();
 
         public override string GetVariableName(int index)
         {

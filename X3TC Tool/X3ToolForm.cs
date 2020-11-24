@@ -184,7 +184,7 @@ namespace X3_Tool
         private void button5_Click(object sender, EventArgs e)
         {
             ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().EventObjectID);
+            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptingObjectID);
             display.Show();
         }
 
@@ -203,7 +203,7 @@ namespace X3_Tool
             new x86Disassembler().Show();
         }
 
-        private void eventObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ScriptingObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ScriptingObjectDisplay().Show();
         }
@@ -266,6 +266,7 @@ namespace X3_Tool
         private void dLLInjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dialogue = new OpenFileDialog();
+            dialogue.Filter = "DLL|*.dll";
             if (dialogue.ShowDialog() == DialogResult.OK)
                 GameHook.InjectDll(dialogue.FileName);
         }

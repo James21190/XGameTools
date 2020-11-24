@@ -72,7 +72,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.cklTurretWeapons = new System.Windows.Forms.CheckedListBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.txtEventObjectID = new System.Windows.Forms.TextBox();
+            this.txtScriptingObjectID = new System.Windows.Forms.TextBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.txtMaximumCargoSpace = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
@@ -691,24 +691,24 @@
             // 
             // groupBox15
             // 
-            this.groupBox15.Controls.Add(this.txtEventObjectID);
+            this.groupBox15.Controls.Add(this.txtScriptingObjectID);
             this.groupBox15.Location = new System.Drawing.Point(130, 3);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(121, 52);
             this.groupBox15.TabIndex = 12;
             this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "EventObject ID";
+            this.groupBox15.Text = "ScriptingObject ID";
             // 
-            // txtEventObjectID
+            // txtScriptingObjectID
             // 
-            this.txtEventObjectID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtScriptingObjectID.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEventObjectID.Location = new System.Drawing.Point(6, 19);
-            this.txtEventObjectID.Name = "txtEventObjectID";
-            this.txtEventObjectID.ReadOnly = true;
-            this.txtEventObjectID.Size = new System.Drawing.Size(109, 20);
-            this.txtEventObjectID.TabIndex = 0;
+            this.txtScriptingObjectID.Location = new System.Drawing.Point(6, 19);
+            this.txtScriptingObjectID.Name = "txtScriptingObjectID";
+            this.txtScriptingObjectID.ReadOnly = true;
+            this.txtScriptingObjectID.Size = new System.Drawing.Size(109, 20);
+            this.txtScriptingObjectID.TabIndex = 0;
             // 
             // groupBox14
             // 
@@ -1415,7 +1415,7 @@
         private System.Windows.Forms.TextBox txtShipModeCollectionlID;
         private Common.UI.Vector3Display v3dRotationSpeed;
         private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.TextBox txtEventObjectID;
+        private System.Windows.Forms.TextBox txtScriptingObjectID;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.CheckedListBox cklTurretWeapons;
         private System.Windows.Forms.NumericUpDown numericUpDown1;

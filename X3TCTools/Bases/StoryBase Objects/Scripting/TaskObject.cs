@@ -18,7 +18,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
 
         public uint FunctionIndex;
 
-        public MemoryObjectPointer<ScriptingObject> pEventObject = new MemoryObjectPointer<ScriptingObject>();
+        public MemoryObjectPointer<ScriptingObject> pScriptingObject = new MemoryObjectPointer<ScriptingObject>();
 
         #region IMemoryObject
 
@@ -52,7 +52,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
 
             FunctionIndex = collection.PopUInt(0x30);
 
-            pEventObject.address = collection.PopIntPtr(0x3c);
+            pScriptingObject.address = collection.PopIntPtr(0x3c);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -63,7 +63,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
 
             pStack.SetLocation(hProcess, address + 0x14);
 
-            pEventObject.SetLocation(hProcess, address + 0x3c);
+            pScriptingObject.SetLocation(hProcess, address + 0x3c);
         }
         #endregion
 

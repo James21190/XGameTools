@@ -43,7 +43,7 @@ namespace X3Tools.Sector_Objects
         public byte Unknown_14_0;
         public byte Unknown_14_1;
         public byte Unknown_14_2;
-        public int EventObjectID;
+        public int ScriptingObjectID;
         public int ModelCollectionID;
         public int Unknown_16;
         public int Mass;
@@ -74,13 +74,13 @@ namespace X3Tools.Sector_Objects
 
         #endregion
 
-        public ScriptingObject EventObject
+        public ScriptingObject ScriptingObject
         {
             get
             {
                 try
                 {
-                    return GameHook.storyBase.GetEventObject(EventObjectID);
+                    return GameHook.storyBase.GetScriptingObject(ScriptingObjectID);
                 }
                 catch (Exception)
                 {
@@ -220,7 +220,7 @@ namespace X3Tools.Sector_Objects
             collection.Append(Unknown_14_0);
             collection.Append(Unknown_14_1);
             collection.Append(Unknown_14_2);
-            collection.Append(EventObjectID);
+            collection.Append(ScriptingObjectID);
             collection.Append(ModelCollectionID);
             collection.Append(Unknown_16);
             collection.Append(Mass);
@@ -292,7 +292,7 @@ namespace X3Tools.Sector_Objects
             collection.PopFirst(ref Unknown_14_0);
             collection.PopFirst(ref Unknown_14_1);
             collection.PopFirst(ref Unknown_14_2);
-            collection.PopFirst(ref EventObjectID);
+            collection.PopFirst(ref ScriptingObjectID);
             collection.PopFirst(ref ModelCollectionID);
             collection.PopFirst(ref Unknown_16);
             collection.PopFirst(ref Mass);

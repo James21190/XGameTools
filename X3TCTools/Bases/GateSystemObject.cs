@@ -12,11 +12,11 @@ namespace X3Tools.Bases
     {
         #region Classes
 
-        public class SectorData : IMemoryObject
+        public class SectorData : MemoryObject
         {
             public GateData[] gateData { get; } = new GateData[6];
             public short unknown_1;
-            public GameHook.RaceID owner;
+            public GameHook.RaceID owningRace;
             public int unknown_2;
             public int unknown_3;
             public int unknown_4;
@@ -24,7 +24,7 @@ namespace X3Tools.Bases
             public int unknown_6;
             public int unknown_7;
             public int unknown_8;
-            public class GateData : IMemoryObject
+            public class GateData : MemoryObject
             {
                 public byte DstSecX;
                 public byte DstSecY;
@@ -36,7 +36,7 @@ namespace X3Tools.Bases
                 public int Unknown_4;
 
                 #region IMemoryObject
-                public byte[] GetBytes()
+                public override byte[] GetBytes()
                 {
                     ObjectByteList Collection = new ObjectByteList();
                     Collection.Append(DstSecX);
@@ -51,9 +51,9 @@ namespace X3Tools.Bases
                     return Collection.GetBytes();
                 }
 
-                public int ByteSize => 32;
+                public override int ByteSize => 32;
 
-                public void SetData(byte[] Memory)
+                public override void SetData(byte[] Memory)
                 {
                     ObjectByteList collection = new ObjectByteList(Memory);
                     collection.PopFirst(ref DstSecX);
@@ -65,12 +65,7 @@ namespace X3Tools.Bases
                     collection.PopFirst(ref Position);
                     collection.PopFirst(ref Unknown_4);
                 }
-                public void SetLocation(IntPtr hProcess, IntPtr address)
-                {
-                    throw new NotImplementedException();
-                }
-
-                public void ReloadFromMemory()
+                public override void SetLocation(IntPtr hProcess, IntPtr address)
                 {
                     throw new NotImplementedException();
                 }
@@ -89,11 +84,11 @@ namespace X3Tools.Bases
 
             #region IMemoryObject
 
-            public byte[] GetBytes()
+            public override byte[] GetBytes()
             {
                 ObjectByteList collection = new ObjectByteList();
                 collection.Append(unknown_1);
-                collection.Append((short)owner);
+                collection.Append((short)owningRace);
                 collection.Append(unknown_2);
                 collection.Append(unknown_3);
                 collection.Append(unknown_4);
@@ -106,9 +101,9 @@ namespace X3Tools.Bases
             }
 
             public static int ByteSizeConst = 0xe0;
-            public int ByteSize => ByteSizeConst;
+            public override int ByteSize => ByteSizeConst;
 
-            public void SetData(byte[] Memory)
+            public override void SetData(byte[] Memory)
             {
                 ObjectByteList collection = new ObjectByteList(Memory);
 
@@ -121,7 +116,7 @@ namespace X3Tools.Bases
 
                 collection.PopFirst(ref unknown_1);
                 collection.PopFirst(ref tempShort);
-                owner = (GameHook.RaceID)tempShort;
+                owningRace = (GameHook.RaceID)tempShort;
                 collection.PopFirst(ref unknown_2);
                 collection.PopFirst(ref unknown_3);
                 collection.PopFirst(ref unknown_4);
@@ -129,15 +124,6 @@ namespace X3Tools.Bases
                 collection.PopFirst(ref unknown_6);
                 collection.PopFirst(ref unknown_7);
                 collection.PopFirst(ref unknown_8);
-            }
-            public void SetLocation(IntPtr hProcess, IntPtr address)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void ReloadFromMemory()
-            {
-                throw new NotImplementedException();
             }
             #endregion
         }
@@ -157,14 +143,10 @@ namespace X3Tools.Bases
         public int unknown_2;
         public int unknown_3;
         // Collection of sector data
-        public SectorData[] sectorData { get; } = new SectorData[width * height];
+        public SectorData[] sectorData;
 
         public GateSystemObject()
         {
-            for (int i = 0; i < maxSectorID; i++)
-            {
-                sectorData[i] = new SectorData();
-            }
         }
 
         /// <summary>
@@ -237,7 +219,12 @@ namespace X3Tools.Bases
         /// <returns></returns>
         public SectorData GetSector(short X, short Y)
         {
-            return sectorData[Y + X * (width - 1)];
+            return sectorData[GetIndexOfSector(X,Y)];
+        }
+
+        public static int GetIndexOfSector(short X, short Y)
+        {
+            return Y + X * height;
         }
 
         #region IMemoryObject
@@ -254,21 +241,22 @@ namespace X3Tools.Bases
 
         public override int ByteSize => 0xfb410;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList(Memory);
-            collection.PopFirst(ref gateSystemFunctionIndex);
-            collection.PopFirst(ref unknown_1);
-            collection.PopFirst(ref unknown_2);
-            collection.PopFirst(ref unknown_3);
-            for (int i = 0; i < maxSectorID; i++)
-            {
-                collection.PopFirst(ref sectorData[i]);
-            }
+            gateSystemFunctionIndex = objectByteList.PopUInt();
+            unknown_1 = objectByteList.PopInt();
+            unknown_2 = objectByteList.PopInt();
+            unknown_3 = objectByteList.PopInt();
+            sectorData = objectByteList.PopIMemoryObjects<SectorData>(maxSectorID);
         }
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
+            if(sectorData != null)
+                for(int i = 0; i < sectorData.Length; i++)
+                {
+                    sectorData[i].SetLocation(hProcess, address + 0x10 + i * SectorData.ByteSizeConst);
+                }
         }
         #endregion
     }

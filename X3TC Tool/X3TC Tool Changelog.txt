@@ -11,7 +11,7 @@ Alpha 5 (22/11/2020):
 	- Added maintype check to SectorObject.IsValid.
 	- Added partial methods to getting the price of types in TypeData (This method is incomplete).
 	- Added methods for getting HQ production resources to TypeData-Ship.
-	- Renamed EventObject to ScriptingObject.
+	- Renamed ScriptingObject to ScriptingObject.
 	- Renamed ScriptObject to ScriptnigTaskObject.
 	- Rotation matricise now inherit from MemoryObject.
 	- Reduced and renamed unknowns in SectorObject.
@@ -24,7 +24,7 @@ Alpha 5 (22/11/2020):
 Alpha 4:
 	- Added an executable patching system for easy implementation of optimised code.
 	- Added the StoryBase.
-	- Added EventObject.
+	- Added ScriptingObject.
 	- Added "Get Space" button to sector object viewer.
 	- Added the ability to load SectorObjects via their ID.
 	- Completed GateSystemObject viewer.

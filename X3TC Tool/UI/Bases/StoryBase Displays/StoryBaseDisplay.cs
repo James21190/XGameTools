@@ -29,8 +29,8 @@ namespace X3_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay( "StoryBase - EventObjects");
-            display.LoadTable(m_StoryBase.pEventObjectHashTable.address);
+            HashTableDisplay display = new HashTableDisplay( "StoryBase - ScriptingObjects");
+            display.LoadTable(m_StoryBase.pScriptingObjectHashTable.address);
             display.Show();
         }
 

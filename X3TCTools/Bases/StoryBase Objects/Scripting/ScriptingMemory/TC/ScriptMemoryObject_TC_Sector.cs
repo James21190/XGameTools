@@ -8,25 +8,25 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int SectorY => GetVariableValue((int)TC_Sector_Variables.Sector_Y);
 
-        public int OwningRaceDataEventObjectID => throw new NotImplementedException();
+        public int OwningRaceDataScriptingObjectID => throw new NotImplementedException();
 
-        public ScriptingObject OwningRaceDataEventObject => throw new NotImplementedException();
+        public ScriptingObject OwningRaceDataScriptingObject => throw new NotImplementedException();
 
-        public int pShipEventObjectHashTableObject => throw new NotImplementedException();
+        public int pShipScriptingObjectHashTableObject => throw new NotImplementedException();
 
-        public ScriptingHashTableObject ShipEventObjectHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject ShipScriptingObjectHashTableObject => throw new NotImplementedException();
 
-        public int pGateEventObjectHashTableObject => throw new NotImplementedException();
+        public int pGateScriptingObjectHashTableObject => throw new NotImplementedException();
 
-        public ScriptingHashTableObject GateEventObjectHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject GateScriptingObjectHashTableObject => throw new NotImplementedException();
 
         public int BackgroundID => GetVariableValue((int)TC_Sector_Variables.BackgroundID);
 
         public bool IsValid => SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height;
 
-        public int OwnerDataEventObjectID => throw new NotImplementedException();
+        public int OwnerDataScriptingObjectID => throw new NotImplementedException();
 
-        public ScriptingObject OwnerDataEventObject => throw new NotImplementedException();
+        public ScriptingObject OwnerDataScriptingObject => throw new NotImplementedException();
 
         public ScriptMemoryObject_TC_Sector() : base(55)
         {

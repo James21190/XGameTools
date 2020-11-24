@@ -6,12 +6,12 @@ using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3TCTool
 {
-    public partial class EventObjectPannel : UserControl
+    public partial class ScriptingObjectPannel : UserControl
     {
-        private ScriptingObject m_EventObject;
+        private ScriptingObject m_ScriptingObject;
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
-        public event EventHandler EventObjectLoaded;
+        public event EventHandler ScriptingObjectLoaded;
 
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -25,52 +25,52 @@ namespace X3TCTool
             }
         }
 
-        public ScriptingObject EventObject
+        public ScriptingObject ScriptingObject
         {
-            get => m_EventObject;
+            get => m_ScriptingObject;
             set
             {
-                m_EventObject = value;
+                m_ScriptingObject = value;
                 Reload();
             }
         }
-        public EventObjectPannel()
+        public ScriptingObjectPannel()
         {
             InitializeComponent();
         }
 
         private void Reload()
         {
-            if (m_EventObject == null)
+            if (m_ScriptingObject == null)
             {
                 return;
             }
 
-            m_EventObject.ReloadFromMemory();
-            IDNumericUpDown.Value = m_EventObject.NegativeID;
-            AddressBox.Text = m_EventObject.pThis.ToString("X");
-            ScriptsOnStackBox.Text = m_EventObject.ReferenceCount.ToString();
+            m_ScriptingObject.ReloadFromMemory();
+            IDNumericUpDown.Value = m_ScriptingObject.NegativeID;
+            AddressBox.Text = m_ScriptingObject.pThis.ToString("X");
+            ScriptsOnStackBox.Text = m_ScriptingObject.ReferenceCount.ToString();
 
             ReloadSub();
         }
 
         private void ReloadSub()
         {
-            ScriptingObjectSub sub = m_EventObject.pSub.obj;
+            ScriptingObjectSub sub = m_ScriptingObject.pSub.obj;
             txtSubAddress.Text = sub.pThis.ToString("X");
             txtSubTypeID.Text = sub.Class.ToString();
             txtSubLength.Text = sub.ScriptVariableCount.ToString();
-            txtSubType.Text = m_EventObject.ObjectType.ToString();
+            txtSubType.Text = m_ScriptingObject.ObjectType.ToString();
         }
 
         private void LoadIDButton_Click(object sender, EventArgs e)
         {
             try
             {
-                EventObject = GameHook.storyBase.GetEventObject((int)IDNumericUpDown.Value);
-                if (EventObjectLoaded != null)
+                ScriptingObject = GameHook.storyBase.GetScriptingObject((int)IDNumericUpDown.Value);
+                if (ScriptingObjectLoaded != null)
                 {
-                    EventObjectLoaded(this, EventArgs.Empty);
+                    ScriptingObjectLoaded(this, EventArgs.Empty);
                 }
             }
             catch (Exception)

@@ -29,15 +29,15 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
             }
         }
 
-        public int CurrentSectorEventObjectID => GetVariableValue((int)AP_Station_Variables.CurrentSectorEventObjectID);
-        public ScriptingObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
+        public int CurrentSectorScriptingObjectID => GetVariableValue((int)AP_Station_Variables.CurrentSectorScriptingObjectID);
+        public ScriptingObject CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
 
         public int pCargoHashTable => GetVariable((int)AP_Station_Variables.CargoHashTable).Value;
 
         public ScriptingHashTableObject CargoHashTable => GetVariable((int)AP_Station_Variables.CargoHashTable).GetAsHashTableObject();
 
-        public int OwnerDataEventObjectID => GetVariableValue((int)AP_Station_Variables.OwningRaceDataEventObjectID);
-        public ScriptingObject OwnerDataEventObject => GameHook.storyBase.GetEventObject(OwnerDataEventObjectID);
+        public int OwnerDataScriptingObjectID => GetVariableValue((int)AP_Station_Variables.OwningRaceDataScriptingObjectID);
+        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public override string GetVariableName(int index)
         {

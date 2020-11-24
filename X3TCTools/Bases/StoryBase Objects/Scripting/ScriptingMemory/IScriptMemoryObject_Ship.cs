@@ -14,24 +14,24 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         CargoEntry[] CargoEntries { get; }
 
         /// <summary>
-        /// The EventObject ID for the prevous sector's EventObject.
+        /// The ScriptingObject ID for the prevous sector's ScriptingObject.
         /// </summary>
-        int PreviousSectorEventObjectID { get; }
+        int PreviousSectorScriptingObjectID { get; }
         /// <summary>
-        /// The previous sector's EventObject.
+        /// The previous sector's ScriptingObject.
         /// </summary>
-        ScriptingObject PreviousSectorEventObject { get; }
+        ScriptingObject PreviousSectorScriptingObject { get; }
 
         /// <summary>
-        /// The EventObject ID for the current sector's EventObject.
+        /// The ScriptingObject ID for the current sector's ScriptingObject.
         /// </summary>
-        int CurrentSectorEventObjectID { get; }
+        int CurrentSectorScriptingObjectID { get; }
         /// <summary>
-        /// The current sector's EventObject.
+        /// The current sector's ScriptingObject.
         /// </summary>
-        ScriptingObject CurrentSectorEventObject { get; }
+        ScriptingObject CurrentSectorScriptingObject { get; }
 
-        int OwnerDataEventObjectID { get; }
-        ScriptingObject OwnerDataEventObject { get; }
+        int OwnerDataScriptingObjectID { get; }
+        ScriptingObject OwnerDataScriptingObject { get; }
     }
 }

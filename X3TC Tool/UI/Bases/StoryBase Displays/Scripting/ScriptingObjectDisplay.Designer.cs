@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.eventObjectPannel1 = new X3TCTool.EventObjectPannel();
+            this.ScriptingObjectPannel1 = new X3TCTool.ScriptingObjectPannel();
             this.typeBackPanel = new System.Windows.Forms.Panel();
             this.tmrAutoReload = new System.Windows.Forms.Timer(this.components);
             this.scriptMemoryObject_Raw_Panel1 = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
             this.SuspendLayout();
             // 
-            // eventObjectPannel1
+            // ScriptingObjectPannel1
             // 
-            this.eventObjectPannel1.EventObject = null;
-            this.eventObjectPannel1.Location = new System.Drawing.Point(12, 12);
-            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
-            this.eventObjectPannel1.Name = "eventObjectPannel1";
-            this.eventObjectPannel1.ReadOnly = false;
-            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
-            this.eventObjectPannel1.TabIndex = 10;
-            this.eventObjectPannel1.EventObjectLoaded += new System.EventHandler(this.eventObjectPannel1_EventObjectLoaded);
+            this.ScriptingObjectPannel1.ScriptingObject = null;
+            this.ScriptingObjectPannel1.Location = new System.Drawing.Point(12, 12);
+            this.ScriptingObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
+            this.ScriptingObjectPannel1.ReadOnly = false;
+            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.TabIndex = 10;
+            this.ScriptingObjectPannel1.ScriptingObjectLoaded += new System.EventHandler(this.ScriptingObjectPannel1_ScriptingObjectLoaded);
             // 
             // typeBackPanel
             // 
@@ -80,16 +80,16 @@
             this.ClientSize = new System.Drawing.Size(1049, 515);
             this.Controls.Add(this.scriptMemoryObject_Raw_Panel1);
             this.Controls.Add(this.typeBackPanel);
-            this.Controls.Add(this.eventObjectPannel1);
+            this.Controls.Add(this.ScriptingObjectPannel1);
             this.Name = "ScriptingObjectDisplay";
             this.Text = "ScriptingObjectDisplay";
-            this.Load += new System.EventHandler(this.EventObjectDisplay_Load);
+            this.Load += new System.EventHandler(this.ScriptingObjectDisplay_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private X3TCTool.EventObjectPannel eventObjectPannel1;
+        private X3TCTool.ScriptingObjectPannel ScriptingObjectPannel1;
         private ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel scriptMemoryObject_Raw_Panel1;
         private System.Windows.Forms.Panel typeBackPanel;
         private System.Windows.Forms.Timer tmrAutoReload;

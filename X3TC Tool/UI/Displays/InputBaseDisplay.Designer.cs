@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.EventObjectIDBox = new System.Windows.Forms.TextBox();
-            this.EventObjectIDLoadButton = new System.Windows.Forms.Button();
+            this.ScriptingObjectIDBox = new System.Windows.Forms.TextBox();
+            this.ScriptingObjectIDLoadButton = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.EventObjectIDBox);
-            this.groupBox4.Controls.Add(this.EventObjectIDLoadButton);
+            this.groupBox4.Controls.Add(this.ScriptingObjectIDBox);
+            this.groupBox4.Controls.Add(this.ScriptingObjectIDLoadButton);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(178, 52);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "EventObject ID";
+            this.groupBox4.Text = "ScriptingObject ID";
             // 
-            // EventObjectIDBox
+            // ScriptingObjectIDBox
             // 
-            this.EventObjectIDBox.Location = new System.Drawing.Point(6, 19);
-            this.EventObjectIDBox.Name = "EventObjectIDBox";
-            this.EventObjectIDBox.ReadOnly = true;
-            this.EventObjectIDBox.Size = new System.Drawing.Size(85, 20);
-            this.EventObjectIDBox.TabIndex = 1;
+            this.ScriptingObjectIDBox.Location = new System.Drawing.Point(6, 19);
+            this.ScriptingObjectIDBox.Name = "ScriptingObjectIDBox";
+            this.ScriptingObjectIDBox.ReadOnly = true;
+            this.ScriptingObjectIDBox.Size = new System.Drawing.Size(85, 20);
+            this.ScriptingObjectIDBox.TabIndex = 1;
             // 
-            // EventObjectIDLoadButton
+            // ScriptingObjectIDLoadButton
             // 
-            this.EventObjectIDLoadButton.Location = new System.Drawing.Point(97, 17);
-            this.EventObjectIDLoadButton.Name = "EventObjectIDLoadButton";
-            this.EventObjectIDLoadButton.Size = new System.Drawing.Size(75, 23);
-            this.EventObjectIDLoadButton.TabIndex = 1;
-            this.EventObjectIDLoadButton.Text = "Load";
-            this.EventObjectIDLoadButton.UseVisualStyleBackColor = true;
-            this.EventObjectIDLoadButton.Click += new System.EventHandler(this.EventObjectIDLoadButton_Click);
+            this.ScriptingObjectIDLoadButton.Location = new System.Drawing.Point(97, 17);
+            this.ScriptingObjectIDLoadButton.Name = "ScriptingObjectIDLoadButton";
+            this.ScriptingObjectIDLoadButton.Size = new System.Drawing.Size(75, 23);
+            this.ScriptingObjectIDLoadButton.TabIndex = 1;
+            this.ScriptingObjectIDLoadButton.Text = "Load";
+            this.ScriptingObjectIDLoadButton.UseVisualStyleBackColor = true;
+            this.ScriptingObjectIDLoadButton.Click += new System.EventHandler(this.ScriptingObjectIDLoadButton_Click);
             // 
             // InputBaseDisplay
             // 
@@ -80,7 +80,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox EventObjectIDBox;
-        private System.Windows.Forms.Button EventObjectIDLoadButton;
+        private System.Windows.Forms.TextBox ScriptingObjectIDBox;
+        private System.Windows.Forms.Button ScriptingObjectIDLoadButton;
     }
 }

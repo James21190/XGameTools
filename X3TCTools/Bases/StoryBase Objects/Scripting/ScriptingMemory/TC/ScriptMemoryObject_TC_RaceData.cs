@@ -6,36 +6,36 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
     {
         public const int VariableCount = 9;
 
-        public int ASectorEventObjectID => GetVariableValue((int)TC_RaceData_Variables.ASectorEventObjectID);
-        public ScriptingObject ASectorEventObject => GameHook.storyBase.GetEventObject(ASectorEventObjectID);
+        public int ASectorScriptingObjectID => GetVariableValue((int)TC_RaceData_Variables.ASectorScriptingObjectID);
+        public ScriptingObject ASectorScriptingObject => GameHook.storyBase.GetScriptingObject(ASectorScriptingObjectID);
 
-        public int pOwnedShipEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedShipEventObjectIDHashTable);
-        public ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
+        public int pOwnedShipScriptingObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedShipScriptingObjectIDHashTable);
+        public ScriptingHashTableObject OwnedShipScriptingObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipScriptingObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
 
 
         public GameHook.RaceID RaceID => (GameHook.RaceID)GetVariableValue((int)TC_RaceData_Variables.RaceID);
 
-        public int pOwnedStationEventObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedStationEventObjectIDHashTable);
+        public int pOwnedStationScriptingObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedStationScriptingObjectIDHashTable);
 
-        public ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedStationEventObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
+        public ScriptingHashTableObject OwnedStationScriptingObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedStationScriptingObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
 
-        public int pOwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
+        public int pOwnedSectorScriptingObjectIDHashTableObject => throw new NotImplementedException();
 
-        public ScriptingHashTableObject OwnedSectorEventObjectIDHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject OwnedSectorScriptingObjectIDHashTableObject => throw new NotImplementedException();
 
-        public int pOwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
+        public int pOwnedShipyardScriptingObjectIDHashTableObject => throw new NotImplementedException();
 
-        public ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject OwnedShipyardScriptingObjectIDHashTableObject => throw new NotImplementedException();
 
         public ScriptingObject[] Ships
         {
             get
             {
-                ScriptingObject[] ships = new ScriptingObject[OwnedShipEventObjectIDHashTableObject.hashTable.Count];
+                ScriptingObject[] ships = new ScriptingObject[OwnedShipScriptingObjectIDHashTableObject.hashTable.Count];
                 int i = 0;
-                foreach (DynamicValue shipID in OwnedShipEventObjectIDHashTableObject.hashTable.ScanContents())
+                foreach (DynamicValue shipID in OwnedShipScriptingObjectIDHashTableObject.hashTable.ScanContents())
                 {
-                    ships[i++] = GameHook.storyBase.GetEventObject(shipID.Value);
+                    ships[i++] = GameHook.storyBase.GetScriptingObject(shipID.Value);
                 }
                 return ships;
             }
@@ -45,11 +45,11 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
         {
             get
             {
-                ScriptingObject[] stations = new ScriptingObject[OwnedStationEventObjectIDHashTableObject.hashTable.Count];
+                ScriptingObject[] stations = new ScriptingObject[OwnedStationScriptingObjectIDHashTableObject.hashTable.Count];
                 int i = 0;
-                foreach (DynamicValue shipID in OwnedStationEventObjectIDHashTableObject.hashTable.ScanContents())
+                foreach (DynamicValue shipID in OwnedStationScriptingObjectIDHashTableObject.hashTable.ScanContents())
                 {
-                    stations[i++] = GameHook.storyBase.GetEventObject(shipID.Value);
+                    stations[i++] = GameHook.storyBase.GetScriptingObject(shipID.Value);
                 }
                 return stations;
             }

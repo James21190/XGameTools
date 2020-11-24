@@ -2,7 +2,7 @@
 {
     public partial class ScriptingObject
     {
-        public enum EventObject_Type
+        public enum ScriptingObject_Type
         {
             RaceData_0 = 400,
             RaceData_1,

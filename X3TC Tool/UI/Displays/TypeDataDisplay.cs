@@ -122,7 +122,7 @@ namespace X3_Tool.UI.Displays
                     txtShieldPowerGenerator.Text = shipTypeData.ShieldPowerGenerator.ToString();
                     txtShipMaxHull.Text = shipTypeData.MaxHull.ToString();
 
-                    txtEventObjectID.Text = shipTypeData.EventObjectID.ToString();
+                    txtScriptingObjectID.Text = shipTypeData.ScriptingObjectID.ToString();
                     txtMaxWeaponClass.Text = shipTypeData.MaxWeaponClass.ToString();
                     LoadTurret(0);
 

@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Displays
 {
-    partial class EventObjectSubDisplay
+    partial class ScriptingObjectSubDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -315,7 +315,7 @@
             this.ScriptVariableCountBox.Size = new System.Drawing.Size(109, 20);
             this.ScriptVariableCountBox.TabIndex = 0;
             // 
-            // EventObjectSubDisplay
+            // ScriptingObjectSubDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -333,8 +333,8 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Name = "EventObjectSubDisplay";
-            this.Text = "EventObjectSubDisplay";
+            this.Name = "ScriptingObjectSubDisplay";
+            this.Text = "ScriptingObjectSubDisplay";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);

@@ -13,7 +13,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
     {
         private struct RaceData : IComparable
         {
-            public ScriptingObject eventObject;
+            public ScriptingObject ScriptingObject;
             public GameHook.RaceID raceID;
 
             public int CompareTo(object obj)
@@ -55,12 +55,12 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         }
 
         private IScriptMemoryObject_RaceData_Player m_Data;
-        public void LoadObject(ScriptingObject eventObject)
+        public void LoadObject(ScriptingObject ScriptingObject)
         {
             switch (GameHook.GameVersion)
             {
-                case GameHook.GameVersions.X3AP: m_Data = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData_Player>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData_Player>(); break;
+                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData_Player>(); break;
+                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData_Player>(); break;
             }
             RaceDataPanel.LoadObject(m_Data);
             Reload();
@@ -71,26 +71,26 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             RaceDataPanel.Reload();
 
             List<RaceData> races = new List<RaceData>();
-            foreach (DynamicValue raceID in m_Data.RaceDataEventObjectIDHashTable.hashTable.ScanContents())
+            foreach (DynamicValue raceID in m_Data.RaceDataScriptingObjectIDHashTable.hashTable.ScanContents())
             {
                 try
                 {
-                    ScriptingObject eventObject = GameHook.storyBase.GetEventObject(raceID.Value);
+                    ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(raceID.Value);
                     IScriptMemoryObject_RaceData raceData;
                     switch (GameHook.GameVersion)
                     {
                         case GameHook.GameVersions.X3TC:
-                            raceData = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData>();
+                            raceData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData>();
                             break;
                         case GameHook.GameVersions.X3AP:
-                            raceData = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData>();
+                            raceData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData>();
                             break;
                         default: throw new Exception();
                     }
 
                     races.Add(new RaceData()
                     {
-                        eventObject = eventObject,
+                        ScriptingObject = ScriptingObject,
                         raceID = raceData.RaceID
                     });
                 }
@@ -117,7 +117,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             }
 
             ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject(((RaceData)lstRaces.Items[lstRaces.SelectedIndex]).eventObject);
+            display.LoadObject(((RaceData)lstRaces.Items[lstRaces.SelectedIndex]).ScriptingObject);
             display.Show();
         }
     }

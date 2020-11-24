@@ -78,7 +78,7 @@ namespace X3Tools.Sector_Objects
         public GameHook.RaceID OriginRace;
         public int MaxHull;
 
-        public int EventObjectID;
+        public int ScriptingObjectID;
 
         public int TurretCount;
         public TurretData[] TurretDatas;
@@ -200,7 +200,7 @@ namespace X3Tools.Sector_Objects
             OriginRace = (GameHook.RaceID)collection.PopInt();
             MaxHull = collection.PopInt();
 
-            EventObjectID = collection.PopInt(0xc8);
+            ScriptingObjectID = collection.PopInt(0xc8);
 
             TurretCount = collection.PopInt(0x180);
             TurretDatas = collection.PopIMemoryObjects<TurretData>(10);

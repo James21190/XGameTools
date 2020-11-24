@@ -3,7 +3,7 @@
     public enum AP_Sun_Variables
     {
         PositionData,
-        CurrentSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
 
         SubType = 7,
     }
@@ -11,37 +11,37 @@
     public enum AP_Planet_Variables
     {
         PositionData,
-        CurrentSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
 
         SubType = 6,
     }
     public enum AP_Gate_Variables
     {
         PositionData,
-        CurrentSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
 
         Dest_Sector_X = 8,
         Dest_Sector_Y,
 
-        DestSectorDataEventObjectID = 11,
+        DestSectorDataScriptingObjectID = 11,
     }
     public enum AP_Sector_Variables
     {
         Sector_X,
         Sector_Y,
-        OwningRaceDataEventObjectID,
+        OwningRaceDataScriptingObjectID,
 
-        ShipEventObjectIDHashTable = 3,
-        PlanetEventObjectIDHashTable,
-        SunEventObjectIDHashTable,
-        DockEventObjectIDHashTable,
-        FactoryEventObjectIDHashTable,
-        AsteroidEventObjectIDHashTable,
+        ShipScriptingObjectIDHashTable = 3,
+        PlanetScriptingObjectIDHashTable,
+        SunScriptingObjectIDHashTable,
+        DockScriptingObjectIDHashTable,
+        FactoryScriptingObjectIDHashTable,
+        AsteroidScriptingObjectIDHashTable,
 
-        GateEventObjectIDHashTable = 10,
-        GateEventObjectIDArray,
+        GateScriptingObjectIDHashTable = 10,
+        GateScriptingObjectIDArray,
 
-        DebrisEventObjectIDHashTable = 14,
+        DebrisScriptingObjectIDHashTable = 14,
 
         BackgroundID = 29,
     }
@@ -49,13 +49,13 @@
     {
         PositionData,
         /// <summary>
-        /// The ID of the EventObject that the ship is currently in.
+        /// The ID of the ScriptingObject that the ship is currently in.
         /// </summary>
-        CurrentSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
         /// <summary>
-        /// The ID of the EventObject that the ship was in previously in.
+        /// The ID of the ScriptingObject that the ship was in previously in.
         /// </summary>
-        PreviousSectorEventObjectID,
+        PreviousSectorScriptingObjectID,
 
         SubType = 14,
 
@@ -70,7 +70,7 @@
 
         Cargo = 35,
 
-        OwningRaceDataEventObjectID = 41,
+        OwningRaceDataScriptingObjectID = 41,
 
         CurrentCargoVolume = 72,
     }
@@ -79,18 +79,18 @@
     {
         PositionData,
         /// <summary>
-        /// The ID of the EventObject that the ship is currently in.
+        /// The ID of the ScriptingObject that the ship is currently in.
         /// </summary>
-        CurrentSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
         /// <summary>
-        /// The ID of the EventObject that the ship was in previously in.
+        /// The ID of the ScriptingObject that the ship was in previously in.
         /// </summary>
-        PreviousSectorEventObjectID,
+        PreviousSectorScriptingObjectID,
 
         MainType = 12,
         SubType,
 
-        OwningRaceDataEventObjectID = 15,
+        OwningRaceDataScriptingObjectID = 15,
 
         CargoHashTable = 20,
     }
@@ -99,13 +99,13 @@
     {
         PositionData,
         /// <summary>
-        /// The ID of the EventObject that the ship is currently in.
+        /// The ID of the ScriptingObject that the ship is currently in.
         /// </summary>
-        CurrentSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
         /// <summary>
-        /// The ID of the EventObject that the ship was in previously in.
+        /// The ID of the ScriptingObject that the ship was in previously in.
         /// </summary>
-        PreviousSectorEventObjectID,
+        PreviousSectorScriptingObjectID,
 
         Amount = 6,
         MainType,
@@ -125,13 +125,13 @@
     public enum AP_RaceData_Variables
     {
         RaceID,
-        ASectorEventObjectID,
-        OwnedSectorEventObjectIDHashTable,
+        ASectorScriptingObjectID,
+        OwnedSectorScriptingObjectIDHashTable,
         RaceRelationsArray,
-        OwnedShipEventObjectIDHashTable,
-        OwnedMilitaryShipEventObjectIDHashTable,
-        OwnedShipyardsEventObjectIDHashTable,
-        OwnedStationEventObjectIDHashTable,
+        OwnedShipScriptingObjectIDHashTable,
+        OwnedMilitaryShipScriptingObjectIDHashTable,
+        OwnedShipyardsScriptingObjectIDHashTable,
+        OwnedStationScriptingObjectIDHashTable,
 
     }
 
@@ -140,16 +140,16 @@
         CreditBalance,
 
         RaceRelationsArray = 2,
-        CurrentSectorEventObjectID,
-        PreviousSectorEventObjectID,
+        CurrentSectorScriptingObjectID,
+        PreviousSectorScriptingObjectID,
         CurrentSectorX,
         CurrentSectorY,
 
-        RaceDataWithSectorEventObjectIDHashTable = 14,
-        RaceDataEventObjectIDHashTable,
+        RaceDataWithSectorScriptingObjectIDHashTable = 14,
+        RaceDataScriptingObjectIDHashTable,
 
-        OwnedShipEventObjectIDHashTable = 19,
+        OwnedShipScriptingObjectIDHashTable = 19,
 
-        OwnedStationEventObjectIDHashTable = 23,
+        OwnedStationScriptingObjectIDHashTable = 23,
     }
 }

@@ -11,9 +11,9 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int SubType => GetVariableValue((int)TC_Headquarters_Variables.SubType);
 
-        public int CurrentSectorEventObjectID => GetVariableValue((int)TC_Headquarters_Variables.CurrentSectorEventObjectID);
+        public int CurrentSectorScriptingObjectID => GetVariableValue((int)TC_Headquarters_Variables.CurrentSectorScriptingObjectID);
 
-        public ScriptingObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
+        public ScriptingObject CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
 
         public int pCargoHashTable => GetVariable((int)TC_Headquarters_Variables.CargoHashTable).Value;
 
@@ -39,8 +39,8 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
             }
         }
 
-        public int OwnerDataEventObjectID => GetVariableValue((int)TC_Headquarters_Variables.OwningRaceDataEventObjectID);
-        public ScriptingObject OwnerDataEventObject => GameHook.storyBase.GetEventObject(OwnerDataEventObjectID);
+        public int OwnerDataScriptingObjectID => GetVariableValue((int)TC_Headquarters_Variables.OwningRaceDataScriptingObjectID);
+        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public int pAvailableBlueprintHashTable => GetVariable((int)TC_Headquarters_Variables.AvailableBlueprintHashTable).Value;
 

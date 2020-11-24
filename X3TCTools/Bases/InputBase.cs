@@ -14,7 +14,7 @@ namespace X3Tools.Bases
         public MemoryObjectPointer<HashTable<MemoryInt32>> pHashTable1;
         public MemoryObjectPointer<HashTable<MemoryInt32>> pHashTable2;
 
-        public int EventObjectID;
+        public int ScriptingObjectID;
 
         public Vector3 NextLocation;
 
@@ -34,7 +34,7 @@ namespace X3Tools.Bases
             ObjectByteList collection = new ObjectByteList(Memory);
 
             collection.Skip(0x4dc);
-            collection.PopFirst(ref EventObjectID);
+            collection.PopFirst(ref ScriptingObjectID);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

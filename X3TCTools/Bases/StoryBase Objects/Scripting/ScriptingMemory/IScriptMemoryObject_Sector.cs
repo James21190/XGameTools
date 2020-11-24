@@ -9,17 +9,17 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 
         int BackgroundID { get; }
 
-        int OwningRaceDataEventObjectID { get; }
-        ScriptingObject OwningRaceDataEventObject { get; }
+        int OwningRaceDataScriptingObjectID { get; }
+        ScriptingObject OwningRaceDataScriptingObject { get; }
 
-        int pShipEventObjectHashTableObject { get; }
-        ScriptingHashTableObject ShipEventObjectHashTableObject { get; }
+        int pShipScriptingObjectHashTableObject { get; }
+        ScriptingHashTableObject ShipScriptingObjectHashTableObject { get; }
 
-        int pGateEventObjectHashTableObject { get; }
-        ScriptingHashTableObject GateEventObjectHashTableObject { get; }
+        int pGateScriptingObjectHashTableObject { get; }
+        ScriptingHashTableObject GateScriptingObjectHashTableObject { get; }
 
-        int OwnerDataEventObjectID { get; }
-        ScriptingObject OwnerDataEventObject { get; }
+        int OwnerDataScriptingObjectID { get; }
+        ScriptingObject OwnerDataScriptingObject { get; }
 
     }
 }

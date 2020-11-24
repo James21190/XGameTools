@@ -5,7 +5,7 @@ using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     /// <summary>
-    /// The EventObject is an object within the game that keeps track of variables used by the scripting engine.
+    /// The ScriptingObject is an object within the game that keeps track of variables used by the scripting engine.
     /// It keeps track of how many variables are stored and the amount of ScriptObjects that reference it.
     /// </summary>
     public partial class ScriptingObject : MemoryObject
@@ -15,11 +15,11 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         public MemoryObjectPointer<ScriptingObjectSub> pSub = new MemoryObjectPointer<ScriptingObjectSub>();
         public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
 
-        public EventObject_Type ObjectType
+        public ScriptingObject_Type ObjectType
         {
             get
             {
-                return (EventObject_Type)pSub.obj.Class;
+                return (ScriptingObject_Type)pSub.obj.Class;
             }
         }
 

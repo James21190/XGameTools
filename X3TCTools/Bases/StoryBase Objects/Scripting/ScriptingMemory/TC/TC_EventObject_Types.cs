@@ -2,7 +2,7 @@
 {
     public partial class ScriptingObject
     {
-        public enum TC_EventObject_Type
+        public enum TC_ScriptingObject_Type
         {
         }
     }

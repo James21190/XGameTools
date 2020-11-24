@@ -1,6 +1,6 @@
 ﻿namespace X3TCTool
 {
-    partial class EventObjectPannel
+    partial class ScriptingObjectPannel
     {
         /// <summary> 
         /// Required designer variable.
@@ -235,13 +235,13 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "ScriptingObjectPanel";
             // 
-            // EventObjectPannel
+            // ScriptingObjectPannel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox7);
             this.MinimumSize = new System.Drawing.Size(469, 227);
-            this.Name = "EventObjectPannel";
+            this.Name = "ScriptingObjectPannel";
             this.Size = new System.Drawing.Size(469, 227);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

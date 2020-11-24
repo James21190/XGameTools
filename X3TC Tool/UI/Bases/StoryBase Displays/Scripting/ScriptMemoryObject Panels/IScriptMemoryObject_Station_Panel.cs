@@ -22,12 +22,12 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_
         }
 
         private IScriptMemoryObject_Station m_Data;
-        public void LoadObject(ScriptingObject eventObject)
+        public void LoadObject(ScriptingObject ScriptingObject)
         {
             switch (GameHook.GameVersion)
             {
-                case GameHook.GameVersions.X3AP: m_Data = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Station>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Station>(); break;
+                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Station>(); break;
+                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Station>(); break;
             }
             Reload();
         }
@@ -51,8 +51,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_
 
         private void button3_Click(object sender, System.EventArgs e)
         {
-            //var display = new EventObjectDisplay();
-            //display.LoadObject(m_Data.OwnerDataEventObjectID);
+            //var display = new ScriptingObjectDisplay();
+            //display.LoadObject(m_Data.OwnerDataScriptingObjectID);
             //display.Show();
         }
     }

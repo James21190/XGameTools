@@ -49,8 +49,8 @@
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.eventObjectPannel1 = new X3TCTool.EventObjectPannel();
-            this.btnLoadEventObject = new System.Windows.Forms.Button();
+            this.ScriptingObjectPannel1 = new X3TCTool.ScriptingObjectPannel();
+            this.btnLoadScriptingObject = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.nudMass = new System.Windows.Forms.NumericUpDown();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -309,8 +309,8 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.eventObjectPannel1);
-            this.groupBox4.Controls.Add(this.btnLoadEventObject);
+            this.groupBox4.Controls.Add(this.ScriptingObjectPannel1);
+            this.groupBox4.Controls.Add(this.btnLoadScriptingObject);
             this.groupBox4.Location = new System.Drawing.Point(292, 264);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(481, 281);
@@ -318,25 +318,25 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ScriptingObject";
             // 
-            // eventObjectPannel1
+            // ScriptingObjectPannel1
             // 
-            this.eventObjectPannel1.EventObject = null;
-            this.eventObjectPannel1.Location = new System.Drawing.Point(10, 48);
-            this.eventObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
-            this.eventObjectPannel1.Name = "eventObjectPannel1";
-            this.eventObjectPannel1.ReadOnly = true;
-            this.eventObjectPannel1.Size = new System.Drawing.Size(469, 227);
-            this.eventObjectPannel1.TabIndex = 25;
+            this.ScriptingObjectPannel1.ScriptingObject = null;
+            this.ScriptingObjectPannel1.Location = new System.Drawing.Point(10, 48);
+            this.ScriptingObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
+            this.ScriptingObjectPannel1.ReadOnly = true;
+            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.TabIndex = 25;
             // 
-            // btnLoadEventObject
+            // btnLoadScriptingObject
             // 
-            this.btnLoadEventObject.Location = new System.Drawing.Point(10, 19);
-            this.btnLoadEventObject.Name = "btnLoadEventObject";
-            this.btnLoadEventObject.Size = new System.Drawing.Size(111, 23);
-            this.btnLoadEventObject.TabIndex = 26;
-            this.btnLoadEventObject.Text = "Load in viewer";
-            this.btnLoadEventObject.UseVisualStyleBackColor = true;
-            this.btnLoadEventObject.Click += new System.EventHandler(this.btnLoadEventObject_Click);
+            this.btnLoadScriptingObject.Location = new System.Drawing.Point(10, 19);
+            this.btnLoadScriptingObject.Name = "btnLoadScriptingObject";
+            this.btnLoadScriptingObject.Size = new System.Drawing.Size(111, 23);
+            this.btnLoadScriptingObject.TabIndex = 26;
+            this.btnLoadScriptingObject.Text = "Load in viewer";
+            this.btnLoadScriptingObject.UseVisualStyleBackColor = true;
+            this.btnLoadScriptingObject.Click += new System.EventHandler(this.btnLoadScriptingObject_Click);
             // 
             // groupBox11
             // 
@@ -799,7 +799,7 @@
         private System.Windows.Forms.NumericUpDown nudMass;
         private System.Windows.Forms.Label labelSectorInfo;
         private System.Windows.Forms.GroupBox groupBox4;
-        private X3TCTool.EventObjectPannel eventObjectPannel1;
-        private System.Windows.Forms.Button btnLoadEventObject;
+        private X3TCTool.ScriptingObjectPannel ScriptingObjectPannel1;
+        private System.Windows.Forms.Button btnLoadScriptingObject;
     }
 }

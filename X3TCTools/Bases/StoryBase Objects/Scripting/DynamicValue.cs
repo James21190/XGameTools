@@ -14,7 +14,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             MODValue,
             pArray = 8,
             pHashTable,
-            pEventObject,
+            pScriptingObject,
             pTextObject,
             pObject0xe = 14
         }

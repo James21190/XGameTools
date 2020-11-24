@@ -28,7 +28,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
             RaceData_Player,
             Headquarters,
         }
-        private ScriptingObject m_EventObject;
+        private ScriptingObject m_ScriptingObject;
         public ScriptingObjectDisplay()
         {
             InitializeComponent();
@@ -37,21 +37,21 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
         public void LoadObject(int ID)
         {
             StoryBase storyBase = GameHook.storyBase;
-            HashTable<ScriptingObject> EventObjectHashTable = storyBase.pEventObjectHashTable.obj;
+            HashTable<ScriptingObject> ScriptingObjectHashTable = storyBase.pScriptingObjectHashTable.obj;
             int value = ID < 0 ? -ID - 1 : ID;
             try
             {
-                LoadObject(EventObjectHashTable.GetObject(value));
+                LoadObject(ScriptingObjectHashTable.GetObject(value));
             }
             catch (Exception)
             {
-                m_EventObject = null;
+                m_ScriptingObject = null;
             }
         }
-        public void LoadObject(ScriptingObject eventObject)
+        public void LoadObject(ScriptingObject ScriptingObject)
         {
-            m_EventObject = eventObject;
-            eventObjectPannel1.EventObject = eventObject;
+            m_ScriptingObject = ScriptingObject;
+            ScriptingObjectPannel1.ScriptingObject = ScriptingObject;
             Reload();
         }
 
@@ -61,7 +61,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 
         public void Reload()
         {
-            scriptMemoryObject_Raw_Panel1.LoadObject(m_EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject>());
+            scriptMemoryObject_Raw_Panel1.LoadObject(m_ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject>());
 
             #region Reload Type Panel
             if (typePanel != null)
@@ -70,31 +70,31 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
                 panel.Dispose();
             }
 
-            switch (m_EventObject.ObjectType)
+            switch (m_ScriptingObject.ObjectType)
             {
-                case ScriptingObject.EventObject_Type.Sector:
+                case ScriptingObject.ScriptingObject_Type.Sector:
                     typePanel = new IScriptMemoryObject_Sector_Panel(); break;
-                case ScriptingObject.EventObject_Type.Ship_M1:
-                case ScriptingObject.EventObject_Type.Ship_M2:
-                case ScriptingObject.EventObject_Type.Ship_M3:
-                case ScriptingObject.EventObject_Type.Ship_M4:
-                case ScriptingObject.EventObject_Type.Ship_M5:
-                case ScriptingObject.EventObject_Type.Ship_M6:
-                case ScriptingObject.EventObject_Type.Ship_M7:
-                case ScriptingObject.EventObject_Type.Ship_TS:
+                case ScriptingObject.ScriptingObject_Type.Ship_M1:
+                case ScriptingObject.ScriptingObject_Type.Ship_M2:
+                case ScriptingObject.ScriptingObject_Type.Ship_M3:
+                case ScriptingObject.ScriptingObject_Type.Ship_M4:
+                case ScriptingObject.ScriptingObject_Type.Ship_M5:
+                case ScriptingObject.ScriptingObject_Type.Ship_M6:
+                case ScriptingObject.ScriptingObject_Type.Ship_M7:
+                case ScriptingObject.ScriptingObject_Type.Ship_TS:
                     typePanel = new IScriptMemoryObject_Ship_Panel(); break;
-                case ScriptingObject.EventObject_Type.Station_Factory:
+                case ScriptingObject.ScriptingObject_Type.Station_Factory:
                     typePanel = new IScriptMemoryObject_Station_Panel(); break;
-                case ScriptingObject.EventObject_Type.Headquarters:
+                case ScriptingObject.ScriptingObject_Type.Headquarters:
                     typePanel = new IScriptMemoryObject_Headquarters_Panel(); break;
-                case ScriptingObject.EventObject_Type.RaceData_0:
-                case ScriptingObject.EventObject_Type.RaceData_1:
-                case ScriptingObject.EventObject_Type.RaceData_2:
-                case ScriptingObject.EventObject_Type.RaceData_3:
-                case ScriptingObject.EventObject_Type.RaceData_4:
-                case ScriptingObject.EventObject_Type.RaceData_5:
+                case ScriptingObject.ScriptingObject_Type.RaceData_0:
+                case ScriptingObject.ScriptingObject_Type.RaceData_1:
+                case ScriptingObject.ScriptingObject_Type.RaceData_2:
+                case ScriptingObject.ScriptingObject_Type.RaceData_3:
+                case ScriptingObject.ScriptingObject_Type.RaceData_4:
+                case ScriptingObject.ScriptingObject_Type.RaceData_5:
                     typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
-                case ScriptingObject.EventObject_Type.RaceData_Player:
+                case ScriptingObject.ScriptingObject_Type.RaceData_Player:
                     typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
                 default: return;
             }
@@ -109,7 +109,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 
             if (typePanel != null)
             {
-                typePanel.LoadObject(m_EventObject);
+                typePanel.LoadObject(m_ScriptingObject);
             }
         }
 
@@ -145,14 +145,14 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
             return new ScriptMemoryObject();
         }
 
-        private void EventObjectDisplay_Load(object sender, EventArgs e)
+        private void ScriptingObjectDisplay_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void eventObjectPannel1_EventObjectLoaded(object sender, EventArgs e)
+        private void ScriptingObjectPannel1_ScriptingObjectLoaded(object sender, EventArgs e)
         {
-            m_EventObject = eventObjectPannel1.EventObject;
+            m_ScriptingObject = ScriptingObjectPannel1.ScriptingObject;
             Reload();
         }
 

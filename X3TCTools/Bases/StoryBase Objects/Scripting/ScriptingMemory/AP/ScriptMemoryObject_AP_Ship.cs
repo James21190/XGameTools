@@ -24,13 +24,13 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
                 return entries;
             }
         }
-        public int PreviousSectorEventObjectID => GetVariableValue((int)AP_Ship_Variables.PreviousSectorEventObjectID);
-        public ScriptingObject PreviousSectorEventObject => GameHook.storyBase.GetEventObject(PreviousSectorEventObjectID);
-        public int CurrentSectorEventObjectID => GetVariableValue((int)AP_Ship_Variables.CurrentSectorEventObjectID);
-        public ScriptingObject CurrentSectorEventObject => GameHook.storyBase.GetEventObject(CurrentSectorEventObjectID);
+        public int PreviousSectorScriptingObjectID => GetVariableValue((int)AP_Ship_Variables.PreviousSectorScriptingObjectID);
+        public ScriptingObject PreviousSectorScriptingObject => GameHook.storyBase.GetScriptingObject(PreviousSectorScriptingObjectID);
+        public int CurrentSectorScriptingObjectID => GetVariableValue((int)AP_Ship_Variables.CurrentSectorScriptingObjectID);
+        public ScriptingObject CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
 
-        public int OwnerDataEventObjectID => GetVariableValue((int)AP_Ship_Variables.OwningRaceDataEventObjectID);
-        public ScriptingObject OwnerDataEventObject => GameHook.storyBase.GetEventObject(OwnerDataEventObjectID);
+        public int OwnerDataScriptingObjectID => GetVariableValue((int)AP_Ship_Variables.OwningRaceDataScriptingObjectID);
+        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public bool IsValid => SubType < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship);
 

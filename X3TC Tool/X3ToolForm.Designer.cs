@@ -44,7 +44,7 @@
             this.renderObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.storyBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingObjectsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.eventObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScriptingObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingTextObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -219,7 +219,7 @@
             // scriptingObjectsToolStripMenuItem1
             // 
             this.scriptingObjectsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eventObjectToolStripMenuItem,
+            this.ScriptingObjectToolStripMenuItem,
             this.scriptObjectToolStripMenuItem,
             this.scriptingHashTableToolStripMenuItem,
             this.scriptingTextObjectToolStripMenuItem,
@@ -229,12 +229,12 @@
             this.scriptingObjectsToolStripMenuItem1.Size = new System.Drawing.Size(164, 22);
             this.scriptingObjectsToolStripMenuItem1.Text = "Scripting Objects";
             // 
-            // eventObjectToolStripMenuItem
+            // ScriptingObjectToolStripMenuItem
             // 
-            this.eventObjectToolStripMenuItem.Name = "eventObjectToolStripMenuItem";
-            this.eventObjectToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.eventObjectToolStripMenuItem.Text = "ScriptingObject";
-            this.eventObjectToolStripMenuItem.Click += new System.EventHandler(this.eventObjectToolStripMenuItem_Click);
+            this.ScriptingObjectToolStripMenuItem.Name = "ScriptingObjectToolStripMenuItem";
+            this.ScriptingObjectToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.ScriptingObjectToolStripMenuItem.Text = "ScriptingObject";
+            this.ScriptingObjectToolStripMenuItem.Click += new System.EventHandler(this.ScriptingObjectToolStripMenuItem_Click);
             // 
             // scriptObjectToolStripMenuItem
             // 
@@ -455,7 +455,7 @@
         private System.Windows.Forms.ToolStripMenuItem x86DisassemblerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem storyBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptingObjectsToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem eventObjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ScriptingObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scriptObjectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sectorObjectsToolStripMenuItem;

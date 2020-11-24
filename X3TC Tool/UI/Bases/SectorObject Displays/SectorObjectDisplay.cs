@@ -52,10 +52,10 @@ namespace X3_Tool.UI.Displays
                     switch (GameHook.GameVersion)
                     {
                         case GameHook.GameVersions.X3AP:
-                            gateScriptMemoryObject = baseSectorObject.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
+                            gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
                             break;
                         case GameHook.GameVersions.X3TC:
-                            gateScriptMemoryObject = baseSectorObject.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
+                            gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
                             break;
                         default: throw new Exception();
                     }
@@ -139,10 +139,10 @@ namespace X3_Tool.UI.Displays
                 switch (GameHook.GameVersion)
                 {
                     case GameHook.GameVersions.X3TC:
-                        sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                        sectorScriptVariables = sector.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
                         break;
                     case GameHook.GameVersions.X3AP:
-                        sectorScriptVariables = sector.EventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
+                        sectorScriptVariables = sector.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
                         break;
                     default:
                         goto ObjectInfo;
@@ -172,7 +172,7 @@ namespace X3_Tool.UI.Displays
             v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
             v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
             v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
-            eventObjectPannel1.EventObject = m_SectorObject.EventObject;
+            ScriptingObjectPannel1.ScriptingObject = m_SectorObject.ScriptingObject;
             txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.ObjectType.MainTypeEnum.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.ObjectType.MainTypeEnum, m_SectorObject.ObjectType.SubType);
 
             SpeedBox.Value = m_SectorObject.Speed;
@@ -341,10 +341,10 @@ namespace X3_Tool.UI.Displays
             }
         }
 
-        private void btnLoadEventObject_Click(object sender, EventArgs e)
+        private void btnLoadScriptingObject_Click(object sender, EventArgs e)
         {
             ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject(m_SectorObject.EventObjectID);
+            display.LoadObject(m_SectorObject.ScriptingObjectID);
             display.Show();
         }
     }

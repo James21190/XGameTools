@@ -4,20 +4,20 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 {
     public interface IScriptMemoryObject_RaceData : IMemoryObject
     {
-        int ASectorEventObjectID { get; }
-        ScriptingObject ASectorEventObject { get; }
+        int ASectorScriptingObjectID { get; }
+        ScriptingObject ASectorScriptingObject { get; }
 
-        int pOwnedSectorEventObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedSectorEventObjectIDHashTableObject { get; }
+        int pOwnedSectorScriptingObjectIDHashTableObject { get; }
+        ScriptingHashTableObject OwnedSectorScriptingObjectIDHashTableObject { get; }
 
-        int pOwnedShipEventObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedShipEventObjectIDHashTableObject { get; }
+        int pOwnedShipScriptingObjectIDHashTableObject { get; }
+        ScriptingHashTableObject OwnedShipScriptingObjectIDHashTableObject { get; }
 
-        int pOwnedShipyardEventObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedShipyardEventObjectIDHashTableObject { get; }
+        int pOwnedShipyardScriptingObjectIDHashTableObject { get; }
+        ScriptingHashTableObject OwnedShipyardScriptingObjectIDHashTableObject { get; }
 
-        int pOwnedStationEventObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedStationEventObjectIDHashTableObject { get; }
+        int pOwnedStationScriptingObjectIDHashTableObject { get; }
+        ScriptingHashTableObject OwnedStationScriptingObjectIDHashTableObject { get; }
 
         ScriptingObject[] Ships { get; }
         ScriptingObject[] Stations { get; }

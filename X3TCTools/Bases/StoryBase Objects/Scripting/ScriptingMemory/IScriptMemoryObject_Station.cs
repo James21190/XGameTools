@@ -8,19 +8,19 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         int SubType { get; }
 
         /// <summary>
-        /// The EventObject ID for the current sector's EventObject.
+        /// The ScriptingObject ID for the current sector's ScriptingObject.
         /// </summary>
-        int CurrentSectorEventObjectID { get; }
+        int CurrentSectorScriptingObjectID { get; }
         /// <summary>
-        /// The current sector's EventObject.
+        /// The current sector's ScriptingObject.
         /// </summary>
-        ScriptingObject CurrentSectorEventObject { get; }
+        ScriptingObject CurrentSectorScriptingObject { get; }
 
         int pCargoHashTable { get; }
         ScriptingHashTableObject CargoHashTable { get; }
 
-        int OwnerDataEventObjectID { get; }
-        ScriptingObject OwnerDataEventObject { get; }
+        int OwnerDataScriptingObjectID { get; }
+        ScriptingObject OwnerDataScriptingObject { get; }
 
         CargoEntry[] CargoEntries { get; }
     }

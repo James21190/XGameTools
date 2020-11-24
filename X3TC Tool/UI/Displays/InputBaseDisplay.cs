@@ -19,13 +19,13 @@ namespace X3_Tool.UI.Displays
         {
             X3Tools.Bases.InputBase InputBase = GameHook.inputBase;
 
-            EventObjectIDBox.Text = InputBase.EventObjectID.ToString();
+            ScriptingObjectIDBox.Text = InputBase.ScriptingObjectID.ToString();
         }
 
-        private void EventObjectIDLoadButton_Click(object sender, EventArgs e)
+        private void ScriptingObjectIDLoadButton_Click(object sender, EventArgs e)
         {
             ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject(GameHook.inputBase.EventObjectID);
+            display.LoadObject(GameHook.inputBase.ScriptingObjectID);
             display.Show();
         }
     }

@@ -26,7 +26,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private struct ShipData : IComparable
         {
-            public ScriptingObject eventObject;
+            public ScriptingObject ScriptingObject;
             public IScriptMemoryObject_Ship ship;
             public IScriptMemoryObject_Sector sector;
 
@@ -81,7 +81,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private struct StationData : IComparable
         {
-            public ScriptingObject eventObject;
+            public ScriptingObject ScriptingObject;
             public IScriptMemoryObject_Station factory;
             public IScriptMemoryObject_Sector sector;
 
@@ -149,12 +149,12 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         }
 
         private IScriptMemoryObject_RaceData m_Data;
-        public void LoadObject(ScriptingObject eventObject)
+        public void LoadObject(ScriptingObject ScriptingObject)
         {
             switch (GameHook.GameVersion)
             {
-                case GameHook.GameVersions.X3AP: m_Data = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData>(); break;
+                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData>(); break;
+                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData>(); break;
             }
             Reload();
         }
@@ -174,22 +174,22 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             #region Ships
 
             List<ShipData> ships = new List<ShipData>();
-            foreach (DynamicValue shipID in m_Data.OwnedShipEventObjectIDHashTableObject.hashTable.ScanContents())
+            foreach (DynamicValue shipID in m_Data.OwnedShipScriptingObjectIDHashTableObject.hashTable.ScanContents())
             {
                 try
                 {
-                    ScriptingObject eventObject = GameHook.storyBase.GetEventObject(shipID.Value);
+                    ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(shipID.Value);
                     IScriptMemoryObject_Ship shipData;
                     IScriptMemoryObject_Sector sectorData;
                     switch (GameHook.GameVersion)
                     {
                         case GameHook.GameVersions.X3TC:
-                            shipData = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>();
-                            sectorData = shipData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                            shipData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>();
+                            sectorData = shipData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
                             break;
                         case GameHook.GameVersions.X3AP:
-                            shipData = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
-                            sectorData = shipData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
+                            shipData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
+                            sectorData = shipData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
                             break;
                         default: throw new Exception();
                     }
@@ -198,7 +198,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                     {
                         ships.Add(new ShipData()
                         {
-                            eventObject = eventObject,
+                            ScriptingObject = ScriptingObject,
                             ship = shipData,
                             sector = sectorData
                         });
@@ -217,7 +217,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             {
                 lstOwnedShips.Items.Add(new ListItem()
                 {
-                    obj = ship.eventObject,
+                    obj = ship.ScriptingObject,
                     txt = string.Format("{0} ({1})", SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Ship, ship.ship.SubType), GameHook.gateSystemObject.GetSectorName(ship.sector.SectorX, ship.sector.SectorY))
                 });
             }
@@ -227,22 +227,22 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             #region Stations
 
             List<StationData> factories = new List<StationData>();
-            foreach (DynamicValue factoryID in m_Data.OwnedStationEventObjectIDHashTableObject.hashTable.ScanContents())
+            foreach (DynamicValue factoryID in m_Data.OwnedStationScriptingObjectIDHashTableObject.hashTable.ScanContents())
             {
                 try
                 {
-                    ScriptingObject eventObject = GameHook.storyBase.GetEventObject(factoryID.Value);
+                    ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(factoryID.Value);
                     IScriptMemoryObject_Station factoryData;
                     IScriptMemoryObject_Sector sectorData;
                     switch (GameHook.GameVersion)
                     {
                         case GameHook.GameVersions.X3TC:
-                            factoryData = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Station>();
-                            sectorData = factoryData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
+                            factoryData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Station>();
+                            sectorData = factoryData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
                             break;
                         case GameHook.GameVersions.X3AP:
-                            factoryData = eventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Station>();
-                            sectorData = factoryData.CurrentSectorEventObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
+                            factoryData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Station>();
+                            sectorData = factoryData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
                             break;
                         default: throw new Exception();
                     }
@@ -251,7 +251,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                     {
                         factories.Add(new StationData()
                         {
-                            eventObject = eventObject,
+                            ScriptingObject = ScriptingObject,
                             factory = factoryData,
                             sector = sectorData
                         });
@@ -270,7 +270,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             {
                 lstOwnedStations.Items.Add(new ListItem()
                 {
-                    obj = factory.eventObject,
+                    obj = factory.ScriptingObject,
                     txt = string.Format("{0} ({1})", SectorObject.GetSubTypeAsString((SectorObject.Main_Type)factory.factory.MainType, factory.factory.SubType), GameHook.gateSystemObject.GetSectorName(factory.sector.SectorX, factory.sector.SectorY))
                 });
             }
