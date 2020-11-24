@@ -12,9 +12,9 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public ScriptingObject OwningRaceDataScriptingObject => throw new NotImplementedException();
 
-        public int pShipScriptingObjectHashTableObject => throw new NotImplementedException();
+        public int pShipScriptingObjectHashTableObject => GetVariableValue((int)TC_Sector_Variables.ShipScriptingObjectIDHashTable);
 
-        public ScriptingHashTableObject ShipScriptingObjectHashTableObject => throw new NotImplementedException();
+        public ScriptingHashTableObject ShipScriptingObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr) pShipScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; }}
 
         public int pGateScriptingObjectHashTableObject => throw new NotImplementedException();
 
@@ -27,6 +27,8 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
         public int OwnerDataScriptingObjectID => throw new NotImplementedException();
 
         public ScriptingObject OwnerDataScriptingObject => throw new NotImplementedException();
+
+        public int MusicId => throw new NotImplementedException();
 
         public ScriptMemoryObject_TC_Sector() : base(55)
         {

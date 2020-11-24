@@ -36,10 +36,44 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public ScriptingObject OwnerDataScriptingObject => throw new NotImplementedException();
 
+        public int pCustomNameArrayObject => GetVariableValue((int)TC_Ship_Variables.CustomShipName);
+
+        public ScriptingArrayObject CustomNameArrayObject { get { ScriptingArrayObject array = new ScriptingArrayObject(); array.SetLocation(GameHook.hProcess, (IntPtr)pCustomNameArrayObject); array.ReloadFromMemory(); return array; } }
+
+        public string CustomName
+        {
+            get
+            {
+                var array = CustomNameArrayObject;
+                for (int i = 0; i < array.count; i++)
+                {
+                    if (array.pArray[i].Flag == DynamicValue.FlagType.pTextObject)
+                    {
+                        var textobj = new ScriptingTextObject();
+                        textobj.SetLocation(GameHook.hProcess, (IntPtr)array.pArray[i].Value);
+                        textobj.ReloadFromMemory();
+                        return textobj.pText.obj.value;
+                    }
+                }
+                return null;
+            }
+        }
+
         public override string GetVariableName(int index)
         {
             return ((TC_Ship_Variables)index).ToString();
         }
+
+        public override string ToString()
+        {
+            var name = CustomName;
+            if (name == null)
+            {
+                return SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Ship, SubType);
+            }
+            return string.Format("{0} ({1})", SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Ship, SubType), name);
+        }
+
         public ScriptMemoryObject_TC_Ship() : base(95)
         {
 

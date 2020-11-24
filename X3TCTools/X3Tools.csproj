@@ -88,7 +88,7 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\DynamicValue.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingArrayObject.cs" />
     <Compile Include="Bases\StoryBase Objects\EventFunctionStruct.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\EventObject.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObject.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObjectSub.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\TaskObject.cs" />
     <Compile Include="Bases\StoryBase Objects\StoryBase.cs" />

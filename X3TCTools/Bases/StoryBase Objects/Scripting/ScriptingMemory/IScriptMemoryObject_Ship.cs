@@ -33,5 +33,11 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 
         int OwnerDataScriptingObjectID { get; }
         ScriptingObject OwnerDataScriptingObject { get; }
+
+        int pCustomNameArrayObject { get; }
+
+        ScriptingArrayObject CustomNameArrayObject { get; }
+
+        string CustomName { get; }
     }
 }

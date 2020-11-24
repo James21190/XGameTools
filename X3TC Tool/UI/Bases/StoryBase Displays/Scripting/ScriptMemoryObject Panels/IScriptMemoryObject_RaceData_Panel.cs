@@ -171,6 +171,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             lstOwnedShips.Items.Clear();
             lstOwnedStations.Items.Clear();
 
+            var gso = GameHook.gateSystemObject;
             #region Ships
 
             List<ShipData> ships = new List<ShipData>();
@@ -218,7 +219,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 lstOwnedShips.Items.Add(new ListItem()
                 {
                     obj = ship.ScriptingObject,
-                    txt = string.Format("{0} ({1})", SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Ship, ship.ship.SubType), GameHook.gateSystemObject.GetSectorName(ship.sector.SectorX, ship.sector.SectorY))
+                    txt = string.Format("{0} ({1})", SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Ship, ship.ship.SubType), gso.GetSectorName(ship.sector.SectorX, ship.sector.SectorY))
                 });
             }
 
@@ -271,7 +272,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 lstOwnedStations.Items.Add(new ListItem()
                 {
                     obj = factory.ScriptingObject,
-                    txt = string.Format("{0} ({1})", SectorObject.GetSubTypeAsString((SectorObject.Main_Type)factory.factory.MainType, factory.factory.SubType), GameHook.gateSystemObject.GetSectorName(factory.sector.SectorX, factory.sector.SectorY))
+                    txt = string.Format("{0} ({1})", SectorObject.GetSubTypeAsString((SectorObject.Main_Type)factory.factory.MainType, factory.factory.SubType), gso.GetSectorName(factory.sector.SectorX, factory.sector.SectorY))
                 });
             }
 

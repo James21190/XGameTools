@@ -24,6 +24,8 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         public int OwnerDataScriptingObjectID => GetVariableValue((int)AP_Sector_Variables.OwningRaceDataScriptingObjectID);
         public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
+        public int MusicId => throw new NotImplementedException();
+
         public ScriptMemoryObject_AP_Sector() : base(56)
         {
 
