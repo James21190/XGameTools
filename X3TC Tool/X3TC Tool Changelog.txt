@@ -1,5 +1,7 @@
 ﻿Alpha 6:
 	- Added dll injector.
+	- Improved IScriptMemoryObject_RaceData_Panel reload time.
+	- Removed references to X3R as the engine is too different to the other 2 games.
 	- Renamed namespaces to remove TC.
 	- Moved scripting disassembly to it's own form.
 

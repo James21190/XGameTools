@@ -4,8 +4,9 @@ using System.Windows.Forms;
 using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.R;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
 using X3Tools.Generics;
 using X3Tools.Sector_Objects;
 
@@ -51,13 +52,16 @@ namespace X3_Tool.UI.Displays
                     IScriptMemoryObject_Gate gateScriptMemoryObject;
                     switch (GameHook.GameVersion)
                     {
+                        case GameHook.GameVersions.X3R:
+                            gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_R_Gate>();
+                            break;
                         case GameHook.GameVersions.X3AP:
                             gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
                             break;
                         case GameHook.GameVersions.X3TC:
                             gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
                             break;
-                        default: throw new Exception();
+                        default: throw new GameVersionInvalidException();
                     }
                     sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
                     break;
@@ -159,7 +163,7 @@ namespace X3_Tool.UI.Displays
             // Reload from memory to ensure it is up to date.
             m_SectorObject.ReloadFromMemory();
             // Load tree if not auto reloading
-            if (!AutoReloadCheckBox.Checked)
+            if (!AutoReloadCheckBox.Checked && GameHook.GameVersion != GameHook.GameVersions.X3R)
             {
                 LoadTree(m_SectorObject.ObjectID);
             }

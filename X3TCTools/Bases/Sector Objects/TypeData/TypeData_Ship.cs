@@ -48,6 +48,7 @@ namespace X3Tools.Sector_Objects
             M3_Heavy_Fighter,
             M4_Interceptor,
             M5_Scout,
+            Pirate_Ship,
 
             Ranger = 10,
             M6_Corvette,
@@ -57,6 +58,7 @@ namespace X3Tools.Sector_Objects
             M8_Bomber,
         }
 
+        #region Memory
         public int MaxSpeed;
 
         public int ShieldPowerGenerator;
@@ -82,7 +84,12 @@ namespace X3Tools.Sector_Objects
 
         public int TurretCount;
         public TurretData[] TurretDatas;
+        #endregion
 
+        public bool IsBoardable { get
+            {
+                return MaxSpeed != 0 && OriginRace != GameHook.RaceID.Khaak;
+            } }
         public TypeData_Ship()
         {
 

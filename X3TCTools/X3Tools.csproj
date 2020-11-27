@@ -68,6 +68,8 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\R\R_ScriptingMemory_Variables.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\R\ScriptMemoryObject_R_Gate.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Headquarters.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\TC_EventObject_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />

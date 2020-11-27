@@ -27,7 +27,7 @@ namespace X3_Tool
             GameHook = GameHook.DefaultHook();
             while (GameHook == null)
             {
-                DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3R, X3TC, or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
+                DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3TC or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
                 {
                     //Close();
@@ -41,6 +41,7 @@ namespace X3_Tool
             if(GameHook == null)
             {
                 GameHookMenuStrip.Enabled = false;
+                dLLInjectToolStripMenuItem.Enabled = false;
                 GameHookPanel.Enabled = false;
             }
 

@@ -164,7 +164,6 @@ namespace X3Tools
             // Hook into the game memory
             Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
             Process processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
-            Process processX3R = Process.GetProcessesByName("X3").FirstOrDefault();
 
             if (processX3TC != null)
             {
@@ -173,10 +172,6 @@ namespace X3Tools
             else if (processX3AP != null)
             {
                 return new GameHook(processX3AP, GameHook.GameVersions.X3AP);
-            }
-            else if (processX3R != null)
-            {
-                return new GameHook(processX3R, GameHook.GameVersions.X3R);
             }
 
             return null;
@@ -205,7 +200,7 @@ namespace X3Tools
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
 
-                    #region TypeData
+#region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
                     ppTypeData_1 = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_1);
                     ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Background);
@@ -239,7 +234,7 @@ namespace X3Tools
                     ppTypeData_29 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_29>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_29);
                     ppTypeData_30 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_30>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_30);
                     ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_31);
-                    #endregion
+#endregion
 
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
                     ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
@@ -273,7 +268,7 @@ namespace X3Tools
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
                     ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
 
-                    #region TypeData
+#region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Bullet);
                     ppTypeData_1 = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_1);
                     ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Background);
@@ -307,7 +302,7 @@ namespace X3Tools
                     ppTypeData_29 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_29>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_29);
                     ppTypeData_30 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_30>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_30);
                     ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_31);
-                    #endregion
+#endregion
 
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
                     //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
@@ -333,9 +328,6 @@ namespace X3Tools
                     //0xC3
                     //}, 3);
 
-                    break;
-                case GameVersions.X3R:
-                    throw new GameVersionNotSupportedException();
                     break;
                 default: throw new GameVersionInvalidException();
             }
@@ -386,7 +378,7 @@ namespace X3Tools
             ProcessEventSwitchArray = 0x004a4d18,
             ProcessEventSwitch = 0x004a4b20,
 
-            #region TypeData
+#region TypeData
             pTypeData_Bullet = 0x006030e8,
             pTypeData_1 = 0x006030ec,
             pTypeData_Background = 0x006030f0,
@@ -420,7 +412,7 @@ namespace X3Tools
             pTypeData_30 = 0x00603160,
             pTypeData_31 = 0x00603164,
             pTypeDataCountArray = 0x00603168,
-            #endregion
+#endregion
 
             BytesAllocated = 0x00604728,
         }
@@ -437,7 +429,7 @@ namespace X3Tools
             ProcessEventSwitchArray = 0x004a5aa8,
             ProcessEventSwitch = 0x004a58b0,
 
-            #region TypeData
+#region TypeData
             pTypeData_Bullet = 0x00609188,
             pTypeData_1 = 0x0060918c,
             pTypeData_Background = 0x00609190,
@@ -471,7 +463,7 @@ namespace X3Tools
             pTypeData_30 = 0x00609200,
             pTypeData_31 = 0x00609204,
             pTypeDataCountArray = 0x00609208,
-            #endregion
+#endregion
 
             BytesAllocated = 0x0060a7c8,
             BlocksAllocated = 0x0060abd0,
@@ -527,7 +519,6 @@ namespace X3Tools
         public enum GameVersions
         {
             None,
-            X3R,
             X3TC,
             X3AP
         }
