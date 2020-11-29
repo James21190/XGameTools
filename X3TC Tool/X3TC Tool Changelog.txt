@@ -1,8 +1,9 @@
 ﻿Alpha 6:
 	- Added dll injector.
+	- Added limited functionality for X3R nosteam.
 	- Improved IScriptMemoryObject_RaceData_Panel reload time.
-	- Removed references to X3R as the engine is too different to the other 2 games.
-	- Renamed namespaces to remove TC.
+	- Changed ISectorObjectMeta methods.
+	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
 	- Moved scripting disassembly to it's own form.
 
 Alpha 5 (22/11/2020):

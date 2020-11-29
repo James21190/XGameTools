@@ -1,9 +1,13 @@
 ﻿using Common.Memory;
 using System;
+using System.Collections.Generic;
 using X3Tools.Generics;
 
 namespace X3Tools.Sector_Objects.Meta
 {
+    /// <summary>
+    /// A base class for a meta object that has child SectorObjects.
+    /// </summary>
     public abstract class SectorObjectMetaWithChildren : MemoryObject, ISectorObjectMeta
     {
         public LinkedListStart<SectorObject>[] Children = new LinkedListStart<SectorObject>[SectorObject.MAIN_TYPE_COUNT];
@@ -47,6 +51,33 @@ namespace X3Tools.Sector_Objects.Meta
 
             return list.pLast.obj;
         }
+        public SectorObject[] GetChildren()
+        {
+            List<SectorObject> children = new List<SectorObject>();
+            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            {
+                children.AddRange(GetChildren((SectorObject.Main_Type)i));
+            }
+            return children.ToArray();
+        }
+
+        public SectorObject[] GetChildren(SectorObject.Main_Type main_Type)
+        {
+            LinkedListStart<SectorObject> list = Children[(int)main_Type];
+            if (!list.pFirst.IsValid || !list.pFirst.obj.IsValid)
+            {
+                return null;
+            }
+            List<SectorObject> children = new List<SectorObject>();
+            var so = list.pFirst.obj;
+            while (so.IsValid)
+            {
+                children.Add(so);
+                so = so.pNext.obj;
+            }
+
+            return children.ToArray();
+        }
 
         #region IMemoryObject
         public override byte[] GetBytes()
@@ -76,6 +107,7 @@ namespace X3Tools.Sector_Objects.Meta
         }
 
         protected abstract void SetUniqueData(ObjectByteList obl);
+
         #endregion
     }
 }

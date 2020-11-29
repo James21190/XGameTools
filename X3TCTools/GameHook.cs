@@ -164,6 +164,7 @@ namespace X3Tools
             // Hook into the game memory
             Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
             Process processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
+            Process processX3R = Process.GetProcessesByName("X3 nosteam").FirstOrDefault();
 
             if (processX3TC != null)
             {
@@ -172,6 +173,10 @@ namespace X3Tools
             else if (processX3AP != null)
             {
                 return new GameHook(processX3AP, GameHook.GameVersions.X3AP);
+            }
+            else if (processX3R != null)
+            {
+                return new GameHook(processX3R, GameHook.GameVersions.X3R);
             }
 
             return null;
@@ -193,6 +198,61 @@ namespace X3Tools
 
             switch (GameVersion)
             {
+                #region X3R
+                case GameVersions.X3R:
+                    // Create references to MemoryObjects
+                    ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3R.pSectorObjectManager);
+                    ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3R.pStoryBase);
+                    //ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
+                    //ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GateSystemObject>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
+
+                    #region TypeData
+                    //ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Bullet);
+                    //ppTypeData_1 = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_1);
+                    //ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Background);
+
+                    //ppTypeData_Sun = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Sun);
+                    //ppTypeData_Planet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Planet);
+                    //ppTypeData_Dock = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Dock);
+                    //ppTypeData_Factory = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Factory);
+                    //ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Ship);
+                    //ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Laser);
+                    //ppTypeData_Shield = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Shield>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Shield);
+                    //ppTypeData_10 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Missile>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_10);
+                    //ppTypeData_11 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_11>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_11);
+                    //ppTypeData_12 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_12>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_12);
+                    //ppTypeData_13 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_13>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_13);
+                    //ppTypeData_14 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_14>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_14);
+                    //ppTypeData_15 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_15>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_15);
+                    //ppTypeData_16 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_16>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_16);
+                    //ppTypeData_17 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_17>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_17);
+                    //ppTypeData_18 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_18>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_18);
+                    //ppTypeData_19 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_19>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_19);
+                    //ppTypeData_20 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_20>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_20);
+                    //ppTypeData_21 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_21>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_21);
+                    //ppTypeData_22 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_22>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_22);
+                    //ppTypeData_23 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_23>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_23);
+                    //ppTypeData_24 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_24>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_24);
+                    //ppTypeData_25 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_25>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_25);
+                    //ppTypeData_26 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_26>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_26);
+                    //ppTypeData_27 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_27>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_27);
+                    //ppTypeData_28 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_28>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_28);
+                    //ppTypeData_29 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_29>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_29);
+                    //ppTypeData_30 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_30>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_30);
+                    //ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_31);
+                    #endregion
+
+                    //ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pInputBase);
+                    //ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pCameraBase);
+                    //pTypeDataCountArray = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeDataCountArray);
+                    //pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3AP.ProcessEventSwitchArray);
+                    //pProcessEventSwitch = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.ProcessEventSwitch);
+
+                    //pBytesAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.BytesAllocated);
+                    //pBlocksAllocated = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3AP.BlocksAllocated);
+                    break;
+                #endregion
+                #region X3TC
                 case GameVersions.X3TC:
                     // Create references to MemoryObjects
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorObjectManager);
@@ -260,7 +320,8 @@ namespace X3Tools
                     0xC3
                     }, 3);
                     break;
-
+                #endregion
+                #region X3AP
                 case GameVersions.X3AP:
                     // Create references to MemoryObjects
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
@@ -329,6 +390,7 @@ namespace X3Tools
                     //}, 3);
 
                     break;
+                #endregion
                 default: throw new GameVersionInvalidException();
             }
 
@@ -366,6 +428,60 @@ namespace X3Tools
             German,
         }
 
+        #region Global Addresses
+        // Nosteam version
+        public enum GlobalAddressesX3R
+        {
+            //pSystemBase = 0x00603064,
+            //pGateSystemObject = 0x00604634,
+            // pSectorObjectManager is 0x0061cf8c in nosteam, 0x0061cfcc in steam.
+            pSectorObjectManager = 0x0061cf8c,
+            //pCockpitBase = 0x00604638,
+            // pStoryBase is 0x0061d058 in nosteam
+            pStoryBase = 0x0061d058,
+            //pInputBase = 0x0057FDA0,
+            //pCameraBase = 0x0060464c,
+            //ProcessEventSwitchArray = 0x004a4d18,
+            //ProcessEventSwitch = 0x004a4b20,
+
+            #region TypeData
+            //pTypeData_Bullet = 0x006030e8,
+            //pTypeData_1 = 0x006030ec,
+            //pTypeData_Background = 0x006030f0,
+            //pTypeData_Sun = 0x006030f4,
+            //pTypeData_Planet = 0x006030f8,
+            //pTypeData_Dock = 0x006030FC,
+            //pTypeData_Factory = 0x00603100,
+            //pTypeData_Ship = 0x00603104,
+            //pTypeData_Laser = 0x00603108,
+            //pTypeData_Shield = 0x0060310c,
+            //pTypeData_10 = 0x00603110,
+            //pTypeData_11 = 0x00603114,
+            //pTypeData_12 = 0x00603118,
+            //pTypeData_13 = 0x0060311c,
+            //pTypeData_14 = 0x00603120,
+            //pTypeData_15 = 0x00603124,
+            //pTypeData_16 = 0x00603128,
+            //pTypeData_17 = 0x0060312c,
+            //pTypeData_18 = 0x00603130,
+            //pTypeData_19 = 0x00603134,
+            //pTypeData_20 = 0x00603138,
+            //pTypeData_21 = 0x0060313c,
+            //pTypeData_22 = 0x00603140,
+            //pTypeData_23 = 0x00603144,
+            //pTypeData_24 = 0x00603148,
+            //pTypeData_25 = 0x0060314c,
+            //pTypeData_26 = 0x00603150,
+            //pTypeData_27 = 0x00603154,
+            //pTypeData_28 = 0x00603158,
+            //pTypeData_29 = 0x0060315c,
+            //pTypeData_30 = 0x00603160,
+            //pTypeData_31 = 0x00603164,
+            //pTypeDataCountArray = 0x00603168,
+            #endregion
+
+            //BytesAllocated = 0x00604728,
+        }
         public enum GlobalAddressesX3TC
         {
             pSystemBase = 0x00603064,
@@ -468,6 +584,7 @@ namespace X3Tools
             BytesAllocated = 0x0060a7c8,
             BlocksAllocated = 0x0060abd0,
         }
+        #endregion
         public enum RaceID : ushort
         {
             NA,
@@ -519,6 +636,7 @@ namespace X3Tools
         public enum GameVersions
         {
             None,
+            X3R,
             X3TC,
             X3AP
         }

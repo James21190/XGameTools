@@ -52,20 +52,23 @@ namespace X3_Tool.UI.Displays
                     IScriptMemoryObject_Gate gateScriptMemoryObject;
                     switch (GameHook.GameVersion)
                     {
-                        case GameHook.GameVersions.X3R:
-                            gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_R_Gate>();
-                            break;
                         case GameHook.GameVersions.X3AP:
                             gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
                             break;
                         case GameHook.GameVersions.X3TC:
                             gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
                             break;
+                        case GameHook.GameVersions.X3R:
+                            goto skip;
+                            break;
                         default: throw new GameVersionInvalidException();
                     }
                     sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
                     break;
-                default: sectorObjectName = baseSectorObject.GetSubTypeAsString(); break;
+                default:
+                    skip:
+                    sectorObjectName = baseSectorObject.GetSubTypeAsString(); 
+                    break;
             }
 
             TreeNode newNode = new TreeNode(sectorObjectName)
@@ -163,13 +166,16 @@ namespace X3_Tool.UI.Displays
             // Reload from memory to ensure it is up to date.
             m_SectorObject.ReloadFromMemory();
             // Load tree if not auto reloading
-            if (!AutoReloadCheckBox.Checked && GameHook.GameVersion != GameHook.GameVersions.X3R)
+            if (!AutoReloadCheckBox.Checked)
             {
                 LoadTree(m_SectorObject.ObjectID);
             }
 
             txtAddress.Text = m_SectorObject.pThis.ToString("X");
-            txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+            if(GameHook.GameVersion == GameHook.GameVersions.X3R)
+                txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.Language.English, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+            else
+                txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
             nudSectorObjectID.Value = m_SectorObject.ObjectID;
             v3dPosition.Vector = m_SectorObject.Position_Copy;
             v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;

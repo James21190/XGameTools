@@ -2,6 +2,7 @@
 using Common.Vector;
 using System;
 using System.Collections.Generic;
+using X3TCTools.Bases.Sector_Objects.Meta.R;
 using X3Tools.Bases.StoryBase_Objects.Scripting;
 using X3Tools.Sector_Objects.Meta;
 
@@ -108,13 +109,30 @@ namespace X3Tools.Sector_Objects
         public ISectorObjectMeta GetMeta()
         {
             ISectorObjectMeta meta;
-            switch (ObjectType.MainTypeEnum)
+            switch (GameHook.GameVersion)
             {
-                case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
-                case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
-                case Main_Type.Gate: meta = new SectorObject_Gate_Meta(); break;
-                case Main_Type.Dock:
-                case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
+                case GameHook.GameVersions.X3TC:
+                case GameHook.GameVersions.X3AP:
+                    switch (ObjectType.MainTypeEnum)
+                    {
+                        case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
+                        case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
+                        case Main_Type.Gate: meta = new SectorObject_Gate_Meta(); break;
+                        case Main_Type.Dock:
+                        case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
+                        default: return null;
+                    }
+                    break;
+                case GameHook.GameVersions.X3R:
+                    switch (ObjectType.MainTypeEnum)
+                    {
+                        case Main_Type.Ship: meta = new SectorObject_Ship_R_Meta(); break;
+                        case Main_Type.Sector: meta = new SectorObject_Sector_R_Meta(); break;
+                        //case Main_Type.Dock:
+                        //case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
+                        default: return null;
+                    }
+                    break;
                 default: return null;
             }
             meta.SetLocation(m_hProcess, pMeta);
@@ -130,29 +148,16 @@ namespace X3Tools.Sector_Objects
         /// <returns></returns>
         public SectorObject[] GetAllChildrenWithType(Main_Type main_Type)
         {
-            return GetAllChildrenWithType((int)main_Type);
+            var meta = GetMeta();
+            if (meta != null)
+                return meta.GetChildren(main_Type);
+            else
+                return Array.Empty<SectorObject>();
         }
 
         public SectorObject[] GetAllChildrenWithType(int main_Type)
         {
-            List<SectorObject> sectorObjects = new List<SectorObject>();
-            ISectorObjectMeta meta = GetMeta();
-            if (meta == null)
-            {
-                return sectorObjects.ToArray();
-            }
-
-            SectorObject so = meta.GetFirstChild((SectorObject.Main_Type)main_Type);
-            if (so != null)
-            {
-                while (so.IsValid)
-                {
-                    sectorObjects.Add(so);
-                    so = so.pNext.obj;
-                }
-            }
-
-            return sectorObjects.ToArray();
+            return GetAllChildrenWithType((Main_Type)main_Type);
         }
 
         public SectorObject[] GetAllChildren(bool TraverseDown)

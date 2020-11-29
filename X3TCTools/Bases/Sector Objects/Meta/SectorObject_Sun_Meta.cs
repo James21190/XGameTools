@@ -35,5 +35,15 @@ namespace X3Tools.Sector_Objects.Meta
         {
             throw new NotImplementedException();
         }
+
+        public SectorObject[] GetChildren()
+        {
+            throw new NotImplementedException();
+        }
+
+        public SectorObject[] GetChildren(SectorObject.Main_Type main_Type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

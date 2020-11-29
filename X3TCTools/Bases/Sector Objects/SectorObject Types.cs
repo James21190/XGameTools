@@ -190,6 +190,7 @@ namespace X3Tools.Sector_Objects
 
             switch (GameHook.GameVersion)
             {
+                case GameHook.GameVersions.X3R: path = "./Data/R/X3RSectorObjectTypes.csv"; break;
                 case GameHook.GameVersions.X3TC: path = "./Data/TC/X3TCSectorObjectTypes.csv"; break;
                 case GameHook.GameVersions.X3AP: path = "./Data/AP/X3APSectorObjectTypes.csv"; break;
                 default: throw new Exception();

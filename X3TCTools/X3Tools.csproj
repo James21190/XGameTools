@@ -49,6 +49,10 @@
     <Compile Include="Bases\CameraBase Objects\Camera.cs" />
     <Compile Include="Bases\GateSystemObject.cs" />
     <Compile Include="Bases\InputBase.cs" />
+    <Compile Include="Bases\Sector Objects\Meta\R\SectorObjectMetaWithChildrenR.cs" />
+    <Compile Include="Bases\Sector Objects\Meta\R\SectorObject_Station_R_Meta.cs" />
+    <Compile Include="Bases\Sector Objects\Meta\R\SectorObject_Ship_R_Meta.cs" />
+    <Compile Include="Bases\Sector Objects\Meta\R\SectorObject_Sector_R_Meta.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KDisassembler.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KFunctionDefinition.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KInstruction.cs" />
@@ -165,6 +169,12 @@
     <Compile Include="Generics\X3FixedPointValue.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\R\X3RSectorNames.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\R\X3RSectorObjectTypes.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\TC\Mods\System\CreateObject.x3tccode">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
