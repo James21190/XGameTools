@@ -45,6 +45,7 @@
             this.storyBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingObjectsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ScriptingObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingObjectSubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scriptingTextObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +56,7 @@
             this.cameraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.bodyDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.x86DisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dLLInjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadPlayerShipButton = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,12 +66,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.GameHookPanel = new System.Windows.Forms.Panel();
-            this.dLLInjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button3 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.GameHookPanel.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // ViewStoryBaseButton
@@ -220,6 +226,7 @@
             // 
             this.scriptingObjectsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ScriptingObjectToolStripMenuItem,
+            this.scriptingObjectSubToolStripMenuItem,
             this.scriptObjectToolStripMenuItem,
             this.scriptingHashTableToolStripMenuItem,
             this.scriptingTextObjectToolStripMenuItem,
@@ -235,6 +242,13 @@
             this.ScriptingObjectToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.ScriptingObjectToolStripMenuItem.Text = "ScriptingObject";
             this.ScriptingObjectToolStripMenuItem.Click += new System.EventHandler(this.ScriptingObjectToolStripMenuItem_Click);
+            // 
+            // scriptingObjectSubToolStripMenuItem
+            // 
+            this.scriptingObjectSubToolStripMenuItem.Name = "scriptingObjectSubToolStripMenuItem";
+            this.scriptingObjectSubToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.scriptingObjectSubToolStripMenuItem.Text = "ScriptingObjectSub";
+            this.scriptingObjectSubToolStripMenuItem.Click += new System.EventHandler(this.scriptingObjectSubToolStripMenuItem_Click);
             // 
             // scriptObjectToolStripMenuItem
             // 
@@ -308,11 +322,20 @@
             this.x86DisassemblerToolStripMenuItem.Text = "x86 Disassembler";
             this.x86DisassemblerToolStripMenuItem.Click += new System.EventHandler(this.x86DisassemblerToolStripMenuItem_Click);
             // 
+            // dLLInjectToolStripMenuItem
+            // 
+            this.dLLInjectToolStripMenuItem.Name = "dLLInjectToolStripMenuItem";
+            this.dLLInjectToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.dLLInjectToolStripMenuItem.Text = "DLL Inject";
+            this.dLLInjectToolStripMenuItem.Click += new System.EventHandler(this.dLLInjectToolStripMenuItem_Click);
+            // 
             // LoadPlayerShipButton
             // 
-            this.LoadPlayerShipButton.Location = new System.Drawing.Point(209, 3);
+            this.LoadPlayerShipButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadPlayerShipButton.Location = new System.Drawing.Point(6, 19);
             this.LoadPlayerShipButton.Name = "LoadPlayerShipButton";
-            this.LoadPlayerShipButton.Size = new System.Drawing.Size(132, 23);
+            this.LoadPlayerShipButton.Size = new System.Drawing.Size(188, 23);
             this.LoadPlayerShipButton.TabIndex = 2;
             this.LoadPlayerShipButton.Text = "Load Player Ship";
             this.LoadPlayerShipButton.UseVisualStyleBackColor = true;
@@ -367,9 +390,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(209, 32);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(6, 48);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(132, 23);
+            this.button4.Size = new System.Drawing.Size(188, 23);
             this.button4.TabIndex = 7;
             this.button4.Text = "Load Sector";
             this.button4.UseVisualStyleBackColor = true;
@@ -377,11 +402,13 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(347, 3);
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(6, 19);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(164, 23);
+            this.button5.Size = new System.Drawing.Size(188, 23);
             this.button5.TabIndex = 8;
-            this.button5.Text = "Load Player Ship Event Object";
+            this.button5.Text = "Load Player Ship";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -390,22 +417,48 @@
             this.GameHookPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.GameHookPanel.Controls.Add(this.groupBox4);
+            this.GameHookPanel.Controls.Add(this.groupBox3);
             this.GameHookPanel.Controls.Add(this.groupBox1);
-            this.GameHookPanel.Controls.Add(this.button5);
-            this.GameHookPanel.Controls.Add(this.LoadPlayerShipButton);
             this.GameHookPanel.Controls.Add(this.groupBox2);
-            this.GameHookPanel.Controls.Add(this.button4);
             this.GameHookPanel.Location = new System.Drawing.Point(12, 27);
             this.GameHookPanel.Name = "GameHookPanel";
             this.GameHookPanel.Size = new System.Drawing.Size(860, 522);
             this.GameHookPanel.TabIndex = 9;
             // 
-            // dLLInjectToolStripMenuItem
+            // button3
             // 
-            this.dLLInjectToolStripMenuItem.Name = "dLLInjectToolStripMenuItem";
-            this.dLLInjectToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.dLLInjectToolStripMenuItem.Text = "DLL Inject";
-            this.dLLInjectToolStripMenuItem.Click += new System.EventHandler(this.dLLInjectToolStripMenuItem_Click);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(6, 48);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(188, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Load Player";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Location = new System.Drawing.Point(209, 90);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 81);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Scripting Objects";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.LoadPlayerShipButton);
+            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Location = new System.Drawing.Point(209, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(200, 81);
+            this.groupBox4.TabIndex = 11;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Sector Objects";
             // 
             // X3ToolForm
             // 
@@ -427,6 +480,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.GameHookPanel.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,6 +525,10 @@
         private System.Windows.Forms.ToolStripMenuItem bodyDataToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem scriptingDisassemblerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dLLInjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem scriptingObjectSubToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button3;
     }
 }
 

@@ -52,13 +52,13 @@
             // 
             this.DecimalValueBox.Location = new System.Drawing.Point(6, 71);
             this.DecimalValueBox.Maximum = new decimal(new int[] {
-            99999999,
-            0,
+            1215752191,
+            23,
             0,
             0});
             this.DecimalValueBox.Minimum = new decimal(new int[] {
-            99999999,
-            0,
+            1215752191,
+            23,
             0,
             -2147483648});
             this.DecimalValueBox.Name = "DecimalValueBox";
@@ -92,6 +92,7 @@
             this.MinimumSize = new System.Drawing.Size(179, 108);
             this.Name = "DynamicValueDisplay";
             this.Size = new System.Drawing.Size(179, 108);
+            this.Load += new System.EventHandler(this.DynamicValueDisplay_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DecimalValueBox)).EndInit();

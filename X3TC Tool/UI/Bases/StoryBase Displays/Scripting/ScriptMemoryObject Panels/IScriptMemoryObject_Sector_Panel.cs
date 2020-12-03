@@ -22,11 +22,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         private IScriptMemoryObject_Sector m_Data;
         public void LoadObject(ScriptingObject ScriptingObject)
         {
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>(); break;
-            }
+            m_Data = ScriptingObject.GetMemoryInterfaceSector();
             Reload();
         }
 
@@ -57,18 +53,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             foreach(var id in m_Data.ShipScriptingObjectHashTableObject.hashTable.ScanContents())
             {
                 so = storyBase.GetScriptingObject(id.Value);
-                IScriptMemoryObject_Ship ship;
-                switch (GameHook.GameVersion)
-                {
-                    case GameHook.GameVersions.X3TC:
-                        ship = so.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>();
-                        break;
-                    case GameHook.GameVersions.X3AP:
-                        ship = so.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
-                        break;
-                    default:
-                        throw new GameVersionNotImplementedException();
-                }
+                IScriptMemoryObject_Ship ship = so.GetMemoryInterfaceShip();
                 lstShips.Items.Add(new stringObj(){ text = ship.ToString(), obj = so });
             }
 

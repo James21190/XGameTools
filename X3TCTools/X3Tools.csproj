@@ -59,7 +59,7 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\FunctionDefinitions.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\AP_EventObject_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData_Player.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\EventObject_Types.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\ScriptingObject_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData_Player.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Station.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Gate.cs" />
@@ -90,6 +90,7 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\ScriptingMemoryObject.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Sector.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ship.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObjectSubFunction.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingTextObject.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\DynamicValue.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingArrayObject.cs" />

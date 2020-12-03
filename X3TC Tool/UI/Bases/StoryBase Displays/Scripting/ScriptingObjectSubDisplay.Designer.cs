@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.AddressBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.IDBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SelfBox = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.NextIDTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.NextIDTextBox = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Unknown1Box = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -55,7 +53,11 @@
             this.Unknown2Box = new System.Windows.Forms.TextBox();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.ScriptVariableCountBox = new System.Windows.Forms.TextBox();
-            this.groupBox2.SuspendLayout();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -68,25 +70,9 @@
             this.groupBox11.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.AddressBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(121, 52);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Address";
-            // 
-            // AddressBox
-            // 
-            this.AddressBox.Location = new System.Drawing.Point(6, 19);
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.ReadOnly = true;
-            this.AddressBox.Size = new System.Drawing.Size(109, 20);
-            this.AddressBox.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -135,14 +121,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Next";
             // 
-            // NextIDTextBox
-            // 
-            this.NextIDTextBox.Location = new System.Drawing.Point(6, 19);
-            this.NextIDTextBox.Name = "NextIDTextBox";
-            this.NextIDTextBox.ReadOnly = true;
-            this.NextIDTextBox.Size = new System.Drawing.Size(109, 20);
-            this.NextIDTextBox.TabIndex = 0;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(121, 17);
@@ -152,6 +130,14 @@
             this.button1.Text = "Load";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // NextIDTextBox
+            // 
+            this.NextIDTextBox.Location = new System.Drawing.Point(6, 19);
+            this.NextIDTextBox.Name = "NextIDTextBox";
+            this.NextIDTextBox.ReadOnly = true;
+            this.NextIDTextBox.Size = new System.Drawing.Size(109, 20);
+            this.NextIDTextBox.TabIndex = 0;
             // 
             // groupBox5
             // 
@@ -315,11 +301,57 @@
             this.ScriptVariableCountBox.Size = new System.Drawing.Size(109, 20);
             this.ScriptVariableCountBox.TabIndex = 0;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(18, 294);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 12;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(24, 339);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 13;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(207, 52);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Address";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(121, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Load";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(6, 19);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(109, 20);
+            this.textBox2.TabIndex = 0;
+            // 
             // ScriptingObjectSubDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 277);
+            this.ClientSize = new System.Drawing.Size(557, 498);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.groupBox13);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -332,11 +364,8 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
             this.Name = "ScriptingObjectSubDisplay";
             this.Text = "ScriptingObjectSubDisplay";
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -361,14 +390,15 @@
             this.groupBox12.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox AddressBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox IDBox;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -394,5 +424,10 @@
         private System.Windows.Forms.TextBox Unknown2Box;
         private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.TextBox ScriptVariableCountBox;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

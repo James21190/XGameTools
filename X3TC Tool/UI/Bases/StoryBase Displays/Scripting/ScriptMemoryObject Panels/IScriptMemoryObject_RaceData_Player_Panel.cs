@@ -57,11 +57,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         private IScriptMemoryObject_RaceData_Player m_Data;
         public void LoadObject(ScriptingObject ScriptingObject)
         {
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData_Player>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData_Player>(); break;
-            }
+            m_Data = ScriptingObject.GetMemoryInterfaceRaceData_Player();
             RaceDataPanel.LoadObject(m_Data);
             Reload();
         }
@@ -70,24 +66,17 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         {
             RaceDataPanel.Reload();
 
+            nudCredits.Value = m_Data.Credits;
+            nudFightRank.Value = m_Data.FightRank;
+            nudTradeRank.Value = m_Data.TradeRank;
+
             List<RaceData> races = new List<RaceData>();
             foreach (DynamicValue raceID in m_Data.RaceDataScriptingObjectIDHashTable.hashTable.ScanContents())
             {
                 try
                 {
                     ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(raceID.Value);
-                    IScriptMemoryObject_RaceData raceData;
-                    switch (GameHook.GameVersion)
-                    {
-                        case GameHook.GameVersions.X3TC:
-                            raceData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData>();
-                            break;
-                        case GameHook.GameVersions.X3AP:
-                            raceData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData>();
-                            break;
-                        default: throw new Exception();
-                    }
-
+                    IScriptMemoryObject_RaceData raceData = ScriptingObject.GetMemoryInterfaceRaceData();
                     races.Add(new RaceData()
                     {
                         ScriptingObject = ScriptingObject,

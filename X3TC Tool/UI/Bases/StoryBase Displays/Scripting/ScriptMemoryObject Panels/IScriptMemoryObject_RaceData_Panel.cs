@@ -151,11 +151,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         private IScriptMemoryObject_RaceData m_Data;
         public void LoadObject(ScriptingObject ScriptingObject)
         {
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_RaceData>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_RaceData>(); break;
-            }
+            m_Data = ScriptingObject.GetMemoryInterfaceRaceData();
             Reload();
         }
 
@@ -180,21 +176,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 try
                 {
                     ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(shipID.Value);
-                    IScriptMemoryObject_Ship shipData;
-                    IScriptMemoryObject_Sector sectorData;
-                    switch (GameHook.GameVersion)
-                    {
-                        case GameHook.GameVersions.X3TC:
-                            shipData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>();
-                            sectorData = shipData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
-                            break;
-                        case GameHook.GameVersions.X3AP:
-                            shipData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>();
-                            sectorData = shipData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
-                            break;
-                        default: throw new Exception();
-                    }
-
+                    IScriptMemoryObject_Ship shipData = ScriptingObject.GetMemoryInterfaceShip();
+                    IScriptMemoryObject_Sector sectorData = shipData.CurrentSectorScriptingObject.GetMemoryInterfaceSector();
                     if (shipData.IsValid && sectorData.IsValid)
                     {
                         ships.Add(new ShipData()
@@ -233,30 +216,14 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 try
                 {
                     ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(factoryID.Value);
-                    IScriptMemoryObject_Station factoryData;
-                    IScriptMemoryObject_Sector sectorData;
-                    switch (GameHook.GameVersion)
+                    IScriptMemoryObject_Station factoryData = ScriptingObject.GetMemoryInterfaceStation();
+                    IScriptMemoryObject_Sector sectorData = factoryData.CurrentSectorScriptingObject.GetMemoryInterfaceSector();
+                    factories.Add(new StationData()
                     {
-                        case GameHook.GameVersions.X3TC:
-                            factoryData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Station>();
-                            sectorData = factoryData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
-                            break;
-                        case GameHook.GameVersions.X3AP:
-                            factoryData = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Station>();
-                            sectorData = factoryData.CurrentSectorScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
-                            break;
-                        default: throw new Exception();
-                    }
-
-                    if (/*factoryData.IsValid &&*/ sectorData.IsValid)
-                    {
-                        factories.Add(new StationData()
-                        {
-                            ScriptingObject = ScriptingObject,
-                            factory = factoryData,
-                            sector = sectorData
-                        });
-                    }
+                        ScriptingObject = ScriptingObject,
+                        factory = factoryData,
+                        sector = sectorData
+                    });
                 }
                 catch (Exception)
                 {

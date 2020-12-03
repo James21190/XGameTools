@@ -77,6 +77,14 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
             }
         }
 
+        public int Credits => throw new NotImplementedException();
+
+        public int SecondsElapsed => throw new NotImplementedException();
+
+        public int TradeRank => throw new NotImplementedException();
+
+        public int FightRank => throw new NotImplementedException();
+
         public override string GetVariableName(int index)
         {
             return ((AP_RaceData_Player_Variables)index).ToString();

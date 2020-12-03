@@ -24,11 +24,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         public void LoadObject(ScriptingObject ScriptingObject)
         {
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Ship>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Ship>(); break;
-            }
+            m_Data = ScriptingObject.GetMemoryInterfaceShip();
             Reload();
         }
 

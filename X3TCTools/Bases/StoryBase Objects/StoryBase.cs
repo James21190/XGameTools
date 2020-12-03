@@ -11,9 +11,12 @@ namespace X3Tools.Bases.StoryBase_Objects
     public class StoryBase : MemoryObject
     {
         #region Memory
+
         public MemoryObjectPointer<HashTable<ScriptingTaskObject>> pScriptObjectHashTable;
 
         public MemoryObjectPointer<MemoryByte> pInstructionArray;
+
+        public MemoryObjectPointer<MemoryString> pStrings = new MemoryObjectPointer<MemoryString>();
 
         public int FunctionArrayCount;
         public EventFunctionStruct[] FunctionArray = new EventFunctionStruct[32];
@@ -43,6 +46,14 @@ namespace X3Tools.Bases.StoryBase_Objects
             pScriptObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingTaskObject>>();
             pInstructionArray = new MemoryObjectPointer<MemoryByte>();
             pScriptingObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingObject>>();
+        }
+
+        public MemoryString GetStringFromStoryBaseCharArray(int offset)
+        {
+            var memorystring = new MemoryString();
+            memorystring.SetLocation(GameHook.hProcess, pStrings.address + offset);
+            memorystring.ReloadFromMemory();
+            return memorystring;
         }
 
         #region Text Pages
@@ -180,8 +191,10 @@ namespace X3Tools.Bases.StoryBase_Objects
         public override void SetData(byte[] Memory)
         {
             ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
+
             pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTaskObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
+            pStrings = collection.PopIMemoryObject < MemoryObjectPointer<MemoryString>>(0x20);
 
             FunctionArrayCount = collection.PopInt(0x2c);
             FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);
@@ -200,6 +213,9 @@ namespace X3Tools.Bases.StoryBase_Objects
         {
             pScriptObjectHashTable.SetLocation(hProcess, address + 0);
             pInstructionArray.SetLocation(hProcess, address + 0x8);
+
+            pStrings.SetLocation(hProcess, address + 0x20);
+
             pScriptingObjectHashTable.SetLocation(hProcess, address + 0x12d0);
             pCurrentScriptObject.SetLocation(hProcess, address + 0x1434);
 

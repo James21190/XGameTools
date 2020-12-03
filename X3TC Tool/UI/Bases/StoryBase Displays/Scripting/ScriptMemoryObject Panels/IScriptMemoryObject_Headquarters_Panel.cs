@@ -26,11 +26,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_
         public void LoadObject(ScriptingObject ScriptingObject)
         {
             m_ScriptingObject = ScriptingObject;
-            switch (GameHook.GameVersion)
-            {
-                //case GameHook.GameVersions.X3AP: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Headquarters>(); break;
-                case GameHook.GameVersions.X3TC: m_Data = ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Headquarters>(); break;
-            }
+            m_Data = m_ScriptingObject.GetMemoryInterfaceHeadquarters();
             Reload();
         }
 

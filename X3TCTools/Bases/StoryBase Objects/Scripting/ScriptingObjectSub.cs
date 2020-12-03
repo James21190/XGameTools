@@ -1,5 +1,6 @@
 ﻿using Common.Memory;
 using System;
+using X3TCTools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
@@ -16,7 +17,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         public int Unknown_4;
         public int Unknown_5;
         public int Unknown_6;
-        public int Unknown_7;
+        public MemoryObjectPointer<ScriptingObjectSubFunction> pFunctions = new MemoryObjectPointer<ScriptingObjectSubFunction>();
         public int Unknown_8;
 
         public override byte[] GetBytes()
@@ -40,7 +41,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             collection.PopFirst(ref Unknown_4);
             collection.PopFirst(ref Unknown_5);
             collection.PopFirst(ref Unknown_6);
-            collection.PopFirst(ref Unknown_7);
+            collection.PopFirst(ref pFunctions);
             collection.PopFirst(ref Unknown_8);
         }
 
@@ -48,6 +49,8 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         {
             base.SetLocation(hProcess, address);
             pNext.SetLocation(hProcess, address + 0x14);
+
+            pFunctions.SetLocation(hProcess, address + 0x2c);
         }
     }
 }

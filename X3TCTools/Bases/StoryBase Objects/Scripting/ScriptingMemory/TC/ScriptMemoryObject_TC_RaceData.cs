@@ -6,27 +6,21 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
     {
         public const int VariableCount = 9;
 
+        #region Memory
         public int ASectorScriptingObjectID => GetVariableValue((int)TC_RaceData_Variables.ASectorScriptingObjectID);
-        public ScriptingObject ASectorScriptingObject => GameHook.storyBase.GetScriptingObject(ASectorScriptingObjectID);
-
         public int pOwnedShipScriptingObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedShipScriptingObjectIDHashTable);
-        public ScriptingHashTableObject OwnedShipScriptingObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipScriptingObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
-
-
         public GameHook.RaceID RaceID => (GameHook.RaceID)GetVariableValue((int)TC_RaceData_Variables.RaceID);
-
+        public int pOwnedShipyardScriptingObjectIDHashTableObject => throw new NotImplementedException();
+        public int pOwnedSectorScriptingObjectIDHashTableObject => throw new NotImplementedException();
         public int pOwnedStationScriptingObjectIDHashTableObject => GetVariableValue((int)TC_RaceData_Variables.OwnedStationScriptingObjectIDHashTable);
 
+        #endregion
+        #region Scripting Objects
         public ScriptingHashTableObject OwnedStationScriptingObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedStationScriptingObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
-
-        public int pOwnedSectorScriptingObjectIDHashTableObject => throw new NotImplementedException();
-
         public ScriptingHashTableObject OwnedSectorScriptingObjectIDHashTableObject => throw new NotImplementedException();
-
-        public int pOwnedShipyardScriptingObjectIDHashTableObject => throw new NotImplementedException();
-
         public ScriptingHashTableObject OwnedShipyardScriptingObjectIDHashTableObject => throw new NotImplementedException();
-
+        public ScriptingHashTableObject OwnedShipScriptingObjectIDHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pOwnedShipScriptingObjectIDHashTableObject); table.ReloadFromMemory(); return table; } }
+        public ScriptingObject ASectorScriptingObject => GameHook.storyBase.GetScriptingObject(ASectorScriptingObjectID);
         public ScriptingObject[] Ships
         {
             get
@@ -40,7 +34,6 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
                 return ships;
             }
         }
-
         public ScriptingObject[] Stations
         {
             get
@@ -54,6 +47,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
                 return stations;
             }
         }
+        #endregion
 
         public override string GetVariableName(int index)
         {

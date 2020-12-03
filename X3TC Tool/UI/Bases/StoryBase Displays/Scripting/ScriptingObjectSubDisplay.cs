@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using X3Tools;
 using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3_Tool.UI.Displays
@@ -13,6 +13,13 @@ namespace X3_Tool.UI.Displays
         }
 
         private ScriptingObjectSub m_ScriptingObjectSub;
+        public void LoadObject(IntPtr address)
+        {
+            var sos = new ScriptingObjectSub();
+            sos.SetLocation(GameHook.hProcess, address);
+            sos.ReloadFromMemory();
+            LoadObject(sos);
+        }
         public void LoadObject(ScriptingObjectSub ScriptingObjectSub)
         {
             m_ScriptingObjectSub = ScriptingObjectSub;
@@ -21,7 +28,7 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            AddressBox.Text = m_ScriptingObjectSub.pThis.ToString("X");
+            textBox2.Text = m_ScriptingObjectSub.pThis.ToString("X");
 
             IDBox.Text = m_ScriptingObjectSub.Class.ToString();
             SelfBox.Text = m_ScriptingObjectSub.pSelf.ToString("X");
@@ -34,15 +41,25 @@ namespace X3_Tool.UI.Displays
             Unknown4Box.Text = m_ScriptingObjectSub.Unknown_4.ToString();
             Unknown5Box.Text = m_ScriptingObjectSub.Unknown_5.ToString("X");
             Unknown6Box.Text = m_ScriptingObjectSub.Unknown_6.ToString();
-            Unknown7Box.Text = m_ScriptingObjectSub.Unknown_7.ToString("X");
             Unknown8Box.Text = m_ScriptingObjectSub.Unknown_8.ToString();
 
+            textBox1.Text = m_ScriptingObjectSub.pFunctions[(int)numericUpDown1.Value].str;
             button1.Enabled = m_ScriptingObjectSub.pNext.IsValid;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             LoadObject(m_ScriptingObjectSub.pNext.obj);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            Reload();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadObject((IntPtr)int.Parse(textBox2.Text, System.Globalization.NumberStyles.HexNumber));
         }
     }
 }

@@ -49,20 +49,8 @@ namespace X3_Tool.UI.Displays
             switch (baseSectorObject.ObjectType.MainTypeEnum)
             {
                 case SectorObject.Main_Type.Gate:
-                    IScriptMemoryObject_Gate gateScriptMemoryObject;
-                    switch (GameHook.GameVersion)
-                    {
-                        case GameHook.GameVersions.X3AP:
-                            gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Gate>();
-                            break;
-                        case GameHook.GameVersions.X3TC:
-                            gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Gate>();
-                            break;
-                        case GameHook.GameVersions.X3R:
-                            goto skip;
-                            break;
-                        default: throw new GameVersionInvalidException();
-                    }
+                    IScriptMemoryObject_Gate gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetMemoryInterfaceGate();
+                    if (gateScriptMemoryObject == null) goto skip;
                     sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
                     break;
                 default:
@@ -142,18 +130,8 @@ namespace X3_Tool.UI.Displays
             SectorObject sector = GameHook.sectorObjectManager.GetSpace();
             try
             {
-                IScriptMemoryObject_Sector sectorScriptVariables;
-                switch (GameHook.GameVersion)
-                {
-                    case GameHook.GameVersions.X3TC:
-                        sectorScriptVariables = sector.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_TC_Sector>();
-                        break;
-                    case GameHook.GameVersions.X3AP:
-                        sectorScriptVariables = sector.ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject_AP_Sector>();
-                        break;
-                    default:
-                        goto ObjectInfo;
-                }
+                IScriptMemoryObject_Sector sectorScriptVariables = sector.ScriptingObject.GetMemoryInterfaceSector();
+                if (sectorScriptVariables == null) goto ObjectInfo;
                 string sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
                 labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
             }

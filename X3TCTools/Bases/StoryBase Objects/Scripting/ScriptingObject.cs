@@ -10,10 +10,12 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
     /// </summary>
     public partial class ScriptingObject : MemoryObject
     {
+        #region Memory
         public int NegativeID;
         public int ReferenceCount;
         public MemoryObjectPointer<ScriptingObjectSub> pSub = new MemoryObjectPointer<ScriptingObjectSub>();
         public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
+        #endregion
 
         public ScriptingObject_Type ObjectType
         {
@@ -30,7 +32,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             obj.Resize(pSub.obj.ScriptVariableCount);
             return obj;
         }
-
+        #region IMemoryObject
         public override byte[] GetBytes()
         {
             ObjectByteList collection = new ObjectByteList();
@@ -57,6 +59,6 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             pScriptVariableArr.SetLocation(hProcess, address + 0x8);
             pSub.SetLocation(hProcess, address + 0xc);
         }
-
+        #endregion
     }
 }

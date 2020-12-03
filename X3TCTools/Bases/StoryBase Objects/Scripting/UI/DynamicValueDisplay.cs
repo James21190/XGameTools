@@ -79,5 +79,11 @@ namespace X3Tools
             m_DynamicValue.Value = (int)DecimalValueBox.Value;
             Reload();
         }
+
+        private void DynamicValueDisplay_Load(object sender, EventArgs e)
+        {
+            DecimalValueBox.Maximum = int.MaxValue;
+            DecimalValueBox.Minimum = int.MinValue;
+        }
     }
 }

@@ -196,8 +196,13 @@
         CurrentSectorX,
         CurrentSectorY,
 
+        SecondsElapsed = 7,
+
         RaceDataWithSectorScriptingObjectIDHashTable = 13,
         RaceDataScriptingObjectIDHashTable,
+
+        TradeRank = 16,
+        FightRank,
 
         OwnedShipScriptingObjectIDHashTable = 18,
 

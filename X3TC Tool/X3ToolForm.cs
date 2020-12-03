@@ -9,6 +9,9 @@ using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3_Tool.UI.Displays;
 using X3Tools;
 using X3Tools.Bases.CameraBase_Objects;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
 namespace X3_Tool
 {
@@ -270,6 +273,20 @@ namespace X3_Tool
             dialogue.Filter = "DLL|*.dll";
             if (dialogue.ShowDialog() == DialogResult.OK)
                 GameHook.InjectDll(dialogue.FileName);
+        }
+
+        private void scriptingObjectSubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptingObjectSubDisplay().Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            var obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptingObject;
+            IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
+            display.LoadObject(ship.OwnerDataScriptingObjectID);
+            display.Show();
         }
     }
 }
