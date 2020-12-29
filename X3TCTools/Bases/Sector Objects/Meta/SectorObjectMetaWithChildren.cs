@@ -66,7 +66,7 @@ namespace X3Tools.Sector_Objects.Meta
             LinkedListStart<SectorObject> list = Children[(int)main_Type];
             if (!list.pFirst.IsValid || !list.pFirst.obj.IsValid)
             {
-                return null;
+                return new SectorObject[0];
             }
             List<SectorObject> children = new List<SectorObject>();
             var so = list.pFirst.obj;

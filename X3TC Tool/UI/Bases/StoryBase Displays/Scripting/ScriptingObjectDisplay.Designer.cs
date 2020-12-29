@@ -37,11 +37,11 @@
             // 
             // ScriptingObjectPannel1
             // 
-            this.ScriptingObjectPannel1.ScriptingObject = null;
             this.ScriptingObjectPannel1.Location = new System.Drawing.Point(12, 12);
             this.ScriptingObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
             this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
             this.ScriptingObjectPannel1.ReadOnly = false;
+            this.ScriptingObjectPannel1.ScriptingObject = null;
             this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 227);
             this.ScriptingObjectPannel1.TabIndex = 10;
             this.ScriptingObjectPannel1.ScriptingObjectLoaded += new System.EventHandler(this.ScriptingObjectPannel1_ScriptingObjectLoaded);

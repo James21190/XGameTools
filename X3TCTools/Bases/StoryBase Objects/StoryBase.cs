@@ -147,6 +147,11 @@ namespace X3Tools.Bases.StoryBase_Objects
             return pScriptingObjectHashTable.obj.GetObject(value);
         }
 
+        public IScriptMemoryObject_RaceData_Player GetRaceData_Player()
+        {
+            return GameHook.sectorObjectManager.GetPlayerObject().ScriptingObject.GetMemoryInterfaceShip().OwnerDataScriptingObject.GetMemoryInterfaceRaceData_Player();
+        }
+
         public ScriptMemoryObject GetScriptingObjectScriptingVariables(int ID)
         {
             ScriptMemoryObject obj = new ScriptMemoryObject();

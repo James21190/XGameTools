@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.RaceDataPanel = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.IScriptMemoryObject_RaceData_Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lstRaces = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -37,6 +36,7 @@
             this.nudTradeRank = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.nudFightRank = new System.Windows.Forms.NumericUpDown();
+            this.RaceDataPanel = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.IScriptMemoryObject_RaceData_Panel();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCredits)).BeginInit();
@@ -45,13 +45,6 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFightRank)).BeginInit();
             this.SuspendLayout();
-            // 
-            // RaceDataPanel
-            // 
-            this.RaceDataPanel.Location = new System.Drawing.Point(3, 3);
-            this.RaceDataPanel.Name = "RaceDataPanel";
-            this.RaceDataPanel.Size = new System.Drawing.Size(499, 320);
-            this.RaceDataPanel.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -112,6 +105,11 @@
             this.nudTradeRank.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nudTradeRank.Location = new System.Drawing.Point(6, 19);
+            this.nudTradeRank.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
             this.nudTradeRank.Name = "nudTradeRank";
             this.nudTradeRank.ReadOnly = true;
             this.nudTradeRank.Size = new System.Drawing.Size(105, 20);
@@ -132,10 +130,22 @@
             this.nudFightRank.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nudFightRank.Location = new System.Drawing.Point(6, 19);
+            this.nudFightRank.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.nudFightRank.Name = "nudFightRank";
             this.nudFightRank.ReadOnly = true;
             this.nudFightRank.Size = new System.Drawing.Size(105, 20);
             this.nudFightRank.TabIndex = 0;
+            // 
+            // RaceDataPanel
+            // 
+            this.RaceDataPanel.Location = new System.Drawing.Point(3, 3);
+            this.RaceDataPanel.Name = "RaceDataPanel";
+            this.RaceDataPanel.Size = new System.Drawing.Size(499, 320);
+            this.RaceDataPanel.TabIndex = 0;
             // 
             // IScriptMemoryObject_RaceData_Player_Panel
             // 
@@ -148,6 +158,7 @@
             this.Controls.Add(this.RaceDataPanel);
             this.Name = "IScriptMemoryObject_RaceData_Player_Panel";
             this.Size = new System.Drawing.Size(759, 326);
+            this.Load += new System.EventHandler(this.IScriptMemoryObject_RaceData_Player_Panel_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudCredits)).EndInit();

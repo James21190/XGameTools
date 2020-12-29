@@ -34,7 +34,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int OwnerDataScriptingObjectID => GetVariableValue((int)TC_Ship_Variables.OwningRaceDataScriptingObjectID);
 
-        public ScriptingObject OwnerDataScriptingObject => throw new NotImplementedException();
+        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public int pCustomNameArrayObject => GetVariableValue((int)TC_Ship_Variables.CustomShipName);
 

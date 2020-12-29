@@ -23,6 +23,11 @@ namespace X3Tools.Bases
         {
             MemoryControl.Write(m_hProcess, pThis + 204, SETAValue.GetBytes());
         }
+
+        public void SaveLanguage()
+        {
+            MemoryControl.Write(m_hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
+        }
         #endregion
 
         #region IMemoryObject

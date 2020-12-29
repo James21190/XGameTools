@@ -50,6 +50,19 @@ namespace X3_Tool
 
             // Post hook
             timer1.Enabled = true;
+
+            for(int i = 0; i < 100; i++)
+            {
+                var currentLanguage = GameHook.systemBase.Language;
+                if (((GameHook.Language)i).ToString() != i.ToString())
+                {
+                    var index = cbLanguage.Items.Add(((GameHook.Language)i));
+                    if(((GameHook.Language)i) == currentLanguage)
+                    {
+                        cbLanguage.SelectedIndex = index;
+                    }
+                }
+            }
         }
 
         private void X3TCToolForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -163,18 +176,17 @@ namespace X3_Tool
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //// Performance
-            //const int max = 100;
-            //var blocks = GameHook.pBlocksAllocated.obj.Value;
-            //var bytes = GameHook.pBytesAllocated.obj.Value;
-            //lblBlocksAllocated.Text = "Blocks Allocated: " + String.Format("{0:n0}", blocks);
-            //lblBytesAllocated.Text = "Bytes Allocated: " + String.Format("{0:n0}", bytes);
-
-            //chartPerformance.Series["Blocks Allocated"].Points.Add(blocks);
-            //chartPerformance.Series["Bytes Allocated"].Points.Add(bytes);
-
-            //if (chartPerformance.Series["Blocks Allocated"].Points.Count > max) { chartPerformance.Series["Blocks Allocated"].Points.RemoveAt(0); }
-            //if(chartPerformance.Series["Bytes Allocated"].Points.Count > max) { chartPerformance.Series["Bytes Allocated"].Points.RemoveAt(0); }
+            // TimeSinceLastInput
+            if (cbDisableAFK.Checked)
+            {
+                var playerScriptObject = GameHook.storyBase.GetRaceData_Player();
+                switch (GameHook.GameVersion)
+                {
+                    case GameHook.GameVersions.X3TC:
+                        ((ScriptMemoryObject)playerScriptObject).SetVariableValueInMemory((int)TC_RaceData_Player_Variables.TimeOfLastInput, playerScriptObject.SecondsElapsed) ;
+                        break;
+                }
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -287,6 +299,13 @@ namespace X3_Tool
             IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
             display.LoadObject(ship.OwnerDataScriptingObjectID);
             display.Show();
+        }
+
+        private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var sb = GameHook.systemBase;
+            sb.Language = (GameHook.Language)cbLanguage.SelectedItem;
+            sb.SaveLanguage();
         }
     }
 }

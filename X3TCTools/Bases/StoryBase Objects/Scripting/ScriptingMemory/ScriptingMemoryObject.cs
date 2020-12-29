@@ -62,6 +62,18 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         {
             Variables[index].Value = value;
         }
+
+        public void SetVariableInMemory(int index, DynamicValue value)
+        {
+            SetVariable(index, value);;
+            MemoryControl.Write(GameHook.hProcess, pThis + (DynamicValue.ByteSizeConst * index), value.GetBytes());
+        }
+
+        public void SetVariableValueInMemory(int index, int value)
+        {
+            SetVariableValue(index, value);
+            MemoryControl.Write(GameHook.hProcess, pThis + (DynamicValue.ByteSizeConst * index) + 1, value);
+        }
         #endregion
 
         #region IMemoryObject

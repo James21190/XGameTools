@@ -52,6 +52,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         public IScriptMemoryObject_RaceData_Player_Panel()
         {
             InitializeComponent();
+            nudCredits.Maximum = int.MaxValue;
+            nudCredits.Minimum = int.MinValue;
         }
 
         private IScriptMemoryObject_RaceData_Player m_Data;
@@ -108,6 +110,10 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             ScriptingObjectDisplay display = new ScriptingObjectDisplay();
             display.LoadObject(((RaceData)lstRaces.Items[lstRaces.SelectedIndex]).ScriptingObject);
             display.Show();
+        }
+
+        private void IScriptMemoryObject_RaceData_Player_Panel_Load(object sender, EventArgs e)
+        {
         }
     }
 }

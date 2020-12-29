@@ -207,5 +207,7 @@
         OwnedShipScriptingObjectIDHashTable = 18,
 
         OwnedStationScriptingObjectIDHashTable = 22,
+
+        TimeOfLastInput = 30,
     }
 }

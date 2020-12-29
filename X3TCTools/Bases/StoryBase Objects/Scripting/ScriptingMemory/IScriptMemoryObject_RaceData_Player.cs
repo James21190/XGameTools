@@ -4,6 +4,7 @@
     {
         int Credits { get; }
         int SecondsElapsed { get; }
+        int TimeOfLastInput { get; }
         int TradeRank { get; }
         int FightRank { get; }
         int pRaceDataWithSectorsScriptingObjectIDHashTable { get; }

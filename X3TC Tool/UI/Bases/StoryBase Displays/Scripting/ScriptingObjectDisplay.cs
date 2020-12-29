@@ -103,8 +103,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
             UserControl ucTypePanel = (UserControl)typePanel;
             typeBackPanel.Controls.Add(ucTypePanel);
             ucTypePanel.Location = new System.Drawing.Point(1, 1);
-            ucTypePanel.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Left | AnchorStyles.Top);
-            ucTypePanel.Size = new System.Drawing.Size(typeBackPanel.Width - 2, typeBackPanel.Height - 2);
+            ucTypePanel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
+            //ucTypePanel.Size = new System.Drawing.Size(typeBackPanel.Width - 2, typeBackPanel.Height - 2);
             #endregion
 
             if (typePanel != null)

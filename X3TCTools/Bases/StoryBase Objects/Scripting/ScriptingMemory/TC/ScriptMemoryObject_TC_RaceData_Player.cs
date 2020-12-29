@@ -73,6 +73,8 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
             }
         }
 
+        public int TimeOfLastInput => GetVariableValue((int)TC_RaceData_Player_Variables.TimeOfLastInput);
+
         #endregion
         public override string GetVariableName(int index)
         {

@@ -1,6 +1,9 @@
 ﻿Alpha 6:
 	- Added dll injector.
 	- Added limited functionality for X3R nosteam.
+	- Added anti-AFK function.
+	- Added "TimeSinceLastInput" to IScriptMemoryObject_RaceData_Player.
+	- Added a method to ScriptMemoryObject to write new values directly to game memory.
 	- Improved IScriptMemoryObject_RaceData_Panel reload time.
 	- Changed ISectorObjectMeta methods.
 	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.

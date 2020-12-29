@@ -426,6 +426,8 @@ namespace X3Tools
 
             Polish = 48,
             German,
+
+            Japanese = 81,
         }
 
         #region Global Addresses

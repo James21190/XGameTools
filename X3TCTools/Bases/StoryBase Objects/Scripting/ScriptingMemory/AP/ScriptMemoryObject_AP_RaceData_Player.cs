@@ -85,6 +85,8 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
 
         public int FightRank => throw new NotImplementedException();
 
+        public int TimeOfLastInput => throw new NotImplementedException();
+
         public override string GetVariableName(int index)
         {
             return ((AP_RaceData_Player_Variables)index).ToString();
