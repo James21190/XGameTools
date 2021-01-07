@@ -10,8 +10,8 @@ namespace X3_Tool.UI.Displays
         public GateSystemObjectDisplay()
         {
             InitializeComponent();
-            nudX.Maximum = GateSystemObject.width  - 1;
-            nudY.Maximum = GateSystemObject.height - 1;
+            nudX.Maximum = GalaxyBase.width  - 1;
+            nudY.Maximum = GalaxyBase.height - 1;
             Reload();
         }
 
@@ -46,7 +46,7 @@ namespace X3_Tool.UI.Displays
 
         private void nudX_ValueChanged(object sender, EventArgs e)
         {
-            nudIndex.Value = GateSystemObject.GetIndexOfSector((short)nudX.Value, (short)nudY.Value);
+            nudIndex.Value = GalaxyBase.GetIndexOfSector((short)nudX.Value, (short)nudY.Value);
         }
     }
 }

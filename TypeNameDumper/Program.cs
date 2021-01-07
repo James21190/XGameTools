@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using X3Tools;
-using X3Tools.Sector_Objects;
+using X3Tools.Bases.SectorBase_Objects;
 
 namespace TypeNameDumper
 {

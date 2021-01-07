@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Sector_Objects;
+using X3Tools.Bases.SectorBase_Objects;
 
 namespace X3_Tool.UI
 {

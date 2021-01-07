@@ -1,6 +1,6 @@
 ﻿using Common.Memory;
 using System;
-using X3TCTools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {

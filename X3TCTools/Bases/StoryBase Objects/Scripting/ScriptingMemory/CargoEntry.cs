@@ -1,6 +1,6 @@
 ﻿using System;
 
-using X3Tools.Sector_Objects;
+using X3Tools.Bases.SectorBase_Objects;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 {

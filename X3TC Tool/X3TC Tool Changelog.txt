@@ -7,6 +7,9 @@
 	- Improved IScriptMemoryObject_RaceData_Panel reload time.
 	- Changed ISectorObjectMeta methods.
 	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
+	- Renamed "SectorObjectManager" to "SectorBase"
+	- Renamed "GateSystemObject" to "GalaxyBase"
+	- Renamed "CameraBase" to "B3DBase"
 	- Moved scripting disassembly to it's own form.
 
 Alpha 5 (22/11/2020):

@@ -7,8 +7,8 @@
     <ProjectGuid>{5D48FEFB-8FFC-45B8-A09C-8EF0E109BE51}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>X3TCTools</RootNamespace>
-    <AssemblyName>X3TCTools</AssemblyName>
+    <RootNamespace>X3Tools</RootNamespace>
+    <AssemblyName>X3Tools</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -43,16 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bases\CameraBase Objects\BodyData.cs" />
-    <Compile Include="Bases\CameraBase Objects\BodyData_Sub.cs" />
-    <Compile Include="Bases\CameraBase Objects\CameraBase.cs" />
-    <Compile Include="Bases\CameraBase Objects\Camera.cs" />
-    <Compile Include="Bases\GateSystemObject.cs" />
+    <Compile Include="Bases\B3DBase Objects\BodyData.cs" />
+    <Compile Include="Bases\B3DBase Objects\BodyData_Sub.cs" />
+    <Compile Include="Bases\B3DBase Objects\B3DBase.cs" />
+    <Compile Include="Bases\B3DBase Objects\Camera.cs" />
+    <Compile Include="Bases\GalaxyBase.cs" />
     <Compile Include="Bases\InputBase.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\R\SectorObjectMetaWithChildrenR.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\R\SectorObject_Station_R_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\R\SectorObject_Ship_R_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\R\SectorObject_Sector_R_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\R\SectorObjectMetaWithChildrenR.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\R\SectorObject_Station_R_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\R\SectorObject_Ship_R_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\R\SectorObject_Sector_R_Meta.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KDisassembler.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KFunctionDefinition.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KInstruction.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="Bases\StoryBase Objects\StoryBase.cs" />
     <Compile Include="Bases\StoryBase Objects\StoryBase15fc.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingHashTableObject.cs" />
-    <Compile Include="Bases\SystemBase.cs" />
+    <Compile Include="Bases\SystemBase Objects\SystemBase.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\UI\DynamicValueDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +114,7 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.Designer.cs">
       <DependentUpon>ScriptingObjectPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bases\SystemBase Objects\SystemBaseStringCollection.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="GameCodeRunner.cs" />
     <Compile Include="GameHook.cs" />
@@ -122,50 +123,50 @@
     <Compile Include="Generics\HashTable.cs" />
     <Compile Include="Generics\LinkedListStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\ISectorObjectMeta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\SectorObject_Gate_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\SectorObject_Sun_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\SectorObject_Sector_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\SectorObjectMetaWithChildren.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\SectorObject_Ship_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\Meta\SectorObject_Station_Meta.cs" />
-    <Compile Include="Bases\Sector Objects\SectorObject Types.cs" />
-    <Compile Include="Bases\Sector Objects\RenderObject.cs" />
-    <Compile Include="Bases\Sector Objects\SectorObjectManager.cs" />
-    <Compile Include="Bases\Sector Objects\SectorObject.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_31.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_29.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_30.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_28.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_27.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_26.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_24.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_25.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_23.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_22.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_21.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_20.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_19.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_18.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_17.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_11.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_16.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_15.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_14.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_13.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_12.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Missile.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Planet.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Background.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Sector.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Factory.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Dock.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Sun.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Shield.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Laser.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Bullet.cs" />
-    <Compile Include="Bases\Sector Objects\TypeData\TypeData_Ship.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\ISectorObjectMeta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Gate_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Sun_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Sector_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\SectorObjectMetaWithChildren.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Ship_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Station_Meta.cs" />
+    <Compile Include="Bases\SectorBase Objects\SectorObject Types.cs" />
+    <Compile Include="Bases\SectorBase Objects\RenderObject.cs" />
+    <Compile Include="Bases\SectorBase Objects\SectorBase.cs" />
+    <Compile Include="Bases\SectorBase Objects\SectorObject.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_31.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_29.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_30.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_28.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_27.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_26.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_24.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_25.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_23.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_22.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_21.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_20.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_19.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_18.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_17.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_11.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_16.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_15.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_14.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_13.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_12.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Missile.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Planet.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Background.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Sector.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Factory.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Dock.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Sun.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Shield.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Laser.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Bullet.cs" />
+    <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Ship.cs" />
     <Compile Include="Bases\StoryBase Objects\TextPage.cs" />
     <Compile Include="Generics\X3FixedPointValue.cs" />
   </ItemGroup>

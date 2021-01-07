@@ -7,11 +7,14 @@ using X3_Tool.UI.Bases.CameraBase_Displays;
 using X3_Tool.UI.Bases.StoryBase_Displays;
 using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3_Tool.UI.Displays;
+using X3TC_Tool.UI.Bases.SystemBase_Displays;
 using X3Tools;
+using X3Tools.Bases.SectorBase_Objects;
 using X3Tools.Bases.CameraBase_Objects;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.SystemBase_Objects;
 
 namespace X3_Tool
 {
@@ -33,7 +36,7 @@ namespace X3_Tool
                 DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3R nosteam, X3TC, or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
                 {
-                    //Close();
+                    Close();
                     break;
                 }
                 GameHook = GameHook.DefaultHook();
@@ -46,6 +49,7 @@ namespace X3_Tool
                 GameHookMenuStrip.Enabled = false;
                 dLLInjectToolStripMenuItem.Enabled = false;
                 GameHookPanel.Enabled = false;
+                return;
             }
 
             // Post hook
@@ -74,27 +78,27 @@ namespace X3_Tool
         }
 
         #region Base Viewers
+
+        #region StoryBase
         private StoryBaseDisplay m_StoryBaseDisplay;
-        private void OnStoryBaseDisplayClosed(object sender, EventArgs e)
-        {
-            m_StoryBaseDisplay = null;
-        }
-        private void LoadStoryBaseDisplay(object sender, EventArgs e)
+        private void btnStoryBase_Click(object sender, EventArgs e)
         {
             if (m_StoryBaseDisplay == null)
             {
-                m_StoryBaseDisplay = new StoryBaseDisplay(GameHook);
+                m_StoryBaseDisplay = new StoryBaseDisplay();
                 m_StoryBaseDisplay.FormClosed += OnStoryBaseDisplayClosed;
                 m_StoryBaseDisplay.Show();
             }
         }
-
-        private SectorObjectManagerDisplay m_SectorObjectManagerDisplay;
-        private void OnSectorObjectManagerDisplayClosed(object sender, EventArgs e)
+        private void OnStoryBaseDisplayClosed(object sender, EventArgs e)
         {
-            m_SectorObjectManagerDisplay = null;
+            m_StoryBaseDisplay = null;
         }
-        private void LoadSectorObjectManagerDisplay(object sender, EventArgs e)
+        #endregion
+
+        #region SectorObjectManager
+        private SectorObjectManagerDisplay m_SectorObjectManagerDisplay;
+        private void btnSectorObjectManager_Click(object sender, EventArgs e)
         {
             if (m_SectorObjectManagerDisplay == null)
             {
@@ -103,13 +107,36 @@ namespace X3_Tool
                 m_SectorObjectManagerDisplay.Show();
             }
         }
+        private void OnSectorObjectManagerDisplayClosed(object sender, EventArgs e)
+        {
+            m_SectorObjectManagerDisplay = null;
+        }
+        #endregion
+
+        #region SystemBase
+        private SystemBaseDisplay m_SystemBaseDisplay = null;
+        private void btnSystemBase_Click(object sender, EventArgs e)
+        {
+            if (m_SystemBaseDisplay == null)
+            {
+                m_SystemBaseDisplay = new SystemBaseDisplay();
+                m_SystemBaseDisplay.FormClosed += OnSystemBaseDisplayClosed;
+                m_SystemBaseDisplay.Show();
+            }
+        }
+        private void OnSystemBaseDisplayClosed(object sender, EventArgs e)
+        {
+            m_SystemBaseDisplay = null;
+        }
+        #endregion
+
         #endregion
 
 
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
-            X3Tools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.Bases.SectorBase_Objects.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
@@ -164,8 +191,8 @@ namespace X3_Tool
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label1.Text = "SETA: x" + trackBar1.Value;
-            X3Tools.Bases.SystemBase systembase = GameHook.systemBase;
-            systembase.SETAValue.Value = trackBar1.Value;
+            SystemBase systembase = GameHook.systemBase;
+            systembase.TimeWarpFactor.Value = trackBar1.Value;
             systembase.SaveSETA();
         }
 
@@ -176,22 +203,23 @@ namespace X3_Tool
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            // TimeSinceLastInput
+            // Disable Anti-AFK by updating TimeOfLastInput.
             if (cbDisableAFK.Checked)
             {
                 var playerScriptObject = GameHook.storyBase.GetRaceData_Player();
-                switch (GameHook.GameVersion)
-                {
-                    case GameHook.GameVersions.X3TC:
-                        ((ScriptMemoryObject)playerScriptObject).SetVariableValueInMemory((int)TC_RaceData_Player_Variables.TimeOfLastInput, playerScriptObject.SecondsElapsed) ;
-                        break;
-                }
+                if(playerScriptObject != null)
+                    switch (GameHook.GameVersion)
+                    {
+                        case GameHook.GameVersions.X3TC:
+                            ((ScriptMemoryObject)playerScriptObject).SetVariableValueInMemory((int)TC_RaceData_Player_Variables.TimeOfLastInput, playerScriptObject.SecondsElapsed) ;
+                            break;
+                    }
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            X3Tools.Sector_Objects.SectorObjectManager sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.Bases.SectorBase_Objects.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.GetSpace());
             display.Show();
@@ -307,5 +335,6 @@ namespace X3_Tool
             sb.Language = (GameHook.Language)cbLanguage.SelectedItem;
             sb.SaveLanguage();
         }
+
     }
 }

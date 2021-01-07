@@ -19,7 +19,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         public int pGateScriptingObjectHashTableObject => GetVariableValue((int)AP_Sector_Variables.GateScriptingObjectIDHashTable);
         public ScriptingHashTableObject GateScriptingObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pGateScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; } }
 
-        public bool IsValid => SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height;
+        public bool IsValid => SectorX >= 0 && SectorX < GalaxyBase.width && SectorY >= 0 && SectorY < GalaxyBase.height;
 
         public int OwnerDataScriptingObjectID => GetVariableValue((int)AP_Sector_Variables.OwningRaceDataScriptingObjectID);
         public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);

@@ -7,7 +7,7 @@ using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 using X3Tools.Bases.StoryBase_Objects.Scripting;
-using X3Tools.Sector_Objects;
+using X3Tools.Bases.SectorBase_Objects;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {

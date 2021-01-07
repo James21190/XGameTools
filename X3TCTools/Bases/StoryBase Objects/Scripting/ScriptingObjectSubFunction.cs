@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Common.Memory;
 using X3Tools;
 
-namespace X3TCTools.Bases.StoryBase_Objects.Scripting
+namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     public class ScriptingObjectSubFunction : MemoryObject
     {

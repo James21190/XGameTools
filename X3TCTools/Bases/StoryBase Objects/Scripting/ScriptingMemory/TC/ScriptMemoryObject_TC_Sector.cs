@@ -22,7 +22,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int BackgroundID => GetVariableValue((int)TC_Sector_Variables.BackgroundID);
 
-        public bool IsValid => SectorX >= 0 && SectorX < GateSystemObject.width && SectorY >= 0 && SectorY < GateSystemObject.height;
+        public bool IsValid => SectorX >= 0 && SectorX < GalaxyBase.width && SectorY >= 0 && SectorY < GalaxyBase.height;
 
         public int OwnerDataScriptingObjectID => throw new NotImplementedException();
 

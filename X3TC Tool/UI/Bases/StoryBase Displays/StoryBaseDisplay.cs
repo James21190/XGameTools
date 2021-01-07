@@ -10,12 +10,10 @@ namespace X3_Tool.UI.Displays
 {
     public partial class StoryBaseDisplay : Form
     {
-        private GameHook GameHook;
         private StoryBase m_StoryBase;
-        public StoryBaseDisplay(GameHook gameHook)
+        public StoryBaseDisplay()
         {
             InitializeComponent();
-            GameHook = gameHook;
             Reload();
         }
 
@@ -29,7 +27,7 @@ namespace X3_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay( "StoryBase - ScriptingObjects");
+            HashTableDisplay display = new HashTableDisplay("StoryBase - ScriptingObjects");
             display.LoadTable(m_StoryBase.pScriptingObjectHashTable.address);
             display.Show();
         }

@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ViewStoryBaseButton = new System.Windows.Forms.Button();
+            this.btnStoryBase = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSystemBase = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.ViewSectorObjectManagerButton = new System.Windows.Forms.Button();
+            this.btnSectorObjectManager = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.GameHookMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,12 +67,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.GameHookPanel = new System.Windows.Forms.Panel();
+            this.cbDisableAFK = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.cbDisableAFK = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -82,31 +83,44 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ViewStoryBaseButton
+            // btnStoryBase
             // 
-            this.ViewStoryBaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnStoryBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewStoryBaseButton.Location = new System.Drawing.Point(6, 19);
-            this.ViewStoryBaseButton.Name = "ViewStoryBaseButton";
-            this.ViewStoryBaseButton.Size = new System.Drawing.Size(188, 23);
-            this.ViewStoryBaseButton.TabIndex = 0;
-            this.ViewStoryBaseButton.Text = "View StoryBase";
-            this.ViewStoryBaseButton.UseVisualStyleBackColor = true;
-            this.ViewStoryBaseButton.Click += new System.EventHandler(this.LoadStoryBaseDisplay);
+            this.btnStoryBase.Location = new System.Drawing.Point(6, 19);
+            this.btnStoryBase.Name = "btnStoryBase";
+            this.btnStoryBase.Size = new System.Drawing.Size(188, 23);
+            this.btnStoryBase.TabIndex = 0;
+            this.btnStoryBase.Text = "View StoryBase";
+            this.btnStoryBase.UseVisualStyleBackColor = true;
+            this.btnStoryBase.Click += new System.EventHandler(this.btnStoryBase_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSystemBase);
             this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.ViewSectorObjectManagerButton);
-            this.groupBox1.Controls.Add(this.ViewStoryBaseButton);
+            this.groupBox1.Controls.Add(this.btnSectorObjectManager);
+            this.groupBox1.Controls.Add(this.btnStoryBase);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 172);
+            this.groupBox1.Size = new System.Drawing.Size(200, 206);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bases";
+            // 
+            // btnSystemBase
+            // 
+            this.btnSystemBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSystemBase.Location = new System.Drawing.Point(6, 164);
+            this.btnSystemBase.Name = "btnSystemBase";
+            this.btnSystemBase.Size = new System.Drawing.Size(188, 23);
+            this.btnSystemBase.TabIndex = 5;
+            this.btnSystemBase.Text = "View SystemBase";
+            this.btnSystemBase.UseVisualStyleBackColor = true;
+            this.btnSystemBase.Click += new System.EventHandler(this.btnSystemBase_Click);
             // 
             // button6
             // 
@@ -116,7 +130,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(188, 23);
             this.button6.TabIndex = 4;
-            this.button6.Text = "View GateSystemObject";
+            this.button6.Text = "View GalaxyBase";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -144,17 +158,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ViewSectorObjectManagerButton
+            // btnSectorObjectManager
             // 
-            this.ViewSectorObjectManagerButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnSectorObjectManager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewSectorObjectManagerButton.Location = new System.Drawing.Point(6, 48);
-            this.ViewSectorObjectManagerButton.Name = "ViewSectorObjectManagerButton";
-            this.ViewSectorObjectManagerButton.Size = new System.Drawing.Size(188, 23);
-            this.ViewSectorObjectManagerButton.TabIndex = 1;
-            this.ViewSectorObjectManagerButton.Text = "View SectorObjectManager";
-            this.ViewSectorObjectManagerButton.UseVisualStyleBackColor = true;
-            this.ViewSectorObjectManagerButton.Click += new System.EventHandler(this.LoadSectorObjectManagerDisplay);
+            this.btnSectorObjectManager.Location = new System.Drawing.Point(6, 48);
+            this.btnSectorObjectManager.Name = "btnSectorObjectManager";
+            this.btnSectorObjectManager.Size = new System.Drawing.Size(188, 23);
+            this.btnSectorObjectManager.TabIndex = 1;
+            this.btnSectorObjectManager.Text = "View SectorBase";
+            this.btnSectorObjectManager.UseVisualStyleBackColor = true;
+            this.btnSectorObjectManager.Click += new System.EventHandler(this.btnSectorObjectManager_Click);
             // 
             // menuStrip1
             // 
@@ -433,6 +447,16 @@
             this.GameHookPanel.Size = new System.Drawing.Size(860, 522);
             this.GameHookPanel.TabIndex = 9;
             // 
+            // cbDisableAFK
+            // 
+            this.cbDisableAFK.AutoSize = true;
+            this.cbDisableAFK.Location = new System.Drawing.Point(517, 158);
+            this.cbDisableAFK.Name = "cbDisableAFK";
+            this.cbDisableAFK.Size = new System.Drawing.Size(84, 17);
+            this.cbDisableAFK.TabIndex = 13;
+            this.cbDisableAFK.Text = "Disable AFK";
+            this.cbDisableAFK.UseVisualStyleBackColor = true;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.cbLanguage);
@@ -487,16 +511,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // cbDisableAFK
-            // 
-            this.cbDisableAFK.AutoSize = true;
-            this.cbDisableAFK.Location = new System.Drawing.Point(517, 158);
-            this.cbDisableAFK.Name = "cbDisableAFK";
-            this.cbDisableAFK.Size = new System.Drawing.Size(84, 17);
-            this.cbDisableAFK.TabIndex = 13;
-            this.cbDisableAFK.Text = "Disable AFK";
-            this.cbDisableAFK.UseVisualStyleBackColor = true;
-            // 
             // X3ToolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,11 +542,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ViewStoryBaseButton;
+        private System.Windows.Forms.Button btnStoryBase;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem GameHookMenuStrip;
-        private System.Windows.Forms.Button ViewSectorObjectManagerButton;
+        private System.Windows.Forms.Button btnSectorObjectManager;
         private System.Windows.Forms.Button LoadPlayerShipButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem hashTableToolStripMenuItem;
@@ -571,6 +585,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox cbLanguage;
         private System.Windows.Forms.CheckBox cbDisableAFK;
+        private System.Windows.Forms.Button btnSystemBase;
     }
 }
 

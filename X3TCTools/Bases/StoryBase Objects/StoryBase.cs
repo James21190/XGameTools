@@ -149,7 +149,9 @@ namespace X3Tools.Bases.StoryBase_Objects
 
         public IScriptMemoryObject_RaceData_Player GetRaceData_Player()
         {
-            return GameHook.sectorObjectManager.GetPlayerObject().ScriptingObject.GetMemoryInterfaceShip().OwnerDataScriptingObject.GetMemoryInterfaceRaceData_Player();
+            var PlayerShip = GameHook.sectorObjectManager.GetPlayerObject();
+            if (PlayerShip == null) return null;
+            return PlayerShip.ScriptingObject.GetMemoryInterfaceShip().OwnerDataScriptingObject.GetMemoryInterfaceRaceData_Player();
         }
 
         public ScriptMemoryObject GetScriptingObjectScriptingVariables(int ID)
