@@ -22,8 +22,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_
         }
 
         private IScriptMemoryObject_Headquarters m_Data;
-        private ScriptingObject m_ScriptingObject;
-        public void LoadObject(ScriptingObject ScriptingObject)
+        private ScriptInstance m_ScriptingObject;
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_ScriptingObject = ScriptingObject;
             m_Data = m_ScriptingObject.GetMemoryInterfaceHeadquarters();

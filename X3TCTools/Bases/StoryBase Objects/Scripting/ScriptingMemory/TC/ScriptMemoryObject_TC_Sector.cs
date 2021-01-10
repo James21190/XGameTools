@@ -10,15 +10,15 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int OwningRaceDataScriptingObjectID => throw new NotImplementedException();
 
-        public ScriptingObject OwningRaceDataScriptingObject => throw new NotImplementedException();
+        public ScriptInstance OwningRaceDataScriptingObject => throw new NotImplementedException();
 
         public int pShipScriptingObjectHashTableObject => GetVariableValue((int)TC_Sector_Variables.ShipScriptingObjectIDHashTable);
 
-        public ScriptingHashTableObject ShipScriptingObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr) pShipScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; }}
+        public ScriptTableObject ShipScriptingObjectHashTableObject { get { ScriptTableObject table = new ScriptTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr) pShipScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; }}
 
         public int pGateScriptingObjectHashTableObject => throw new NotImplementedException();
 
-        public ScriptingHashTableObject GateScriptingObjectHashTableObject => throw new NotImplementedException();
+        public ScriptTableObject GateScriptingObjectHashTableObject => throw new NotImplementedException();
 
         public int BackgroundID => GetVariableValue((int)TC_Sector_Variables.BackgroundID);
 
@@ -26,7 +26,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int OwnerDataScriptingObjectID => throw new NotImplementedException();
 
-        public ScriptingObject OwnerDataScriptingObject => throw new NotImplementedException();
+        public ScriptInstance OwnerDataScriptingObject => throw new NotImplementedException();
 
         public int MusicId => throw new NotImplementedException();
 

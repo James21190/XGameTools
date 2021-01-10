@@ -14,7 +14,7 @@ using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
-    public partial class ScriptingObjectDisplay : Form
+    public partial class ScriptInstanceDisplay : Form
     {
         public enum LoadAsItems
         {
@@ -28,8 +28,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
             RaceData_Player,
             Headquarters,
         }
-        private ScriptingObject m_ScriptingObject;
-        public ScriptingObjectDisplay()
+        private ScriptInstance m_ScriptingObject;
+        public ScriptInstanceDisplay()
         {
             InitializeComponent();
         }
@@ -37,7 +37,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
         public void LoadObject(int ID)
         {
             StoryBase storyBase = GameHook.storyBase;
-            HashTable<ScriptingObject> ScriptingObjectHashTable = storyBase.pScriptingObjectHashTable.obj;
+            HashTable<ScriptInstance> ScriptingObjectHashTable = storyBase.pHashTable_ScriptInstance.obj;
             int value = ID < 0 ? -ID - 1 : ID;
             try
             {
@@ -48,7 +48,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
                 m_ScriptingObject = null;
             }
         }
-        public void LoadObject(ScriptingObject ScriptingObject)
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_ScriptingObject = ScriptingObject;
             ScriptingObjectPannel1.ScriptingObject = ScriptingObject;
@@ -72,29 +72,29 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 
             switch (m_ScriptingObject.ObjectType)
             {
-                case ScriptingObject.ScriptingObject_Type.Sector:
+                case ScriptInstance.ScriptingObject_Type.Sector:
                     typePanel = new IScriptMemoryObject_Sector_Panel(); break;
-                case ScriptingObject.ScriptingObject_Type.Ship_M1:
-                case ScriptingObject.ScriptingObject_Type.Ship_M2:
-                case ScriptingObject.ScriptingObject_Type.Ship_M3:
-                case ScriptingObject.ScriptingObject_Type.Ship_M4:
-                case ScriptingObject.ScriptingObject_Type.Ship_M5:
-                case ScriptingObject.ScriptingObject_Type.Ship_M6:
-                case ScriptingObject.ScriptingObject_Type.Ship_M7:
-                case ScriptingObject.ScriptingObject_Type.Ship_TS:
+                case ScriptInstance.ScriptingObject_Type.Ship_M1:
+                case ScriptInstance.ScriptingObject_Type.Ship_M2:
+                case ScriptInstance.ScriptingObject_Type.Ship_M3:
+                case ScriptInstance.ScriptingObject_Type.Ship_M4:
+                case ScriptInstance.ScriptingObject_Type.Ship_M5:
+                case ScriptInstance.ScriptingObject_Type.Ship_M6:
+                case ScriptInstance.ScriptingObject_Type.Ship_M7:
+                case ScriptInstance.ScriptingObject_Type.Ship_TS:
                     typePanel = new IScriptMemoryObject_Ship_Panel(); break;
-                case ScriptingObject.ScriptingObject_Type.Station_Factory:
+                case ScriptInstance.ScriptingObject_Type.Station_Factory:
                     typePanel = new IScriptMemoryObject_Station_Panel(); break;
-                case ScriptingObject.ScriptingObject_Type.Headquarters:
+                case ScriptInstance.ScriptingObject_Type.Headquarters:
                     typePanel = new IScriptMemoryObject_Headquarters_Panel(); break;
-                case ScriptingObject.ScriptingObject_Type.RaceData_0:
-                case ScriptingObject.ScriptingObject_Type.RaceData_1:
-                case ScriptingObject.ScriptingObject_Type.RaceData_2:
-                case ScriptingObject.ScriptingObject_Type.RaceData_3:
-                case ScriptingObject.ScriptingObject_Type.RaceData_4:
-                case ScriptingObject.ScriptingObject_Type.RaceData_5:
+                case ScriptInstance.ScriptingObject_Type.RaceData_0:
+                case ScriptInstance.ScriptingObject_Type.RaceData_1:
+                case ScriptInstance.ScriptingObject_Type.RaceData_2:
+                case ScriptInstance.ScriptingObject_Type.RaceData_3:
+                case ScriptInstance.ScriptingObject_Type.RaceData_4:
+                case ScriptInstance.ScriptingObject_Type.RaceData_5:
                     typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
-                case ScriptingObject.ScriptingObject_Type.RaceData_Player:
+                case ScriptInstance.ScriptingObject_Type.RaceData_Player:
                     typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
                 default: return;
             }

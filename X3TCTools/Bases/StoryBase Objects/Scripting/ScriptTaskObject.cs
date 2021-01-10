@@ -3,10 +3,10 @@ using System;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
-    public class ScriptingTaskObject : MemoryObject
+    public class ScriptTaskObject : MemoryObject
     {
-        public MemoryObjectPointer<ScriptingTaskObject> pNext = new MemoryObjectPointer<ScriptingTaskObject>();
-        public MemoryObjectPointer<ScriptingTaskObject> pPrevious = new MemoryObjectPointer<ScriptingTaskObject>();
+        public MemoryObjectPointer<ScriptTaskObject> pNext = new MemoryObjectPointer<ScriptTaskObject>();
+        public MemoryObjectPointer<ScriptTaskObject> pPrevious = new MemoryObjectPointer<ScriptTaskObject>();
         public int ID;
 
         public int StackSize;
@@ -18,7 +18,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
 
         public uint FunctionIndex;
 
-        public MemoryObjectPointer<ScriptingObject> pScriptingObject = new MemoryObjectPointer<ScriptingObject>();
+        public MemoryObjectPointer<ScriptInstance> pScriptInstance = new MemoryObjectPointer<ScriptInstance>();
 
         #region IMemoryObject
 
@@ -52,7 +52,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
 
             FunctionIndex = collection.PopUInt(0x30);
 
-            pScriptingObject.address = collection.PopIntPtr(0x3c);
+            pScriptInstance.address = collection.PopIntPtr(0x3c);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -63,7 +63,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
 
             pStack.SetLocation(hProcess, address + 0x14);
 
-            pScriptingObject.SetLocation(hProcess, address + 0x3c);
+            pScriptInstance.SetLocation(hProcess, address + 0x3c);
         }
         #endregion
 

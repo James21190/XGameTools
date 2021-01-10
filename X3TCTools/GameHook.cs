@@ -6,6 +6,7 @@ using System.Linq;
 using X3Tools.Bases;
 using X3Tools.Bases.StoryBase_Objects;
 using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.B3DBase_Objects;
 using X3Tools.Bases.SystemBase_Objects;
 using X3Tools.Bases.SectorBase_Objects;
 
@@ -56,7 +57,7 @@ namespace X3Tools
 
         #endregion
         private static MemoryObjectPointer<MemoryObjectPointer<InputBase>> ppInputBase;
-        private static MemoryObjectPointer<MemoryObjectPointer<CameraBase>> ppCameraBase;
+        private static MemoryObjectPointer<MemoryObjectPointer<B3DBase>> ppB3DBase;
         private static MemoryObjectPointer<MemoryInt32> pTypeDataCountArray;
         public static MemoryObjectPointer<MemoryByte> pProcessEventSwitchArray;
         public static MemoryObjectPointer<MemoryInt32> pProcessEventSwitch;
@@ -83,7 +84,7 @@ namespace X3Tools
         public static StoryBase storyBase { get { StoryBase sbase = ppStoryBase.obj.obj; return sbase; } }
 
         public static InputBase inputBase => ppInputBase.obj.obj;
-        public static CameraBase cameraBase => ppCameraBase.obj.obj;
+        public static B3DBase b3DBase => ppB3DBase.obj.obj;
 
         public static TypeData GetTypeData(SectorObject.SectorObjectType type)
         {
@@ -298,7 +299,7 @@ namespace X3Tools
 #endregion
 
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
-                    ppCameraBase = new MemoryObjectPointer<MemoryObjectPointer<CameraBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
+                    ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);
                     pTypeDataCountArray = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeDataCountArray);
                     pProcessEventSwitchArray = new MemoryObjectPointer<MemoryByte>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitchArray);
                     pProcessEventSwitch = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.ProcessEventSwitch);

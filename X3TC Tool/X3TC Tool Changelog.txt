@@ -4,12 +4,15 @@
 	- Added anti-AFK function.
 	- Added "TimeSinceLastInput" to IScriptMemoryObject_RaceData_Player.
 	- Added a method to ScriptMemoryObject to write new values directly to game memory.
+	- Added functions list to ScriptInstancePanel.
 	- Improved IScriptMemoryObject_RaceData_Panel reload time.
 	- Changed ISectorObjectMeta methods.
+	- Fixed incorrect address for pStrings in StoryBase.
 	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
 	- Renamed "SectorObjectManager" to "SectorBase"
 	- Renamed "GateSystemObject" to "GalaxyBase"
 	- Renamed "CameraBase" to "B3DBase"
+	- Renamed most script objects to names simalar to the game's internal names.
 	- Moved scripting disassembly to it's own form.
 
 Alpha 5 (22/11/2020):

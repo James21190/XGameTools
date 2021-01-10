@@ -8,7 +8,7 @@ namespace X3TCTool
 {
     public partial class ScriptingObjectPannel : UserControl
     {
-        private ScriptingObject m_ScriptingObject;
+        private ScriptInstance m_ScriptingObject;
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public event EventHandler ScriptingObjectLoaded;
@@ -25,7 +25,7 @@ namespace X3TCTool
             }
         }
 
-        public ScriptingObject ScriptingObject
+        public ScriptInstance ScriptingObject
         {
             get => m_ScriptingObject;
             set
@@ -56,11 +56,19 @@ namespace X3TCTool
 
         private void ReloadSub()
         {
-            ScriptingObjectSub sub = m_ScriptingObject.pSub.obj;
+            ScriptInstanceSub sub = m_ScriptingObject.pSub.obj;
             txtSubAddress.Text = sub.pThis.ToString("X");
             txtSubTypeID.Text = sub.Class.ToString();
             txtSubLength.Text = sub.ScriptVariableCount.ToString();
             txtSubType.Text = m_ScriptingObject.ObjectType.ToString();
+            #region Functions
+            txtFunctionCount1.Text = sub.FunctionCount_1.ToString();
+            lstbxFunctions.Items.Clear();
+            for(int i = 0; i < sub.FunctionCount_1; i++)
+            {
+                lstbxFunctions.Items.Add(sub.pFunctions[i].str);
+            }
+            #endregion
         }
 
         private void LoadIDButton_Click(object sender, EventArgs e)

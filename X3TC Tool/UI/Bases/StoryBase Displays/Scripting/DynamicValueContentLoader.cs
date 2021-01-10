@@ -13,11 +13,11 @@ namespace X3_Tool.UI.Displays
             switch (dynamicValue.Flag)
             {
                 case DynamicValue.FlagType.pHashTable:
-                    ScriptingHashTableObject hashtableobj = new ScriptingHashTableObject();
+                    ScriptTableObject hashtableobj = new ScriptTableObject();
                     hashtableobj.SetLocation(GameHook.hProcess, (IntPtr)dynamicValue.Value);
                     hashtableobj.ReloadFromMemory();
 
-                    ScriptingHashTableDisplay display_hash = new ScriptingHashTableDisplay();
+                    ScriptTableObjectDisplay display_hash = new ScriptTableObjectDisplay();
                     display_hash.LoadTable(hashtableobj.hashTable.pThis);
 
                     return display_hash;
@@ -30,7 +30,7 @@ namespace X3_Tool.UI.Displays
                     arrayDisplay.LoadFrom((IntPtr)arrayObject.pArray.address,0, arrayObject.length);
                     return arrayDisplay;
                 case DynamicValue.FlagType.pTextObject:
-                    ScriptingTextObjectDisplay display_text = new ScriptingTextObjectDisplay();
+                    ScriptStringObjectDisplay display_text = new ScriptStringObjectDisplay();
                     display_text.LoadObject((IntPtr)dynamicValue.Value);
                     return display_text;
             }

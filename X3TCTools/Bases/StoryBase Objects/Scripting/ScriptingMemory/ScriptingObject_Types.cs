@@ -4,7 +4,7 @@ using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
-    public partial class ScriptingObject
+    public partial class ScriptInstance
     {
         public enum ScriptingObject_Type
         {

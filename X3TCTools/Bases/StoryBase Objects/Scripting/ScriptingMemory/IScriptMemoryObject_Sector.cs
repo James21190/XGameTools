@@ -11,20 +11,20 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         int MusicId { get; }
 
         int OwningRaceDataScriptingObjectID { get; }
-        ScriptingObject OwningRaceDataScriptingObject { get; }
+        ScriptInstance OwningRaceDataScriptingObject { get; }
 
         #region InSectorObjects
 
         int pShipScriptingObjectHashTableObject { get; }
-        ScriptingHashTableObject ShipScriptingObjectHashTableObject { get; }
+        ScriptTableObject ShipScriptingObjectHashTableObject { get; }
 
         int pGateScriptingObjectHashTableObject { get; }
-        ScriptingHashTableObject GateScriptingObjectHashTableObject { get; }
+        ScriptTableObject GateScriptingObjectHashTableObject { get; }
 
         #endregion
 
         int OwnerDataScriptingObjectID { get; }
-        ScriptingObject OwnerDataScriptingObject { get; }
+        ScriptInstance OwnerDataScriptingObject { get; }
 
     }
 }

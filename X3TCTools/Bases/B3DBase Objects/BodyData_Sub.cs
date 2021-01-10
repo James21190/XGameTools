@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Memory;
 
-namespace X3Tools.Bases.CameraBase_Objects
+namespace X3Tools.Bases.B3DBase_Objects
 {
     public class BodyData_Sub : MemoryObject
     {

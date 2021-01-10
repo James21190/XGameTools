@@ -67,7 +67,7 @@ namespace X3Tools.Bases.StoryBase_Objects
             }
         }
 
-        private ScriptingTextObject _GetTextObject(int id)
+        private ScriptStringObject _GetTextObject(int id)
         {
             for(int i = 0; i < Count; i++)
             {

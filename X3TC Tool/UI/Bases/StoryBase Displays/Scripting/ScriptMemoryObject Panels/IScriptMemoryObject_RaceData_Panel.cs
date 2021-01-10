@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using X3Tools;
 
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
 using X3Tools.Bases.SectorBase_Objects;
+using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
@@ -26,7 +27,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private struct ShipData : IComparable
         {
-            public ScriptingObject ScriptingObject;
+            public ScriptInstance ScriptingObject;
             public IScriptMemoryObject_Ship ship;
             public IScriptMemoryObject_Sector sector;
 
@@ -81,7 +82,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private struct StationData : IComparable
         {
-            public ScriptingObject ScriptingObject;
+            public ScriptInstance ScriptingObject;
             public IScriptMemoryObject_Station factory;
             public IScriptMemoryObject_Sector sector;
 
@@ -149,7 +150,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         }
 
         private IScriptMemoryObject_RaceData m_Data;
-        public void LoadObject(ScriptingObject ScriptingObject)
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_Data = ScriptingObject.GetMemoryInterfaceRaceData();
             Reload();
@@ -175,7 +176,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             {
                 try
                 {
-                    ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(shipID.Value);
+                    ScriptInstance ScriptingObject = GameHook.storyBase.GetScriptingObject(shipID.Value);
                     IScriptMemoryObject_Ship shipData = ScriptingObject.GetMemoryInterfaceShip();
                     IScriptMemoryObject_Sector sectorData = shipData.CurrentSectorScriptingObject.GetMemoryInterfaceSector();
                     if (shipData.IsValid && sectorData.IsValid)
@@ -215,7 +216,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             {
                 try
                 {
-                    ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(factoryID.Value);
+                    ScriptInstance ScriptingObject = GameHook.storyBase.GetScriptingObject(factoryID.Value);
                     IScriptMemoryObject_Station factoryData = ScriptingObject.GetMemoryInterfaceStation();
                     IScriptMemoryObject_Sector sectorData = factoryData.CurrentSectorScriptingObject.GetMemoryInterfaceSector();
                     factories.Add(new StationData()
@@ -253,8 +254,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 return;
             }
 
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject((ScriptingObject)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject((ScriptInstance)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
             display.Show();
         }
 
@@ -265,8 +266,8 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 return;
             }
 
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject((ScriptingObject)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject((ScriptInstance)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
             display.Show();
         }
     }

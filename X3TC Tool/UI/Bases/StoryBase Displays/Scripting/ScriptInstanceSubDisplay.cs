@@ -5,22 +5,22 @@ using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3_Tool.UI.Displays
 {
-    public partial class ScriptingObjectSubDisplay : Form
+    public partial class ScriptInstanceSubDisplay : Form
     {
-        public ScriptingObjectSubDisplay()
+        public ScriptInstanceSubDisplay()
         {
             InitializeComponent();
         }
 
-        private ScriptingObjectSub m_ScriptingObjectSub;
+        private ScriptInstanceSub m_ScriptingObjectSub;
         public void LoadObject(IntPtr address)
         {
-            var sos = new ScriptingObjectSub();
+            var sos = new ScriptInstanceSub();
             sos.SetLocation(GameHook.hProcess, address);
             sos.ReloadFromMemory();
             LoadObject(sos);
         }
-        public void LoadObject(ScriptingObjectSub ScriptingObjectSub)
+        public void LoadObject(ScriptInstanceSub ScriptingObjectSub)
         {
             m_ScriptingObjectSub = ScriptingObjectSub;
             Reload();
@@ -40,8 +40,8 @@ namespace X3_Tool.UI.Displays
             Unknown3Box.Text = m_ScriptingObjectSub.Unknown_3.ToString("X");
             Unknown4Box.Text = m_ScriptingObjectSub.Unknown_4.ToString();
             Unknown5Box.Text = m_ScriptingObjectSub.Unknown_5.ToString("X");
-            Unknown6Box.Text = m_ScriptingObjectSub.Unknown_6.ToString();
-            Unknown8Box.Text = m_ScriptingObjectSub.Unknown_8.ToString();
+            Unknown6Box.Text = m_ScriptingObjectSub.FunctionCount_1.ToString();
+            Unknown8Box.Text = m_ScriptingObjectSub.Unknown.ToString();
 
             textBox1.Text = m_ScriptingObjectSub.pFunctions[(int)numericUpDown1.Value].str;
             button1.Enabled = m_ScriptingObjectSub.pNext.IsValid;

@@ -8,9 +8,9 @@
         int TradeRank { get; }
         int FightRank { get; }
         int pRaceDataWithSectorsScriptingObjectIDHashTable { get; }
-        ScriptingHashTableObject RaceDataWithSectorsScriptingObjectIDHashTable { get; }
+        ScriptTableObject RaceDataWithSectorsScriptingObjectIDHashTable { get; }
         int pRaceDataScriptingObjectIDHashTable { get; }
-        ScriptingHashTableObject RaceDataScriptingObjectIDHashTable { get; }
-        ScriptingObject[] Races { get; }
+        ScriptTableObject RaceDataScriptingObjectIDHashTable { get; }
+        ScriptInstance[] Races { get; }
     }
 }

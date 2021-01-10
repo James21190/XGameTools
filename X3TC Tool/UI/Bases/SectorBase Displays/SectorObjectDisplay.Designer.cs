@@ -311,21 +311,24 @@
             // 
             this.groupBox4.Controls.Add(this.ScriptingObjectPannel1);
             this.groupBox4.Controls.Add(this.btnLoadScriptingObject);
-            this.groupBox4.Location = new System.Drawing.Point(292, 264);
+            this.groupBox4.Location = new System.Drawing.Point(292, 206);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(481, 281);
+            this.groupBox4.Size = new System.Drawing.Size(481, 423);
             this.groupBox4.TabIndex = 27;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "ScriptingObject";
+            this.groupBox4.Text = "ScriptInstance";
             // 
             // ScriptingObjectPannel1
             // 
-            this.ScriptingObjectPannel1.ScriptingObject = null;
+            this.ScriptingObjectPannel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ScriptingObjectPannel1.Location = new System.Drawing.Point(10, 48);
             this.ScriptingObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
             this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
             this.ScriptingObjectPannel1.ReadOnly = true;
-            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.ScriptingObject = null;
+            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 369);
             this.ScriptingObjectPannel1.TabIndex = 25;
             // 
             // btnLoadScriptingObject
@@ -372,7 +375,7 @@
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.ModelCollectionIDBox);
-            this.groupBox10.Location = new System.Drawing.Point(292, 206);
+            this.groupBox10.Location = new System.Drawing.Point(165, 322);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Size = new System.Drawing.Size(121, 52);
             this.groupBox10.TabIndex = 8;

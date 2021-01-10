@@ -24,7 +24,7 @@ namespace X3_Tool.UI.Displays
 
         private void ScriptingObjectIDLoadButton_Click(object sender, EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(GameHook.inputBase.ScriptingObjectID);
             display.Show();
         }

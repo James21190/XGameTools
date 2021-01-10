@@ -26,14 +26,14 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         /// Returns the HashTable that this value points to
         /// </summary>
         /// <returns></returns>
-        public ScriptingHashTableObject GetAsHashTableObject()
+        public ScriptTableObject GetAsHashTableObject()
         {
             if (Flag != FlagType.pHashTable)
             {
                 throw new Exception("Object is not a hash table.");
             }
 
-            ScriptingHashTableObject table = new ScriptingHashTableObject();
+            ScriptTableObject table = new ScriptTableObject();
             table.SetLocation(m_hProcess, (IntPtr)Value);
             table.ReloadFromMemory();
             return table;
@@ -43,14 +43,14 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         /// Returns the TextObject that this value points to
         /// </summary>
         /// <returns></returns>
-        public ScriptingTextObject GetAsTextObject()
+        public ScriptStringObject GetAsTextObject()
         {
             if (Flag != FlagType.pTextObject)
             {
                 throw new Exception("Object is not a text object.");
             }
 
-            ScriptingTextObject textObject = new ScriptingTextObject();
+            ScriptStringObject textObject = new ScriptStringObject();
             textObject.SetLocation(m_hProcess, (IntPtr)Value);
             textObject.ReloadFromMemory();
             return textObject;

@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
-    partial class ScriptingObjectDisplay
+    partial class ScriptInstanceDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +42,7 @@
             this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
             this.ScriptingObjectPannel1.ReadOnly = false;
             this.ScriptingObjectPannel1.ScriptingObject = null;
-            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 361);
             this.ScriptingObjectPannel1.TabIndex = 10;
             this.ScriptingObjectPannel1.ScriptingObjectLoaded += new System.EventHandler(this.ScriptingObjectPannel1_ScriptingObjectLoaded);
             // 
@@ -54,7 +54,7 @@
             this.typeBackPanel.AutoScroll = true;
             this.typeBackPanel.Location = new System.Drawing.Point(606, 12);
             this.typeBackPanel.Name = "typeBackPanel";
-            this.typeBackPanel.Size = new System.Drawing.Size(431, 491);
+            this.typeBackPanel.Size = new System.Drawing.Size(431, 575);
             this.typeBackPanel.TabIndex = 12;
             // 
             // tmrAutoReload
@@ -67,22 +67,22 @@
             // 
             this.scriptMemoryObject_Raw_Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.scriptMemoryObject_Raw_Panel1.Location = new System.Drawing.Point(12, 245);
+            this.scriptMemoryObject_Raw_Panel1.Location = new System.Drawing.Point(12, 379);
             this.scriptMemoryObject_Raw_Panel1.Name = "scriptMemoryObject_Raw_Panel1";
-            this.scriptMemoryObject_Raw_Panel1.Size = new System.Drawing.Size(588, 258);
+            this.scriptMemoryObject_Raw_Panel1.Size = new System.Drawing.Size(588, 208);
             this.scriptMemoryObject_Raw_Panel1.TabIndex = 11;
             this.scriptMemoryObject_Raw_Panel1.Load += new System.EventHandler(this.scriptMemoryObject_Raw_Panel1_Load);
             // 
-            // ScriptingObjectDisplay
+            // ScriptInstanceDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 515);
+            this.ClientSize = new System.Drawing.Size(1049, 599);
             this.Controls.Add(this.scriptMemoryObject_Raw_Panel1);
             this.Controls.Add(this.typeBackPanel);
             this.Controls.Add(this.ScriptingObjectPannel1);
-            this.Name = "ScriptingObjectDisplay";
-            this.Text = "ScriptingObjectDisplay";
+            this.Name = "ScriptInstanceDisplay";
+            this.Text = "ScriptInstance";
             this.Load += new System.EventHandler(this.ScriptingObjectDisplay_Load);
             this.ResumeLayout(false);
 

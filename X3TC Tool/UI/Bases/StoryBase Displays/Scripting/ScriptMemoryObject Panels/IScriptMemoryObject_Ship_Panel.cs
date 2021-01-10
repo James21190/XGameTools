@@ -22,7 +22,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             }
         }
 
-        public void LoadObject(ScriptingObject ScriptingObject)
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_Data = ScriptingObject.GetMemoryInterfaceShip();
             Reload();
@@ -41,21 +41,21 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private void button2_Click(object sender, System.EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(m_Data.CurrentSectorScriptingObject);
             display.Show();
         }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(m_Data.PreviousSectorScriptingObject);
             display.Show();
         }
 
         private void button3_Click(object sender, System.EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(m_Data.OwnerDataScriptingObjectID);
             display.Show();
         }

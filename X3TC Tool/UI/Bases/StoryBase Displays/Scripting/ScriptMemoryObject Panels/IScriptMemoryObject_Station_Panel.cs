@@ -22,7 +22,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_
         }
 
         private IScriptMemoryObject_Station m_Data;
-        public void LoadObject(ScriptingObject ScriptingObject)
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_Data = ScriptingObject.GetMemoryInterfaceStation();
             Reload();

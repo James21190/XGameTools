@@ -8,7 +8,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
     /// The object used for traversing and fetching objects from a hash table
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ScriptingHashTable : MemoryObject
+    public class ScriptTableObject_Inner : MemoryObject
     {
         #region Classes
         public class Entry : MemoryObject
@@ -65,7 +65,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         public int Count;
         #endregion
 
-        public ScriptingHashTable()
+        public ScriptTableObject_Inner()
         {
             ppEntry = new MemoryObjectPointer<MemoryObjectPointer<Entry>>();
         }

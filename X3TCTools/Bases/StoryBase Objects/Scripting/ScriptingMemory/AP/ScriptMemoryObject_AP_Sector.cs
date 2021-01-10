@@ -11,18 +11,18 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         public int BackgroundID => GetVariableValue((int)AP_Sector_Variables.BackgroundID);
 
         public int OwningRaceDataScriptingObjectID => GetVariableValue((int)AP_Sector_Variables.OwningRaceDataScriptingObjectID);
-        public ScriptingObject OwningRaceDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwningRaceDataScriptingObjectID);
+        public ScriptInstance OwningRaceDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwningRaceDataScriptingObjectID);
 
         public int pShipScriptingObjectHashTableObject => GetVariableValue((int)AP_Sector_Variables.ShipScriptingObjectIDHashTable);
-        public ScriptingHashTableObject ShipScriptingObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pShipScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; } }
+        public ScriptTableObject ShipScriptingObjectHashTableObject { get { ScriptTableObject table = new ScriptTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pShipScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; } }
 
         public int pGateScriptingObjectHashTableObject => GetVariableValue((int)AP_Sector_Variables.GateScriptingObjectIDHashTable);
-        public ScriptingHashTableObject GateScriptingObjectHashTableObject { get { ScriptingHashTableObject table = new ScriptingHashTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pGateScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; } }
+        public ScriptTableObject GateScriptingObjectHashTableObject { get { ScriptTableObject table = new ScriptTableObject(); table.SetLocation(GameHook.hProcess, (IntPtr)pGateScriptingObjectHashTableObject); table.ReloadFromMemory(); return table; } }
 
         public bool IsValid => SectorX >= 0 && SectorX < GalaxyBase.width && SectorY >= 0 && SectorY < GalaxyBase.height;
 
         public int OwnerDataScriptingObjectID => GetVariableValue((int)AP_Sector_Variables.OwningRaceDataScriptingObjectID);
-        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
+        public ScriptInstance OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public int MusicId => throw new NotImplementedException();
 

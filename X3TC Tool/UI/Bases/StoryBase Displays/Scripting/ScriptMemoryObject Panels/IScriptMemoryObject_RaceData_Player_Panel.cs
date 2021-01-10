@@ -13,7 +13,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
     {
         private struct RaceData : IComparable
         {
-            public ScriptingObject ScriptingObject;
+            public ScriptInstance ScriptingObject;
             public GameHook.RaceID raceID;
 
             public int CompareTo(object obj)
@@ -57,7 +57,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         }
 
         private IScriptMemoryObject_RaceData_Player m_Data;
-        public void LoadObject(ScriptingObject ScriptingObject)
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_Data = ScriptingObject.GetMemoryInterfaceRaceData_Player();
             RaceDataPanel.LoadObject(m_Data);
@@ -77,7 +77,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             {
                 try
                 {
-                    ScriptingObject ScriptingObject = GameHook.storyBase.GetScriptingObject(raceID.Value);
+                    ScriptInstance ScriptingObject = GameHook.storyBase.GetScriptingObject(raceID.Value);
                     IScriptMemoryObject_RaceData raceData = ScriptingObject.GetMemoryInterfaceRaceData();
                     races.Add(new RaceData()
                     {
@@ -107,7 +107,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
                 return;
             }
 
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(((RaceData)lstRaces.Items[lstRaces.SelectedIndex]).ScriptingObject);
             display.Show();
         }

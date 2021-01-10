@@ -20,7 +20,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         }
 
         private IScriptMemoryObject_Sector m_Data;
-        public void LoadObject(ScriptingObject ScriptingObject)
+        public void LoadObject(ScriptInstance ScriptingObject)
         {
             m_Data = ScriptingObject.GetMemoryInterfaceSector();
             Reload();
@@ -47,7 +47,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
             var storyBase = GameHook.storyBase;
 
-            ScriptingObject so;
+            ScriptInstance so;
 
             lstShips.Items.Clear();
             foreach(var id in m_Data.ShipScriptingObjectHashTableObject.hashTable.ScanContents())
@@ -62,7 +62,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(m_Data.OwnerDataScriptingObjectID);
             display.Show();
         }

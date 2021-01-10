@@ -13,7 +13,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         {
             get
             {
-                ScriptingHashTableObject cargoItems = CargoHashTable;
+                ScriptTableObject cargoItems = CargoHashTable;
                 CargoEntry[] entries = new CargoEntry[cargoItems.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue id in cargoItems.hashTable.ScanContents())
@@ -30,14 +30,14 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
         }
 
         public int CurrentSectorScriptingObjectID => GetVariableValue((int)AP_Station_Variables.CurrentSectorScriptingObjectID);
-        public ScriptingObject CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
+        public ScriptInstance CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
 
         public int pCargoHashTable => GetVariable((int)AP_Station_Variables.CargoHashTable).Value;
 
-        public ScriptingHashTableObject CargoHashTable => GetVariable((int)AP_Station_Variables.CargoHashTable).GetAsHashTableObject();
+        public ScriptTableObject CargoHashTable => GetVariable((int)AP_Station_Variables.CargoHashTable).GetAsHashTableObject();
 
         public int OwnerDataScriptingObjectID => GetVariableValue((int)AP_Station_Variables.OwningRaceDataScriptingObjectID);
-        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
+        public ScriptInstance OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public override string GetVariableName(int index)
         {

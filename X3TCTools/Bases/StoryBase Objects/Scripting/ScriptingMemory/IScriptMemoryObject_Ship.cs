@@ -20,7 +20,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         /// <summary>
         /// The previous sector's ScriptingObject.
         /// </summary>
-        ScriptingObject PreviousSectorScriptingObject { get; }
+        ScriptInstance PreviousSectorScriptingObject { get; }
 
         /// <summary>
         /// The ScriptingObject ID for the current sector's ScriptingObject.
@@ -29,10 +29,10 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         /// <summary>
         /// The current sector's ScriptingObject.
         /// </summary>
-        ScriptingObject CurrentSectorScriptingObject { get; }
+        ScriptInstance CurrentSectorScriptingObject { get; }
 
         int OwnerDataScriptingObjectID { get; }
-        ScriptingObject OwnerDataScriptingObject { get; }
+        ScriptInstance OwnerDataScriptingObject { get; }
 
         int pCustomNameArrayObject { get; }
 

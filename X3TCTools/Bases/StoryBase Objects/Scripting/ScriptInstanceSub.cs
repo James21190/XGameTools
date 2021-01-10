@@ -4,21 +4,21 @@ using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
-    public class ScriptingObjectSub : MemoryObject
+    public class ScriptInstanceSub : MemoryObject
     {
         public int Class;
         public int Unknown_1;
         public IntPtr pSelf;
         public int Unknown_2;
         public int NextID;
-        public MemoryObjectPointer<ScriptingObjectSub> pNext = new MemoryObjectPointer<ScriptingObjectSub>();
+        public MemoryObjectPointer<ScriptInstanceSub> pNext = new MemoryObjectPointer<ScriptInstanceSub>();
         public int Unknown_3;
         public int ScriptVariableCount;
         public int Unknown_4;
         public int Unknown_5;
-        public int Unknown_6;
-        public MemoryObjectPointer<ScriptingObjectSubFunction> pFunctions = new MemoryObjectPointer<ScriptingObjectSubFunction>();
-        public int Unknown_8;
+        public int FunctionCount_1;
+        public MemoryObjectPointer<ScriptInstanceSubFunction> pFunctions = new MemoryObjectPointer<ScriptInstanceSubFunction>();
+        public int Unknown;
 
         public override byte[] GetBytes()
         {
@@ -40,9 +40,9 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             collection.PopFirst(ref ScriptVariableCount);
             collection.PopFirst(ref Unknown_4);
             collection.PopFirst(ref Unknown_5);
-            collection.PopFirst(ref Unknown_6);
+            collection.PopFirst(ref FunctionCount_1);
             collection.PopFirst(ref pFunctions);
-            collection.PopFirst(ref Unknown_8);
+            collection.PopFirst(ref Unknown);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

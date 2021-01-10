@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Bases.CameraBase_Objects;
+using X3Tools.Bases.B3DBase_Objects;
 using X3Tools.Generics;
 
 namespace X3_Tool.UI.Bases.CameraBase_Displays
@@ -29,7 +29,7 @@ namespace X3_Tool.UI.Bases.CameraBase_Displays
         {
             try
             {
-                LoadBodyData(GameHook.cameraBase.GetBodyData(id));
+                LoadBodyData(GameHook.b3DBase.GetBodyData(id));
             }
             catch (HashTableElementNotFoundException)
             {

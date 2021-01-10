@@ -13,17 +13,17 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
 
         public int CurrentSectorScriptingObjectID => GetVariableValue((int)TC_Headquarters_Variables.CurrentSectorScriptingObjectID);
 
-        public ScriptingObject CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
+        public ScriptInstance CurrentSectorScriptingObject => GameHook.storyBase.GetScriptingObject(CurrentSectorScriptingObjectID);
 
         public int pCargoHashTable => GetVariable((int)TC_Headquarters_Variables.CargoHashTable).Value;
 
-        public ScriptingHashTableObject CargoHashTable => GetVariable((int)TC_Headquarters_Variables.CargoHashTable).GetAsHashTableObject();
+        public ScriptTableObject CargoHashTable => GetVariable((int)TC_Headquarters_Variables.CargoHashTable).GetAsHashTableObject();
 
         public CargoEntry[] CargoEntries
         {
             get
             {
-                ScriptingHashTableObject cargoItems = CargoHashTable;
+                ScriptTableObject cargoItems = CargoHashTable;
                 CargoEntry[] entries = new CargoEntry[cargoItems.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue id in cargoItems.hashTable.ScanContents())
@@ -40,17 +40,17 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC
         }
 
         public int OwnerDataScriptingObjectID => GetVariableValue((int)TC_Headquarters_Variables.OwningRaceDataScriptingObjectID);
-        public ScriptingObject OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
+        public ScriptInstance OwnerDataScriptingObject => GameHook.storyBase.GetScriptingObject(OwnerDataScriptingObjectID);
 
         public int pAvailableBlueprintHashTable => GetVariable((int)TC_Headquarters_Variables.AvailableBlueprintHashTable).Value;
 
-        public ScriptingHashTableObject AvailableBlueprintHashTable => GetVariable((int)TC_Headquarters_Variables.AvailableBlueprintHashTable).GetAsHashTableObject();
+        public ScriptTableObject AvailableBlueprintHashTable => GetVariable((int)TC_Headquarters_Variables.AvailableBlueprintHashTable).GetAsHashTableObject();
 
         public SectorObject.SectorObjectType[] AvailableBlueprints
         {
             get
             {
-                ScriptingHashTableObject cargoItems = AvailableBlueprintHashTable;
+                ScriptTableObject cargoItems = AvailableBlueprintHashTable;
                 SectorObject.SectorObjectType[] entries = new SectorObject.SectorObjectType[cargoItems.hashTable.Count];
                 int i = 0;
                 foreach (DynamicValue id in cargoItems.hashTable.ScanContents())

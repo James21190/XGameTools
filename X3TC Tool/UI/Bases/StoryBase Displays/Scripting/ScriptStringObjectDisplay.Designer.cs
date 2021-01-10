@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Displays
 {
-    partial class ScriptingTextObjectDisplay
+    partial class ScriptStringObjectDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -64,15 +64,15 @@
             this.textBox1.Size = new System.Drawing.Size(188, 20);
             this.textBox1.TabIndex = 3;
             // 
-            // ScriptingTextObjectDisplay
+            // ScriptStringObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ScriptingTextObjectDisplay";
-            this.Text = "ScriptingArrayObjectDisplay";
+            this.Name = "ScriptStringObjectDisplay";
+            this.Text = "ScriptStringObject";
             this.Load += new System.EventHandler(this.ScriptingTextObjectDisplay_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IDBox)).EndInit();

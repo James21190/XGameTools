@@ -5,6 +5,6 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 {
     public interface IScriptMemoryObject_Panel : IReloadableDisplay
     {
-        void LoadObject(ScriptingObject ScriptingObject);
+        void LoadObject(ScriptInstance ScriptingObject);
     }
 }

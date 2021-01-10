@@ -10,7 +10,7 @@ using X3_Tool.UI.Displays;
 using X3TC_Tool.UI.Bases.SystemBase_Displays;
 using X3Tools;
 using X3Tools.Bases.SectorBase_Objects;
-using X3Tools.Bases.CameraBase_Objects;
+using X3Tools.Bases.B3DBase_Objects;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
@@ -136,7 +136,7 @@ namespace X3_Tool
 
         private void LoadPlayerShipButton_Click(object sender, EventArgs e)
         {
-            X3Tools.Bases.SectorBase_Objects.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
+            SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
@@ -165,7 +165,7 @@ namespace X3_Tool
             display.Show();
         }
 
-        private CameraBaseDisplay m_CameraBaseDisplay = null;
+        private B3DBaseDisplay m_CameraBaseDisplay = null;
 
         public void OnCameraBaseDisplayClosed(object sender, EventArgs e)
         {
@@ -176,7 +176,7 @@ namespace X3_Tool
         {
             if (m_CameraBaseDisplay == null)
             {
-                m_CameraBaseDisplay = new CameraBaseDisplay();
+                m_CameraBaseDisplay = new B3DBaseDisplay();
                 m_CameraBaseDisplay.FormClosed += OnCameraBaseDisplayClosed;
                 m_CameraBaseDisplay.Show();
             }
@@ -219,7 +219,7 @@ namespace X3_Tool
 
         private void button4_Click(object sender, EventArgs e)
         {
-            X3Tools.Bases.SectorBase_Objects.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
+            SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.GetSpace());
             display.Show();
@@ -227,8 +227,8 @@ namespace X3_Tool
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptingObjectID);
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptInstanceID);
             display.Show();
         }
 
@@ -249,12 +249,12 @@ namespace X3_Tool
 
         private void ScriptingObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ScriptingObjectDisplay().Show();
+            new ScriptInstanceDisplay().Show();
         }
 
         private void scriptObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ScriptingTaskObjectDisplay().Show();
+            new ScriptTaskObjectDisplay().Show();
         }
 
         private void sectorObjectToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -269,12 +269,12 @@ namespace X3_Tool
 
         private void scriptingHashTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ScriptingHashTableDisplay().Show();
+            new ScriptTableObjectDisplay().Show();
         }
 
         private void scriptingTextObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ScriptingTextObjectDisplay().Show();
+            new ScriptStringObjectDisplay().Show();
         }
 
         private void scriptingArrayToolStripMenuItem_Click(object sender, EventArgs e)
@@ -317,13 +317,13 @@ namespace X3_Tool
 
         private void scriptingObjectSubToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new ScriptingObjectSubDisplay().Show();
+            new ScriptInstanceSubDisplay().Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            var obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptingObject;
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            var obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance;
             IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
             display.LoadObject(ship.OwnerDataScriptingObjectID);
             display.Show();

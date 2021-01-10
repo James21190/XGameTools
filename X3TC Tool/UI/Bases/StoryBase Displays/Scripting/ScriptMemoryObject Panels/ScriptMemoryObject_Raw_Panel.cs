@@ -56,7 +56,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ScriptMemoryObject obj = ScriptingObjectDisplay.GetScriptMemoryObjectType((ScriptingObjectDisplay.LoadAsItems)comboBox1.SelectedIndex);
+            ScriptMemoryObject obj = ScriptInstanceDisplay.GetScriptMemoryObjectType((ScriptInstanceDisplay.LoadAsItems)comboBox1.SelectedIndex);
             obj.SetLocation(GameHook.hProcess, (IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
             LoadObject(obj);
         }
@@ -100,9 +100,9 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         private void ScriptMemoryObject_Raw_Panel_Load(object sender, EventArgs e)
         {
             int i = 0;
-            while (((ScriptingObjectDisplay.LoadAsItems)(i)).ToString() != i.ToString())
+            while (((ScriptInstanceDisplay.LoadAsItems)(i)).ToString() != i.ToString())
             {
-                comboBox1.Items.Add((ScriptingObjectDisplay.LoadAsItems)i++);
+                comboBox1.Items.Add((ScriptInstanceDisplay.LoadAsItems)i++);
             }
         }
 

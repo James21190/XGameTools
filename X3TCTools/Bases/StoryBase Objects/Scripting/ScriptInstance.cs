@@ -8,12 +8,12 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
     /// The ScriptingObject is an object within the game that keeps track of variables used by the scripting engine.
     /// It keeps track of how many variables are stored and the amount of ScriptObjects that reference it.
     /// </summary>
-    public partial class ScriptingObject : MemoryObject
+    public partial class ScriptInstance : MemoryObject
     {
         #region Memory
         public int NegativeID;
         public int ReferenceCount;
-        public MemoryObjectPointer<ScriptingObjectSub> pSub = new MemoryObjectPointer<ScriptingObjectSub>();
+        public MemoryObjectPointer<ScriptInstanceSub> pSub = new MemoryObjectPointer<ScriptInstanceSub>();
         public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
         #endregion
 
@@ -49,7 +49,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
         {
             NegativeID = objectByteList.PopInt();
             ReferenceCount = objectByteList.PopInt();
-            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptingObjectSub>>();
+            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceSub>>();
             pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptMemoryObject>>();
         }
 

@@ -6,9 +6,9 @@ using X3Tools.Generics;
 
 namespace X3_Tool.UI.Displays
 {
-    public partial class CameraBaseDisplay : Form
+    public partial class B3DBaseDisplay : Form
     {
-        public CameraBaseDisplay()
+        public B3DBaseDisplay()
         {
             InitializeComponent();
             Reload();
@@ -16,36 +16,36 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            X3Tools.Bases.CameraBase cameraBase = GameHook.cameraBase;
+            X3Tools.Bases.B3DBase_Objects.B3DBase b3dBase = GameHook.b3DBase;
 
-            AddressBox.Text = cameraBase.pThis.ToString("X");
+            AddressBox.Text = b3dBase.pThis.ToString("X");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay("CameraBase - Cameras");
-            display.LoadTable(GameHook.cameraBase.pCameraHashTable.address);
+            HashTableDisplay display = new HashTableDisplay("B3DBase - Cameras");
+            display.LoadTable(GameHook.b3DBase.pCameraHashTable.address);
             display.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay("CameraBase - Model Collections");
-            display.LoadTable(GameHook.cameraBase.pModelCollectionHashTable.address);
+            HashTableDisplay display = new HashTableDisplay("B3DBase - Model Collections");
+            display.LoadTable(GameHook.b3DBase.pModelCollectionHashTable.address);
             display.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay("CameraBase - Scenes");
-            display.LoadTable(GameHook.cameraBase.pSceneHashTable.address);
+            HashTableDisplay display = new HashTableDisplay("B3DBase - Scenes");
+            display.LoadTable(GameHook.b3DBase.pSceneHashTable.address);
             display.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay("CameraBase - Bodies");
-            display.LoadTable(GameHook.cameraBase.pBodyHashTable.address);
+            HashTableDisplay display = new HashTableDisplay("B3DBase - Bodies");
+            display.LoadTable(GameHook.b3DBase.pBodyHashTable.address);
             display.Show();
         }
 
@@ -53,7 +53,7 @@ namespace X3_Tool.UI.Displays
         {
             try
             {
-                var data = GameHook.cameraBase.GetBodyData((int)nudBodyID.Value);
+                var data = GameHook.b3DBase.GetBodyData((int)nudBodyID.Value);
                 var display = new BodyDataDisplay();
                 display.LoadBodyData(data);
                 display.Show();

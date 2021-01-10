@@ -3,7 +3,7 @@ using System;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
-    public class ScriptingTextObject : MemoryObject
+    public class ScriptStringObject : MemoryObject
     {
         public int id;
         public int unknown_1;

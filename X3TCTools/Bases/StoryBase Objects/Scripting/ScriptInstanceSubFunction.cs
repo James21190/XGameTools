@@ -9,7 +9,7 @@ using X3Tools;
 
 namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
-    public class ScriptingObjectSubFunction : MemoryObject
+    public class ScriptInstanceSubFunction : MemoryObject
     {
         #region Memory
         public int unknown_1;

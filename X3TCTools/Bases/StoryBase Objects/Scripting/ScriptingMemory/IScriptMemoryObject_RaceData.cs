@@ -5,22 +5,22 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
     public interface IScriptMemoryObject_RaceData : IMemoryObject
     {
         int ASectorScriptingObjectID { get; }
-        ScriptingObject ASectorScriptingObject { get; }
+        ScriptInstance ASectorScriptingObject { get; }
 
         int pOwnedSectorScriptingObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedSectorScriptingObjectIDHashTableObject { get; }
+        ScriptTableObject OwnedSectorScriptingObjectIDHashTableObject { get; }
 
         int pOwnedShipScriptingObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedShipScriptingObjectIDHashTableObject { get; }
+        ScriptTableObject OwnedShipScriptingObjectIDHashTableObject { get; }
 
         int pOwnedShipyardScriptingObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedShipyardScriptingObjectIDHashTableObject { get; }
+        ScriptTableObject OwnedShipyardScriptingObjectIDHashTableObject { get; }
 
         int pOwnedStationScriptingObjectIDHashTableObject { get; }
-        ScriptingHashTableObject OwnedStationScriptingObjectIDHashTableObject { get; }
+        ScriptTableObject OwnedStationScriptingObjectIDHashTableObject { get; }
 
-        ScriptingObject[] Ships { get; }
-        ScriptingObject[] Stations { get; }
+        ScriptInstance[] Ships { get; }
+        ScriptInstance[] Stations { get; }
         GameHook.RaceID RaceID { get; }
     }
 }

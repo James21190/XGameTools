@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Displays
 {
-    partial class ScriptingTaskObjectDisplay
+    partial class ScriptTaskObjectDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -313,7 +313,7 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // ScriptingTaskObjectDisplay
+            // ScriptTaskObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -329,8 +329,8 @@
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.groupBox2);
             this.MaximumSize = new System.Drawing.Size(713, 555);
-            this.Name = "ScriptingTaskObjectDisplay";
-            this.Text = "ScriptingTaskObjectDisplay";
+            this.Name = "ScriptTaskObjectDisplay";
+            this.Text = "ScriptTaskObject";
             this.Load += new System.EventHandler(this.ScriptObjectDisplay_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

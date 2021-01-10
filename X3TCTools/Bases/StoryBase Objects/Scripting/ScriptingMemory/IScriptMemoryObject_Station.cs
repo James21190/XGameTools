@@ -14,13 +14,13 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
         /// <summary>
         /// The current sector's ScriptingObject.
         /// </summary>
-        ScriptingObject CurrentSectorScriptingObject { get; }
+        ScriptInstance CurrentSectorScriptingObject { get; }
 
         int pCargoHashTable { get; }
-        ScriptingHashTableObject CargoHashTable { get; }
+        ScriptTableObject CargoHashTable { get; }
 
         int OwnerDataScriptingObjectID { get; }
-        ScriptingObject OwnerDataScriptingObject { get; }
+        ScriptInstance OwnerDataScriptingObject { get; }
 
         CargoEntry[] CargoEntries { get; }
     }

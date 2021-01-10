@@ -7,16 +7,16 @@ using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3_Tool.UI.Displays
 {
-    public partial class ScriptingTextObjectDisplay : Form
+    public partial class ScriptStringObjectDisplay : Form
     {
-        private ScriptingTextObject m_obj;
+        private ScriptStringObject m_obj;
 
-        public ScriptingTextObjectDisplay()
+        public ScriptStringObjectDisplay()
         {
             InitializeComponent();
         }
 
-        public void LoadObject(ScriptingTextObject obj)
+        public void LoadObject(ScriptStringObject obj)
         {
             m_obj = obj;
             Reload();
@@ -24,7 +24,7 @@ namespace X3_Tool.UI.Displays
 
         public void LoadObject(IntPtr address)
         {
-            ScriptingTextObject obj = new ScriptingTextObject();
+            ScriptStringObject obj = new ScriptStringObject();
             obj.SetLocation(GameHook.hProcess, address);
             LoadObject(obj);
         }

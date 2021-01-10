@@ -28,14 +28,14 @@ namespace X3_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay("StoryBase - ScriptingObjects");
-            display.LoadTable(m_StoryBase.pScriptingObjectHashTable.address);
+            display.LoadTable(m_StoryBase.pHashTable_ScriptInstance.address);
             display.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Reload();
-            ScriptingTaskObjectDisplay display = new ScriptingTaskObjectDisplay();
+            ScriptTaskObjectDisplay display = new ScriptTaskObjectDisplay();
             display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
             display.Show();
         }
@@ -50,14 +50,14 @@ namespace X3_Tool.UI.Displays
         private void button4_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting Arrays");
-            display.LoadTable(m_StoryBase.pScriptingArrayObject_HashTable.address);
+            display.LoadTable(m_StoryBase.pHashTable_ScriptArrayObject.address);
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting HashTables");
-            display.LoadTable(m_StoryBase.pScriptingHashTableObject_HashTable.address);
+            display.LoadTable(m_StoryBase.pHashTable_ScriptTableObject.address);
             display.Show();
         }
 
@@ -71,20 +71,20 @@ namespace X3_Tool.UI.Displays
         private void button6_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay("StoryBase - Scripting TextObjects");
-            display.LoadTable(m_StoryBase.pScriptingTextObject_HashTable.address);
+            display.LoadTable(m_StoryBase.pHashTable_ScriptStringObject.address);
             display.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay();
-            display.LoadTable(m_StoryBase.pScriptObjectHashTable.address);
+            display.LoadTable(m_StoryBase.pHashTable_ScriptTaskObject.address);
             display.Show();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            ScriptingTaskObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
+            ScriptTaskObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
 
             listBox1.Items.Clear();
             listBox1.Items.AddRange(ScriptObjects);
@@ -97,8 +97,8 @@ namespace X3_Tool.UI.Displays
                 return;
             }
 
-            ScriptingTaskObjectDisplay display = new ScriptingTaskObjectDisplay();
-            display.LoadObject((ScriptingTaskObject)listBox1.Items[listBox1.SelectedIndex]);
+            ScriptTaskObjectDisplay display = new ScriptTaskObjectDisplay();
+            display.LoadObject((ScriptTaskObject)listBox1.Items[listBox1.SelectedIndex]);
             display.Show();
         }
 

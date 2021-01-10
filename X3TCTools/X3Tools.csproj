@@ -90,17 +90,17 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\ScriptingMemoryObject.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Sector.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ship.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObjectSubFunction.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingTextObject.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptInstanceSubFunction.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptStringObject.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\DynamicValue.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingArrayObject.cs" />
     <Compile Include="Bases\StoryBase Objects\EventFunctionStruct.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObject.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingObjectSub.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\TaskObject.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptInstance.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptInstanceSub.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptTaskObject.cs" />
     <Compile Include="Bases\StoryBase Objects\StoryBase.cs" />
-    <Compile Include="Bases\StoryBase Objects\StoryBase15fc.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingHashTableObject.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptArrayObject.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptTableObject.cs" />
     <Compile Include="Bases\SystemBase Objects\SystemBase.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\UI\DynamicValueDisplay.cs">
       <SubType>UserControl</SubType>
@@ -108,17 +108,17 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\UI\DynamicValueDisplay.Designer.cs">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.cs">
+    <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptInstancePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.Designer.cs">
-      <DependentUpon>ScriptingObjectPanel.cs</DependentUpon>
+    <Compile Include="Bases\StoryBase Objects\Scripting\UI\ScriptInstancePanel.Designer.cs">
+      <DependentUpon>ScriptInstancePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Bases\SystemBase Objects\SystemBaseStringCollection.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="GameCodeRunner.cs" />
     <Compile Include="GameHook.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingHashTable.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptTableObject_Inner.cs" />
     <Compile Include="Generics\Generics Exceptions.cs" />
     <Compile Include="Generics\HashTable.cs" />
     <Compile Include="Generics\LinkedListStart.cs" />
@@ -131,7 +131,7 @@
     <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Ship_Meta.cs" />
     <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Station_Meta.cs" />
     <Compile Include="Bases\SectorBase Objects\SectorObject Types.cs" />
-    <Compile Include="Bases\SectorBase Objects\RenderObject.cs" />
+    <Compile Include="Bases\B3DBase Objects\RenderObject.cs" />
     <Compile Include="Bases\SectorBase Objects\SectorBase.cs" />
     <Compile Include="Bases\SectorBase Objects\SectorObject.cs" />
     <Compile Include="Bases\SectorBase Objects\TypeData\TypeData.cs" />
@@ -205,8 +205,8 @@
     <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\ScriptingObjectPanel.resx">
-      <DependentUpon>ScriptingObjectPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\ScriptInstancePanel.resx">
+      <DependentUpon>ScriptInstancePanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -36,6 +36,10 @@
             this.LoadIDButton = new System.Windows.Forms.Button();
             this.IDNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.txtFunctionCount1 = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.lstbxFunctions = new System.Windows.Forms.ListBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtSubLength = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -50,6 +54,8 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -136,16 +142,54 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.groupBox11);
+            this.groupBox4.Controls.Add(this.groupBox10);
             this.groupBox4.Controls.Add(this.groupBox9);
             this.groupBox4.Controls.Add(this.groupBox8);
             this.groupBox4.Controls.Add(this.groupBox6);
             this.groupBox4.Controls.Add(this.groupBox5);
             this.groupBox4.Location = new System.Drawing.Point(6, 77);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(451, 138);
+            this.groupBox4.Size = new System.Drawing.Size(451, 275);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Sub";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.txtFunctionCount1);
+            this.groupBox11.Location = new System.Drawing.Point(6, 77);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(121, 52);
+            this.groupBox11.TabIndex = 8;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Function Count";
+            // 
+            // txtFunctionCount1
+            // 
+            this.txtFunctionCount1.Location = new System.Drawing.Point(6, 19);
+            this.txtFunctionCount1.Name = "txtFunctionCount1";
+            this.txtFunctionCount1.ReadOnly = true;
+            this.txtFunctionCount1.Size = new System.Drawing.Size(109, 20);
+            this.txtFunctionCount1.TabIndex = 0;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.lstbxFunctions);
+            this.groupBox10.Location = new System.Drawing.Point(6, 135);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(248, 135);
+            this.groupBox10.TabIndex = 8;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Functions";
+            // 
+            // lstbxFunctions
+            // 
+            this.lstbxFunctions.FormattingEnabled = true;
+            this.lstbxFunctions.Location = new System.Drawing.Point(6, 19);
+            this.lstbxFunctions.Name = "lstbxFunctions";
+            this.lstbxFunctions.Size = new System.Drawing.Size(236, 108);
+            this.lstbxFunctions.TabIndex = 0;
             // 
             // groupBox9
             // 
@@ -230,10 +274,10 @@
             this.groupBox7.Controls.Add(this.groupBox3);
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(463, 221);
+            this.groupBox7.Size = new System.Drawing.Size(463, 358);
             this.groupBox7.TabIndex = 8;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "ScriptingObjectPanel";
+            this.groupBox7.Text = "ScriptInstancePanel";
             // 
             // ScriptingObjectPannel
             // 
@@ -242,7 +286,7 @@
             this.Controls.Add(this.groupBox7);
             this.MinimumSize = new System.Drawing.Size(469, 227);
             this.Name = "ScriptingObjectPannel";
-            this.Size = new System.Drawing.Size(469, 227);
+            this.Size = new System.Drawing.Size(469, 364);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -250,6 +294,9 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.IDNumericUpDown)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -282,5 +329,9 @@
         private System.Windows.Forms.TextBox txtSubLength;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.TextBox txtSubType;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.ListBox lstbxFunctions;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox txtFunctionCount1;
     }
 }

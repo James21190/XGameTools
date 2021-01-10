@@ -49,7 +49,7 @@ namespace X3_Tool.UI.Displays
             switch (baseSectorObject.ObjectType.MainTypeEnum)
             {
                 case SectorObject.Main_Type.Gate:
-                    IScriptMemoryObject_Gate gateScriptMemoryObject = baseSectorObject.ScriptingObject.GetMemoryInterfaceGate();
+                    IScriptMemoryObject_Gate gateScriptMemoryObject = baseSectorObject.ScriptInstance.GetMemoryInterfaceGate();
                     if (gateScriptMemoryObject == null) goto skip;
                     sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
                     break;
@@ -130,7 +130,7 @@ namespace X3_Tool.UI.Displays
             SectorObject sector = GameHook.sectorObjectManager.GetSpace();
             try
             {
-                IScriptMemoryObject_Sector sectorScriptVariables = sector.ScriptingObject.GetMemoryInterfaceSector();
+                IScriptMemoryObject_Sector sectorScriptVariables = sector.ScriptInstance.GetMemoryInterfaceSector();
                 if (sectorScriptVariables == null) goto ObjectInfo;
                 string sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
                 labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
@@ -160,7 +160,7 @@ namespace X3_Tool.UI.Displays
             v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
             v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
             v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
-            ScriptingObjectPannel1.ScriptingObject = m_SectorObject.ScriptingObject;
+            ScriptingObjectPannel1.ScriptingObject = m_SectorObject.ScriptInstance;
             txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.ObjectType.MainTypeEnum.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.ObjectType.MainTypeEnum, m_SectorObject.ObjectType.SubType);
 
             SpeedBox.Value = m_SectorObject.Speed;
@@ -331,8 +331,8 @@ namespace X3_Tool.UI.Displays
 
         private void btnLoadScriptingObject_Click(object sender, EventArgs e)
         {
-            ScriptingObjectDisplay display = new ScriptingObjectDisplay();
-            display.LoadObject(m_SectorObject.ScriptingObjectID);
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject(m_SectorObject.ScriptInstanceID);
             display.Show();
         }
     }

@@ -7,7 +7,7 @@
         public int DestSectorY => GetVariableValue((int)R_Gate_Variables.Dest_Sector_Y);
 
         public int DestSectorDataScriptingObjectID => GetVariableValue((int)R_Gate_Variables.DestSectorDataScriptingObjectID);
-        public ScriptingObject DestSectorDataScriptingObject => GameHook.storyBase.GetScriptingObject(DestSectorDataScriptingObjectID);
+        public ScriptInstance DestSectorDataScriptingObject => GameHook.storyBase.GetScriptingObject(DestSectorDataScriptingObjectID);
 
         public override string GetVariableName(int index)
         {

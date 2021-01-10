@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 using X3Tools;
 using X3Tools.Bases;
+using X3Tools.Bases.B3DBase_Objects;
 
 
 namespace X3_Tool.UI.Displays

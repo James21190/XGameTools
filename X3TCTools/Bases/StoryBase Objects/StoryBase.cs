@@ -12,7 +12,7 @@ namespace X3Tools.Bases.StoryBase_Objects
     {
         #region Memory
 
-        public MemoryObjectPointer<HashTable<ScriptingTaskObject>> pScriptObjectHashTable;
+        public MemoryObjectPointer<HashTable<ScriptTaskObject>> pHashTable_ScriptTaskObject;
 
         public MemoryObjectPointer<MemoryByte> pInstructionArray;
 
@@ -23,15 +23,15 @@ namespace X3Tools.Bases.StoryBase_Objects
 
         public MemoryObjectPointer<HashTable<TextPage>>[] TextHashTableArray;
 
-        public MemoryObjectPointer<HashTable<ScriptingObject>> pScriptingObjectHashTable;
+        public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
 
-        public MemoryObjectPointer<ScriptingTaskObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptingTaskObject>();
+        public MemoryObjectPointer<ScriptTaskObject> pCurrentScriptObject = new MemoryObjectPointer<ScriptTaskObject>();
 
 
-        public MemoryObjectPointer<HashTable<ScriptingTextObject>> pScriptingTextObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingTextObject>>();
-        public MemoryObjectPointer<HashTable<StoryBase15fc>> pScriptingArrayObject_HashTable = new MemoryObjectPointer<HashTable<StoryBase15fc>>();
+        public MemoryObjectPointer<HashTable<ScriptStringObject>> pHashTable_ScriptStringObject = new MemoryObjectPointer<HashTable<ScriptStringObject>>();
+        public MemoryObjectPointer<HashTable<ScriptArrayObject>> pHashTable_ScriptArrayObject = new MemoryObjectPointer<HashTable<ScriptArrayObject>>();
 
-        public MemoryObjectPointer<HashTable<ScriptingHashTableObject>> pScriptingHashTableObject_HashTable = new MemoryObjectPointer<HashTable<ScriptingHashTableObject>>();
+        public MemoryObjectPointer<HashTable<ScriptTableObject>> pHashTable_ScriptTableObject = new MemoryObjectPointer<HashTable<ScriptTableObject>>();
 
         #endregion
 
@@ -43,9 +43,9 @@ namespace X3Tools.Bases.StoryBase_Objects
                 FunctionArray[i] = new EventFunctionStruct();
             }
 
-            pScriptObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingTaskObject>>();
+            pHashTable_ScriptTaskObject = new MemoryObjectPointer<HashTable<ScriptTaskObject>>();
             pInstructionArray = new MemoryObjectPointer<MemoryByte>();
-            pScriptingObjectHashTable = new MemoryObjectPointer<HashTable<ScriptingObject>>();
+            pHashTable_ScriptInstance = new MemoryObjectPointer<HashTable<ScriptInstance>>();
         }
 
         public MemoryString GetStringFromStoryBaseCharArray(int offset)
@@ -141,17 +141,17 @@ namespace X3Tools.Bases.StoryBase_Objects
             return GetScriptingFunctionAddressFromInstruction(pInstructionArray[index].Value);
         }
 
-        public ScriptingObject GetScriptingObject(int ID)
+        public ScriptInstance GetScriptingObject(int ID)
         {
             int value = ID < 0 ? -ID - 1 : ID;
-            return pScriptingObjectHashTable.obj.GetObject(value);
+            return pHashTable_ScriptInstance.obj.GetObject(value);
         }
 
         public IScriptMemoryObject_RaceData_Player GetRaceData_Player()
         {
             var PlayerShip = GameHook.sectorObjectManager.GetPlayerObject();
             if (PlayerShip == null) return null;
-            return PlayerShip.ScriptingObject.GetMemoryInterfaceShip().OwnerDataScriptingObject.GetMemoryInterfaceRaceData_Player();
+            return PlayerShip.ScriptInstance.GetMemoryInterfaceShip().OwnerDataScriptingObject.GetMemoryInterfaceRaceData_Player();
         }
 
         public ScriptMemoryObject GetScriptingObjectScriptingVariables(int ID)
@@ -162,17 +162,17 @@ namespace X3Tools.Bases.StoryBase_Objects
             return obj;
         }
 
-        public ScriptingTaskObject[] GetScriptObjectsWithReferenceTo(int ScriptingObjectID)
+        public ScriptTaskObject[] GetScriptObjectsWithReferenceTo(int ScriptingObjectID)
         {
             int negativeID = ScriptingObjectID < 0 ? ScriptingObjectID : -1 - ScriptingObjectID;
-            List<ScriptingTaskObject> results = new List<ScriptingTaskObject>();
+            List<ScriptTaskObject> results = new List<ScriptTaskObject>();
 
-            foreach (int id in pScriptObjectHashTable.obj.ScanContents())
+            foreach (int id in pHashTable_ScriptTaskObject.obj.ScanContents())
             {
                 try
                 {
-                    ScriptingTaskObject ScriptObject = pScriptObjectHashTable.obj.GetObject(id);
-                    ScriptingObject ScriptingObject = ScriptObject.pScriptingObject.obj;
+                    ScriptTaskObject ScriptObject = pHashTable_ScriptTaskObject.obj.GetObject(id);
+                    ScriptInstance ScriptingObject = ScriptObject.pScriptInstance.obj;
                     if (ScriptingObject.NegativeID == negativeID)
                     {
                         results.Add(ScriptObject);
@@ -199,36 +199,36 @@ namespace X3Tools.Bases.StoryBase_Objects
         {
             ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
 
-            pScriptObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTaskObject>>>();
+            pHashTable_ScriptTaskObject = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
-            pStrings = collection.PopIMemoryObject < MemoryObjectPointer<MemoryString>>(0x20);
+            pStrings = collection.PopIMemoryObject < MemoryObjectPointer<MemoryString>>(0x14);
 
             FunctionArrayCount = collection.PopInt(0x2c);
             FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);
 
             TextHashTableArray = collection.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
 
-            pScriptingObjectHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingObject>>>(0x12d0);
-            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptingTaskObject>>(0x1434);
+            pHashTable_ScriptInstance = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
+            pCurrentScriptObject = collection.PopIMemoryObject<MemoryObjectPointer<ScriptTaskObject>>(0x1434);
 
-            pScriptingTextObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingTextObject>>>(0x15f8);
-            pScriptingArrayObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<StoryBase15fc>>>();
-            pScriptingHashTableObject_HashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptingHashTableObject>>>();
+            pHashTable_ScriptStringObject = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptStringObject>>>(0x15f8);
+            pHashTable_ScriptArrayObject = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptArrayObject>>>();
+            pHashTable_ScriptTableObject = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTableObject>>>();
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            pScriptObjectHashTable.SetLocation(hProcess, address + 0);
+            pHashTable_ScriptTaskObject.SetLocation(hProcess, address + 0);
             pInstructionArray.SetLocation(hProcess, address + 0x8);
 
             pStrings.SetLocation(hProcess, address + 0x20);
 
-            pScriptingObjectHashTable.SetLocation(hProcess, address + 0x12d0);
+            pHashTable_ScriptInstance.SetLocation(hProcess, address + 0x12d0);
             pCurrentScriptObject.SetLocation(hProcess, address + 0x1434);
 
-            pScriptingTextObject_HashTable.SetLocation(hProcess, address + 0x15f8);
-            pScriptingArrayObject_HashTable.SetLocation(hProcess, address + 0x15fc);
-            pScriptingHashTableObject_HashTable.SetLocation(hProcess, address + 0x1600);
+            pHashTable_ScriptStringObject.SetLocation(hProcess, address + 0x15f8);
+            pHashTable_ScriptArrayObject.SetLocation(hProcess, address + 0x15fc);
+            pHashTable_ScriptTableObject.SetLocation(hProcess, address + 0x1600);
             base.SetLocation(hProcess, address);
         }
         #endregion

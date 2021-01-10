@@ -50,10 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\Bases\CameraBase Displays\BodyDataDisplay.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\BodyDataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\CameraBase Displays\BodyDataDisplay.Designer.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\BodyDataDisplay.Designer.cs">
       <DependentUpon>BodyDataDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.cs">
@@ -105,16 +105,16 @@
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.Designer.cs">
       <DependentUpon>ScriptMemoryObject_Raw_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\CameraBase Displays\CameraBaseDisplay.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\B3DBaseDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\CameraBase Displays\CameraBaseDisplay.Designer.cs">
-      <DependentUpon>CameraBaseDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\B3DBase Displays\B3DBaseDisplay.Designer.cs">
+      <DependentUpon>B3DBaseDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\CameraBase Displays\CameraDisplay.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\CameraDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\CameraBase Displays\CameraDisplay.Designer.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\CameraDisplay.Designer.cs">
       <DependentUpon>CameraDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.cs">
@@ -142,29 +142,29 @@
       <DependentUpon>GateSystemObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueContentLoader.cs" />
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptInstanceDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectDisplay.Designer.cs">
-      <DependentUpon>ScriptingObjectDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptInstanceDisplay.Designer.cs">
+      <DependentUpon>ScriptInstanceDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectSubDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptInstanceSubDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectSubDisplay.Designer.cs">
-      <DependentUpon>ScriptingObjectSubDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptInstanceSubDisplay.Designer.cs">
+      <DependentUpon>ScriptInstanceSubDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTextObjectDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptStringObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTextObjectDisplay.Designer.cs">
-      <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptStringObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptStringObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingHashTableDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptTableObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingHashTableDisplay.Designer.cs">
-      <DependentUpon>ScriptingHashTableDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptTableObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptTableObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Displays\HashTableDisplay.cs">
       <SubType>Form</SubType>
@@ -184,11 +184,11 @@
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.Designer.cs">
       <DependentUpon>IScriptMemoryObject_RaceData_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTaskObjectDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptTaskObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTaskObjectDisplay.Designer.cs">
-      <DependentUpon>ScriptingTaskObjectDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptTaskObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptTaskObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\SectorBase Displays\RenderObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -253,7 +253,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="UI\Bases\CameraBase Displays\BodyDataDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\B3DBase Displays\BodyDataDisplay.resx">
       <DependentUpon>BodyDataDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.resx">
@@ -280,10 +280,10 @@
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.resx">
       <DependentUpon>ScriptMemoryObject_Raw_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\CameraBase Displays\CameraBaseDisplay.resx">
-      <DependentUpon>CameraBaseDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\B3DBase Displays\B3DBaseDisplay.resx">
+      <DependentUpon>B3DBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\CameraBase Displays\CameraDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\B3DBase Displays\CameraDisplay.resx">
       <DependentUpon>CameraDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.resx">
@@ -298,17 +298,17 @@
     <EmbeddedResource Include="UI\Displays\GateSystemObjectDisplay.resx">
       <DependentUpon>GateSystemObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectDisplay.resx">
-      <DependentUpon>ScriptingObjectDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptInstanceDisplay.resx">
+      <DependentUpon>ScriptInstanceDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingObjectSubDisplay.resx">
-      <DependentUpon>ScriptingObjectSubDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptInstanceSubDisplay.resx">
+      <DependentUpon>ScriptInstanceSubDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTextObjectDisplay.resx">
-      <DependentUpon>ScriptingTextObjectDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptStringObjectDisplay.resx">
+      <DependentUpon>ScriptStringObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingHashTableDisplay.resx">
-      <DependentUpon>ScriptingHashTableDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptTableObjectDisplay.resx">
+      <DependentUpon>ScriptTableObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>
@@ -319,8 +319,8 @@
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.resx">
       <DependentUpon>IScriptMemoryObject_RaceData_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptingTaskObjectDisplay.resx">
-      <DependentUpon>ScriptingTaskObjectDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptTaskObjectDisplay.resx">
+      <DependentUpon>ScriptTaskObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\SectorBase Displays\RenderObjectDisplay.resx">
       <DependentUpon>RenderObjectDisplay.cs</DependentUpon>

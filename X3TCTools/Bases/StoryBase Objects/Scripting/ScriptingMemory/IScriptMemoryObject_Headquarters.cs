@@ -6,7 +6,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
     public interface IScriptMemoryObject_Headquarters : IScriptMemoryObject_Station
     {
         int pAvailableBlueprintHashTable { get; }
-        ScriptingHashTableObject AvailableBlueprintHashTable { get; }
+        ScriptTableObject AvailableBlueprintHashTable { get; }
 
         SectorObject.SectorObjectType[] AvailableBlueprints { get; }
     }

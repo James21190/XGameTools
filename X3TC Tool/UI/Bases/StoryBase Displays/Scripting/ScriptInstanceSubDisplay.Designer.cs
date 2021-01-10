@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Displays
 {
-    partial class ScriptingObjectSubDisplay
+    partial class ScriptInstanceSubDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -304,6 +304,11 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(18, 294);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 12;
@@ -344,7 +349,7 @@
             this.textBox2.Size = new System.Drawing.Size(109, 20);
             this.textBox2.TabIndex = 0;
             // 
-            // ScriptingObjectSubDisplay
+            // ScriptInstanceSubDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -364,8 +369,8 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ScriptingObjectSubDisplay";
-            this.Text = "ScriptingObjectSubDisplay";
+            this.Name = "ScriptInstanceSubDisplay";
+            this.Text = "ScriptInstanceSub";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);

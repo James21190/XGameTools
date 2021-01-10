@@ -10,21 +10,21 @@ using X3_Tool.UI.Bases.StoryBase_Displays;
 
 namespace X3_Tool.UI.Displays
 {
-    public partial class ScriptingTaskObjectDisplay : Form
+    public partial class ScriptTaskObjectDisplay : Form
     {
-        private ScriptingTaskObject m_ScriptObject;
-        public ScriptingTaskObjectDisplay()
+        private ScriptTaskObject m_ScriptObject;
+        public ScriptTaskObjectDisplay()
         {
             InitializeComponent();
         }
 
         public void LoadObject(IntPtr pObject)
         {
-            ScriptingTaskObject newobj = new ScriptingTaskObject();
+            ScriptTaskObject newobj = new ScriptTaskObject();
             newobj.SetLocation(GameHook.hProcess, pObject);
             LoadObject(newobj);
         }
-        public void LoadObject(ScriptingTaskObject scriptObject)
+        public void LoadObject(ScriptTaskObject scriptObject)
         {
             m_ScriptObject = scriptObject;
             Reload();
@@ -88,8 +88,8 @@ namespace X3_Tool.UI.Displays
             StoryBase storybase = GameHook.storyBase;
             try
             {
-                HashTable<ScriptingTaskObject> table = storybase.pScriptObjectHashTable.obj;
-                ScriptingTaskObject obj = table.GetObject((int)IDNumericUpDown.Value);
+                HashTable<ScriptTaskObject> table = storybase.pHashTable_ScriptTaskObject.obj;
+                ScriptTaskObject obj = table.GetObject((int)IDNumericUpDown.Value);
                 LoadObject(obj);
             }
             catch (Exception)

@@ -1,18 +1,17 @@
 ﻿using Common.Memory;
 using System;
-using X3Tools.Bases.CameraBase_Objects;
 using X3Tools.Generics;
 
-namespace X3Tools.Bases
+namespace X3Tools.Bases.B3DBase_Objects
 {
-    public class CameraBase : MemoryObject
+    public class B3DBase : MemoryObject
     {
         public MemoryObjectPointer<HashTable<Camera>> pCameraHashTable = new MemoryObjectPointer<HashTable<Camera>>();
         public MemoryObjectPointer<HashTable<MemoryInt32>> pSceneHashTable = new MemoryObjectPointer<HashTable<MemoryInt32>>();
         public MemoryObjectPointer<HashTable<BodyData>> pBodyHashTable = new MemoryObjectPointer<HashTable<BodyData>>();
 
         public MemoryObjectPointer<HashTable<MemoryInt32>> pModelCollectionHashTable = new MemoryObjectPointer<HashTable<MemoryInt32>>();
-        public CameraBase()
+        public B3DBase()
         {
 
         }

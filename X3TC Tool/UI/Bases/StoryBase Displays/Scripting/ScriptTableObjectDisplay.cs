@@ -7,12 +7,12 @@ using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3_Tool.UI.Displays
 {
-    public partial class ScriptingHashTableDisplay : Form
+    public partial class ScriptTableObjectDisplay : Form
     {
 
-        private ScriptingHashTable m_HashTable = new ScriptingHashTable();
+        private ScriptTableObject_Inner m_HashTable = new ScriptTableObject_Inner();
 
-        public ScriptingHashTableDisplay(string name = null)
+        public ScriptTableObjectDisplay(string name = null)
         {
             InitializeComponent();
             if (name != null)

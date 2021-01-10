@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Displays
 {
-    partial class CameraBaseDisplay
+    partial class B3DBaseDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -35,8 +35,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nudBodyID = new System.Windows.Forms.NumericUpDown();
             this.btnBodyLoad = new System.Windows.Forms.Button();
+            this.nudBodyID = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBodyID)).BeginInit();
@@ -114,13 +114,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bodies";
             // 
-            // nudBodyID
-            // 
-            this.nudBodyID.Location = new System.Drawing.Point(6, 48);
-            this.nudBodyID.Name = "nudBodyID";
-            this.nudBodyID.Size = new System.Drawing.Size(176, 20);
-            this.nudBodyID.TabIndex = 9;
-            // 
             // btnBodyLoad
             // 
             this.btnBodyLoad.Location = new System.Drawing.Point(188, 48);
@@ -131,7 +124,14 @@
             this.btnBodyLoad.UseVisualStyleBackColor = true;
             this.btnBodyLoad.Click += new System.EventHandler(this.btnBodyLoad_Click);
             // 
-            // CameraBaseDisplay
+            // nudBodyID
+            // 
+            this.nudBodyID.Location = new System.Drawing.Point(6, 48);
+            this.nudBodyID.Name = "nudBodyID";
+            this.nudBodyID.Size = new System.Drawing.Size(176, 20);
+            this.nudBodyID.TabIndex = 9;
+            // 
+            // B3DBaseDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,8 +141,8 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
-            this.Name = "CameraBaseDisplay";
-            this.Text = "CameraBaseDisplay";
+            this.Name = "B3DBaseDisplay";
+            this.Text = "B3DBase";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);

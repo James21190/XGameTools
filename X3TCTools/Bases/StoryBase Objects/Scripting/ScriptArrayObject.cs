@@ -4,7 +4,7 @@ using X3Tools.Bases.StoryBase_Objects.Scripting;
 
 namespace X3Tools.Bases.StoryBase_Objects
 {
-    public class StoryBase15fc : MemoryObject
+    public class ScriptArrayObject : MemoryObject
     {
         public int ID;
         public int Unknown_1;

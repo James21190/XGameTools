@@ -2,7 +2,7 @@
 
 namespace X3_Tool.UI.Displays
 {
-    partial class ScriptingHashTableDisplay
+    partial class ScriptTableObjectDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -205,6 +205,7 @@ namespace X3_Tool.UI.Displays
             // dynamicValueDisplay1
             // 
             this.dynamicValueDisplay1.Location = new System.Drawing.Point(27, 209);
+            this.dynamicValueDisplay1.MinimumSize = new System.Drawing.Size(179, 108);
             this.dynamicValueDisplay1.Name = "dynamicValueDisplay1";
             this.dynamicValueDisplay1.Size = new System.Drawing.Size(179, 110);
             this.dynamicValueDisplay1.TabIndex = 3;
@@ -242,6 +243,7 @@ namespace X3_Tool.UI.Displays
             // IDBox
             // 
             this.IDBox.Location = new System.Drawing.Point(8, 16);
+            this.IDBox.MinimumSize = new System.Drawing.Size(179, 108);
             this.IDBox.Name = "IDBox";
             this.IDBox.Size = new System.Drawing.Size(179, 110);
             this.IDBox.TabIndex = 2;
@@ -258,7 +260,7 @@ namespace X3_Tool.UI.Displays
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // ScriptingHashTableDisplay
+            // ScriptTableObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -270,8 +272,8 @@ namespace X3_Tool.UI.Displays
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.MinimumSize = new System.Drawing.Size(629, 370);
-            this.Name = "ScriptingHashTableDisplay";
-            this.Text = "ScriptingHashTableDisplay";
+            this.Name = "ScriptTableObjectDisplay";
+            this.Text = "ScriptTableObject";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
