@@ -23,20 +23,16 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.KCode
             throw new NotImplementedException();
         }
 
-        private List<int> m_ComputedAddresses = new List<int>();
-        public KInstruction[] Disassemble(int startingInstructionIndex, int instructionLimit = -1, bool resetComputedAddresses = true)
+        public KInstruction[] Disassemble(int startingInstructionIndex, int instructionLimit = 200)
         {
-            var instructions = new List<KInstruction>();
             var storyBase = GameHook.storyBase;
+            // Create a list of decompiled instructions.
+            var instructions = new List<KInstruction>();
 
             var currentInstructionIndex = startingInstructionIndex;
 
-            if (resetComputedAddresses) m_ComputedAddresses.Clear();
-
             for (int instructionCount = 0; instructionCount < instructionLimit || instructionLimit == -1; instructionCount++)
             {
-                if (m_ComputedAddresses.Contains(currentInstructionIndex)) break;
-                else m_ComputedAddresses.Add(currentInstructionIndex);
                 var currentInstruction = storyBase.pInstructionArray[currentInstructionIndex].Value;
                 var nextInstructionIndex = currentInstructionIndex + 1;
 
@@ -52,6 +48,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.KCode
 
                 try
                 {
+                    // throws an exception if not found.
                     var functionDef = _GetFunctionDefinition(functionAddress);
 
                     kInstruction.AssociatedDefinition = functionDef;
@@ -87,17 +84,19 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.KCode
                             kInstruction.Parameters[param] = paramValue;
                         }
                     }
-                    if (functionDef.NextInstructionOffset != 0)
-                        nextInstructionIndex = currentInstructionIndex + functionDef.NextInstructionOffset;
-                    functionDef.EditState?.Invoke(ref nextInstructionIndex, kInstruction, this);
+
+                    nextInstructionIndex = functionDef.NextInstructionOffset == 0 ? currentInstructionIndex + 1 : currentInstructionIndex + functionDef.NextInstructionOffset;
                 }
                 catch (NotImplementedException)
                 {
+
                 }
                 // Set index to next instruction
                 currentInstructionIndex = nextInstructionIndex;
 
                 instructions.Add(kInstruction);
+                if (kInstruction.AssociatedDefinition == null || kInstruction.AssociatedDefinition.ShouldTerminateDecompilation)
+                    break;
             }
 
             return instructions.ToArray();

@@ -37,7 +37,7 @@
         /// </summary>
         PreviousSectorScriptingObjectID,
 
-        Dest_Sector_X = 8,
+        Dest_Sector_X = 7,
         Dest_Sector_Y
     }
     public enum TC_Sector_Variables

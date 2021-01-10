@@ -11,15 +11,20 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             RaceData_0 = 400,
             RaceData_1,
             RaceData_Player,
-            RaceData_2,
-            RaceData_3,
-            RaceData_4,
+            RaceData_Pirate,
+            RaceData_Gonor,
+            RaceData_Khaak,
             RaceData_5,
 
             Sector = 2001,
+            Planet,
+
             Station_Factory = 2006,
 
-            Asteroid = 2012,
+            Sun = 2008,
+
+            Ship_LaserTower = 2011,
+            Asteroid,
 
             Gate = 2014,
 
@@ -34,9 +39,13 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting
             Ship_TS = 2031,
             Ship_TL,
 
+            Ship_Goner_Ranger = 2039,
+
             Headquarters = 2046,
 
             Ship_Spacefly = 2070,
+
+            Ship_Satellite = 2080,
 
             Xenon_Hub = 2075,
         }

@@ -57,9 +57,8 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KFunctionDefinition.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\KInstruction.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\KCode\FunctionDefinitions.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\AP_EventObject_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData_Player.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\ScriptingObject_Types.cs" />
+    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\ScriptInstance_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData_Player.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Station.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Gate.cs" />
@@ -75,7 +74,6 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\R\R_ScriptingMemory_Variables.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\R\ScriptMemoryObject_R_Gate.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Headquarters.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\TC_EventObject_Types.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_PositionData_12.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Station.cs" />

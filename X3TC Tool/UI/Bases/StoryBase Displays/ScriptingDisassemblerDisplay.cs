@@ -45,9 +45,11 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays
             StringBuilder sb = new StringBuilder();
             var storyBase = GameHook.storyBase;
             sb.Append(m_address.ToString("D8") + " || ");
-            for(int i = 1; i <= 32 * 20; i++)
+            const int lineCount = 20;
+            for(int i = 1; i <= 32 * lineCount; i++)
             {
                 sb.Append(storyBase.pInstructionArray[m_address + i - 1].Value.ToString("X2"));
+                if (i == 32 * lineCount) break;
                 if( i % 32 == 0)
                 {
                     sb.Append("\n" + (m_address + i).ToString("D8") + " || ");

@@ -8,6 +8,7 @@
 	- Improved IScriptMemoryObject_RaceData_Panel reload time.
 	- Changed ISectorObjectMeta methods.
 	- Fixed incorrect address for pStrings in StoryBase.
+	- Fixed incorrect address for dest sector in ScriptMemoryObject_TC_Gate. This will fix incorrect sectors being shown in sector display's gates.
 	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
 	- Renamed "SectorObjectManager" to "SectorBase"
 	- Renamed "GateSystemObject" to "GalaxyBase"

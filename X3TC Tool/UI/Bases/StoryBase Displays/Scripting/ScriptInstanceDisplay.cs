@@ -89,9 +89,9 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
                     typePanel = new IScriptMemoryObject_Headquarters_Panel(); break;
                 case ScriptInstance.ScriptingObject_Type.RaceData_0:
                 case ScriptInstance.ScriptingObject_Type.RaceData_1:
-                case ScriptInstance.ScriptingObject_Type.RaceData_2:
-                case ScriptInstance.ScriptingObject_Type.RaceData_3:
-                case ScriptInstance.ScriptingObject_Type.RaceData_4:
+                case ScriptInstance.ScriptingObject_Type.RaceData_Pirate:
+                case ScriptInstance.ScriptingObject_Type.RaceData_Gonor:
+                case ScriptInstance.ScriptingObject_Type.RaceData_Khaak:
                 case ScriptInstance.ScriptingObject_Type.RaceData_5:
                     typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
                 case ScriptInstance.ScriptingObject_Type.RaceData_Player:
