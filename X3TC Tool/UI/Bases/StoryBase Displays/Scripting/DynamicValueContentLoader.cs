@@ -22,12 +22,12 @@ namespace X3_Tool.UI.Displays
 
                     return display_hash;
                 case DynamicValue.FlagType.pArray:
-                    var arrayObject = new ScriptingArrayObject();
+                    var arrayObject = new ScriptArrayObject();
                     arrayObject.SetLocation(GameHook.hProcess, (IntPtr)dynamicValue.Value);
                     arrayObject.ReloadFromMemory();
 
-                    var arrayDisplay = new DynamicValueArrayDisplay();
-                    arrayDisplay.LoadFrom((IntPtr)arrayObject.pArray.address,0, arrayObject.length);
+                    var arrayDisplay = new ScriptArrayObjectDisplay();
+                    arrayDisplay.LoadArray(arrayObject);
                     return arrayDisplay;
                 case DynamicValue.FlagType.pTextObject:
                     ScriptStringObjectDisplay display_text = new ScriptStringObjectDisplay();

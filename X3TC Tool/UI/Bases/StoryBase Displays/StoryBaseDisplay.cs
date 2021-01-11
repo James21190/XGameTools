@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools;
 using X3Tools.Bases;
 using X3Tools.Bases.StoryBase_Objects;
@@ -37,13 +37,6 @@ namespace X3_Tool.UI.Displays
             Reload();
             ScriptTaskObjectDisplay display = new ScriptTaskObjectDisplay();
             display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
-            display.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            DynamicValueArrayDisplay display = new DynamicValueArrayDisplay();
-            display.LoadFrom(m_StoryBase.pInstructionArray.address, 0, 0);
             display.Show();
         }
 
@@ -119,6 +112,13 @@ namespace X3_Tool.UI.Displays
         private void nudFunctionIndex_ValueChanged(object sender, EventArgs e)
         {
             ReloadScriptFunction((int)nudFunctionIndex.Value);
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            var searcher = new ScriptMemorySearcher();
+            searcher.Show();
+            searcher.Search(dynamicValueDisplay1.Value);
         }
     }
 }

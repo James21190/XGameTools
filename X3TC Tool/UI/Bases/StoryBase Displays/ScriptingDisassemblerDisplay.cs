@@ -44,17 +44,17 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays
             txtMemory.Text = "";
             StringBuilder sb = new StringBuilder();
             var storyBase = GameHook.storyBase;
-            sb.Append(m_address.ToString("D8") + " || ");
+            sb.Append(m_address.ToString("D7") + " || ");
             const int lineCount = 20;
             for(int i = 1; i <= 32 * lineCount; i++)
             {
                 sb.Append(storyBase.pInstructionArray[m_address + i - 1].Value.ToString("X2"));
-                if (i == 32 * lineCount) break;
-                if( i % 32 == 0)
+                if (i == 30 * lineCount) break;
+                if( i % 30 == 0)
                 {
-                    sb.Append("\n" + (m_address + i).ToString("D8") + " || ");
+                    sb.Append("\n" + (m_address + i).ToString("D7") + " || ");
                 }
-                else if(i % 8 == 0)
+                else if(i % 10 == 0)
                 {
                     sb.Append(" || ");
                 }

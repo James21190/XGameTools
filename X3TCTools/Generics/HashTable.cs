@@ -155,6 +155,30 @@ namespace X3Tools.Generics
             return results.ToArray();
         }
 
+        /// <summary>
+        /// Returns the objects stored in the table.
+        /// </summary>
+        /// <returns></returns>
+        public T[] GetAllContents()
+        {
+            T[] result = new T[Count];
+
+            var ids = ScanContents();
+            for (int i = 0; i < Count; i++)
+            {
+                try
+                {
+                    result[i] = GetObject(ids[i]);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         /// <summary>

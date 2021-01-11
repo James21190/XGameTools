@@ -101,9 +101,10 @@ namespace X3_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DynamicValueArrayDisplay display = new DynamicValueArrayDisplay();
-            display.LoadFrom(m_ScriptObject.pStack.address, m_ScriptObject.StackSize, 0);
-            display.Show();
+            throw new NotImplementedException();
+            //ScriptArrayObjectDisplay display = new ScriptArrayObjectDisplay();
+            //display.LoadFrom(m_ScriptObject.pStack.address, m_ScriptObject.StackSize, 0);
+            //display.Show();
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)

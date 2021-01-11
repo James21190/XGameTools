@@ -1,57 +1,60 @@
 ﻿Alpha 6:
-	- Added dll injector.
-	- Added limited functionality for X3R nosteam.
-	- Added anti-AFK function.
 	- Added "TimeSinceLastInput" to IScriptMemoryObject_RaceData_Player.
+	- Added a method to HashTable to get all objects as an array.
 	- Added a method to ScriptMemoryObject to write new values directly to game memory.
+	- Added a script memory search function in StoryBaseDisplay.
+	- Added anti-AFK function.
+	- Added dll injector.
 	- Added functions list to ScriptInstancePanel.
-	- Improved IScriptMemoryObject_RaceData_Panel reload time.
+	- Added limited functionality for X3R nosteam.
 	- Changed ISectorObjectMeta methods.
-	- Fixed incorrect address for pStrings in StoryBase.
+	- Changed how ScriptObject arrays are displayed.
 	- Fixed incorrect address for dest sector in ScriptMemoryObject_TC_Gate. This will fix incorrect sectors being shown in sector display's gates.
-	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
-	- Renamed "SectorObjectManager" to "SectorBase"
-	- Renamed "GateSystemObject" to "GalaxyBase"
-	- Renamed "CameraBase" to "B3DBase"
-	- Renamed most script objects to names simalar to the game's internal names.
+	- Fixed incorrect address for pStrings in StoryBase.
+	- Improved IScriptMemoryObject_RaceData_Panel reload time.
 	- Moved scripting disassembly to it's own form.
+	- Renamed "CameraBase" to "B3DBase"
+	- Renamed "GateSystemObject" to "GalaxyBase"
+	- Renamed "SectorObjectManager" to "SectorBase"
+	- Renamed most script objects to names simalar to the game's internal names.
+	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
 
 Alpha 5 (22/11/2020):
-	- Added TypeData class.
 	- Added CameraBase and Camera classes.
-	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
 	- Added KCode dissassembler.
+	- Added ScanContents() to HashTable. Returns the IDs of all valid objects in the table.
+	- Added TypeData class.
 	- Added maintype check to SectorObject.IsValid.
-	- Added partial methods to getting the price of types in TypeData (This method is incomplete).
 	- Added methods for getting HQ production resources to TypeData-Ship.
-	- Renamed ScriptingObject to ScriptingObject.
-	- Renamed ScriptObject to ScriptnigTaskObject.
-	- Rotation matricise now inherit from MemoryObject.
-	- Reduced and renamed unknowns in SectorObject.
-	- Seperated UI into multiple forms for faster loading and a better look.
+	- Added partial methods to getting the price of types in TypeData (This method is incomplete).
 	- Corrected LastUsedID in HashTable to NextAvailableID.
+	- Fixed handle to the game remaining open after the tool application closes.
 	- HashTable now inherits from MemoryObject.
 	- Recreated SectorObject meta objects.
-	- Fixed handle to the game remaining open after the tool application closes.
+	- Reduced and renamed unknowns in SectorObject.
+	- Renamed ScriptObject to ScriptnigTaskObject.
+	- Renamed ScriptingObject to ScriptingObject.
+	- Rotation matricise now inherit from MemoryObject.
+	- Seperated UI into multiple forms for faster loading and a better look.
 
 Alpha 4:
+	- Added "Get Space" button to sector object viewer.
+	- Added ScriptingObject.
 	- Added an executable patching system for easy implementation of optimised code.
 	- Added the StoryBase.
-	- Added ScriptingObject.
-	- Added "Get Space" button to sector object viewer.
 	- Added the ability to load SectorObjects via their ID.
 	- Completed GateSystemObject viewer.
-	- Improved the HashTable class.
-	- Fixed crash when loading invalid SectorObjects.
 	- Fixed SectorObjectManager not updating its pointers.
+	- Fixed crash when loading invalid SectorObjects.
+	- Improved the HashTable class.
 
 Alpha 3:
+	- Added GateSystemObject and partial viewer.
 	- Added an auto reloader to the SectorObject tab.
 	- Added enumerations for a lot of SectorObject sub-types and race ids.
-	- Added GateSystemObject and partial viewer.
 	- Added galaxy map.
-	- Improved SectorObjectManager's SectorObjectExists methods.
 	- Fixed LocalRotationDelta being written to the wrong display on the SectorObject tab.
+	- Improved SectorObjectManager's SectorObjectExists methods.
 
 Alpha 2:
 	- Added "General" tab.

@@ -91,7 +91,6 @@
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptInstanceSubFunction.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptStringObject.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\DynamicValue.cs" />
-    <Compile Include="Bases\StoryBase Objects\Scripting\ScriptingArrayObject.cs" />
     <Compile Include="Bases\StoryBase Objects\EventFunctionStruct.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptInstance.cs" />
     <Compile Include="Bases\StoryBase Objects\Scripting\ScriptInstanceSub.cs" />

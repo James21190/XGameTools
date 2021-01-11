@@ -35,17 +35,17 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP
 
         public int pCustomNameArrayObject => GetVariableValue((int)AP_Ship_Variables.CustomShipName);
 
-        public ScriptingArrayObject CustomNameArrayObject { get { ScriptingArrayObject array = new ScriptingArrayObject(); array.SetLocation(GameHook.hProcess, (IntPtr)pCustomNameArrayObject); array.ReloadFromMemory(); return array; } }
+        public ScriptArrayObject CustomNameArrayObject { get { ScriptArrayObject array = new ScriptArrayObject(); array.SetLocation(GameHook.hProcess, (IntPtr)pCustomNameArrayObject); array.ReloadFromMemory(); return array; } }
 
         public string CustomName { get
             {
                 var array = CustomNameArrayObject;
-                for(int i = 0; i < array.count; i++)
+                for(int i = 0; i < array.Count; i++)
                 {
-                    if(array.pArray[i].Flag == DynamicValue.FlagType.pTextObject)
+                    if(array.pDynamicValueArr[i].Flag == DynamicValue.FlagType.pTextObject)
                     {
                         var textobj = new ScriptStringObject();
-                        textobj.SetLocation(GameHook.hProcess, (IntPtr)array.pArray[i].Value);
+                        textobj.SetLocation(GameHook.hProcess, (IntPtr)array.pDynamicValueArr[i].Value);
                         textobj.ReloadFromMemory();
                         return textobj.pText.obj.value;
                     }

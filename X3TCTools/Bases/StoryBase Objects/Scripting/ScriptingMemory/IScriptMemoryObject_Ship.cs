@@ -36,7 +36,7 @@ namespace X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory
 
         int pCustomNameArrayObject { get; }
 
-        ScriptingArrayObject CustomNameArrayObject { get; }
+        ScriptArrayObject CustomNameArrayObject { get; }
 
         string CustomName { get; }
     }

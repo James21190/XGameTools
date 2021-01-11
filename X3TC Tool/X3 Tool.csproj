@@ -62,6 +62,12 @@
     <Compile Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.Designer.cs">
       <DependentUpon>ScriptingDisassemblerDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemorySearcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemorySearcher.Designer.cs">
+      <DependentUpon>ScriptMemorySearcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\Cargo_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,11 +123,11 @@
     <Compile Include="UI\Bases\B3DBase Displays\CameraDisplay.Designer.cs">
       <DependentUpon>CameraDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.cs">
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptArrayObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.Designer.cs">
-      <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
+    <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptArrayObjectDisplay.Designer.cs">
+      <DependentUpon>ScriptArrayObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueEditorDisplay.cs">
       <SubType>Form</SubType>
@@ -259,6 +265,9 @@
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\ScriptingDisassemblerDisplay.resx">
       <DependentUpon>ScriptingDisassemblerDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemorySearcher.resx">
+      <DependentUpon>ScriptMemorySearcher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\Cargo_Panel.resx">
       <DependentUpon>Cargo_Panel.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,8 +295,8 @@
     <EmbeddedResource Include="UI\Bases\B3DBase Displays\CameraDisplay.resx">
       <DependentUpon>CameraDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueDisplay.resx">
-      <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptArrayObjectDisplay.resx">
+      <DependentUpon>ScriptArrayObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\DynamicValueEditorDisplay.resx">
       <DependentUpon>DynamicValueEditorDisplay.cs</DependentUpon>

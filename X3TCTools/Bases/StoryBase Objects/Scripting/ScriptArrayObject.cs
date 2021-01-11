@@ -1,15 +1,14 @@
 ﻿using Common.Memory;
 using System;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
 
-namespace X3Tools.Bases.StoryBase_Objects
+namespace X3Tools.Bases.StoryBase_Objects.Scripting
 {
     public class ScriptArrayObject : MemoryObject
     {
         public int ID;
         public int Unknown_1;
-        public int Unknown_2;
-        public int Unknown_3;
+        public int Length;
+        public int Count;
         public MemoryObjectPointer<DynamicValue> pDynamicValueArr = new MemoryObjectPointer<DynamicValue>();
 
         public override byte[] GetBytes()
@@ -18,8 +17,8 @@ namespace X3Tools.Bases.StoryBase_Objects
 
             collection.Append(ID);
             collection.Append(Unknown_1);
-            collection.Append(Unknown_2);
-            collection.Append(Unknown_3);
+            collection.Append(Length);
+            collection.Append(Count);
             collection.Append(pDynamicValueArr);
 
             return collection.GetBytes();
@@ -33,8 +32,8 @@ namespace X3Tools.Bases.StoryBase_Objects
 
             collection.PopFirst(ref ID);
             collection.PopFirst(ref Unknown_1);
-            collection.PopFirst(ref Unknown_2);
-            collection.PopFirst(ref Unknown_3);
+            collection.PopFirst(ref Length);
+            collection.PopFirst(ref Count);
             collection.PopFirst(ref pDynamicValueArr);
         }
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -43,16 +42,9 @@ namespace X3Tools.Bases.StoryBase_Objects
             pDynamicValueArr.SetLocation(hProcess, address + 20);
         }
 
-        public enum Indeces
+        public override string ToString()
         {
-            Position_X,
-            Position_Y,
-            Position_Z,
-        }
-
-        public DynamicValue GetValue(Indeces Index)
-        {
-            return pDynamicValueArr.GetObjectInArray((int)Index);
+            return ID.ToString();
         }
     }
 }

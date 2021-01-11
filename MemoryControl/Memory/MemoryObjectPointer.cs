@@ -67,6 +67,13 @@ namespace Common.Memory
             return obj;
         }
 
+        public A GetObjInArrayAsType<A>(int Index) where A : IMemoryObject, new()
+        {
+            A obj = new A();
+            obj.SetLocation(m_hProcess, address + (obj.ByteSize * Index));
+            obj.ReloadFromMemory();
+            return obj;
+        }
 
         /// <summary>
         /// Is false when the pointer is null.
