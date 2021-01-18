@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows.Forms;
 using X3_Tool.UI;
 using X3_Tool.UI.Bases.CameraBase_Displays;
@@ -10,10 +8,7 @@ using X3_Tool.UI.Displays;
 using X3TC_Tool.UI.Bases.SystemBase_Displays;
 using X3Tools;
 using X3Tools.Bases.SectorBase_Objects;
-using X3Tools.Bases.B3DBase_Objects;
 using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
 using X3Tools.Bases.SystemBase_Objects;
 
 namespace X3_Tool
@@ -44,7 +39,7 @@ namespace X3_Tool
 
             Text += " - Game Version: " + GameHook.GameVersion;
 
-            if(GameHook == null)
+            if (GameHook == null)
             {
                 GameHookMenuStrip.Enabled = false;
                 dLLInjectToolStripMenuItem.Enabled = false;
@@ -55,13 +50,13 @@ namespace X3_Tool
             // Post hook
             timer1.Enabled = true;
 
-            for(int i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++)
             {
-                var currentLanguage = GameHook.systemBase.Language;
+                GameHook.Language currentLanguage = GameHook.systemBase.Language;
                 if (((GameHook.Language)i).ToString() != i.ToString())
                 {
-                    var index = cbLanguage.Items.Add(((GameHook.Language)i));
-                    if(((GameHook.Language)i) == currentLanguage)
+                    int index = cbLanguage.Items.Add(((GameHook.Language)i));
+                    if (((GameHook.Language)i) == currentLanguage)
                     {
                         cbLanguage.SelectedIndex = index;
                     }
@@ -77,9 +72,11 @@ namespace X3_Tool
             }
         }
 
-        #region Base Viewers
+        #region Buttons
 
-        #region StoryBase
+        #region Bases
+
+        #region Story
         private StoryBaseDisplay m_StoryBaseDisplay;
         private void btnStoryBase_Click(object sender, EventArgs e)
         {
@@ -96,7 +93,7 @@ namespace X3_Tool
         }
         #endregion
 
-        #region SectorObjectManager
+        #region Sector
         private SectorObjectManagerDisplay m_SectorObjectManagerDisplay;
         private void btnSectorObjectManager_Click(object sender, EventArgs e)
         {
@@ -113,7 +110,7 @@ namespace X3_Tool
         }
         #endregion
 
-        #region SystemBase
+        #region System
         private SystemBaseDisplay m_SystemBaseDisplay = null;
         private void btnSystemBase_Click(object sender, EventArgs e)
         {
@@ -130,18 +127,7 @@ namespace X3_Tool
         }
         #endregion
 
-        #endregion
-
-
-
-        private void LoadPlayerShipButton_Click(object sender, EventArgs e)
-        {
-            SectorBase sectorObjectManager = GameHook.sectorObjectManager;
-            SectorObjectDisplay display = new SectorObjectDisplay();
-            display.LoadObject(sectorObjectManager.pPlayerShip.obj);
-            display.Show();
-        }
-
+        #region Input
         private InputBaseDisplay m_InputBaseDisplay = null;
 
         public void OnInputBaseDisplayClosed(object sender, EventArgs e)
@@ -153,18 +139,14 @@ namespace X3_Tool
         {
             if (m_InputBaseDisplay == null)
             {
-                m_InputBaseDisplay = new InputBaseDisplay(GameHook);
+                m_InputBaseDisplay = new InputBaseDisplay();
                 m_InputBaseDisplay.FormClosed += OnInputBaseDisplayClosed;
                 m_InputBaseDisplay.Show();
             }
         }
+        #endregion
 
-        private void hashTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HashTableDisplay display = new HashTableDisplay();
-            display.Show();
-        }
-
+        #region B3D
         private B3DBaseDisplay m_CameraBaseDisplay = null;
 
         public void OnCameraBaseDisplayClosed(object sender, EventArgs e)
@@ -181,40 +163,34 @@ namespace X3_Tool
                 m_CameraBaseDisplay.Show();
             }
         }
+        #endregion
 
-        private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
+        #region Galaxy
+        private GalaxyBaseDisplay m_GalaxyBaseDisplay = null;
+        public void OnGalaxyBaseDisplayClosed(object sender, EventArgs e)
         {
-            CameraDisplay display = new CameraDisplay();
-            display.Show();
+            m_GalaxyBaseDisplay = null;
         }
-
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            label1.Text = "SETA: x" + trackBar1.Value;
-            SystemBase systembase = GameHook.systemBase;
-            systembase.TimeWarpFactor.Value = trackBar1.Value;
-            systembase.SaveSETA();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            trackBar1.Maximum = checkBox1.Checked ? 20 : 10;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            // Disable Anti-AFK by updating TimeOfLastInput.
-            if (cbDisableAFK.Checked)
+            if (m_GalaxyBaseDisplay == null)
             {
-                var playerScriptObject = GameHook.storyBase.GetRaceData_Player();
-                if(playerScriptObject != null)
-                    switch (GameHook.GameVersion)
-                    {
-                        case GameHook.GameVersions.X3TC:
-                            ((ScriptMemoryObject)playerScriptObject).SetVariableValueInMemory((int)TC_RaceData_Player_Variables.TimeOfLastInput, playerScriptObject.SecondsElapsed) ;
-                            break;
-                    }
+                m_GalaxyBaseDisplay = new GalaxyBaseDisplay();
+                m_GalaxyBaseDisplay.FormClosed += OnGalaxyBaseDisplayClosed;
+                m_GalaxyBaseDisplay.Show();
             }
+        }
+        #endregion
+
+        #endregion
+
+        #region SectorObjects
+        private void LoadPlayerShipButton_Click(object sender, EventArgs e)
+        {
+            SectorBase sectorObjectManager = GameHook.sectorObjectManager;
+            SectorObjectDisplay display = new SectorObjectDisplay();
+            display.LoadObject(sectorObjectManager.pPlayerShip.obj);
+            display.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -225,46 +201,65 @@ namespace X3_Tool
             display.Show();
         }
 
+        #endregion
+
+        #region ScriptInstances
         private void button5_Click(object sender, EventArgs e)
         {
             ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptInstanceID);
             display.Show();
         }
-
-        private void button6_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            new GateSystemObjectDisplay().Show();
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            X3Tools.Bases.StoryBase_Objects.Scripting.ScriptInstance obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance;
+            IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
+            display.LoadObject(ship.OwnerDataScriptingObjectID);
+            display.Show();
         }
+        #endregion
 
-        private void bodyDataToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Hacks
+        #region SETA Override
+        private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            new BodyDataDisplay().Show();
+            label1.Text = "SETA: x" + trackBar1.Value;
+            SystemBase systembase = GameHook.systemBase;
+            systembase.TimeWarpFactor.Value = trackBar1.Value;
+            systembase.SaveSETA();
         }
-
-        private void x86DisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            new x86Disassembler().Show();
+            trackBar1.Maximum = checkBox1.Checked ? 20 : 10;
         }
+        #endregion
+        #endregion
 
+        #region Tabs
+
+        #region GameHook
+
+        #region Bases
+
+        #region Story
+
+        #region Scripting
         private void ScriptingObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ScriptInstanceDisplay().Show();
         }
 
+        private void sciptInstanceSubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScriptInstanceSubDisplay().Show();
+        }
+
         private void scriptObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ScriptTaskObjectDisplay().Show();
-        }
-
-        private void sectorObjectToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            new SectorObjectDisplay().Show();
-        }
-
-        private void typeDataToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            new TypeDataDisplay().Show();
         }
 
         private void scriptingHashTableToolStripMenuItem_Click(object sender, EventArgs e)
@@ -279,14 +274,37 @@ namespace X3_Tool
 
         private void scriptingArrayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new DynamicValueDisplay().Show();
+            new ScriptArrayObjectDisplay().Show();
         }
 
-        private void renderObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void scriptingDisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new RenderObjectDisplay().Show();
+            new ScriptingDisassemblerDisplay().Show();
         }
 
+        #endregion
+
+        private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TextPageDisplay().Show();
+        }
+
+        #endregion
+
+        #region Sector
+        private void sectorObjectToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new SectorObjectDisplay().Show();
+        }
+
+        private void typeDataToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            new TypeDataDisplay().Show();
+        }
+
+        #endregion
+
+        #region B3D
         private void cameraToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             new CameraDisplay().Show();
@@ -297,44 +315,63 @@ namespace X3_Tool
             new BodyDataDisplay().Show();
         }
 
-        private void textPageToolStripMenuItem_Click(object sender, EventArgs e)
+        private void renderObjectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new TextPageDisplay().Show();
+            new RenderObjectDisplay().Show();
         }
+        #endregion
 
-        private void scriptingDisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new ScriptingDisassemblerDisplay().Show();
-        }
+        #endregion
 
-        private void dLLInjectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void hashTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var dialogue = new OpenFileDialog();
-            dialogue.Filter = "DLL|*.dll";
-            if (dialogue.ShowDialog() == DialogResult.OK)
-                GameHook.InjectDll(dialogue.FileName);
-        }
-
-        private void scriptingObjectSubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            new ScriptInstanceSubDisplay().Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
-            var obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance;
-            IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
-            display.LoadObject(ship.OwnerDataScriptingObjectID);
+            HashTableDisplay display = new HashTableDisplay();
             display.Show();
         }
 
+        private void x86DisassemblerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new x86Disassembler().Show();
+        }
+
+        #endregion
+
+        private void dLLInjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialogue = new OpenFileDialog
+            {
+                Filter = "DLL|*.dll"
+            };
+            if (dialogue.ShowDialog() == DialogResult.OK)
+            {
+                GameHook.InjectDll(dialogue.FileName);
+            }
+        }
+
+        #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // Disable Anti-AFK by updating TimeOfLastInput.
+            if (cbDisableAFK.Checked)
+            {
+                IScriptMemoryObject_RaceData_Player playerScriptObject = GameHook.storyBase.GetRaceData_Player();
+                if (playerScriptObject != null)
+                {
+                    switch (GameHook.GameVersion)
+                    {
+                        case GameHook.GameVersions.X3TC:
+                            ((ScriptMemoryObject)playerScriptObject).SetVariableValueInMemory((int)TC_RaceData_Player_Variables.TimeOfLastInput, playerScriptObject.SecondsElapsed);
+                            break;
+                    }
+                }
+            }
+        }
         private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var sb = GameHook.systemBase;
+            SystemBase sb = GameHook.systemBase;
             sb.Language = (GameHook.Language)cbLanguage.SelectedItem;
             sb.SaveLanguage();
         }
-
     }
 }

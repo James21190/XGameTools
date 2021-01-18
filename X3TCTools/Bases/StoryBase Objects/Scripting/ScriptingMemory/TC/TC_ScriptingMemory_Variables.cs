@@ -54,6 +54,8 @@
         BackgroundID = 29,
 
         BackgroundMusicID = 32, 
+
+        Population = 39,
     }
     public enum TC_Ship_Variables
     {

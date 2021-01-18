@@ -33,18 +33,14 @@ namespace X3_Tool.UI.Bases.CameraBase_Displays
             }
             catch (HashTableElementNotFoundException)
             {
-                txtAddress.Text = "Not Found!";
+                
             }
         }
         public void Reload()
         {
-            txtAddress.Text = m_BodyData.pThis.ToString("X");
-            nudID.Value = m_BodyData.ID;
-        }
+            m_BodyData.ReloadFromMemory();
 
-        private void btnLoadID_Click(object sender, EventArgs e)
-        {
-            LoadBodyData((int)nudID.Value);                
+            numericIDObjectControl1.LoadObject(m_BodyData);
         }
     }
 }

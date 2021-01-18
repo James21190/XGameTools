@@ -1,6 +1,6 @@
 ﻿namespace X3_Tool.UI.Displays
 {
-    partial class GateSystemObjectDisplay
+    partial class GalaxyBaseDisplay
     {
         /// <summary>
         /// Required designer variable.

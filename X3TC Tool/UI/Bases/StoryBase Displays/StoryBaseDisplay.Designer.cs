@@ -62,19 +62,22 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button13 = new System.Windows.Forms.Button();
             this.dynamicValueDisplay1 = new X3Tools.DynamicValueDisplay();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFunctionIndex)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(10, 12);
+            this.button1.Location = new System.Drawing.Point(12, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(190, 23);
             this.button1.TabIndex = 2;
@@ -94,7 +97,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 41);
+            this.button4.Location = new System.Drawing.Point(12, 99);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(188, 23);
             this.button4.TabIndex = 5;
@@ -104,7 +107,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(12, 70);
+            this.button5.Location = new System.Drawing.Point(12, 128);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(188, 23);
             this.button5.TabIndex = 6;
@@ -114,7 +117,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 128);
+            this.button3.Location = new System.Drawing.Point(12, 186);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(188, 23);
             this.button3.TabIndex = 7;
@@ -124,7 +127,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(12, 99);
+            this.button6.Location = new System.Drawing.Point(12, 157);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(188, 23);
             this.button6.TabIndex = 8;
@@ -211,7 +214,7 @@
             this.groupBox2.Controls.Add(this.button9);
             this.groupBox2.Controls.Add(this.txtPrimaryFunction);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 190);
+            this.groupBox2.Location = new System.Drawing.Point(12, 215);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(557, 193);
             this.groupBox2.TabIndex = 11;
@@ -419,11 +422,30 @@
             this.dynamicValueDisplay1.Text = "Value";
             this.dynamicValueDisplay1.Value = dynamicValue1;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtAddress);
+            this.groupBox4.Location = new System.Drawing.Point(12, 12);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(121, 52);
+            this.groupBox4.TabIndex = 12;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Address";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(6, 19);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(109, 20);
+            this.txtAddress.TabIndex = 0;
+            // 
             // StoryBaseDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -441,6 +463,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudFunctionIndex)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -480,5 +504,7 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button13;
         private X3Tools.DynamicValueDisplay dynamicValueDisplay1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txtAddress;
     }
 }

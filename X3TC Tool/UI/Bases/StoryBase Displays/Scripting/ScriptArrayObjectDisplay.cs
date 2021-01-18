@@ -26,8 +26,8 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            AddressBox.Text = m_obj.pThis.ToString("X");
-            txtID.Text = m_obj.ID.ToString();
+            txtAddress.Text = m_obj.pThis.ToString("X");
+            nudID.Value = m_obj.ID;
             var arr = new ScriptMemoryObject(m_obj.Length);
             arr.SetLocation(GameHook.hProcess, m_obj.pDynamicValueArr.address);
             arr.ReloadFromMemory();
@@ -37,6 +37,11 @@ namespace X3_Tool.UI.Displays
         private void ScriptArrayObjectDisplay_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLoadID_Click(object sender, EventArgs e)
+        {
+            LoadArray(GameHook.storyBase.pHashTable_ScriptArrayObject.obj.GetObject((int)nudID.Value));
         }
     }
 }

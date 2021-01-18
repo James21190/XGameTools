@@ -5,9 +5,9 @@ using X3Tools.Bases;
 
 namespace X3_Tool.UI.Displays
 {
-    public partial class GateSystemObjectDisplay : Form
+    public partial class GalaxyBaseDisplay : Form
     {
-        public GateSystemObjectDisplay()
+        public GalaxyBaseDisplay()
         {
             InitializeComponent();
             nudX.Maximum = GalaxyBase.width  - 1;

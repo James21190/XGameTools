@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.LoadIDButton = new System.Windows.Forms.Button();
-            this.nudSectorObjectID = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtDefaultName = new System.Windows.Forms.TextBox();
             this.AutoReloader = new System.Windows.Forms.Timer(this.components);
@@ -49,13 +44,11 @@
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.ScriptingObjectPannel1 = new X3TCTool.ScriptingObjectPannel();
             this.btnLoadScriptingObject = new System.Windows.Forms.Button();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.nudMass = new System.Windows.Forms.NumericUpDown();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.ModelCollectionIDBox = new System.Windows.Forms.TextBox();
-            this.v3dPosition = new Common.UI.Vector3Display();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.txtRace = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -63,8 +56,6 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.SpeedBox = new System.Windows.Forms.NumericUpDown();
             this.btnLoadData = new System.Windows.Forms.Button();
-            this.v3dPositionKm = new Common.UI.Vector3Display();
-            this.v3dRotation = new Common.UI.Vector3Display();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,9 +67,11 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelSectorInfo = new System.Windows.Forms.Label();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).BeginInit();
+            this.v3dPosition = new Common.UI.Vector3Display();
+            this.v3dPositionKm = new Common.UI.Vector3Display();
+            this.v3dRotation = new Common.UI.Vector3Display();
+            this.ScriptingObjectPannel1 = new X3TCTool.ScriptingObjectPannel();
+            this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -98,57 +91,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtAddress);
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(121, 52);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Address";
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(6, 19);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ReadOnly = true;
-            this.txtAddress.Size = new System.Drawing.Size(109, 20);
-            this.txtAddress.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.LoadIDButton);
-            this.groupBox1.Controls.Add(this.nudSectorObjectID);
-            this.groupBox1.Location = new System.Drawing.Point(130, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(178, 52);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ID";
-            // 
-            // LoadIDButton
-            // 
-            this.LoadIDButton.Location = new System.Drawing.Point(97, 16);
-            this.LoadIDButton.Name = "LoadIDButton";
-            this.LoadIDButton.Size = new System.Drawing.Size(75, 23);
-            this.LoadIDButton.TabIndex = 1;
-            this.LoadIDButton.Text = "Load";
-            this.LoadIDButton.UseVisualStyleBackColor = true;
-            this.LoadIDButton.Click += new System.EventHandler(this.LoadIDButton_Click);
-            // 
-            // nudSectorObjectID
-            // 
-            this.nudSectorObjectID.Location = new System.Drawing.Point(6, 19);
-            this.nudSectorObjectID.Maximum = new decimal(new int[] {
-            -1486618625,
-            232830643,
-            0,
-            0});
-            this.nudSectorObjectID.Name = "nudSectorObjectID";
-            this.nudSectorObjectID.Size = new System.Drawing.Size(85, 20);
-            this.nudSectorObjectID.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -217,9 +159,9 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.txtType);
-            this.groupBox5.Location = new System.Drawing.Point(3, 61);
+            this.groupBox5.Location = new System.Drawing.Point(215, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(283, 52);
+            this.groupBox5.Size = new System.Drawing.Size(220, 52);
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Type";
@@ -231,7 +173,7 @@
             this.txtType.Location = new System.Drawing.Point(6, 19);
             this.txtType.Name = "txtType";
             this.txtType.ReadOnly = true;
-            this.txtType.Size = new System.Drawing.Size(271, 20);
+            this.txtType.Size = new System.Drawing.Size(208, 20);
             this.txtType.TabIndex = 0;
             // 
             // groupBox6
@@ -282,6 +224,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.numericIDObjectControl1);
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox11);
             this.panel1.Controls.Add(this.groupBox10);
@@ -291,9 +234,7 @@
             this.panel1.Controls.Add(this.groupBox8);
             this.panel1.Controls.Add(this.groupBox7);
             this.panel1.Controls.Add(this.btnLoadData);
-            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox6);
-            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.v3dPositionKm);
@@ -317,19 +258,6 @@
             this.groupBox4.TabIndex = 27;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "ScriptInstance";
-            // 
-            // ScriptingObjectPannel1
-            // 
-            this.ScriptingObjectPannel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScriptingObjectPannel1.Location = new System.Drawing.Point(10, 48);
-            this.ScriptingObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
-            this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
-            this.ScriptingObjectPannel1.ReadOnly = true;
-            this.ScriptingObjectPannel1.ScriptingObject = null;
-            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 369);
-            this.ScriptingObjectPannel1.TabIndex = 25;
             // 
             // btnLoadScriptingObject
             // 
@@ -389,48 +317,6 @@
             this.ModelCollectionIDBox.ReadOnly = true;
             this.ModelCollectionIDBox.Size = new System.Drawing.Size(109, 20);
             this.ModelCollectionIDBox.TabIndex = 0;
-            // 
-            // v3dPosition
-            // 
-            this.v3dPosition.DecimalPlaces = 0;
-            this.v3dPosition.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.v3dPosition.Location = new System.Drawing.Point(9, 119);
-            this.v3dPosition.Maximum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            0});
-            this.v3dPosition.MaximumSize = new System.Drawing.Size(156, 103);
-            this.v3dPosition.Minimum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            -2147483648});
-            this.v3dPosition.MinimumSize = new System.Drawing.Size(100, 103);
-            this.v3dPosition.Name = "v3dPosition";
-            this.v3dPosition.ReadOnly = true;
-            this.v3dPosition.Size = new System.Drawing.Size(156, 103);
-            this.v3dPosition.TabIndex = 24;
-            this.v3dPosition.Text = "Position";
-            this.v3dPosition.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dPosition.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dPosition.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // groupBox9
             // 
@@ -521,90 +407,6 @@
             this.btnLoadData.Text = "Load RenderObject";
             this.btnLoadData.UseVisualStyleBackColor = true;
             this.btnLoadData.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // v3dPositionKm
-            // 
-            this.v3dPositionKm.DecimalPlaces = 2;
-            this.v3dPositionKm.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.v3dPositionKm.Location = new System.Drawing.Point(9, 228);
-            this.v3dPositionKm.Maximum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            0});
-            this.v3dPositionKm.MaximumSize = new System.Drawing.Size(156, 103);
-            this.v3dPositionKm.Minimum = new decimal(new int[] {
-            1215752192,
-            23,
-            0,
-            -2147483648});
-            this.v3dPositionKm.MinimumSize = new System.Drawing.Size(100, 103);
-            this.v3dPositionKm.Name = "v3dPositionKm";
-            this.v3dPositionKm.ReadOnly = true;
-            this.v3dPositionKm.Size = new System.Drawing.Size(156, 103);
-            this.v3dPositionKm.TabIndex = 7;
-            this.v3dPositionKm.Text = "Position (Km)";
-            this.v3dPositionKm.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dPositionKm.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dPositionKm.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // v3dRotation
-            // 
-            this.v3dRotation.DecimalPlaces = 0;
-            this.v3dRotation.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.v3dRotation.Location = new System.Drawing.Point(9, 337);
-            this.v3dRotation.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-            this.v3dRotation.MaximumSize = new System.Drawing.Size(156, 103);
-            this.v3dRotation.Minimum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            -2147483648});
-            this.v3dRotation.MinimumSize = new System.Drawing.Size(100, 103);
-            this.v3dRotation.Name = "v3dRotation";
-            this.v3dRotation.ReadOnly = true;
-            this.v3dRotation.Size = new System.Drawing.Size(156, 103);
-            this.v3dRotation.TabIndex = 9;
-            this.v3dRotation.Text = "Rotation";
-            this.v3dRotation.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotation.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.v3dRotation.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // menuStrip1
             // 
@@ -710,6 +512,158 @@
             this.labelSectorInfo.TabIndex = 27;
             this.labelSectorInfo.Text = "Sector:";
             // 
+            // v3dPosition
+            // 
+            this.v3dPosition.DecimalPlaces = 0;
+            this.v3dPosition.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.v3dPosition.Location = new System.Drawing.Point(9, 119);
+            this.v3dPosition.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.v3dPosition.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dPosition.Minimum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            -2147483648});
+            this.v3dPosition.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dPosition.Name = "v3dPosition";
+            this.v3dPosition.ReadOnly = true;
+            this.v3dPosition.Size = new System.Drawing.Size(156, 103);
+            this.v3dPosition.TabIndex = 24;
+            this.v3dPosition.Text = "Position";
+            this.v3dPosition.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dPosition.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dPosition.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v3dPositionKm
+            // 
+            this.v3dPositionKm.DecimalPlaces = 2;
+            this.v3dPositionKm.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.v3dPositionKm.Location = new System.Drawing.Point(9, 228);
+            this.v3dPositionKm.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.v3dPositionKm.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dPositionKm.Minimum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            -2147483648});
+            this.v3dPositionKm.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dPositionKm.Name = "v3dPositionKm";
+            this.v3dPositionKm.ReadOnly = true;
+            this.v3dPositionKm.Size = new System.Drawing.Size(156, 103);
+            this.v3dPositionKm.TabIndex = 7;
+            this.v3dPositionKm.Text = "Position (Km)";
+            this.v3dPositionKm.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dPositionKm.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dPositionKm.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v3dRotation
+            // 
+            this.v3dRotation.DecimalPlaces = 0;
+            this.v3dRotation.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.v3dRotation.Location = new System.Drawing.Point(9, 337);
+            this.v3dRotation.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.v3dRotation.MaximumSize = new System.Drawing.Size(156, 103);
+            this.v3dRotation.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
+            this.v3dRotation.MinimumSize = new System.Drawing.Size(100, 103);
+            this.v3dRotation.Name = "v3dRotation";
+            this.v3dRotation.ReadOnly = true;
+            this.v3dRotation.Size = new System.Drawing.Size(156, 103);
+            this.v3dRotation.TabIndex = 9;
+            this.v3dRotation.Text = "Rotation";
+            this.v3dRotation.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotation.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.v3dRotation.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // ScriptingObjectPannel1
+            // 
+            this.ScriptingObjectPannel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScriptingObjectPannel1.Location = new System.Drawing.Point(10, 48);
+            this.ScriptingObjectPannel1.MinimumSize = new System.Drawing.Size(469, 227);
+            this.ScriptingObjectPannel1.Name = "ScriptingObjectPannel1";
+            this.ScriptingObjectPannel1.ReadOnly = true;
+            this.ScriptingObjectPannel1.ScriptingObject = null;
+            this.ScriptingObjectPannel1.Size = new System.Drawing.Size(469, 369);
+            this.ScriptingObjectPannel1.TabIndex = 25;
+            // 
+            // numericIDObjectControl1
+            // 
+// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
+            this.numericIDObjectControl1.ID = 0;
+            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 0);
+            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
+            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.TabIndex = 28;
+            this.numericIDObjectControl1.AddressLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
+            this.numericIDObjectControl1.IDLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
+            // 
             // SectorObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,10 +676,6 @@
             this.Name = "SectorObjectDisplay";
             this.Text = "SectorObjectDisplay";
             this.Load += new System.EventHandler(this.SectorObjectDisplay_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudSectorObjectID)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -756,12 +706,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button LoadIDButton;
-        private System.Windows.Forms.NumericUpDown nudSectorObjectID;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtDefaultName;
         private Common.UI.Vector3Display v3dPositionKm;
@@ -804,5 +748,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private X3TCTool.ScriptingObjectPannel ScriptingObjectPannel1;
         private System.Windows.Forms.Button btnLoadScriptingObject;
+        private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

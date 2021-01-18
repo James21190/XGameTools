@@ -10,7 +10,6 @@ namespace X3_Tool.UI.Displays
 {
     public partial class StoryBaseDisplay : Form
     {
-        private StoryBase m_StoryBase;
         public StoryBaseDisplay()
         {
             InitializeComponent();
@@ -20,15 +19,17 @@ namespace X3_Tool.UI.Displays
         public void Reload()
         {
             // Update instance
-            m_StoryBase = GameHook.storyBase;
-            m_StoryBase.ReloadFromMemory();
+            var storyBase = GameHook.storyBase;
+            txtAddress.Text = storyBase.pThis.ToString("X");
+
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay("StoryBase - ScriptingObjects");
-            display.LoadTable(m_StoryBase.pHashTable_ScriptInstance.address);
+            display.LoadTable(GameHook.storyBase.pHashTable_ScriptInstance.address);
             display.Show();
         }
 
@@ -36,48 +37,48 @@ namespace X3_Tool.UI.Displays
         {
             Reload();
             ScriptTaskObjectDisplay display = new ScriptTaskObjectDisplay();
-            display.LoadObject(m_StoryBase.pCurrentScriptObject.obj);
+            display.LoadObject(GameHook.storyBase.pCurrentScriptObject.obj);
             display.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting Arrays");
-            display.LoadTable(m_StoryBase.pHashTable_ScriptArrayObject.address);
+            display.LoadTable(GameHook.storyBase.pHashTable_ScriptArrayObject.address);
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting HashTables");
-            display.LoadTable(m_StoryBase.pHashTable_ScriptTableObject.address);
+            display.LoadTable(GameHook.storyBase.pHashTable_ScriptTableObject.address);
             display.Show();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay();
-            display.LoadTable(m_StoryBase.TextHashTableArray[44].address);
+            display.LoadTable(GameHook.storyBase.TextHashTableArray[44].address);
             display.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay("StoryBase - Scripting TextObjects");
-            display.LoadTable(m_StoryBase.pHashTable_ScriptStringObject.address);
+            display.LoadTable(GameHook.storyBase.pHashTable_ScriptStringObject.address);
             display.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             HashTableDisplay display = new HashTableDisplay();
-            display.LoadTable(m_StoryBase.pHashTable_ScriptTaskObject.address);
+            display.LoadTable(GameHook.storyBase.pHashTable_ScriptTaskObject.address);
             display.Show();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            ScriptTaskObject[] ScriptObjects = m_StoryBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
+            ScriptTaskObject[] ScriptObjects = GameHook.storyBase.GetScriptObjectsWithReferenceTo((int)numericUpDown1.Value);
 
             listBox1.Items.Clear();
             listBox1.Items.AddRange(ScriptObjects);

@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.AddressBox = new System.Windows.Forms.TextBox();
             this.PreviousButton = new System.Windows.Forms.Button();
             this.NextButton = new System.Windows.Forms.Button();
             this.LastChildButton = new System.Windows.Forms.Button();
@@ -48,7 +45,7 @@
             this.vec3Saturation = new Common.UI.Vector3Display();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.nudHue = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2.SuspendLayout();
+            this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -59,38 +56,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudHue)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.AddressBox);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(202, 52);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Address";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(121, 17);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Load";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // AddressBox
-            // 
-            this.AddressBox.Location = new System.Drawing.Point(6, 19);
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.ReadOnly = true;
-            this.AddressBox.Size = new System.Drawing.Size(109, 20);
-            this.AddressBox.TabIndex = 0;
-            // 
             // PreviousButton
             // 
-            this.PreviousButton.Location = new System.Drawing.Point(12, 99);
+            this.PreviousButton.Location = new System.Drawing.Point(8, 159);
             this.PreviousButton.Name = "PreviousButton";
             this.PreviousButton.Size = new System.Drawing.Size(98, 23);
             this.PreviousButton.TabIndex = 14;
@@ -100,7 +68,7 @@
             // 
             // NextButton
             // 
-            this.NextButton.Location = new System.Drawing.Point(12, 70);
+            this.NextButton.Location = new System.Drawing.Point(8, 130);
             this.NextButton.Name = "NextButton";
             this.NextButton.Size = new System.Drawing.Size(98, 23);
             this.NextButton.TabIndex = 13;
@@ -110,7 +78,7 @@
             // 
             // LastChildButton
             // 
-            this.LastChildButton.Location = new System.Drawing.Point(116, 99);
+            this.LastChildButton.Location = new System.Drawing.Point(112, 159);
             this.LastChildButton.Name = "LastChildButton";
             this.LastChildButton.Size = new System.Drawing.Size(98, 23);
             this.LastChildButton.TabIndex = 16;
@@ -120,7 +88,7 @@
             // 
             // FirstChildButton
             // 
-            this.FirstChildButton.Location = new System.Drawing.Point(116, 70);
+            this.FirstChildButton.Location = new System.Drawing.Point(112, 130);
             this.FirstChildButton.Name = "FirstChildButton";
             this.FirstChildButton.Size = new System.Drawing.Size(98, 23);
             this.FirstChildButton.TabIndex = 15;
@@ -243,7 +211,7 @@
             // 
             // btnParent
             // 
-            this.btnParent.Location = new System.Drawing.Point(116, 128);
+            this.btnParent.Location = new System.Drawing.Point(112, 188);
             this.btnParent.Name = "btnParent";
             this.btnParent.Size = new System.Drawing.Size(98, 23);
             this.btnParent.TabIndex = 22;
@@ -365,11 +333,26 @@
             this.nudHue.Size = new System.Drawing.Size(144, 20);
             this.nudHue.TabIndex = 19;
             // 
+            // numericIDObjectControl1
+            // 
+// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
+            this.numericIDObjectControl1.EnableLoad = false;
+            this.numericIDObjectControl1.ID = 0;
+            this.numericIDObjectControl1.Location = new System.Drawing.Point(12, 10);
+            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
+            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.TabIndex = 24;
+            this.numericIDObjectControl1.AddressLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
+            this.numericIDObjectControl1.IDLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
+            // 
             // RenderObjectDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.numericIDObjectControl1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.vec3Saturation);
             this.Controls.Add(this.groupBox4);
@@ -382,11 +365,8 @@
             this.Controls.Add(this.FirstChildButton);
             this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.NextButton);
-            this.Controls.Add(this.groupBox2);
             this.Name = "RenderObjectDisplay";
             this.Text = "RenderObjectDisplay";
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -400,15 +380,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox AddressBox;
         private System.Windows.Forms.Button PreviousButton;
         private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.Button LastChildButton;
         private System.Windows.Forms.Button FirstChildButton;
         private Common.UI.Vector3Display ScaleBox;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NumericUpDown nudSize;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -421,5 +397,6 @@
         private Common.UI.Vector3Display vec3Saturation;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.NumericUpDown nudHue;
+        private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

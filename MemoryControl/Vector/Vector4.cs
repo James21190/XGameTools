@@ -34,6 +34,8 @@ namespace Common.Vector
 
         public int ByteSize => 16;
 
+        public IntPtr pThis => throw new NotImplementedException();
+
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {
             throw new NotImplementedException();

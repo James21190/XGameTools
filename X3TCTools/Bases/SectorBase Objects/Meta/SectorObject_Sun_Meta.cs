@@ -11,6 +11,8 @@ namespace X3Tools.Bases.SectorBase_Objects.Meta
 
         public int ByteSize => 8;
 
+        public IntPtr pThis => throw new NotImplementedException();
+
         public SectorObject GetFirstChild(SectorObject.Main_Type main_Type)
         {
             return null;

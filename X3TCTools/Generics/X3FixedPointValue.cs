@@ -38,6 +38,8 @@ namespace X3Tools.Generics
 
         public int ByteSize => 4;
 
+        IntPtr IMemoryObject.pThis => throw new NotImplementedException();
+
         public void SetData(byte[] Memory)
         {
             FixedPointValue = BitConverter.ToUInt32(Memory, 0);

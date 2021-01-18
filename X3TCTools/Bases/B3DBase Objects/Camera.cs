@@ -4,7 +4,7 @@ using System;
 
 namespace X3Tools.Bases.B3DBase_Objects
 {
-    public class Camera : MemoryObject
+    public class Camera : MemoryObject, INumericIDObject
     {
         public int ID;
 
@@ -36,6 +36,8 @@ namespace X3Tools.Bases.B3DBase_Objects
         }
 
         public override int ByteSize => 1936;
+
+        int INumericIDObject.ID => ID;
 
         public override void SetData(byte[] Memory)
         {

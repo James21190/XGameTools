@@ -9,14 +9,14 @@ using X3Tools.Bases.SectorBase_Objects.Meta;
 
 namespace X3Tools.Bases.SectorBase_Objects
 {
-    public partial class SectorObject : MemoryObject, IComparable
+    public partial class SectorObject : MemoryObject, IComparable, INumericIDObject
     {
         public bool IsValid => (pNext.address != IntPtr.Zero && pPrevious.address != IntPtr.Zero && (int)ObjectType.MainTypeEnum < MAIN_TYPE_COUNT);
 
         #region Memory Fields
         public MemoryObjectPointer<SectorObject> pNext;
         public MemoryObjectPointer<SectorObject> pPrevious;
-        public int ObjectID;
+        public int ID;
         public IntPtr pDefaultName;
         public int Speed;
         public int TargetSpeed;
@@ -197,7 +197,7 @@ namespace X3Tools.Bases.SectorBase_Objects
 
             collection.Append(pNext.address);
             collection.Append(pPrevious.address);
-            collection.Append(ObjectID);
+            collection.Append(ID);
             collection.Append(pDefaultName);
             collection.Append(Speed);
             collection.Append(TargetSpeed);
@@ -260,6 +260,8 @@ namespace X3Tools.Bases.SectorBase_Objects
 
         public override int ByteSize => 304;
 
+        int INumericIDObject.ID => ID;
+
         public override void SetData(byte[] Memory)
         {
             ObjectByteList collection = new ObjectByteList(Memory);
@@ -268,7 +270,7 @@ namespace X3Tools.Bases.SectorBase_Objects
             collection.PopFirst(ref pPrevious);
             int tempint = 0;
             short tempshort = 0;
-            collection.PopFirst(ref ObjectID);
+            collection.PopFirst(ref ID);
             collection.PopFirst(ref pDefaultName);
             collection.PopFirst(ref Speed);
             collection.PopFirst(ref TargetSpeed);
@@ -396,12 +398,12 @@ namespace X3Tools.Bases.SectorBase_Objects
                 return 1;
             }
 
-            if (ObjectID > type.ObjectID)
+            if (ID > type.ID)
             {
                 return -1;
             }
 
-            if (ObjectID < type.ObjectID)
+            if (ID < type.ID)
             {
                 return 1;
             }
@@ -422,7 +424,7 @@ namespace X3Tools.Bases.SectorBase_Objects
             }
 
             SectorObject sectorObject = (SectorObject)obj;
-            return ObjectID == sectorObject.ObjectID;
+            return ID == sectorObject.ID;
         }
 
         public static bool operator ==(SectorObject a, SectorObject b)

@@ -119,6 +119,7 @@
     <Compile Include="Generics\Generics Exceptions.cs" />
     <Compile Include="Generics\HashTable.cs" />
     <Compile Include="Generics\LinkedListStart.cs" />
+    <Compile Include="INumericIDObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bases\SectorBase Objects\Meta\ISectorObjectMeta.cs" />
     <Compile Include="Bases\SectorBase Objects\Meta\SectorObject_Gate_Meta.cs" />
@@ -166,6 +167,12 @@
     <Compile Include="Bases\SectorBase Objects\TypeData\TypeData_Ship.cs" />
     <Compile Include="Bases\StoryBase Objects\TextPage.cs" />
     <Compile Include="Generics\X3FixedPointValue.cs" />
+    <Compile Include="UI\NumericIDObjectControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\NumericIDObjectControl.Designer.cs">
+      <DependentUpon>NumericIDObjectControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\R\X3RSectorNames.csv">
@@ -204,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\StoryBase Objects\Scripting\UI\ScriptInstancePanel.resx">
       <DependentUpon>ScriptInstancePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NumericIDObjectControl.resx">
+      <DependentUpon>NumericIDObjectControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

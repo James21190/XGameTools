@@ -29,12 +29,22 @@ namespace X3Tools.Bases
 
         public override int ByteSize => 0x531;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList(Memory);
+            X2FunctionIndex = objectByteList.PopInt(0x418);
 
-            collection.Skip(0x4dc);
-            collection.PopFirst(ref ScriptingObjectID);
+            Paused = objectByteList.PopInt(0x4a0);
+
+            pHashTable1 = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<MemoryInt32>>>(0x4bc);
+            pHashTable2 = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<MemoryInt32>>>();
+
+            ScriptingObjectID = objectByteList.PopInt(0x4dc);
+
+            NextLocation = objectByteList.PopIMemoryObject<Vector3>();
+
+            AbsTime = objectByteList.PopInt(0x4f8);
+
+            IsModified = objectByteList.PopInt(0x500);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

@@ -8,7 +8,7 @@ using Common.Memory;
 
 namespace X3Tools.Bases.B3DBase_Objects
 {
-    public class BodyData : MemoryObject
+    public class BodyData : MemoryObject, INumericIDObject
     {
         public int ID;
         public MemoryObjectPointer<MemoryObjectPointer<BodyData_Sub>> ppSub;
@@ -20,6 +20,8 @@ namespace X3Tools.Bases.B3DBase_Objects
         }
 
         public override int ByteSize => 0x60;
+
+        int INumericIDObject.ID => ID;
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {

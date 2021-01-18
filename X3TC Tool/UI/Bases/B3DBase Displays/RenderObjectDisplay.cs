@@ -15,22 +15,15 @@ namespace X3_Tool.UI.Displays
             InitializeComponent();
         }
 
-        public void LoadData(RenderObject renderObject)
+        public void LoadObject(RenderObject renderObject)
         {
             m_RenderObject = renderObject;
             Reload();
         }
 
-        public void LoadData(IntPtr pRenderObject)
-        {
-            m_RenderObject = new RenderObject();
-            m_RenderObject.SetLocation(GameHook.hProcess, pRenderObject);
-            Reload();
-        }
-
         public void Reload()
         {
-            AddressBox.Text = m_RenderObject.pThis.ToString("X");
+            numericIDObjectControl1.LoadObject(m_RenderObject);
 
             ScaleBox.Vector = m_RenderObject.ModelScale;
 
@@ -51,29 +44,25 @@ namespace X3_Tool.UI.Displays
             btnParent.Enabled = m_RenderObject.pParent.obj.IsValid;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            LoadData((IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
-        }
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            LoadData(m_RenderObject.pNext.obj);
+            LoadObject(m_RenderObject.pNext.obj);
         }
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
-            LoadData(m_RenderObject.pPrevious.obj);
+            LoadObject(m_RenderObject.pPrevious.obj);
         }
 
         private void FirstChildButton_Click(object sender, EventArgs e)
         {
-            LoadData(m_RenderObject.pFirstChild.obj);
+            LoadObject(m_RenderObject.pFirstChild.obj);
         }
 
         private void LastChildButton_Click(object sender, EventArgs e)
         {
-            LoadData(m_RenderObject.pLastChild.obj);
+            LoadObject(m_RenderObject.pLastChild.obj);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -85,7 +74,7 @@ namespace X3_Tool.UI.Displays
 
         private void btnParent_Click(object sender, EventArgs e)
         {
-            LoadData(m_RenderObject.pParent.obj);
+            LoadObject(m_RenderObject.pParent.obj);
         }
 
         private void btnViewModelData_Click(object sender, EventArgs e)
@@ -93,6 +82,16 @@ namespace X3_Tool.UI.Displays
             var display = new BodyDataDisplay();
             display.LoadBodyData(m_RenderObject.ModelID);
             display.Show();
+        }
+
+        private void numericIDObjectControl1_IDLoad(object sender, int value)
+        {
+
+        }
+
+        private void numericIDObjectControl1_AddressLoad(object sender, int value)
+        {
+
         }
     }
 }

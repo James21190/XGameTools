@@ -178,10 +178,10 @@
     <Compile Include="UI\Displays\HashTableDisplay.Designer.cs">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Displays\InputBaseDisplay.cs">
+    <Compile Include="UI\Bases\InputBaseDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Displays\InputBaseDisplay.Designer.cs">
+    <Compile Include="UI\Bases\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.cs">
@@ -196,10 +196,10 @@
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptTaskObjectDisplay.Designer.cs">
       <DependentUpon>ScriptTaskObjectDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\SectorBase Displays\RenderObjectDisplay.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\RenderObjectDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\SectorBase Displays\RenderObjectDisplay.Designer.cs">
+    <Compile Include="UI\Bases\B3DBase Displays\RenderObjectDisplay.Designer.cs">
       <DependentUpon>RenderObjectDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\SectorBase Displays\SectorObjectDisplay.cs">
@@ -322,7 +322,7 @@
     <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Displays\InputBaseDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.resx">
@@ -331,7 +331,7 @@
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptTaskObjectDisplay.resx">
       <DependentUpon>ScriptTaskObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\SectorBase Displays\RenderObjectDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\B3DBase Displays\RenderObjectDisplay.resx">
       <DependentUpon>RenderObjectDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\SectorBase Displays\SectorObjectDisplay.resx">

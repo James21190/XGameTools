@@ -23,6 +23,7 @@ namespace Common.Memory
 
     public interface IMemoryObject : IBinaryObject
     {
+        IntPtr pThis { get; }
         void SetLocation(IntPtr hProcess, IntPtr address);
 
         /// <summary>

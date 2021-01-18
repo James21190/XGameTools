@@ -32,18 +32,13 @@ namespace X3_Tool.UI.Displays
         public void Reload()
         {
             m_Camera.ReloadFromMemory();
-            AddressBox.Text = m_Camera.pThis.ToString("X");
-            IDBox.Text = m_Camera.ID.ToString();
+
+            numericIDObjectControl1.LoadObject(m_Camera);
             FunctionIndexBox.Text = m_Camera.FunctionIndex.ToString();
             FocusBox.Text = m_Camera.Focus.ToString();
             textBox1.Text = m_Camera.Pri.ToString();
             FogDisplay.Vector = m_Camera.Fog;
             BackgroundDisplay.Vector = m_Camera.Background;
-        }
-
-        private void LoadButton_Click(object sender, EventArgs e)
-        {
-            LoadCamera((IntPtr)int.Parse(AddressBox.Text, System.Globalization.NumberStyles.HexNumber));
         }
     }
 }

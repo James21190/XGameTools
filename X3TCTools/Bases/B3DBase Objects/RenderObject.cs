@@ -4,8 +4,9 @@ using System;
 
 namespace X3Tools.Bases.B3DBase_Objects
 {
-    public class RenderObject : MemoryObject
+    public class RenderObject : MemoryObject, INumericIDObject
     {
+        #region Memory
         public MemoryObjectPointer<RenderObject> pNext = new MemoryObjectPointer<RenderObject>();
         public MemoryObjectPointer<RenderObject> pPrevious = new MemoryObjectPointer<RenderObject>();
         public int Unknown_3; // 0x8
@@ -132,6 +133,10 @@ namespace X3Tools.Bases.B3DBase_Objects
         public int Unknown_154;
         public int Unknown_155;
         public int Unknown_156; // 26c
+        #endregion
+
+        int INumericIDObject.ID => ID;
+
         public RenderObject()
         {
         }

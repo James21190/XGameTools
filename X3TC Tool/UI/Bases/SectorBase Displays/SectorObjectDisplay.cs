@@ -66,7 +66,7 @@ namespace X3_Tool.UI.Displays
             };
 
             // If sectorObject is selected object, set selectedNode
-            selectedNode = (baseSectorObject.ObjectID == selectedID) ? newNode : null;
+            selectedNode = (baseSectorObject.ID == selectedID) ? newNode : null;
 
 
             // Give node a color based on it's owning race.
@@ -100,22 +100,6 @@ namespace X3_Tool.UI.Displays
             return newNode;
         }
 
-        public void LoadObject(int ID)
-        {
-            SectorBase sectorObjectManager = GameHook.sectorObjectManager;
-            HashTable<SectorObject> hashtable = sectorObjectManager.pObjectHashTable.obj;
-            SectorObject obj;
-            try
-            {
-                obj = hashtable.GetObject(ID);
-            }
-            catch (Exception)
-            {
-                txtAddress.Text = "Not Found!";
-                return;
-            }
-            LoadObject(obj);
-        }
 
         public void LoadObject(SectorObject sectorObject)
         {
@@ -140,46 +124,57 @@ namespace X3_Tool.UI.Displays
                 labelSectorInfo.Text = "Sector: Invalid ScriptObject";
             }
 
-        ObjectInfo:
-            // Reload from memory to ensure it is up to date.
-            m_SectorObject.ReloadFromMemory();
-            // Load tree if not auto reloading
-            if (!AutoReloadCheckBox.Checked)
+            ObjectInfo:
+            if(m_SectorObject != null && m_SectorObject.IsValid)
             {
-                LoadTree(m_SectorObject.ObjectID);
+
+                // Reload from memory to ensure it is up to date.
+                m_SectorObject.ReloadFromMemory();
+
+                // Load tree if not auto reloading
+                if (!AutoReloadCheckBox.Checked)
+                {
+                    LoadTree(m_SectorObject.ID);
+                }
+
+                numericIDObjectControl1.LoadObject(m_SectorObject);
+
+
+                if (GameHook.GameVersion == GameHook.GameVersions.X3R)
+                    txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.Language.English, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+                else
+                    txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+                v3dPosition.Vector = m_SectorObject.Position_Copy;
+                v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;
+                v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
+                v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
+                v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
+                ScriptingObjectPannel1.ScriptingObject = m_SectorObject.ScriptInstance;
+                txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.ObjectType.MainTypeEnum.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.ObjectType.MainTypeEnum, m_SectorObject.ObjectType.SubType);
+
+                SpeedBox.Value = m_SectorObject.Speed;
+                TargetSpeedBox.Value = m_SectorObject.TargetSpeed;
+                nudMass.Value = m_SectorObject.Mass;
+
+                txtRace.Text = m_SectorObject.RaceID.ToString();
+
+                ModelCollectionIDBox.Text = m_SectorObject.ModelCollectionID.ToString();
+
+
+                // Object relation
+                // If auto reloading, disable buttons
+                btnGoNext.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid && !AutoReloadCheckBox.Enabled;
+                btnGoPrevious.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid && !AutoReloadCheckBox.Enabled;
+                btnGoParent.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid && !AutoReloadCheckBox.Enabled;
+
+
+                ReloadChildren();
             }
-
-            txtAddress.Text = m_SectorObject.pThis.ToString("X");
-            if(GameHook.GameVersion == GameHook.GameVersions.X3R)
-                txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.Language.English, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+            // If invalid
             else
-                txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
-            nudSectorObjectID.Value = m_SectorObject.ObjectID;
-            v3dPosition.Vector = m_SectorObject.Position_Copy;
-            v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;
-            v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
-            v3dPositionKm.Z = ((decimal)m_SectorObject.Position_Copy.Z) / 500000;
-            v3dRotation.Vector = m_SectorObject.EulerRotationCopy;
-            ScriptingObjectPannel1.ScriptingObject = m_SectorObject.ScriptInstance;
-            txtType.Text = string.Format("{0} - {1} // {2} - {3}", m_SectorObject.ObjectType.MainTypeEnum.ToString(), m_SectorObject.GetSubTypeAsString(), (int)m_SectorObject.ObjectType.MainTypeEnum, m_SectorObject.ObjectType.SubType);
-
-            SpeedBox.Value = m_SectorObject.Speed;
-            TargetSpeedBox.Value = m_SectorObject.TargetSpeed;
-            nudMass.Value = m_SectorObject.Mass;
-
-            txtRace.Text = m_SectorObject.RaceID.ToString();
-
-            ModelCollectionIDBox.Text = m_SectorObject.ModelCollectionID.ToString();
-
-
-            // Object relation
-            // If auto reloading, disable buttons
-            btnGoNext.Enabled = m_SectorObject.pNext.IsValid && m_SectorObject.pNext.obj.IsValid && !AutoReloadCheckBox.Enabled;
-            btnGoPrevious.Enabled = m_SectorObject.pPrevious.IsValid && m_SectorObject.pPrevious.obj.IsValid && !AutoReloadCheckBox.Enabled;
-            btnGoParent.Enabled = m_SectorObject.pParent.IsValid && m_SectorObject.pParent.obj.IsValid && !AutoReloadCheckBox.Enabled;
-            
-
-            ReloadChildren();
+            {
+                txtType.Text = "Invalid Object!";
+            }
 
         }
 
@@ -206,11 +201,6 @@ namespace X3_Tool.UI.Displays
             return;
         }
 
-        private void LoadIDButton_Click(object sender, EventArgs e)
-        {
-            LoadObject(Convert.ToInt32(nudSectorObjectID.Value));
-        }
-
         private void AutoReloader_Tick(object sender, EventArgs e)
         {
             if (m_SectorObject.IsValid)
@@ -220,7 +210,6 @@ namespace X3_Tool.UI.Displays
             else
             {
                 m_SectorObject = null;
-                txtAddress.Text = "Object Destroyed.";
                 AutoReloadCheckBox.Checked = false;
             }
         }
@@ -276,7 +265,7 @@ namespace X3_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             RenderObjectDisplay display = new RenderObjectDisplay();
-            display.LoadData(m_SectorObject.pData.obj);
+            display.LoadObject(m_SectorObject.pData.obj);
             display.Show();
         }
 
@@ -334,6 +323,16 @@ namespace X3_Tool.UI.Displays
             ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(m_SectorObject.ScriptInstanceID);
             display.Show();
+        }
+
+        private void numericIDObjectControl1_AddressLoad(object sender, int value)
+        {
+            LoadObject(GameHook.sectorObjectManager.GetSectorObject((IntPtr)value));
+        }
+
+        private void numericIDObjectControl1_IDLoad(object sender, int value)
+        {
+            LoadObject(GameHook.sectorObjectManager.GetSectorObject(value));
         }
     }
 }
