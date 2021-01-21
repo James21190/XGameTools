@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Bases.B3DBase_Objects;
+using X3Tools.Bases.B3D;
 using X3Tools.Generics;
 
 namespace X3_Tool.UI.Bases.CameraBase_Displays

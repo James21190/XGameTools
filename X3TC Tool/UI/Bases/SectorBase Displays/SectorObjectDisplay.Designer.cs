@@ -70,7 +70,7 @@
             this.v3dPosition = new Common.UI.Vector3Display();
             this.v3dPositionKm = new Common.UI.Vector3Display();
             this.v3dRotation = new Common.UI.Vector3Display();
-            this.ScriptingObjectPannel1 = new X3TCTool.ScriptingObjectPannel();
+            this.ScriptingObjectPannel1 = new X3Tools.ScriptingObjectPannel();
             this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -746,7 +746,7 @@
         private System.Windows.Forms.NumericUpDown nudMass;
         private System.Windows.Forms.Label labelSectorInfo;
         private System.Windows.Forms.GroupBox groupBox4;
-        private X3TCTool.ScriptingObjectPannel ScriptingObjectPannel1;
+        private X3Tools.ScriptingObjectPannel ScriptingObjectPannel1;
         private System.Windows.Forms.Button btnLoadScriptingObject;
         private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
     }

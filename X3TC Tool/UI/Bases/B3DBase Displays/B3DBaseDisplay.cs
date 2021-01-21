@@ -16,7 +16,7 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            X3Tools.Bases.B3DBase_Objects.B3DBase b3dBase = GameHook.b3DBase;
+            X3Tools.Bases.B3D.B3DBase b3dBase = GameHook.b3DBase;
 
             AddressBox.Text = b3dBase.pThis.ToString("X");
         }

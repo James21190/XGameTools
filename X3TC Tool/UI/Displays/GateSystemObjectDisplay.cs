@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using X3Tools;
 using X3Tools.Bases;
+using X3Tools.Bases.Galaxy;
 
 namespace X3_Tool.UI.Displays
 {
@@ -30,7 +31,7 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            var gateSystemObject = GameHook.gateSystemObject;
+            var gateSystemObject = GameHook.galaxyBase;
             txtGateSystemObjectAddress.Text = gateSystemObject.pThis.ToString("X");
 
             ReloadSectorData();
@@ -39,7 +40,7 @@ namespace X3_Tool.UI.Displays
 
         public void ReloadSectorData()
         {
-            var sectorData = GameHook.gateSystemObject.sectorData[CurrentGateData];
+            var sectorData = GameHook.galaxyBase.sectorData[CurrentGateData];
             txtSectorDataAddress.Text = sectorData.pThis.ToString("X");
             txtSectorDataRace.Text = sectorData.owningRace.ToString();
         }

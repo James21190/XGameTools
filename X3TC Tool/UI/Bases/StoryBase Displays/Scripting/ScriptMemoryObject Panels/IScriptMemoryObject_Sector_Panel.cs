@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
-using X3Tools.Bases.SectorBase_Objects;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.Story.Scripting;
+using X3Tools.Bases.Sector;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
@@ -40,7 +40,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
         {
             vector2Display1.X = m_Data.SectorX;
             vector2Display1.Y = m_Data.SectorY;
-            textBox1.Text = GameHook.gateSystemObject.GetSectorName(m_Data.SectorX, m_Data.SectorY);
+            textBox1.Text = GameHook.galaxyBase.GetSectorName(m_Data.SectorX, m_Data.SectorY);
             comboBox1.SelectedIndex = m_Data.BackgroundID;
 
             #region Load Objects

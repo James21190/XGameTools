@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Bases.StoryBase_Objects.Scripting.KCode;
+using X3Tools.Bases.Story.Scripting.KCode;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays
 {

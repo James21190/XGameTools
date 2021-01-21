@@ -1,4 +1,4 @@
-﻿using X3Tools.Bases.StoryBase_Objects.Scripting;
+﻿using X3Tools.Bases.Story.Scripting;
 
 namespace X3_Tool.UI.Displays
 {
@@ -30,7 +30,7 @@ namespace X3_Tool.UI.Displays
         /// </summary>
         private void InitializeComponent()
         {
-            X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue();
+            X3Tools.Bases.Story.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.Story.Scripting.DynamicValue();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dynamicValueDisplay1 = new X3Tools.DynamicValueDisplay();

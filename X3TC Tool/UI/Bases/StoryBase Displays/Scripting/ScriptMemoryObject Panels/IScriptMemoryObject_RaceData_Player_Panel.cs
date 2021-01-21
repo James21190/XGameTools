@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.Story.Scripting;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {

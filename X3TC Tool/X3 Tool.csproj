@@ -178,10 +178,10 @@
     <Compile Include="UI\Displays\HashTableDisplay.Designer.cs">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\InputBaseDisplay.cs">
+    <Compile Include="UI\Bases\Input\InputBaseDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Bases\InputBaseDisplay.Designer.cs">
+    <Compile Include="UI\Bases\Input\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.cs">
@@ -322,7 +322,7 @@
     <EmbeddedResource Include="UI\Displays\HashTableDisplay.resx">
       <DependentUpon>HashTableDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\InputBaseDisplay.resx">
+    <EmbeddedResource Include="UI\Bases\Input\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\StoryBase Displays\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.resx">

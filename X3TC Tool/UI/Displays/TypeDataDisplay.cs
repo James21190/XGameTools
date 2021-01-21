@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 using X3Tools;
-using X3Tools.Bases.SectorBase_Objects;
+using X3Tools.Bases.Sector;
 
 namespace X3_Tool.UI.Displays
 {
@@ -57,7 +57,7 @@ namespace X3_Tool.UI.Displays
             comboBox2.Items.Clear();
             for (int i = 0; i < GameHook.GetTypeDataCount(tabControl1.SelectedIndex); i++)
             {
-                comboBox2.Items.Add(SectorObject.GetSubTypeAsString((SectorObject.Main_Type)tabControl1.SelectedIndex, i));
+                comboBox2.Items.Add(i + " - " + SectorObject.GetSubTypeAsString((SectorObject.Main_Type)tabControl1.SelectedIndex, i));
             }
 
         }

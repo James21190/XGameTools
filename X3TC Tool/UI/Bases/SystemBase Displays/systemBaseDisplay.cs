@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools;
 
-namespace X3TC_Tool.UI.Bases.SystemBase_Displays
+namespace X3_Tool.UI.Bases.SystemBase_Displays
 {
     public partial class SystemBaseDisplay : Form
     {

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using X3Tools;
 
-using X3Tools.Bases.SectorBase_Objects;
-using X3Tools.Bases.StoryBase_Objects;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.Sector;
+using X3Tools.Bases.Galaxy;
+using X3Tools.Bases.Story;
+using X3Tools.Bases.Story.Scripting;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.AP;
 
 namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
@@ -168,7 +169,7 @@ namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panel
             lstOwnedShips.Items.Clear();
             lstOwnedStations.Items.Clear();
 
-            var gso = GameHook.gateSystemObject;
+            var gso = GameHook.galaxyBase;
             #region Ships
 
             List<ShipData> ships = new List<ShipData>();

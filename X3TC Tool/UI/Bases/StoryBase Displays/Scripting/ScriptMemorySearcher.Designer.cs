@@ -1,4 +1,4 @@
-﻿namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
+﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
     partial class ScriptMemorySearcher
     {

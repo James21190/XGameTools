@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using X3Tools.Bases;
-using X3Tools.Bases.StoryBase_Objects;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
-using X3Tools.Bases.B3DBase_Objects;
+using X3Tools.Bases.Story;
+using X3Tools.Bases.Story.Scripting;
+using X3Tools.Bases.B3D;
 using X3Tools.Bases.SystemBase_Objects;
-using X3Tools.Bases.SectorBase_Objects;
+using X3Tools.Bases.Sector;
+using X3Tools.Bases.Input;
+using X3Tools.Bases.Galaxy;
 
 namespace X3Tools
 {
@@ -19,7 +21,7 @@ namespace X3Tools
         private static MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorObjectManager;
         private static MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
         private static MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
-        private static MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>> ppGateSystemObject;
+        private static MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>> ppGalaxyBase;
         #region TypeData
         private static MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>> ppTypeData_Bullet;
         private static MemoryObjectPointer<MemoryObjectPointer<TypeData>> ppTypeData_1;
@@ -77,7 +79,7 @@ namespace X3Tools
         /// <summary>
         /// An up to date representation of the game's GateSystemObject.
         /// </summary>
-        public static GalaxyBase gateSystemObject => ppGateSystemObject.obj.obj;
+        public static GalaxyBase galaxyBase => ppGalaxyBase.obj.obj;
         /// <summary>
         /// An up to date representation of the game's StoryBase.
         /// </summary>
@@ -260,7 +262,7 @@ namespace X3Tools
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorObjectManager);
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
-                    ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
+                    ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
 
 #region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
@@ -329,7 +331,7 @@ namespace X3Tools
                     ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSectorObjectManager);
                     ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pStoryBase);
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pSystemBase);
-                    ppGateSystemObject = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
+                    ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pGateSystemObject);
 
 #region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3AP.pTypeData_Bullet);

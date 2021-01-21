@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.Story.Scripting;
 
 namespace X3_Tool.UI.Displays
 {

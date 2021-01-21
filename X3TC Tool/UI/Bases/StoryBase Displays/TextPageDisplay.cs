@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 using X3Tools;
-using X3Tools.Bases.StoryBase_Objects;
+using X3Tools.Bases.Story;
 using X3Tools.Generics;
 
 namespace X3_Tool.UI

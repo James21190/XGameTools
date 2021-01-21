@@ -2,10 +2,10 @@
 using System.Windows.Forms;
 using X3Tools;
 using X3Tools.Bases;
-using X3Tools.Bases.StoryBase_Objects;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.Story;
+using X3Tools.Bases.Story.Scripting;
 using X3Tools.Generics;
-using X3Tools.Bases.StoryBase_Objects.Scripting.KCode;
+using X3Tools.Bases.Story.Scripting.KCode;
 using X3_Tool.UI.Bases.StoryBase_Displays;
 
 namespace X3_Tool.UI.Displays

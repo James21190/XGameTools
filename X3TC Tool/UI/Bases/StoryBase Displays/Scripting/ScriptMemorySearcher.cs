@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools;
-using X3Tools.Bases.StoryBase_Objects.Scripting;
+using X3Tools.Bases.Story.Scripting;
 
-namespace X3TC_Tool.UI.Bases.StoryBase_Displays.Scripting
+namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
     public partial class ScriptMemorySearcher : Form
     {

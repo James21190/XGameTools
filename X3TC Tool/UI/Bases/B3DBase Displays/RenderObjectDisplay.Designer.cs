@@ -58,7 +58,7 @@
             // 
             // PreviousButton
             // 
-            this.PreviousButton.Location = new System.Drawing.Point(8, 159);
+            this.PreviousButton.Location = new System.Drawing.Point(12, 157);
             this.PreviousButton.Name = "PreviousButton";
             this.PreviousButton.Size = new System.Drawing.Size(98, 23);
             this.PreviousButton.TabIndex = 14;
@@ -68,7 +68,7 @@
             // 
             // NextButton
             // 
-            this.NextButton.Location = new System.Drawing.Point(8, 130);
+            this.NextButton.Location = new System.Drawing.Point(12, 128);
             this.NextButton.Name = "NextButton";
             this.NextButton.Size = new System.Drawing.Size(98, 23);
             this.NextButton.TabIndex = 13;
@@ -78,7 +78,7 @@
             // 
             // LastChildButton
             // 
-            this.LastChildButton.Location = new System.Drawing.Point(112, 159);
+            this.LastChildButton.Location = new System.Drawing.Point(116, 157);
             this.LastChildButton.Name = "LastChildButton";
             this.LastChildButton.Size = new System.Drawing.Size(98, 23);
             this.LastChildButton.TabIndex = 16;
@@ -88,7 +88,7 @@
             // 
             // FirstChildButton
             // 
-            this.FirstChildButton.Location = new System.Drawing.Point(112, 130);
+            this.FirstChildButton.Location = new System.Drawing.Point(116, 128);
             this.FirstChildButton.Name = "FirstChildButton";
             this.FirstChildButton.Size = new System.Drawing.Size(98, 23);
             this.FirstChildButton.TabIndex = 15;
@@ -98,7 +98,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(382, 12);
+            this.button2.Location = new System.Drawing.Point(386, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 18;
@@ -114,7 +114,7 @@
             0,
             0,
             0});
-            this.ScaleBox.Location = new System.Drawing.Point(220, 19);
+            this.ScaleBox.Location = new System.Drawing.Point(224, 12);
             this.ScaleBox.Maximum = new decimal(new int[] {
             -1530494977,
             232830,
@@ -171,7 +171,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.nudSize);
-            this.groupBox1.Location = new System.Drawing.Point(220, 128);
+            this.groupBox1.Location = new System.Drawing.Point(224, 173);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(156, 46);
             this.groupBox1.TabIndex = 20;
@@ -181,7 +181,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.nudTotalSize);
-            this.groupBox3.Location = new System.Drawing.Point(220, 180);
+            this.groupBox3.Location = new System.Drawing.Point(224, 225);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(156, 46);
             this.groupBox3.TabIndex = 21;
@@ -211,7 +211,7 @@
             // 
             // btnParent
             // 
-            this.btnParent.Location = new System.Drawing.Point(112, 188);
+            this.btnParent.Location = new System.Drawing.Point(116, 186);
             this.btnParent.Name = "btnParent";
             this.btnParent.Size = new System.Drawing.Size(98, 23);
             this.btnParent.TabIndex = 22;
@@ -223,7 +223,7 @@
             // 
             this.groupBox4.Controls.Add(this.btnViewModelData);
             this.groupBox4.Controls.Add(this.nudModelID);
-            this.groupBox4.Location = new System.Drawing.Point(382, 128);
+            this.groupBox4.Location = new System.Drawing.Point(224, 121);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(204, 46);
             this.groupBox4.TabIndex = 21;
@@ -268,7 +268,7 @@
             0,
             0,
             0});
-            this.vec3Saturation.Location = new System.Drawing.Point(12, 286);
+            this.vec3Saturation.Location = new System.Drawing.Point(62, 225);
             this.vec3Saturation.Maximum = new decimal(new int[] {
             -1530494977,
             232830,
@@ -305,7 +305,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.nudHue);
-            this.groupBox5.Location = new System.Drawing.Point(12, 234);
+            this.groupBox5.Location = new System.Drawing.Point(224, 277);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(156, 46);
             this.groupBox5.TabIndex = 21;

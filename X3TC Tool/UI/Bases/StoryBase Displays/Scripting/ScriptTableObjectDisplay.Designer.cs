@@ -1,4 +1,4 @@
-﻿using X3Tools.Bases.StoryBase_Objects.Scripting;
+﻿using X3Tools.Bases.Story.Scripting;
 
 namespace X3_Tool.UI.Displays
 {
@@ -30,8 +30,8 @@ namespace X3_Tool.UI.Displays
         /// </summary>
         private void InitializeComponent()
         {
-            X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue();
-            X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue dynamicValue2 = new X3Tools.Bases.StoryBase_Objects.Scripting.DynamicValue();
+            X3Tools.Bases.Story.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.Story.Scripting.DynamicValue();
+            X3Tools.Bases.Story.Scripting.DynamicValue dynamicValue2 = new X3Tools.Bases.Story.Scripting.DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();

@@ -1,7 +1,7 @@
 ﻿using Common.Memory;
 using System;
 using System.Threading;
-using X3Tools.Bases.SectorBase_Objects;
+using X3Tools.Bases.Sector;
 
 namespace X3Tools
 {

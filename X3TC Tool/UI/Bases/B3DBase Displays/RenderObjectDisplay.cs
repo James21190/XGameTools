@@ -2,8 +2,8 @@
 using System.Windows.Forms;
 using X3_Tool.UI.Bases.CameraBase_Displays;
 using X3Tools;
-using X3Tools.Bases.SectorBase_Objects;
-using X3Tools.Bases.B3DBase_Objects;
+using X3Tools.Bases.Sector;
+using X3Tools.Bases.B3D;
 
 namespace X3_Tool.UI.Displays
 {

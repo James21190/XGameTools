@@ -3,12 +3,12 @@ using System;
 using System.Windows.Forms;
 using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.R;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.TC;
-using X3Tools.Bases.StoryBase_Objects.Scripting.ScriptingMemory.AP;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.R;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.TC;
+using X3Tools.Bases.Story.Scripting.ScriptingMemory.AP;
 using X3Tools.Generics;
-using X3Tools.Bases.SectorBase_Objects;
+using X3Tools.Bases.Sector;
 
 namespace X3_Tool.UI.Displays
 {
@@ -51,7 +51,7 @@ namespace X3_Tool.UI.Displays
                 case SectorObject.Main_Type.Gate:
                     IScriptMemoryObject_Gate gateScriptMemoryObject = baseSectorObject.ScriptInstance.GetMemoryInterfaceGate();
                     if (gateScriptMemoryObject == null) goto skip;
-                    sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.gateSystemObject.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
+                    sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.galaxyBase.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
                     break;
                 default:
                     skip:
@@ -116,7 +116,7 @@ namespace X3_Tool.UI.Displays
             {
                 IScriptMemoryObject_Sector sectorScriptVariables = sector.ScriptInstance.GetMemoryInterfaceSector();
                 if (sectorScriptVariables == null) goto ObjectInfo;
-                string sectorName = GameHook.gateSystemObject.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
+                string sectorName = GameHook.galaxyBase.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
                 labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
             }
             catch (Exception)
@@ -185,7 +185,7 @@ namespace X3_Tool.UI.Displays
                 goto failed;
             }
 
-            X3Tools.Bases.SectorBase_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
+            X3Tools.Bases.Sector.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
             if (meta == null || meta.GetFirstChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex) == null || meta.GetLastChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex) == null)
             {
                 goto failed;
@@ -244,7 +244,7 @@ namespace X3_Tool.UI.Displays
 
         private void FirstChildButton_Click(object sender, EventArgs e)
         {
-            X3Tools.Bases.SectorBase_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
+            X3Tools.Bases.Sector.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
             SectorObject child = meta.GetFirstChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex);
             if (child != null)
             {
@@ -254,7 +254,7 @@ namespace X3_Tool.UI.Displays
 
         private void LastChildButton_Click(object sender, EventArgs e)
         {
-            X3Tools.Bases.SectorBase_Objects.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
+            X3Tools.Bases.Sector.Meta.ISectorObjectMeta meta = m_SectorObject.GetMeta();
             SectorObject child = meta.GetLastChild((SectorObject.Main_Type)ChildTypeSelectionBox.SelectedIndex);
             if (child != null)
             {
