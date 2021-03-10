@@ -30,11 +30,11 @@ namespace X3Tools.Bases.Story.Scripting
         {
             ObjectByteList collection = new ObjectByteList(Memory);
 
-            collection.PopFirst(ref ID);
-            collection.PopFirst(ref Unknown_1);
-            collection.PopFirst(ref Length);
-            collection.PopFirst(ref Count);
-            collection.PopFirst(ref pDynamicValueArr);
+            ID = collection.PopInt();
+            Unknown_1 = collection.PopInt();
+            Length  = collection.PopInt();
+            Count = collection.PopInt();
+            pDynamicValueArr = collection.PopIMemoryObject<MemoryObjectPointer<DynamicValue>>();
         }
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {

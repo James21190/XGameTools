@@ -1,5 +1,6 @@
 ﻿using Common.Memory;
 using System;
+using System.Security.Policy;
 using X3Tools.Generics;
 
 namespace X3Tools.Bases.Sector
@@ -94,7 +95,7 @@ namespace X3Tools.Bases.Sector
         public SectorObject GetSectorObject(IntPtr address)
         {
             SectorObject value = new SectorObject();
-            value.SetLocation(m_hProcess, address);
+            value.SetLocation(hProcess, address);
             value.ReloadFromMemory();
             return value;
         }
@@ -155,37 +156,34 @@ namespace X3Tools.Bases.Sector
 
         public override int ByteSize => 0x68;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList();
-            collection.SetData(Memory);
-
-            collection.PopFirst(ref Unknown_1);
-            collection.PopFirst(ref Unknown_2);
-            collection.PopFirst(ref pFirst);
-            collection.PopFirst(ref Unknown_3);
-            collection.PopFirst(ref pLast);
-            collection.PopFirst(ref pObjectHashTable.address);
-            collection.PopFirst(ref Unknown_4);
-            collection.PopFirst(ref Unknown_5);
-            collection.PopFirst(ref Unknown_6);
-            collection.PopFirst(ref Unknown_7);
-            collection.PopFirst(ref Unknown_8);
-            collection.PopFirst(ref Unknown_9);
-            collection.PopFirst(ref Unknown_10);
-            collection.PopFirst(ref Unknown_11);
-            collection.PopFirst(ref pPlayerShip.address);
-            collection.PopFirst(ref Unknown_12);
-            collection.PopFirst(ref Unknown_13);
-            collection.PopFirst(ref Unknown_14);
-            collection.PopFirst(ref Unknown_15);
-            collection.PopFirst(ref Unknown_16);
-            collection.PopFirst(ref Unknown_17);
-            collection.PopFirst(ref Unknown_18);
-            collection.PopFirst(ref Unknown_19);
-            collection.PopFirst(ref Unknown_20);
-            collection.PopFirst(ref Unknown_21);
-            collection.PopFirst(ref Unknown_22);
+            Unknown_1 = objectByteList.PopInt();
+            Unknown_2 = objectByteList.PopInt();
+            pFirst = objectByteList.PopIntPtr();
+            Unknown_3 = objectByteList.PopInt();
+            pLast = objectByteList.PopIntPtr();
+            pObjectHashTable = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<SectorObject>>>();
+            Unknown_4 = objectByteList.PopInt();
+            Unknown_5 = objectByteList.PopInt();
+            Unknown_6 = objectByteList.PopInt();
+            Unknown_7 = objectByteList.PopInt();
+            Unknown_8 = objectByteList.PopInt();
+            Unknown_9 = objectByteList.PopInt();
+            Unknown_10 = objectByteList.PopInt();
+            Unknown_11 = objectByteList.PopInt();
+            pPlayerShip = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            Unknown_12 = objectByteList.PopInt();
+            Unknown_13 = objectByteList.PopInt();
+            Unknown_14 = objectByteList.PopInt();
+            Unknown_15 = objectByteList.PopInt();
+            Unknown_16 = objectByteList.PopInt();
+            Unknown_17 = objectByteList.PopInt();
+            Unknown_18 = objectByteList.PopInt();
+            Unknown_19 = objectByteList.PopInt();
+            Unknown_20 = objectByteList.PopInt();
+            Unknown_21 = objectByteList.PopInt();
+            Unknown_22 = objectByteList.PopInt();
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

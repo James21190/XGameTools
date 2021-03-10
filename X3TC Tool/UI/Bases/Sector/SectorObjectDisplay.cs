@@ -139,11 +139,7 @@ namespace X3_Tool.UI.Displays
 
                 numericIDObjectControl1.LoadObject(m_SectorObject);
 
-
-                if (GameHook.GameVersion == GameHook.GameVersions.X3R)
-                    txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.Language.English, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
-                else
-                    txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName));
+                txtDefaultName.Text = GameHook.storyBase.GetParsedText(GameHook.systemBase.Language, MemoryControl.ReadNullTerminatedString(GameHook.hProcess, m_SectorObject.pDefaultName.address));
                 v3dPosition.Vector = m_SectorObject.Position_Copy;
                 v3dPositionKm.X = ((decimal)m_SectorObject.Position_Copy.X) / 500000;
                 v3dPositionKm.Y = ((decimal)m_SectorObject.Position_Copy.Y) / 500000;
@@ -265,7 +261,7 @@ namespace X3_Tool.UI.Displays
         private void button1_Click(object sender, EventArgs e)
         {
             RenderObjectDisplay display = new RenderObjectDisplay();
-            display.LoadObject(m_SectorObject.pData.obj);
+            display.LoadObject(m_SectorObject.pRenderObject.obj);
             display.Show();
         }
 

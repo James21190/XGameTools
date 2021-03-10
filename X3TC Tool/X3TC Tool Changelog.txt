@@ -6,9 +6,9 @@
 	- Added anti-AFK function.
 	- Added dll injector.
 	- Added functions list to ScriptInstancePanel.
-	- Added limited functionality for X3R nosteam.
 	- Changed ISectorObjectMeta methods.
 	- Changed how ScriptObject arrays are displayed.
+	- Updated some SetData methods for objects.
 	- Fixed incorrect address for dest sector in ScriptMemoryObject_TC_Gate. This will fix incorrect sectors being shown in sector display's gates.
 	- Fixed incorrect address for pStrings in StoryBase.
 	- Improved IScriptMemoryObject_RaceData_Panel reload time.

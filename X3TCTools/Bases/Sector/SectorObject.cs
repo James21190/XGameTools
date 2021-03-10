@@ -17,7 +17,7 @@ namespace X3Tools.Bases.Sector
         public MemoryObjectPointer<SectorObject> pNext;
         public MemoryObjectPointer<SectorObject> pPrevious;
         public int ID;
-        public IntPtr pDefaultName;
+        public MemoryObjectPointer<MemoryString> pDefaultName;
         public int Speed;
         public int TargetSpeed;
         public Vector3 EulerRotationCopy;
@@ -34,7 +34,7 @@ namespace X3Tools.Bases.Sector
         public int Unknown_8;
         public Vector3 PositionStrafeDelta;
         public int Unknown_9;
-        public MemoryObjectPointer<RenderObject> pData;
+        public MemoryObjectPointer<RenderObject> pRenderObject;
         public int Unknown_10;
         public int Unknown_11;
         public int _RelatedToEvents_1;
@@ -100,7 +100,7 @@ namespace X3Tools.Bases.Sector
             pParent = new MemoryObjectPointer<SectorObject>();
             ObjectType = new SectorObjectType();
             DynamicValue = new DynamicValue();
-            pData = new MemoryObjectPointer<RenderObject>();
+            pRenderObject = new MemoryObjectPointer<RenderObject>();
         }
 
         /// <summary>
@@ -110,33 +110,16 @@ namespace X3Tools.Bases.Sector
         public ISectorObjectMeta GetMeta()
         {
             ISectorObjectMeta meta;
-            switch (GameHook.GameVersion)
+            switch (ObjectType.MainTypeEnum)
             {
-                case GameHook.GameVersions.X3TC:
-                case GameHook.GameVersions.X3AP:
-                    switch (ObjectType.MainTypeEnum)
-                    {
-                        case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
-                        case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
-                        case Main_Type.Gate: meta = new SectorObject_Gate_Meta(); break;
-                        case Main_Type.Dock:
-                        case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
-                        default: return null;
-                    }
-                    break;
-                case GameHook.GameVersions.X3R:
-                    switch (ObjectType.MainTypeEnum)
-                    {
-                        case Main_Type.Ship: meta = new SectorObject_Ship_R_Meta(); break;
-                        case Main_Type.Sector: meta = new SectorObject_Sector_R_Meta(); break;
-                        //case Main_Type.Dock:
-                        //case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
-                        default: return null;
-                    }
-                    break;
+                case Main_Type.Ship: meta = new SectorObject_Ship_Meta(); break;
+                case Main_Type.Sector: meta = new SectorObject_Sector_Meta(); break;
+                case Main_Type.Gate: meta = new SectorObject_Gate_Meta(); break;
+                case Main_Type.Dock:
+                case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
                 default: return null;
             }
-            meta.SetLocation(m_hProcess, pMeta);
+            meta.SetLocation(this.hProcess, pMeta);
             meta.ReloadFromMemory();
             return meta;
         }
@@ -184,7 +167,7 @@ namespace X3Tools.Bases.Sector
         public RenderObject GetData()
         {
             RenderObject data = new RenderObject();
-            data.SetLocation(m_hProcess, pData.address);
+            data.SetLocation(this.hProcess, pRenderObject.address);
             return data;
 
 
@@ -215,7 +198,7 @@ namespace X3Tools.Bases.Sector
             collection.Append(Unknown_8);
             collection.Append(PositionStrafeDelta);
             collection.Append(Unknown_9);
-            collection.Append(pData);
+            collection.Append(pRenderObject);
             collection.Append(Unknown_10);
             collection.Append(Unknown_11);
             collection.Append(_RelatedToEvents_1);
@@ -262,72 +245,67 @@ namespace X3Tools.Bases.Sector
 
         int INumericIDObject.ID => ID;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList(Memory);
-
-            collection.PopFirst(ref pNext);
-            collection.PopFirst(ref pPrevious);
-            int tempint = 0;
-            short tempshort = 0;
-            collection.PopFirst(ref ID);
-            collection.PopFirst(ref pDefaultName);
-            collection.PopFirst(ref Speed);
-            collection.PopFirst(ref TargetSpeed);
-            collection.PopFirst(ref EulerRotationCopy);
-            collection.PopFirst(ref LocalEulerRotationDelta);
-            collection.PopFirst(ref LocalAutopilotRotationDeltaTarget);
-            collection.PopFirst(ref tempint);
-            RaceID = (GameHook.RaceID)tempint;
-            collection.PopFirst(ref Unknown_4);
-            collection.PopFirst(ref Unknown_5);
-            collection.PopFirst(ref ObjectType);
-            collection.PopFirst(ref Unknown_6);
-            collection.PopFirst(ref pMeta);
-            collection.PopFirst(ref pParent);
-            collection.PopFirst(ref Unknown_7);
-            collection.PopFirst(ref Unknown_8);
-            collection.PopFirst(ref PositionStrafeDelta);
-            collection.PopFirst(ref Unknown_9);
-            collection.PopFirst(ref pData);
-            collection.PopFirst(ref Unknown_10);
-            collection.PopFirst(ref Unknown_11);
-            collection.PopFirst(ref _RelatedToEvents_1);
-            collection.PopFirst(ref _RelatedToEvents_2);
-            collection.PopFirst(ref Unknown_12);
-            collection.PopFirst(ref Unknown_13);
-            collection.PopFirst(ref DynamicValue);
-            collection.PopFirst(ref Unknown_14_0);
-            collection.PopFirst(ref Unknown_14_1);
-            collection.PopFirst(ref Unknown_14_2);
-            collection.PopFirst(ref ScriptInstanceID);
-            collection.PopFirst(ref ModelCollectionID);
-            collection.PopFirst(ref Unknown_16);
-            collection.PopFirst(ref Mass);
-            collection.PopFirst(ref Unknown_18);
-            collection.PopFirst(ref AbsTime);
-            collection.PopFirst(ref pFirstUnknown);
-            collection.PopFirst(ref NULL_2);
-            collection.PopFirst(ref pLastUnknown);
-            collection.PopFirst(ref Unknown_22);
-            collection.PopFirst(ref Unknown_23);
-            collection.PopFirst(ref Position_Copy);
-            collection.PopFirst(ref Unknown_24);
-            collection.PopFirst(ref EulerRotationCopy2);
-            collection.PopFirst(ref LocalRotationDeltaCopy);
-            collection.PopFirst(ref Speed_Copy);
-            collection.PopFirst(ref Hull);
-            collection.PopFirst(ref Unknown_25);
-            collection.PopFirst(ref Unknown_26);
-            collection.PopFirst(ref Unknown_27);
-            collection.PopFirst(ref Unknown_28);
-            collection.PopFirst(ref Unknown_29);
-            collection.PopFirst(ref Unknown_30);
-            collection.PopFirst(ref Unknown_31);
-            collection.PopFirst(ref Unknown_32);
-            collection.PopFirst(ref Unknown_33);
-            collection.PopFirst(ref Unknown_34);
-            collection.PopFirst(ref Unknown_35);
+            pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            pPrevious = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            ID = objectByteList.PopInt();
+            pDefaultName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
+            Speed = objectByteList.PopInt();
+            TargetSpeed = objectByteList.PopInt();
+            EulerRotationCopy = objectByteList.PopIMemoryObject<Vector3>();
+            LocalEulerRotationDelta = objectByteList.PopIMemoryObject<Vector3>();
+            LocalAutopilotRotationDeltaTarget = objectByteList.PopIMemoryObject<Vector3>();
+            RaceID = (GameHook.RaceID)objectByteList.PopInt();
+            Unknown_4 = objectByteList.PopInt();
+            Unknown_5 = objectByteList.PopInt();
+            ObjectType = objectByteList.PopIMemoryObject<SectorObjectType>();
+            Unknown_6 = objectByteList.PopInt();
+            pMeta = objectByteList.PopIntPtr();
+            pParent = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            Unknown_7 = objectByteList.PopInt();
+            Unknown_8 = objectByteList.PopInt();
+            PositionStrafeDelta = objectByteList.PopIMemoryObject<Vector3>();
+            Unknown_9 = objectByteList.PopInt();
+            pRenderObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            Unknown_10 = objectByteList.PopInt();
+            Unknown_11 = objectByteList.PopInt();
+            _RelatedToEvents_1 = objectByteList.PopInt();
+            _RelatedToEvents_2 = objectByteList.PopInt();
+            Unknown_12 = objectByteList.PopInt();
+            Unknown_13 = objectByteList.PopInt();
+            DynamicValue = objectByteList.PopIMemoryObject<DynamicValue>();
+            Unknown_14_0 = objectByteList.PopByte();
+            Unknown_14_1 = objectByteList.PopByte();
+            Unknown_14_2 = objectByteList.PopByte();
+            ScriptInstanceID = objectByteList.PopInt();
+            ModelCollectionID = objectByteList.PopInt();
+            Unknown_16 = objectByteList.PopInt();
+            Mass = objectByteList.PopInt();
+            Unknown_18 = objectByteList.PopInt();
+            AbsTime = objectByteList.PopInt();
+            pFirstUnknown = objectByteList.PopInt();
+            NULL_2 = objectByteList.PopInt();
+            pLastUnknown = objectByteList.PopInt();
+            Unknown_22 = objectByteList.PopInt();
+            Unknown_23 = objectByteList.PopInt();
+            Position_Copy = objectByteList.PopIMemoryObject<Vector3>();
+            Unknown_24 = objectByteList.PopInt();
+            EulerRotationCopy2 = objectByteList.PopIMemoryObject<Vector3>();
+            LocalRotationDeltaCopy = objectByteList.PopIMemoryObject<Vector3>();
+            Speed_Copy = objectByteList.PopInt();
+            Hull = objectByteList.PopInt();
+            Unknown_25 = objectByteList.PopInt();
+            Unknown_26 = objectByteList.PopInt();
+            Unknown_27 = objectByteList.PopInt();
+            Unknown_28 = objectByteList.PopInt();
+            Unknown_29 = objectByteList.PopInt();
+            Unknown_30 = objectByteList.PopInt();
+            Unknown_31 = objectByteList.PopInt();
+            Unknown_32 = objectByteList.PopInt();
+            Unknown_33 = objectByteList.PopInt();
+            Unknown_34 = objectByteList.PopInt();
+            Unknown_35 = objectByteList.PopInt();
         }
         #endregion
 
@@ -336,11 +314,11 @@ namespace X3Tools.Bases.Sector
         /// </summary>
         public void Save()
         {
-            MemoryControl.Write(m_hProcess, pThis + 16, Speed);
-            MemoryControl.Write(m_hProcess, pThis + 20, TargetSpeed);
-            MemoryControl.Write(m_hProcess, pThis + 24, LocalEulerRotationDelta);
-            MemoryControl.Write(m_hProcess, pThis + 96, PositionStrafeDelta);
-            MemoryControl.Write(m_hProcess, pThis + 236, Hull);
+            MemoryControl.Write(this.hProcess, pThis + 16, Speed);
+            MemoryControl.Write(this.hProcess, pThis + 20, TargetSpeed);
+            MemoryControl.Write(this.hProcess, pThis + 24, LocalEulerRotationDelta);
+            MemoryControl.Write(this.hProcess, pThis + 96, PositionStrafeDelta);
+            MemoryControl.Write(this.hProcess, pThis + 236, Hull);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -350,7 +328,7 @@ namespace X3Tools.Bases.Sector
             pPrevious.SetLocation(hProcess, address + 0x4);
             pParent.SetLocation(hProcess, address + 0x54);
             DynamicValue.SetLocation(hProcess, address);
-            pData.SetLocation(hProcess, address + 0x70);
+            pRenderObject.SetLocation(hProcess, address + 0x70);
 
         }
 

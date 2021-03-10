@@ -157,7 +157,7 @@ namespace X3Tools.Bases.Story
         public ScriptMemoryObject GetScriptingObjectScriptingVariables(int ID)
         {
             ScriptMemoryObject obj = new ScriptMemoryObject();
-            obj.SetLocation(m_hProcess, GetScriptingObject(ID).pScriptVariableArr.address);
+            obj.SetLocation(this.hProcess, GetScriptingObject(ID).pScriptVariableArr.address);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -197,7 +197,7 @@ namespace X3Tools.Bases.Story
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
 
             pHashTable_ScriptTaskObject = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);

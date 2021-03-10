@@ -12,19 +12,19 @@ namespace Common.Memory
         #region Constructors
         public MemoryObjectPointer(IntPtr hProcess, IntPtr address)
         {
-            m_hProcess = hProcess;
+            this.hProcess = hProcess;
             this.address = address;
         }
 
         public MemoryObjectPointer(IntPtr hProcess)
         {
-            m_hProcess = hProcess;
+            this.hProcess = hProcess;
             address = IntPtr.Zero;
         }
 
         public MemoryObjectPointer()
         {
-            m_hProcess = IntPtr.Zero;
+            this.hProcess = IntPtr.Zero;
             address = IntPtr.Zero;
         }
 
@@ -44,11 +44,11 @@ namespace Common.Memory
             get
             {
                 T obj = new T();
-                obj.SetLocation(m_hProcess, address);
+                obj.SetLocation(this.hProcess, address);
                 obj.ReloadFromMemory();
                 return obj;
             }
-            set => MemoryControl.Write(m_hProcess, address, value.GetBytes());
+            set => MemoryControl.Write(this.hProcess, address, value.GetBytes());
         }
 
         public T this[int index]
@@ -62,7 +62,7 @@ namespace Common.Memory
         public A GetObjAsType<A>() where A : IMemoryObject, new()
         {
             A obj = new A();
-            obj.SetLocation(m_hProcess, address);
+            obj.SetLocation(this.hProcess, address);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -70,7 +70,7 @@ namespace Common.Memory
         public A GetObjInArrayAsType<A>(int Index) where A : IMemoryObject, new()
         {
             A obj = new A();
-            obj.SetLocation(m_hProcess, address + (obj.ByteSize * Index));
+            obj.SetLocation(this.hProcess, address + (obj.ByteSize * Index));
             obj.ReloadFromMemory();
             return obj;
         }
@@ -94,7 +94,7 @@ namespace Common.Memory
         {
             T obj = new T();
             IntPtr newAddress = address + (Index * obj.ByteSize);
-            obj.SetLocation(m_hProcess, newAddress);
+            obj.SetLocation(this.hProcess, newAddress);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -106,7 +106,7 @@ namespace Common.Memory
         /// <param name="obj"></param>
         public void SetObjectInArray(int Index, T obj)
         {
-            MemoryControl.Write(m_hProcess, address + (Index * 4), obj.GetBytes());
+            MemoryControl.Write(this.hProcess, address + (Index * 4), obj.GetBytes());
         }
 
         #region IMemoryObject

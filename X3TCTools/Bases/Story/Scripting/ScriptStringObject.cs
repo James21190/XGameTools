@@ -18,7 +18,7 @@ namespace X3Tools.Bases.Story.Scripting
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
             id = collection.PopInt();
             unknown_1 = collection.PopInt();
             pText = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();

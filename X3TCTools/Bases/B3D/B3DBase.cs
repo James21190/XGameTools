@@ -30,7 +30,7 @@ namespace X3Tools.Bases.B3D
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
             pCameraHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<Camera>>>(0xc);
             pSceneHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<MemoryInt32>>>();
             pBodyHashTable = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<BodyData>>>();

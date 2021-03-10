@@ -34,7 +34,7 @@ namespace X3Tools.Bases.Story.Scripting
             }
 
             ScriptTableObject table = new ScriptTableObject();
-            table.SetLocation(m_hProcess, (IntPtr)Value);
+            table.SetLocation(this.hProcess, (IntPtr)Value);
             table.ReloadFromMemory();
             return table;
         }
@@ -51,7 +51,7 @@ namespace X3Tools.Bases.Story.Scripting
             }
 
             ScriptStringObject textObject = new ScriptStringObject();
-            textObject.SetLocation(m_hProcess, (IntPtr)Value);
+            textObject.SetLocation(this.hProcess, (IntPtr)Value);
             textObject.ReloadFromMemory();
             return textObject;
         }

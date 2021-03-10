@@ -6,7 +6,6 @@ namespace X3Tools.Generics
     public struct X3FixedPointValue : IMemoryObject
     {
         private decimal m_value;
-        private IntPtr m_hProcess, pThis;
 
         public uint FixedPointValue
         {
@@ -38,7 +37,8 @@ namespace X3Tools.Generics
 
         public int ByteSize => 4;
 
-        IntPtr IMemoryObject.pThis => throw new NotImplementedException();
+        public IntPtr pThis { get; set; }
+        public IntPtr hProcess { get; set; }
 
         public void SetData(byte[] Memory)
         {
@@ -47,7 +47,7 @@ namespace X3Tools.Generics
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            m_hProcess = hProcess;
+            this.hProcess = hProcess;
             pThis = address;
         }
 

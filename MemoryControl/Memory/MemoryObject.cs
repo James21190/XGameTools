@@ -7,8 +7,6 @@ namespace Common.Memory
     /// </summary>
     public abstract class MemoryObject : IMemoryObject
     {
-        protected IntPtr m_hProcess;
-        public IntPtr pThis { protected set; get; }
 
         #region IMemoryObject
 
@@ -23,6 +21,8 @@ namespace Common.Memory
         /// </summary>
         /// <returns></returns>
         public abstract int ByteSize { get; }
+        public IntPtr pThis { get; set; }
+        public IntPtr hProcess { get; set; }
 
         /// <summary>
         /// Sets the values of the fields of this object with the values stored in a binary array.
@@ -30,7 +30,7 @@ namespace Common.Memory
         /// <param name="Memory"></param>
         public virtual void SetData(byte[] Memory)
         {
-            SetDataFromObjectByteList(new ObjectByteList(Memory, m_hProcess, pThis));
+            SetDataFromObjectByteList(new ObjectByteList(Memory, hProcess, pThis));
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace Common.Memory
         /// <param name="address"></param>
         public virtual void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            m_hProcess = hProcess;
+            this.hProcess = hProcess;
             pThis = address;
         }
 
@@ -62,7 +62,7 @@ namespace Common.Memory
         /// </summary>
         public void ReloadFromMemory()
         {
-            SetData(MemoryControl.Read(m_hProcess, pThis, ByteSize ));
+            SetData(MemoryControl.Read(hProcess, pThis, ByteSize ));
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Common.Memory
         /// </summary>
         public void WriteToMemory()
         {
-            MemoryControl.Write(m_hProcess, pThis, GetBytes());
+            MemoryControl.Write(hProcess, pThis, GetBytes());
         }
 
     }

@@ -53,21 +53,20 @@ namespace X3Tools.Bases.Galaxy
 
                 public override int ByteSize => 32;
 
-                public override void SetData(byte[] Memory)
+                protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
                 {
-                    ObjectByteList collection = new ObjectByteList(Memory);
-                    collection.PopFirst(ref DstSecX);
-                    collection.PopFirst(ref DstSecY);
-                    collection.PopFirst(ref DstGateID);
-                    collection.PopFirst(ref Unknown_1);
-                    collection.PopFirst(ref Unknown_2);
-                    collection.PopFirst(ref Unknown_3);
-                    collection.PopFirst(ref Position);
-                    collection.PopFirst(ref Unknown_4);
+                    DstSecX = objectByteList.PopByte();
+                    DstSecY = objectByteList.PopByte();
+                    DstGateID = objectByteList.PopUShort();
+                    Unknown_1 = objectByteList.PopInt();
+                    Unknown_2 = objectByteList.PopInt();
+                    Unknown_3 = objectByteList.PopInt();
+                    Position = objectByteList.PopIMemoryObject<Vector3>();
+                    Unknown_4 = objectByteList.PopInt();
                 }
                 public override void SetLocation(IntPtr hProcess, IntPtr address)
                 {
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
                 }
                 #endregion
             }

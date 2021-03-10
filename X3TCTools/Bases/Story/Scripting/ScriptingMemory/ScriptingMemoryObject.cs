@@ -94,7 +94,7 @@ namespace X3Tools.Bases.Story.Scripting.ScriptingMemory
 
         public sealed override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
             Variables = collection.PopIMemoryObjects<DynamicValue>(VariableCount);
         }
         #endregion

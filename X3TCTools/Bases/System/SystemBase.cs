@@ -25,12 +25,12 @@ namespace X3Tools.Bases.SystemBase_Objects
         #region Set Individual
         public void SaveSETA()
         {
-            MemoryControl.Write(m_hProcess, pThis + 204, TimeWarpFactor.GetBytes());
+            MemoryControl.Write(this.hProcess, pThis + 204, TimeWarpFactor.GetBytes());
         }
 
         public void SaveLanguage()
         {
-            MemoryControl.Write(m_hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
+            MemoryControl.Write(this.hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
         }
         #endregion
 

@@ -175,12 +175,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\R\X3RSectorNames.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\R\X3RSectorObjectTypes.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Data\TC\Mods\System\CreateObject.x3tccode">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

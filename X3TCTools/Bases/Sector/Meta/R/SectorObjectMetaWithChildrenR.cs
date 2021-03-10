@@ -59,7 +59,7 @@ namespace X3Tools.Bases.Sector_Objects.Meta.R
         }
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, m_hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
 
             Children = collection.PopIMemoryObject<LinkedListStart<SectorObject>>();
 

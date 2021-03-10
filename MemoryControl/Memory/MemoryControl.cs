@@ -191,6 +191,10 @@ namespace Common.Memory
         {
             return VirtualAllocEx(hProcess, (IntPtr)null, (IntPtr)Size, (0x1000 | 0x2000), 0x40);
         }
+        public static void FreeMemory(IntPtr hProcess, IntPtr pAddress, int size)
+        {
+            throw new NotImplementedException();
+        }
 
         public static int CalculateArrayIndexAddress(int ArrayBase, int ObjectSize, int Index)
         {

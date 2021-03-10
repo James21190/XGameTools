@@ -26,7 +26,7 @@ namespace Common.Memory
         IntPtr pThis { get; set; }
         IntPtr hProcess { get; set; }
 
-        [ObsoleteAttribute("This method is no longer in use. Use pThis and hProcess instead.", false)]
+        [Obsolete("This method is no longer supported. Please use pThis and hProcess instead.")]
         void SetLocation(IntPtr hProcess, IntPtr address);
 
         /// <summary>

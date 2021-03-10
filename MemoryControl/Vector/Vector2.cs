@@ -63,7 +63,8 @@ namespace Common.Vector
 
         public int ByteSize => 8;
 
-        public IntPtr pThis => throw new NotImplementedException();
+        public IntPtr pThis { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IntPtr hProcess { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {

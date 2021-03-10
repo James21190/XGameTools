@@ -21,9 +21,9 @@ namespace X3Tools.Generics
 
             public Entry()
             {
-                pNext = new MemoryObjectPointer<Entry<t>>(m_hProcess);
+                pNext = new MemoryObjectPointer<Entry<t>>(this.hProcess);
                 ObjectID = 0;
-                pObject = new MemoryObjectPointer<t>(m_hProcess);
+                pObject = new MemoryObjectPointer<t>(this.hProcess);
             }
 
             #endregion

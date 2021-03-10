@@ -414,7 +414,7 @@ namespace Common.Memory
         {
             T memoryObject = new T();
 
-            memoryObject.SetLocation(m_hProcess, pThis + m_ReadPointer);
+            memoryObject.SetLocation(hProcess, pThis + m_ReadPointer);
             memoryObject.SetData(PopBytes(memoryObject.ByteSize));
 
             return memoryObject;
@@ -427,7 +427,7 @@ namespace Common.Memory
             for (int i = 0; i < Count; i++)
             {
                 memoryObjects[i] = new T();
-                memoryObjects[i].SetLocation(m_hProcess, pThis + m_ReadPointer);
+                memoryObjects[i].SetLocation(hProcess, pThis + m_ReadPointer);
                 memoryObjects[i].SetData(PopBytes(memoryObjects[i].ByteSize));
             }
 
