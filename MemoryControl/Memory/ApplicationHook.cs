@@ -45,6 +45,25 @@ namespace Common.Memory
         }
 
         /// <summary>
+        /// Allocates new memory for the object.
+        /// The contents of the object are not written.
+        /// </summary>
+        /// <param name="obj"></param>
+        public void AllocNewMemory(IMemoryObject obj)
+        {
+            obj.SetLocation(hProcess, MemoryControl.AllocateMemory(hProcess, obj.ByteSize));
+        }
+
+        /// <summary>
+        /// Frees an object's memory in the process.
+        /// </summary>
+        /// <param name="obj"></param>
+        public void FreeMemory(IMemoryObject obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Unhooks from the process.
         /// </summary>
         public void Unhook()

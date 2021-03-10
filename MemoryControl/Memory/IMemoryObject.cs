@@ -23,7 +23,10 @@ namespace Common.Memory
 
     public interface IMemoryObject : IBinaryObject
     {
-        IntPtr pThis { get; }
+        IntPtr pThis { get; set; }
+        IntPtr hProcess { get; set; }
+
+        [ObsoleteAttribute("This method is no longer in use. Use pThis and hProcess instead.", false)]
         void SetLocation(IntPtr hProcess, IntPtr address);
 
         /// <summary>

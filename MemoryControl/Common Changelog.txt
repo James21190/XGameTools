@@ -1,5 +1,6 @@
 ﻿1.6.0.0
 	- Added dll injection method to ApplicationHook.
+	- Depreciated SetLodation in IMemoryObject. This has been replaced with pThis and hProcess fields.
 	- Reordered message serverity in Logger class.
 
 1.5.0.0 (22/11/2020)
@@ -13,7 +14,6 @@
 	- Added WriteToMemory in MemoryObject.
 	- Added protected method to MemoryObject to simplify memory reads.
 	- Added method to MemoryObjectPointer to request a different type than the one assigned.
-	- Added 
 	- Reworked ObjectByteList methods. Previous Pop methods are now depreciated.
 	- Completed ApplicationHook abstract class.
 	- SetLocation in MemoryObject will no longer reload values from memory.
