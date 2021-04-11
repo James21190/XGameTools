@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI
+﻿namespace X3TC_RAM_Tool.UI
 {
     partial class TypeSelectDialog
     {

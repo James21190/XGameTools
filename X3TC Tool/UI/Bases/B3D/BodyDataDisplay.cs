@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3Tools;
-using X3Tools.Bases.B3D;
-using X3Tools.Generics;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases.B3D;
+using X3Tools.RAM.Generics;
 
-namespace X3_Tool.UI.Bases.CameraBase_Displays
+namespace X3TC_RAM_Tool.UI.Bases.CameraBase_Displays
 {
     public partial class BodyDataDisplay : Form
     {
@@ -41,6 +41,7 @@ namespace X3_Tool.UI.Bases.CameraBase_Displays
             m_BodyData.ReloadFromMemory();
 
             numericIDObjectControl1.LoadObject(m_BodyData);
+
         }
     }
 }

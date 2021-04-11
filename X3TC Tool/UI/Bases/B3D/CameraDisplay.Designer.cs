@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Displays
+﻿namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class CameraDisplay
     {
@@ -36,7 +36,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.FogDisplay = new Common.UI.Vector3Display();
             this.BackgroundDisplay = new Common.UI.Vector3Display();
-            this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
+            this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -224,6 +224,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private Common.UI.Vector3Display BackgroundDisplay;
         private Common.UI.Vector3Display FogDisplay;
-        private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
+        private X3Tools.RAM.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

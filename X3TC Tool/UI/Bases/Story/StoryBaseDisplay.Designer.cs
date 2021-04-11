@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Displays
+﻿namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class StoryBaseDisplay
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            X3Tools.Bases.Story.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.Story.Scripting.DynamicValue();
+            X3Tools.RAM.Bases.Story.Scripting.DynamicValue dynamicValue1 = new X3Tools.RAM.Bases.Story.Scripting.DynamicValue();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -61,7 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button13 = new System.Windows.Forms.Button();
-            this.dynamicValueDisplay1 = new X3Tools.DynamicValueDisplay();
+            this.dynamicValueDisplay1 = new X3Tools.RAM.DynamicValueDisplay();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
@@ -503,7 +503,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button13;
-        private X3Tools.DynamicValueDisplay dynamicValueDisplay1;
+        private X3Tools.RAM.DynamicValueDisplay dynamicValueDisplay1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtAddress;
     }

@@ -1,6 +1,6 @@
-﻿using X3Tools.Bases.Story.Scripting;
+﻿using X3Tools.RAM.Bases.Story.Scripting;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class ScriptTableObjectDisplay
     {
@@ -30,8 +30,8 @@ namespace X3_Tool.UI.Displays
         /// </summary>
         private void InitializeComponent()
         {
-            X3Tools.Bases.Story.Scripting.DynamicValue dynamicValue1 = new X3Tools.Bases.Story.Scripting.DynamicValue();
-            X3Tools.Bases.Story.Scripting.DynamicValue dynamicValue2 = new X3Tools.Bases.Story.Scripting.DynamicValue();
+            X3Tools.RAM.Bases.Story.Scripting.DynamicValue dynamicValue1 = new X3Tools.RAM.Bases.Story.Scripting.DynamicValue();
+            X3Tools.RAM.Bases.Story.Scripting.DynamicValue dynamicValue2 = new X3Tools.RAM.Bases.Story.Scripting.DynamicValue();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.LoadButton = new System.Windows.Forms.Button();
             this.AddressBox = new System.Windows.Forms.TextBox();
@@ -46,11 +46,11 @@ namespace X3_Tool.UI.Displays
             this.button1 = new System.Windows.Forms.Button();
             this.ScannerLabel = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.dynamicValueDisplay1 = new X3Tools.DynamicValueDisplay();
+            this.dynamicValueDisplay1 = new X3Tools.RAM.DynamicValueDisplay();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.IDBox = new X3Tools.DynamicValueDisplay();
+            this.IDBox = new X3Tools.RAM.DynamicValueDisplay();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -311,7 +311,7 @@ namespace X3_Tool.UI.Displays
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
-        private X3Tools.DynamicValueDisplay IDBox;
-        private X3Tools.DynamicValueDisplay dynamicValueDisplay1;
+        private X3Tools.RAM.DynamicValueDisplay IDBox;
+        private X3Tools.RAM.DynamicValueDisplay dynamicValueDisplay1;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels
+﻿namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels
 {
     partial class IScriptMemoryObject_Headquarters_Panel
     {
@@ -30,7 +30,7 @@
         {
             this.lstvBlueprints = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.iScriptMemoryObject_Station_Panel1 = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels.IScriptMemoryObject_Station_Panel();
+            this.iScriptMemoryObject_Station_Panel1 = new X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels.IScriptMemoryObject_Station_Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblBlueprintCount = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();

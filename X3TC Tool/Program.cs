@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace X3_Tool
+namespace X3TC_RAM_Tool
 {
     internal static class Program
     {

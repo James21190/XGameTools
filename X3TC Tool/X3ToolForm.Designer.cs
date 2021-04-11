@@ -1,4 +1,4 @@
-﻿namespace X3_Tool
+﻿namespace X3TC_RAM_Tool
 {
     partial class X3ToolForm
     {
@@ -38,6 +38,24 @@
             this.btnSectorObjectManager = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.GameHookMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.basesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectorObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectorObjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.typeDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.storyBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingObjectsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScriptingObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sciptInstanceSubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingTextObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scriptingDisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bodyDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.renderObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.x86DisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dLLInjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,40 +68,22 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.GameHookPanel = new System.Windows.Forms.Panel();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbDisableAFK = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.basesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.storyBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptingObjectsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScriptingObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptingHashTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptingTextObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptingArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scriptingDisassemblerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sectorObjectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sectorObjectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.typeDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cameraToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.bodyDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.renderObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sciptInstanceSubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.GameHookPanel.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStoryBase
@@ -194,17 +194,160 @@
             this.GameHookMenuStrip.Size = new System.Drawing.Size(79, 20);
             this.GameHookMenuStrip.Text = "GameHook";
             // 
+            // basesToolStripMenuItem
+            // 
+            this.basesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sectorObjectsToolStripMenuItem,
+            this.storyBaseToolStripMenuItem,
+            this.cameraBaseToolStripMenuItem});
+            this.basesToolStripMenuItem.Name = "basesToolStripMenuItem";
+            this.basesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.basesToolStripMenuItem.Text = "Bases";
+            // 
+            // sectorObjectsToolStripMenuItem
+            // 
+            this.sectorObjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sectorObjectToolStripMenuItem1,
+            this.typeDataToolStripMenuItem1});
+            this.sectorObjectsToolStripMenuItem.Name = "sectorObjectsToolStripMenuItem";
+            this.sectorObjectsToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.sectorObjectsToolStripMenuItem.Text = "Sector";
+            // 
+            // sectorObjectToolStripMenuItem1
+            // 
+            this.sectorObjectToolStripMenuItem1.Name = "sectorObjectToolStripMenuItem1";
+            this.sectorObjectToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.sectorObjectToolStripMenuItem1.Text = "SectorObject";
+            this.sectorObjectToolStripMenuItem1.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem1_Click);
+            // 
+            // typeDataToolStripMenuItem1
+            // 
+            this.typeDataToolStripMenuItem1.Name = "typeDataToolStripMenuItem1";
+            this.typeDataToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.typeDataToolStripMenuItem1.Text = "TypeData";
+            this.typeDataToolStripMenuItem1.Click += new System.EventHandler(this.typeDataToolStripMenuItem1_Click);
+            // 
+            // storyBaseToolStripMenuItem
+            // 
+            this.storyBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scriptingObjectsToolStripMenuItem1,
+            this.textPageToolStripMenuItem});
+            this.storyBaseToolStripMenuItem.Name = "storyBaseToolStripMenuItem";
+            this.storyBaseToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.storyBaseToolStripMenuItem.Text = "Story";
+            // 
+            // scriptingObjectsToolStripMenuItem1
+            // 
+            this.scriptingObjectsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ScriptingObjectToolStripMenuItem,
+            this.sciptInstanceSubToolStripMenuItem,
+            this.scriptObjectToolStripMenuItem,
+            this.scriptingHashTableToolStripMenuItem,
+            this.scriptingTextObjectToolStripMenuItem,
+            this.scriptingArrayToolStripMenuItem,
+            this.scriptingDisassemblerToolStripMenuItem});
+            this.scriptingObjectsToolStripMenuItem1.Name = "scriptingObjectsToolStripMenuItem1";
+            this.scriptingObjectsToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
+            this.scriptingObjectsToolStripMenuItem1.Text = "Scripting";
+            // 
+            // ScriptingObjectToolStripMenuItem
+            // 
+            this.ScriptingObjectToolStripMenuItem.Name = "ScriptingObjectToolStripMenuItem";
+            this.ScriptingObjectToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.ScriptingObjectToolStripMenuItem.Text = "ScriptInstance";
+            this.ScriptingObjectToolStripMenuItem.Click += new System.EventHandler(this.ScriptingObjectToolStripMenuItem_Click);
+            // 
+            // sciptInstanceSubToolStripMenuItem
+            // 
+            this.sciptInstanceSubToolStripMenuItem.Name = "sciptInstanceSubToolStripMenuItem";
+            this.sciptInstanceSubToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.sciptInstanceSubToolStripMenuItem.Text = "SciptInstanceSub";
+            this.sciptInstanceSubToolStripMenuItem.Click += new System.EventHandler(this.sciptInstanceSubToolStripMenuItem_Click);
+            // 
+            // scriptObjectToolStripMenuItem
+            // 
+            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
+            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.scriptObjectToolStripMenuItem.Text = "ScriptTask";
+            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
+            // 
+            // scriptingHashTableToolStripMenuItem
+            // 
+            this.scriptingHashTableToolStripMenuItem.Name = "scriptingHashTableToolStripMenuItem";
+            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.scriptingHashTableToolStripMenuItem.Text = "ScriptTableObject";
+            this.scriptingHashTableToolStripMenuItem.Click += new System.EventHandler(this.scriptingHashTableToolStripMenuItem_Click);
+            // 
+            // scriptingTextObjectToolStripMenuItem
+            // 
+            this.scriptingTextObjectToolStripMenuItem.Name = "scriptingTextObjectToolStripMenuItem";
+            this.scriptingTextObjectToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.scriptingTextObjectToolStripMenuItem.Text = "ScriptStringObject";
+            this.scriptingTextObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptingTextObjectToolStripMenuItem_Click);
+            // 
+            // scriptingArrayToolStripMenuItem
+            // 
+            this.scriptingArrayToolStripMenuItem.Name = "scriptingArrayToolStripMenuItem";
+            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.scriptingArrayToolStripMenuItem.Text = "ScriptArrayObject";
+            this.scriptingArrayToolStripMenuItem.Click += new System.EventHandler(this.scriptingArrayToolStripMenuItem_Click);
+            // 
+            // scriptingDisassemblerToolStripMenuItem
+            // 
+            this.scriptingDisassemblerToolStripMenuItem.Name = "scriptingDisassemblerToolStripMenuItem";
+            this.scriptingDisassemblerToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.scriptingDisassemblerToolStripMenuItem.Text = "Disassembler";
+            this.scriptingDisassemblerToolStripMenuItem.Click += new System.EventHandler(this.scriptingDisassemblerToolStripMenuItem_Click);
+            // 
+            // textPageToolStripMenuItem
+            // 
+            this.textPageToolStripMenuItem.Name = "textPageToolStripMenuItem";
+            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.textPageToolStripMenuItem.Text = "TextPage";
+            this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
+            // 
+            // cameraBaseToolStripMenuItem
+            // 
+            this.cameraBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cameraToolStripMenuItem1,
+            this.bodyDataToolStripMenuItem1,
+            this.renderObjectToolStripMenuItem});
+            this.cameraBaseToolStripMenuItem.Name = "cameraBaseToolStripMenuItem";
+            this.cameraBaseToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.cameraBaseToolStripMenuItem.Text = "B3D";
+            // 
+            // cameraToolStripMenuItem1
+            // 
+            this.cameraToolStripMenuItem1.Name = "cameraToolStripMenuItem1";
+            this.cameraToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.cameraToolStripMenuItem1.Text = "Camera";
+            this.cameraToolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem1_Click);
+            // 
+            // bodyDataToolStripMenuItem1
+            // 
+            this.bodyDataToolStripMenuItem1.Name = "bodyDataToolStripMenuItem1";
+            this.bodyDataToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.bodyDataToolStripMenuItem1.Text = "BodyData";
+            this.bodyDataToolStripMenuItem1.Click += new System.EventHandler(this.bodyDataToolStripMenuItem1_Click);
+            // 
+            // renderObjectToolStripMenuItem
+            // 
+            this.renderObjectToolStripMenuItem.Name = "renderObjectToolStripMenuItem";
+            this.renderObjectToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.renderObjectToolStripMenuItem.Text = "RenderObject";
+            this.renderObjectToolStripMenuItem.Click += new System.EventHandler(this.renderObjectToolStripMenuItem_Click);
+            // 
             // hashTableToolStripMenuItem
             // 
             this.hashTableToolStripMenuItem.Name = "hashTableToolStripMenuItem";
-            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hashTableToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.hashTableToolStripMenuItem.Text = "HashTable";
             this.hashTableToolStripMenuItem.Click += new System.EventHandler(this.hashTableToolStripMenuItem_Click);
             // 
             // x86DisassemblerToolStripMenuItem
             // 
             this.x86DisassemblerToolStripMenuItem.Name = "x86DisassemblerToolStripMenuItem";
-            this.x86DisassemblerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.x86DisassemblerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.x86DisassemblerToolStripMenuItem.Text = "x86 Disassembler";
             this.x86DisassemblerToolStripMenuItem.Click += new System.EventHandler(this.x86DisassemblerToolStripMenuItem_Click);
             // 
@@ -314,6 +457,17 @@
             this.GameHookPanel.Size = new System.Drawing.Size(860, 522);
             this.GameHookPanel.TabIndex = 9;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.groupBox2);
+            this.groupBox6.Controls.Add(this.cbDisableAFK);
+            this.groupBox6.Location = new System.Drawing.Point(581, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(276, 148);
+            this.groupBox6.TabIndex = 14;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Hacks";
+            // 
             // cbDisableAFK
             // 
             this.cbDisableAFK.AutoSize = true;
@@ -378,160 +532,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // basesToolStripMenuItem
-            // 
-            this.basesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sectorObjectsToolStripMenuItem,
-            this.storyBaseToolStripMenuItem,
-            this.cameraBaseToolStripMenuItem});
-            this.basesToolStripMenuItem.Name = "basesToolStripMenuItem";
-            this.basesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.basesToolStripMenuItem.Text = "Bases";
-            // 
-            // storyBaseToolStripMenuItem
-            // 
-            this.storyBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scriptingObjectsToolStripMenuItem1,
-            this.textPageToolStripMenuItem});
-            this.storyBaseToolStripMenuItem.Name = "storyBaseToolStripMenuItem";
-            this.storyBaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.storyBaseToolStripMenuItem.Text = "Story";
-            // 
-            // scriptingObjectsToolStripMenuItem1
-            // 
-            this.scriptingObjectsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ScriptingObjectToolStripMenuItem,
-            this.sciptInstanceSubToolStripMenuItem,
-            this.scriptObjectToolStripMenuItem,
-            this.scriptingHashTableToolStripMenuItem,
-            this.scriptingTextObjectToolStripMenuItem,
-            this.scriptingArrayToolStripMenuItem,
-            this.scriptingDisassemblerToolStripMenuItem});
-            this.scriptingObjectsToolStripMenuItem1.Name = "scriptingObjectsToolStripMenuItem1";
-            this.scriptingObjectsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.scriptingObjectsToolStripMenuItem1.Text = "Scripting";
-            // 
-            // ScriptingObjectToolStripMenuItem
-            // 
-            this.ScriptingObjectToolStripMenuItem.Name = "ScriptingObjectToolStripMenuItem";
-            this.ScriptingObjectToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.ScriptingObjectToolStripMenuItem.Text = "ScriptInstance";
-            this.ScriptingObjectToolStripMenuItem.Click += new System.EventHandler(this.ScriptingObjectToolStripMenuItem_Click);
-            // 
-            // scriptObjectToolStripMenuItem
-            // 
-            this.scriptObjectToolStripMenuItem.Name = "scriptObjectToolStripMenuItem";
-            this.scriptObjectToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.scriptObjectToolStripMenuItem.Text = "ScriptTask";
-            this.scriptObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptObjectToolStripMenuItem_Click);
-            // 
-            // scriptingHashTableToolStripMenuItem
-            // 
-            this.scriptingHashTableToolStripMenuItem.Name = "scriptingHashTableToolStripMenuItem";
-            this.scriptingHashTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptingHashTableToolStripMenuItem.Text = "ScriptTableObject";
-            this.scriptingHashTableToolStripMenuItem.Click += new System.EventHandler(this.scriptingHashTableToolStripMenuItem_Click);
-            // 
-            // scriptingTextObjectToolStripMenuItem
-            // 
-            this.scriptingTextObjectToolStripMenuItem.Name = "scriptingTextObjectToolStripMenuItem";
-            this.scriptingTextObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptingTextObjectToolStripMenuItem.Text = "ScriptStringObject";
-            this.scriptingTextObjectToolStripMenuItem.Click += new System.EventHandler(this.scriptingTextObjectToolStripMenuItem_Click);
-            // 
-            // scriptingArrayToolStripMenuItem
-            // 
-            this.scriptingArrayToolStripMenuItem.Name = "scriptingArrayToolStripMenuItem";
-            this.scriptingArrayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptingArrayToolStripMenuItem.Text = "ScriptArrayObject";
-            this.scriptingArrayToolStripMenuItem.Click += new System.EventHandler(this.scriptingArrayToolStripMenuItem_Click);
-            // 
-            // scriptingDisassemblerToolStripMenuItem
-            // 
-            this.scriptingDisassemblerToolStripMenuItem.Name = "scriptingDisassemblerToolStripMenuItem";
-            this.scriptingDisassemblerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.scriptingDisassemblerToolStripMenuItem.Text = "Disassembler";
-            this.scriptingDisassemblerToolStripMenuItem.Click += new System.EventHandler(this.scriptingDisassemblerToolStripMenuItem_Click);
-            // 
-            // textPageToolStripMenuItem
-            // 
-            this.textPageToolStripMenuItem.Name = "textPageToolStripMenuItem";
-            this.textPageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.textPageToolStripMenuItem.Text = "TextPage";
-            this.textPageToolStripMenuItem.Click += new System.EventHandler(this.textPageToolStripMenuItem_Click);
-            // 
-            // sectorObjectsToolStripMenuItem
-            // 
-            this.sectorObjectsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sectorObjectToolStripMenuItem1,
-            this.typeDataToolStripMenuItem1});
-            this.sectorObjectsToolStripMenuItem.Name = "sectorObjectsToolStripMenuItem";
-            this.sectorObjectsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sectorObjectsToolStripMenuItem.Text = "Sector";
-            // 
-            // sectorObjectToolStripMenuItem1
-            // 
-            this.sectorObjectToolStripMenuItem1.Name = "sectorObjectToolStripMenuItem1";
-            this.sectorObjectToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.sectorObjectToolStripMenuItem1.Text = "SectorObject";
-            this.sectorObjectToolStripMenuItem1.Click += new System.EventHandler(this.sectorObjectToolStripMenuItem1_Click);
-            // 
-            // typeDataToolStripMenuItem1
-            // 
-            this.typeDataToolStripMenuItem1.Name = "typeDataToolStripMenuItem1";
-            this.typeDataToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.typeDataToolStripMenuItem1.Text = "TypeData";
-            this.typeDataToolStripMenuItem1.Click += new System.EventHandler(this.typeDataToolStripMenuItem1_Click);
-            // 
-            // cameraBaseToolStripMenuItem
-            // 
-            this.cameraBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cameraToolStripMenuItem1,
-            this.bodyDataToolStripMenuItem1,
-            this.renderObjectToolStripMenuItem});
-            this.cameraBaseToolStripMenuItem.Name = "cameraBaseToolStripMenuItem";
-            this.cameraBaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cameraBaseToolStripMenuItem.Text = "B3D";
-            // 
-            // cameraToolStripMenuItem1
-            // 
-            this.cameraToolStripMenuItem1.Name = "cameraToolStripMenuItem1";
-            this.cameraToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.cameraToolStripMenuItem1.Text = "Camera";
-            this.cameraToolStripMenuItem1.Click += new System.EventHandler(this.cameraToolStripMenuItem1_Click);
-            // 
-            // bodyDataToolStripMenuItem1
-            // 
-            this.bodyDataToolStripMenuItem1.Name = "bodyDataToolStripMenuItem1";
-            this.bodyDataToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.bodyDataToolStripMenuItem1.Text = "BodyData";
-            this.bodyDataToolStripMenuItem1.Click += new System.EventHandler(this.bodyDataToolStripMenuItem1_Click);
-            // 
-            // renderObjectToolStripMenuItem
-            // 
-            this.renderObjectToolStripMenuItem.Name = "renderObjectToolStripMenuItem";
-            this.renderObjectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.renderObjectToolStripMenuItem.Text = "RenderObject";
-            this.renderObjectToolStripMenuItem.Click += new System.EventHandler(this.renderObjectToolStripMenuItem_Click);
-            // 
-            // sciptInstanceSubToolStripMenuItem
-            // 
-            this.sciptInstanceSubToolStripMenuItem.Name = "sciptInstanceSubToolStripMenuItem";
-            this.sciptInstanceSubToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.sciptInstanceSubToolStripMenuItem.Text = "SciptInstanceSub";
-            this.sciptInstanceSubToolStripMenuItem.Click += new System.EventHandler(this.sciptInstanceSubToolStripMenuItem_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.groupBox2);
-            this.groupBox6.Controls.Add(this.cbDisableAFK);
-            this.groupBox6.Location = new System.Drawing.Point(581, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(276, 148);
-            this.groupBox6.TabIndex = 14;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Hacks";
-            // 
             // X3ToolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,7 +542,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "X3ToolForm";
-            this.Text = "X3 Tool - Alpha 6";
+            this.Text = "X3 RAM Tool - Alpha 6";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.X3TCToolForm_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -552,11 +552,11 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.GameHookPanel.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

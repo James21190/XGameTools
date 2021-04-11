@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Bases.CameraBase_Displays
+﻿namespace X3TC_RAM_Tool.UI.Bases.CameraBase_Displays
 {
     partial class BodyDataDisplay
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
+            this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
             this.SuspendLayout();
             // 
             // numericIDObjectControl1
@@ -57,6 +57,6 @@
 
         #endregion
 
-        private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
+        private X3Tools.RAM.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

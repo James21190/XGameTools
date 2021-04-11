@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3Tools;
+using X3Tools.RAM;
 
-namespace X3_Tool.UI.Bases.SystemBase_Displays
+namespace X3TC_RAM_Tool.UI.Bases.SystemBase_Displays
 {
     public partial class SystemBaseDisplay : Form
     {

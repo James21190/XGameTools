@@ -1,10 +1,10 @@
 ﻿using Common.Memory;
 using System;
 using System.Windows.Forms;
-using X3Tools;
-using X3Tools.Generics;
+using X3Tools.RAM;
+using X3Tools.RAM.Generics;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class HashTableDisplay : Form
     {

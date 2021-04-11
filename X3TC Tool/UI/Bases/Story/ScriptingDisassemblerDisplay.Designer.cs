@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Bases.StoryBase_Displays
+﻿namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays
 {
     partial class ScriptingDisassemblerDisplay
     {

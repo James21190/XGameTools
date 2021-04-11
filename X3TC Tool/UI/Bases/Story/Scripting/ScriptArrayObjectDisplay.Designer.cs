@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Displays
+﻿namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class ScriptArrayObjectDisplay
     {
@@ -30,10 +30,10 @@
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.scriptMemoryObject_Raw_Panel1 = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
+            this.scriptMemoryObject_Raw_Panel1 = new X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnLoadID = new System.Windows.Forms.Button();
             this.nudID = new System.Windows.Forms.NumericUpDown();
+            this.btnLoadID = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudID)).BeginInit();
@@ -77,6 +77,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ID";
             // 
+            // nudID
+            // 
+            this.nudID.Location = new System.Drawing.Point(6, 20);
+            this.nudID.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.nudID.Name = "nudID";
+            this.nudID.Size = new System.Drawing.Size(106, 20);
+            this.nudID.TabIndex = 2;
+            // 
             // btnLoadID
             // 
             this.btnLoadID.Location = new System.Drawing.Point(118, 17);
@@ -86,13 +98,6 @@
             this.btnLoadID.Text = "Load";
             this.btnLoadID.UseVisualStyleBackColor = true;
             this.btnLoadID.Click += new System.EventHandler(this.btnLoadID_Click);
-            // 
-            // nudID
-            // 
-            this.nudID.Location = new System.Drawing.Point(6, 20);
-            this.nudID.Name = "nudID";
-            this.nudID.Size = new System.Drawing.Size(106, 20);
-            this.nudID.TabIndex = 2;
             // 
             // ScriptArrayObjectDisplay
             // 

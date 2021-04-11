@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-using X3Tools;
+using X3Tools.RAM;
 
-using X3Tools.Bases.Story.Scripting;
-using X3Tools.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.RAM.Bases.Story.Scripting;
+using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class ScriptArrayObjectDisplay : Form
     {

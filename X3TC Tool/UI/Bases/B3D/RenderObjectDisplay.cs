@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3_Tool.UI.Bases.CameraBase_Displays;
-using X3Tools;
-using X3Tools.Bases.Sector;
-using X3Tools.Bases.B3D;
+using X3TC_RAM_Tool.UI.Bases.CameraBase_Displays;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases.Sector;
+using X3Tools.RAM.Bases.B3D;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class RenderObjectDisplay : Form
     {

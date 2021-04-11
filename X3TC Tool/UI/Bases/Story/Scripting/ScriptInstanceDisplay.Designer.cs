@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting
+﻿namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
     partial class ScriptInstanceDisplay
     {
@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ScriptingObjectPannel1 = new X3Tools.ScriptingObjectPannel();
+            this.ScriptingObjectPannel1 = new X3Tools.RAM.ScriptingObjectPannel();
             this.typeBackPanel = new System.Windows.Forms.Panel();
             this.tmrAutoReload = new System.Windows.Forms.Timer(this.components);
-            this.scriptMemoryObject_Raw_Panel1 = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
+            this.scriptMemoryObject_Raw_Panel1 = new X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel();
             this.SuspendLayout();
             // 
             // ScriptingObjectPannel1
@@ -89,7 +89,7 @@
         }
 
         #endregion
-        private X3Tools.ScriptingObjectPannel ScriptingObjectPannel1;
+        private X3Tools.RAM.ScriptingObjectPannel ScriptingObjectPannel1;
         private ScriptMemoryObject_Panels.ScriptMemoryObject_Raw_Panel scriptMemoryObject_Raw_Panel1;
         private System.Windows.Forms.Panel typeBackPanel;
         private System.Windows.Forms.Timer tmrAutoReload;

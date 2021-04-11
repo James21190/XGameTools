@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Displays
+﻿namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class ScriptTaskObjectDisplay
     {

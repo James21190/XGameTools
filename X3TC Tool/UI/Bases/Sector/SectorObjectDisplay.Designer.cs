@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Displays
+﻿namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class SectorObjectDisplay
     {
@@ -70,8 +70,8 @@
             this.v3dPosition = new Common.UI.Vector3Display();
             this.v3dPositionKm = new Common.UI.Vector3Display();
             this.v3dRotation = new Common.UI.Vector3Display();
-            this.ScriptingObjectPannel1 = new X3Tools.ScriptingObjectPannel();
-            this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
+            this.ScriptingObjectPannel1 = new X3Tools.RAM.ScriptingObjectPannel();
+            this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -661,8 +661,8 @@
             this.numericIDObjectControl1.Name = "numericIDObjectControl1";
             this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
             this.numericIDObjectControl1.TabIndex = 28;
-            this.numericIDObjectControl1.AddressLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
-            this.numericIDObjectControl1.IDLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
+            this.numericIDObjectControl1.AddressLoad += new X3Tools.RAM.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
+            this.numericIDObjectControl1.IDLoad += new X3Tools.RAM.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
             // 
             // SectorObjectDisplay
             // 
@@ -746,8 +746,8 @@
         private System.Windows.Forms.NumericUpDown nudMass;
         private System.Windows.Forms.Label labelSectorInfo;
         private System.Windows.Forms.GroupBox groupBox4;
-        private X3Tools.ScriptingObjectPannel ScriptingObjectPannel1;
+        private X3Tools.RAM.ScriptingObjectPannel ScriptingObjectPannel1;
         private System.Windows.Forms.Button btnLoadScriptingObject;
-        private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
+        private X3Tools.RAM.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3_Tool.UI;
-using X3_Tool.UI.Bases.CameraBase_Displays;
-using X3_Tool.UI.Bases.StoryBase_Displays;
-using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
-using X3_Tool.UI.Displays;
-using X3_Tool.UI.Bases.SystemBase_Displays;
-using X3Tools;
-using X3Tools.Bases.Sector;
-using X3Tools.Bases.Story.Scripting.ScriptingMemory;
-using X3Tools.Bases.SystemBase_Objects;
+using X3TC_RAM_Tool.UI;
+using X3TC_RAM_Tool.UI.Bases.CameraBase_Displays;
+using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays;
+using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
+using X3TC_RAM_Tool.UI.Displays;
+using X3TC_RAM_Tool.UI.Bases.SystemBase_Displays;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases.Sector;
+using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.RAM.Bases.SystemBase_Objects;
 
-namespace X3_Tool
+namespace X3TC_RAM_Tool
 {
     public partial class X3ToolForm : Form
     {
@@ -213,7 +213,7 @@ namespace X3_Tool
         private void button3_Click(object sender, EventArgs e)
         {
             ScriptInstanceDisplay display = new ScriptInstanceDisplay();
-            X3Tools.Bases.Story.Scripting.ScriptInstance obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance;
+            X3Tools.RAM.Bases.Story.Scripting.ScriptInstance obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance;
             IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
             display.LoadObject(ship.OwnerDataScriptingObjectID);
             display.Show();

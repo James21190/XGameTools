@@ -43,170 +43,172 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bases\B3D\BodyData.cs" />
-    <Compile Include="Bases\B3D\BodyData_Sub.cs" />
-    <Compile Include="Bases\B3D\B3DBase.cs" />
-    <Compile Include="Bases\B3D\Camera.cs" />
-    <Compile Include="Bases\Galaxy\GalaxyBase.cs" />
-    <Compile Include="Bases\Input\InputBase.cs" />
-    <Compile Include="Bases\Sector\Meta\R\SectorObjectMetaWithChildrenR.cs" />
-    <Compile Include="Bases\Sector\Meta\R\SectorObject_Station_R_Meta.cs" />
-    <Compile Include="Bases\Sector\Meta\R\SectorObject_Ship_R_Meta.cs" />
-    <Compile Include="Bases\Sector\Meta\R\SectorObject_Sector_R_Meta.cs" />
-    <Compile Include="Bases\Story\Scripting\KCode\KDisassembler.cs" />
-    <Compile Include="Bases\Story\Scripting\KCode\KFunctionDefinition.cs" />
-    <Compile Include="Bases\Story\Scripting\KCode\KInstruction.cs" />
-    <Compile Include="Bases\Story\Scripting\KCode\FunctionDefinitions.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData_Player.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\ScriptInstance_Types.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData_Player.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Station.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Gate.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_PositionData_12.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ware.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Headquarters.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Station.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Gate.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\R\R_ScriptingMemory_Variables.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\R\ScriptMemoryObject_R_Gate.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Headquarters.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_PositionData_12.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Station.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Gate.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData_Player.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Sector.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ship.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ware.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\TC\TC_ScriptingMemory_Variables.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\AP_ScriptingMemory_Variables.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\CargoEntry.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\ScriptingMemoryObject.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Sector.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ship.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptInstanceSubFunction.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptStringObject.cs" />
-    <Compile Include="Bases\Story\Scripting\DynamicValue.cs" />
-    <Compile Include="Bases\Story\EventFunctionStruct.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptInstance.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptInstanceSub.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptTaskObject.cs" />
-    <Compile Include="Bases\Story\StoryBase.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptArrayObject.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptTableObject.cs" />
-    <Compile Include="Bases\System\SystemBase.cs" />
-    <Compile Include="Bases\Story\Scripting\UI\DynamicValueDisplay.cs">
+    <Compile Include="RAM\Bases\B3D\BodyData.cs" />
+    <Compile Include="RAM\Bases\B3D\BodyData_Sub.cs" />
+    <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
+    <Compile Include="RAM\Bases\B3D\BodyData_Sub_Sub0x10.cs" />
+    <Compile Include="RAM\Bases\B3D\Camera.cs" />
+    <Compile Include="RAM\Bases\B3D\ModelData.cs" />
+    <Compile Include="RAM\Bases\Galaxy\GalaxyBase.cs" />
+    <Compile Include="RAM\Bases\Input\InputBase.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObjectMetaWithChildrenR.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObject_Station_R_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObject_Ship_R_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObject_Sector_R_Meta.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\KCode\KDisassembler.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\KCode\KFunctionDefinition.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\KCode\KInstruction.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\KCode\FunctionDefinitions.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData_Player.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\ScriptInstance_Types.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData_Player.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Station.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Gate.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_PositionData_12.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ware.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Headquarters.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Station.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Gate.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\R\R_ScriptingMemory_Variables.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\R\ScriptMemoryObject_R_Gate.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Headquarters.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_PositionData_12.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Station.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Gate.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData_Player.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Sector.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ship.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ware.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\TC_ScriptingMemory_Variables.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\AP_ScriptingMemory_Variables.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\CargoEntry.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\ScriptingMemoryObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Sector.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ship.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSubFunction.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\DynamicValue.cs" />
+    <Compile Include="RAM\Bases\Story\EventFunctionStruct.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTaskObject.cs" />
+    <Compile Include="RAM\Bases\Story\StoryBase.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptArrayObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject.cs" />
+    <Compile Include="RAM\Bases\System\SystemBase.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\UI\DynamicValueDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Bases\Story\Scripting\UI\DynamicValueDisplay.Designer.cs">
+    <Compile Include="RAM\Bases\Story\Scripting\UI\DynamicValueDisplay.Designer.cs">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bases\Story\Scripting\UI\ScriptInstancePanel.cs">
+    <Compile Include="RAM\Bases\Story\Scripting\UI\ScriptInstancePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Bases\Story\Scripting\UI\ScriptInstancePanel.Designer.cs">
+    <Compile Include="RAM\Bases\Story\Scripting\UI\ScriptInstancePanel.Designer.cs">
       <DependentUpon>ScriptInstancePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bases\System\SystemBaseStringCollection.cs" />
-    <Compile Include="Exceptions.cs" />
-    <Compile Include="GameCodeRunner.cs" />
-    <Compile Include="GameHook.cs" />
-    <Compile Include="Bases\Story\Scripting\ScriptTableObject_Inner.cs" />
-    <Compile Include="Generics\Generics Exceptions.cs" />
-    <Compile Include="Generics\HashTable.cs" />
-    <Compile Include="Generics\LinkedListStart.cs" />
-    <Compile Include="INumericIDObject.cs" />
+    <Compile Include="RAM\Bases\System\SystemBaseStringCollection.cs" />
+    <Compile Include="RAM\Exceptions.cs" />
+    <Compile Include="RAM\GameCodeRunner.cs" />
+    <Compile Include="RAM\GameHook.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject_Inner.cs" />
+    <Compile Include="RAM\Generics\Generics Exceptions.cs" />
+    <Compile Include="RAM\Generics\HashTable.cs" />
+    <Compile Include="RAM\Generics\LinkedListStart.cs" />
+    <Compile Include="RAM\INumericIDObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Bases\Sector\Meta\ISectorObjectMeta.cs" />
-    <Compile Include="Bases\Sector\Meta\SectorObject_Gate_Meta.cs" />
-    <Compile Include="Bases\Sector\Meta\SectorObject_Sun_Meta.cs" />
-    <Compile Include="Bases\Sector\Meta\SectorObject_Sector_Meta.cs" />
-    <Compile Include="Bases\Sector\Meta\SectorObjectMetaWithChildren.cs" />
-    <Compile Include="Bases\Sector\Meta\SectorObject_Ship_Meta.cs" />
-    <Compile Include="Bases\Sector\Meta\SectorObject_Station_Meta.cs" />
-    <Compile Include="Bases\Sector\SectorObject Types.cs" />
-    <Compile Include="Bases\B3D\RenderObject.cs" />
-    <Compile Include="Bases\Sector\SectorBase.cs" />
-    <Compile Include="Bases\Sector\SectorObject.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_31.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_29.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_30.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_28.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_27.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_26.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_24.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_25.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_23.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_22.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_21.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_20.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_19.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_18.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_17.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_11.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_16.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_15.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_14.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_13.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_12.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Missile.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Planet.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Background.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Sector.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Factory.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Dock.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Sun.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Shield.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Laser.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Bullet.cs" />
-    <Compile Include="Bases\Sector\TypeData\TypeData_Ship.cs" />
-    <Compile Include="Bases\Story\TextPage.cs" />
-    <Compile Include="Generics\X3FixedPointValue.cs" />
-    <Compile Include="UI\NumericIDObjectControl.cs">
+    <Compile Include="RAM\Bases\Sector\Meta\ISectorObjectMeta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\SectorObject_Gate_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\SectorObject_Sun_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\SectorObject_Sector_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\SectorObjectMetaWithChildren.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\SectorObject_Ship_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\Meta\SectorObject_Station_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\SectorObject Types.cs" />
+    <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
+    <Compile Include="RAM\Bases\Sector\SectorBase.cs" />
+    <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_31.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_29.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_30.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_28.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_27.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_26.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_24.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_25.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_23.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_22.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_21.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_20.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_19.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_18.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_17.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_11.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_16.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_15.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_14.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_13.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_12.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Missile.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Planet.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Background.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Sector.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Factory.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Dock.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Sun.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Shield.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Laser.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Bullet.cs" />
+    <Compile Include="RAM\Bases\Sector\TypeData\TypeData_Ship.cs" />
+    <Compile Include="RAM\Bases\Story\TextPage.cs" />
+    <Compile Include="RAM\Generics\X3FixedPointValue.cs" />
+    <Compile Include="RAM\UI\NumericIDObjectControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\NumericIDObjectControl.Designer.cs">
+    <Compile Include="RAM\UI\NumericIDObjectControl.Designer.cs">
       <DependentUpon>NumericIDObjectControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\TC\Mods\System\CreateObject.x3tccode">
+    <None Include="RAM\Data\TC\Mods\System\CreateObject.x3tccode">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\TC\Patches\0.patch">
+    <None Include="RAM\Data\TC\Patches\0.patch">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Data\AP\X3APSectorNames.csv">
+    <None Include="RAM\Data\AP\X3APSectorNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\AP\X3APSectorObjectTypes.csv">
+    <None Include="RAM\Data\AP\X3APSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\TC\X3TCSectorNames.csv">
+    <None Include="RAM\Data\TC\X3TCSectorNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Data\TC\X3TCSectorObjectTypes.csv">
+    <None Include="RAM\Data\TC\X3TCSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\TC\Mods\Blank.mod">
+    <Content Include="RAM\Data\TC\Mods\Blank.mod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Bases\Story\Scripting\UI\DynamicValueDisplay.resx">
+    <EmbeddedResource Include="RAM\Bases\Story\Scripting\UI\DynamicValueDisplay.resx">
       <DependentUpon>DynamicValueDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bases\Story\Scripting\UI\ScriptInstancePanel.resx">
+    <EmbeddedResource Include="RAM\Bases\Story\Scripting\UI\ScriptInstancePanel.resx">
       <DependentUpon>ScriptInstancePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\NumericIDObjectControl.resx">
+    <EmbeddedResource Include="RAM\UI\NumericIDObjectControl.resx">
       <DependentUpon>NumericIDObjectControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

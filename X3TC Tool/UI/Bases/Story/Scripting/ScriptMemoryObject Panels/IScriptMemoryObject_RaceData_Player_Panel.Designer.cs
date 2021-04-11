@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
+﻿namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     partial class IScriptMemoryObject_RaceData_Player_Panel
     {
@@ -36,7 +36,7 @@
             this.nudTradeRank = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.nudFightRank = new System.Windows.Forms.NumericUpDown();
-            this.RaceDataPanel = new X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.IScriptMemoryObject_RaceData_Panel();
+            this.RaceDataPanel = new X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels.IScriptMemoryObject_RaceData_Panel();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCredits)).BeginInit();

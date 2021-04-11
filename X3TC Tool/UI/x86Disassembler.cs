@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.Memory;
 using SharpDisasm;
-using X3Tools;
+using X3Tools.RAM;
 
-namespace X3_Tool.UI
+namespace X3TC_RAM_Tool.UI
 {
     public partial class x86Disassembler : Form
     {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3Tools;
-using X3Tools.Bases;
-using X3Tools.Bases.Story;
-using X3Tools.Bases.Story.Scripting;
-using X3Tools.Generics;
-using X3Tools.Bases.Story.Scripting.KCode;
-using X3_Tool.UI.Bases.StoryBase_Displays;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases;
+using X3Tools.RAM.Bases.Story;
+using X3Tools.RAM.Bases.Story.Scripting;
+using X3Tools.RAM.Generics;
+using X3Tools.RAM.Bases.Story.Scripting.KCode;
+using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class ScriptTaskObjectDisplay : Form
     {

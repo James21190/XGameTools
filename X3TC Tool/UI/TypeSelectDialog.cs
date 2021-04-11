@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3Tools;
-using X3Tools.Bases.Sector;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases.Sector;
 
-namespace X3_Tool.UI
+namespace X3TC_RAM_Tool.UI
 {
     public partial class TypeSelectDialog : Form
     {

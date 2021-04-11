@@ -18,6 +18,8 @@
 	- Renamed "SectorObjectManager" to "SectorBase"
 	- Renamed most script objects to names simalar to the game's internal names.
 	- Renamed namespaces to remove TC as the tool can be used for multiple X3 games.
+	- Renamed "X3 Tool" to "X3 RAM Tool".
+	- Moved lib objects related to game ram from "X3Tools" to "X3Tools.RAM".
 
 Alpha 5 (22/11/2020):
 	- Added CameraBase and Camera classes.

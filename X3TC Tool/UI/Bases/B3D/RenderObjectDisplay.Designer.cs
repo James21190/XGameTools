@@ -1,4 +1,4 @@
-﻿namespace X3_Tool.UI.Displays
+﻿namespace X3TC_RAM_Tool.UI.Displays
 {
     partial class RenderObjectDisplay
     {
@@ -45,7 +45,7 @@
             this.vec3Saturation = new Common.UI.Vector3Display();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.nudHue = new System.Windows.Forms.NumericUpDown();
-            this.numericIDObjectControl1 = new X3Tools.UI.NumericIDObjectControl();
+            this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -344,8 +344,8 @@
             this.numericIDObjectControl1.Name = "numericIDObjectControl1";
             this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
             this.numericIDObjectControl1.TabIndex = 24;
-            this.numericIDObjectControl1.AddressLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
-            this.numericIDObjectControl1.IDLoad += new X3Tools.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
+            this.numericIDObjectControl1.AddressLoad += new X3Tools.RAM.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
+            this.numericIDObjectControl1.IDLoad += new X3Tools.RAM.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
             // 
             // RenderObjectDisplay
             // 
@@ -397,6 +397,6 @@
         private Common.UI.Vector3Display vec3Saturation;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.NumericUpDown nudHue;
-        private X3Tools.UI.NumericIDObjectControl numericIDObjectControl1;
+        private X3Tools.RAM.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

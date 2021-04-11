@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3Tools;
-using X3Tools.Bases.Story.Scripting.KCode;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases.Story.Scripting.KCode;
 
-namespace X3_Tool.UI.Bases.StoryBase_Displays
+namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays
 {
     public partial class ScriptingDisassemblerDisplay : Form
     {

@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
-using X3Tools;
-using X3Tools.Bases.Story.Scripting.ScriptingMemory;
-using X3Tools.Bases.Story.Scripting.ScriptingMemory.AP;
-using X3Tools.Bases.Story.Scripting.ScriptingMemory.TC;
-using X3Tools.Bases.Story.Scripting;
-using X3Tools.Bases.Sector;
+using X3Tools.RAM;
+using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
+using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.AP;
+using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.TC;
+using X3Tools.RAM.Bases.Story.Scripting;
+using X3Tools.RAM.Bases.Sector;
 
-namespace X3_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
+namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     public partial class IScriptMemoryObject_Sector_Panel : UserControl, IScriptMemoryObject_Panel
     {

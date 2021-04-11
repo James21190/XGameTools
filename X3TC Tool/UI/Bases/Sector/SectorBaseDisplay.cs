@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3_Tool.UI.Bases.StoryBase_Displays.Scripting;
-using X3Tools;
+using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
+using X3Tools.RAM;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class SectorObjectManagerDisplay : Form
     {
@@ -17,7 +17,7 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            X3Tools.Bases.Sector.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.RAM.Bases.Sector.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             AddressBox.Text = sectorObjectManager.pThis.ToString("X");
 
             LoadPlayerButton.Enabled = sectorObjectManager.pPlayerShip.IsValid;
@@ -25,7 +25,7 @@ namespace X3_Tool.UI.Displays
 
         private void LoadPlayerButton_Click(object sender, EventArgs e)
         {
-            X3Tools.Bases.Sector.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.RAM.Bases.Sector.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             SectorObjectDisplay display = new SectorObjectDisplay();
             display.LoadObject(sectorObjectManager.pPlayerShip.obj);
             display.Show();
@@ -33,7 +33,7 @@ namespace X3_Tool.UI.Displays
 
         private void button1_Click(object sender, EventArgs e)
         {
-            X3Tools.Bases.Sector.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
+            X3Tools.RAM.Bases.Sector.SectorBase sectorObjectManager = GameHook.sectorObjectManager;
             HashTableDisplay display = new HashTableDisplay("SectorObjectManager - SectorObjects");
             display.LoadTable(sectorObjectManager.pObjectHashTable.address);
             display.Show();

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3_Tool.UI.Bases.CameraBase_Displays;
-using X3Tools;
-using X3Tools.Generics;
+using X3TC_RAM_Tool.UI.Bases.CameraBase_Displays;
+using X3Tools.RAM;
+using X3Tools.RAM.Generics;
 
-namespace X3_Tool.UI.Displays
+namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class B3DBaseDisplay : Form
     {
@@ -16,16 +16,9 @@ namespace X3_Tool.UI.Displays
 
         public void Reload()
         {
-            X3Tools.Bases.B3D.B3DBase b3dBase = GameHook.b3DBase;
+            X3Tools.RAM.Bases.B3D.B3DBase b3dBase = GameHook.b3DBase;
 
             AddressBox.Text = b3dBase.pThis.ToString("X");
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            HashTableDisplay display = new HashTableDisplay("B3DBase - Cameras");
-            display.LoadTable(GameHook.b3DBase.pCameraHashTable.address);
-            display.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -42,26 +35,56 @@ namespace X3_Tool.UI.Displays
             display.Show();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnRenderObjectFirst_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay("B3DBase - Bodies");
+            var display = new RenderObjectDisplay();
+            display.LoadObject(GameHook.b3DBase.pFirstRenderObject.obj);
+            display.Show();
+        }
+
+        private void btnRenderObjectLast_Click(object sender, EventArgs e)
+        {
+            var display = new RenderObjectDisplay();
+            display.LoadObject(GameHook.b3DBase.pLastRenderObject.obj);
+            display.Show();
+        }
+
+        private void btnRenderObjectTable_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay();
+            display.LoadTable(GameHook.b3DBase.pRenderObjectHashTable.address);
+            display.Show();
+        }
+
+        private void btnRenderObjectLoadID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBodyDataFirst_Click(object sender, EventArgs e)
+        {
+            var display = new BodyDataDisplay();
+            display.LoadBodyData(GameHook.b3DBase.pFirstBodyData.obj);
+            display.Show();
+        }
+
+        private void btnBodyDataLast_Click(object sender, EventArgs e)
+        {
+            var display = new BodyDataDisplay();
+            display.LoadBodyData(GameHook.b3DBase.pLastBodyData.obj);
+            display.Show();
+        }
+
+        private void btnBodyDataTable_Click(object sender, EventArgs e)
+        {
+            var display = new HashTableDisplay();
             display.LoadTable(GameHook.b3DBase.pBodyHashTable.address);
             display.Show();
         }
 
-        private void btnBodyLoad_Click(object sender, EventArgs e)
+        private void btnBodyDataLoadID_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var data = GameHook.b3DBase.GetBodyData((int)nudBodyID.Value);
-                var display = new BodyDataDisplay();
-                display.LoadBodyData(data);
-                display.Show();
-            }
-            catch (HashTableElementNotFoundException)
-            {
 
-            }
         }
     }
 }
