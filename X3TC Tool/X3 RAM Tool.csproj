@@ -75,41 +75,41 @@
       <DependentUpon>Cargo_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Panel.cs" />
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Player_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_RaceData_Player_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Player_Panel.Designer.cs">
-      <DependentUpon>IScriptMemoryObject_RaceData_Player_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_RaceData_Player_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_RaceData_Player_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Sector_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Sector_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Sector_Panel.Designer.cs">
-      <DependentUpon>IScriptMemoryObject_Sector_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Sector_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_Sector_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Headquarters_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Headquarters_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Headquarters_Panel.Designer.cs">
-      <DependentUpon>IScriptMemoryObject_Headquarters_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Headquarters_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_Headquarters_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Station_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Station_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Station_Panel.Designer.cs">
-      <DependentUpon>IScriptMemoryObject_Station_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Station_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_Station_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Ship_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Ship_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Ship_Panel.Designer.cs">
-      <DependentUpon>IScriptMemoryObject_Ship_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Ship_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_Ship_Panel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Raw_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.Designer.cs">
-      <DependentUpon>ScriptMemoryObject_Raw_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Raw_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_Raw_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\B3D\B3DBaseDisplay.cs">
       <SubType>Form</SubType>
@@ -184,11 +184,11 @@
     <Compile Include="UI\Bases\Input\InputBaseDisplay.Designer.cs">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.cs">
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_RaceData_Panel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.Designer.cs">
-      <DependentUpon>IScriptMemoryObject_RaceData_Panel.cs</DependentUpon>
+    <Compile Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_RaceData_Panel.Designer.cs">
+      <DependentUpon>ScriptMemory_RaceData_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\Story\Scripting\ScriptTaskObjectDisplay.cs">
       <SubType>Form</SubType>
@@ -271,23 +271,23 @@
     <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\Cargo_Panel.resx">
       <DependentUpon>Cargo_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Player_Panel.resx">
-      <DependentUpon>IScriptMemoryObject_RaceData_Player_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_RaceData_Player_Panel.resx">
+      <DependentUpon>ScriptMemory_RaceData_Player_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Sector_Panel.resx">
-      <DependentUpon>IScriptMemoryObject_Sector_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Sector_Panel.resx">
+      <DependentUpon>ScriptMemory_Sector_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Headquarters_Panel.resx">
-      <DependentUpon>IScriptMemoryObject_Headquarters_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Headquarters_Panel.resx">
+      <DependentUpon>ScriptMemory_Headquarters_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Station_Panel.resx">
-      <DependentUpon>IScriptMemoryObject_Station_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Station_Panel.resx">
+      <DependentUpon>ScriptMemory_Station_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_Ship_Panel.resx">
-      <DependentUpon>IScriptMemoryObject_Ship_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Ship_Panel.resx">
+      <DependentUpon>ScriptMemory_Ship_Panel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemoryObject_Raw_Panel.resx">
-      <DependentUpon>ScriptMemoryObject_Raw_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_Raw_Panel.resx">
+      <DependentUpon>ScriptMemory_Raw_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\B3D\B3DBaseDisplay.resx">
       <DependentUpon>B3DBaseDisplay.cs</DependentUpon>
@@ -325,8 +325,8 @@
     <EmbeddedResource Include="UI\Bases\Input\InputBaseDisplay.resx">
       <DependentUpon>InputBaseDisplay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\IScriptMemoryObject_RaceData_Panel.resx">
-      <DependentUpon>IScriptMemoryObject_RaceData_Panel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptMemoryObject Panels\ScriptMemory_RaceData_Panel.resx">
+      <DependentUpon>ScriptMemory_RaceData_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Story\Scripting\ScriptTaskObjectDisplay.resx">
       <DependentUpon>ScriptTaskObjectDisplay.cs</DependentUpon>

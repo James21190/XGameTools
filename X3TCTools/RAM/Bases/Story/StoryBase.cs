@@ -147,13 +147,6 @@ namespace X3Tools.RAM.Bases.Story
             return pHashTable_ScriptInstance.obj.GetObject(value);
         }
 
-        public IScriptMemoryObject_RaceData_Player GetRaceData_Player()
-        {
-            var PlayerShip = GameHook.sectorObjectManager.GetPlayerObject();
-            if (PlayerShip == null) return null;
-            return PlayerShip.ScriptInstance.GetMemoryInterfaceShip().OwnerDataScriptingObject.GetMemoryInterfaceRaceData_Player();
-        }
-
         public ScriptMemoryObject GetScriptingObjectScriptingVariables(int ID)
         {
             ScriptMemoryObject obj = new ScriptMemoryObject();

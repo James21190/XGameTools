@@ -5,7 +5,7 @@ namespace Common
 {
     public static class ScriptAssembler
     {
-        public const string SystemModDirectory = ".\\Mods\\System\\";
+        public const string SystemModDirectory = ".\\RAM\\Mods\\System\\";
 
         public enum x86Register
         {

@@ -17,20 +17,32 @@ namespace X3Tools.RAM.Bases.Story.Scripting
         public MemoryObjectPointer<ScriptMemoryObject> pScriptVariableArr = new MemoryObjectPointer<ScriptMemoryObject>();
         #endregion
 
-        public ScriptingObject_Type ObjectType
+        public ScriptMemoryObject ScriptVariableArr
         {
             get
             {
-                return (ScriptingObject_Type)pSub.obj.Class;
+                var obj = pScriptVariableArr.obj;
+                obj.Resize(pSub.obj.ScriptVariableCount);
+                return obj;
             }
         }
 
-        public T GetScriptVariableArrayAsObject<T>() where T : ScriptMemoryObject, new()
+        public ScriptInstanceTypeLibrary.ScriptInstanceType ScriptInstanceType
         {
-            T obj = new T();
-            obj.SetLocation(GameHook.hProcess, pScriptVariableArr.address);
-            obj.Resize(pSub.obj.ScriptVariableCount);
-            return obj;
+            get
+            {
+                return ScriptInstanceTypeLibrary.GetScriptInstanceType(pSub.obj.Class);
+            }
+        }
+
+        public DynamicValue GetVariableByName(string name)
+        {
+            return ScriptVariableArr.GetVariable(ScriptInstanceType.GetIndexOfVariable(name));
+        }
+
+        public void SetVariableByName(string name, DynamicValue value)
+        {
+            ScriptVariableArr.SetVariable(ScriptInstanceType.GetIndexOfVariable(name), value);
         }
         #region IMemoryObject
         public override byte[] GetBytes()

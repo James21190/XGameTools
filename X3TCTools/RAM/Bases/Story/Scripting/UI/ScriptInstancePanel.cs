@@ -60,7 +60,10 @@ namespace X3Tools.RAM
             txtSubAddress.Text = sub.pThis.ToString("X");
             txtSubTypeID.Text = sub.Class.ToString();
             txtSubLength.Text = sub.ScriptVariableCount.ToString();
-            txtSubType.Text = m_ScriptingObject.ObjectType.ToString();
+            if (m_ScriptingObject.ScriptInstanceType != null)
+                txtSubType.Text = m_ScriptingObject.ScriptInstanceType.ToString();
+            else
+                txtSubType.Text = "Undefined";
             #region Functions
             txtFunctionCount1.Text = sub.FunctionCount_1.ToString();
             lstbxFunctions.Items.Clear();

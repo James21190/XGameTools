@@ -214,7 +214,7 @@
             this.groupBox8.Controls.Add(this.txtSubType);
             this.groupBox8.Location = new System.Drawing.Point(133, 77);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(121, 52);
+            this.groupBox8.Size = new System.Drawing.Size(248, 52);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Type";
@@ -224,7 +224,7 @@
             this.txtSubType.Location = new System.Drawing.Point(6, 19);
             this.txtSubType.Name = "txtSubType";
             this.txtSubType.ReadOnly = true;
-            this.txtSubType.Size = new System.Drawing.Size(109, 20);
+            this.txtSubType.Size = new System.Drawing.Size(236, 20);
             this.txtSubType.TabIndex = 0;
             // 
             // groupBox6

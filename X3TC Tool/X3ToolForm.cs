@@ -28,7 +28,7 @@ namespace X3TC_RAM_Tool
             GameHook = GameHook.DefaultHook();
             while (GameHook == null)
             {
-                DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3R nosteam, X3TC, or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
+                DialogResult result = MessageBox.Show("X3 is not currently running!\nPlease launch X3TC or X3AP and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)
                 {
                     Close();
@@ -46,6 +46,9 @@ namespace X3TC_RAM_Tool
                 GameHookPanel.Enabled = false;
                 return;
             }
+
+            // Load types of ScriptInstance
+            ScriptInstanceTypeLibrary.Load();
 
             // Post hook
             timer1.Enabled = true;
@@ -213,9 +216,7 @@ namespace X3TC_RAM_Tool
         private void button3_Click(object sender, EventArgs e)
         {
             ScriptInstanceDisplay display = new ScriptInstanceDisplay();
-            X3Tools.RAM.Bases.Story.Scripting.ScriptInstance obj = GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance;
-            IScriptMemoryObject_Ship ship = obj.GetMemoryInterfaceShip();
-            display.LoadObject(ship.OwnerDataScriptingObjectID);
+            display.LoadObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance.GetVariableByName("OwningRaceDataScriptingObjectID").Value);
             display.Show();
         }
         #endregion
@@ -353,6 +354,7 @@ namespace X3TC_RAM_Tool
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Disable Anti-AFK by updating TimeOfLastInput.
+            /*
             if (cbDisableAFK.Checked)
             {
                 IScriptMemoryObject_RaceData_Player playerScriptObject = GameHook.storyBase.GetRaceData_Player();
@@ -366,6 +368,7 @@ namespace X3TC_RAM_Tool
                     }
                 }
             }
+            */
         }
         private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {

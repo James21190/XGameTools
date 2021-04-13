@@ -37,10 +37,6 @@ namespace X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory
             VariableCount = newSize;
             ReloadFromMemory();
         }
-        public virtual string GetVariableName(int index)
-        {
-            return index.ToString();
-        }
 
         #region Gets
         public DynamicValue GetVariable(int index)

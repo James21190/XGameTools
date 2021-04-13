@@ -17,7 +17,7 @@ namespace X3Tools.RAM
             switch (GameHook.GameVersion)
             {
                 case GameHook.GameVersions.X3TC:
-                    pCreateObjectInjection = GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\Data\\TC\\Mods\\System\\CreateObject.x3tccode"));
+                    pCreateObjectInjection = GameHook.eventManager.Subscribe("OnGameTick", new EventManager.GameCode(".\\RAM\\Data\\TC\\Mods\\System\\CreateObject.x3tccode"));
                     break;
             }
         }

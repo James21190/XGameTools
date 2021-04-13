@@ -6,29 +6,16 @@ using X3Tools.RAM;
 using X3Tools.RAM.Bases;
 
 using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.AP;
+
 using X3Tools.RAM.Bases.Story;
 using X3Tools.RAM.Bases.Story.Scripting;
 using X3Tools.RAM.Generics;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.TC;
 
 namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
 {
     public partial class ScriptInstanceDisplay : Form
     {
-        public enum LoadAsItems
-        {
-            Blank,
-            Ship,
-            Sector,
-            Station,
-            Gate,
-            Ware,
-            RaceData,
-            RaceData_Player,
-            Headquarters,
-        }
-        private ScriptInstance m_ScriptingObject;
+        private ScriptInstance m_ScriptInstance;
         public ScriptInstanceDisplay()
         {
             InitializeComponent();
@@ -45,31 +32,70 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
             }
             catch (Exception)
             {
-                m_ScriptingObject = null;
+                m_ScriptInstance = null;
             }
         }
         public void LoadObject(ScriptInstance ScriptingObject)
         {
-            m_ScriptingObject = ScriptingObject;
+            m_ScriptInstance = ScriptingObject;
             ScriptingObjectPannel1.ScriptingObject = ScriptingObject;
+            RecreatePanel();
             Reload();
         }
 
         private IScriptMemoryObject_Panel typePanel;
 
-
-
-        public void Reload()
+        private void RecreatePanel()
         {
-            scriptMemoryObject_Raw_Panel1.LoadObject(m_ScriptingObject.GetScriptVariableArrayAsObject<ScriptMemoryObject>());
-
-            #region Reload Type Panel
             if (typePanel != null)
             {
                 UserControl panel = (UserControl)typePanel;
                 panel.Dispose();
+                typePanel = null;
             }
 
+            foreach(var type in m_ScriptInstance.ScriptInstanceType.InheritanceStack)
+            {
+                switch (type)
+                {
+                    case "Ship":
+                        typePanel = new ScriptMemory_Ship_Panel();
+                        break;
+                    case "Station":
+                        typePanel = new ScriptMemory_Station_Panel();
+                        break;
+                    case "Station_Headquarters":
+                        typePanel = new ScriptMemoryt_Headquarters_Panel();
+                        break;
+                    case "RaceData":
+                        typePanel = new ScriptMemory_RaceData_Panel();
+                        break;
+                    case "RaceData_Player":
+                        typePanel = new ScriptMemory_RaceData_Player_Panel();
+                        break;
+                    case "Sector":
+                        typePanel = new ScriptMemory_Sector_Panel();
+                        break;
+                }
+                if (typePanel != null) break;
+            }
+            if (typePanel == null) return;
+            typePanel.MessengerFunction = OnMessageFromPanel;
+            UserControl ucTypePanel = (UserControl)typePanel;
+            typeBackPanel.Controls.Add(ucTypePanel);
+            ucTypePanel.Location = new System.Drawing.Point(1, 1);
+            ucTypePanel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
+            typePanel.LoadObject(m_ScriptInstance, false);
+        }
+
+
+        public void Reload()
+        {
+            scriptMemoryObject_Raw_Panel1.LoadObject(m_ScriptInstance);
+
+            #region Reload Type Panel
+
+            /*
             switch (m_ScriptingObject.ObjectType)
             {
                 case ScriptInstance.ScriptingObject_Type.Sector:
@@ -98,53 +124,22 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
                     typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
                 default: return;
             }
+            */
 
-
-            UserControl ucTypePanel = (UserControl)typePanel;
-            typeBackPanel.Controls.Add(ucTypePanel);
-            ucTypePanel.Location = new System.Drawing.Point(1, 1);
-            ucTypePanel.Anchor = (AnchorStyles.Left | AnchorStyles.Top);
+            
             //ucTypePanel.Size = new System.Drawing.Size(typeBackPanel.Width - 2, typeBackPanel.Height - 2);
             #endregion
 
             if (typePanel != null)
             {
-                typePanel.LoadObject(m_ScriptingObject);
+                typePanel.LoadObject(m_ScriptInstance);
             }
         }
 
-
-        public static ScriptMemoryObject GetScriptMemoryObjectType(LoadAsItems type)
+        private void OnMessageFromPanel(string Message)
         {
-            switch (GameHook.GameVersion)
-            {
-                case GameHook.GameVersions.X3TC:
-                    switch (type)
-                    {
-                        case LoadAsItems.Sector: return new ScriptMemoryObject_TC_Sector();
-                        case LoadAsItems.Ship: return new ScriptMemoryObject_TC_Ship();
-                        case LoadAsItems.Gate: return new ScriptMemoryObject_TC_Gate();
-                        case LoadAsItems.Station: return new ScriptMemoryObject_TC_Station();
-                        case LoadAsItems.RaceData: return new ScriptMemoryObject_TC_RaceData();
-                        case LoadAsItems.RaceData_Player: return new ScriptMemoryObject_TC_RaceData_Player();
-                        case LoadAsItems.Headquarters: return new ScriptMemoryObject_TC_Headquarters();
-                    }
-                    break;
-                case GameHook.GameVersions.X3AP:
-                    switch (type)
-                    {
-                        case LoadAsItems.Sector: return new ScriptMemoryObject_AP_Sector();
-                        case LoadAsItems.Ship: return new ScriptMemoryObject_AP_Ship();
-                        case LoadAsItems.Gate: return new ScriptMemoryObject_AP_Gate();
-                        case LoadAsItems.Station: return new ScriptMemoryObject_AP_Station();
-                        case LoadAsItems.RaceData: return new ScriptMemoryObject_AP_RaceData();
-                        case LoadAsItems.RaceData_Player: return new ScriptMemoryObject_AP_RaceData_Player();
-                    }
-                    break;
-            }
-            return new ScriptMemoryObject();
+            statusStrip1.Items.Add(Message);
         }
-
         private void ScriptingObjectDisplay_Load(object sender, EventArgs e)
         {
 
@@ -152,7 +147,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
 
         private void ScriptingObjectPannel1_ScriptingObjectLoaded(object sender, EventArgs e)
         {
-            m_ScriptingObject = ScriptingObjectPannel1.ScriptingObject;
+            m_ScriptInstance = ScriptingObjectPannel1.ScriptingObject;
             Reload();
         }
 

@@ -4,9 +4,6 @@ using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools.RAM;
 using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.R;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.TC;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory.AP;
 using X3Tools.RAM.Generics;
 using X3Tools.RAM.Bases.Sector;
 
@@ -48,11 +45,11 @@ namespace X3TC_RAM_Tool.UI.Displays
             string sectorObjectName;
             switch (baseSectorObject.ObjectType.MainTypeEnum)
             {
-                case SectorObject.Main_Type.Gate:
+                /*case SectorObject.Main_Type.Gate:
                     IScriptMemoryObject_Gate gateScriptMemoryObject = baseSectorObject.ScriptInstance.GetMemoryInterfaceGate();
                     if (gateScriptMemoryObject == null) goto skip;
                     sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.galaxyBase.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
-                    break;
+                    break;*/
                 default:
                     skip:
                     sectorObjectName = baseSectorObject.GetSubTypeAsString(); 
@@ -112,19 +109,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
             // Sector Info
             SectorObject sector = GameHook.sectorObjectManager.GetSpace();
-            try
-            {
-                IScriptMemoryObject_Sector sectorScriptVariables = sector.ScriptInstance.GetMemoryInterfaceSector();
-                if (sectorScriptVariables == null) goto ObjectInfo;
-                string sectorName = GameHook.galaxyBase.GetSectorName((byte)sectorScriptVariables.SectorX, (byte)sectorScriptVariables.SectorY);
-                labelSectorInfo.Text = string.Format("Sector: {0} | {1},{2}", sectorName, sectorScriptVariables.SectorX, sectorScriptVariables.SectorY);
-            }
-            catch (Exception)
-            {
-                labelSectorInfo.Text = "Sector: Invalid ScriptObject";
-            }
 
-            ObjectInfo:
             if(m_SectorObject != null && m_SectorObject.IsValid)
             {
 

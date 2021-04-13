@@ -59,37 +59,12 @@
     <Compile Include="RAM\Bases\Story\Scripting\KCode\KFunctionDefinition.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\KCode\KInstruction.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\KCode\FunctionDefinitions.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData_Player.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\ScriptInstanceTypeLibrary.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\ScriptInstance_Types.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData_Player.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Station.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Gate.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_RaceData.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_PositionData_12.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ware.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Headquarters.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Station.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Gate.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_RaceData.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Ship.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\IScriptMemoryObject_Sector.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\R\R_ScriptingMemory_Variables.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\R\ScriptMemoryObject_R_Gate.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Headquarters.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_PositionData_12.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Station.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Gate.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_RaceData_Player.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Sector.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ship.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\ScriptMemoryObject_TC_Ware.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\TC\TC_ScriptingMemory_Variables.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\AP_ScriptingMemory_Variables.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\CargoEntry.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\ScriptingMemoryObject.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Sector.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptingMemory\AP\ScriptMemoryObject_AP_Ship.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSubFunction.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\DynamicValue.cs" />
@@ -183,22 +158,130 @@
     <None Include="RAM\Data\TC\Patches\0.patch">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="RAM\Data\AP\X3APSectorNames.csv">
+    <None Include="Data\AP\X3APSectorNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="RAM\Data\AP\X3APSectorObjectTypes.csv">
+    <None Include="Data\AP\X3APSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="RAM\Data\TC\X3TCSectorNames.csv">
+    <None Include="Data\TC\X3TCSectorNames.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="RAM\Data\TC\X3TCSectorObjectTypes.csv">
+    <None Include="Data\TC\X3TCSectorObjectTypes.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="RAM\Data\TC\Mods\Blank.mod">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_Khaak.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_Gonor.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_Pirate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_0.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\RaceData_Player.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_Unknown_3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_Unknown_4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Station_Unknown_3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Station_Unknown_2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Station_Unknown_1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_TL.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_Unknown_5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_Lasertower.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_TP.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_TM.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_TS.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Sun.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\Sector.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Gate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_Astronaut.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_Spacefly.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Station_Headquarters.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Station_Factory.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\SectorObject.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Station.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M7.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M6.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RAM\Data\TC\ScriptInstanceTypes\SectorObjects\Ships\Ship_M1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +301,8 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="RAM\Data\AP\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

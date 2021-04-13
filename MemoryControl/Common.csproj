@@ -99,7 +99,7 @@
   <ItemGroup>
     <ContentWithTargetPath Include="Memory\GameCodeList Script.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <TargetPath>./Mods/System/GameCodeList.mod</TargetPath>
+      <TargetPath>./RAM/Mods/System/GameCodeList.mod</TargetPath>
     </ContentWithTargetPath>
   </ItemGroup>
   <ItemGroup>
