@@ -54,31 +54,32 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
                 typePanel = null;
             }
 
-            foreach(var type in m_ScriptInstance.ScriptInstanceType.InheritanceStack)
-            {
-                switch (type)
+            if(m_ScriptInstance.ScriptInstanceType != null)
+                foreach(var type in m_ScriptInstance.ScriptInstanceType.InheritanceStack)
                 {
-                    case "Ship":
-                        typePanel = new ScriptMemory_Ship_Panel();
-                        break;
-                    case "Station":
-                        typePanel = new ScriptMemory_Station_Panel();
-                        break;
-                    case "Station_Headquarters":
-                        typePanel = new ScriptMemoryt_Headquarters_Panel();
-                        break;
-                    case "RaceData":
-                        typePanel = new ScriptMemory_RaceData_Panel();
-                        break;
-                    case "RaceData_Player":
-                        typePanel = new ScriptMemory_RaceData_Player_Panel();
-                        break;
-                    case "Sector":
-                        typePanel = new ScriptMemory_Sector_Panel();
-                        break;
+                    switch (type)
+                    {
+                        case "Ship":
+                            typePanel = new ScriptMemory_Ship_Panel();
+                            break;
+                        case "Station":
+                            typePanel = new ScriptMemory_Station_Panel();
+                            break;
+                        case "Station_Headquarters":
+                            typePanel = new ScriptMemoryt_Headquarters_Panel();
+                            break;
+                        case "RaceData":
+                            typePanel = new ScriptMemory_RaceData_Panel();
+                            break;
+                        case "RaceData_Player":
+                            typePanel = new ScriptMemory_RaceData_Player_Panel();
+                            break;
+                        case "Sector":
+                            typePanel = new ScriptMemory_Sector_Panel();
+                            break;
+                    }
+                    if (typePanel != null) break;
                 }
-                if (typePanel != null) break;
-            }
             if (typePanel == null) return;
             typePanel.MessengerFunction = OnMessageFromPanel;
             UserControl ucTypePanel = (UserControl)typePanel;
@@ -147,8 +148,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
 
         private void ScriptingObjectPannel1_ScriptingObjectLoaded(object sender, EventArgs e)
         {
-            m_ScriptInstance = ScriptingObjectPannel1.ScriptingObject;
-            Reload();
+            LoadObject(ScriptingObjectPannel1.ScriptingObject);
         }
 
         private void scriptMemoryObject_Raw_Panel1_Load(object sender, EventArgs e)

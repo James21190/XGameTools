@@ -44,6 +44,11 @@ namespace X3Tools.RAM.Bases.Story.Scripting
         {
             ScriptVariableArr.SetVariable(ScriptInstanceType.GetIndexOfVariable(name), value);
         }
+
+        public void SetVariableAndWriteMemoryByName(string name, DynamicValue value)
+        {
+            ScriptVariableArr.SetVariableInMemory(ScriptInstanceType.GetIndexOfVariable(name), value);
+        }
         #region IMemoryObject
         public override byte[] GetBytes()
         {

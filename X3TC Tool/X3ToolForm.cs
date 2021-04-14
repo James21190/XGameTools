@@ -354,21 +354,16 @@ namespace X3TC_RAM_Tool
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Disable Anti-AFK by updating TimeOfLastInput.
-            /*
+            
             if (cbDisableAFK.Checked)
             {
-                IScriptMemoryObject_RaceData_Player playerScriptObject = GameHook.storyBase.GetRaceData_Player();
-                if (playerScriptObject != null)
+                var playerScriptObject = GameHook.storyBase.GetScriptingObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance.GetVariableByName("OwningRaceDataScriptingObjectID").Value);
+                if (playerScriptObject != null && playerScriptObject.ScriptInstanceType != null && playerScriptObject.ScriptInstanceType.InheritsFrom("RaceData_Player"))
                 {
-                    switch (GameHook.GameVersion)
-                    {
-                        case GameHook.GameVersions.X3TC:
-                            ((ScriptMemoryObject)playerScriptObject).SetVariableValueInMemory((int)TC_RaceData_Player_Variables.TimeOfLastInput, playerScriptObject.SecondsElapsed);
-                            break;
-                    }
+                    playerScriptObject.SetVariableAndWriteMemoryByName("TimeOfLastInput", playerScriptObject.GetVariableByName("SecondsElapsed"));
                 }
             }
-            */
+            
         }
         private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {

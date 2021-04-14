@@ -43,15 +43,20 @@ namespace X3Tools.RAM
         {
             if (m_ScriptingObject == null)
             {
-                return;
+                IDNumericUpDown.Value = 0;
+                AddressBox.Text = "";
+                ScriptsOnStackBox.Text = "";
+                groupBox4.Enabled = false;
             }
-
-            m_ScriptingObject.ReloadFromMemory();
-            IDNumericUpDown.Value = m_ScriptingObject.NegativeID;
-            AddressBox.Text = m_ScriptingObject.pThis.ToString("X");
-            ScriptsOnStackBox.Text = m_ScriptingObject.ReferenceCount.ToString();
-
-            ReloadSub();
+            else
+            {
+                m_ScriptingObject.ReloadFromMemory();
+                IDNumericUpDown.Value = m_ScriptingObject.NegativeID;
+                AddressBox.Text = m_ScriptingObject.pThis.ToString("X");
+                ScriptsOnStackBox.Text = m_ScriptingObject.ReferenceCount.ToString();
+                groupBox4.Enabled = true;
+                ReloadSub();
+            }
         }
 
         private void ReloadSub()
@@ -60,6 +65,12 @@ namespace X3Tools.RAM
             txtSubAddress.Text = sub.pThis.ToString("X");
             txtSubTypeID.Text = sub.Class.ToString();
             txtSubLength.Text = sub.ScriptVariableCount.ToString();
+            lstInheritedTypes.Items.Clear();
+            if (m_ScriptingObject.ScriptInstanceType != null)
+            {
+                txtSubLength.Text += "/" + m_ScriptingObject.ScriptInstanceType.Variables.Length.ToString();
+                lstInheritedTypes.Items.AddRange(m_ScriptingObject.ScriptInstanceType.InheritanceStack);
+            }
             if (m_ScriptingObject.ScriptInstanceType != null)
                 txtSubType.Text = m_ScriptingObject.ScriptInstanceType.ToString();
             else

@@ -7,11 +7,9 @@
 	- Added dll injector.
 	- Added functions list to ScriptInstancePanel.
 	- Changed ISectorObjectMeta methods.
-	- Changed how ScriptObject arrays are displayed.
+	- Changed how ScriptInstance arrays are displayed.
 	- Updated some SetData methods for objects.
-	- Fixed incorrect address for dest sector in ScriptMemoryObject_TC_Gate. This will fix incorrect sectors being shown in sector display's gates.
 	- Fixed incorrect address for pStrings in StoryBase.
-	- Improved IScriptMemoryObject_RaceData_Panel reload time.
 	- Moved scripting disassembly to it's own form.
 	- Renamed "CameraBase" to "B3DBase"
 	- Renamed "GateSystemObject" to "GalaxyBase"

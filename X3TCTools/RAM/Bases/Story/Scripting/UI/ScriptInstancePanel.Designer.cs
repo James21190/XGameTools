@@ -49,6 +49,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.txtSubAddress = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.lstInheritedTypes = new System.Windows.Forms.ListBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -61,6 +63,7 @@
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -142,6 +145,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.groupBox12);
             this.groupBox4.Controls.Add(this.groupBox11);
             this.groupBox4.Controls.Add(this.groupBox10);
             this.groupBox4.Controls.Add(this.groupBox9);
@@ -279,6 +283,24 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "ScriptInstancePanel";
             // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.lstInheritedTypes);
+            this.groupBox12.Location = new System.Drawing.Point(260, 135);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(185, 134);
+            this.groupBox12.TabIndex = 9;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Inherited Types";
+            // 
+            // lstInheritedTypes
+            // 
+            this.lstInheritedTypes.FormattingEnabled = true;
+            this.lstInheritedTypes.Location = new System.Drawing.Point(6, 19);
+            this.lstInheritedTypes.Name = "lstInheritedTypes";
+            this.lstInheritedTypes.Size = new System.Drawing.Size(173, 108);
+            this.lstInheritedTypes.TabIndex = 1;
+            // 
             // ScriptingObjectPannel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,6 +328,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox7.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -333,5 +356,7 @@
         private System.Windows.Forms.ListBox lstbxFunctions;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.TextBox txtFunctionCount1;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.ListBox lstInheritedTypes;
     }
 }
