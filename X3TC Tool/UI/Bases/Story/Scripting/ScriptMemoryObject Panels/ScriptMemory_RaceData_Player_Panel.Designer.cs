@@ -73,7 +73,7 @@
             this.lstRaces.Name = "lstRaces";
             this.lstRaces.Size = new System.Drawing.Size(227, 173);
             this.lstRaces.TabIndex = 7;
-            this.lstRaces.SelectedIndexChanged += new System.EventHandler(this.lstRaces_SelectedIndexChanged);
+            this.lstRaces.DoubleClick += new System.EventHandler(this.lstRaces_DoubleClick);
             // 
             // groupBox1
             // 
@@ -167,6 +167,7 @@
             this.lstOwnedStations.Name = "lstOwnedStations";
             this.lstOwnedStations.Size = new System.Drawing.Size(227, 277);
             this.lstOwnedStations.TabIndex = 7;
+            this.lstOwnedStations.DoubleClick += new System.EventHandler(this.lstOwnedStations_DoubleClick);
             // 
             // groupBox6
             // 
@@ -190,6 +191,7 @@
             this.lstOwnedShips.Name = "lstOwnedShips";
             this.lstOwnedShips.Size = new System.Drawing.Size(227, 277);
             this.lstOwnedShips.TabIndex = 7;
+            this.lstOwnedShips.DoubleClick += new System.EventHandler(this.lstOwnedShips_DoubleClick);
             // 
             // ScriptMemory_RaceData_Player_Panel
             // 

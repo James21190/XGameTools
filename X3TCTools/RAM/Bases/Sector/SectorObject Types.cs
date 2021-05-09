@@ -192,6 +192,7 @@ namespace X3Tools.RAM.Bases.Sector
             {
                 case GameHook.GameVersions.X3TC: path = "./Data/TC/X3TCSectorObjectTypes.csv"; break;
                 case GameHook.GameVersions.X3AP: path = "./Data/AP/X3APSectorObjectTypes.csv"; break;
+                case GameHook.GameVersions.X3FL: path = "./Data/FL/X3FLSectorObjectTypes.csv"; break;
                 default: throw new Exception();
             }
 

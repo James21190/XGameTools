@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstvBlueprints = new System.Windows.Forms.ListView();
+            this.lstBlueprints = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.iScriptMemoryObject_Station_Panel1 = new X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels.ScriptMemory_Station_Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,20 +38,20 @@
             // 
             // lstvBlueprints
             // 
-            this.lstvBlueprints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.lstBlueprints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstvBlueprints.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstBlueprints.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.lstvBlueprints.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lstvBlueprints.HideSelection = false;
-            this.lstvBlueprints.Location = new System.Drawing.Point(6, 32);
-            this.lstvBlueprints.Name = "lstvBlueprints";
-            this.lstvBlueprints.Size = new System.Drawing.Size(310, 161);
-            this.lstvBlueprints.TabIndex = 0;
-            this.lstvBlueprints.UseCompatibleStateImageBehavior = false;
-            this.lstvBlueprints.View = System.Windows.Forms.View.Details;
-            this.lstvBlueprints.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.lstBlueprints.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lstBlueprints.HideSelection = false;
+            this.lstBlueprints.Location = new System.Drawing.Point(6, 32);
+            this.lstBlueprints.Name = "lstvBlueprints";
+            this.lstBlueprints.Size = new System.Drawing.Size(310, 161);
+            this.lstBlueprints.TabIndex = 0;
+            this.lstBlueprints.UseCompatibleStateImageBehavior = false;
+            this.lstBlueprints.View = System.Windows.Forms.View.Details;
+            this.lstBlueprints.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -71,7 +71,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.lblBlueprintCount);
-            this.groupBox1.Controls.Add(this.lstvBlueprints);
+            this.groupBox1.Controls.Add(this.lstBlueprints);
             this.groupBox1.Location = new System.Drawing.Point(3, 162);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(322, 199);
@@ -106,7 +106,7 @@
         #endregion
 
         private ScriptMemory_Station_Panel iScriptMemoryObject_Station_Panel1;
-        private System.Windows.Forms.ListView lstvBlueprints;
+        private System.Windows.Forms.ListView lstBlueprints;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblBlueprintCount;

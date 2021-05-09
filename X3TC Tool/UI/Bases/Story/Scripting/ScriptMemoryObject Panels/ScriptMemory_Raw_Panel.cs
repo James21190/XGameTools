@@ -19,18 +19,26 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
         public ScriptMemoryObject_Raw_Panel()
         {
             InitializeComponent();
+            foreach (var item in ScriptInstanceTypeLibrary.GetAllNames())
+            {
+                comboBox1.Items.Add(item);
+            }
         }
 
         public void LoadObject(ScriptInstance scriptInstance)
         {
             m_object = scriptInstance.ScriptVariableArr;
             m_ReferenceType = scriptInstance.ScriptInstanceType;
+            if (m_ReferenceType != null)
+                comboBox1.SelectedItem = m_ReferenceType.Name;
             Reload();
         }
 
         public void LoadObject(ScriptMemoryObject dynamicValueObject)
         {
             m_object = dynamicValueObject;
+            if (m_ReferenceType != null)
+                comboBox1.SelectedItem = m_ReferenceType.Name;
             Reload();
         }
 
@@ -49,9 +57,6 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
                 return;
             }
             m_object.ReloadFromMemory();
-
-            if (m_ReferenceType != null)
-                comboBox1.SelectedItem = m_ReferenceType.Name;
 
             AddressBox.Text = m_object.pThis.ToString("X");
             numericUpDown1.Value = m_object.VariableCount;
@@ -122,10 +127,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
         private void ScriptMemoryObject_Raw_Panel_Load(object sender, EventArgs e)
         {
-            foreach(var item in ScriptInstanceTypeLibrary.GetAllNames())
-            {
-                comboBox1.Items.Add(item);
-            }
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

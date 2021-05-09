@@ -60,7 +60,7 @@
             this.lstOwnedStations.Name = "lstOwnedStations";
             this.lstOwnedStations.Size = new System.Drawing.Size(227, 186);
             this.lstOwnedStations.TabIndex = 7;
-            this.lstOwnedStations.SelectedIndexChanged += new System.EventHandler(this.lstOwnedStations_SelectedIndexChanged);
+            this.lstOwnedStations.DoubleClick += new System.EventHandler(this.lstOwnedStations_DoubleClick);
             // 
             // groupBox2
             // 
@@ -84,7 +84,7 @@
             this.lstOwnedShips.Name = "lstOwnedShips";
             this.lstOwnedShips.Size = new System.Drawing.Size(227, 186);
             this.lstOwnedShips.TabIndex = 7;
-            this.lstOwnedShips.SelectedIndexChanged += new System.EventHandler(this.lstOwnedShips_SelectedIndexChanged);
+            this.lstOwnedShips.DoubleClick += new System.EventHandler(this.lstOwnedShips_DoubleClick);
             // 
             // textBox1
             // 
@@ -103,7 +103,7 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Race ID";
             // 
-            // IScriptMemoryObject_RaceData_Panel
+            // ScriptMemory_RaceData_Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,7 +111,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Name = "IScriptMemoryObject_RaceData_Panel";
+            this.Name = "ScriptMemory_RaceData_Panel";
             this.Size = new System.Drawing.Size(499, 250);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

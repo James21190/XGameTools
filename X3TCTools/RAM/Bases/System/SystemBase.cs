@@ -25,12 +25,30 @@ namespace X3Tools.RAM.Bases.SystemBase_Objects
         #region Set Individual
         public void SaveSETA()
         {
-            MemoryControl.Write(this.hProcess, pThis + 204, TimeWarpFactor.GetBytes());
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3TC:
+                case GameHook.GameVersions.X3AP:
+                    MemoryControl.Write(this.hProcess, pThis + 204, TimeWarpFactor.GetBytes());
+                    break;
+                case GameHook.GameVersions.X3FL:
+                    throw new GameVersionNotImplementedException();
+                    break;
+            }
         }
 
         public void SaveLanguage()
         {
-            MemoryControl.Write(this.hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3TC:
+                case GameHook.GameVersions.X3AP:
+                    MemoryControl.Write(this.hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
+                    break;
+                case GameHook.GameVersions.X3FL:
+                    throw new GameVersionNotImplementedException();
+                    break;
+            }
         }
         #endregion
 
@@ -44,13 +62,22 @@ namespace X3Tools.RAM.Bases.SystemBase_Objects
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            SystemFlags = objectByteList.PopInt(0xbc);
+            switch (GameHook.GameVersion)
+            {
+                case GameHook.GameVersions.X3TC:
+                case GameHook.GameVersions.X3AP:
+                    SystemFlags = objectByteList.PopInt(0xbc);
 
-            pStringCollection = objectByteList.PopIMemoryObject<MemoryObjectPointer<SystemBaseStringCollection>>(0xd8);
+                    pStringCollection = objectByteList.PopIMemoryObject<MemoryObjectPointer<SystemBaseStringCollection>>(0xd8);
 
-            TimeWarpFactor = objectByteList.PopIMemoryObject<X3FixedPointValue>(0xcc);
+                    TimeWarpFactor = objectByteList.PopIMemoryObject<X3FixedPointValue>(0xcc);
 
-            Language = (GameHook.Language)objectByteList.PopInt(0x768);
+                    Language = (GameHook.Language)objectByteList.PopInt(0x768);
+                    break;
+                case GameHook.GameVersions.X3FL:
+                    Language = (GameHook.Language)objectByteList.PopInt(0x75c);
+                    break;
+            }
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

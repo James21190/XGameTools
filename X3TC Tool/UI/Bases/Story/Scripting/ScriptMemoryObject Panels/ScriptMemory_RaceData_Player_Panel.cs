@@ -257,18 +257,23 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
             List<StationData> stations = new List<StationData>();
             foreach (DynamicValue stationID in m_ScriptInstance.GetVariableByName("OwnedStationScriptInstanceIDHashTable").GetAsHashTableObject().hashTable.ScanContents())
             {
-                try
+                ScriptInstance ScriptingObject = GameHook.storyBase.GetScriptingObject(stationID.Value);
+                if (ScriptingObject.ScriptInstanceType == null)
                 {
-                    ScriptInstance ScriptingObject = GameHook.storyBase.GetScriptingObject(stationID.Value);
+                    m_MessengerFunction(string.Format("ScriptInstance type undefined, expected Station : {0}", ScriptingObject.pSub.obj.Class));
+                }
+                else if (!ScriptingObject.ScriptInstanceType.InheritsFrom("Station"))
+                {
+                    m_MessengerFunction(string.Format("ScriptInstance type \"{0}\" invalid, expected Station : {1}", ScriptingObject.ScriptInstanceType.Name, ScriptingObject.pSub.obj.Class));
+                }
+                else
+                {
                     stations.Add(new StationData()
                     {
                         Station = ScriptingObject
                     });
                 }
-                catch (Exception)
-                {
 
-                }
             }
             try
             {
@@ -293,6 +298,39 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
         private void lstRaces_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void IScriptMemoryObject_RaceData_Player_Panel_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void lstOwnedStations_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstOwnedStations.SelectedIndex < 0 || lstOwnedStations.SelectedIndex >= lstOwnedStations.Items.Count)
+            {
+                return;
+            }
+
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject((ScriptInstance)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
+            display.Show();
+        }
+
+        private void lstOwnedShips_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstOwnedShips.SelectedIndex < 0 || lstOwnedShips.SelectedIndex >= lstOwnedShips.Items.Count)
+            {
+                return;
+            }
+
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject((ScriptInstance)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
+            display.Show();
+        }
+
+        private void lstRaces_DoubleClick(object sender, EventArgs e)
+        {
             if (lstRaces.SelectedIndex < 0 || lstRaces.SelectedIndex >= lstRaces.Items.Count)
             {
                 return;
@@ -301,10 +339,6 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
             ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject(((RaceData)lstRaces.Items[lstRaces.SelectedIndex]).ScriptingObject);
             display.Show();
-        }
-
-        private void IScriptMemoryObject_RaceData_Player_Panel_Load(object sender, EventArgs e)
-        {
         }
     }
 }

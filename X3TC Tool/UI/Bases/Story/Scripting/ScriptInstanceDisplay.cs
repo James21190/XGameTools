@@ -94,43 +94,6 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
         {
             scriptMemoryObject_Raw_Panel1.LoadObject(m_ScriptInstance);
 
-            #region Reload Type Panel
-
-            /*
-            switch (m_ScriptingObject.ObjectType)
-            {
-                case ScriptInstance.ScriptingObject_Type.Sector:
-                    typePanel = new IScriptMemoryObject_Sector_Panel(); break;
-                case ScriptInstance.ScriptingObject_Type.Ship_M1:
-                case ScriptInstance.ScriptingObject_Type.Ship_M2:
-                case ScriptInstance.ScriptingObject_Type.Ship_M3:
-                case ScriptInstance.ScriptingObject_Type.Ship_M4:
-                case ScriptInstance.ScriptingObject_Type.Ship_M5:
-                case ScriptInstance.ScriptingObject_Type.Ship_M6:
-                case ScriptInstance.ScriptingObject_Type.Ship_M7:
-                case ScriptInstance.ScriptingObject_Type.Ship_TS:
-                    typePanel = new IScriptMemoryObject_Ship_Panel(); break;
-                case ScriptInstance.ScriptingObject_Type.Station_Factory:
-                    typePanel = new IScriptMemoryObject_Station_Panel(); break;
-                case ScriptInstance.ScriptingObject_Type.Headquarters:
-                    typePanel = new IScriptMemoryObject_Headquarters_Panel(); break;
-                case ScriptInstance.ScriptingObject_Type.RaceData_0:
-                case ScriptInstance.ScriptingObject_Type.RaceData_1:
-                case ScriptInstance.ScriptingObject_Type.RaceData_Pirate:
-                case ScriptInstance.ScriptingObject_Type.RaceData_Gonor:
-                case ScriptInstance.ScriptingObject_Type.RaceData_Khaak:
-                case ScriptInstance.ScriptingObject_Type.RaceData_5:
-                    typePanel = new IScriptMemoryObject_RaceData_Panel(); break;
-                case ScriptInstance.ScriptingObject_Type.RaceData_Player:
-                    typePanel = new IScriptMemoryObject_RaceData_Player_Panel(); break;
-                default: return;
-            }
-            */
-
-            
-            //ucTypePanel.Size = new System.Drawing.Size(typeBackPanel.Width - 2, typeBackPanel.Height - 2);
-            #endregion
-
             if (typePanel != null)
             {
                 typePanel.LoadObject(m_ScriptInstance);

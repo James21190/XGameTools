@@ -368,6 +368,7 @@ namespace X3TC_RAM_Tool
         private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             SystemBase sb = GameHook.systemBase;
+            if (sb.Language == (GameHook.Language)cbLanguage.SelectedItem) return;
             sb.Language = (GameHook.Language)cbLanguage.SelectedItem;
             sb.SaveLanguage();
         }

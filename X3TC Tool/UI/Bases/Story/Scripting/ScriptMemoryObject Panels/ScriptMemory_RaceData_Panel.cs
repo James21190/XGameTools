@@ -224,19 +224,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
         }
 
-        private void lstOwnedShips_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstOwnedShips.SelectedIndex < 0 || lstOwnedShips.SelectedIndex >= lstOwnedShips.Items.Count)
-            {
-                return;
-            }
-
-            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
-            display.LoadObject((ScriptInstance)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
-            display.Show();
-        }
-
-        private void lstOwnedStations_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstOwnedStations_DoubleClick(object sender, EventArgs e)
         {
             if (lstOwnedStations.SelectedIndex < 0 || lstOwnedStations.SelectedIndex >= lstOwnedStations.Items.Count)
             {
@@ -245,6 +233,18 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
             ScriptInstanceDisplay display = new ScriptInstanceDisplay();
             display.LoadObject((ScriptInstance)((ListItem)lstOwnedStations.Items[lstOwnedStations.SelectedIndex]).obj);
+            display.Show();
+        }
+
+        private void lstOwnedShips_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstOwnedShips.SelectedIndex < 0 || lstOwnedShips.SelectedIndex >= lstOwnedShips.Items.Count)
+            {
+                return;
+            }
+
+            ScriptInstanceDisplay display = new ScriptInstanceDisplay();
+            display.LoadObject((ScriptInstance)((ListItem)lstOwnedShips.Items[lstOwnedShips.SelectedIndex]).obj);
             display.Show();
         }
     }

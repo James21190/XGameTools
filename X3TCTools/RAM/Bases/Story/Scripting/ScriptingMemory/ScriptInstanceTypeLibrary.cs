@@ -117,6 +117,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory
         }
 
         public const string TCTypeLibDir = ".\\RAM\\Data\\TC\\ScriptInstanceTypes";
+        public const string FLTypeLibDir = ".\\RAM\\Data\\FL\\ScriptInstanceTypes";
 
         private static ScriptInstanceType[] LoadFromDir(string dir)
         {
@@ -139,6 +140,9 @@ namespace X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory
             {
                 case GameHook.GameVersions.X3TC:
                     path = TCTypeLibDir;
+                    break;
+                case GameHook.GameVersions.X3FL:
+                    path = FLTypeLibDir;
                     break;
                 default:
                     throw new GameVersionNotImplementedException();

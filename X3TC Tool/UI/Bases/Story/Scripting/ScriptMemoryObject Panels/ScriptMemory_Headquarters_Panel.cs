@@ -18,8 +18,8 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
         public ScriptMemoryt_Headquarters_Panel()
         {
             InitializeComponent();
-            lstvBlueprints.Columns[0].Width = -2;
-            lstvBlueprints.Columns[0].Width -= 1;
+            lstBlueprints.Columns[0].Width = -2;
+            lstBlueprints.Columns[0].Width -= 1;
         }
 
         private ScriptInstance m_ScriptInstance;
@@ -33,19 +33,36 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
         public void Reload()
         {
+            iScriptMemoryObject_Station_Panel1.LoadObject(m_ScriptInstance);
+            var table = m_ScriptInstance.GetVariableByName("AvailableBlueprintHashTable").GetAsHashTableObject();
+            int count = 0;
+            for(int i = 0; i < GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship); i++)
+            {
+                var type = new SectorObject.SectorObjectType(SectorObject.Main_Type.Ship, i);
+                var name = SectorObject.GetSubTypeAsString(type.MainTypeEnum,type.SubType);
 
+                var lstEntry = lstBlueprints.Items.Add(name);
+
+                if (table.hashTable.ContainsObject(new DynamicValue() { Flag = DynamicValue.FlagType.Int, Value = type.ToInt() }))
+                {
+                    count++;
+                    lstEntry.BackColor = Color.Green;
+                }
+                else
+                {
+                    lstEntry.BackColor = Color.Red;
+                }
+            }
+            lblBlueprintCount.Text = string.Format("{0}/{1}", count, GameHook.GetTypeDataCount((int)SectorObject.Main_Type.Ship));
         }
 
         private void button3_Click(object sender, System.EventArgs e)
         {
-            //var display = new ScriptingObjectDisplay();
-            //display.LoadObject(m_Data.OwnerDataScriptingObjectID);
-            //display.Show();
         }
 
         private void listView1_DoubleClick(object sender, System.EventArgs e)
         {
-            SectorObject.SectorObjectType type = (SectorObject.SectorObjectType)lstvBlueprints.SelectedItems[0].Tag;
+            SectorObject.SectorObjectType type = (SectorObject.SectorObjectType)lstBlueprints.SelectedItems[0].Tag;
             var typeDataDisplay = new TypeDataDisplay();
             typeDataDisplay.LoadTypeData(type.MainType, type.SubType);
             typeDataDisplay.Show();
