@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Memory
+namespace CommonToolLib.Memory
 {
     public interface IBinaryObject
     {

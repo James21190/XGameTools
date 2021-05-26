@@ -51,10 +51,6 @@
     <Compile Include="RAM\Bases\B3D\ModelData.cs" />
     <Compile Include="RAM\Bases\Galaxy\GalaxyBase.cs" />
     <Compile Include="RAM\Bases\Input\InputBase.cs" />
-    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObjectMetaWithChildrenR.cs" />
-    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObject_Station_R_Meta.cs" />
-    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObject_Ship_R_Meta.cs" />
-    <Compile Include="RAM\Bases\Sector\Meta\R\SectorObject_Sector_R_Meta.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\KCode\KDisassembler.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\KCode\KFunctionDefinition.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\KCode\KInstruction.cs" />
@@ -438,9 +434,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\Common.csproj">
+    <ProjectReference Include="..\MemoryControl\CommonToolLib.csproj">
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
-      <Name>Common</Name>
+      <Name>CommonToolLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

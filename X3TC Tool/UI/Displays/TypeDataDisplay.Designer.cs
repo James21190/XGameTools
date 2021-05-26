@@ -121,7 +121,7 @@
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.txtMinPrice = new System.Windows.Forms.TextBox();
-            this.v3dRotationSpeed = new Common.UI.Vector3Display();
+            this.v3dRotationSpeed = new CommonToolLib.UI.Vector3Display();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.txtRelVal = new System.Windows.Forms.TextBox();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
@@ -1413,7 +1413,7 @@
         private System.Windows.Forms.TextBox txtShieldPowerGenerator;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox txtShipModeCollectionlID;
-        private Common.UI.Vector3Display v3dRotationSpeed;
+        private CommonToolLib.UI.Vector3Display v3dRotationSpeed;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.TextBox txtScriptingObjectID;
         private System.Windows.Forms.GroupBox groupBox16;

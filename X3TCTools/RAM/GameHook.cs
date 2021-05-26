@@ -1,4 +1,4 @@
-﻿using Common.Memory;
+﻿using CommonToolLib.Memory;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -463,7 +463,7 @@ namespace X3Tools.RAM
             ProcessEventSwitchArray = 0x004a4d18,
             ProcessEventSwitch = 0x004a4b20,
 
-#region TypeData
+            #region TypeData
             pTypeData_Bullet = 0x006030e8,
             pTypeData_1 = 0x006030ec,
             pTypeData_Background = 0x006030f0,
@@ -497,7 +497,7 @@ namespace X3Tools.RAM
             pTypeData_30 = 0x00603160,
             pTypeData_31 = 0x00603164,
             pTypeDataCountArray = 0x00603168,
-#endregion
+            #endregion
 
             BytesAllocated = 0x00604728,
         }

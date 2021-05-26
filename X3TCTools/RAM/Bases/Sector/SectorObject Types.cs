@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using Common.Memory;
+using CommonToolLib.Memory;
 
 namespace X3Tools.RAM.Bases.Sector
 {

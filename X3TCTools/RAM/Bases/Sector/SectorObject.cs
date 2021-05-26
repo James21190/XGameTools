@@ -1,8 +1,7 @@
-﻿using Common.Memory;
-using Common.Vector;
+﻿using CommonToolLib.Memory;
+using CommonToolLib.Vector;
 using System;
 using System.Collections.Generic;
-using X3Tools.RAM.Bases.Sector_Objects.Meta.R;
 using X3Tools.RAM.Bases.Story.Scripting;
 using X3Tools.RAM.Bases.B3D;
 using X3Tools.RAM.Bases.Sector.Meta;

@@ -33,7 +33,7 @@
             this.LastChildButton = new System.Windows.Forms.Button();
             this.FirstChildButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.ScaleBox = new Common.UI.Vector3Display();
+            this.ScaleBox = new CommonToolLib.UI.Vector3Display();
             this.nudSize = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -42,7 +42,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnViewModelData = new System.Windows.Forms.Button();
             this.nudModelID = new System.Windows.Forms.NumericUpDown();
-            this.vec3Saturation = new Common.UI.Vector3Display();
+            this.vec3Saturation = new CommonToolLib.UI.Vector3Display();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.nudHue = new System.Windows.Forms.NumericUpDown();
             this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
@@ -384,7 +384,7 @@
         private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.Button LastChildButton;
         private System.Windows.Forms.Button FirstChildButton;
-        private Common.UI.Vector3Display ScaleBox;
+        private CommonToolLib.UI.Vector3Display ScaleBox;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NumericUpDown nudSize;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -394,7 +394,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.NumericUpDown nudModelID;
         private System.Windows.Forms.Button btnViewModelData;
-        private Common.UI.Vector3Display vec3Saturation;
+        private CommonToolLib.UI.Vector3Display vec3Saturation;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.NumericUpDown nudHue;
         private X3Tools.RAM.UI.NumericIDObjectControl numericIDObjectControl1;

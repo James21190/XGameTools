@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Memory
+namespace CommonToolLib.Memory
 {
     /// <summary>
     /// Basic IMemoryObject with additional functionality.

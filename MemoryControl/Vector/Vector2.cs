@@ -1,9 +1,9 @@
-﻿using Common.Memory;
+﻿using CommonToolLib.Memory;
 using System;
 using System.Collections.Generic;
 
 
-namespace Common.Vector
+namespace CommonToolLib.Vector
 {
     public struct Vector2 : IMemoryObject
     {

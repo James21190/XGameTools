@@ -1,8 +1,8 @@
-﻿using Common.Memory;
+﻿using CommonToolLib.Memory;
 using System;
 using System.IO;
 
-namespace Common.Network
+namespace CommonToolLib.Network
 {
     public class Packet
     {

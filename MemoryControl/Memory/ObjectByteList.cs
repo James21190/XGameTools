@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Common.Memory
+namespace CommonToolLib.Memory
 {
     /// <summary>
     /// List that can convert objects to bytes and can pop objects.

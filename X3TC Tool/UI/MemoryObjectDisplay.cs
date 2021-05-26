@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools.RAM;
-using Common.Memory;
+using CommonToolLib.Memory;
 
 namespace X3TC_RAM_Tool.UI
 {

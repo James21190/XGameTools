@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Common.UI
+namespace CommonToolLib.UI
 {
     public partial class Vector4Display : UserControl
     {
@@ -111,9 +111,9 @@ namespace Common.UI
             }
         }
 
-        public Common.Vector.Vector4 Vector
+        public CommonToolLib.Vector.Vector4 Vector
         {
-            get => new Common.Vector.Vector4(Convert.ToInt32(X), Convert.ToInt32(Y), Convert.ToInt32(Z), Convert.ToInt32(W));
+            get => new CommonToolLib.Vector.Vector4(Convert.ToInt32(X), Convert.ToInt32(Y), Convert.ToInt32(Z), Convert.ToInt32(W));
             set
             {
                 X = value.X;

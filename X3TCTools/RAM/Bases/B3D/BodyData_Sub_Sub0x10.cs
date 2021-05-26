@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Memory;
+using CommonToolLib.Memory;
 
 namespace X3Tools.RAM.Bases.B3D
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Common.Memory
+namespace CommonToolLib.Memory
 {
     /// <summary>
     /// A 64 bit intager that implements IMemoryObject.

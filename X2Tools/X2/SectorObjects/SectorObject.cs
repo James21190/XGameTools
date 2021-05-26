@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using X2Tools.X2.SectorObjects.Meta;
-using Common.Memory;
-using Common.Vector;
+using CommonToolLib.Memory;
+using CommonToolLib.Vector;
 
 namespace X2Tools.X2.SectorObjects
 {
@@ -34,9 +34,9 @@ namespace X2Tools.X2.SectorObjects
         public MemoryObjectPointer<MemoryString> pDefaultName = new MemoryObjectPointer<MemoryString>();
         public int Speed;
         public int TargetSpeed;
-        public Common.Vector.Vector3 Rotation;
-        public Common.Vector.Vector3 LocalRotationDelta;
-        public Common.Vector.Vector3 AutoPilotRotationChange;
+        public CommonToolLib.Vector.Vector3 Rotation;
+        public CommonToolLib.Vector.Vector3 LocalRotationDelta;
+        public CommonToolLib.Vector.Vector3 AutoPilotRotationChange;
         public Race.RaceID RaceID;
         public int Unknown_4;
         public InteractionFlags InteractionFlags;
@@ -45,7 +45,7 @@ namespace X2Tools.X2.SectorObjects
         public int SubType;
         public IntPtr pMeta;
         public MemoryObjectPointer<SectorObject> pParent = new MemoryObjectPointer<SectorObject>();
-        public Common.Vector.Vector3 StrafePositionDelta;
+        public CommonToolLib.Vector.Vector3 StrafePositionDelta;
         public MemoryObjectPointer<SectorObjectData> pData = new MemoryObjectPointer<SectorObjectData>();
         public int Unknown_6;
         public int Unknown_7;
@@ -64,9 +64,9 @@ namespace X2Tools.X2.SectorObjects
         public IntPtr p1;
         public int Unknown_19;
         public IntPtr p2;
-        public Common.Vector.Vector3 PositionCopy;
-        public Common.Vector.Vector3 RotationCopy;
-        public Common.Vector.Vector3 LocalDeltaRotationCopy;
+        public CommonToolLib.Vector.Vector3 PositionCopy;
+        public CommonToolLib.Vector.Vector3 RotationCopy;
+        public CommonToolLib.Vector.Vector3 LocalDeltaRotationCopy;
         public int SpeedCopy;
         public int Hull;
         public int Unknown_20;
@@ -140,9 +140,9 @@ namespace X2Tools.X2.SectorObjects
             p1 = (IntPtr)BitConverter.ToInt32(memory, 156);
             Unknown_19 = BitConverter.ToInt32(memory, 160);
             p2 = (IntPtr)BitConverter.ToInt32(memory, 164);
-            PositionCopy = new Common.Vector.Vector3(BitConverter.ToInt32(memory, 168), BitConverter.ToInt32(memory, 172), BitConverter.ToInt32(memory, 176));
-            RotationCopy = new Common.Vector.Vector3(BitConverter.ToInt32(memory, 180), BitConverter.ToInt32(memory, 184), BitConverter.ToInt32(memory, 188));
-            LocalDeltaRotationCopy = new Common.Vector.Vector3(BitConverter.ToInt32(memory, 192), BitConverter.ToInt32(memory, 196), BitConverter.ToInt32(memory, 200));
+            PositionCopy = new CommonToolLib.Vector.Vector3(BitConverter.ToInt32(memory, 168), BitConverter.ToInt32(memory, 172), BitConverter.ToInt32(memory, 176));
+            RotationCopy = new CommonToolLib.Vector.Vector3(BitConverter.ToInt32(memory, 180), BitConverter.ToInt32(memory, 184), BitConverter.ToInt32(memory, 188));
+            LocalDeltaRotationCopy = new CommonToolLib.Vector.Vector3(BitConverter.ToInt32(memory, 192), BitConverter.ToInt32(memory, 196), BitConverter.ToInt32(memory, 200));
             SpeedCopy = BitConverter.ToInt32(memory, 204);
             Hull = BitConverter.ToInt32(memory, 208);
             Unknown_20 = BitConverter.ToInt32(memory, 212);

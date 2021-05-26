@@ -67,9 +67,9 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelSectorInfo = new System.Windows.Forms.Label();
-            this.v3dPosition = new Common.UI.Vector3Display();
-            this.v3dPositionKm = new Common.UI.Vector3Display();
-            this.v3dRotation = new Common.UI.Vector3Display();
+            this.v3dPosition = new CommonToolLib.UI.Vector3Display();
+            this.v3dPositionKm = new CommonToolLib.UI.Vector3Display();
+            this.v3dRotation = new CommonToolLib.UI.Vector3Display();
             this.ScriptingObjectPannel1 = new X3Tools.RAM.ScriptingObjectPannel();
             this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
             this.groupBox3.SuspendLayout();
@@ -708,10 +708,10 @@
         #endregion
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtDefaultName;
-        private Common.UI.Vector3Display v3dPositionKm;
+        private CommonToolLib.UI.Vector3Display v3dPositionKm;
         private System.Windows.Forms.Timer AutoReloader;
         private System.Windows.Forms.CheckBox AutoReloadCheckBox;
-        private Common.UI.Vector3Display v3dRotation;
+        private CommonToolLib.UI.Vector3Display v3dRotation;
         private System.Windows.Forms.Button btnGoNext;
         private System.Windows.Forms.Button btnGoParent;
         private System.Windows.Forms.Button btnGoPrevious;
@@ -733,7 +733,7 @@
         private System.Windows.Forms.ToolStripMenuItem typeDataToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox txtRace;
-        private Common.UI.Vector3Display v3dPosition;
+        private CommonToolLib.UI.Vector3Display v3dPosition;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;

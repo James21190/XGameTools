@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using X2Tools.X2;
 using X2Tools.X2.SectorObjects;
-using Common;
-using Common.Memory;
+using CommonToolLib;
+using CommonToolLib.Memory;
 
 namespace X2Tools.X2.TypeData
 {

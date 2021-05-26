@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace Common
+namespace CommonToolLib
 {
     /// <summary>
     /// Object that can be used to patch executables with patch files.

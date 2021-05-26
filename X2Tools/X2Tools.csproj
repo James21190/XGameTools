@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameHook.cs" />
     <Compile Include="X2\GameCodeRunner.cs" />
-    <Compile Include="X2\GlobalAddresses.cs" />
+    <Compile Include="X2\X2GlobalAddresses.cs" />
     <Compile Include="X2\HashTable.cs" />
     <Compile Include="X2\Races.cs" />
     <Compile Include="X2\RunObjectParam\RunObjectParam.cs" />
@@ -62,9 +62,9 @@
     <Compile Include="X2\TypeData\TypeDataManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\Common.csproj">
+    <ProjectReference Include="..\MemoryControl\CommonToolLib.csproj">
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
-      <Name>Common</Name>
+      <Name>CommonToolLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

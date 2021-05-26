@@ -1,4 +1,6 @@
 ﻿1.6.0.0
+	- Renamed to "CommonToolLib"
+	- Added NamedTextBox UI element.
 	- Added dll injection method to ApplicationHook.
 	- Depreciated SetLodation in IMemoryObject. This has been replaced with pThis and hProcess fields.
 	- Reordered message serverity in Logger class.

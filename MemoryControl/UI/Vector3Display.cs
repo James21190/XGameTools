@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Common.UI
+namespace CommonToolLib.UI
 {
     public partial class Vector3Display : UserControl
     {

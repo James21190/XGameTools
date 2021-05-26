@@ -1,8 +1,8 @@
-﻿using Common.Memory;
+﻿using CommonToolLib.Memory;
 using System;
 using System.Collections.Generic;
 
-namespace Common.Vector
+namespace CommonToolLib.Vector
 {
     public class RotationMatrix_3 : MemoryObject
     {

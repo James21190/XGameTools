@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Common.Memory;
+using CommonToolLib.Memory;
 using X3Tools.RAM;
 
 namespace X3Tools.RAM.Bases.Story.Scripting

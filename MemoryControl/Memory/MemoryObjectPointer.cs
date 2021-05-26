@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Memory
+namespace CommonToolLib.Memory
 {
     /// <summary>
     /// A pointer that points to an IMemoryObject in a process's memory.

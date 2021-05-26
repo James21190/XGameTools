@@ -34,8 +34,8 @@
             this.FocusBox = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.FogDisplay = new Common.UI.Vector3Display();
-            this.BackgroundDisplay = new Common.UI.Vector3Display();
+            this.FogDisplay = new CommonToolLib.UI.Vector3Display();
+            this.BackgroundDisplay = new CommonToolLib.UI.Vector3Display();
             this.numericIDObjectControl1 = new X3Tools.RAM.UI.NumericIDObjectControl();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -222,8 +222,8 @@
         private System.Windows.Forms.TextBox FocusBox;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox textBox1;
-        private Common.UI.Vector3Display BackgroundDisplay;
-        private Common.UI.Vector3Display FogDisplay;
+        private CommonToolLib.UI.Vector3Display BackgroundDisplay;
+        private CommonToolLib.UI.Vector3Display FogDisplay;
         private X3Tools.RAM.UI.NumericIDObjectControl numericIDObjectControl1;
     }
 }

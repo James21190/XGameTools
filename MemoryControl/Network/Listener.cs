@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace Common.Network
+namespace CommonToolLib.Network
 {
     /// <summary>
     /// Main interface for recieving packets over a network.

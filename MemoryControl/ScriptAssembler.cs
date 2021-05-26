@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common
+namespace CommonToolLib
 {
     public static class ScriptAssembler
     {

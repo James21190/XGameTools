@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common;
-using Common.Vector;
-using Common.Memory;
+using CommonToolLib;
+using CommonToolLib.Vector;
+using CommonToolLib.Memory;
 
 
 namespace X2Tools.X2.SectorObjects

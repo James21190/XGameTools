@@ -1,4 +1,4 @@
-﻿using Common.Memory;
+﻿using CommonToolLib.Memory;
 using System;
 using System.Threading;
 using X3Tools.RAM.Bases.Sector;

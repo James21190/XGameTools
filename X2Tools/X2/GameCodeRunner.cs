@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using X2Tools.X2.SectorObjects;
-using Common;
-using Common.Memory;
+using CommonToolLib;
+using CommonToolLib.Memory;
 
 namespace X2Tools.X2
 {
@@ -227,7 +227,7 @@ namespace X2Tools.X2
             {
                 var SO = CreateSectorObject((SectorObject.Main_Type)MainType, Sub, GameHook.SectorObjectManager.GetSpace());
                 var data = SO.pData.obj;
-                data.Position = new Common.Vector.Vector3(((int)MainType) * Padding, YValue, Sub * Padding);
+                data.Position = new CommonToolLib.Vector.Vector3(((int)MainType) * Padding, YValue, Sub * Padding);
                 data.WriteToMemory();
             }
 

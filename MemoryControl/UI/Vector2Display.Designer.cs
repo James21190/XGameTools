@@ -1,4 +1,4 @@
-﻿namespace Common.UI
+﻿namespace CommonToolLib.UI
 {
     partial class Vector2Display
     {

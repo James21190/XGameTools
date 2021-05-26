@@ -2,11 +2,10 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Common.UI
+namespace CommonToolLib.UI
 {
     public partial class Vector2Display : UserControl
     {
-        [DefaultValue(false)]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal Increment
@@ -19,7 +18,6 @@ namespace Common.UI
             }
         }
 
-        [DefaultValue(false)]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DecimalPlaces
@@ -87,9 +85,9 @@ namespace Common.UI
             }
         }
 
-        public Common.Vector.Vector2 Vector
+        public CommonToolLib.Vector.Vector2 Vector
         {
-            get => new Common.Vector.Vector2(Convert.ToInt32(X), Convert.ToInt32(Y));
+            get => new CommonToolLib.Vector.Vector2(Convert.ToInt32(X), Convert.ToInt32(Y));
             set
             {
                 X = value.X;

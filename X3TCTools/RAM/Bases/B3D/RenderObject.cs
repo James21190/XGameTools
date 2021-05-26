@@ -1,5 +1,5 @@
-﻿using Common.Memory;
-using Common.Vector;
+﻿using CommonToolLib.Memory;
+using CommonToolLib.Vector;
 using System;
 
 namespace X3Tools.RAM.Bases.B3D

@@ -1,4 +1,4 @@
-﻿using Common.Memory;
+﻿using CommonToolLib.Memory;
 using System;
 
 namespace X3Tools.RAM.Bases.Sector.Meta
