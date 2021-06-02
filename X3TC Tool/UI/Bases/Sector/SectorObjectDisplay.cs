@@ -3,8 +3,6 @@ using System;
 using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools.RAM;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
-using X3Tools.RAM.Generics;
 using X3Tools.RAM.Bases.Sector;
 
 namespace X3TC_RAM_Tool.UI.Displays
@@ -51,8 +49,8 @@ namespace X3TC_RAM_Tool.UI.Displays
                     sectorObjectName = string.Format("{0} ({1})", baseSectorObject.GetSubTypeAsString(), GameHook.galaxyBase.GetSectorName(gateScriptMemoryObject.DestSectorX, gateScriptMemoryObject.DestSectorY));
                     break;*/
                 default:
-                    skip:
-                    sectorObjectName = baseSectorObject.GetSubTypeAsString(); 
+                skip:
+                    sectorObjectName = baseSectorObject.GetSubTypeAsString();
                     break;
             }
 
@@ -110,7 +108,7 @@ namespace X3TC_RAM_Tool.UI.Displays
             // Sector Info
             SectorObject sector = GameHook.sectorObjectManager.GetSpace();
 
-            if(m_SectorObject != null && m_SectorObject.IsValid)
+            if (m_SectorObject != null && m_SectorObject.IsValid)
             {
 
                 // Reload from memory to ensure it is up to date.

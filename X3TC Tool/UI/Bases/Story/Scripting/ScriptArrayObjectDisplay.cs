@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 using X3Tools.RAM;
@@ -11,7 +10,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 {
     public partial class ScriptArrayObjectDisplay : Form
     {
-        ScriptArrayObject m_obj;
+        private ScriptArrayObject m_obj;
 
         public ScriptArrayObjectDisplay()
         {
@@ -28,7 +27,7 @@ namespace X3TC_RAM_Tool.UI.Displays
         {
             txtAddress.Text = m_obj.pThis.ToString("X");
             nudID.Value = m_obj.ID;
-            var arr = new ScriptMemoryObject(m_obj.Length);
+            ScriptMemoryObject arr = new ScriptMemoryObject(m_obj.Length);
             arr.SetLocation(GameHook.hProcess, m_obj.pDynamicValueArr.address);
             arr.ReloadFromMemory();
             scriptMemoryObject_Raw_Panel1.LoadObject(arr);

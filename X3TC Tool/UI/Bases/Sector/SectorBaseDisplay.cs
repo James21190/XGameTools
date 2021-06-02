@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools.RAM;
 
 namespace X3TC_RAM_Tool.UI.Displays

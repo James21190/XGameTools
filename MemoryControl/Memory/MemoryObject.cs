@@ -62,7 +62,7 @@ namespace CommonToolLib.Memory
         /// </summary>
         public void ReloadFromMemory()
         {
-            SetData(MemoryControl.Read(hProcess, pThis, ByteSize ));
+            SetData(MemoryControl.Read(hProcess, pThis, ByteSize));
         }
 
         /// <summary>

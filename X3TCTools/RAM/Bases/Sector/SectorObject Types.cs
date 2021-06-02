@@ -1,6 +1,6 @@
-﻿using System;
+﻿using CommonToolLib.Memory;
+using System;
 using System.IO;
-using CommonToolLib.Memory;
 
 namespace X3Tools.RAM.Bases.Sector
 {
@@ -10,14 +10,8 @@ namespace X3Tools.RAM.Bases.Sector
         {
             public Main_Type MainTypeEnum
             {
-                get
-                {
-                    return (Main_Type)MainType;
-                }
-                set
-                {
-                    MainType = (short)value;
-                }
+                get => (Main_Type)MainType;
+                set => MainType = (short)value;
             }
             public short MainType;
             public short SubType;
@@ -62,14 +56,14 @@ namespace X3Tools.RAM.Bases.Sector
 
             public int ToInt()
             {
-                return (((int)MainType) << 16 | SubType);
+                return (MainType << 16 | SubType);
             }
 
             public static SectorObjectType[] GetAllOfMainType(SectorObject.Main_Type mainType)
             {
                 int max = GameHook.GetTypeDataCount((int)mainType);
-                var array = new SectorObjectType[max];
-                for(int i = 0; i < max; i++)
+                SectorObjectType[] array = new SectorObjectType[max];
+                for (int i = 0; i < max; i++)
                 {
                     array[i] = new SectorObjectType(mainType, i);
                 }

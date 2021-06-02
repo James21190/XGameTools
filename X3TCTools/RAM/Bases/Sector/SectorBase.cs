@@ -1,6 +1,5 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using System.Security.Policy;
 using X3Tools.RAM.Generics;
 
 namespace X3Tools.RAM.Bases.Sector
@@ -65,7 +64,11 @@ namespace X3Tools.RAM.Bases.Sector
 
                 so = so.pNext.obj;
             }
-            if (!so.IsValid) return null;
+            if (!so.IsValid)
+            {
+                return null;
+            }
+
             return so;
         }
 
@@ -76,8 +79,15 @@ namespace X3Tools.RAM.Bases.Sector
         /// <returns></returns>
         public SectorObject GetPlayerObject()
         {
-            if (!pPlayerShip.IsValid) return null;
-            if (!pPlayerShip.obj.IsValid) return null;
+            if (!pPlayerShip.IsValid)
+            {
+                return null;
+            }
+
+            if (!pPlayerShip.obj.IsValid)
+            {
+                return null;
+            }
 
             return pPlayerShip.obj;
         }

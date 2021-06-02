@@ -1,10 +1,6 @@
 ﻿using CommonToolLib.Memory;
 using CommonToolLib.Vector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCAPLib.RAM.Bases.B3D
 {

@@ -1,6 +1,5 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using System.CodeDom.Compiler;
 using X3Tools.RAM.Generics;
 
 namespace X3Tools.RAM.Bases.SystemBase_Objects
@@ -29,7 +28,7 @@ namespace X3Tools.RAM.Bases.SystemBase_Objects
             {
                 case GameHook.GameVersions.X3TC:
                 case GameHook.GameVersions.X3AP:
-                    MemoryControl.Write(this.hProcess, pThis + 204, TimeWarpFactor.GetBytes());
+                    MemoryControl.Write(hProcess, pThis + 204, TimeWarpFactor.GetBytes());
                     break;
                 case GameHook.GameVersions.X3FL:
                     throw new GameVersionNotImplementedException();
@@ -43,7 +42,7 @@ namespace X3Tools.RAM.Bases.SystemBase_Objects
             {
                 case GameHook.GameVersions.X3TC:
                 case GameHook.GameVersions.X3AP:
-                    MemoryControl.Write(this.hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
+                    MemoryControl.Write(hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
                     break;
                 case GameHook.GameVersions.X3FL:
                     throw new GameVersionNotImplementedException();

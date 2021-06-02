@@ -1,7 +1,6 @@
 ﻿using CommonToolLib.Memory;
 using CommonToolLib.Vector;
 using System;
-using System.ComponentModel;
 
 namespace X3Tools.RAM.Bases.Sector
 {
@@ -33,7 +32,7 @@ namespace X3Tools.RAM.Bases.Sector
             {
                 try
                 {
-                    var storyBase = GameHook.storyBase;
+                    Story.StoryBase storyBase = GameHook.storyBase;
                     return storyBase.GetParsedText(GameHook.Language.English, storyBase.GetText(GameHook.Language.English, 17, DefaultNameID));
                 }
                 catch (Exception)
@@ -86,8 +85,8 @@ namespace X3Tools.RAM.Bases.Sector
 
         }
 
-        const int RelvalThreshhold = 1323077;
-        const int RelvalThreshholdSubtraction = 41802301;
+        private const int RelvalThreshhold = 1323077;
+        private const int RelvalThreshholdSubtraction = 41802301;
 
         public int GetPrice(decimal percentPrice)
         {
@@ -95,7 +94,7 @@ namespace X3Tools.RAM.Bases.Sector
             switch (ObjectType.MainTypeEnum)
             {
                 case SectorObject.Main_Type.Ship:
-                    averagePrice = (int)Math.Round((decimal)RelVal * 64.92389m);
+                    averagePrice = (int)Math.Round(RelVal * 64.92389m);
                     //if (RelVal > RelvalThreshhold) averagePrice -= RelvalThreshholdSubtraction;
                     break;
                 default: averagePrice = RelVal; break;

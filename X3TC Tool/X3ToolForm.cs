@@ -4,8 +4,8 @@ using X3TC_RAM_Tool.UI;
 using X3TC_RAM_Tool.UI.Bases.CameraBase_Displays;
 using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays;
 using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
-using X3TC_RAM_Tool.UI.Displays;
 using X3TC_RAM_Tool.UI.Bases.SystemBase_Displays;
+using X3TC_RAM_Tool.UI.Displays;
 using X3Tools.RAM;
 using X3Tools.RAM.Bases.Sector;
 using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
@@ -354,21 +354,25 @@ namespace X3TC_RAM_Tool
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Disable Anti-AFK by updating TimeOfLastInput.
-            
+
             if (cbDisableAFK.Checked)
             {
-                var playerScriptObject = GameHook.storyBase.GetScriptingObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance.GetVariableByName("OwningRaceDataScriptingObjectID").Value);
+                X3Tools.RAM.Bases.Story.Scripting.ScriptInstance playerScriptObject = GameHook.storyBase.GetScriptingObject(GameHook.sectorObjectManager.GetPlayerObject().ScriptInstance.GetVariableByName("OwningRaceDataScriptingObjectID").Value);
                 if (playerScriptObject != null && playerScriptObject.ScriptInstanceType != null && playerScriptObject.ScriptInstanceType.InheritsFrom("RaceData_Player"))
                 {
                     playerScriptObject.SetVariableAndWriteMemoryByName("TimeOfLastInput", playerScriptObject.GetVariableByName("SecondsElapsed"));
                 }
             }
-            
+
         }
         private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
         {
             SystemBase sb = GameHook.systemBase;
-            if (sb.Language == (GameHook.Language)cbLanguage.SelectedItem) return;
+            if (sb.Language == (GameHook.Language)cbLanguage.SelectedItem)
+            {
+                return;
+            }
+
             sb.Language = (GameHook.Language)cbLanguage.SelectedItem;
             sb.SaveLanguage();
         }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools.RAM;
 
@@ -25,7 +18,7 @@ namespace X3TC_RAM_Tool.UI.Bases.SystemBase_Displays
 
         public void Reload()
         {
-            var systemBase = GameHook.systemBase;
+            X3Tools.RAM.Bases.SystemBase_Objects.SystemBase systemBase = GameHook.systemBase;
             txtAddress.Text = systemBase.pThis.ToString("X");
         }
     }

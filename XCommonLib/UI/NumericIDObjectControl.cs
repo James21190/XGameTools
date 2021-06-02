@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommonLib.RAM.Generics;
 
@@ -21,10 +15,7 @@ namespace XCommonLib.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnableLoad
         {
-            get
-            {
-                return btnLoadAddress.Enabled;
-            }
+            get => btnLoadAddress.Enabled;
             set
             {
                 textBox1.ReadOnly = numericUpDown1.ReadOnly = !value;
@@ -36,10 +27,7 @@ namespace XCommonLib.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public IntPtr Address
         {
-            get
-            {
-                return m_address;
-            }
+            get => m_address;
             set
             {
                 m_address = value;
@@ -50,10 +38,7 @@ namespace XCommonLib.UI
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ID
         {
-            get
-            {
-                return m_ID;
-            }
+            get => m_ID;
             set
             {
                 m_ID = value;
@@ -88,12 +73,18 @@ namespace XCommonLib.UI
 
         private void btnLoadAddress_Click(object sender, EventArgs e)
         {
-            if (AddressLoad != null) AddressLoad(sender, (int)Address);
+            if (AddressLoad != null)
+            {
+                AddressLoad(sender, (int)Address);
+            }
         }
 
         private void btnLoadID_Click(object sender, EventArgs e)
         {
-            if (IDLoad != null) IDLoad(sender, ID);
+            if (IDLoad != null)
+            {
+                IDLoad(sender, ID);
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

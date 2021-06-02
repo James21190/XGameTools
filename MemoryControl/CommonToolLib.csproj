@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generics\NamedObjectContainer.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Memory\ApplicationHook.cs" />
     <Compile Include="Memory\BitField.cs" />

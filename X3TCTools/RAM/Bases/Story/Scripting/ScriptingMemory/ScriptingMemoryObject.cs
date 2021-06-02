@@ -61,7 +61,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory
 
         public void SetVariableInMemory(int index, DynamicValue value)
         {
-            SetVariable(index, value);;
+            SetVariable(index, value); ;
             MemoryControl.Write(GameHook.hProcess, pThis + (DynamicValue.ByteSizeConst * index), value.GetBytes());
         }
 
@@ -80,17 +80,11 @@ namespace X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory
             return collection.GetBytes();
         }
 
-        public sealed override int ByteSize
-        {
-            get
-            {
-                return VariableCount * DynamicValue.ByteSizeConst;
-            }
-        }
+        public sealed override int ByteSize => VariableCount * DynamicValue.ByteSizeConst;
 
         public sealed override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
             Variables = collection.PopIMemoryObjects<DynamicValue>(VariableCount);
         }
         #endregion

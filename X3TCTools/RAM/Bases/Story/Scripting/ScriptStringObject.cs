@@ -18,7 +18,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
             id = collection.PopInt();
             unknown_1 = collection.PopInt();
             pText = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
@@ -26,7 +26,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting
 
         public override string ToString()
         {
-            return string.Format("TextObject \"{0}\"", pText.obj.value);
+            return string.Format("TextObject \"{0}\"", pText.obj.Value);
         }
     }
 }

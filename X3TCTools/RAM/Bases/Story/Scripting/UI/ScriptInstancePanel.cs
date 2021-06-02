@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using X3Tools.RAM;
 using X3Tools.RAM.Bases.Story.Scripting;
 
 namespace X3Tools.RAM
@@ -72,13 +71,17 @@ namespace X3Tools.RAM
                 lstInheritedTypes.Items.AddRange(m_ScriptingObject.ScriptInstanceType.InheritanceStack);
             }
             if (m_ScriptingObject.ScriptInstanceType != null)
+            {
                 txtSubType.Text = m_ScriptingObject.ScriptInstanceType.ToString();
+            }
             else
+            {
                 txtSubType.Text = "Undefined";
+            }
             #region Functions
             txtFunctionCount1.Text = sub.FunctionCount_1.ToString();
             lstbxFunctions.Items.Clear();
-            for(int i = 0; i < sub.FunctionCount_1; i++)
+            for (int i = 0; i < sub.FunctionCount_1; i++)
             {
                 lstbxFunctions.Items.Add(sub.pFunctions[i].str);
             }

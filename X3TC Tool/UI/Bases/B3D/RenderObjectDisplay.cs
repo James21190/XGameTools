@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Bases.CameraBase_Displays;
-using X3Tools.RAM;
-using X3Tools.RAM.Bases.Sector;
 using X3Tools.RAM.Bases.B3D;
 
 namespace X3TC_RAM_Tool.UI.Displays
@@ -79,7 +77,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void btnViewModelData_Click(object sender, EventArgs e)
         {
-            var display = new BodyDataDisplay();
+            BodyDataDisplay display = new BodyDataDisplay();
             display.LoadBodyData(m_RenderObject.ModelID);
             display.Show();
         }

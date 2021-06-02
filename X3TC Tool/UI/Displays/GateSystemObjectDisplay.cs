@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using X3Tools.RAM;
-using X3Tools.RAM.Bases;
 using X3Tools.RAM.Bases.Galaxy;
 
 namespace X3TC_RAM_Tool.UI.Displays
@@ -11,7 +10,7 @@ namespace X3TC_RAM_Tool.UI.Displays
         public GalaxyBaseDisplay()
         {
             InitializeComponent();
-            nudX.Maximum = GalaxyBase.width  - 1;
+            nudX.Maximum = GalaxyBase.width - 1;
             nudY.Maximum = GalaxyBase.height - 1;
             Reload();
         }
@@ -21,7 +20,7 @@ namespace X3TC_RAM_Tool.UI.Displays
             LoadSectorData((int)nudIndex.Value);
         }
 
-        int CurrentGateData = 0;
+        private int CurrentGateData = 0;
 
         private void LoadSectorData(int index)
         {
@@ -31,7 +30,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         public void Reload()
         {
-            var gateSystemObject = GameHook.galaxyBase;
+            GalaxyBase gateSystemObject = GameHook.galaxyBase;
             txtGateSystemObjectAddress.Text = gateSystemObject.pThis.ToString("X");
 
             ReloadSectorData();
@@ -40,7 +39,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         public void ReloadSectorData()
         {
-            var sectorData = GameHook.galaxyBase.sectorData[CurrentGateData];
+            GalaxyBase.SectorData sectorData = GameHook.galaxyBase.sectorData[CurrentGateData];
             txtSectorDataAddress.Text = sectorData.pThis.ToString("X");
             txtSectorDataRace.Text = sectorData.owningRace.ToString();
         }

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace XCommonLib.RAM.Generics
 {
     public class HashTableElementNotFoundException : Exception
     {
-        int ID;
+        private int ID;
         public HashTableElementNotFoundException(int id)
         {
             ID = id;
         }
-        public new string Message { get { return string.Format("Object with ID {0} was not found within the hash table.",ID); } }
+        public new string Message => string.Format("Object with ID {0} was not found within the hash table.", ID);
     }
 }

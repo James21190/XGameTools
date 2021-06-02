@@ -21,10 +21,13 @@ namespace X3Tools.RAM.Bases.Story
                 int i = 0;
                 while (true)
                 {
-                    var pString = ppString[i++];
+                    MemoryObjectPointer<MemoryString> pString = ppString[i++];
                     if (pString.address == IntPtr.Zero)
+                    {
                         break;
-                    result.Add(pString.obj.value);
+                    }
+
+                    result.Add(pString.obj.Value);
                 }
                 return result.ToArray();
             }

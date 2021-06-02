@@ -1,10 +1,5 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XCommonLib.RAM.Bases.Sector;
 using XCommonLib.RAM.Generics;
 
 namespace X2Lib.RAM.Bases.Sector
@@ -65,7 +60,7 @@ namespace X2Lib.RAM.Bases.Sector
 
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            ObjectByteList collection = new ObjectByteList();
             collection.Append(Unknown_1);
             collection.Append(Unknown_2);
             collection.Append(pFirst);
@@ -127,10 +122,26 @@ namespace X2Lib.RAM.Bases.Sector
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            if (pFirst != null) pFirst.SetLocation(hProcess, address + 0x8);
-            if (pLast != null) pLast.SetLocation(hProcess, address + 0x10);
-            if (pObjectHashTable != null) pObjectHashTable.SetLocation(hProcess, address + 0x14);
-            if (pPlayerShip != null) pPlayerShip.SetLocation(hProcess, address + 0x38);
+            if (pFirst != null)
+            {
+                pFirst.SetLocation(hProcess, address + 0x8);
+            }
+
+            if (pLast != null)
+            {
+                pLast.SetLocation(hProcess, address + 0x10);
+            }
+
+            if (pObjectHashTable != null)
+            {
+                pObjectHashTable.SetLocation(hProcess, address + 0x14);
+            }
+
+            if (pPlayerShip != null)
+            {
+                pPlayerShip.SetLocation(hProcess, address + 0x38);
+            }
+
             base.SetLocation(hProcess, address);
         }
         #endregion

@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using X3Tools.RAM;
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
-
-
-using X3Tools.RAM.Bases.Story.Scripting;
-using X3Tools.RAM.Bases.Story;
 using X3Tools.RAM.Bases.Sector;
+using X3Tools.RAM.Bases.Story.Scripting;
 
 namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     public partial class ScriptMemory_RaceData_Player_Panel : UserControl, IScriptMemoryObject_Panel
     {
         private MessengerFunction m_MessengerFunction;
-        public MessengerFunction MessengerFunction { get => m_MessengerFunction; set { m_MessengerFunction = value; } }
+        public MessengerFunction MessengerFunction { get => m_MessengerFunction; set => m_MessengerFunction = value; }
         private struct ListItem
         {
             public object obj;
@@ -45,8 +41,8 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
 
 
-                var thisSubType = Ship.GetVariableByName("SubType").Value;
-                var thatSubType = type.Ship.GetVariableByName("SubType").Value;
+                int thisSubType = Ship.GetVariableByName("SubType").Value;
+                int thatSubType = type.Ship.GetVariableByName("SubType").Value;
 
 
 
@@ -82,8 +78,8 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
                 StationData type = (StationData)obj;
 
-                var thisMainType = Station.GetVariableByName("MainType").Value;
-                var thatMainType = type.Station.GetVariableByName("MainType").Value;
+                int thisMainType = Station.GetVariableByName("MainType").Value;
+                int thatMainType = type.Station.GetVariableByName("MainType").Value;
 
                 if (thisMainType > thatMainType)
                 {
@@ -95,8 +91,8 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
                     return 1;
                 }
 
-                var thisSubType = Station.GetVariableByName("SubType").Value;
-                var thatSubType = type.Station.GetVariableByName("SubType").Value;
+                int thisSubType = Station.GetVariableByName("SubType").Value;
+                int thatSubType = type.Station.GetVariableByName("SubType").Value;
 
                 if (thisSubType > thatSubType)
                 {
@@ -160,9 +156,15 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
         public void LoadObject(ScriptInstance ScriptInstance, bool reload = true)
         {
             if (!ScriptInstance.ScriptInstanceType.InheritsFrom("RaceData_Player"))
+            {
                 throw new NotSupportedException("Object doesn't inherit from RaceData_Player");
+            }
+
             m_ScriptInstance = ScriptInstance;
-            if(reload) Reload();
+            if (reload)
+            {
+                Reload();
+            }
         }
 
         public void Reload()
@@ -175,7 +177,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
             lstRaces.Items.Clear();
 
             List<RaceData> races = new List<RaceData>();
-            var table = m_ScriptInstance.GetVariableByName("RaceDataScriptInstanceIDHashTable").GetAsHashTableObject();
+            ScriptTableObject table = m_ScriptInstance.GetVariableByName("RaceDataScriptInstanceIDHashTable").GetAsHashTableObject();
 
             foreach (DynamicValue raceID in table.hashTable.ScanContents())
             {
@@ -186,8 +188,10 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
                 }
                 else if (!ScriptingObject.ScriptInstanceType.InheritsFrom("RaceData"))
                 {
-                    if(!ScriptingObject.ScriptInstanceType.InheritsFrom("RaceData_Player"))
+                    if (!ScriptingObject.ScriptInstanceType.InheritsFrom("RaceData_Player"))
+                    {
                         m_MessengerFunction(string.Format("ScriptInstance type \"{0}\" invalid, expected RaceData : {1}", ScriptingObject.ScriptInstanceType.Name, ScriptingObject.pSub.obj.Class));
+                    }
                 }
                 else
                 {
@@ -298,7 +302,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
         private void lstRaces_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void IScriptMemoryObject_RaceData_Player_Panel_Load(object sender, EventArgs e)

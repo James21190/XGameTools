@@ -50,7 +50,7 @@ namespace X3Tools.RAM.Bases.Story
 
         public MemoryString GetStringFromStoryBaseCharArray(int offset)
         {
-            var memorystring = new MemoryString();
+            MemoryString memorystring = new MemoryString();
             memorystring.SetLocation(GameHook.hProcess, pStrings.address + offset);
             memorystring.ReloadFromMemory();
             return memorystring;
@@ -79,7 +79,7 @@ namespace X3Tools.RAM.Bases.Story
         /// <returns></returns>
         public string GetText(GameHook.Language language, int pageID, int txtID)
         {
-            var page = GetTextPage(language, pageID);
+            TextPage page = GetTextPage(language, pageID);
             return page.GetText(txtID);
         }
 
@@ -93,7 +93,10 @@ namespace X3Tools.RAM.Bases.Story
         private string _GetParsedText(GameHook.Language language, string txt, List<int> previous)
         {
             if (previous == null)
+            {
                 previous = new List<int>();
+            }
+
             Regex regex = new Regex(@"\{.*?\}");
             MatchCollection matches = regex.Matches(txt);
 
@@ -150,7 +153,7 @@ namespace X3Tools.RAM.Bases.Story
         public ScriptMemoryObject GetScriptingObjectScriptingVariables(int ID)
         {
             ScriptMemoryObject obj = new ScriptMemoryObject();
-            obj.SetLocation(this.hProcess, GetScriptingObject(ID).pScriptVariableArr.address);
+            obj.SetLocation(hProcess, GetScriptingObject(ID).pScriptVariableArr.address);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -190,11 +193,11 @@ namespace X3Tools.RAM.Bases.Story
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
 
             pHashTable_ScriptTaskObject = collection.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
             pInstructionArray = collection.PopIMemoryObject<MemoryObjectPointer<MemoryByte>>(0x8);
-            pStrings = collection.PopIMemoryObject < MemoryObjectPointer<MemoryString>>(0x14);
+            pStrings = collection.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x14);
 
             FunctionArrayCount = collection.PopInt(0x2c);
             FunctionArray = collection.PopIMemoryObjects<EventFunctionStruct>(FunctionArray.Length);

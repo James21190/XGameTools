@@ -1,25 +1,28 @@
 ﻿using CommonToolLib.Memory;
 using System;
 
-namespace X2Lib.RAM.Bases.B3D
+namespace X2Lib.RAM.Bases.Story.Scripting
 {
-    public class RenderObject : XCommonLib.RAM.Bases.B3D.RenderObject
+    public class ScriptInstance : XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance
     {
         #region Memory Fields
+        public override int NegativeID { get; set; }
+        public override int ReferenceCount { get; set; }
+        public MemoryObjectPointer<MemoryInt32> pSub;
+        public MemoryObjectPointer<MemoryInt32> pScriptVariableArr;
         #endregion
 
         #region Common
         #endregion
 
-        public override bool IsValid => throw new NotImplementedException();
-
-        #region MemoryObject
-        public override int ByteSize => throw new NotImplementedException();
+        #region IMemoryObject
+        public override int ByteSize => 16;
 
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
+
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {

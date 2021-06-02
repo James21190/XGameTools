@@ -21,7 +21,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting
 
             public Entry()
             {
-                pNext = new MemoryObjectPointer<Entry>(this.hProcess);
+                pNext = new MemoryObjectPointer<Entry>(hProcess);
                 id = new DynamicValue();
                 value = new DynamicValue();
             }

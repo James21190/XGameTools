@@ -21,9 +21,9 @@ namespace X3Tools.RAM.Generics
 
             public Entry()
             {
-                pNext = new MemoryObjectPointer<Entry<t>>(this.hProcess);
+                pNext = new MemoryObjectPointer<Entry<t>>(hProcess);
                 ObjectID = 0;
-                pObject = new MemoryObjectPointer<t>(this.hProcess);
+                pObject = new MemoryObjectPointer<t>(hProcess);
             }
 
             #endregion
@@ -163,7 +163,7 @@ namespace X3Tools.RAM.Generics
         {
             T[] result = new T[Count];
 
-            var ids = ScanContents();
+            int[] ids = ScanContents();
             for (int i = 0; i < Count; i++)
             {
                 try

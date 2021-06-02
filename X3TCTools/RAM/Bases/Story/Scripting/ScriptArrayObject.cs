@@ -32,7 +32,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting
 
             ID = collection.PopInt();
             Unknown_1 = collection.PopInt();
-            Length  = collection.PopInt();
+            Length = collection.PopInt();
             Count = collection.PopInt();
             pDynamicValueArr = collection.PopIMemoryObject<MemoryObjectPointer<DynamicValue>>();
         }

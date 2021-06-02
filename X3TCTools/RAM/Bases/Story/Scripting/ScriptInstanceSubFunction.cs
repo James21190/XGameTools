@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using CommonToolLib.Memory;
-using X3Tools.RAM;
+﻿using CommonToolLib.Memory;
+using System;
 
 namespace X3Tools.RAM.Bases.Story.Scripting
 {
@@ -18,7 +12,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting
         public int unknown_4;
         #endregion
 
-        public string str => GameHook.storyBase.GetStringFromStoryBaseCharArray(stringOffset).value;
+        public string str => GameHook.storyBase.GetStringFromStoryBaseCharArray(stringOffset).Value;
         public override int ByteSize => 0x10;
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)

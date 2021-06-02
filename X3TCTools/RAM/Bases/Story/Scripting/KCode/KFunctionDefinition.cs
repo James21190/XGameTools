@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace X3Tools.RAM.Bases.Story.Scripting.KCode
+﻿namespace X3Tools.RAM.Bases.Story.Scripting.KCode
 {
     public class KFunctionDefinition
     {
@@ -23,11 +17,11 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
         /// <param name="editStateFunction"></param>
         public KFunctionDefinition(int address, string name, int manualNextInstructionOffset, ParameterType[] parameters, bool shouldTerminateDecompilation = false)
         {
-            this.FunctionAddress = address;
-            this.FunctionName = name;
-            this.Parameters = parameters;
-            this.NextInstructionOffset = manualNextInstructionOffset;
-            this.ShouldTerminateDecompilation = shouldTerminateDecompilation;
+            FunctionAddress = address;
+            FunctionName = name;
+            Parameters = parameters;
+            NextInstructionOffset = manualNextInstructionOffset;
+            ShouldTerminateDecompilation = shouldTerminateDecompilation;
         }
         public int FunctionAddress;
         public string FunctionName;

@@ -22,11 +22,11 @@ namespace X3TC_RAM_Tool.UI.Displays
 
                     return display_hash;
                 case DynamicValue.FlagType.pArray:
-                    var arrayObject = new ScriptArrayObject();
+                    ScriptArrayObject arrayObject = new ScriptArrayObject();
                     arrayObject.SetLocation(GameHook.hProcess, (IntPtr)dynamicValue.Value);
                     arrayObject.ReloadFromMemory();
 
-                    var arrayDisplay = new ScriptArrayObjectDisplay();
+                    ScriptArrayObjectDisplay arrayDisplay = new ScriptArrayObjectDisplay();
                     arrayDisplay.LoadArray(arrayObject);
                     return arrayDisplay;
                 case DynamicValue.FlagType.pTextObject:

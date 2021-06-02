@@ -3,14 +3,12 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using X3Tools.RAM.Bases;
-using X3Tools.RAM.Bases.Story;
-using X3Tools.RAM.Bases.Story.Scripting;
 using X3Tools.RAM.Bases.B3D;
-using X3Tools.RAM.Bases.SystemBase_Objects;
-using X3Tools.RAM.Bases.Sector;
-using X3Tools.RAM.Bases.Input;
 using X3Tools.RAM.Bases.Galaxy;
+using X3Tools.RAM.Bases.Input;
+using X3Tools.RAM.Bases.Sector;
+using X3Tools.RAM.Bases.Story;
+using X3Tools.RAM.Bases.SystemBase_Objects;
 
 namespace X3Tools.RAM
 {
@@ -93,38 +91,38 @@ namespace X3Tools.RAM
             TypeData typeData;
             switch (type.MainTypeEnum)
             {
-                case SectorObject.Main_Type.Bullet: typeData = ppTypeData_Bullet.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)1: typeData = ppTypeData_1.obj.GetObjectInArray(type.SubType);break;
-                case SectorObject.Main_Type.Background: typeData = ppTypeData_Background.obj.GetObjectInArray(type.SubType);break;
+                case SectorObject.Main_Type.Bullet: typeData = ppTypeData_Bullet.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)1: typeData = ppTypeData_1.obj.GetObjectInArray(type.SubType); break;
+                case SectorObject.Main_Type.Background: typeData = ppTypeData_Background.obj.GetObjectInArray(type.SubType); break;
 
-                case SectorObject.Main_Type.Sun: typeData = ppTypeData_Sun.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)4: typeData = ppTypeData_Planet.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)5:  typeData = ppTypeData_Dock.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)6:  typeData = ppTypeData_Factory.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)7:  typeData = ppTypeData_Ship.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)8:  typeData = ppTypeData_Laser.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)9: typeData = ppTypeData_Shield.obj.GetObjectInArray(type.SubType);    break;
-                case (SectorObject.Main_Type)10:  typeData = ppTypeData_10.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)11:  typeData = ppTypeData_11.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)12:  typeData = ppTypeData_12.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)13:  typeData = ppTypeData_13.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)14:  typeData = ppTypeData_14.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)15:  typeData = ppTypeData_15.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)16:  typeData = ppTypeData_16.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)17:  typeData = ppTypeData_17.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)18:  typeData = ppTypeData_18.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)19:  typeData = ppTypeData_19.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)20:  typeData = ppTypeData_20.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)21:  typeData = ppTypeData_21.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)22:  typeData = ppTypeData_22.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)23:  typeData = ppTypeData_23.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)24:  typeData = ppTypeData_24.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)25:  typeData = ppTypeData_25.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)26:  typeData = ppTypeData_26.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)27:  typeData = ppTypeData_27.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)28:  typeData = ppTypeData_28.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)29:  typeData = ppTypeData_29.obj.GetObjectInArray(type.SubType);break;
-                case (SectorObject.Main_Type)30:  typeData = ppTypeData_30.obj.GetObjectInArray(type.SubType);break;
+                case SectorObject.Main_Type.Sun: typeData = ppTypeData_Sun.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)4: typeData = ppTypeData_Planet.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)5: typeData = ppTypeData_Dock.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)6: typeData = ppTypeData_Factory.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)7: typeData = ppTypeData_Ship.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)8: typeData = ppTypeData_Laser.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)9: typeData = ppTypeData_Shield.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)10: typeData = ppTypeData_10.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)11: typeData = ppTypeData_11.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)12: typeData = ppTypeData_12.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)13: typeData = ppTypeData_13.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)14: typeData = ppTypeData_14.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)15: typeData = ppTypeData_15.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)16: typeData = ppTypeData_16.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)17: typeData = ppTypeData_17.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)18: typeData = ppTypeData_18.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)19: typeData = ppTypeData_19.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)20: typeData = ppTypeData_20.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)21: typeData = ppTypeData_21.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)22: typeData = ppTypeData_22.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)23: typeData = ppTypeData_23.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)24: typeData = ppTypeData_24.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)25: typeData = ppTypeData_25.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)26: typeData = ppTypeData_26.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)27: typeData = ppTypeData_27.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)28: typeData = ppTypeData_28.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)29: typeData = ppTypeData_29.obj.GetObjectInArray(type.SubType); break;
+                case (SectorObject.Main_Type)30: typeData = ppTypeData_30.obj.GetObjectInArray(type.SubType); break;
                 case (SectorObject.Main_Type)31: typeData = ppTypeData_31.obj.GetObjectInArray(type.SubType); break;
 
                 default: throw new NotImplementedException();
@@ -210,7 +208,7 @@ namespace X3Tools.RAM
                     ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSystemBase);
                     ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGateSystemObject);
 
-#region TypeData
+                    #region TypeData
                     ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Bullet);
                     ppTypeData_1 = new MemoryObjectPointer<MemoryObjectPointer<TypeData>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_1);
                     ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Background);
@@ -244,7 +242,7 @@ namespace X3Tools.RAM
                     ppTypeData_29 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_29>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_29);
                     ppTypeData_30 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_30>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_30);
                     ppTypeData_31 = new MemoryObjectPointer<MemoryObjectPointer<TypeData_31>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_31);
-#endregion
+                    #endregion
 
                     ppInputBase = new MemoryObjectPointer<MemoryObjectPointer<InputBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pInputBase);
                     ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pCameraBase);

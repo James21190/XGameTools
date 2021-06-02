@@ -1,6 +1,5 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using System.CodeDom.Compiler;
 using X3Tools.RAM.Generics;
 
 namespace X3Tools.RAM.Bases.SystemBase_Objects
@@ -26,13 +25,13 @@ namespace X3Tools.RAM.Bases.SystemBase_Objects
         public void SaveSETA()
         {
             throw new NotImplementedException();
-            MemoryControl.Write(this.hProcess, pThis + 204, TimeWarpFactor.GetBytes());
+            MemoryControl.Write(hProcess, pThis + 204, TimeWarpFactor.GetBytes());
         }
 
         public void SaveLanguage()
         {
             throw new NotImplementedException();
-            MemoryControl.Write(this.hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
+            MemoryControl.Write(hProcess, pThis + 0x768, BitConverter.GetBytes((int)Language));
         }
         #endregion
 

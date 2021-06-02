@@ -86,16 +86,13 @@ namespace X3Tools.RAM.Bases.Sector
         public TurretData[] TurretDatas;
         #endregion
 
-        public bool IsBoardable { get
-            {
-                return MaxSpeed != 0 && OriginRace != GameHook.RaceID.Khaak;
-            } }
+        public bool IsBoardable => MaxSpeed != 0 && OriginRace != GameHook.RaceID.Khaak;
         public TypeData_Ship()
         {
 
         }
 
-        const decimal TimeMult = 60.09m;
+        private const decimal TimeMult = 60.09m;
 
         public TimeSpan GetProductionTime()
         {
@@ -127,39 +124,39 @@ namespace X3Tools.RAM.Bases.Sector
                     classvar = 5000;
                     break;
             }
-            var seconds = (double)((GetPrice(0.5m) * TimeMult) / classvar);
+            double seconds = (double)((GetPrice(0.5m) * TimeMult) / classvar);
             return TimeSpan.FromSeconds(seconds);
         }
 
         private ProductionMaterial _GetProductionMaterial(SectorObject.SectorObjectType type, int wareFactor, int shipPrice)
         {
-            var material = new ProductionMaterial()
+            ProductionMaterial material = new ProductionMaterial()
             {
                 WareType = type,
-                Count = (int)Math.Floor((decimal)shipPrice / (decimal)wareFactor)
+                Count = (int)Math.Floor(shipPrice / (decimal)wareFactor)
             };
             return material;
         }
 
-        const int EnergyCellWareFactor = 885;
-        const int TeladianiumWareFactor = 28333;
-        const int ClothRimesWareFactor = 85000;
-        const int RastarOilWareFactor = 42500;
-        const int OreWareFactor = 21250;
-        const int SiliconWareFactor = 28333;
-        const int CrystalWareFactor = 85000;
-        const int QuantumTubesWareFactor = 85000;
-        const int MicrochipsWareFactor = 42500;
-        const int ComputerComponentsWareFactor = 85000;
-        const int CreditsWareFactor = 3;
-        const int NividiumWareFactor = 170000;
+        private const int EnergyCellWareFactor = 885;
+        private const int TeladianiumWareFactor = 28333;
+        private const int ClothRimesWareFactor = 85000;
+        private const int RastarOilWareFactor = 42500;
+        private const int OreWareFactor = 21250;
+        private const int SiliconWareFactor = 28333;
+        private const int CrystalWareFactor = 85000;
+        private const int QuantumTubesWareFactor = 85000;
+        private const int MicrochipsWareFactor = 42500;
+        private const int ComputerComponentsWareFactor = 85000;
+        private const int CreditsWareFactor = 3;
+        private const int NividiumWareFactor = 170000;
 
         public ProductionMaterial[] GetProductionMaterials()
         {
 
             List<ProductionMaterial> materials = new List<ProductionMaterial>();
 
-            var shipPrice = GetPrice(0.5m);
+            int shipPrice = GetPrice(0.5m);
             materials.Add(_GetProductionMaterial(new SectorObject.SectorObjectType(SectorObject.Main_Type.Ware_E, 0), EnergyCellWareFactor, shipPrice));
             materials.Add(_GetProductionMaterial(new SectorObject.SectorObjectType(SectorObject.Main_Type.Ware_B, 9), TeladianiumWareFactor, shipPrice));
             materials.Add(_GetProductionMaterial(new SectorObject.SectorObjectType(SectorObject.Main_Type.Ware_F, 0), ClothRimesWareFactor, shipPrice));
@@ -172,7 +169,7 @@ namespace X3Tools.RAM.Bases.Sector
             materials.Add(_GetProductionMaterial(new SectorObject.SectorObjectType(SectorObject.Main_Type.Ware_T, 4), ComputerComponentsWareFactor, shipPrice));
             materials.Add(_GetProductionMaterial(new SectorObject.SectorObjectType(SectorObject.Main_Type.Ware_T, 79), CreditsWareFactor, shipPrice));
 
-            if(OriginRace == GameHook.RaceID.Khaak)
+            if (OriginRace == GameHook.RaceID.Khaak)
             {
                 materials.Add(_GetProductionMaterial(new SectorObject.SectorObjectType(SectorObject.Main_Type.Ware_M, 2), NividiumWareFactor, shipPrice));
             }

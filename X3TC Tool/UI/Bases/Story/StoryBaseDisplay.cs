@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting;
 using X3Tools.RAM;
-using X3Tools.RAM.Bases;
 using X3Tools.RAM.Bases.Story;
 using X3Tools.RAM.Bases.Story.Scripting;
 
@@ -19,7 +18,7 @@ namespace X3TC_RAM_Tool.UI.Displays
         public void Reload()
         {
             // Update instance
-            var storyBase = GameHook.storyBase;
+            StoryBase storyBase = GameHook.storyBase;
             txtAddress.Text = storyBase.pThis.ToString("X");
 
 
@@ -43,14 +42,14 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void button4_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting Arrays");
+            HashTableDisplay display = new HashTableDisplay("StoryBase - Scripting Arrays");
             display.LoadTable(GameHook.storyBase.pHashTable_ScriptArrayObject.address);
             display.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            HashTableDisplay display = new HashTableDisplay( "StoryBase - Scripting HashTables");
+            HashTableDisplay display = new HashTableDisplay("StoryBase - Scripting HashTables");
             display.LoadTable(GameHook.storyBase.pHashTable_ScriptTableObject.address);
             display.Show();
         }
@@ -98,7 +97,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void ReloadScriptFunction(int index)
         {
-            var functions = GameHook.storyBase.FunctionArray[index];
+            EventFunctionStruct functions = GameHook.storyBase.FunctionArray[index];
 
             txtPrimaryFunction.Text = functions.pPrimaryFunction.ToString("X");
             txtRegistrationFunction.Text = functions.pFunction2.ToString("X");
@@ -117,7 +116,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void button13_Click(object sender, EventArgs e)
         {
-            var searcher = new ScriptMemorySearcher();
+            ScriptMemorySearcher searcher = new ScriptMemorySearcher();
             searcher.Show();
             searcher.Search(dynamicValueDisplay1.Value);
         }

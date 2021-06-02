@@ -218,7 +218,7 @@ namespace X3Tools.RAM.Bases.Galaxy
         /// <returns></returns>
         public SectorData GetSector(short X, short Y)
         {
-            return sectorData[GetIndexOfSector(X,Y)];
+            return sectorData[GetIndexOfSector(X, Y)];
         }
 
         public static int GetIndexOfSector(short X, short Y)
@@ -251,11 +251,13 @@ namespace X3Tools.RAM.Bases.Galaxy
         public override void SetLocation(IntPtr hProcess, IntPtr address)
         {
             base.SetLocation(hProcess, address);
-            if(sectorData != null)
-                for(int i = 0; i < sectorData.Length; i++)
+            if (sectorData != null)
+            {
+                for (int i = 0; i < sectorData.Length; i++)
                 {
                     sectorData[i].SetLocation(hProcess, address + 0x10 + i * SectorData.ByteSizeConst);
                 }
+            }
         }
         #endregion
     }

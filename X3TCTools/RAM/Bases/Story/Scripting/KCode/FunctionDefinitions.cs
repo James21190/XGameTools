@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3Tools.RAM.Bases.Story.Scripting.KCode
 {
@@ -10,7 +6,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
     {
         public static KFunctionDefinition[] GetKFunctionDefinitions(GameHook.GameVersions version)
         {
-            switch(version)
+            switch (version)
             {
                 case GameHook.GameVersions.X3TC:
                     return TCFunctionDefinition;

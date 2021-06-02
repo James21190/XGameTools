@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using X3Tools.RAM;
 using X3Tools.RAM.Bases.Story.Scripting;
@@ -35,24 +29,27 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            var storyBase = GameHook.storyBase;
+            X3Tools.RAM.Bases.Story.StoryBase storyBase = GameHook.storyBase;
             int counter = 0;
             int count = storyBase.pHashTable_ScriptInstance.obj.Count;
-            foreach(var obj in storyBase.pHashTable_ScriptInstance.obj.GetAllContents())
+            foreach (ScriptInstance obj in storyBase.pHashTable_ScriptInstance.obj.GetAllContents())
             {
                 if (obj != null)
+                {
                     for (int addr = 0; addr < obj.pSub.obj.ScriptVariableCount; addr++)
                     {
-                        if(obj.pScriptVariableArr.GetObjInArrayAsType<DynamicValue>(addr) == m_SearchValue)
+                        if (obj.pScriptVariableArr.GetObjInArrayAsType<DynamicValue>(addr) == m_SearchValue)
                         {
-                            this.Invoke(new Action(() =>
+                            Invoke(new Action(() =>
                             {
                                 lstScriptInstance.Items.Add(obj.NegativeID);
                             }));
                             break;
                         }
                     }
-                bwScriptInstance.ReportProgress((++counter * 100)/count);
+                }
+
+                bwScriptInstance.ReportProgress((++counter * 100) / count);
             }
         }
 
@@ -63,24 +60,26 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting
 
         private void bwScriptArray_DoWork(object sender, DoWorkEventArgs e)
         {
-            var storyBase = GameHook.storyBase;
+            X3Tools.RAM.Bases.Story.StoryBase storyBase = GameHook.storyBase;
             int counter = 0;
             int count = storyBase.pHashTable_ScriptArrayObject.obj.Count;
-            var arrays = storyBase.pHashTable_ScriptArrayObject.obj.GetAllContents();
-            foreach (var obj in arrays)
+            ScriptArrayObject[] arrays = storyBase.pHashTable_ScriptArrayObject.obj.GetAllContents();
+            foreach (ScriptArrayObject obj in arrays)
             {
-                if(obj != null)
-                    for(int i = 0; i < obj.Length; i++)
+                if (obj != null)
+                {
+                    for (int i = 0; i < obj.Length; i++)
                     {
                         if (obj.pDynamicValueArr[i] == m_SearchValue)
                         {
-                            this.Invoke(new Action(() =>
+                            Invoke(new Action(() =>
                             {
                                 lstScriptArray.Items.Add(obj.ID);
                             }));
                             break;
                         }
                     }
+                }
 
                 bwScriptArray.ReportProgress((++counter * 100) / count);
             }

@@ -2,9 +2,9 @@
 using CommonToolLib.Vector;
 using System;
 using System.Collections.Generic;
-using X3Tools.RAM.Bases.Story.Scripting;
 using X3Tools.RAM.Bases.B3D;
 using X3Tools.RAM.Bases.Sector.Meta;
+using X3Tools.RAM.Bases.Story.Scripting;
 
 namespace X3Tools.RAM.Bases.Sector
 {
@@ -118,7 +118,7 @@ namespace X3Tools.RAM.Bases.Sector
                 case Main_Type.Factory: meta = new SectorObject_Station_Meta(); break;
                 default: return null;
             }
-            meta.SetLocation(this.hProcess, pMeta);
+            meta.SetLocation(hProcess, pMeta);
             meta.ReloadFromMemory();
             return meta;
         }
@@ -131,11 +131,15 @@ namespace X3Tools.RAM.Bases.Sector
         /// <returns></returns>
         public SectorObject[] GetAllChildrenWithType(Main_Type main_Type)
         {
-            var meta = GetMeta();
+            ISectorObjectMeta meta = GetMeta();
             if (meta != null)
+            {
                 return meta.GetChildren(main_Type);
+            }
             else
+            {
                 return Array.Empty<SectorObject>();
+            }
         }
 
         public SectorObject[] GetAllChildrenWithType(int main_Type)
@@ -166,7 +170,7 @@ namespace X3Tools.RAM.Bases.Sector
         public RenderObject GetData()
         {
             RenderObject data = new RenderObject();
-            data.SetLocation(this.hProcess, pRenderObject.address);
+            data.SetLocation(hProcess, pRenderObject.address);
             return data;
 
 
@@ -313,11 +317,11 @@ namespace X3Tools.RAM.Bases.Sector
         /// </summary>
         public void Save()
         {
-            MemoryControl.Write(this.hProcess, pThis + 16, Speed);
-            MemoryControl.Write(this.hProcess, pThis + 20, TargetSpeed);
-            MemoryControl.Write(this.hProcess, pThis + 24, LocalEulerRotationDelta);
-            MemoryControl.Write(this.hProcess, pThis + 96, PositionStrafeDelta);
-            MemoryControl.Write(this.hProcess, pThis + 236, Hull);
+            MemoryControl.Write(hProcess, pThis + 16, Speed);
+            MemoryControl.Write(hProcess, pThis + 20, TargetSpeed);
+            MemoryControl.Write(hProcess, pThis + 24, LocalEulerRotationDelta);
+            MemoryControl.Write(hProcess, pThis + 96, PositionStrafeDelta);
+            MemoryControl.Write(hProcess, pThis + 236, Hull);
         }
 
         public override void SetLocation(IntPtr hProcess, IntPtr address)

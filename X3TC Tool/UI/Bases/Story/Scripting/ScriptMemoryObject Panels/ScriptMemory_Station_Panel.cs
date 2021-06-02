@@ -1,20 +1,16 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels;
 using X3Tools.RAM;
-
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
-
-
-using X3Tools.RAM.Bases.Story.Scripting;
 using X3Tools.RAM.Bases.Sector;
-using System;
+using X3Tools.RAM.Bases.Story.Scripting;
 
 namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Type_Panels
 {
     public partial class ScriptMemory_Station_Panel : UserControl, IScriptMemoryObject_Panel
     {
         private MessengerFunction m_MessengerFunction;
-        public MessengerFunction MessengerFunction { get => m_MessengerFunction; set { m_MessengerFunction = value; } }
+        public MessengerFunction MessengerFunction { get => m_MessengerFunction; set => m_MessengerFunction = value; }
         public ScriptMemory_Station_Panel()
         {
             InitializeComponent();
@@ -24,14 +20,20 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
             }
         }
 
-        ScriptInstance m_ScriptInstance;
+        private ScriptInstance m_ScriptInstance;
 
         public void LoadObject(ScriptInstance ScriptInstance, bool reload = true)
         {
             if (!ScriptInstance.ScriptInstanceType.InheritsFrom("Station"))
+            {
                 throw new NotSupportedException("Object doesn't inherit from Station");
+            }
+
             m_ScriptInstance = ScriptInstance;
-            if(reload) Reload();
+            if (reload)
+            {
+                Reload();
+            }
         }
 
         private void ReloadSubTypes()

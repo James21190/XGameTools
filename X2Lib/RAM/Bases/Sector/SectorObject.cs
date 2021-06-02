@@ -1,10 +1,6 @@
 ﻿using CommonToolLib.Memory;
 using CommonToolLib.Vector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using X2Lib.RAM.Bases.B3D;
 using XCommonLib.RAM.Bases.Sector.Meta;
 
@@ -67,7 +63,7 @@ namespace X2Lib.RAM.Bases.Sector
         #endregion
 
         public override bool IsValid => throw new NotImplementedException();
-        
+
         #region IMemoryObject
         public override int ByteSize => throw new NotImplementedException();
 

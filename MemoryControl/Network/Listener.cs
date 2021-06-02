@@ -22,9 +22,14 @@ namespace CommonToolLib.Network
 
         private ClientData GetClient(int id)
         {
-            foreach (var client in m_Clients)
+            foreach (ClientData client in m_Clients)
+            {
                 if (client.id == id)
+                {
                     return client;
+                }
+            }
+
             throw new System.Exception("Client not found.");
         }
         public Listener(int port)

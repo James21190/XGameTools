@@ -32,14 +32,14 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void btnViewHashTable1_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay();
+            HashTableDisplay display = new HashTableDisplay();
             display.LoadTable(GameHook.inputBase.pHashTable1.address);
             display.Show();
         }
 
         private void btnViewHashTable2_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay();
+            HashTableDisplay display = new HashTableDisplay();
             display.LoadTable(GameHook.inputBase.pHashTable2.address);
             display.Show();
         }

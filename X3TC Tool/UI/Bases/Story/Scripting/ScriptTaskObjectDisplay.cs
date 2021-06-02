@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays;
 using X3Tools.RAM;
-using X3Tools.RAM.Bases;
 using X3Tools.RAM.Bases.Story;
 using X3Tools.RAM.Bases.Story.Scripting;
 using X3Tools.RAM.Generics;
-using X3Tools.RAM.Bases.Story.Scripting.KCode;
-using X3TC_RAM_Tool.UI.Bases.StoryBase_Displays;
 
 namespace X3TC_RAM_Tool.UI.Displays
 {
@@ -120,7 +118,7 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var display = new ScriptingDisassemblerDisplay();
+            ScriptingDisassemblerDisplay display = new ScriptingDisassemblerDisplay();
             display.LoadAddress(m_ScriptObject.InstructionOffset);
             display.Show();
         }

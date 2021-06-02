@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CommonToolLib.Memory;
+﻿using CommonToolLib.Memory;
 using SharpDisasm;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using X3Tools.RAM;
 
 namespace X3TC_RAM_Tool.UI
@@ -25,20 +19,20 @@ namespace X3TC_RAM_Tool.UI
             textBox1.Text = "0x" + address.ToString("X");
             Disassembler.Translator.IncludeAddress = true;
 
-            var buffer = MemoryControl.Read(GameHook.hProcess, address, 0xffff);
+            byte[] buffer = MemoryControl.Read(GameHook.hProcess, address, 0xffff);
 
-            var disassembler = new Disassembler(buffer, ArchitectureMode.x86_32,(ulong)address);
+            Disassembler disassembler = new Disassembler(buffer, ArchitectureMode.x86_32, (ulong)address);
 
-            var instructions = disassembler.Disassemble();
+            IEnumerable<Instruction> instructions = disassembler.Disassemble();
 
             richTextBox1.Text = "";
 
             int i = 0;
             const int max = 1000;
 
-            foreach (var instruction in instructions)
+            foreach (Instruction instruction in instructions)
             {
-                if(i++ > max)
+                if (i++ > max)
                 {
                     richTextBox1.Text += "= Maximum lines reached =";
                     return;
@@ -51,7 +45,9 @@ namespace X3TC_RAM_Tool.UI
         {
             int adr;
             if (int.TryParse(textBox1.Text, System.Globalization.NumberStyles.HexNumber, null, out adr))
+            {
                 Disassemble((IntPtr)adr);
+            }
         }
     }
 }

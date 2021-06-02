@@ -143,9 +143,9 @@ namespace X3Tools.RAM.Bases.B3D
 
         public void Save()
         {
-            MemoryControl.Write(this.hProcess, pThis + 0x80, ModelScale);
+            MemoryControl.Write(hProcess, pThis + 0x80, ModelScale);
 
-            MemoryControl.Write(this.hProcess, pThis + 0x140, ModelID);
+            MemoryControl.Write(hProcess, pThis + 0x140, ModelID);
         }
 
         public bool IsValid => pNext.IsValid && pPrevious.IsValid;
@@ -288,7 +288,7 @@ namespace X3Tools.RAM.Bases.B3D
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
 
             pNext = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
             pPrevious = collection.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();

@@ -32,17 +32,17 @@ namespace X3TC_RAM_Tool.UI
         public void Reload()
         {
             dataGridView1.Rows.Clear();
-            if(m_TextPage == null)
+            if (m_TextPage == null)
             {
                 txtAddress.Text = "Not found!";
                 return;
             }
             txtAddress.Text = m_TextPage.pThis.ToString("X");
 
-            foreach(var entry in m_TextPage.textEntries)
+            foreach (TextPage.TextEntry entry in m_TextPage.textEntries)
             {
-                var text = entry.value.GetAsTextObject().pText.obj.value;
-                dataGridView1.Rows.Add(entry.pThis.ToString("X"),entry.ID, text, GameHook.storyBase.GetParsedText((GameHook.Language)nudLanguageID.Value, text));
+                string text = entry.value.GetAsTextObject().pText.obj.Value;
+                dataGridView1.Rows.Add(entry.pThis.ToString("X"), entry.ID, text, GameHook.storyBase.GetParsedText((GameHook.Language)nudLanguageID.Value, text));
             }
         }
 

@@ -69,17 +69,20 @@ namespace X3Tools.RAM.Bases.Story
 
         private ScriptStringObject _GetTextObject(int id)
         {
-            for(int i = 0; i < Count; i++)
+            for (int i = 0; i < Count; i++)
             {
-                var entry = pEntries.GetObjectInArray(i);
-                if (entry.ID == id) return entry.value.GetAsTextObject();
+                TextEntry entry = pEntries.GetObjectInArray(i);
+                if (entry.ID == id)
+                {
+                    return entry.value.GetAsTextObject();
+                }
             }
             throw new IndexOutOfRangeException();
         }
 
         public string GetText(int id)
         {
-            return _GetTextObject(id).pText.obj.value;
+            return _GetTextObject(id).pText.obj.Value;
         }
 
         public override byte[] GetBytes()

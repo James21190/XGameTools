@@ -1,6 +1,4 @@
-﻿using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
-
-namespace X3Tools.RAM.Bases.Story.Scripting
+﻿namespace X3Tools.RAM.Bases.Story.Scripting
 {
     public partial class ScriptInstance
     {

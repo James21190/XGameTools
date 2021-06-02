@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3Tools.RAM.Bases.Story.Scripting.KCode
 {
@@ -20,7 +16,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
             {
                 FunctionName = "UndefinedFunc0x" + CalledFunction.ToString("X");
             }
-            else if(String.IsNullOrEmpty(AssociatedDefinition.FunctionName) || ForceHex)
+            else if (String.IsNullOrEmpty(AssociatedDefinition.FunctionName) || ForceHex)
             {
                 FunctionName = "Func0x" + CalledFunction.ToString("X");
             }
@@ -30,8 +26,15 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
             }
 
             string ParamString;
-            if (Parameters != null) ParamString = string.Join(",", Parameters);
-            else ParamString = "";
+            if (Parameters != null)
+            {
+                ParamString = string.Join(",", Parameters);
+            }
+            else
+            {
+                ParamString = "";
+            }
+
             return string.Format("{0} - {1} ({2})", Address, FunctionName, ParamString);
         }
     }

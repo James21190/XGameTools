@@ -1,5 +1,4 @@
 ﻿using CommonToolLib.Memory;
-using System;
 
 namespace XCommonLib.RAM.Bases.Sector.Meta
 {

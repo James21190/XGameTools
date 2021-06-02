@@ -81,37 +81,31 @@ namespace CommonToolLib.Memory
 
     public class MemoryString : MemoryObject
     {
-        public string value;
+        public string Value;
 
         public override byte[] GetBytes()
         {
-            byte[] bytes = new byte[value.Length + 1];
-            for (int i = 0; i < value.Length; i++)
+            byte[] bytes = new byte[Value.Length + 1];
+            for (int i = 0; i < Value.Length; i++)
             {
-                bytes[i] = (byte)value.ToArray()[i];
+                bytes[i] = (byte)Value.ToArray()[i];
             }
-            bytes[value.Length] = 0;
+            bytes[Value.Length] = 0;
             ObjectByteList collection = new ObjectByteList();
             collection.Append(bytes);
             return collection.GetBytes();
         }
 
-        public override int ByteSize
-        {
-            get
-            {
-                return value == null ? 10000 : value.Length + 1;
-            }
-        }
+        public override int ByteSize => Value == null ? 10000 : Value.Length + 1;
 
         public override void SetData(byte[] Memory)
         {
-            value = "";
+            Value = "";
             ObjectByteList collection = new ObjectByteList(Memory);
             char character = (char)collection.PopByte();
             while (character != 0)
             {
-                value += character;
+                Value += character;
                 character = (char)collection.PopByte();
             }
         }

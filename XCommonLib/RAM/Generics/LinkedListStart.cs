@@ -31,7 +31,7 @@ namespace XCommonLib.RAM.Generics
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
             pFirst = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();

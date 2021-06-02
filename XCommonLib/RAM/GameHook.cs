@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonToolLib.Memory;
+﻿using CommonToolLib.Memory;
 using XCommonLib.RAM.Bases.Sector;
 using XCommonLib.RAM.Bases.Story;
 
@@ -21,5 +16,6 @@ namespace XCommonLib.RAM
         public static readonly int MainTypeCount = 32;
 
         public abstract string GetRaceIDName(ushort id);
+        public abstract string GetMainTypeName(int id);
     }
 }

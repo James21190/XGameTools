@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
 
 namespace XCommonLib.UI
@@ -15,6 +8,8 @@ namespace XCommonLib.UI
     {
 
         private SectorObject m_SectorObject;
+
+        public GameHook ReferenceGameHook = null;
 
         public SectorObjectView()
         {
@@ -39,6 +34,15 @@ namespace XCommonLib.UI
             vec3AutopilotRotationDeltaTarget.Vector = m_SectorObject.LocalAutopilotRotationDeltaTarget;
             vec3Position.Vector = m_SectorObject.Position;
             vec3PositionStrafeDelta.Vector = m_SectorObject.PositionStrafeDelta;
+
+            if (ReferenceGameHook != null)
+            {
+                ntxtRace.Text = string.Format("{0} - {1}", m_SectorObject.RaceID, ReferenceGameHook.GetRaceIDName(m_SectorObject.RaceID));
+            }
+            else
+            {
+                ntxtRace.Text = m_SectorObject.RaceID.ToString();
+            }
         }
     }
 }

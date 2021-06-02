@@ -21,19 +21,13 @@ namespace X3Tools.RAM.Bases.Story.Scripting
         {
             get
             {
-                var obj = pScriptVariableArr.obj;
+                ScriptMemoryObject obj = pScriptVariableArr.obj;
                 obj.Resize(pSub.obj.ScriptVariableCount);
                 return obj;
             }
         }
 
-        public ScriptInstanceTypeLibrary.ScriptInstanceType ScriptInstanceType
-        {
-            get
-            {
-                return ScriptInstanceTypeLibrary.GetScriptInstanceType(pSub.obj.Class);
-            }
-        }
+        public ScriptInstanceTypeLibrary.ScriptInstanceType ScriptInstanceType => ScriptInstanceTypeLibrary.GetScriptInstanceType(pSub.obj.Class);
 
         public DynamicValue GetVariableByName(string name)
         {

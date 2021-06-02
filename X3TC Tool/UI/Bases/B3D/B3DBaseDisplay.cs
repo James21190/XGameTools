@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Bases.CameraBase_Displays;
 using X3Tools.RAM;
-using X3Tools.RAM.Generics;
 
 namespace X3TC_RAM_Tool.UI.Displays
 {
@@ -37,21 +36,21 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void btnRenderObjectFirst_Click(object sender, EventArgs e)
         {
-            var display = new RenderObjectDisplay();
+            RenderObjectDisplay display = new RenderObjectDisplay();
             display.LoadObject(GameHook.b3DBase.pFirstRenderObject.obj);
             display.Show();
         }
 
         private void btnRenderObjectLast_Click(object sender, EventArgs e)
         {
-            var display = new RenderObjectDisplay();
+            RenderObjectDisplay display = new RenderObjectDisplay();
             display.LoadObject(GameHook.b3DBase.pLastRenderObject.obj);
             display.Show();
         }
 
         private void btnRenderObjectTable_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay();
+            HashTableDisplay display = new HashTableDisplay();
             display.LoadTable(GameHook.b3DBase.pRenderObjectHashTable.address);
             display.Show();
         }
@@ -63,21 +62,21 @@ namespace X3TC_RAM_Tool.UI.Displays
 
         private void btnBodyDataFirst_Click(object sender, EventArgs e)
         {
-            var display = new BodyDataDisplay();
+            BodyDataDisplay display = new BodyDataDisplay();
             display.LoadBodyData(GameHook.b3DBase.pFirstBodyData.obj);
             display.Show();
         }
 
         private void btnBodyDataLast_Click(object sender, EventArgs e)
         {
-            var display = new BodyDataDisplay();
+            BodyDataDisplay display = new BodyDataDisplay();
             display.LoadBodyData(GameHook.b3DBase.pLastBodyData.obj);
             display.Show();
         }
 
         private void btnBodyDataTable_Click(object sender, EventArgs e)
         {
-            var display = new HashTableDisplay();
+            HashTableDisplay display = new HashTableDisplay();
             display.LoadTable(GameHook.b3DBase.pBodyHashTable.address);
             display.Show();
         }

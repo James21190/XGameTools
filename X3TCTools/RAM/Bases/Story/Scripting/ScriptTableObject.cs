@@ -20,7 +20,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
             id = collection.PopInt();
             hashTable = collection.PopIMemoryObject<ScriptTableObject_Inner>(0x8);
         }

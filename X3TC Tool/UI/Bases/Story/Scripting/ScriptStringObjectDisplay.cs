@@ -33,7 +33,7 @@ namespace X3TC_RAM_Tool.UI.Displays
         {
             m_obj.ReloadFromMemory();
             IDBox.Value = m_obj.id;
-            textBox1.Text = m_obj.pText.obj.value;
+            textBox1.Text = m_obj.pText.obj.Value;
         }
 
         private void ScriptingTextObjectDisplay_Load(object sender, EventArgs e)

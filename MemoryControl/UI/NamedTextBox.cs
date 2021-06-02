@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace CommonToolLib.UI
@@ -18,30 +11,21 @@ namespace CommonToolLib.UI
         public bool ReadOnly
         {
             get => textBox1.ReadOnly;
-            set
-            {
-                textBox1.ReadOnly = value;
-            }
+            set => textBox1.ReadOnly = value;
         }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get => textBox1.Text;
-            set
-            {
-                textBox1.Text = value;
-            }
+            set => textBox1.Text = value;
         }
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Title
         {
             get => groupBox1.Text;
-            set
-            {
-                groupBox1.Text = value;
-            }
+            set => groupBox1.Text = value;
         }
 
         public NamedTextBox()

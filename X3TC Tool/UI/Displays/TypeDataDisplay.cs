@@ -48,7 +48,7 @@ namespace X3TC_RAM_Tool.UI.Displays
             if (tabControl1.SelectedIndex == -1)
             {
                 comboBox2.Enabled = false;
-                
+
                 return;
             }
 
@@ -68,7 +68,7 @@ namespace X3TC_RAM_Tool.UI.Displays
             txtAddress.Text = m_TypeData.pThis.ToString("X");
 
             txtClass.Text = m_TypeData.GetObjectClassAsString();
-            txtTypeString.Text = m_TypeData.pTypeString.obj.value;
+            txtTypeString.Text = m_TypeData.pTypeString.obj.Value;
             txtNameID.Text = m_TypeData.DefaultNameID.ToString();
             textBox1.Text = m_TypeData.DefaultName;
             v3dRotationSpeed.Vector = m_TypeData.RotationSpeed;
@@ -94,7 +94,7 @@ namespace X3TC_RAM_Tool.UI.Displays
                     break;
                 case SectorObject.Main_Type.Background:
                     TypeData_Background backgroundTypeData = (TypeData_Background)m_TypeData;
-                    txtBackgroundName.Text = backgroundTypeData.pName.obj.value;
+                    txtBackgroundName.Text = backgroundTypeData.pName.obj.Value;
                     break;
                 case SectorObject.Main_Type.Sun:
                     TypeData_Sun sunTypeData = (TypeData_Sun)m_TypeData;
@@ -116,9 +116,14 @@ namespace X3TC_RAM_Tool.UI.Displays
                     txtMaximumCargoSpace.Text = shipTypeData.MaximumCargoSpace.ToString();
 
                     if (shipTypeData.MaxShieldClass >= 0)
+                    {
                         txtShielding.Text = string.Format("{0} x {1}", shipTypeData.MaxShieldCount, SectorObject.GetSubTypeAsString(SectorObject.Main_Type.Shield, shipTypeData.MaxShieldClass));
+                    }
                     else
+                    {
                         txtShielding.Text = "None";
+                    }
+
                     txtShieldPowerGenerator.Text = shipTypeData.ShieldPowerGenerator.ToString();
                     txtShipMaxHull.Text = shipTypeData.MaxHull.ToString();
 
@@ -127,10 +132,10 @@ namespace X3TC_RAM_Tool.UI.Displays
                     LoadTurret(0);
 
                     // HQ Production
-                    var time = shipTypeData.GetProductionTime();
+                    TimeSpan time = shipTypeData.GetProductionTime();
                     txtShipRETime.Text = string.Format("{0}-{1}:{2}:{3}", time.Days, time.Hours, time.Minutes, time.Seconds);
                     dataGridView1.Rows.Clear();
-                    foreach(var item in shipTypeData.GetProductionMaterials())
+                    foreach (TypeData_Ship.ProductionMaterial item in shipTypeData.GetProductionMaterials())
                     {
                         dataGridView1.Rows.Add(item.WareType.ToString(), item.Count);
                     }

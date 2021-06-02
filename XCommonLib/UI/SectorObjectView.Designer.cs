@@ -28,15 +28,137 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ntxtRace = new CommonToolLib.UI.NamedTextBox();
+            this.vec3PositionStrafeDelta = new CommonToolLib.UI.Vector3Display();
+            this.vec3Position = new CommonToolLib.UI.Vector3Display();
+            this.nnudDesiredSpeed = new CommonToolLib.UI.NamedNumericUpDown();
             this.nnudSpeed = new CommonToolLib.UI.NamedNumericUpDown();
             this.vec3AutopilotRotationDeltaTarget = new CommonToolLib.UI.Vector3Display();
             this.vec3LocalEulerRotationDelta = new CommonToolLib.UI.Vector3Display();
             this.vec3EulerRotation = new CommonToolLib.UI.Vector3Display();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
-            this.nnudDesiredSpeed = new CommonToolLib.UI.NamedNumericUpDown();
-            this.vec3Position = new CommonToolLib.UI.Vector3Display();
-            this.vec3PositionStrafeDelta = new CommonToolLib.UI.Vector3Display();
             this.SuspendLayout();
+            // 
+            // ntxtRace
+            // 
+            this.ntxtRace.Location = new System.Drawing.Point(377, 112);
+            this.ntxtRace.MaximumSize = new System.Drawing.Size(0, 50);
+            this.ntxtRace.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtRace.Name = "ntxtRace";
+            this.ntxtRace.ReadOnly = true;
+            this.ntxtRace.Size = new System.Drawing.Size(100, 50);
+            this.ntxtRace.TabIndex = 8;
+            this.ntxtRace.Title = "Race";
+            // 
+            // vec3PositionStrafeDelta
+            // 
+            this.vec3PositionStrafeDelta.DecimalPlaces = 0;
+            this.vec3PositionStrafeDelta.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.vec3PositionStrafeDelta.Location = new System.Drawing.Point(53, 221);
+            this.vec3PositionStrafeDelta.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.vec3PositionStrafeDelta.MaximumSize = new System.Drawing.Size(156, 103);
+            this.vec3PositionStrafeDelta.Minimum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            -2147483648});
+            this.vec3PositionStrafeDelta.MinimumSize = new System.Drawing.Size(100, 103);
+            this.vec3PositionStrafeDelta.Name = "vec3PositionStrafeDelta";
+            this.vec3PositionStrafeDelta.ReadOnly = true;
+            this.vec3PositionStrafeDelta.Size = new System.Drawing.Size(156, 103);
+            this.vec3PositionStrafeDelta.TabIndex = 7;
+            this.vec3PositionStrafeDelta.Text = "PositionStrafeDelta";
+            this.vec3PositionStrafeDelta.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3PositionStrafeDelta.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3PositionStrafeDelta.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // vec3Position
+            // 
+            this.vec3Position.DecimalPlaces = 0;
+            this.vec3Position.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.vec3Position.Location = new System.Drawing.Point(53, 112);
+            this.vec3Position.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.vec3Position.MaximumSize = new System.Drawing.Size(156, 103);
+            this.vec3Position.Minimum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            -2147483648});
+            this.vec3Position.MinimumSize = new System.Drawing.Size(100, 103);
+            this.vec3Position.Name = "vec3Position";
+            this.vec3Position.ReadOnly = true;
+            this.vec3Position.Size = new System.Drawing.Size(156, 103);
+            this.vec3Position.TabIndex = 6;
+            this.vec3Position.Text = "Position";
+            this.vec3Position.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3Position.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vec3Position.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // nnudDesiredSpeed
+            // 
+            this.nnudDesiredSpeed.Location = new System.Drawing.Point(377, 56);
+            this.nnudDesiredSpeed.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nnudDesiredSpeed.MaximumSize = new System.Drawing.Size(0, 50);
+            this.nnudDesiredSpeed.Minimum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            -2147483648});
+            this.nnudDesiredSpeed.MinimumSize = new System.Drawing.Size(100, 50);
+            this.nnudDesiredSpeed.Name = "nnudDesiredSpeed";
+            this.nnudDesiredSpeed.ReadOnly = true;
+            this.nnudDesiredSpeed.Size = new System.Drawing.Size(100, 50);
+            this.nnudDesiredSpeed.TabIndex = 5;
+            this.nnudDesiredSpeed.Title = "Desired Speed";
+            this.nnudDesiredSpeed.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // nnudSpeed
             // 
@@ -80,10 +202,10 @@
             0});
             this.vec3AutopilotRotationDeltaTarget.MaximumSize = new System.Drawing.Size(156, 103);
             this.vec3AutopilotRotationDeltaTarget.Minimum = new decimal(new int[] {
+            1000000,
             0,
             0,
-            0,
-            0});
+            -2147483648});
             this.vec3AutopilotRotationDeltaTarget.MinimumSize = new System.Drawing.Size(100, 103);
             this.vec3AutopilotRotationDeltaTarget.Name = "vec3AutopilotRotationDeltaTarget";
             this.vec3AutopilotRotationDeltaTarget.ReadOnly = true;
@@ -122,10 +244,10 @@
             0});
             this.vec3LocalEulerRotationDelta.MaximumSize = new System.Drawing.Size(156, 103);
             this.vec3LocalEulerRotationDelta.Minimum = new decimal(new int[] {
+            1000000,
             0,
             0,
-            0,
-            0});
+            -2147483648});
             this.vec3LocalEulerRotationDelta.MinimumSize = new System.Drawing.Size(100, 103);
             this.vec3LocalEulerRotationDelta.Name = "vec3LocalEulerRotationDelta";
             this.vec3LocalEulerRotationDelta.ReadOnly = true;
@@ -164,10 +286,10 @@
             0});
             this.vec3EulerRotation.MaximumSize = new System.Drawing.Size(156, 103);
             this.vec3EulerRotation.Minimum = new decimal(new int[] {
+            1000000,
             0,
             0,
-            0,
-            0});
+            -2147483648});
             this.vec3EulerRotation.MinimumSize = new System.Drawing.Size(100, 103);
             this.vec3EulerRotation.Name = "vec3EulerRotation";
             this.vec3EulerRotation.ReadOnly = true;
@@ -202,120 +324,11 @@
             this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
             this.numericIDObjectControl1.TabIndex = 0;
             // 
-            // nnudDesiredSpeed
-            // 
-            this.nnudDesiredSpeed.Location = new System.Drawing.Point(377, 56);
-            this.nnudDesiredSpeed.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.nnudDesiredSpeed.MaximumSize = new System.Drawing.Size(0, 50);
-            this.nnudDesiredSpeed.Minimum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            -2147483648});
-            this.nnudDesiredSpeed.MinimumSize = new System.Drawing.Size(100, 50);
-            this.nnudDesiredSpeed.Name = "nnudDesiredSpeed";
-            this.nnudDesiredSpeed.ReadOnly = true;
-            this.nnudDesiredSpeed.Size = new System.Drawing.Size(100, 50);
-            this.nnudDesiredSpeed.TabIndex = 5;
-            this.nnudDesiredSpeed.Title = "Desired Speed";
-            this.nnudDesiredSpeed.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // vec3Position
-            // 
-            this.vec3Position.DecimalPlaces = 0;
-            this.vec3Position.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.vec3Position.Location = new System.Drawing.Point(53, 112);
-            this.vec3Position.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.vec3Position.MaximumSize = new System.Drawing.Size(156, 103);
-            this.vec3Position.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.vec3Position.MinimumSize = new System.Drawing.Size(100, 103);
-            this.vec3Position.Name = "vec3Position";
-            this.vec3Position.ReadOnly = true;
-            this.vec3Position.Size = new System.Drawing.Size(156, 103);
-            this.vec3Position.TabIndex = 6;
-            this.vec3Position.Text = "Position";
-            this.vec3Position.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.vec3Position.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.vec3Position.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // vec3PositionStrafeDelta
-            // 
-            this.vec3PositionStrafeDelta.DecimalPlaces = 0;
-            this.vec3PositionStrafeDelta.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.vec3PositionStrafeDelta.Location = new System.Drawing.Point(53, 221);
-            this.vec3PositionStrafeDelta.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.vec3PositionStrafeDelta.MaximumSize = new System.Drawing.Size(156, 103);
-            this.vec3PositionStrafeDelta.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.vec3PositionStrafeDelta.MinimumSize = new System.Drawing.Size(100, 103);
-            this.vec3PositionStrafeDelta.Name = "vec3PositionStrafeDelta";
-            this.vec3PositionStrafeDelta.ReadOnly = true;
-            this.vec3PositionStrafeDelta.Size = new System.Drawing.Size(156, 103);
-            this.vec3PositionStrafeDelta.TabIndex = 7;
-            this.vec3PositionStrafeDelta.Text = "PositionStrafeDelta";
-            this.vec3PositionStrafeDelta.X = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.vec3PositionStrafeDelta.Y = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.vec3PositionStrafeDelta.Z = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
             // SectorObjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ntxtRace);
             this.Controls.Add(this.vec3PositionStrafeDelta);
             this.Controls.Add(this.vec3Position);
             this.Controls.Add(this.nnudDesiredSpeed);
@@ -340,5 +353,6 @@
         private CommonToolLib.UI.NamedNumericUpDown nnudDesiredSpeed;
         private CommonToolLib.UI.Vector3Display vec3Position;
         private CommonToolLib.UI.Vector3Display vec3PositionStrafeDelta;
+        private CommonToolLib.UI.NamedTextBox ntxtRace;
     }
 }

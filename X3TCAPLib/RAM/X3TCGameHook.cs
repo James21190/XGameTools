@@ -1,13 +1,9 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XCommonLib.RAM;
 using X3TCAPLib.RAM.Bases.Sector;
 using X3TCAPLib.RAM.Bases.Story;
+using XCommonLib.RAM;
 
 namespace X3TCAPLib.RAM
 {
@@ -35,6 +31,38 @@ namespace X3TCAPLib.RAM
             Terran,
             Yaki,
             None = 65535
+        }
+
+        public enum MainType
+        {
+            Bullet,
+            Sector,
+            Background,
+            Sun,
+            Planet,
+            Dock,
+            Factory,
+            Ship,
+            Laser,
+            Shield,
+            Missile,
+            Ware_E,
+            Ware_N,
+            Ware_B,
+            Ware_F,
+            Ware_M,
+            Ware_T,
+            Asteroid,
+            Gate,
+            Camera,
+            Special,
+
+            Cockpit = 25,
+
+            Debris = 28,
+            Wreck,
+            Factory_Wreck,
+            Ship_Wreck
         }
 
         public enum GlobalAddressesX3TC
@@ -112,6 +140,10 @@ namespace X3TCAPLib.RAM
         public override string GetRaceIDName(ushort id)
         {
             return ((RaceID)id).ToString();
+        }
+        public override string GetMainTypeName(int id)
+        {
+            return ((MainType)id).ToString();
         }
     }
 }

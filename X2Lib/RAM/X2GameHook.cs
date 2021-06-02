@@ -1,10 +1,6 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using X2Lib.RAM.Bases.Sector;
 using X2Lib.RAM.Bases.Story;
 
@@ -12,6 +8,7 @@ namespace X2Lib.RAM
 {
     public class X2GameHook : XCommonLib.RAM.GameHook
     {
+        // Taken from TC. Possible inaccuracy.
         public enum RaceID : ushort
         {
             Argon,
@@ -35,6 +32,39 @@ namespace X2Lib.RAM
             Race5,
 
             None = 65535
+        }
+
+        // Taken from TC. Possible inaccuracy.
+        public enum MainType
+        {
+            Bullet,
+            Sector,
+            Background,
+            Sun,
+            Planet,
+            Dock,
+            Factory,
+            Ship,
+            Laser,
+            Shield,
+            Missile,
+            Ware_E,
+            Ware_N,
+            Ware_B,
+            Ware_F,
+            Ware_M,
+            Ware_T,
+            Asteroid,
+            Gate,
+            Camera,
+            Special,
+
+            Cockpit = 25,
+
+            Debris = 28,
+            Wreck,
+            Factory_Wreck,
+            Ship_Wreck
         }
 
         public enum GlobalAddressesX2
@@ -67,7 +97,11 @@ namespace X2Lib.RAM
 
         public override string GetRaceIDName(ushort id)
         {
-            throw new NotImplementedException();
+            return ((RaceID)id).ToString();
+        }
+        public override string GetMainTypeName(int id)
+        {
+            return ((MainType)id).ToString();
         }
     }
 }

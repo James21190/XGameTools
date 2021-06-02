@@ -1,14 +1,10 @@
 ﻿using CommonToolLib.Memory;
 using CommonToolLib.Vector;
-using X3TCAPLib.RAM.Bases.Sector;
-using X3TCAPLib.RAM.Bases.B3D;
-using X3TCAPLib.RAM.Bases.Story.Scripting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using X3TCAPLib.RAM.Bases.B3D;
+using X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta;
 using XCommonLib.RAM.Bases.Sector.Meta;
+using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace X3TCAPLib.RAM.Bases.Sector
 {
@@ -26,11 +22,30 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public override Vector3 LocalAutopilotRotationDeltaTarget { get; set; }
         public override ushort RaceID { get; set; }
         public ushort Unknown_4;
+        public int InteractionFlags;
         public int Unknown_5;
         // base.ObjectType
         public int Unknown_6;
         public IntPtr pMeta;
-        public override ISectorObjectMeta Meta => throw new NotImplementedException();
+        public override ISectorObjectMeta Meta
+        {
+            get
+            {
+                ISectorObjectMeta meta;
+                switch ((X3TCGameHook.MainType)ObjectType.MainType)
+                {
+                    case X3TCGameHook.MainType.Sector: meta = new SectorObject_Sector_Meta(); break;
+                    case X3TCGameHook.MainType.Dock:
+                    case X3TCGameHook.MainType.Factory: meta = new SectorObject_Station_Meta(); break;
+                    case X3TCGameHook.MainType.Ship: meta = new SectorObject_Ship_Meta(); break;
+                    default: return null;
+                }
+                meta.hProcess = hProcess;
+                meta.pThis = pMeta;
+                meta.ReloadFromMemory();
+                return meta;
+            }
+        }
         public MemoryObjectPointer<SectorObject> pParent;
         public int Unknown_7;
         public int Unknown_8;
@@ -84,8 +99,10 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public override XCommonLib.RAM.Bases.B3D.RenderObject RenderObject => pRenderObject.obj.IsValid ? pRenderObject.obj : null;
         #endregion
 
-        public override bool IsValid => throw new NotImplementedException();
-        
+        public override bool IsValid =>
+            pNext.address != IntPtr.Zero &&
+            pPrevious.address != IntPtr.Zero;
+
         #region IMemoryObject
         public override byte[] GetBytes()
         {
@@ -102,6 +119,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             collection.Append(LocalAutopilotRotationDeltaTarget);
             collection.Append(RaceID);
             collection.Append(Unknown_4);
+            collection.Append(InteractionFlags);
             collection.Append(Unknown_5);
             collection.Append(ObjectType);
             collection.Append(Unknown_6);
@@ -167,6 +185,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             LocalAutopilotRotationDeltaTarget = objectByteList.PopIMemoryObject<Vector3>();
             RaceID = objectByteList.PopUShort();
             Unknown_4 = objectByteList.PopUShort();
+            InteractionFlags = objectByteList.PopInt();
             Unknown_5 = objectByteList.PopInt();
             ObjectType = objectByteList.PopIMemoryObject<SectorObjectType>();
             Unknown_6 = objectByteList.PopInt();

@@ -23,7 +23,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         public XCommonLib.RAM.Bases.Sector.SectorObject[] GetChildren()
         {
             List<XCommonLib.RAM.Bases.Sector.SectorObject> children = new List<XCommonLib.RAM.Bases.Sector.SectorObject>();
-            for(int i = 0; i < X3TCGameHook.MainTypeCount; i++)
+            for (int i = 0; i < X3TCGameHook.MainTypeCount; i++)
             {
                 children.AddRange(GetChildren(i));
             }
@@ -32,13 +32,13 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
 
         public XCommonLib.RAM.Bases.Sector.SectorObject[] GetChildren(int main_Type)
         {
-            LinkedListStart<SectorObject> list = Children[(int)main_Type];
+            LinkedListStart<SectorObject> list = Children[main_Type];
             if (!list.pFirst.IsValid || !list.pFirst.obj.IsValid)
             {
                 return new SectorObject[0];
             }
             List<SectorObject> children = new List<SectorObject>();
-            var so = list.pFirst.obj;
+            SectorObject so = list.pFirst.obj;
             while (so.IsValid)
             {
                 children.Add(so);
@@ -59,7 +59,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         }
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(X3TCGameHook.MainTypeCount);
 

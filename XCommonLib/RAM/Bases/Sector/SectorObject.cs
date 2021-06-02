@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonToolLib.Memory;
+﻿using CommonToolLib.Memory;
 using CommonToolLib.Vector;
+using System;
 using XCommonLib.RAM.Bases.B3D;
 using XCommonLib.RAM.Bases.Sector.Meta;
 using XCommonLib.RAM.Generics;
@@ -25,7 +21,7 @@ namespace XCommonLib.RAM.Bases.Sector
 
             public byte[] GetBytes()
             {
-                var arr = new byte[4];
+                byte[] arr = new byte[4];
                 Array.Copy(BitConverter.GetBytes(MainType), 0, arr, 0, 2);
                 Array.Copy(BitConverter.GetBytes(SubType), 0, arr, 2, 2);
                 return arr;

@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
 using X3TC_RAM_Tool.UI.Displays;
-using X3Tools.RAM;
-
-using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
 using X3Tools.RAM.Bases.Story.Scripting;
+using X3Tools.RAM.Bases.Story.Scripting.ScriptingMemory;
 
 namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject_Panels
 {
     public partial class ScriptMemoryObject_Raw_Panel : UserControl
     {
         private MessengerFunction m_MessengerFunction;
-        public MessengerFunction MessengerFunction { get => m_MessengerFunction; set { m_MessengerFunction = value; } }
+        public MessengerFunction MessengerFunction { get => m_MessengerFunction; set => m_MessengerFunction = value; }
         private ScriptMemoryObject m_object;
 
         private ScriptInstanceTypeLibrary.ScriptInstanceType m_ReferenceType;
@@ -19,7 +17,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
         public ScriptMemoryObject_Raw_Panel()
         {
             InitializeComponent();
-            foreach (var item in ScriptInstanceTypeLibrary.GetAllNames())
+            foreach (string item in ScriptInstanceTypeLibrary.GetAllNames())
             {
                 comboBox1.Items.Add(item);
             }
@@ -30,7 +28,10 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
             m_object = scriptInstance.ScriptVariableArr;
             m_ReferenceType = scriptInstance.ScriptInstanceType;
             if (m_ReferenceType != null)
+            {
                 comboBox1.SelectedItem = m_ReferenceType.Name;
+            }
+
             Reload();
         }
 
@@ -38,7 +39,10 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
         {
             m_object = dynamicValueObject;
             if (m_ReferenceType != null)
+            {
                 comboBox1.SelectedItem = m_ReferenceType.Name;
+            }
+
             Reload();
         }
 
@@ -67,15 +71,23 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
             {
                 string variableName;
                 if (m_ReferenceType == null)
+                {
                     variableName = rowIndex.ToString();
+                }
                 else
+                {
                     variableName = m_ReferenceType.GetVariableName(rowIndex);
+                }
 
                 DynamicValue value = m_object.GetVariable(rowIndex);
                 if (rowIndex < count)
+                {
                     dataGridView1.Rows[rowIndex].SetValues(variableName, value.Flag, value.Value, value.Value.ToString("X"));
+                }
                 else
+                {
                     dataGridView1.Rows.Add(variableName, value.Flag, value.Value, value.Value.ToString("X"));
+                }
             }
             for (int i = 0; i < count - rowIndex; i++)
             {
@@ -127,7 +139,7 @@ namespace X3TC_RAM_Tool.UI.Bases.StoryBase_Displays.Scripting.ScriptMemoryObject
 
         private void ScriptMemoryObject_Raw_Panel_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

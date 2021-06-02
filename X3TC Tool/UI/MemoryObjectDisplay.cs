@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommonToolLib.Memory;
 using System.Windows.Forms;
-using X3Tools.RAM;
-using CommonToolLib.Memory;
 
 namespace X3TC_RAM_Tool.UI
 {
@@ -17,11 +8,13 @@ namespace X3TC_RAM_Tool.UI
         public MemoryObjectDisplay(string title = null)
         {
             InitializeComponent();
-            if(title != null)
+            if (title != null)
+            {
                 Text = title;
+            }
         }
 
-        MemoryObject m_MemoryObject;
+        private MemoryObject m_MemoryObject;
 
         public void LoadObject(MemoryObject memoryObject)
         {

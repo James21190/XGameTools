@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace XRAMTool.Bases.Sector
@@ -19,7 +12,7 @@ namespace XRAMTool.Bases.Sector
 
         public void Reload()
         {
-            var sb = Program.GameHook.SectorBase;
+            XCommonLib.RAM.Bases.Sector.SectorBase sb = Program.GameHook.SectorBase;
             ntxtAddress.Text = sb.pThis.ToString("X");
         }
 
@@ -30,7 +23,7 @@ namespace XRAMTool.Bases.Sector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var display = new SectorObject_Display();
+            SectorObject_Display display = new SectorObject_Display();
             display.LoadObject(Program.GameHook.SectorBase.Player);
             display.Show();
         }

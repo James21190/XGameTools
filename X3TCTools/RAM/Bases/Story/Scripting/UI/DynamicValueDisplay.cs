@@ -27,7 +27,7 @@ namespace X3Tools.RAM
             }
         }
 
-        bool reloading = false;
+        private bool reloading = false;
         private void Reload()
         {
             reloading = true;
@@ -61,7 +61,11 @@ namespace X3Tools.RAM
 
         private void ValueBox_TextChanged(object sender, EventArgs e)
         {
-            if (reloading) return;
+            if (reloading)
+            {
+                return;
+            }
+
             try
             {
                 m_DynamicValue.Value = int.Parse(ValueBox.Text, System.Globalization.NumberStyles.HexNumber);
@@ -75,7 +79,11 @@ namespace X3Tools.RAM
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            if (reloading) return;
+            if (reloading)
+            {
+                return;
+            }
+
             m_DynamicValue.Value = (int)DecimalValueBox.Value;
             Reload();
         }

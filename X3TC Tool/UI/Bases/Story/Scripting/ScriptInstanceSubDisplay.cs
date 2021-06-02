@@ -15,7 +15,7 @@ namespace X3TC_RAM_Tool.UI.Displays
         private ScriptInstanceSub m_ScriptingObjectSub;
         public void LoadObject(IntPtr address)
         {
-            var sos = new ScriptInstanceSub();
+            ScriptInstanceSub sos = new ScriptInstanceSub();
             sos.SetLocation(GameHook.hProcess, address);
             sos.ReloadFromMemory();
             LoadObject(sos);

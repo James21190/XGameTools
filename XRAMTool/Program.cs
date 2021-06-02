@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3TCAPLib.RAM;
 using X2Lib.RAM;
-using XCommonLib;
+using X3TCAPLib.RAM;
 using XCommonLib.RAM;
 
 namespace XRAMTool
@@ -18,7 +15,7 @@ namespace XRAMTool
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             while (true)
             {
@@ -38,7 +35,9 @@ namespace XRAMTool
                 }
 
                 if (GameHook != null)
+                {
                     break;
+                }
 
                 DialogResult result = MessageBox.Show("X is not currently running!\nPlease launch an X game and retry.", "Game not running", MessageBoxButtons.RetryCancel);
                 if (result != DialogResult.Retry)

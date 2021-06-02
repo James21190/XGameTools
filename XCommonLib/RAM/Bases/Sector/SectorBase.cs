@@ -1,9 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.Memory;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonToolLib.Memory;
 
 namespace XCommonLib.RAM.Bases.Sector
 {
@@ -29,7 +25,7 @@ namespace XCommonLib.RAM.Bases.Sector
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();
 
-            var so = First;
+            SectorObject so = First;
             while (so != null)
             {
                 sectorObjects.Add(so);

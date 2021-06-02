@@ -1,23 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonToolLib.Memory;
-using XCommonLib.RAM.Bases.Story.Scripting;
+﻿using CommonToolLib.Memory;
+using System;
+using X2Lib.RAM.Bases.Story.Scripting;
+using XCommonLib.RAM.Generics;
 
 namespace X2Lib.RAM.Bases.Story
 {
     public class StoryBase : XCommonLib.RAM.Bases.Story.StoryBase
     {
         #region Memory Fields
-        public override MemoryObjectPointer<MemoryString> pStrings => throw new NotImplementedException();
+        public MemoryObjectPointer<MemoryString> pStrings = new MemoryObjectPointer<MemoryString>();
+        public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance = new MemoryObjectPointer<HashTable<ScriptInstance>>();
         #endregion
 
         #region Common
-        public override ScriptInstance GetScriptInstance(int id)
+        public override MemoryString GetStringFromArray(int index)
         {
-            throw new NotImplementedException();
+            MemoryString memorystring = new MemoryString();
+            memorystring.hProcess = hProcess;
+            memorystring.pThis = pStrings.address + index;
+            memorystring.ReloadFromMemory();
+            return memorystring;
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
+        {
+            int value = id < 0 ? -id - 1 : id;
+            return pHashTable_ScriptInstance.obj.GetObject(value);
         }
         #endregion
 
@@ -35,6 +42,7 @@ namespace X2Lib.RAM.Bases.Story
         {
             base.SetDataFromObjectByteList(objectByteList);
         }
+
         #endregion
     }
 }

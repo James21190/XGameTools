@@ -9,8 +9,8 @@ namespace X3Tools.RAM.Bases.Sector
         public short HullCargoValue;
 
 
-        public GameHook.RaceID OriginRace { get { return (GameHook.RaceID)OriginRaceID; } }
-        public int MaxHull { get { return HullCargoValue * 1000000; } }
+        public GameHook.RaceID OriginRace => (GameHook.RaceID)OriginRaceID;
+        public int MaxHull => HullCargoValue * 1000000;
 
         public enum FactoryClassification
         {

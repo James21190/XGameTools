@@ -1,9 +1,6 @@
 ﻿using CommonToolLib.Memory;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3Tools.RAM.Bases.Story.Scripting.KCode
 {
@@ -18,29 +15,40 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
         private KFunctionDefinition _GetFunctionDefinition(int functionAddress)
         {
             if (m_FunctionDefinitions != null)
-                foreach (var item in m_FunctionDefinitions)
-                    if (item.FunctionAddress == functionAddress) return item;
+            {
+                foreach (KFunctionDefinition item in m_FunctionDefinitions)
+                {
+                    if (item.FunctionAddress == functionAddress)
+                    {
+                        return item;
+                    }
+                }
+            }
+
             throw new NotImplementedException();
         }
 
         public KInstruction[] Disassemble(int startingInstructionIndex, int instructionLimit = 200)
         {
-            var storyBase = GameHook.storyBase;
+            StoryBase storyBase = GameHook.storyBase;
             // Create a list of decompiled instructions.
-            var instructions = new List<KInstruction>();
+            List<KInstruction> instructions = new List<KInstruction>();
 
-            var currentInstructionIndex = startingInstructionIndex;
+            int currentInstructionIndex = startingInstructionIndex;
 
             for (int instructionCount = 0; instructionCount < instructionLimit || instructionLimit == -1; instructionCount++)
             {
-                var currentInstruction = storyBase.pInstructionArray[currentInstructionIndex].Value;
-                var nextInstructionIndex = currentInstructionIndex + 1;
+                byte currentInstruction = storyBase.pInstructionArray[currentInstructionIndex].Value;
+                int nextInstructionIndex = currentInstructionIndex + 1;
 
-                if (currentInstruction > 0xb0) break;
+                if (currentInstruction > 0xb0)
+                {
+                    break;
+                }
 
-                var functionAddress = storyBase.GetScriptingFunctionAddressFromInstruction(currentInstruction);
+                int functionAddress = storyBase.GetScriptingFunctionAddressFromInstruction(currentInstruction);
 
-                var kInstruction = new KInstruction()
+                KInstruction kInstruction = new KInstruction()
                 {
                     Address = currentInstructionIndex,
                     CalledFunction = functionAddress
@@ -49,7 +57,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
                 try
                 {
                     // throws an exception if not found.
-                    var functionDef = _GetFunctionDefinition(functionAddress);
+                    KFunctionDefinition functionDef = _GetFunctionDefinition(functionAddress);
 
                     kInstruction.AssociatedDefinition = functionDef;
 
@@ -57,7 +65,7 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
                     if (functionDef.Parameters != null)
                     {
 
-                        var paramIndex = currentInstructionIndex + 1;
+                        int paramIndex = currentInstructionIndex + 1;
 
                         kInstruction.Parameters = new object[functionDef.Parameters.Length];
 
@@ -71,11 +79,11 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
                                     paramIndex += 1;
                                     break;
                                 case KFunctionDefinition.ParameterType.paramShort:
-                                    paramValue = BitConverter.ToInt16(MemoryControl.Read(GameHook.hProcess, (IntPtr)storyBase.pInstructionArray[paramIndex].pThis, 2), 0);
+                                    paramValue = BitConverter.ToInt16(MemoryControl.Read(GameHook.hProcess, storyBase.pInstructionArray[paramIndex].pThis, 2), 0);
                                     paramIndex += 2;
                                     break;
                                 case KFunctionDefinition.ParameterType.paramInt:
-                                    paramValue = BitConverter.ToInt32(MemoryControl.Read(GameHook.hProcess, (IntPtr)storyBase.pInstructionArray[paramIndex].pThis, 4), 0);
+                                    paramValue = BitConverter.ToInt32(MemoryControl.Read(GameHook.hProcess, storyBase.pInstructionArray[paramIndex].pThis, 4), 0);
                                     paramIndex += 4;
                                     break;
                                 default:
@@ -96,7 +104,9 @@ namespace X3Tools.RAM.Bases.Story.Scripting.KCode
 
                 instructions.Add(kInstruction);
                 if (kInstruction.AssociatedDefinition == null || kInstruction.AssociatedDefinition.ShouldTerminateDecompilation)
+                {
                     break;
+                }
             }
 
             return instructions.ToArray();

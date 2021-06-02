@@ -1,6 +1,5 @@
 ﻿using CommonToolLib.Memory;
 using System;
-using X3Tools.RAM.Bases.Story.Scripting;
 
 namespace X3Tools.RAM.Bases.Story.Scripting
 {

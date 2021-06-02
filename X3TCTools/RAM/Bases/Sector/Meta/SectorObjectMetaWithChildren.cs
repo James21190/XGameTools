@@ -54,7 +54,7 @@ namespace X3Tools.RAM.Bases.Sector.Meta
         public SectorObject[] GetChildren()
         {
             List<SectorObject> children = new List<SectorObject>();
-            for(int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
+            for (int i = 0; i < SectorObject.MAIN_TYPE_COUNT; i++)
             {
                 children.AddRange(GetChildren((SectorObject.Main_Type)i));
             }
@@ -69,7 +69,7 @@ namespace X3Tools.RAM.Bases.Sector.Meta
                 return new SectorObject[0];
             }
             List<SectorObject> children = new List<SectorObject>();
-            var so = list.pFirst.obj;
+            SectorObject so = list.pFirst.obj;
             while (so.IsValid)
             {
                 children.Add(so);
@@ -90,7 +90,7 @@ namespace X3Tools.RAM.Bases.Sector.Meta
         }
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, this.hProcess, pThis);
+            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(SectorObject.MAIN_TYPE_COUNT);
 

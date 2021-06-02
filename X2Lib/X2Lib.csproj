@@ -45,6 +45,7 @@
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
     <Compile Include="RAM\Bases\Sector\SectorBase.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\X2GameHook.cs" />
   </ItemGroup>
