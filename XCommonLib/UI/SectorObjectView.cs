@@ -35,6 +35,10 @@ namespace XCommonLib.UI
             vec3Position.Vector = m_SectorObject.Position;
             vec3PositionStrafeDelta.Vector = m_SectorObject.PositionStrafeDelta;
 
+            ntxtDefaultName.Text = m_SectorObject.DefaultName.Value;
+            ntxtDefaultNameParsed.Text = ReferenceGameHook.StoryBase.GetParsedText(44, m_SectorObject.DefaultName.Value);
+
+
             if (ReferenceGameHook != null)
             {
                 ntxtRace.Text = string.Format("{0} - {1}", m_SectorObject.RaceID, ReferenceGameHook.GetRaceIDName(m_SectorObject.RaceID));

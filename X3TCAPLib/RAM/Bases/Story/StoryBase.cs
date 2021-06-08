@@ -9,6 +9,9 @@ namespace X3TCAPLib.RAM.Bases.Story
     {
         #region Memory Fields
         public MemoryObjectPointer<MemoryString> pStrings = new MemoryObjectPointer<MemoryString>();
+
+        public MemoryObjectPointer<HashTable<TextPage>>[] TextHashTableArray;
+
         public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance = new MemoryObjectPointer<HashTable<ScriptInstance>>();
         #endregion
 
@@ -26,10 +29,15 @@ namespace X3TCAPLib.RAM.Bases.Story
             int value = id < 0 ? -id - 1 : id;
             return pHashTable_ScriptInstance.obj.GetObject(value);
         }
+        public override XCommonLib.RAM.Bases.Story.TextPage GetTextPage(int languageId, int pageId)
+        {
+            HashTable<TextPage> table = TextHashTableArray[(int)languageId].obj;
+            return table.GetObject(pageId);
+        }
         #endregion
 
         #region MemoryObject
-        public override int ByteSize => throw new NotImplementedException();
+        public override int ByteSize => 5648;
 
 
         public override byte[] GetBytes()
@@ -42,8 +50,11 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             pStrings = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x14);
 
+            TextHashTableArray = objectByteList.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
+
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
         }
+
 
         #endregion
     }

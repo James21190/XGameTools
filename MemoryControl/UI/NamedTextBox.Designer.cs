@@ -61,7 +61,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(0, 50);
             this.MinimumSize = new System.Drawing.Size(100, 50);
             this.Name = "NamedTextBox";
             this.Size = new System.Drawing.Size(100, 50);

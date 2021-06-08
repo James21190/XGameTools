@@ -44,14 +44,14 @@
             // 
             this.sectorObjectView1.Location = new System.Drawing.Point(228, 12);
             this.sectorObjectView1.Name = "sectorObjectView1";
-            this.sectorObjectView1.Size = new System.Drawing.Size(560, 426);
+            this.sectorObjectView1.Size = new System.Drawing.Size(707, 426);
             this.sectorObjectView1.TabIndex = 1;
             // 
             // SectorObject_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(947, 450);
             this.Controls.Add(this.sectorObjectView1);
             this.Controls.Add(this.treeView1);
             this.Name = "SectorObject_Display";

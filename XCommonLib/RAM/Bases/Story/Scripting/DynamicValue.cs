@@ -21,6 +21,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public FlagType Flag;
         public int Value;
 
+        #region MemoryObject
         public override byte[] GetBytes()
         {
             ObjectByteList collection = new ObjectByteList();
@@ -40,6 +41,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             Flag = (FlagType)temp;
             collection.PopFirst(ref Value);
         }
+        #endregion
 
         public override string ToString()
         {

@@ -130,6 +130,7 @@ namespace X3TCAPLib.RAM
             HookIntoProcess(process);
 
             ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorBase);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
         }
 
         ~X3TCGameHook()

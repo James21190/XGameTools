@@ -1,6 +1,7 @@
 ﻿using CommonToolLib.Memory;
 using System;
 using X2Lib.RAM.Bases.Story.Scripting;
+using XCommonLib.RAM.Bases.Story;
 using XCommonLib.RAM.Generics;
 
 namespace X2Lib.RAM.Bases.Story
@@ -26,6 +27,10 @@ namespace X2Lib.RAM.Bases.Story
             int value = id < 0 ? -id - 1 : id;
             return pHashTable_ScriptInstance.obj.GetObject(value);
         }
+        public override XCommonLib.RAM.Bases.Story.TextPage GetTextPage(int languageId, int pageId)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region MemoryObject
@@ -42,6 +47,7 @@ namespace X2Lib.RAM.Bases.Story
         {
             base.SetDataFromObjectByteList(objectByteList);
         }
+
 
         #endregion
     }

@@ -50,7 +50,9 @@
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Station_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Sun_Meta.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
+    <Compile Include="RAM\Bases\Story\TextPage.cs" />
     <Compile Include="RAM\X3TCGameHook.cs" />
     <Compile Include="RAM\Bases\Sector\SectorBase.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />

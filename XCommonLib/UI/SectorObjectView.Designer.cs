@@ -37,6 +37,8 @@
             this.vec3LocalEulerRotationDelta = new CommonToolLib.UI.Vector3Display();
             this.vec3EulerRotation = new CommonToolLib.UI.Vector3Display();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
+            this.ntxtDefaultNameParsed = new CommonToolLib.UI.NamedTextBox();
+            this.ntxtDefaultName = new CommonToolLib.UI.NamedTextBox();
             this.SuspendLayout();
             // 
             // ntxtRace
@@ -324,10 +326,34 @@
             this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
             this.numericIDObjectControl1.TabIndex = 0;
             // 
+            // ntxtDefaultNameParsed
+            // 
+            this.ntxtDefaultNameParsed.Location = new System.Drawing.Point(483, 3);
+            this.ntxtDefaultNameParsed.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtDefaultNameParsed.Name = "ntxtDefaultNameParsed";
+            this.ntxtDefaultNameParsed.ReadOnly = true;
+            this.ntxtDefaultNameParsed.Size = new System.Drawing.Size(180, 50);
+            this.ntxtDefaultNameParsed.TabIndex = 11;
+            this.ntxtDefaultNameParsed.Text = "namedTextBox1";
+            this.ntxtDefaultNameParsed.Title = "Default Name (Parsed)";
+            // 
+            // ntxtDefaultName
+            // 
+            this.ntxtDefaultName.Location = new System.Drawing.Point(483, 59);
+            this.ntxtDefaultName.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtDefaultName.Name = "ntxtDefaultName";
+            this.ntxtDefaultName.ReadOnly = true;
+            this.ntxtDefaultName.Size = new System.Drawing.Size(180, 50);
+            this.ntxtDefaultName.TabIndex = 12;
+            this.ntxtDefaultName.Text = "namedTextBox1";
+            this.ntxtDefaultName.Title = "Default Name";
+            // 
             // SectorObjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ntxtDefaultName);
+            this.Controls.Add(this.ntxtDefaultNameParsed);
             this.Controls.Add(this.ntxtRace);
             this.Controls.Add(this.vec3PositionStrafeDelta);
             this.Controls.Add(this.vec3Position);
@@ -354,5 +380,7 @@
         private CommonToolLib.UI.Vector3Display vec3Position;
         private CommonToolLib.UI.Vector3Display vec3PositionStrafeDelta;
         private CommonToolLib.UI.NamedTextBox ntxtRace;
+        private CommonToolLib.UI.NamedTextBox ntxtDefaultNameParsed;
+        private CommonToolLib.UI.NamedTextBox ntxtDefaultName;
     }
 }
