@@ -21,5 +21,10 @@ namespace XRAMTool
         {
             new SectorBase_Display().Show();
         }
+
+        private void btnTypeData_Click(object sender, EventArgs e)
+        {
+            new TypeData_Display().Show();
+        }
     }
 }

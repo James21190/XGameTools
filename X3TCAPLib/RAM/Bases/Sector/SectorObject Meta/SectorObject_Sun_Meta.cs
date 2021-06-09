@@ -1,5 +1,5 @@
 ﻿using System;
-using XCommonLib.RAM.Bases.Sector.Meta;
+using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 
 namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
 {

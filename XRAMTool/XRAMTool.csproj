@@ -58,6 +58,12 @@
     <Compile Include="Bases\Sector\SectorObject_Display.Designer.cs">
       <DependentUpon>SectorObject_Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bases\Sector\TypeData_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\Sector\TypeData_Display.Designer.cs">
+      <DependentUpon>TypeData_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="XRAMTool.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,6 +1,6 @@
 ﻿using CommonToolLib.Memory;
 
-namespace XCommonLib.RAM.Bases.Sector.Meta
+namespace XCommonLib.RAM.Bases.Sector.SectorObject_Meta
 {
     public interface ISectorObjectMeta : IMemoryObject
     {

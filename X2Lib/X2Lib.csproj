@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
+    <Compile Include="RAM\Bases\Galaxy\GalaxyBase.cs" />
     <Compile Include="RAM\Bases\Sector\SectorBase.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
@@ -60,7 +62,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\SectorObject Types\" />
+    <Folder Include="DATA\X2\SectorObject Types\" />
+    <Folder Include="RAM\Bases\Sector\SectorObject Meta\" />
+    <Folder Include="RAM\Bases\Sector\SectorObject TypeData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,7 +3,7 @@ using CommonToolLib.Vector;
 using System;
 using X3TCAPLib.RAM.Bases.B3D;
 using X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta;
-using XCommonLib.RAM.Bases.Sector.Meta;
+using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace X3TCAPLib.RAM.Bases.Sector

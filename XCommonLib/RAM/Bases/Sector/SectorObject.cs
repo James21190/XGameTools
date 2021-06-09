@@ -2,7 +2,7 @@
 using CommonToolLib.Vector;
 using System;
 using XCommonLib.RAM.Bases.B3D;
-using XCommonLib.RAM.Bases.Sector.Meta;
+using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 using XCommonLib.RAM.Generics;
 
 namespace XCommonLib.RAM.Bases.Sector

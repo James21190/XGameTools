@@ -3,7 +3,10 @@ using System;
 using System.Diagnostics;
 using X3TCAPLib.RAM.Bases.Sector;
 using X3TCAPLib.RAM.Bases.Story;
+using X3TCAPLib.RAM.Bases.B3D;
+using X3TCAPLib.RAM.Bases.Galaxy;
 using XCommonLib.RAM;
+using X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData;
 
 namespace X3TCAPLib.RAM
 {
@@ -68,12 +71,12 @@ namespace X3TCAPLib.RAM
         public enum GlobalAddressesX3TC
         {
             pSystemBase = 0x00603064,
-            pGateSystemObject = 0x00604634,
+            pGalaxyBase = 0x00604634,
             pSectorBase = 0x00604640,
             pCockpitBase = 0x00604638,
             pStoryBase = 0x00604718,
             pInputBase = 0x0057FDA0,
-            pCameraBase = 0x0060464c,
+            pB3DBase = 0x0060464c,
             ProcessEventSwitchArray = 0x004a4d18,
             ProcessEventSwitch = 0x004a4b20,
 
@@ -115,22 +118,51 @@ namespace X3TCAPLib.RAM
 
             BytesAllocated = 0x00604728,
         }
+        public override string GameName => "X3TC";
         #region Pointers
-        public static MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorBase;
-        public static MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
+        #region Bases
+        public MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorBase;
+        public MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
+        public MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>> ppGalaxyBase;
+        public MemoryObjectPointer<MemoryObjectPointer<B3DBase>> ppB3DBase;
+        #endregion
+        #region TypeData
+        public MemoryObjectPointer<MemoryInt32> pTypeData_CountArr;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
+        #endregion
         #endregion
 
         #region Objects
         public override XCommonLib.RAM.Bases.Sector.SectorBase SectorBase => ppSectorBase != null ? ppSectorBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Story.StoryBase StoryBase => ppStoryBase != null ? ppStoryBase.obj.obj : null;
+        public override XCommonLib.RAM.Bases.Galaxy.GalaxyBase GalaxyBase => ppGalaxyBase != null ? ppGalaxyBase.obj.obj : null;
+        public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => ppB3DBase != null ? ppB3DBase.obj.obj : null;
+        #endregion
+
+        #region TypeData
+        public override int TypeData_Ship_Count => pTypeData_CountArr.GetObjectInArray((int)MainType.Ship).Value;
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
+        {
+            return ppTypeData_Ship.obj.GetObjectInArray(subType);
+        }
         #endregion
 
         public X3TCGameHook(Process process)
         {
             HookIntoProcess(process);
 
+            #region Bases
             ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorBase);
             ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
+            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGalaxyBase);
+            ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pB3DBase);
+            #endregion
+
+            #region TypeData
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeDataCountArray);
+            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
+
+            #endregion
         }
 
         ~X3TCGameHook()

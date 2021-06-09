@@ -1,7 +1,7 @@
 ﻿using CommonToolLib.Memory;
 using System;
 using System.Collections.Generic;
-using XCommonLib.RAM.Bases.Sector.Meta;
+using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 using XCommonLib.RAM.Generics;
 
 namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta

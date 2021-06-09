@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using X2Lib.RAM.Bases.Sector;
 using X2Lib.RAM.Bases.Story;
+using XCommonLib.RAM.Bases.Sector.SectorObject_TypeData;
 
 namespace X2Lib.RAM
 {
@@ -73,21 +74,44 @@ namespace X2Lib.RAM
             pSectorBase = 0x15d66a8,
             pStoryBase = 0x15d6700
         }
+        public override string GameName => "X2";
+
         #region Pointers
-        public static MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorBase;
-        public static MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
+        #region Bases
+        public MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorBase;
+        public MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         #endregion
+        #region TypeData
+        #endregion
+        #endregion
+
         #region Objects
         public override XCommonLib.RAM.Bases.Sector.SectorBase SectorBase => ppSectorBase != null ? ppSectorBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Story.StoryBase StoryBase => ppStoryBase != null ? ppStoryBase.obj.obj : null;
+        public override XCommonLib.RAM.Bases.Galaxy.GalaxyBase GalaxyBase => throw new NotImplementedException();
+        public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => throw new NotImplementedException();
+
+        #endregion
+
+        #region TypeData
+        public override int TypeData_Ship_Count => throw new NotImplementedException();
+        public override TypeData_Ship GetTypeData_Ship(int subType)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         public X2GameHook(Process process)
         {
             HookIntoProcess(process);
 
+            #region Bases
             ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX2.pSectorBase);
             ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX2.pStoryBase);
+            #endregion
+
+            #region TypeData
+            #endregion
         }
 
         ~X2GameHook()
@@ -103,5 +127,6 @@ namespace X2Lib.RAM
         {
             return ((MainType)id).ToString();
         }
+
     }
 }
