@@ -3,16 +3,22 @@ using CommonToolLib.Vector;
 using System;
 using XCommonLib.RAM.Bases.B3D;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
+using XCommonLib.RAM.Bases.Story.Scripting;
 using XCommonLib.RAM.Generics;
 
 namespace XCommonLib.RAM.Bases.Sector
 {
-    public abstract class SectorObject : MemoryObject, IValidateable, INumericIDObject
+    public abstract class SectorObject : MemoryObject, IValidateable, INumericIDObject, IComparable
     {
-        public struct SectorObjectType : IMemoryObject
+        public struct SectorObjectType : IMemoryObject, IComparable
         {
             public short MainType;
             public short SubType;
+
+            public override string ToString()
+            {
+                return string.Format("{0} - {1}", MainType, SubType);
+            }
 
             public IntPtr pThis { get; set; }
             public IntPtr hProcess { get; set; }
@@ -43,6 +49,25 @@ namespace XCommonLib.RAM.Bases.Sector
                 this.hProcess = hProcess;
                 pThis = address;
             }
+
+            public int CompareTo(object obj)
+            {
+                if(obj is SectorObjectType)
+                {
+                    var sot = (SectorObjectType)obj;
+
+                    if (MainType > sot.MainType)
+                        return 1;
+                    if (MainType < sot.MainType)
+                        return -1;
+                    if (SubType > sot.SubType)
+                        return 1;
+                    if (SubType < sot.SubType)
+                        return -1;
+                    return 0;
+                }
+                throw new ArgumentException("Object is not of same type.");
+            }
         }
         public abstract bool IsValid { get; }
 
@@ -69,5 +94,27 @@ namespace XCommonLib.RAM.Bases.Sector
         public abstract Vector3 PositionStrafeDelta { get; set; }
         public abstract RenderObject RenderObject { get; }
         public abstract ISectorObjectMeta Meta { get; }
+        public abstract int ScriptInstanceID { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} | {1}", ID, ObjectType.ToString());
+        }
+
+        public int CompareTo(object obj)
+        {
+            if(obj is SectorObject)
+            {
+                var so = (SectorObject)obj;
+                var typeResult = ObjectType.CompareTo(so.ObjectType);
+                if (typeResult != 0) return typeResult;
+                if (RaceID > so.RaceID)
+                    return 1;
+                if (RaceID < so.RaceID)
+                    return -1;
+                return 0;
+            }
+            throw new ArgumentException("Object is not of same type.");
+        }
     }
 }

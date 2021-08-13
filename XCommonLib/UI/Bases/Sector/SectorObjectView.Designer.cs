@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.ntxtDefaultName = new CommonToolLib.UI.NamedTextBox();
+            this.ntxtDefaultNameParsed = new CommonToolLib.UI.NamedTextBox();
             this.ntxtRace = new CommonToolLib.UI.NamedTextBox();
             this.vec3PositionStrafeDelta = new CommonToolLib.UI.Vector3Display();
             this.vec3Position = new CommonToolLib.UI.Vector3Display();
@@ -37,9 +39,29 @@
             this.vec3LocalEulerRotationDelta = new CommonToolLib.UI.Vector3Display();
             this.vec3EulerRotation = new CommonToolLib.UI.Vector3Display();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
-            this.ntxtDefaultNameParsed = new CommonToolLib.UI.NamedTextBox();
-            this.ntxtDefaultName = new CommonToolLib.UI.NamedTextBox();
             this.SuspendLayout();
+            // 
+            // ntxtDefaultName
+            // 
+            this.ntxtDefaultName.Location = new System.Drawing.Point(483, 59);
+            this.ntxtDefaultName.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtDefaultName.Name = "ntxtDefaultName";
+            this.ntxtDefaultName.ReadOnly = true;
+            this.ntxtDefaultName.Size = new System.Drawing.Size(180, 50);
+            this.ntxtDefaultName.TabIndex = 12;
+            this.ntxtDefaultName.Text = "namedTextBox1";
+            this.ntxtDefaultName.Title = "Default Name";
+            // 
+            // ntxtDefaultNameParsed
+            // 
+            this.ntxtDefaultNameParsed.Location = new System.Drawing.Point(483, 3);
+            this.ntxtDefaultNameParsed.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtDefaultNameParsed.Name = "ntxtDefaultNameParsed";
+            this.ntxtDefaultNameParsed.ReadOnly = true;
+            this.ntxtDefaultNameParsed.Size = new System.Drawing.Size(180, 50);
+            this.ntxtDefaultNameParsed.TabIndex = 11;
+            this.ntxtDefaultNameParsed.Text = "namedTextBox1";
+            this.ntxtDefaultNameParsed.Title = "Default Name (Parsed)";
             // 
             // ntxtRace
             // 
@@ -60,7 +82,7 @@
             0,
             0,
             0});
-            this.vec3PositionStrafeDelta.Location = new System.Drawing.Point(53, 221);
+            this.vec3PositionStrafeDelta.Location = new System.Drawing.Point(3, 221);
             this.vec3PositionStrafeDelta.Maximum = new decimal(new int[] {
             1000000000,
             0,
@@ -102,15 +124,15 @@
             0,
             0,
             0});
-            this.vec3Position.Location = new System.Drawing.Point(53, 112);
+            this.vec3Position.Location = new System.Drawing.Point(3, 112);
             this.vec3Position.Maximum = new decimal(new int[] {
-            1000000000,
+            2147483647,
             0,
             0,
             0});
             this.vec3Position.MaximumSize = new System.Drawing.Size(156, 103);
             this.vec3Position.Minimum = new decimal(new int[] {
-            1000000000,
+            2147483647,
             0,
             0,
             -2147483648});
@@ -325,28 +347,6 @@
             this.numericIDObjectControl1.Name = "numericIDObjectControl1";
             this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
             this.numericIDObjectControl1.TabIndex = 0;
-            // 
-            // ntxtDefaultNameParsed
-            // 
-            this.ntxtDefaultNameParsed.Location = new System.Drawing.Point(483, 3);
-            this.ntxtDefaultNameParsed.MinimumSize = new System.Drawing.Size(100, 50);
-            this.ntxtDefaultNameParsed.Name = "ntxtDefaultNameParsed";
-            this.ntxtDefaultNameParsed.ReadOnly = true;
-            this.ntxtDefaultNameParsed.Size = new System.Drawing.Size(180, 50);
-            this.ntxtDefaultNameParsed.TabIndex = 11;
-            this.ntxtDefaultNameParsed.Text = "namedTextBox1";
-            this.ntxtDefaultNameParsed.Title = "Default Name (Parsed)";
-            // 
-            // ntxtDefaultName
-            // 
-            this.ntxtDefaultName.Location = new System.Drawing.Point(483, 59);
-            this.ntxtDefaultName.MinimumSize = new System.Drawing.Size(100, 50);
-            this.ntxtDefaultName.Name = "ntxtDefaultName";
-            this.ntxtDefaultName.ReadOnly = true;
-            this.ntxtDefaultName.Size = new System.Drawing.Size(180, 50);
-            this.ntxtDefaultName.TabIndex = 12;
-            this.ntxtDefaultName.Text = "namedTextBox1";
-            this.ntxtDefaultName.Title = "Default Name";
             // 
             // SectorObjectView
             // 

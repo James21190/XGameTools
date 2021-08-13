@@ -96,7 +96,7 @@ namespace CommonToolLib.Memory
             return collection.GetBytes();
         }
 
-        public override int ByteSize => Value == null ? 10000 : Value.Length + 1;
+        public override int ByteSize => Value == null ? 100 : Value.Length + 1;
 
         public override void SetData(byte[] Memory)
         {

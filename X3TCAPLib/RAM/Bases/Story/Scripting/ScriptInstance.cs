@@ -26,7 +26,10 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            base.SetDataFromObjectByteList(objectByteList);
+            NegativeID = objectByteList.PopInt();
+            ReferenceCount = objectByteList.PopInt();
+            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
+            pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
         }
         #endregion
     }

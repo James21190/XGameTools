@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
+using XRAMTool.Bases.Story;
 
 namespace XRAMTool.Bases.Sector
 {
@@ -14,8 +15,11 @@ namespace XRAMTool.Bases.Sector
             sectorObjectView1.ReferenceGameHook = Program.GameHook;
         }
 
+        private SectorObject m_SectorObject;
+
         public void LoadObject(SectorObject obj)
         {
+            m_SectorObject = obj;
             sectorObjectView1.LoadObject(obj);
             RepopulateTree();
         }
@@ -31,18 +35,30 @@ namespace XRAMTool.Bases.Sector
             TreeNodeCollection nodeCollection = treeView1.Nodes;
             foreach (SectorObject sectorObject in Program.GameHook.SectorBase.GetSectorObjects())
             {
-                nodeCollection.Add(GetSectorObjectTreeNode(sectorObject));
+                TreeNode currentSelection;
+                nodeCollection.Add(GetSectorObjectTreeNode(sectorObject, out currentSelection));
+                if (currentSelection != null)
+                {
+                    treeView1.SelectedNode = currentSelection;
+                    currentSelection.Expand();
+                }
             }
         }
 
-        private TreeNode GetSectorObjectTreeNode(SectorObject sectorObject)
+        private TreeNode GetSectorObjectTreeNode(SectorObject sectorObject, out TreeNode currentSelection)
         {
             TreeNode node = new TreeNode
             {
-                Text = sectorObject.DefaultName.Value,
+                //Text = Program.GameHook.StoryBase.GetParsedText(44,sectorObject.DefaultName.Value),
+                Text = Program.GameHook.GetObjectTypeName(sectorObject.ObjectType),
                 Tag = sectorObject,
                 BackColor = GetRaceColor(sectorObject.RaceID)
             };
+
+            if (m_SectorObject.ID == sectorObject.ID)
+                currentSelection = node;
+            else
+                currentSelection = null;
 
             // Check getting meta
             if (sectorObject.Meta != null)
@@ -52,13 +68,17 @@ namespace XRAMTool.Bases.Sector
                 {
                     // Get children with MainType
                     SectorObject[] children = sectorObject.Meta.GetChildren(i);
+                    Array.Sort(children);
                     if (children != null && children.Length > 0)
                     {
                         // If there are children with the given MainType, append it and it's children.
-                        TreeNode childrenNode = new TreeNode(Program.GameHook.GetMainTypeName(i));
+                        TreeNode childrenNode = new TreeNode(string.Format("{0} ({1})",Program.GameHook.GetMainTypeName(i), children.Length));
                         foreach (SectorObject child in children)
                         {
-                            childrenNode.Nodes.Add(GetSectorObjectTreeNode(child));
+                            TreeNode tempNode;
+                            childrenNode.Nodes.Add(GetSectorObjectTreeNode(child, out tempNode));
+                            if (tempNode != null)
+                                currentSelection = tempNode;
                         }
                         node.Nodes.Add(childrenNode);
                     }
@@ -88,6 +108,7 @@ namespace XRAMTool.Bases.Sector
                 case "Gonor": return Color.Chartreuse;
                 case "Khaak": return Color.Purple;
                 case "Xenon": return Color.IndianRed;
+                case "Player": return Color.LawnGreen;
                 case "Unowned": return Color.Gray;
                 default: return Color.White;
             }
@@ -95,6 +116,13 @@ namespace XRAMTool.Bases.Sector
 
         private void SectorObject_Display_Load(object sender, EventArgs e)
         {
+        }
+
+        private void btnLoadScriptInstance_Click(object sender, EventArgs e)
+        {
+            var display = new ScriptInstance_Display();
+            display.LoadObject(Program.GameHook.StoryBase.GetScriptInstance(m_SectorObject.ScriptInstanceID));
+            display.Show();
         }
     }
 }

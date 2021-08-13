@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bases\B3D\B3DBase_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\B3D\B3DBase_Display.Designer.cs">
+      <DependentUpon>B3DBase_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bases\Sector\SectorBase_Display.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,18 @@
     <Compile Include="Bases\Sector\TypeData_Display.Designer.cs">
       <DependentUpon>TypeData_Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bases\Story\ScriptInstance_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\Story\ScriptInstance_Display.Designer.cs">
+      <DependentUpon>ScriptInstance_Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bases\Story\StoryBase_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\Story\StoryBase_Display.Designer.cs">
+      <DependentUpon>StoryBase_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="XRAMTool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +95,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\Sector\SectorObject_Display.resx">
       <DependentUpon>SectorObject_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Story\ScriptInstance_Display.resx">
+      <DependentUpon>ScriptInstance_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Story\StoryBase_Display.resx">
+      <DependentUpon>StoryBase_Display.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XRAMTool.resx">
       <DependentUpon>XRAMTool.cs</DependentUpon>

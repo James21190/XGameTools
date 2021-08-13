@@ -62,7 +62,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public byte Unknown_14_0;
         public byte Unknown_14_1;
         public byte Unknown_14_2;
-        public int ScriptInstanceID;
+        public override int ScriptInstanceID { get; set; }
         public int ModelCollectionID;
         public int Unknown_16;
         public int Mass;

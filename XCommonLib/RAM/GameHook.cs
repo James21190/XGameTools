@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Memory;
+using System.IO;
 using XCommonLib.RAM.Bases.B3D;
 using XCommonLib.RAM.Bases.Galaxy;
 using XCommonLib.RAM.Bases.Sector;
@@ -28,9 +29,27 @@ namespace XCommonLib.RAM
 
         public static readonly int MainTypeCount = 32;
         public abstract string GameName { get; }
-        public string DataDirectory => string.Format("./DATA/{0}/", GameName);
         public abstract string GetRaceIDName(ushort id);
         public abstract string GetMainTypeName(int id);
+
+        #region Data Directory
+        public string DataDirectory => string.Format(".\\DATA\\{0}\\", GameName);
+
+        public string GetObjectTypeName(SectorObject.SectorObjectType type)
+        {
+            var path = Path.Combine(DataDirectory, "SectorObject Types", type.MainType + ".txt");
+            if (File.Exists(path))
+            {
+                var file = File.ReadAllLines(path);
+                if (file.Length > type.SubType)
+                {
+                    var name = file[type.SubType];
+                    if (!string.IsNullOrEmpty(name)) return name;
+                }
+            }
+            return type.ToString(); ;
+        }
+        #endregion
 
     }
 }

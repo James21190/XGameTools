@@ -42,7 +42,7 @@ namespace XCommonLib.RAM.Bases.Story
 
             Regex regex = new Regex(@"\{.*?\}");
             MatchCollection matches = regex.Matches(txt);
-
+            bool shouldRecheck = false;
             foreach (Match match in matches)
             {
                 string[] numbers = match.Value.Trim('{', '}').Split(',');
@@ -56,12 +56,14 @@ namespace XCommonLib.RAM.Bases.Story
                         string replacement = GetText(languageId, page, id).Value;
                         if (!string.IsNullOrWhiteSpace(replacement))
                         {
+                            shouldRecheck = true;
                             txt = txt.Replace(match.Value, replacement);
                         }
-                        txt = _GetParsedText(languageId, txt, previous);
                     }
                 }
             }
+            if(shouldRecheck)
+                txt = _GetParsedText(languageId, txt, previous);
             return txt;
 
         }
