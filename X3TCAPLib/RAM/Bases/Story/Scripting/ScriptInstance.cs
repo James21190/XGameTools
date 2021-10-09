@@ -8,11 +8,12 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         #region Memory Fields
         public override int NegativeID { get; set; }
         public override int ReferenceCount { get; set; }
-        public MemoryObjectPointer<MemoryInt32> pSub;
-        public MemoryObjectPointer<MemoryInt32> pScriptVariableArr;
+        public MemoryObjectPointer<ScriptInstanceSub> pSub { get; set; }
+        public override MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue> pScriptVariableArr { get; set; }
         #endregion
 
         #region Common
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceSub Sub => pSub.obj;
         #endregion
 
         #region IMemoryObject
@@ -28,8 +29,8 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         {
             NegativeID = objectByteList.PopInt();
             ReferenceCount = objectByteList.PopInt();
-            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
-            pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
+            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceSub>>();
+            pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>>();
         }
         #endregion
     }

@@ -57,9 +57,12 @@
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\DynamicValue.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceType.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\Bases\Story\TextPage.cs" />
+    <Compile Include="RAM\DataFileManager.cs" />
     <Compile Include="RAM\GameHook.cs" />
     <Compile Include="RAM\Generics\Generics Exceptions.cs" />
     <Compile Include="RAM\Generics\HashTable.cs" />

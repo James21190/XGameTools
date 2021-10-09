@@ -53,6 +53,7 @@
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Sun_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\Bases\Story\TextPage.cs" />
@@ -72,6 +73,126 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_0.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_Gonor.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_Khaak.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_Pirate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceData_Player.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\Sector.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Crate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Gate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\SectorObject.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Astronaut.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Lasertower.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M6.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_M7.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Passenger.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Spacefly.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_TL.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_TM.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_TP.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_TS.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Unknown_3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Unknown_4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Ships\Ship_Unknown_5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station_Complex.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station_Equipment.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station_Factory.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station_Headquarters.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station_Shipyard.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Station_Trading.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Sun.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\Template.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DATA\X3TC\SectorObject Types\0.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

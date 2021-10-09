@@ -1,0 +1,10 @@
+﻿-1
+
+RaceID
+SectorScriptingObjectID
+
+RaceRelationsArray
+OwnedShipScriptInstanceIDHashTable
+
+
+OwnedStationScriptInstanceIDHashTable

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 
 using XRAMTool.Bases.Sector;
+using XRAMTool.Bases.Story;
 
 namespace XRAMTool
 {
@@ -25,6 +26,11 @@ namespace XRAMTool
         private void btnTypeData_Click(object sender, EventArgs e)
         {
             new TypeData_Display().Show();
+        }
+
+        private void btnStoryBase_Click(object sender, EventArgs e)
+        {
+            new StoryBase_Display().Show();
         }
     }
 }

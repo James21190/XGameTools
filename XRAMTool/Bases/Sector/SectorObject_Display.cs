@@ -50,7 +50,7 @@ namespace XRAMTool.Bases.Sector
             TreeNode node = new TreeNode
             {
                 //Text = Program.GameHook.StoryBase.GetParsedText(44,sectorObject.DefaultName.Value),
-                Text = Program.GameHook.GetObjectTypeName(sectorObject.ObjectType),
+                Text = Program.GameHook.DataFileManager.GetSectorObjectTypeName(sectorObject.ObjectType),
                 Tag = sectorObject,
                 BackColor = GetRaceColor(sectorObject.RaceID)
             };

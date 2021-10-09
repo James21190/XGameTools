@@ -17,6 +17,7 @@ namespace XRAMTool.Bases.Story
         public ScriptInstance_Display()
         {
             InitializeComponent();
+            scriptInstanceView1.ReferenceGameHook = Program.GameHook;
         }
         public void LoadObject(ScriptInstance obj)
         {

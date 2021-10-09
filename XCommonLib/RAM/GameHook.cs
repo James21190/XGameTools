@@ -32,24 +32,13 @@ namespace XCommonLib.RAM
         public abstract string GetRaceIDName(ushort id);
         public abstract string GetMainTypeName(int id);
 
-        #region Data Directory
-        public string DataDirectory => string.Format(".\\DATA\\{0}\\", GameName);
 
-        public string GetObjectTypeName(SectorObject.SectorObjectType type)
+        public GameHook()
         {
-            var path = Path.Combine(DataDirectory, "SectorObject Types", type.MainType + ".txt");
-            if (File.Exists(path))
-            {
-                var file = File.ReadAllLines(path);
-                if (file.Length > type.SubType)
-                {
-                    var name = file[type.SubType];
-                    if (!string.IsNullOrEmpty(name)) return name;
-                }
-            }
-            return type.ToString(); ;
+            DataFileManager = new DataFileManager(string.Format(".\\DATA\\{0}\\", GameName));
         }
-        #endregion
+
+        public DataFileManager DataFileManager;
 
     }
 }
