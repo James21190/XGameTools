@@ -29,9 +29,13 @@ namespace XRAMTool
                 {
                     GameHook = new X2GameHook(processX2);
                 }
-                if (processX3TC != null)
+                else if (processX3TC != null)
                 {
                     GameHook = new X3TCGameHook(processX3TC);
+                }
+                else if(processX3AP != null)
+                {
+                    GameHook = new X3APGameHook(processX3AP);
                 }
 
                 if (GameHook != null)

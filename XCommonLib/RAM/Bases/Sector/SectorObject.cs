@@ -90,6 +90,7 @@ namespace XCommonLib.RAM.Bases.Sector
         public abstract Vector3 LocalEulerRotationDelta { get; set; }
         public abstract Vector3 LocalAutopilotRotationDeltaTarget { get; set; }
         public abstract ushort RaceID { get; set; }
+        public abstract BitField InteractionFlags { get; set; }
         public abstract Vector3 Position { get; set; }
         public abstract Vector3 PositionStrafeDelta { get; set; }
         public abstract RenderObject RenderObject { get; }

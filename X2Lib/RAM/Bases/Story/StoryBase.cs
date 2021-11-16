@@ -14,6 +14,11 @@ namespace X2Lib.RAM.Bases.Story
         #endregion
 
         #region Common
+
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(int id)
+        {
+            throw new NotImplementedException();
+        }
         public override MemoryString GetStringFromArray(int index)
         {
             MemoryString memorystring = new MemoryString();

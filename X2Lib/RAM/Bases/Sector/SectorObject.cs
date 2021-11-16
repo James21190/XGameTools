@@ -21,7 +21,7 @@ namespace X2Lib.RAM.Bases.Sector
         public override Vector3 LocalAutopilotRotationDeltaTarget { get; set; }
         public override ushort RaceID { get; set; }
         public ushort Unknown_4;
-        public int InteractionFlags;
+        public override BitField InteractionFlags { get; set; }
         public int Unknown_5;
         // base.ObjectType
         public IntPtr pMeta;

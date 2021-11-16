@@ -22,7 +22,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public override Vector3 LocalAutopilotRotationDeltaTarget { get; set; }
         public override ushort RaceID { get; set; }
         public ushort Unknown_4;
-        public int InteractionFlags;
+        public override BitField InteractionFlags { get; set; }
         public int Unknown_5;
         // base.ObjectType
         public int Unknown_6;
@@ -185,7 +185,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             LocalAutopilotRotationDeltaTarget = objectByteList.PopIMemoryObject<Vector3>();
             RaceID = objectByteList.PopUShort();
             Unknown_4 = objectByteList.PopUShort();
-            InteractionFlags = objectByteList.PopInt();
+            InteractionFlags = objectByteList.PopIMemoryObject<BitField>();
             Unknown_5 = objectByteList.PopInt();
             ObjectType = objectByteList.PopIMemoryObject<SectorObjectType>();
             Unknown_6 = objectByteList.PopInt();

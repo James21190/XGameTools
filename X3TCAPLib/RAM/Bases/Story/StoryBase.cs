@@ -12,10 +12,17 @@ namespace X3TCAPLib.RAM.Bases.Story
 
         public MemoryObjectPointer<HashTable<TextPage>>[] TextHashTableArray;
 
-        public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance = new MemoryObjectPointer<HashTable<ScriptInstance>>();
+        public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
+
+        public MemoryObjectPointer<HashTable<ScriptTaskObject>> pHashTable_ScriptTaskObject;
         #endregion
 
         #region Common
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(int id)
+        {
+            return pHashTable_ScriptTaskObject.obj.GetObject(id);
+        }
+
         public override MemoryString GetStringFromArray(int index)
         {
             MemoryString memorystring = new MemoryString();
@@ -48,6 +55,8 @@ namespace X3TCAPLib.RAM.Bases.Story
 
         protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
+            pHashTable_ScriptTaskObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
+
             pStrings = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x14);
 
             TextHashTableArray = objectByteList.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);

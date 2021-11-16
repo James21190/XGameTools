@@ -31,11 +31,11 @@
             this.nnudReferenceCount = new CommonToolLib.UI.NamedNumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvMemoryTable = new System.Windows.Forms.DataGridView();
-            this.ntxtMemoryAddress = new CommonToolLib.UI.NamedTextBox();
             this.clmIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmValueDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmValueHex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ntxtMemoryAddress = new CommonToolLib.UI.NamedTextBox();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMemoryTable)).BeginInit();
@@ -58,7 +58,7 @@
             this.nnudReferenceCount.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudReferenceCount.Name = "nnudReferenceCount";
             this.nnudReferenceCount.ReadOnly = true;
-            this.nnudReferenceCount.Size = new System.Drawing.Size(100, 50);
+            this.nnudReferenceCount.Size = new System.Drawing.Size(113, 50);
             this.nnudReferenceCount.TabIndex = 1;
             this.nnudReferenceCount.Title = "Reference Count";
             this.nnudReferenceCount.Value = new decimal(new int[] {
@@ -103,16 +103,6 @@
             this.dgvMemoryTable.Size = new System.Drawing.Size(293, 277);
             this.dgvMemoryTable.TabIndex = 1;
             // 
-            // ntxtMemoryAddress
-            // 
-            this.ntxtMemoryAddress.Location = new System.Drawing.Point(6, 19);
-            this.ntxtMemoryAddress.MinimumSize = new System.Drawing.Size(100, 50);
-            this.ntxtMemoryAddress.Name = "ntxtMemoryAddress";
-            this.ntxtMemoryAddress.ReadOnly = true;
-            this.ntxtMemoryAddress.Size = new System.Drawing.Size(100, 50);
-            this.ntxtMemoryAddress.TabIndex = 0;
-            this.ntxtMemoryAddress.Title = "Address";
-            // 
             // clmIndex
             // 
             this.clmIndex.HeaderText = "Index";
@@ -136,6 +126,16 @@
             this.clmValueHex.HeaderText = "Value (Hex)";
             this.clmValueHex.Name = "clmValueHex";
             this.clmValueHex.ReadOnly = true;
+            // 
+            // ntxtMemoryAddress
+            // 
+            this.ntxtMemoryAddress.Location = new System.Drawing.Point(6, 19);
+            this.ntxtMemoryAddress.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtMemoryAddress.Name = "ntxtMemoryAddress";
+            this.ntxtMemoryAddress.ReadOnly = true;
+            this.ntxtMemoryAddress.Size = new System.Drawing.Size(100, 50);
+            this.ntxtMemoryAddress.TabIndex = 0;
+            this.ntxtMemoryAddress.Title = "Address";
             // 
             // numericIDObjectControl1
             // 

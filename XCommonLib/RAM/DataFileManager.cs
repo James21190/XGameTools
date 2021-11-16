@@ -39,6 +39,8 @@ namespace XCommonLib.RAM
         private string _ScriptInstanceTypesDir = "ScriptInstance Types";
         public XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType GetScriptInstanceType(int typeID)
         {
+            if (!Directory.Exists(Path.Combine(DataFilePath, _ScriptInstanceTypesDir)))
+                return null;
             return _GetScriptInstanceType(typeID, Path.Combine(DataFilePath, _ScriptInstanceTypesDir));
 
         }
@@ -64,6 +66,8 @@ namespace XCommonLib.RAM
 
         public XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType GetScriptInstanceType(string name)
         {
+            if (!Directory.Exists(Path.Combine(DataFilePath, _ScriptInstanceTypesDir)))
+                return null;
             return _GetScriptInstanceType(name, Path.Combine(DataFilePath, _ScriptInstanceTypesDir));
         }
         private XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType _GetScriptInstanceType(string name, string startPath)

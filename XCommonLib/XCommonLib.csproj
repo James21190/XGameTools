@@ -60,6 +60,7 @@
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceType.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTaskObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\Bases\Story\TextPage.cs" />
     <Compile Include="RAM\DataFileManager.cs" />
@@ -80,6 +81,12 @@
     </Compile>
     <Compile Include="UI\Bases\Story\ScriptInstanceView.Designer.cs">
       <DependentUpon>ScriptInstanceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Bases\Story\ScriptTaskObjectView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\Story\ScriptTaskObjectView.Designer.cs">
+      <DependentUpon>ScriptTaskObjectView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\NumericIDObjectControl.cs">
       <SubType>UserControl</SubType>
@@ -110,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Story\ScriptInstanceView.resx">
       <DependentUpon>ScriptInstanceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bases\Story\ScriptTaskObjectView.resx">
+      <DependentUpon>ScriptTaskObjectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NumericIDObjectControl.resx">
       <DependentUpon>NumericIDObjectControl.cs</DependentUpon>

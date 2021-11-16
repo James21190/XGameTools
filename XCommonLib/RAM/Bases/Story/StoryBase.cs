@@ -1,12 +1,22 @@
 ﻿using CommonToolLib.Memory;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using X3Tools.RAM.Generics;
 using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace XCommonLib.RAM.Bases.Story
 {
     public abstract class StoryBase : MemoryObject
     {
+        #region Memory
+        #endregion
+
+        /// <summary>
+        /// Search the hash table for the ScriptTaskObject.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract ScriptTaskObject GetScriptTaskObject(int id);
         public abstract MemoryString GetStringFromArray(int index);
         public abstract ScriptInstance GetScriptInstance(int id);
         public abstract TextPage GetTextPage(int languageId, int pageId);
