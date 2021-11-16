@@ -16,9 +16,9 @@ namespace X2Lib.RAM.Bases.Sector
         public MemoryObjectPointer<MemoryString> pDefaultName = new MemoryObjectPointer<MemoryString>();
         public override int Speed { get; set; }
         public override int DesiredSpeed { get; set; }
-        public override Vector3 EulerRotation { get; set; }
-        public override Vector3 LocalEulerRotationDelta { get; set; }
-        public override Vector3 LocalAutopilotRotationDeltaTarget { get; set; }
+        public override Vector3_32 EulerRotation { get; set; }
+        public override Vector3_32 LocalEulerRotationDelta { get; set; }
+        public override Vector3_32 LocalAutopilotRotationDeltaTarget { get; set; }
         public override ushort RaceID { get; set; }
         public ushort Unknown_4;
         public override BitField InteractionFlags { get; set; }
@@ -27,7 +27,7 @@ namespace X2Lib.RAM.Bases.Sector
         public IntPtr pMeta;
         public override ISectorObjectMeta Meta => throw new NotImplementedException();
         public MemoryObjectPointer<SectorObject> pParent = new MemoryObjectPointer<SectorObject>();
-        public override Vector3 PositionStrafeDelta { get; set; }
+        public override Vector3_32 PositionStrafeDelta { get; set; }
         public MemoryObjectPointer<RenderObject> pRenderObject = new MemoryObjectPointer<RenderObject>();
         public int Unknown_6;
         public int Unknown_7;
@@ -46,9 +46,9 @@ namespace X2Lib.RAM.Bases.Sector
         public IntPtr p1;
         public int Unknown_19;
         public IntPtr p2;
-        public override Vector3 Position { get; set; }
-        public Vector3 EulterRotationCopy;
-        public Vector3 LocalEulerRotationDeltaCopy;
+        public override Vector3_32 Position { get; set; }
+        public Vector3_32 EulterRotationCopy;
+        public Vector3_32 LocalEulerRotationDeltaCopy;
         public int SpeedCopy;
         public int Hull;
         public int Unknown_20;

@@ -4,6 +4,7 @@ namespace CommonToolLib.Memory
 {
     /// <summary>
     /// Basic IMemoryObject with additional functionality.
+    /// MemoryObjects copy memory from another processes memory.
     /// </summary>
     public abstract class MemoryObject : IMemoryObject
     {

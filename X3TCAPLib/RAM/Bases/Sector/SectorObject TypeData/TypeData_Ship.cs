@@ -30,7 +30,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
             #region Base TypeData
             BodyID = objectByteList.PopInt();
 
-            RotationSpeed = objectByteList.PopIMemoryObject<Vector3>(0x8);
+            RotationSpeed = objectByteList.PopIMemoryObject<Vector3_32>(0x8);
             ObjectClass = objectByteList.PopInt();
             DefaultNameId = objectByteList.PopInt();
             WareVolume = objectByteList.PopInt();

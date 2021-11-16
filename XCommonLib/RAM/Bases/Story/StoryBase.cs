@@ -1,7 +1,6 @@
 ﻿using CommonToolLib.Memory;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using X3Tools.RAM.Generics;
 using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace XCommonLib.RAM.Bases.Story

@@ -8,7 +8,7 @@ namespace X3Tools.RAM.Bases.Sector
     {
         #region Memory
         public int BodyID;
-        public Vector3 RotationSpeed;
+        public Vector3_32 RotationSpeed;
         public int ObjectClass;
         public int DefaultNameID;
         public int WareVolume;
@@ -64,7 +64,7 @@ namespace X3Tools.RAM.Bases.Sector
         {
             BodyID = objectByteList.PopInt();
 
-            RotationSpeed = objectByteList.PopIMemoryObject<Vector3>(0x8);
+            RotationSpeed = objectByteList.PopIMemoryObject<Vector3_32>(0x8);
             ObjectClass = objectByteList.PopInt();
             DefaultNameID = objectByteList.PopInt();
             WareVolume = objectByteList.PopInt();

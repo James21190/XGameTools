@@ -19,14 +19,14 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int Unknown_10;
         public int ID; // 0x28
         public int Unknown_12;
-        public Vector3 ParentRelativePosition; // 0x30
+        public Vector3_32 ParentRelativePosition; // 0x30
         public int Unknown_16; // 0x3c
         public RotationMatrix_4 rotationMatrix = new RotationMatrix_4(); // 0x40
         public int Size; // 0x70
         public int Unknown_30;
         public int Unknown_31; // 0x78
         public int Unknown_32;
-        public Vector3 ModelScale; // 0x80
+        public Vector3_32 ModelScale; // 0x80
         public int Unknown_36; // 8c
         public int Unknown_37; // 90
         public int Unknown_38;
@@ -36,7 +36,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int TotalSize;
         public int Unknown_43; // a8
         public int Unknown_44;
-        public Vector3 AbsolutePosition; // b0
+        public Vector3_32 AbsolutePosition; // b0
         public int Unknown_48;
         public RotationMatrix_4 RotationMatrix_2; // c0
         public int Unknown_61; // f0
@@ -68,7 +68,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public short LightColor_C;
         public short Unknown_86;
         public int LightRange;
-        public Vector3 LightAttenuation;
+        public Vector3_32 LightAttenuation;
         public int Unknown_91;
         public int Unknown_92;
         public int Unknown_93; // 170
@@ -93,7 +93,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int Unknown_112;
         public int Unknown_113; // 1c0
         public int Hue;
-        public Vector3 Saturation;
+        public Vector3_32 Saturation;
         public int Unknown_118;
         public int Unknown_119;
         public int Unknown_120;

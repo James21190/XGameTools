@@ -100,9 +100,9 @@
     </Compile>
     <Compile Include="Vector\RotationMatrix_4.cs" />
     <Compile Include="Vector\RotationMatrix_3.cs" />
-    <Compile Include="Vector\Vector2.cs" />
-    <Compile Include="Vector\Vector4.cs" />
-    <Compile Include="Vector\Vector3.cs" />
+    <Compile Include="Vector\Vector2_32.cs" />
+    <Compile Include="Vector\Vector4_32.cs" />
+    <Compile Include="Vector\Vector3_32.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\BitFieldDisplay.resx">

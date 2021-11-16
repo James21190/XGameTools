@@ -27,6 +27,17 @@ namespace CommonToolLib.Memory
     public class MemoryInt32 : MemoryObject
     {
         public int Value = 0;
+        
+        public MemoryInt32()
+        {
+
+        }
+
+        public MemoryInt32(int value)
+        {
+            Value = value;
+        }
+
         public override byte[] GetBytes()
         {
             return BitConverter.GetBytes(Value);

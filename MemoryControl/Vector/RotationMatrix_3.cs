@@ -20,21 +20,21 @@ namespace CommonToolLib.Vector
             }
         }
 
-        public Vector3 X => new Vector3((int)Matrix[0, 0], (int)Matrix[0, 1], (int)Matrix[0, 2]);
-        public Vector3 Y => new Vector3((int)Matrix[1, 0], (int)Matrix[1, 1], (int)Matrix[1, 2]);
-        public Vector3 Z => new Vector3((int)Matrix[2, 0], (int)Matrix[2, 1], (int)Matrix[2, 2]);
+        public Vector3_32 X => new Vector3_32((int)Matrix[0, 0], (int)Matrix[0, 1], (int)Matrix[0, 2]);
+        public Vector3_32 Y => new Vector3_32((int)Matrix[1, 0], (int)Matrix[1, 1], (int)Matrix[1, 2]);
+        public Vector3_32 Z => new Vector3_32((int)Matrix[2, 0], (int)Matrix[2, 1], (int)Matrix[2, 2]);
 
-        public RotationMatrix_3(Vector3 A, Vector3 B, Vector3 C)
+        public RotationMatrix_3(Vector3_32 A, Vector3_32 B, Vector3_32 C)
         {
-            Matrix[0, 0] = A.X;
-            Matrix[0, 1] = A.Y;
-            Matrix[0, 2] = A.Z;
-            Matrix[1, 0] = B.X;
-            Matrix[1, 1] = B.Y;
-            Matrix[1, 2] = B.Z;
-            Matrix[2, 0] = C.X;
-            Matrix[2, 1] = C.Y;
-            Matrix[2, 2] = C.Z;
+            Matrix[0, 0] = (double)A.X;
+            Matrix[0, 1] = (double)A.Y;
+            Matrix[0, 2] = (double)A.Z;
+            Matrix[1, 0] = (double)B.X;
+            Matrix[1, 1] = (double)B.Y;
+            Matrix[1, 2] = (double)B.Z;
+            Matrix[2, 0] = (double)C.X;
+            Matrix[2, 1] = (double)C.Y;
+            Matrix[2, 2] = (double)C.Z;
         }
 
         public RotationMatrix_3(byte[] Memory)

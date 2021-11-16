@@ -32,7 +32,7 @@ namespace X3Tools.RAM.Bases.Galaxy
                 public int Unknown_1;
                 public int Unknown_2;
                 public int Unknown_3;
-                public Vector3 Position;
+                public Vector3_32 Position;
                 public int Unknown_4;
 
                 #region IMemoryObject
@@ -61,7 +61,7 @@ namespace X3Tools.RAM.Bases.Galaxy
                     Unknown_1 = objectByteList.PopInt();
                     Unknown_2 = objectByteList.PopInt();
                     Unknown_3 = objectByteList.PopInt();
-                    Position = objectByteList.PopIMemoryObject<Vector3>();
+                    Position = objectByteList.PopIMemoryObject<Vector3_32>();
                     Unknown_4 = objectByteList.PopInt();
                 }
                 public override void SetLocation(IntPtr hProcess, IntPtr address)

@@ -11,7 +11,7 @@ namespace XCommonLib.RAM.Bases.Sector.SectorObject_TypeData
     public abstract class TypeData : MemoryObject
     {
         public int BodyID;
-        public Vector3 RotationSpeed;
+        public Vector3_32 RotationSpeed;
         public int ObjectClass;
         public int DefaultNameId;
         public int WareVolume;

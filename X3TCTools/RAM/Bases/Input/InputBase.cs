@@ -16,7 +16,7 @@ namespace X3Tools.RAM.Bases.Input
 
         public int ScriptingObjectID;
 
-        public Vector3 NextLocation;
+        public Vector3_32 NextLocation;
 
         public int AbsTime;
 
@@ -40,7 +40,7 @@ namespace X3Tools.RAM.Bases.Input
 
             ScriptingObjectID = objectByteList.PopInt(0x4dc);
 
-            NextLocation = objectByteList.PopIMemoryObject<Vector3>();
+            NextLocation = objectByteList.PopIMemoryObject<Vector3_32>();
 
             AbsTime = objectByteList.PopInt(0x4f8);
 

@@ -15,11 +15,11 @@ namespace X3Tools.RAM.Bases.B3D
         public int Focus;
         public int Pri;
 
-        public Vector3 Background;
+        public Vector3_32 Background;
 
-        public Vector2 Aspect;
+        public Vector2_32 Aspect;
 
-        public Vector3 Fog;
+        public Vector3_32 Fog;
 
         public uint FadeValue;
 
