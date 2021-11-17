@@ -70,6 +70,12 @@
     <Compile Include="RAM\Generics\INumericIDObject.cs" />
     <Compile Include="RAM\Generics\LinkedListStart.cs" />
     <Compile Include="RAM\Generics\X3FixedPointValue.cs" />
+    <Compile Include="UI\Bases\Sector\SectorMapView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\Sector\SectorMapView.Designer.cs">
+      <DependentUpon>SectorMapView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\Sector\TypeDataView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UI\Bases\Sector\SectorMapView.resx">
+      <DependentUpon>SectorMapView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Sector\TypeDataView.resx">
       <DependentUpon>TypeDataView.cs</DependentUpon>
     </EmbeddedResource>

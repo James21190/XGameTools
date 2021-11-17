@@ -10,65 +10,9 @@ using X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData;
 
 namespace X3TCAPLib.RAM
 {
-    public class X3TCGameHook : GameHook
+    public class X3TCGameHook : X3TCAPGameHookBase
     {
-        public enum RaceID : ushort
-        {
-            NA,
-            Argon,
-            Boron,
-            Split,
-            Paranid,
-            Teladi,
-            Xenon,
-            Khaak,
-            Pirate,
-            Gonor,
-            Player,
-
-            Unowned = 12,
-            Friendly,
-            Unknown,
-
-            ATF = 17,
-            Terran,
-            Yaki,
-            None = 65535
-        }
-
-        public enum MainType
-        {
-            Bullet,
-            Sector,
-            Background,
-            Sun,
-            Planet,
-            Dock,
-            Factory,
-            Ship,
-            Laser,
-            Shield,
-            Missile,
-            Ware_E,
-            Ware_N,
-            Ware_B,
-            Ware_F,
-            Ware_M,
-            Ware_T,
-            Asteroid,
-            Gate,
-            Camera,
-            Special,
-
-            Cockpit = 25,
-
-            Debris = 28,
-            Wreck,
-            Factory_Wreck,
-            Ship_Wreck
-        }
-
-        public enum GlobalAddressesX3TC
+        public enum GlobalAddresses_X3TC
         {
             pSystemBase = 0x00603064,
             pGalaxyBase = 0x00604634,
@@ -140,7 +84,7 @@ namespace X3TCAPLib.RAM
         #endregion
 
         #region TypeData
-        public override int TypeData_Ship_Count => pTypeData_CountArr.GetObjectInArray((int)MainType.Ship).Value;
+        public override int TypeData_Ship_Count => pTypeData_CountArr.GetObjectInArray((int)MainType_X3TCAP.Ship).Value;
         public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
@@ -152,15 +96,15 @@ namespace X3TCAPLib.RAM
             HookIntoProcess(process);
 
             #region Bases
-            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pSectorBase);
-            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pStoryBase);
-            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pGalaxyBase);
-            ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddressesX3TC.pB3DBase);
+            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pSectorBase);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pStoryBase);
+            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pGalaxyBase);
+            ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pB3DBase);
             #endregion
 
             #region TypeData
-            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeDataCountArray);
-            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddressesX3TC.pTypeData_Ship);
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeDataCountArray);
+            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeData_Ship);
 
             #endregion
         }
@@ -170,13 +114,36 @@ namespace X3TCAPLib.RAM
             Unhook();
         }
 
-        public override string GetRaceIDName(ushort id)
+        public override GeneralRaces GetRaceByID(ushort raceID)
         {
-            return ((RaceID)id).ToString();
+            switch (((RaceID_X3TCAP)raceID))
+            {
+                case RaceID_X3TCAP.Argon: return GeneralRaces.Argon;
+                case RaceID_X3TCAP.Boron: return GeneralRaces.Boron;
+                case RaceID_X3TCAP.Split: return GeneralRaces.Split;
+                case RaceID_X3TCAP.Teladi: return GeneralRaces.Teladi;
+                case RaceID_X3TCAP.Paranid: return GeneralRaces.Paranid;
+                case RaceID_X3TCAP.Player: return GeneralRaces.Player;
+                case RaceID_X3TCAP.Xenon: return GeneralRaces.Xenon;
+                case RaceID_X3TCAP.Khaak: return GeneralRaces.Khaak;
+                case RaceID_X3TCAP.None: return GeneralRaces.None;
+                case RaceID_X3TCAP.Friendly: return GeneralRaces.Friendly;
+                case RaceID_X3TCAP.Terran: return GeneralRaces.Terran;
+                case RaceID_X3TCAP.ATF: return GeneralRaces.ATF;
+                case RaceID_X3TCAP.Yaki: return GeneralRaces.Yaki;
+                case RaceID_X3TCAP.Pirate: return GeneralRaces.Pirate;
+                case RaceID_X3TCAP.Gonor: return GeneralRaces.Gonor;
+            }
+            throw new NotImplementedException("RaceID of " + ((RaceID_X3TCAP)raceID).ToString() + " was not assigned.");
         }
-        public override string GetMainTypeName(int id)
+        public override GeneralMainType GetMainType(short mainType)
         {
-            return ((MainType)id).ToString();
+            switch ((MainType_X3TCAP)mainType)
+            {
+                case MainType_X3TCAP.Ship: return GeneralMainType.Ship;
+                case MainType_X3TCAP.Sector: return GeneralMainType.Sector;
+            }
+            throw new NotImplementedException("MainType of " + ((MainType_X3TCAP)mainType).ToString() + " was not assigned.");
         }
     }
 }

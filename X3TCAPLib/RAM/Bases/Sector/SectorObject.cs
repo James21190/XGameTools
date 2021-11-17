@@ -32,12 +32,12 @@ namespace X3TCAPLib.RAM.Bases.Sector
             get
             {
                 ISectorObjectMeta meta;
-                switch ((X3TCGameHook.MainType)ObjectType.MainType)
+                switch ((X3TCGameHook.MainType_X3TCAP)ObjectType.MainType)
                 {
-                    case X3TCGameHook.MainType.Sector: meta = new SectorObject_Sector_Meta(); break;
-                    case X3TCGameHook.MainType.Dock:
-                    case X3TCGameHook.MainType.Factory: meta = new SectorObject_Station_Meta(); break;
-                    case X3TCGameHook.MainType.Ship: meta = new SectorObject_Ship_Meta(); break;
+                    case X3TCGameHook.MainType_X3TCAP.Sector: meta = new SectorObject_Sector_Meta(); break;
+                    case X3TCGameHook.MainType_X3TCAP.Dock:
+                    case X3TCGameHook.MainType_X3TCAP.Factory: meta = new SectorObject_Station_Meta(); break;
+                    case X3TCGameHook.MainType_X3TCAP.Ship: meta = new SectorObject_Ship_Meta(); break;
                     default: return null;
                 }
                 meta.hProcess = hProcess;

@@ -21,6 +21,10 @@ namespace XCommonLib.RAM.Bases.Sector
         /// </summary>
         public abstract SectorObject Player { get; }
 
+        /// <summary>
+        /// Returns all top level SectorObjects.
+        /// </summary>
+        /// <returns></returns>
         public SectorObject[] GetSectorObjects()
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();

@@ -27,5 +27,11 @@ namespace XRAMTool.Bases.Sector
             display.LoadObject(Program.GameHook.SectorBase.Player);
             display.Show();
         }
+
+        private void btnViewSectorMap_Click(object sender, EventArgs e)
+        {
+            var display = new SectorMap_Display();
+            display.Show();
+        }
     }
 }

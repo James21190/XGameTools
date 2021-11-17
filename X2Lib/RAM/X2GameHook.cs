@@ -10,7 +10,7 @@ namespace X2Lib.RAM
     public class X2GameHook : XCommonLib.RAM.GameHook
     {
         // Taken from TC. Possible inaccuracy.
-        public enum RaceID : ushort
+        internal enum RaceID_X2 : ushort
         {
             Argon,
             Boron,
@@ -36,7 +36,7 @@ namespace X2Lib.RAM
         }
 
         // Taken from TC. Possible inaccuracy.
-        public enum MainType
+        internal enum MainType_X2
         {
             Bullet,
             Sector,
@@ -68,7 +68,7 @@ namespace X2Lib.RAM
             Ship_Wreck
         }
 
-        public enum GlobalAddressesX2
+        public enum GlobalAddresses_X2
         {
             TypeDataArray = 0x15d65b0,
             pSectorBase = 0x15d66a8,
@@ -106,8 +106,8 @@ namespace X2Lib.RAM
             HookIntoProcess(process);
 
             #region Bases
-            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddressesX2.pSectorBase);
-            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddressesX2.pStoryBase);
+            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddresses_X2.pSectorBase);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses_X2.pStoryBase);
             #endregion
 
             #region TypeData
@@ -119,13 +119,31 @@ namespace X2Lib.RAM
             Unhook();
         }
 
-        public override string GetRaceIDName(ushort id)
+        public override GeneralRaces GetRaceByID(ushort raceID)
         {
-            return ((RaceID)id).ToString();
+            switch (((RaceID_X2)raceID))
+            {
+                case RaceID_X2.Argon: return GeneralRaces.Argon;
+                case RaceID_X2.Boron: return GeneralRaces.Boron;
+                case RaceID_X2.Split: return GeneralRaces.Split;
+                case RaceID_X2.Teladi: return GeneralRaces.Teladi;
+                case RaceID_X2.Paranid: return GeneralRaces.Paranid;
+                case RaceID_X2.Player: return GeneralRaces.Player;
+                case RaceID_X2.Xenon: return GeneralRaces.Xenon;
+                case RaceID_X2.Khaak: return GeneralRaces.Khaak;
+                case RaceID_X2.None: return GeneralRaces.None;
+                case RaceID_X2.Gonor: return GeneralRaces.Gonor;
+            }
+            throw new NotImplementedException("RaceID of " + ((RaceID_X2)raceID).ToString() + " was not assigned.");
         }
-        public override string GetMainTypeName(int id)
+        public override GeneralMainType GetMainType(short mainType)
         {
-            return ((MainType)id).ToString();
+            switch ((MainType_X2)mainType)
+            {
+                case MainType_X2.Ship: return GeneralMainType.Ship;
+                case MainType_X2.Sector: return GeneralMainType.Sector;
+            }
+            throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }
 
     }

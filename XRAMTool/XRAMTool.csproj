@@ -58,6 +58,12 @@
     <Compile Include="Bases\Sector\SectorBase_Display.Designer.cs">
       <DependentUpon>SectorBase_Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bases\Sector\SectorMap_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\Sector\SectorMap_Display.Designer.cs">
+      <DependentUpon>SectorMap_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bases\Sector\SectorObject_Display.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Bases\Sector\SectorBase_Display.resx">
       <DependentUpon>SectorBase_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Sector\SectorMap_Display.resx">
+      <DependentUpon>SectorMap_Display.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\Sector\SectorObject_Display.resx">
       <DependentUpon>SectorObject_Display.cs</DependentUpon>

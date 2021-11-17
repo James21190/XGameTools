@@ -74,5 +74,14 @@ namespace CommonToolLib.Memory
             MemoryControl.Write(hProcess, pThis, GetBytes());
         }
 
+        /// <summary>
+        /// Writes all values that are considered safe to edit to memory.
+        /// Values such as pointers are excluded.
+        /// </summary>
+        public virtual void WriteSafeToMemory()
+        {
+            MemoryControl.Write(hProcess, pThis, GetBytes());
+        }
+
     }
 }

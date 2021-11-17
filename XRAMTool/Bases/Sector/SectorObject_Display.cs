@@ -52,7 +52,7 @@ namespace XRAMTool.Bases.Sector
                 //Text = Program.GameHook.StoryBase.GetParsedText(44,sectorObject.DefaultName.Value),
                 Text = Program.GameHook.DataFileManager.GetSectorObjectTypeName(sectorObject.ObjectType),
                 Tag = sectorObject,
-                BackColor = GetRaceColor(sectorObject.RaceID)
+                BackColor = Program.GameHook.GetRaceColor(sectorObject.RaceID)
             };
 
             if (m_SectorObject.ID == sectorObject.ID)
@@ -64,7 +64,7 @@ namespace XRAMTool.Bases.Sector
             if (sectorObject.Meta != null)
             {
                 // For every MainType
-                for (int i = 0; i < GameHook.MainTypeCount; i++)
+                for (short i = 0; i < GameHook.MainTypeCount; i++)
                 {
                     // Get children with MainType
                     SectorObject[] children = sectorObject.Meta.GetChildren(i);
@@ -93,24 +93,6 @@ namespace XRAMTool.Bases.Sector
             if (treeView1.SelectedNode.Tag is SectorObject)
             {
                 LoadObject((SectorObject)treeView1.SelectedNode.Tag);
-            }
-        }
-
-        private static Color GetRaceColor(ushort raceID)
-        {
-            switch (Program.GameHook.GetRaceIDName(raceID))
-            {
-                case "Argon": return Color.Aqua;
-                case "Boron": return Color.SeaGreen;
-                case "Split": return Color.Orange;
-                case "Teladi": return Color.GreenYellow;
-                case "Paranid": return Color.YellowGreen;
-                case "Gonor": return Color.Chartreuse;
-                case "Khaak": return Color.Purple;
-                case "Xenon": return Color.IndianRed;
-                case "Player": return Color.LawnGreen;
-                case "Unowned": return Color.Gray;
-                default: return Color.White;
             }
         }
 

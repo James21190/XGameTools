@@ -30,6 +30,7 @@
         {
             this.ntxtAddress = new CommonToolLib.UI.NamedTextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnViewSectorMap = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ntxtAddress
@@ -53,11 +54,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnViewSectorMap
+            // 
+            this.btnViewSectorMap.Location = new System.Drawing.Point(12, 97);
+            this.btnViewSectorMap.Name = "btnViewSectorMap";
+            this.btnViewSectorMap.Size = new System.Drawing.Size(114, 23);
+            this.btnViewSectorMap.TabIndex = 2;
+            this.btnViewSectorMap.Text = "View Sector Map";
+            this.btnViewSectorMap.UseVisualStyleBackColor = true;
+            this.btnViewSectorMap.Click += new System.EventHandler(this.btnViewSectorMap_Click);
+            // 
             // SectorBase_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnViewSectorMap);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ntxtAddress);
             this.Name = "SectorBase_Display";
@@ -71,5 +83,6 @@
 
         private CommonToolLib.UI.NamedTextBox ntxtAddress;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnViewSectorMap;
     }
 }
