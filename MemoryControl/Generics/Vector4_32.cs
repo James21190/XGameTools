@@ -1,19 +1,23 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Collections.Generic;
 
 
-namespace CommonToolLib.Vector
+namespace CommonToolLib.Generics
 {
-    public struct Vector2_32 : IMemoryObject
+    public struct Vector4_32 : IMemoryObject
     {
         public int X;
         public int Y;
+        public int Z;
+        public int W;
 
-        public Vector2_32(int x, int y)
+        public Vector4_32(int x, int y, int z, int w)
         {
             this.X = (x);
             this.Y = (y);
+            this.Z = (z);
+            this.W = (w);
             pThis = IntPtr.Zero;
             hProcess = IntPtr.Zero;
         }
@@ -28,9 +32,10 @@ namespace CommonToolLib.Vector
             return base.GetHashCode();
         }
 
+
         public override string ToString()
         {
-            return string.Format("{0},{1}", X, Y);
+            return string.Format("{0},{1},{2},{3}", X, Y, Z, W);
         }
 
         #region IMemoryObject
@@ -48,6 +53,8 @@ namespace CommonToolLib.Vector
 
             collection.Append(X);
             collection.Append(Y);
+            collection.Append(Z);
+            collection.Append(W);
 
             return collection.GetBytes();
         }
@@ -57,13 +64,15 @@ namespace CommonToolLib.Vector
             var collection = new ObjectByteList(Memory);
             X = collection.PopInt();
             Y = collection.PopInt();
+            Z = collection.PopInt();
+            W = collection.PopInt();
         }
         public void ReloadFromMemory()
         {
             throw new NotImplementedException();
         }
 
-        public int ByteSize => 8;
+        public int ByteSize => 16;
 
         #endregion
     }

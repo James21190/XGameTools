@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
     /// A 64 bit intager that implements IMemoryObject.

@@ -1,4 +1,5 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 
 namespace XCommonLib.RAM.Bases.B3D
 {

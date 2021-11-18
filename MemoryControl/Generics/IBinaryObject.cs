@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.Generics
 {
     public interface IBinaryObject
     {
@@ -19,19 +23,5 @@ namespace CommonToolLib.Memory
         /// </summary>
         /// <returns></returns>
         byte[] GetBytes();
-    }
-
-    public interface IMemoryObject : IBinaryObject
-    {
-        IntPtr pThis { get; set; }
-        IntPtr hProcess { get; set; }
-
-        [Obsolete("This method is no longer supported. Please use pThis and hProcess instead.")]
-        void SetLocation(IntPtr hProcess, IntPtr address);
-
-        /// <summary>
-        /// Reloads values from memory with the data provided by SetLocation.
-        /// </summary>
-        void ReloadFromMemory();
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     public class EventManager
     {

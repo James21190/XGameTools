@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using X2Lib.RAM.Bases.Story.Scripting;
 using XCommonLib.RAM.Bases.Story;

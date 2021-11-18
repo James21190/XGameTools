@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Diagnostics;
 using X3TCAPLib.RAM.Bases.Sector;
@@ -63,6 +63,7 @@ namespace X3TCAPLib.RAM
             BytesAllocated = 0x00604728,
         }
         public override string GameName => "X3TC";
+
         #region Pointers
         #region Bases
         public MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorBase;
@@ -144,6 +145,11 @@ namespace X3TCAPLib.RAM
                 case MainType_X3TCAP.Sector: return GeneralMainType.Sector;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X3TCAP)mainType).ToString() + " was not assigned.");
+        }
+
+        public override short GetMainTypeID(GeneralMainType mainType)
+        {
+            throw new NotImplementedException();
         }
     }
 }

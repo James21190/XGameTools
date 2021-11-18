@@ -1,4 +1,4 @@
-﻿namespace CommonToolLib.Memory
+﻿namespace CommonToolLib.ProcessHooking
 {
     public class BitField : MemoryObject
     {

@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using XCommonLib.RAM.Bases.Story.Scripting;

@@ -153,6 +153,10 @@
       <Project>{adbbdbb6-324b-4d38-b723-7f1181f32f24}</Project>
       <Name>XCommonLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XLibraryWrapper\XWrapperLib.csproj">
+      <Project>{759f8701-1c95-42a4-a31f-5b82e6bbfeda}</Project>
+      <Name>XWrapperLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

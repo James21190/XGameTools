@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 
 namespace XCommonLib.RAM.Bases.Story.Scripting
@@ -83,6 +83,15 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             }
 
             return 0;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is DynamicValue)
+            { 
+                return this == (DynamicValue)obj;
+            }
+            return false;
         }
 
         public static bool operator ==(DynamicValue a, DynamicValue b)

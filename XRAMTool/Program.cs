@@ -19,24 +19,7 @@ namespace XRAMTool
         {
             while (true)
             {
-                // Hook into the game memory
-                Process processX2 = Process.GetProcessesByName("X2").FirstOrDefault();
-                Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-                Process processX3AP = Process.GetProcessesByName("X3AP").FirstOrDefault();
-                Process processX3FL = Process.GetProcessesByName("X3FL").FirstOrDefault();
-
-                if (processX2 != null)
-                {
-                    GameHook = new X2GameHook(processX2);
-                }
-                else if (processX3TC != null)
-                {
-                    GameHook = new X3TCGameHook(processX3TC);
-                }
-                else if(processX3AP != null)
-                {
-                    GameHook = new X3APGameHook(processX3AP);
-                }
+                GameHook = XWrapperLib.GameHookFactory.GetGameHook();
 
                 if (GameHook != null)
                 {

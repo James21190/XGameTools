@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     public static class MemoryControl
     {

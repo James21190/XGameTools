@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
     /// A pointer that points to an IMemoryObject in a process's memory.

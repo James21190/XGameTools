@@ -99,9 +99,9 @@ namespace CommonToolLib.UI
             }
         }
 
-        public Vector.Vector3_32 Vector
+        public Generics.Vector3_32 Vector
         {
-            get => new Vector.Vector3_32(Convert.ToInt32(X), Convert.ToInt32(Y), Convert.ToInt32(Z));
+            get => new Generics.Vector3_32(Convert.ToInt32(X), Convert.ToInt32(Y), Convert.ToInt32(Z));
             set
             {
                 X = (decimal)value.X;

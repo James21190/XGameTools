@@ -1,5 +1,5 @@
-﻿using CommonToolLib.Memory;
-using CommonToolLib.Vector;
+﻿using CommonToolLib.ProcessHooking;
+using CommonToolLib.Generics;
 using System;
 using System.Collections.Generic;
 using System.Linq;

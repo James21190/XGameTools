@@ -1,9 +1,9 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Collections.Generic;
 
 
-namespace CommonToolLib.Vector
+namespace CommonToolLib.Generics
 {
     public struct Vector3_32 : IMemoryObject
     {

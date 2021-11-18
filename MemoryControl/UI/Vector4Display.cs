@@ -111,9 +111,9 @@ namespace CommonToolLib.UI
             }
         }
 
-        public CommonToolLib.Vector.Vector4_32 Vector
+        public CommonToolLib.Generics.Vector4_32 Vector
         {
-            get => new CommonToolLib.Vector.Vector4_32(Convert.ToInt32(X), Convert.ToInt32(Y), Convert.ToInt32(Z), Convert.ToInt32(W));
+            get => new CommonToolLib.Generics.Vector4_32(Convert.ToInt32(X), Convert.ToInt32(Y), Convert.ToInt32(Z), Convert.ToInt32(W));
             set
             {
                 X = (decimal)value.X;

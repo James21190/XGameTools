@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using X3TCAPLib.RAM.Bases.Story.Scripting;
 using XCommonLib.RAM.Generics;

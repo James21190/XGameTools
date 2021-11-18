@@ -43,22 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generics\IBinaryObject.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Memory\ApplicationHook.cs" />
-    <Compile Include="Memory\BitField.cs" />
-    <Compile Include="Memory\EventManager.cs" />
+    <Compile Include="ProcessHooking\ApplicationHook.cs" />
+    <Compile Include="ProcessHooking\BitField.cs" />
+    <Compile Include="ProcessHooking\EventManager.cs" />
     <Compile Include="Exceptions.cs" />
-    <Compile Include="Memory\IMemoryObject.cs" />
-    <Compile Include="Memory\IValidateable.cs" />
-    <Compile Include="Memory\MemoryControl.cs" />
-    <Compile Include="Memory\Basic Types.cs" />
-    <Compile Include="Memory\MemoryObject.cs" />
-    <Compile Include="Memory\ObjectByteList.cs" />
-    <Compile Include="Memory\MemoryObjectPointer.cs" />
-    <Compile Include="Network\Client.cs" />
-    <Compile Include="Network\Listener.cs" />
-    <Compile Include="Network\Packet.cs" />
+    <Compile Include="ProcessHooking\IMemoryObject.cs" />
+    <Compile Include="Generics\IValidateable.cs" />
+    <Compile Include="ProcessHooking\MemoryControl.cs" />
+    <Compile Include="ProcessHooking\Basic Types.cs" />
+    <Compile Include="ProcessHooking\MemoryObject.cs" />
+    <Compile Include="ProcessHooking\ObjectByteList.cs" />
+    <Compile Include="ProcessHooking\MemoryObjectPointer.cs" />
+    <Compile Include="Networking\NetworkClient.cs" />
+    <Compile Include="Networking\TCPClientBase.cs" />
+    <Compile Include="Networking\NetworkListener.cs" />
+    <Compile Include="Networking\Packet.cs" />
     <Compile Include="Patcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScriptAssembler.cs" />
@@ -98,11 +100,11 @@
     <Compile Include="UI\Vector3Display.Designer.cs">
       <DependentUpon>Vector3Display.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vector\RotationMatrix_4.cs" />
-    <Compile Include="Vector\RotationMatrix_3.cs" />
-    <Compile Include="Vector\Vector2_32.cs" />
-    <Compile Include="Vector\Vector4_32.cs" />
-    <Compile Include="Vector\Vector3_32.cs" />
+    <Compile Include="Generics\RotationMatrix_4.cs" />
+    <Compile Include="Generics\RotationMatrix_3.cs" />
+    <Compile Include="Generics\Vector2_32.cs" />
+    <Compile Include="Generics\Vector4_32.cs" />
+    <Compile Include="Generics\Vector3_32.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\BitFieldDisplay.resx">
@@ -125,7 +127,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ContentWithTargetPath Include="Memory\GameCodeList Script.txt">
+    <ContentWithTargetPath Include="ProcessHooking\GameCodeList Script.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>./RAM/Mods/System/GameCodeList.mod</TargetPath>
     </ContentWithTargetPath>

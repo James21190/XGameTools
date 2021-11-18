@@ -1,5 +1,5 @@
-﻿using CommonToolLib.Memory;
-using CommonToolLib.Vector;
+﻿using CommonToolLib.ProcessHooking;
+using CommonToolLib.Generics;
 using System;
 
 namespace X3TCAPLib.RAM.Bases.B3D

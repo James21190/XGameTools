@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Diagnostics;
 using X2Lib.RAM.Bases.Sector;
@@ -146,5 +146,9 @@ namespace X2Lib.RAM
             throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }
 
+        public override short GetMainTypeID(GeneralMainType mainType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

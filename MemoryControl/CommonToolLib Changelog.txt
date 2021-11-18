@@ -4,6 +4,9 @@
 	- Added dll injection method to ApplicationHook.
 	- Depreciated SetLodation in IMemoryObject. This has been replaced with pThis and hProcess fields.
 	- Reordered message serverity in Logger class.
+	- Added a clear method to ObjectByteList.
+	- Moved around and renamed some namespaces to make more sense.
+	- Added (hopefully better) networking objects.
 
 1.5.0.0 (22/11/2020)
 	- Added comments to more methods and objects.

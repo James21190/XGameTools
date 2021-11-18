@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
     /// List that can convert objects to bytes and can pop objects.
@@ -543,6 +543,12 @@ namespace CommonToolLib.Memory
         {
             arr = m_Data.Skip(m_ReadPointer).ToArray();
             m_ReadPointer = m_Data.Count;
+        }
+
+        public void Clear()
+        {
+            m_Data.Clear();
+            m_ReadPointer = 0;
         }
 
     }

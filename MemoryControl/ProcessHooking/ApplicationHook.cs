@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
     /// Base class used to hook into another process.

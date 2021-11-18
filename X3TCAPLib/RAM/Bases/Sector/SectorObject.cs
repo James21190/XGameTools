@@ -1,5 +1,5 @@
-﻿using CommonToolLib.Memory;
-using CommonToolLib.Vector;
+﻿using CommonToolLib.ProcessHooking;
+using CommonToolLib.Generics;
 using System;
 using X3TCAPLib.RAM.Bases.B3D;
 using X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta;
@@ -102,6 +102,23 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public override bool IsValid =>
             pNext.address != IntPtr.Zero &&
             pPrevious.address != IntPtr.Zero;
+
+        public override void WriteSafeToMemory()
+        {
+            var collection = new ObjectByteList();
+            collection.Append(Speed);
+            collection.Append(DesiredSpeed);
+            collection.Append(EulerRotation);
+            collection.Append(LocalEulerRotationDelta);
+            collection.Append(LocalAutopilotRotationDeltaTarget);
+            collection.Append(RaceID);
+            collection.Append(Unknown_4);
+            collection.Append(InteractionFlags);
+            collection.Append(Unknown_5);
+            collection.Append(base.ObjectType);
+            collection.Append(Unknown_6);
+            MemoryControl.Write(hProcess, pThis + 0x10, collection.GetBytes());
+        }
 
         #region IMemoryObject
         public override byte[] GetBytes()

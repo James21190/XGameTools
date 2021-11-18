@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Collections.Generic;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;

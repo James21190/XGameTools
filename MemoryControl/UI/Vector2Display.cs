@@ -85,9 +85,9 @@ namespace CommonToolLib.UI
             }
         }
 
-        public CommonToolLib.Vector.Vector2_32 Vector
+        public CommonToolLib.Generics.Vector2_32 Vector
         {
-            get => new CommonToolLib.Vector.Vector2_32(Convert.ToInt32(X), Convert.ToInt32(Y));
+            get => new CommonToolLib.Generics.Vector2_32(Convert.ToInt32(X), Convert.ToInt32(Y));
             set
             {
                 X = (decimal)value.X;

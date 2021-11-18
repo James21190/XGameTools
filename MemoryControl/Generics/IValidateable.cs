@@ -1,4 +1,4 @@
-﻿namespace CommonToolLib.Memory
+﻿namespace CommonToolLib.Generics
 {
     public interface IValidateable
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CommonToolLib.Memory
+namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
     /// Basic IMemoryObject with additional functionality.

@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 
 namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
 {

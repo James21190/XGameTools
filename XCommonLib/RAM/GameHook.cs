@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System.Drawing;
 using System.IO;
 using System;
@@ -60,12 +60,32 @@ namespace XCommonLib.RAM
             Factory_Wreck,
             Ship_Wreck
         }
+
         public GeneralMainType GetMainTypeByID(SectorObject.SectorObjectType type)
         {
             return GetMainType(type.MainType);
         }
         public abstract GeneralMainType GetMainType(short mainType);
-        public  string GetMainTypeName(short mainType) { return GetMainTypeName(GetMainType(mainType)); }
+
+        /// <summary>
+        /// Returns the numeric ID of a MainType.
+        /// </summary>
+        /// <param name="mainType"></param>
+        /// <returns></returns>
+        public abstract short GetMainTypeID(GeneralMainType mainType);
+
+        /// <summary>
+        /// Returns the name of a given MainType.
+        /// </summary>
+        /// <param name="mainType"></param>
+        /// <returns></returns>
+        public string GetMainTypeName(short mainType) { return GetMainTypeName(GetMainType(mainType)); }
+        /// <summary>
+        /// Returns the name of a given MainType.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public string GetMainTypeName(GeneralMainType type)
         {
             switch (type)

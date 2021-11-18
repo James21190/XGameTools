@@ -1,5 +1,5 @@
-﻿using CommonToolLib.Memory;
-using CommonToolLib.Vector;
+﻿using CommonToolLib.ProcessHooking;
+using CommonToolLib.Generics;
 using System;
 using X2Lib.RAM.Bases.B3D;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;

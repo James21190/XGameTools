@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Memory;
+﻿using CommonToolLib.ProcessHooking;
 using System.Collections.Generic;
 
 namespace XCommonLib.RAM.Bases.Sector
@@ -20,6 +20,23 @@ namespace XCommonLib.RAM.Bases.Sector
         /// Is null if object is invalid or non-existant.
         /// </summary>
         public abstract SectorObject Player { get; }
+
+        /// <summary>
+        /// Returns the first top level SectorObject with a given MainType.
+        /// </summary>
+        /// <param name="mainType"></param>
+        /// <returns></returns>
+        public SectorObject GetFirstObjectOfMainType(short mainType)
+        {
+            var next = First;
+            while(next != null)
+            {
+                if (next.ObjectType.MainType == mainType)
+                    return next;
+                next = next.Next;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Returns all top level SectorObjects.
