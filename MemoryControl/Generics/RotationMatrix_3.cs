@@ -26,15 +26,15 @@ namespace CommonToolLib.Generics
 
         public RotationMatrix_3(Vector3_32 A, Vector3_32 B, Vector3_32 C)
         {
-            Matrix[0, 0] = (double)A.X;
-            Matrix[0, 1] = (double)A.Y;
-            Matrix[0, 2] = (double)A.Z;
-            Matrix[1, 0] = (double)B.X;
-            Matrix[1, 1] = (double)B.Y;
-            Matrix[1, 2] = (double)B.Z;
-            Matrix[2, 0] = (double)C.X;
-            Matrix[2, 1] = (double)C.Y;
-            Matrix[2, 2] = (double)C.Z;
+            Matrix[0, 0] = A.X;
+            Matrix[0, 1] = A.Y;
+            Matrix[0, 2] = A.Z;
+            Matrix[1, 0] = B.X;
+            Matrix[1, 1] = B.Y;
+            Matrix[1, 2] = B.Z;
+            Matrix[2, 0] = C.X;
+            Matrix[2, 1] = C.Y;
+            Matrix[2, 2] = C.Z;
         }
 
         public RotationMatrix_3(byte[] Memory)

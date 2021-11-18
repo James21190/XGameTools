@@ -1,5 +1,5 @@
-﻿using CommonToolLib.ProcessHooking;
-using CommonToolLib.Generics;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System;
 
 namespace X3TCAPLib.RAM.Bases.B3D

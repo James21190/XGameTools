@@ -29,10 +29,13 @@ namespace XCommonLib.RAM.Bases.Sector
         public SectorObject GetFirstObjectOfMainType(short mainType)
         {
             var next = First;
-            while(next != null)
+            while (next != null)
             {
                 if (next.ObjectType.MainType == mainType)
+                {
                     return next;
+                }
+
                 next = next.Next;
             }
             return null;

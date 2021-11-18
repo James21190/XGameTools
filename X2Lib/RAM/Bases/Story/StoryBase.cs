@@ -1,7 +1,6 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
 using X2Lib.RAM.Bases.Story.Scripting;
-using XCommonLib.RAM.Bases.Story;
 using XCommonLib.RAM.Generics;
 
 namespace X2Lib.RAM.Bases.Story

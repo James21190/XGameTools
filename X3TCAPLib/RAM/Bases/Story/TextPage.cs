@@ -1,9 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using X3TCAPLib.RAM.Bases.Story.Scripting;
 
 namespace X3TCAPLib.RAM.Bases.Story

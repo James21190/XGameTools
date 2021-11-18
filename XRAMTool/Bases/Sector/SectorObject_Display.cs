@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
@@ -56,9 +55,13 @@ namespace XRAMTool.Bases.Sector
             };
 
             if (m_SectorObject.ID == sectorObject.ID)
+            {
                 currentSelection = node;
+            }
             else
+            {
                 currentSelection = null;
+            }
 
             // Check getting meta
             if (sectorObject.Meta != null)
@@ -72,13 +75,15 @@ namespace XRAMTool.Bases.Sector
                     if (children != null && children.Length > 0)
                     {
                         // If there are children with the given MainType, append it and it's children.
-                        TreeNode childrenNode = new TreeNode(string.Format("{0} ({1})",Program.GameHook.GetMainTypeName(i), children.Length));
+                        TreeNode childrenNode = new TreeNode(string.Format("{0} ({1})", Program.GameHook.GetMainTypeName(i), children.Length));
                         foreach (SectorObject child in children)
                         {
                             TreeNode tempNode;
                             childrenNode.Nodes.Add(GetSectorObjectTreeNode(child, out tempNode));
                             if (tempNode != null)
+                            {
                                 currentSelection = tempNode;
+                            }
                         }
                         node.Nodes.Add(childrenNode);
                     }

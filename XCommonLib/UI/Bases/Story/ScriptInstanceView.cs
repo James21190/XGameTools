@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using XCommonLib.RAM.Bases.Story.Scripting;
+﻿using System.Windows.Forms;
 using XCommonLib.RAM;
+using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace XCommonLib.UI.Bases.Story
 {
@@ -42,17 +34,23 @@ namespace XCommonLib.UI.Bases.Story
 
             string[] variableNames = new string[m_ScriptInstance.Sub.ScriptVariableCount];
             for (int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount; i++)
+            {
                 variableNames[i] = i.ToString();
+            }
 
             if (ReferenceGameHook != null)
             {
                 var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Sub.Class);
                 for (int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount && i < typeData.VariableNames.Length; i++)
-                    if(!string.IsNullOrWhiteSpace(typeData.VariableNames[i]))
+                {
+                    if (!string.IsNullOrWhiteSpace(typeData.VariableNames[i]))
+                    {
                         variableNames[i] = typeData.VariableNames[i];
+                    }
+                }
             }
 
-            for(int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount; i++)
+            for (int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount; i++)
             {
                 var variable = m_ScriptInstance.pScriptVariableArr.GetObjectInArray(i);
                 dgvMemoryTable.Rows.Add(variableNames[i], variable.Flag, variable.Value, variable.Value.ToString("X"));

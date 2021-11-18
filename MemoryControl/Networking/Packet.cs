@@ -1,7 +1,6 @@
 ﻿using CommonToolLib.Generics;
 using CommonToolLib.ProcessHooking;
 using System;
-using System.IO;
 using System.Net.Sockets;
 
 namespace CommonToolLib.Networking

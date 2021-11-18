@@ -1,9 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCAPLib.RAM.Bases.Story.Scripting
 {
@@ -50,7 +46,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             Unknown_4 = objectByteList.PopInt();
             Unknown_5 = objectByteList.PopInt();
             FunctionCount_1 = objectByteList.PopInt();
-            pFunctions = objectByteList.PopIMemoryObject <MemoryObjectPointer<MemoryInt32>>();
+            pFunctions = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
             Unknown = objectByteList.PopInt();
         }
         #endregion

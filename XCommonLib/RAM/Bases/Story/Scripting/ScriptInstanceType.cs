@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace XCommonLib.RAM.Bases.Story.Scripting
 {
@@ -14,16 +9,19 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
 
         public string[] LocalVariableNames;
 
-        public string[] VariableNames 
-        { 
+        public string[] VariableNames
+        {
             get
             {
                 List<string> result = new List<string>();
-                if(Parent != null)
+                if (Parent != null)
+                {
                     result.AddRange(Parent.VariableNames);
+                }
+
                 result.AddRange(LocalVariableNames);
                 return result.ToArray();
-            } 
+            }
         }
 
     }

@@ -1,10 +1,6 @@
-﻿using CommonToolLib.ProcessHooking;
-using CommonToolLib.Generics;
-using System;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
 
@@ -13,7 +9,7 @@ namespace XWrapperLib.Networking
     public class UniverseManager
     {
         private GameHook _GameHook;
-        
+
         public UniverseManager(GameHook gameHook)
         {
             _GameHook = gameHook;

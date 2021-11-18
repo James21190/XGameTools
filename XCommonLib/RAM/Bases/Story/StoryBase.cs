@@ -71,8 +71,11 @@ namespace XCommonLib.RAM.Bases.Story
                     }
                 }
             }
-            if(shouldRecheck)
+            if (shouldRecheck)
+            {
                 txt = _GetParsedText(languageId, txt, previous);
+            }
+
             return txt;
 
         }

@@ -1,6 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
-using System.Collections.Generic;
 
 
 namespace CommonToolLib.Generics
@@ -12,8 +11,8 @@ namespace CommonToolLib.Generics
 
         public Vector2_32(int x, int y)
         {
-            this.X = (x);
-            this.Y = (y);
+            X = (x);
+            Y = (y);
             pThis = IntPtr.Zero;
             hProcess = IntPtr.Zero;
         }
@@ -39,7 +38,7 @@ namespace CommonToolLib.Generics
 
         public void SetLocation(IntPtr hProcess, IntPtr address)
         {
-            this.pThis = address;
+            pThis = address;
             this.hProcess = hProcess;
         }
         public byte[] GetBytes()

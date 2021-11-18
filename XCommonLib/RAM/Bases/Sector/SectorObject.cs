@@ -1,9 +1,8 @@
-﻿using CommonToolLib.ProcessHooking;
-using CommonToolLib.Generics;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System;
 using XCommonLib.RAM.Bases.B3D;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
-using XCommonLib.RAM.Bases.Story.Scripting;
 using XCommonLib.RAM.Generics;
 
 namespace XCommonLib.RAM.Bases.Sector
@@ -52,18 +51,30 @@ namespace XCommonLib.RAM.Bases.Sector
 
             public int CompareTo(object obj)
             {
-                if(obj is SectorObjectType)
+                if (obj is SectorObjectType)
                 {
                     var sot = (SectorObjectType)obj;
 
                     if (MainType > sot.MainType)
+                    {
                         return 1;
+                    }
+
                     if (MainType < sot.MainType)
+                    {
                         return -1;
+                    }
+
                     if (SubType > sot.SubType)
+                    {
                         return 1;
+                    }
+
                     if (SubType < sot.SubType)
+                    {
                         return -1;
+                    }
+
                     return 0;
                 }
                 throw new ArgumentException("Object is not of same type.");
@@ -104,15 +115,25 @@ namespace XCommonLib.RAM.Bases.Sector
 
         public int CompareTo(object obj)
         {
-            if(obj is SectorObject)
+            if (obj is SectorObject)
             {
                 var so = (SectorObject)obj;
                 var typeResult = ObjectType.CompareTo(so.ObjectType);
-                if (typeResult != 0) return typeResult;
+                if (typeResult != 0)
+                {
+                    return typeResult;
+                }
+
                 if (RaceID > so.RaceID)
+                {
                     return 1;
+                }
+
                 if (RaceID < so.RaceID)
+                {
                     return -1;
+                }
+
                 return 0;
             }
             throw new ArgumentException("Object is not of same type.");

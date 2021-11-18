@@ -414,7 +414,8 @@ namespace CommonToolLib.ProcessHooking
         {
             T memoryObject = new T();
 
-            memoryObject.SetLocation(hProcess, pThis + m_ReadPointer);
+            memoryObject.hProcess = hProcess;
+            memoryObject.pThis = pThis + m_ReadPointer;
             memoryObject.SetData(PopBytes(memoryObject.ByteSize));
 
             return memoryObject;

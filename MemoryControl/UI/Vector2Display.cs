@@ -90,8 +90,8 @@ namespace CommonToolLib.UI
             get => new CommonToolLib.Generics.Vector2_32(Convert.ToInt32(X), Convert.ToInt32(Y));
             set
             {
-                X = (decimal)value.X;
-                Y = (decimal)value.Y;
+                X = value.X;
+                Y = value.Y;
             }
         }
 

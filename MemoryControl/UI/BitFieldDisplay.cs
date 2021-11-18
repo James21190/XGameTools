@@ -1,12 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CommonToolLib.UI
@@ -76,10 +69,10 @@ namespace CommonToolLib.UI
         private void _ReloadCheckboxLables()
         {
             checkedListBox1.Items.Clear();
-            for(int i = 0; i < _Bits; i++)
+            for (int i = 0; i < _Bits; i++)
             {
 
-                if(_Lables != null && _Lables.Length > i && !string.IsNullOrWhiteSpace(_Lables[i]))
+                if (_Lables != null && _Lables.Length > i && !string.IsNullOrWhiteSpace(_Lables[i]))
                 {
                     checkedListBox1.Items.Add(_Lables[i]);
                 }

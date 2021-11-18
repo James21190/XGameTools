@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
@@ -67,7 +62,9 @@ namespace XCommonLib.UI.Bases.Sector
             SectorObjects.Clear();
             var sector = ReferenceGameHook.SectorBase.GetSectorObjects()[0];
             foreach (var child in sector.Meta.GetChildren())
+            {
                 SectorObjects.Add(new SectorObjectPoint(child));
+            }
         }
 
         #region Drawing
@@ -99,7 +96,7 @@ namespace XCommonLib.UI.Bases.Sector
 
         private void _DrawGrid()
         {
-            var pen = new Pen(Color.Gray,1);
+            var pen = new Pen(Color.Gray, 1);
             float ySpacing = (float)pnlMapCanvas.Height / GridSize;
             float xSpacing = (float)pnlMapCanvas.Width / GridSize;
             for (int i = 0; i <= GridSize; i++)
@@ -108,25 +105,25 @@ namespace XCommonLib.UI.Bases.Sector
             }
             for (int i = 0; i <= GridSize; i++)
             {
-                _Canvas.DrawLine(pen, new Point((int)(xSpacing * i),0), new Point((int)(xSpacing * i), pnlMapCanvas.Height-1));
+                _Canvas.DrawLine(pen, new Point((int)(xSpacing * i), 0), new Point((int)(xSpacing * i), pnlMapCanvas.Height - 1));
             }
 
             var cameraPosition = _ToScreenSpace(CameraX, CameraY);
             pen = new Pen(Color.Black, 2);
-            _Canvas.DrawLine(pen, 0, cameraPosition.Y, pnlMapCanvas.Width-1, cameraPosition.Y);
-            _Canvas.DrawLine(pen, cameraPosition.X, 0, cameraPosition.X, pnlMapCanvas.Height-1);
+            _Canvas.DrawLine(pen, 0, cameraPosition.Y, pnlMapCanvas.Width - 1, cameraPosition.Y);
+            _Canvas.DrawLine(pen, cameraPosition.X, 0, cameraPosition.X, pnlMapCanvas.Height - 1);
         }
 
         private void _DrawObjects()
         {
             const int objectWidth = 20 / 2;
-            foreach(var sectorObject in SectorObjects)
+            foreach (var sectorObject in SectorObjects)
             {
                 var pen = new SolidBrush(ReferenceGameHook.GetRaceColor((ushort)sectorObject.Race));
                 var pos = _ToScreenSpace(sectorObject.X, sectorObject.Y);
                 pos.X -= objectWidth;
                 pos.Y -= objectWidth;
-                _Canvas.FillRectangle(pen, new Rectangle(pos, new Size(objectWidth,objectWidth)));
+                _Canvas.FillRectangle(pen, new Rectangle(pos, new Size(objectWidth, objectWidth)));
             }
         }
         #endregion
@@ -137,17 +134,24 @@ namespace XCommonLib.UI.Bases.Sector
             const int resetNumber = 10;
             _Scale = newScale;
             GridFactor = resetNumber + _Scale % resetNumber;
-            UnitsPerCell = 100000 * (int)Math.Pow(2,Math.Floor((double)(_Scale) / resetNumber));
+            UnitsPerCell = 100000 * (int)Math.Pow(2, Math.Floor((double)(_Scale) / resetNumber));
         }
 
         private void pnlMapCanvas_MouseWheel(object sender, MouseEventArgs e)
         {
             if (e.Delta > 0 && _Scale > 1)
+            {
                 _Rescale(_Scale - 1);
+            }
             else if (e.Delta < 0)
+            {
                 _Rescale(_Scale + 1);
+            }
             else
+            {
                 return;
+            }
+
             Draw();
         }
 

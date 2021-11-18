@@ -38,7 +38,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         }
         public override XCommonLib.RAM.Bases.Story.TextPage GetTextPage(int languageId, int pageId)
         {
-            HashTable<TextPage> table = TextHashTableArray[(int)languageId].obj;
+            HashTable<TextPage> table = TextHashTableArray[languageId].obj;
             return table.GetObject(pageId);
         }
         #endregion

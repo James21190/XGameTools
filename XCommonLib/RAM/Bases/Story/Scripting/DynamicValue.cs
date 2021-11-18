@@ -33,13 +33,10 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public const int ByteSizeConst = 5;
         public override int ByteSize => ByteSizeConst;
 
-        public override void SetData(byte[] Memory)
+        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
         {
-            ObjectByteList collection = new ObjectByteList(Memory);
-            byte temp = 0;
-            collection.PopFirst(ref temp);
-            Flag = (FlagType)temp;
-            collection.PopFirst(ref Value);
+            Flag = (FlagType)objectByteList.PopByte();
+            Value = objectByteList.PopInt();
         }
         #endregion
 
@@ -87,8 +84,8 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
 
         public override bool Equals(object obj)
         {
-            if(obj is DynamicValue)
-            { 
+            if (obj is DynamicValue)
+            {
                 return this == (DynamicValue)obj;
             }
             return false;

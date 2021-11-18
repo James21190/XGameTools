@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows.Forms;
-using X2Lib.RAM;
-using X3TCAPLib.RAM;
 using XCommonLib.RAM;
 
 namespace XRAMTool

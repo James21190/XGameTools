@@ -27,7 +27,7 @@ namespace CommonToolLib.ProcessHooking
     public class MemoryInt32 : MemoryObject
     {
         public int Value = 0;
-        
+
         public MemoryInt32()
         {
 

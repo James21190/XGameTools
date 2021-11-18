@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using XCommonLib.RAM.Bases.Sector;
 
 namespace XCommonLib.RAM
@@ -28,7 +23,10 @@ namespace XCommonLib.RAM
                 if (file.Length > type.SubType)
                 {
                     var name = file[type.SubType];
-                    if (!string.IsNullOrEmpty(name)) return name;
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        return name;
+                    }
                 }
             }
             return type.ToString(); ;
@@ -40,7 +38,10 @@ namespace XCommonLib.RAM
         public XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType GetScriptInstanceType(int typeID)
         {
             if (!Directory.Exists(Path.Combine(DataFilePath, _ScriptInstanceTypesDir)))
+            {
                 return null;
+            }
+
             return _GetScriptInstanceType(typeID, Path.Combine(DataFilePath, _ScriptInstanceTypesDir));
 
         }
@@ -59,7 +60,9 @@ namespace XCommonLib.RAM
             {
                 var dirResult = _GetScriptInstanceType(typeID, dir);
                 if (dirResult != null)
+                {
                     return dirResult;
+                }
             }
             return null;
         }
@@ -67,14 +70,17 @@ namespace XCommonLib.RAM
         public XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType GetScriptInstanceType(string name)
         {
             if (!Directory.Exists(Path.Combine(DataFilePath, _ScriptInstanceTypesDir)))
+            {
                 return null;
+            }
+
             return _GetScriptInstanceType(name, Path.Combine(DataFilePath, _ScriptInstanceTypesDir));
         }
         private XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType _GetScriptInstanceType(string name, string startPath)
         {
             foreach (var file in Directory.GetFiles(startPath))
             {
-                if(Path.GetFileNameWithoutExtension(file) == name)
+                if (Path.GetFileNameWithoutExtension(file) == name)
                 {
                     return _GetScriptInstanceTypeFromFile(file);
                 }
@@ -83,7 +89,9 @@ namespace XCommonLib.RAM
             {
                 var dirResult = _GetScriptInstanceType(name, dir);
                 if (dirResult != null)
+                {
                     return dirResult;
+                }
             }
             return null;
         }
@@ -93,10 +101,13 @@ namespace XCommonLib.RAM
             var result = new XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType();
             var lines = File.ReadAllLines(path);
             result.TypeID = int.Parse(lines[0]);
-            if(!string.IsNullOrWhiteSpace(lines[1]))
+            if (!string.IsNullOrWhiteSpace(lines[1]))
+            {
                 result.Parent = GetScriptInstanceType(lines[1]);
+            }
+
             result.LocalVariableNames = new string[lines.Length - 2];
-            for(int i = 2; i < lines.Length; i++)
+            for (int i = 2; i < lines.Length; i++)
             {
                 result.LocalVariableNames[i - 2] = lines[i];
             }

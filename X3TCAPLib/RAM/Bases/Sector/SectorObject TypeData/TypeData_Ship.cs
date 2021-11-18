@@ -1,10 +1,6 @@
-﻿using CommonToolLib.ProcessHooking;
-using CommonToolLib.Generics;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
 {

@@ -92,7 +92,7 @@ namespace CommonToolLib.Networking
         /// <param name="data"></param>
         public void SendToAll(Packet packet)
         {
-            foreach(var clientData in _Clients)
+            foreach (var clientData in _Clients)
             {
                 packet.WriteToStream(clientData.NetworkStream);
             }

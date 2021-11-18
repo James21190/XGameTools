@@ -1,10 +1,5 @@
-﻿using CommonToolLib.ProcessHooking;
-using CommonToolLib.Generics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 
 namespace XCommonLib.RAM.Bases.Sector.SectorObject_TypeData
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XCommonLib.RAM;
+﻿using XCommonLib.RAM;
 
 namespace X3TCAPLib.RAM
 {

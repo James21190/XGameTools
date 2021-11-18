@@ -1,12 +1,11 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Diagnostics;
-using X3TCAPLib.RAM.Bases.Sector;
-using X3TCAPLib.RAM.Bases.Story;
 using X3TCAPLib.RAM.Bases.B3D;
 using X3TCAPLib.RAM.Bases.Galaxy;
-using XCommonLib.RAM;
+using X3TCAPLib.RAM.Bases.Sector;
 using X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData;
+using X3TCAPLib.RAM.Bases.Story;
 
 namespace X3TCAPLib.RAM
 {
