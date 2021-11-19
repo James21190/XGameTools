@@ -6,7 +6,7 @@ using XCommonLib.RAM;
 
 namespace XWrapperLib
 {
-    public static class GameHookFactory
+    public static class XGameHookFactory
     {
         public static GameHook GetGameHook()
         {

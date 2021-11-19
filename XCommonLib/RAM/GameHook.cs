@@ -119,7 +119,7 @@ namespace XCommonLib.RAM
         public abstract GeneralRaces GetRaceByID(ushort raceID);
 
         public string GetRaceIDName(ushort raceID) { return GetRaceIDName(GetRaceByID(raceID)); }
-        public string GetRaceIDName(GeneralRaces raceID)
+        public static string GetRaceIDName(GeneralRaces raceID)
         {
             switch (raceID)
             {
@@ -137,7 +137,7 @@ namespace XCommonLib.RAM
             throw new NotImplementedException("RaceID of " + raceID + " was not assigned a name.");
         }
         public Color GetRaceColor(ushort raceID) { return GetRaceColor(GetRaceByID(raceID)); }
-        public Color GetRaceColor(GeneralRaces raceID)
+        public static Color GetRaceColor(GeneralRaces raceID)
         {
             switch (raceID)
             {

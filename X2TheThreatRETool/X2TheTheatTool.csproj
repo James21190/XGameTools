@@ -111,7 +111,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\Common.csproj">
+    <ProjectReference Include="..\MemoryControl\CommonToolLib.csproj">
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>Common</Name>
     </ProjectReference>

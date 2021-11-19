@@ -7,6 +7,7 @@
 	- Added a clear method to ObjectByteList.
 	- Moved around and renamed some namespaces to make more sense.
 	- Added (hopefully better) networking objects.
+	- Added PageReference class for saving temporary data to disk.
 
 1.5.0.0 (22/11/2020)
 	- Added comments to more methods and objects.

@@ -31,12 +31,18 @@ namespace CommonToolLib.Networking
             {
                 _Client = new TcpClient(address, port);
                 _NetworkStream = _Client.GetStream();
+                _StartAcceptingData();
                 return true;
             }
             catch (Exception)
             {
                 return false;
             }
+        }
+
+        public void Close()
+        {
+            _StopAcceptingData();
         }
 
         #region Sending Data
@@ -47,18 +53,20 @@ namespace CommonToolLib.Networking
         #endregion
 
         #region Recieving Data
-        public void StartAcceptingData()
+        private void _StartAcceptingData()
         {
             _RecieveDataThread = new Thread(_RecieveData);
+            _AcceptingData = true;
             _RecieveDataThread.Start();
         }
-        public void StopAcceptingData()
+        private volatile bool _AcceptingData = false;
+        private void _StopAcceptingData()
         {
-            _RecieveDataThread.Abort();
+            _AcceptingData = false;
         }
         private void _RecieveData()
         {
-            while (_RecieveDataThread.ThreadState != ThreadState.Aborted)
+            while (_AcceptingData)
             {
                 if (_NetworkStream.DataAvailable)
                 {

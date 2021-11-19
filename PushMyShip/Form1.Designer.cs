@@ -33,12 +33,14 @@ namespace PushMyShip
             this.btnHost = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.txtIP = new System.Windows.Forms.TextBox();
-            this.bgwHostProcess = new System.ComponentModel.BackgroundWorker();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.nnudSpeed = new CommonToolLib.UI.NamedNumericUpDown();
-            this.nnudDesiredSpeed = new CommonToolLib.UI.NamedNumericUpDown();
+            this.UpdateLogTimer = new System.Windows.Forms.Timer(this.components);
             this.btnSend = new System.Windows.Forms.Button();
+            this.RequestUpdateTimer = new System.Windows.Forms.Timer(this.components);
+            this.sectorMapView1 = new XCommonLib.UI.Bases.Sector.SectorMapView();
+            this.nnudDesiredSpeed = new CommonToolLib.UI.NamedNumericUpDown();
+            this.nnudSpeed = new CommonToolLib.UI.NamedNumericUpDown();
+            this.vector3Display1 = new CommonToolLib.UI.Vector3Display();
             this.SuspendLayout();
             // 
             // btnHost
@@ -68,12 +70,10 @@ namespace PushMyShip
             this.txtIP.Size = new System.Drawing.Size(100, 20);
             this.txtIP.TabIndex = 2;
             // 
-            // bgwHostProcess
-            // 
-            this.bgwHostProcess.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwHostProcess_DoWork);
-            // 
             // richTextBox1
             // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.richTextBox1.Location = new System.Drawing.Point(12, 70);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
@@ -81,35 +81,36 @@ namespace PushMyShip
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
-            // timer1
+            // UpdateLogTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.UpdateLogTimer.Enabled = true;
+            this.UpdateLogTimer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // nnudSpeed
+            // btnSend
             // 
-            this.nnudSpeed.Location = new System.Drawing.Point(199, 70);
-            this.nnudSpeed.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.nnudSpeed.MaximumSize = new System.Drawing.Size(0, 50);
-            this.nnudSpeed.Minimum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            -2147483648});
-            this.nnudSpeed.MinimumSize = new System.Drawing.Size(100, 50);
-            this.nnudSpeed.Name = "nnudSpeed";
-            this.nnudSpeed.Size = new System.Drawing.Size(146, 50);
-            this.nnudSpeed.TabIndex = 4;
-            this.nnudSpeed.Title = "Speed";
-            this.nnudSpeed.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+            this.btnSend.Enabled = false;
+            this.btnSend.Location = new System.Drawing.Point(199, 291);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(156, 23);
+            this.btnSend.TabIndex = 6;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
+            // RequestUpdateTimer
+            // 
+            this.RequestUpdateTimer.Interval = 1000;
+            this.RequestUpdateTimer.Tick += new System.EventHandler(this.RequestUpdateTimer_Tick);
+            // 
+            // sectorMapView1
+            // 
+            this.sectorMapView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sectorMapView1.Location = new System.Drawing.Point(432, 8);
+            this.sectorMapView1.Name = "sectorMapView1";
+            this.sectorMapView1.Size = new System.Drawing.Size(501, 445);
+            this.sectorMapView1.TabIndex = 7;
             // 
             // nnudDesiredSpeed
             // 
@@ -127,7 +128,7 @@ namespace PushMyShip
             -2147483648});
             this.nnudDesiredSpeed.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudDesiredSpeed.Name = "nnudDesiredSpeed";
-            this.nnudDesiredSpeed.Size = new System.Drawing.Size(146, 50);
+            this.nnudDesiredSpeed.Size = new System.Drawing.Size(156, 50);
             this.nnudDesiredSpeed.TabIndex = 5;
             this.nnudDesiredSpeed.Title = "Desired Speed";
             this.nnudDesiredSpeed.Value = new decimal(new int[] {
@@ -136,21 +137,79 @@ namespace PushMyShip
             0,
             0});
             // 
-            // btnSend
+            // nnudSpeed
             // 
-            this.btnSend.Location = new System.Drawing.Point(199, 182);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(146, 23);
-            this.btnSend.TabIndex = 6;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            this.nnudSpeed.Location = new System.Drawing.Point(199, 70);
+            this.nnudSpeed.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.nnudSpeed.MaximumSize = new System.Drawing.Size(0, 50);
+            this.nnudSpeed.Minimum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            -2147483648});
+            this.nnudSpeed.MinimumSize = new System.Drawing.Size(100, 50);
+            this.nnudSpeed.Name = "nnudSpeed";
+            this.nnudSpeed.Size = new System.Drawing.Size(156, 50);
+            this.nnudSpeed.TabIndex = 4;
+            this.nnudSpeed.Title = "Speed";
+            this.nnudSpeed.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // vector3Display1
+            // 
+            this.vector3Display1.DecimalPlaces = 0;
+            this.vector3Display1.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.vector3Display1.Location = new System.Drawing.Point(199, 182);
+            this.vector3Display1.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.vector3Display1.MaximumSize = new System.Drawing.Size(156, 103);
+            this.vector3Display1.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vector3Display1.MinimumSize = new System.Drawing.Size(100, 103);
+            this.vector3Display1.Name = "vector3Display1";
+            this.vector3Display1.Size = new System.Drawing.Size(156, 103);
+            this.vector3Display1.TabIndex = 8;
+            this.vector3Display1.Text = "Position";
+            this.vector3Display1.X = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vector3Display1.Y = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.vector3Display1.Z = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(945, 465);
+            this.Controls.Add(this.vector3Display1);
+            this.Controls.Add(this.sectorMapView1);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.nnudDesiredSpeed);
             this.Controls.Add(this.nnudSpeed);
@@ -160,6 +219,8 @@ namespace PushMyShip
             this.Controls.Add(this.btnHost);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,12 +231,14 @@ namespace PushMyShip
         private System.Windows.Forms.Button btnHost;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.TextBox txtIP;
-        private System.ComponentModel.BackgroundWorker bgwHostProcess;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer UpdateLogTimer;
         private CommonToolLib.UI.NamedNumericUpDown nnudSpeed;
         private CommonToolLib.UI.NamedNumericUpDown nnudDesiredSpeed;
         private System.Windows.Forms.Button btnSend;
+        private XCommonLib.UI.Bases.Sector.SectorMapView sectorMapView1;
+        private System.Windows.Forms.Timer RequestUpdateTimer;
+        private CommonToolLib.UI.Vector3Display vector3Display1;
     }
 }
 

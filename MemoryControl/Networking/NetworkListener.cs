@@ -40,29 +40,39 @@ namespace CommonToolLib.Networking
             _Port = port;
             _Listener = new TcpListener(IPAddress.Parse("0.0.0.0"), _Port);
             _Listener.Start();
+            _StartAcceptingClients();
+            _StartAcceptingData();
+        }
+
+        public void Close()
+        {
+            _StopAcceptingClients();
+            _StopAcceptingData();
         }
 
         #region Manage Connections
         /// <summary>
         /// Start a thread to listen for new connections.
         /// </summary>
-        public void StartAccepting()
+        private void _StartAcceptingClients()
         {
             _ListeningThread = new Thread(_ListenForNew);
+            _AcceptingClients = true;
             _ListeningThread.Start();
         }
 
         /// <summary>
         /// Terminate the thread that is listening for new connections.
         /// </summary>
-        public void StopAccepting()
+        private void _StopAcceptingClients()
         {
-            _ListeningThread.Abort();
+            _AcceptingClients = false;
         }
+        private volatile bool _AcceptingClients = false;
 
         private void _ListenForNew()
         {
-            while (_ListeningThread.ThreadState != ThreadState.Aborted)
+            while (_AcceptingClients)
             {
                 if (_Listener.Pending())
                 {
@@ -92,9 +102,9 @@ namespace CommonToolLib.Networking
         /// <param name="data"></param>
         public void SendToAll(Packet packet)
         {
-            foreach (var clientData in _Clients)
+            for (int i = 0; i < _Clients.Count; i++)
             {
-                packet.WriteToStream(clientData.NetworkStream);
+                packet.WriteToStream(_Clients[i].NetworkStream);
             }
         }
         /// <summary>
@@ -110,21 +120,24 @@ namespace CommonToolLib.Networking
         #endregion
 
         #region Recieving Data
-        public void StartAcceptingData()
+        private void _StartAcceptingData()
         {
             _RecieveDataThread = new Thread(_RecieveData);
+            _AcceptingData = true;
             _RecieveDataThread.Start();
         }
-        public void StopAcceptingData()
+        private volatile bool _AcceptingData = false;
+        private void _StopAcceptingData()
         {
-            _RecieveDataThread.Abort();
+            _AcceptingData = false;
         }
         private void _RecieveData()
         {
-            while (_RecieveDataThread.ThreadState != ThreadState.Aborted)
+            while (_AcceptingData)
             {
-                foreach (var client in _Clients)
+                for(int i = 0; i < _Clients.Count; i++)
                 {
+                    var client = _Clients[i];
                     var stream = client.NetworkStream;
                     if (stream.DataAvailable)
                     {

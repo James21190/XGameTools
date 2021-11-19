@@ -6,7 +6,8 @@
         public event DataRecievedHandler OnDataRecieved;
         protected void InvokeOnDataRecieved(Packet packet)
         {
-            OnDataRecieved(packet);
+            if(OnDataRecieved != null)
+                OnDataRecieved(packet);
         }
     }
 }

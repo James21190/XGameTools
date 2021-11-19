@@ -15,7 +15,7 @@ namespace XRAMTool
         {
             while (true)
             {
-                GameHook = XWrapperLib.GameHookFactory.GetGameHook();
+                GameHook = XWrapperLib.XGameHookFactory.GetGameHook();
 
                 if (GameHook != null)
                 {

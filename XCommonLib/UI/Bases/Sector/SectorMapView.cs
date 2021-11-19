@@ -14,7 +14,7 @@ namespace XCommonLib.UI.Bases.Sector
         public int UnitsPerCell = 1000000;
 
         public float CameraX = 0;
-        public float CameraY = 50;
+        public float CameraY = 0;
 
         public GameHook ReferenceGameHook = null;
 
@@ -22,10 +22,10 @@ namespace XCommonLib.UI.Bases.Sector
         public struct SectorObjectPoint
         {
             public int X, Y;
-            public int Race;
+            public GameHook.GeneralRaces Race;
             public int ObjectType;
 
-            public SectorObjectPoint(int x, int y, int race, int objectType)
+            public SectorObjectPoint(int x, int y, GameHook.GeneralRaces race, int objectType)
             {
                 X = x;
                 Y = y;
@@ -33,11 +33,11 @@ namespace XCommonLib.UI.Bases.Sector
                 ObjectType = objectType;
             }
 
-            public SectorObjectPoint(SectorObject sectorObject)
+            public SectorObjectPoint(SectorObject sectorObject, GameHook referenceGameHook)
             {
                 X = sectorObject.Position.X;
                 Y = sectorObject.Position.Z;
-                Race = sectorObject.RaceID;
+                Race = referenceGameHook.GetRaceByID(sectorObject.RaceID);
                 ObjectType = sectorObject.ObjectType.MainType;
             }
         }
@@ -63,7 +63,7 @@ namespace XCommonLib.UI.Bases.Sector
             var sector = ReferenceGameHook.SectorBase.GetSectorObjects()[0];
             foreach (var child in sector.Meta.GetChildren())
             {
-                SectorObjects.Add(new SectorObjectPoint(child));
+                SectorObjects.Add(new SectorObjectPoint(child, ReferenceGameHook));
             }
         }
 
@@ -87,11 +87,15 @@ namespace XCommonLib.UI.Bases.Sector
 
         }
 
+        private bool _IsDrawing = false;
         public void Draw()
         {
+            if (_IsDrawing) return;
+            _IsDrawing = true;
             _Canvas.Clear(Color.Silver);
             _DrawGrid();
             _DrawObjects();
+            _IsDrawing = false;
         }
 
         private void _DrawGrid()
@@ -119,7 +123,7 @@ namespace XCommonLib.UI.Bases.Sector
             const int objectWidth = 20 / 2;
             foreach (var sectorObject in SectorObjects)
             {
-                var pen = new SolidBrush(ReferenceGameHook.GetRaceColor((ushort)sectorObject.Race));
+                var pen = new SolidBrush(GameHook.GetRaceColor(sectorObject.Race));
                 var pos = _ToScreenSpace(sectorObject.X, sectorObject.Y);
                 pos.X -= objectWidth;
                 pos.Y -= objectWidth;

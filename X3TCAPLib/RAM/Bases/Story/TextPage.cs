@@ -54,7 +54,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         public MemoryObjectPointer<TextEntry> pEntries = new MemoryObjectPointer<TextEntry>();
         public int Unknown;
 
-        public TextEntry[] textEntries
+        public TextEntry[] TextEntries
         {
             get
             {

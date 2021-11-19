@@ -148,7 +148,12 @@ namespace X3TCAPLib.RAM
 
         public override short GetMainTypeID(GeneralMainType mainType)
         {
-            throw new NotImplementedException();
+            switch (mainType)
+            {
+                case GeneralMainType.Ship: return (short)MainType_X3TCAP.Ship;
+                case GeneralMainType.Sector: return (short)MainType_X3TCAP.Sector;
+                default: return 0;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.Generics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -257,21 +258,21 @@ namespace CommonToolLib.ProcessHooking
         {
             Append((int)value);
         }
-        public void Append<T>(T[] arr) where T : IMemoryObject
+        public void Append<T>(T[] arr) where T : IBinaryObject
         {
             foreach (T obj in arr)
             {
                 Append(obj.GetBytes());
             }
         }
-        public void Append<T>(T[,] arr) where T : IMemoryObject
+        public void Append<T>(T[,] arr) where T : IBinaryObject
         {
             foreach (T obj in arr)
             {
                 Append(obj.GetBytes());
             }
         }
-        public void Append(IMemoryObject memoryObject)
+        public void Append(IBinaryObject memoryObject)
         {
             m_Data.AddRange(memoryObject.GetBytes());
         }
@@ -408,6 +409,20 @@ namespace CommonToolLib.ProcessHooking
             }
 
             return arr;
+        }
+
+        public T PopIBinaryObject<T>() where T : IBinaryObject, new()
+        {
+            T binaryObject = new T();
+            binaryObject.SetData(PopBytes(binaryObject.ByteSize));
+            return binaryObject;
+        }
+        public T[] PopIBinaryObject<T>(int count) where T : IBinaryObject, new()
+        {
+            T[] binaryObject = new T[count];
+            for(int i = 0; i < count; i++)
+                binaryObject[i].SetData(PopBytes(binaryObject[i].ByteSize));
+            return binaryObject;
         }
 
         public T PopIMemoryObject<T>() where T : IMemoryObject, new()

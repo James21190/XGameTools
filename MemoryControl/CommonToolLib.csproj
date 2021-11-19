@@ -46,6 +46,7 @@
     <Compile Include="Generics\IBinaryObject.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="PageReference.cs" />
     <Compile Include="ProcessHooking\ApplicationHook.cs" />
     <Compile Include="ProcessHooking\BitField.cs" />
     <Compile Include="ProcessHooking\EventManager.cs" />
