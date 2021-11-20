@@ -1,6 +1,7 @@
 ﻿using CommonToolLib.Generics;
 using CommonToolLib.ProcessHooking;
 using System;
+using System.IO;
 using System.Net.Sockets;
 
 namespace CommonToolLib.Networking
@@ -38,19 +39,6 @@ namespace CommonToolLib.Networking
             collection.Append(data);
             var bytes = collection.GetBytes();
             stream.Write(bytes, 0, bytes.Length);
-        }
-
-        public static Packet ReadPacketFromStream(NetworkStream stream)
-        {
-            var packetType = (byte)stream.ReadByte();
-            var packet = new Packet(packetType);
-            byte[] buffer = new byte[4];
-            stream.Read(buffer, 0, 4);
-            var dataLength = BitConverter.ToInt32(buffer, 0);
-            buffer = new byte[dataLength];
-            stream.Read(buffer, 0, dataLength);
-            packet.Data = buffer;
-            return packet;
         }
 
         public IBinaryObject ToBinaryObject<T>() where T : IBinaryObject, new()

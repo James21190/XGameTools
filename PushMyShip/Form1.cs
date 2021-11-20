@@ -12,6 +12,7 @@ using XWrapperLib;
 using PushMyShip.Packets;
 using System.Security.Cryptography;
 using System.IO;
+using CommonToolLib;
 
 namespace PushMyShip
 {
@@ -25,23 +26,15 @@ namespace PushMyShip
         private GameHook _GameHook;
         private NetworkClient _NetworkClient;
         private NetworkListener _NetworkListener;
+        private Logger _Logger = new Logger();
 
         private bool _IsHost = false;
 
         private const int _Port = 25565;
 
-        private List<string> _Log = new List<string>();
-
-        private void Log(string txt)
-        {
-            _Log.Add(txt);
-            while (_Log.Count > 100)
-                _Log.RemoveAt(0);
-        }
-
         private void DisplayLogs()
         {
-            var logs = _Log.ToArray();
+            var logs = _Logger.GetMessages();
             richTextBox1.Text = string.Join("\n", logs.Reverse());
         }
 
@@ -50,9 +43,10 @@ namespace PushMyShip
             btnHost.Enabled = btnConnect.Enabled = txtIP.Enabled = false;
             _NetworkListener = new NetworkListener(_Port);
             _NetworkListener.OnDataRecieved += OnDataRecieved;
+            _NetworkListener.OnUnhandledException += OnThreadException;
             _GameHook = XGameHookFactory.GetGameHook();
             _IsHost = true;
-            Log("Hosting on port " + _Port + ".");
+            _Logger.Log(Logger.MessageSeverity.Message,"Hosting on port " + _Port + ".");
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -64,11 +58,12 @@ namespace PushMyShip
                 btnSend.Enabled = true;
                 RequestUpdateTimer.Enabled = true;
                 _NetworkClient.OnDataRecieved += OnDataRecieved;
-                Log("Connected to " + txtIP.Text + ":" + _Port + ".");
+                _NetworkClient.OnUnhandledException += OnThreadException;
+                _Logger.Log(Logger.MessageSeverity.Message, "Connected to " + txtIP.Text + ":" + _Port + ".");
             }
             else
             {
-                Log("Failed to connect to " + txtIP.Text + ":" + _Port + ".");
+                _Logger.Log(Logger.MessageSeverity.Error, "Failed to connect to " + txtIP.Text + ":" + _Port + ".");
             }
         }
 
@@ -79,7 +74,7 @@ namespace PushMyShip
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            Log("Sending ShipDataPacket...");
+            _Logger.Log(Logger.MessageSeverity.Debug, "Sending ShipDataPacket...");
             var packet = new DetailedObjectDataPacket();
             packet.Speed = (int)nnudSpeed.Value;
             packet.DesiredSpeed = (int)nnudDesiredSpeed.Value;
@@ -89,7 +84,7 @@ namespace PushMyShip
 
         public void OnDataRecieved(Packet packet)
         {
-            Log("Recieved packet of type " + (PacketType)packet.PacketType + ".");
+            _Logger.Log(Logger.MessageSeverity.Debug, "Recieved packet of type " + (PacketType)packet.PacketType + ".");
             if (_IsHost)
             {
                 switch ((PacketType)packet.PacketType)
@@ -121,7 +116,7 @@ namespace PushMyShip
                         playerShip.WriteSafeToMemory();
                         break;
                     default:
-                        Log("Recieved unhandled data packet of type " + packet.PacketType + ".");
+                        _Logger.Log(Logger.MessageSeverity.Error, "Recieved unhandled data packet of type " + packet.PacketType + ".");
                         break;
                 }
             }
@@ -148,7 +143,7 @@ namespace PushMyShip
                         sectorMapView1.Draw();
                         break;
                     default:
-                        Log("Recieved unhandled data packet of type " + packet.PacketType + ".");
+                        _Logger.Log(Logger.MessageSeverity.Error, "Recieved unhandled data packet of type " + packet.PacketType + ".");
                         break;
                 }
             }
@@ -160,6 +155,7 @@ namespace PushMyShip
                 _NetworkClient.Close();
             if(_NetworkListener != null)
                 _NetworkListener.Close();
+            _Logger.DumpLog();
         }
 
         private void RequestUpdateTimer_Tick(object sender, EventArgs e)
@@ -169,8 +165,15 @@ namespace PushMyShip
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            _Logger.SetOutputFile("./log.txt");
             using (var md5 = MD5.Create())
                 Text += " Hash:" + String.Join("",md5.ComputeHash(File.ReadAllBytes("./PushMyShip.exe")));
+        }
+
+        private void OnThreadException(object sender, UnhandledExceptionEventArgs e)
+        {
+            _Logger.Log(Logger.MessageSeverity.Exception, e.ExceptionObject.ToString());
+            Close();
         }
     }
 }

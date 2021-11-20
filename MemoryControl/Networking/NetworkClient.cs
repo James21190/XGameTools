@@ -64,15 +64,23 @@ namespace CommonToolLib.Networking
         {
             _AcceptingData = false;
         }
+
         private void _RecieveData()
         {
-            while (_AcceptingData)
+            try
             {
-                if (_NetworkStream.DataAvailable)
+                while (_AcceptingData)
                 {
-                    var packet = Packet.ReadPacketFromStream(_NetworkStream);
-                    InvokeOnDataRecieved(packet);
+                    if (_NetworkStream.DataAvailable)
+                    {
+                        var packet = _GetPacketFromStream(_NetworkStream);
+                        InvokeOnDataRecieved(packet);
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+                InvokeOnUnhandledException(e);
             }
         }
         #endregion

@@ -13,16 +13,11 @@ namespace PushMyShip
         [STAThread]
         static void Main()
         {
-            //Application.ThreadException += OnException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var form = new Form1();
             Application.Run(form);
         }
 
-        private static void OnException(object sender, ThreadExceptionEventArgs e)
-        {
-            File.WriteAllText("./crash.txt", e.ToString());
-        }
     }
 }

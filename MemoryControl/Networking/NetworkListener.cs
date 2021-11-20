@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -72,13 +74,20 @@ namespace CommonToolLib.Networking
 
         private void _ListenForNew()
         {
-            while (_AcceptingClients)
-            {
-                if (_Listener.Pending())
+            try {
+
+                while (_AcceptingClients)
                 {
-                    TcpClient newClient = _Listener.AcceptTcpClient();
-                    _Clients.Add(new ClientData(_NextAvailableID++, newClient));
+                    if (_Listener.Pending())
+                    {
+                        TcpClient newClient = _Listener.AcceptTcpClient();
+                        _Clients.Add(new ClientData(_NextAvailableID++, newClient));
+                    }
                 }
+            }
+            catch(Exception e)
+            {
+                InvokeOnUnhandledException(e);
             }
         }
         #endregion
@@ -92,7 +101,7 @@ namespace CommonToolLib.Networking
                 }
             }
 
-            throw new System.Exception("Client not found.");
+            throw new Exception("Client not found.");
         }
 
         #region Sending Data
@@ -133,18 +142,25 @@ namespace CommonToolLib.Networking
         }
         private void _RecieveData()
         {
-            while (_AcceptingData)
+            try
             {
-                for(int i = 0; i < _Clients.Count; i++)
+                while (_AcceptingData)
                 {
-                    var client = _Clients[i];
-                    var stream = client.NetworkStream;
-                    if (stream.DataAvailable)
+                    for(int i = 0; i < _Clients.Count; i++)
                     {
-                        var packet = Packet.ReadPacketFromStream(stream);
-                        InvokeOnDataRecieved(packet);
+                        var client = _Clients[i];
+                        var stream = client.NetworkStream;
+                        if (stream.DataAvailable)
+                        {
+                            var packet = _GetPacketFromStream(stream);
+                            InvokeOnDataRecieved(packet);
+                        }
                     }
                 }
+            }
+            catch(Exception e)
+            {
+                InvokeOnUnhandledException(e);
             }
         }
         #endregion

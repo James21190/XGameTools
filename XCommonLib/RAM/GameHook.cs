@@ -96,7 +96,7 @@ namespace XCommonLib.RAM
         #endregion
 
         #region Races
-        public enum GeneralRaces
+        public enum GeneralRaces : short
         {
             Argon,
             Boron,
