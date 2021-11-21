@@ -45,7 +45,7 @@ namespace XWrapperLib.Networking
 
             public byte[] GetBytes()
             {
-                var obl = new ObjectByteList();
+                var obl = new MemoryObjectConverter();
 
                 obl.Append(Speed);
                 obl.Append(DesiredSpeed);
@@ -57,7 +57,7 @@ namespace XWrapperLib.Networking
 
             public void SetData(byte[] Memory)
             {
-                var obl = new ObjectByteList(Memory);
+                var obl = new MemoryObjectConverter(Memory);
                 Speed = obl.PopInt();
                 DesiredSpeed = obl.PopInt();
                 Position = obl.PopIMemoryObject<Vector3_32>();

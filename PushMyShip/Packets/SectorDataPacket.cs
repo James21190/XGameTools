@@ -22,7 +22,7 @@ namespace PushMyShip.Packets
 
             public byte[] GetBytes()
             {
-                var obl = new ObjectByteList();
+                var obl = new MemoryObjectConverter();
                 obl.Append(ID);
                 obl.Append((short)Race);
                 obl.Append(Position);
@@ -31,7 +31,7 @@ namespace PushMyShip.Packets
 
             public void SetData(byte[] Memory)
             {
-                var obl = new ObjectByteList(Memory);
+                var obl = new MemoryObjectConverter(Memory);
                 ID = obl.PopInt();
                 Race = (GameHook.GeneralRaces)obl.PopShort();
                 Position = obl.PopIMemoryObject<Vector3_32>();
@@ -49,14 +49,14 @@ namespace PushMyShip.Packets
         {
             get
             {
-                var obl = new ObjectByteList();
+                var obl = new MemoryObjectConverter();
                 obl.Append(SectorObjects);
                 return obl.GetBytes();
             }
             set
             {
                 var number = value.Length / 18;
-                var obl = new ObjectByteList(value);
+                var obl = new MemoryObjectConverter(value);
                 SectorObjects = obl.PopIBinaryObject<SectorObjectData>(number);
             }
         }

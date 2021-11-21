@@ -23,7 +23,7 @@ namespace PushMyShip.Packets
         {
             get
             {
-                var obl = new ObjectByteList();
+                var obl = new MemoryObjectConverter();
                 obl.Append(Speed);
                 obl.Append(DesiredSpeed);
                 obl.Append(Position);
@@ -31,7 +31,7 @@ namespace PushMyShip.Packets
             }
             set
             {
-                var obl = new ObjectByteList(value);
+                var obl = new MemoryObjectConverter(value);
                 Speed = obl.PopInt();
                 DesiredSpeed = obl.PopInt();
                 Position = obl.PopIMemoryObject<Vector3_32>();

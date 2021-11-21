@@ -24,7 +24,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         #region MemoryObject
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
             collection.Append((byte)Flag);
             collection.Append(Value);
             return collection.GetBytes();
@@ -33,7 +33,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public const int ByteSizeConst = 5;
         public override int ByteSize => ByteSizeConst;
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             Flag = (FlagType)objectByteList.PopByte();
             Value = objectByteList.PopInt();

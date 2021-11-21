@@ -102,7 +102,7 @@ namespace CommonToolLib.ProcessHooking
                 bytes[i] = (byte)Value.ToArray()[i];
             }
             bytes[Value.Length] = 0;
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
             collection.Append(bytes);
             return collection.GetBytes();
         }
@@ -112,7 +112,7 @@ namespace CommonToolLib.ProcessHooking
         public override void SetData(byte[] Memory)
         {
             Value = "";
-            ObjectByteList collection = new ObjectByteList(Memory);
+            MemoryObjectConverter collection = new MemoryObjectConverter(Memory);
             char character = (char)collection.PopByte();
             while (character != 0)
             {

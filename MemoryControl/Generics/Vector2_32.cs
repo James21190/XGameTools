@@ -43,7 +43,7 @@ namespace CommonToolLib.Generics
         }
         public byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            var collection = new MemoryObjectConverter();
 
             collection.Append(X);
             collection.Append(Y);
@@ -53,7 +53,7 @@ namespace CommonToolLib.Generics
 
         public void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            var collection = new MemoryObjectConverter(Memory);
             X = collection.PopInt();
             Y = collection.PopInt();
         }

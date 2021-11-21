@@ -25,7 +25,7 @@ namespace X2Lib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             base.SetDataFromObjectByteList(objectByteList);
         }

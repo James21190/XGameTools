@@ -6,7 +6,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
     {
         public override int ByteSize => 2000;
 
-        protected override void SetUniqueData(ObjectByteList obl)
+        protected override void SetUniqueData(MemoryObjectConverter obl)
         {
 
         }

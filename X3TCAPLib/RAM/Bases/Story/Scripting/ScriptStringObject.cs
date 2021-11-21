@@ -25,7 +25,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             id = objectByteList.PopInt();
             unknown_1 = objectByteList.PopInt();

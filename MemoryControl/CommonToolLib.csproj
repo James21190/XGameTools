@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generics\BinaryObjectConverter.cs" />
     <Compile Include="Generics\IBinaryObject.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
     <Compile Include="Logger.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="ProcessHooking\MemoryControl.cs" />
     <Compile Include="ProcessHooking\Basic Types.cs" />
     <Compile Include="ProcessHooking\MemoryObject.cs" />
-    <Compile Include="ProcessHooking\ObjectByteList.cs" />
+    <Compile Include="ProcessHooking\MemoryObjectConverter.cs" />
     <Compile Include="ProcessHooking\MemoryObjectPointer.cs" />
     <Compile Include="Networking\NetworkClient.cs" />
     <Compile Include="Networking\TCPClientBase.cs" />

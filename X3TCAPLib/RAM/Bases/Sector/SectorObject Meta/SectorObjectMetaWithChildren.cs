@@ -51,7 +51,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
 
             collection.Append(Children);
 
@@ -59,7 +59,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         }
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, hProcess, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(X3TCGameHook.MainTypeCount);
 
@@ -75,7 +75,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
             }
         }
 
-        protected abstract void SetUniqueData(ObjectByteList obl);
+        protected abstract void SetUniqueData(MemoryObjectConverter obl);
 
         #endregion
     }

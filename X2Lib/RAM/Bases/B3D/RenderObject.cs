@@ -21,7 +21,7 @@ namespace X2Lib.RAM.Bases.B3D
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             base.SetDataFromObjectByteList(objectByteList);
         }

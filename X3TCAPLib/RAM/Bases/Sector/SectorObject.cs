@@ -105,7 +105,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
 
         public override void WriteSafeToMemory()
         {
-            var collection = new ObjectByteList();
+            var collection = new MemoryObjectConverter();
             collection.Append(Speed);
             collection.Append(DesiredSpeed);
             collection.Append(EulerRotation);
@@ -123,7 +123,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
 
             collection.Append(pNext.address);
             collection.Append(pPrevious.address);
@@ -189,7 +189,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             return collection.GetBytes();
         }
         public override int ByteSize => 304;
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
             pPrevious = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();

@@ -20,7 +20,7 @@ namespace X3TCAPLib.RAM.Bases.Galaxy
         }
 
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             base.SetDataFromObjectByteList(objectByteList);
         }

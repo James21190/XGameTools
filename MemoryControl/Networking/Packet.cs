@@ -31,7 +31,7 @@ namespace CommonToolLib.Networking
 
         public void WriteToStream(NetworkStream stream)
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
             var length = Data != null ? Data.Length : 0;
             var data = Data != null ? Data : new byte[0];
             collection.Append(PacketType);

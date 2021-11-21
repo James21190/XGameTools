@@ -18,7 +18,7 @@ namespace X3TCAPLib.RAM.Bases.Story
 
                 public override int ByteSize => 4;
 
-                protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+                protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
                 {
                     U_1 = objectByteList.PopInt();
                 }
@@ -40,7 +40,7 @@ namespace X3TCAPLib.RAM.Bases.Story
             }
 
             public override int ByteSize => 12;
-            protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+            protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
             {
                 ID = objectByteList.PopInt();
                 Value = objectByteList.PopIMemoryObject<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>();
@@ -102,7 +102,7 @@ namespace X3TCAPLib.RAM.Bases.Story
             pEntries.SetLocation(hProcess, address + 0x4);
         }
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
             Count = objectByteList.PopInt();
             pEntries = objectByteList.PopIMemoryObject<MemoryObjectPointer<TextEntry>>();

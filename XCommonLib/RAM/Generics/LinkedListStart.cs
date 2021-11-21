@@ -19,7 +19,7 @@ namespace XCommonLib.RAM.Generics
 
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
             collection.Append(pFirst);
             collection.Append(NullValue);
             collection.Append(pLast);
@@ -31,7 +31,7 @@ namespace XCommonLib.RAM.Generics
 
         public override void SetData(byte[] Memory)
         {
-            ObjectByteList collection = new ObjectByteList(Memory, hProcess, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, hProcess, pThis);
             pFirst = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();

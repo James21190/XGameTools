@@ -60,7 +60,7 @@ namespace X2Lib.RAM.Bases.Sector
 
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
             collection.Append(Unknown_1);
             collection.Append(Unknown_2);
             collection.Append(pFirst);
@@ -90,7 +90,7 @@ namespace X2Lib.RAM.Bases.Sector
         }
 
 
-        protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
         {
 
             Unknown_1 = objectByteList.PopInt();

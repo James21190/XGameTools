@@ -31,7 +31,7 @@ namespace XCommonLib.RAM.Generics
             #region IMemoryObject
             public override byte[] GetBytes()
             {
-                ObjectByteList collection = new ObjectByteList();
+                MemoryObjectConverter collection = new MemoryObjectConverter();
                 collection.Append(pNext.address);
                 collection.Append(ObjectID);
                 collection.Append(pObject.address);
@@ -40,13 +40,11 @@ namespace XCommonLib.RAM.Generics
 
             public override int ByteSize => 12;
 
-            public override void SetData(byte[] Memory)
+            protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
             {
-                ObjectByteList collection = new ObjectByteList();
-                collection.Append(Memory);
-                collection.PopFirst(ref pNext.address);
-                collection.PopFirst(ref ObjectID);
-                collection.PopFirst(ref pObject.address);
+                pNext.address = objectByteList.PopIntPtr();
+                ObjectID = objectByteList.PopInt();
+                pObject.address = objectByteList.PopIntPtr();
             }
 
             public override void SetLocation(IntPtr hProcess, IntPtr address)
@@ -218,7 +216,7 @@ namespace XCommonLib.RAM.Generics
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            ObjectByteList collection = new ObjectByteList();
+            MemoryObjectConverter collection = new MemoryObjectConverter();
             collection.Append(ppEntry.address);
             collection.Append(Length);
             collection.Append(NextAvailableID);
@@ -229,7 +227,7 @@ namespace XCommonLib.RAM.Generics
 
         public override int ByteSize => 16;
 
-        protected override void SetDataFromObjectByteList(ObjectByteList collection)
+        protected override void SetDataFromObjectByteList(MemoryObjectConverter collection)
         {
             ppEntry = collection.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>>();
             Length = collection.PopInt();
