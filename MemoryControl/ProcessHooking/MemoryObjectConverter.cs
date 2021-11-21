@@ -21,7 +21,7 @@ namespace CommonToolLib.ProcessHooking
             pThis = IntPtr.Zero;
             hProcess = IntPtr.Zero;
         }
-        public MemoryObjectConverter(byte[] data, IntPtr pThis, IntPtr hProcess) : base(data)
+        public MemoryObjectConverter(byte[] data, IntPtr hProcess, IntPtr pThis) : base(data)
         {
             this.pThis = pThis;
             this.hProcess = hProcess;

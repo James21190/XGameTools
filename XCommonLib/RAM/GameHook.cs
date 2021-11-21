@@ -87,54 +87,64 @@ namespace XCommonLib.RAM
         /// <exception cref="NotImplementedException"></exception>
         public string GetMainTypeName(GeneralMainType type)
         {
-            switch (type)
-            {
-                case GeneralMainType.Ship: return "Ship";
-            }
-            throw new NotImplementedException("Maintype of " + type + " was not assigned a name.");
+            return type.ToString();
+            //switch (type)
+            //{
+            //    case GeneralMainType.Ship: return "Ship";
+            //    case GeneralMainType.Sector: return "Sector";
+            //    case GeneralMainType.Asteroid: return "Asteroid";
+            //    case GeneralMainType.Bullet: return "Bullet";
+            //    case GeneralMainType.Sun: return "Sun";
+            //    case GeneralMainType.Planet: return "Planet";
+            //    case GeneralMainType.Dock: return "Dock";
+            //}
+            //throw new NotImplementedException("Maintype of " + type + " was not assigned a name.");
         }
         #endregion
 
         #region Races
         public enum GeneralRaces : short
         {
+            ATF,
             Argon,
             Boron,
+            Friendly,
+            Gonor,
+            Khaak,
+            NA,
+            None,
+            Paranid,
+            Pirate,
+            Player,
             Split,
             Teladi,
-            Paranid,
-            Xenon,
-            Unowned,
-            Khaak,
-            Gonor,
-            Player,
-            Unknown,
-            None,
-            Friendly,
             Terran,
-            ATF,
-            Yaki,
-            Pirate
+            Unknown,
+            Unowned,
+            Xenon,
+            Yaki
         }
         public abstract GeneralRaces GetRaceByID(ushort raceID);
 
         public string GetRaceIDName(ushort raceID) { return GetRaceIDName(GetRaceByID(raceID)); }
         public static string GetRaceIDName(GeneralRaces raceID)
         {
-            switch (raceID)
-            {
-                case GeneralRaces.Argon: return "Argon";
-                case GeneralRaces.Boron: return "Boron";
-                case GeneralRaces.Split: return "Split";
-                case GeneralRaces.Teladi: return "Teladi";
-                case GeneralRaces.Paranid: return "Paranid";
-                case GeneralRaces.Gonor: return "Gonor";
-                case GeneralRaces.Khaak: return "Khaak";
-                case GeneralRaces.Xenon: return "Xenon";
-                case GeneralRaces.Player: return "Player";
-                case GeneralRaces.Unowned: return "Unowned";
-            }
-            throw new NotImplementedException("RaceID of " + raceID + " was not assigned a name.");
+            return raceID.ToString();
+            //switch (raceID)
+            //{
+            //    case GeneralRaces.Argon: return "Argon";
+            //    case GeneralRaces.Boron: return "Boron";
+            //    case GeneralRaces.Split: return "Split";
+            //    case GeneralRaces.Teladi: return "Teladi";
+            //    case GeneralRaces.Paranid: return "Paranid";
+            //    case GeneralRaces.Gonor: return "Gonor";
+            //    case GeneralRaces.Khaak: return "Khaak";
+            //    case GeneralRaces.Xenon: return "Xenon";
+            //    case GeneralRaces.Player: return "Player";
+            //    case GeneralRaces.Unowned: return "Unowned";
+            //    case GeneralRaces.NA: return "NA";
+            //}
+            //throw new NotImplementedException("RaceID of " + raceID + " was not assigned a name.");
         }
         public Color GetRaceColor(ushort raceID) { return GetRaceColor(GetRaceByID(raceID)); }
         public static Color GetRaceColor(GeneralRaces raceID)
@@ -153,6 +163,7 @@ namespace XCommonLib.RAM
                 case GeneralRaces.Unowned: return Color.Gray;
                 case GeneralRaces.Friendly:
                 case GeneralRaces.Pirate:
+                case GeneralRaces.NA:
                 case GeneralRaces.None: return Color.LightGray;
             }
             throw new NotImplementedException("RaceID of " + raceID + " was not assigned a color.");

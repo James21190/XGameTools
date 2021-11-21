@@ -72,6 +72,9 @@
     <Compile Include="UI\BitFieldDisplay.Designer.cs">
       <DependentUpon>BitFieldDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\NamedNumericUpDown.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -29,20 +29,15 @@ namespace XCommonLib.UI.Bases.Sector
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlMapCanvas = new System.Windows.Forms.Panel();
+            this.pnlMapCanvas = new CommonToolLib.UI.DoubleBufferedPanel();
             this.SuspendLayout();
             // 
             // pnlMapCanvas
             // 
-            this.pnlMapCanvas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMapCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlMapCanvas.Location = new System.Drawing.Point(3, 3);
             this.pnlMapCanvas.Name = "pnlMapCanvas";
             this.pnlMapCanvas.Size = new System.Drawing.Size(574, 424);
             this.pnlMapCanvas.TabIndex = 0;
-            this.pnlMapCanvas.Resize += new System.EventHandler(this.pnlMapCanvas_Resize);
             // 
             // SectorMapView
             // 
@@ -58,6 +53,6 @@ namespace XCommonLib.UI.Bases.Sector
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlMapCanvas;
+        private CommonToolLib.UI.DoubleBufferedPanel pnlMapCanvas;
     }
 }

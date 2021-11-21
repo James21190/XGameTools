@@ -44,13 +44,15 @@ namespace XCommonLib.UI.Bases.Sector
 
         #endregion
 
-        private Graphics _Canvas;
+        private Graphics _CanvasGraphics;
+
+        private bool _IsCanvas1Front = false;
 
         public List<SectorObjectPoint> SectorObjects = new List<SectorObjectPoint>();
         public SectorMapView()
         {
             InitializeComponent();
-            _Canvas = pnlMapCanvas.CreateGraphics();
+            _CanvasGraphics = pnlMapCanvas.CreateGraphics();
         }
         private void SectorMap_Load(object sender, EventArgs e)
         {
@@ -92,9 +94,10 @@ namespace XCommonLib.UI.Bases.Sector
         {
             if (_IsDrawing) return;
             _IsDrawing = true;
-            _Canvas.Clear(Color.Silver);
             _DrawGrid();
             _DrawObjects();
+
+            _IsCanvas1Front = !_IsCanvas1Front;
             _IsDrawing = false;
         }
 
@@ -105,17 +108,17 @@ namespace XCommonLib.UI.Bases.Sector
             float xSpacing = (float)pnlMapCanvas.Width / GridSize;
             for (int i = 0; i <= GridSize; i++)
             {
-                _Canvas.DrawLine(pen, new Point(0, (int)(ySpacing * i)), new Point(pnlMapCanvas.Width - 1, (int)(ySpacing * i)));
+                _CanvasGraphics.DrawLine(pen, new Point(0, (int)(ySpacing * i)), new Point(pnlMapCanvas.Width - 1, (int)(ySpacing * i)));
             }
             for (int i = 0; i <= GridSize; i++)
             {
-                _Canvas.DrawLine(pen, new Point((int)(xSpacing * i), 0), new Point((int)(xSpacing * i), pnlMapCanvas.Height - 1));
+                _CanvasGraphics.DrawLine(pen, new Point((int)(xSpacing * i), 0), new Point((int)(xSpacing * i), pnlMapCanvas.Height - 1));
             }
 
             var cameraPosition = _ToScreenSpace(CameraX, CameraY);
             pen = new Pen(Color.Black, 2);
-            _Canvas.DrawLine(pen, 0, cameraPosition.Y, pnlMapCanvas.Width - 1, cameraPosition.Y);
-            _Canvas.DrawLine(pen, cameraPosition.X, 0, cameraPosition.X, pnlMapCanvas.Height - 1);
+            _CanvasGraphics.DrawLine(pen, 0, cameraPosition.Y, pnlMapCanvas.Width - 1, cameraPosition.Y);
+            _CanvasGraphics.DrawLine(pen, cameraPosition.X, 0, cameraPosition.X, pnlMapCanvas.Height - 1);
         }
 
         private void _DrawObjects()
@@ -127,7 +130,7 @@ namespace XCommonLib.UI.Bases.Sector
                 var pos = _ToScreenSpace(sectorObject.X, sectorObject.Y);
                 pos.X -= objectWidth;
                 pos.Y -= objectWidth;
-                _Canvas.FillRectangle(pen, new Rectangle(pos, new Size(objectWidth, objectWidth)));
+                _CanvasGraphics.FillRectangle(pen, new Rectangle(pos, new Size(objectWidth, objectWidth)));
             }
         }
         #endregion
@@ -161,7 +164,7 @@ namespace XCommonLib.UI.Bases.Sector
 
         private void pnlMapCanvas_Resize(object sender, EventArgs e)
         {
-            _Canvas = pnlMapCanvas.CreateGraphics();
+            _CanvasGraphics = pnlMapCanvas.CreateGraphics();
             Draw();
         }
     }

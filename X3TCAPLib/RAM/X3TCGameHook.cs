@@ -133,6 +133,7 @@ namespace X3TCAPLib.RAM
                 case RaceID_X3TCAP.Yaki: return GeneralRaces.Yaki;
                 case RaceID_X3TCAP.Pirate: return GeneralRaces.Pirate;
                 case RaceID_X3TCAP.Gonor: return GeneralRaces.Gonor;
+                case RaceID_X3TCAP.NA: return GeneralRaces.NA;
             }
             throw new NotImplementedException("RaceID of " + ((RaceID_X3TCAP)raceID).ToString() + " was not assigned.");
         }
@@ -141,7 +142,15 @@ namespace X3TCAPLib.RAM
             switch ((MainType_X3TCAP)mainType)
             {
                 case MainType_X3TCAP.Ship: return GeneralMainType.Ship;
+                case MainType_X3TCAP.Sun: return GeneralMainType.Sun;
                 case MainType_X3TCAP.Sector: return GeneralMainType.Sector;
+                case MainType_X3TCAP.Planet: return GeneralMainType.Planet;
+                case MainType_X3TCAP.Dock: return GeneralMainType.Dock;
+                case MainType_X3TCAP.Shield: return GeneralMainType.Shield;
+                case MainType_X3TCAP.Laser: return GeneralMainType.Laser;
+                case MainType_X3TCAP.Asteroid: return GeneralMainType.Asteroid;
+                case MainType_X3TCAP.Gate: return GeneralMainType.Gate;
+                case MainType_X3TCAP.Debris: return GeneralMainType.Debris;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X3TCAP)mainType).ToString() + " was not assigned.");
         }
