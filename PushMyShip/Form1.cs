@@ -1,18 +1,13 @@
-﻿using CommonToolLib.Generics;
+﻿using CommonToolLib;
 using CommonToolLib.Networking;
-using CommonToolLib.ProcessHooking;
+using PushMyShip.Packets;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XWrapperLib;
-using PushMyShip.Packets;
-using System.Security.Cryptography;
-using System.IO;
-using CommonToolLib;
 
 namespace PushMyShip
 {
@@ -46,7 +41,7 @@ namespace PushMyShip
             _NetworkListener.OnUnhandledException += OnThreadException;
             _GameHook = XGameHookFactory.GetGameHook();
             _IsHost = true;
-            _Logger.Log(Logger.MessageSeverity.Message,"Hosting on port " + _Port + ".");
+            _Logger.Log(Logger.MessageSeverity.Message, "Hosting on port " + _Port + ".");
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -93,7 +88,7 @@ namespace PushMyShip
                         var sectorDataPacket = new SectorDataPacket();
                         var children = _GameHook.SectorBase.GetFirstObjectOfMainType(_GameHook.GetMainTypeID(GameHook.GeneralMainType.Sector)).Meta.GetChildren();
                         sectorDataPacket.SectorObjects = new SectorDataPacket.SectorObjectData[children.Length];
-                        for(int i = 0; i < children.Length; i++)
+                        for (int i = 0; i < children.Length; i++)
                         {
                             sectorDataPacket.SectorObjects[i] = new SectorDataPacket.SectorObjectData()
                             {
@@ -127,7 +122,7 @@ namespace PushMyShip
                     case PacketType.SectorData:
                         sectorMapView1.SectorObjects.Clear();
                         var sectorDataPacket = packet.ConvertToPacketType<SectorDataPacket>();
-                        foreach(var item in sectorDataPacket.SectorObjects)
+                        foreach (var item in sectorDataPacket.SectorObjects)
                         {
                             sectorMapView1.SectorObjects.Add
                                 (
@@ -151,10 +146,16 @@ namespace PushMyShip
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(_NetworkClient != null)
+            if (_NetworkClient != null)
+            {
                 _NetworkClient.Close();
-            if(_NetworkListener != null)
+            }
+
+            if (_NetworkListener != null)
+            {
                 _NetworkListener.Close();
+            }
+
             _Logger.DumpLog();
         }
 
@@ -167,13 +168,15 @@ namespace PushMyShip
         {
             _Logger.SetOutputFile("./log.txt");
             using (var md5 = MD5.Create())
-                Text += " Hash:" + String.Join("",md5.ComputeHash(File.ReadAllBytes("./PushMyShip.exe")));
+            {
+                Text += " Hash:" + string.Join("", md5.ComputeHash(File.ReadAllBytes("./PushMyShip.exe")));
+            }
         }
 
         private void OnThreadException(object sender, UnhandledExceptionEventArgs e)
         {
             _Logger.Log(Logger.MessageSeverity.Exception, e.ExceptionObject.ToString());
-            Close();
+            Invoke(new Action(() => Close()));
         }
     }
 }

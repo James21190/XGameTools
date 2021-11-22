@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29324.140
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X2TheTheatTool", "X2TheThreatRETool\X2TheTheatTool.csproj", "{D2495C43-8A1A-47B9-AB8F-DBEEBFD7401C}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X2Tools", "X2Tools\X2Tools.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "X2", "X2", "{8316254E-05AB-41A7-84DC-BEB334C07ACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonToolLib", "MemoryControl\CommonToolLib.csproj", "{819F7430-5684-4CDD-8C02-E1AC8BAA6D92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonToolLib", "CommonToolLib\CommonToolLib.csproj", "{819F7430-5684-4CDD-8C02-E1AC8BAA6D92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "X3", "X3", "{02868F21-0CA7-4BB8-8B74-A3BE4AA54D9F}"
 EndProject
@@ -43,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other Projects", "Other Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushMyShip", "PushMyShip\PushMyShip.csproj", "{DC692E63-7F49-400B-BD06-67349464C533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XWrapperLib", "XLibraryWrapper\XWrapperLib.csproj", "{759F8701-1C95-42A4-A31F-5B82E6BBFEDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XWrapperLib", "XWrapperLib\XWrapperLib.csproj", "{759F8701-1C95-42A4-A31F-5B82E6BBFEDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

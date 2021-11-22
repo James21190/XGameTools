@@ -46,8 +46,6 @@ namespace XCommonLib.UI.Bases.Sector
 
         private Graphics _CanvasGraphics;
 
-        private bool _IsCanvas1Front = false;
-
         public List<SectorObjectPoint> SectorObjects = new List<SectorObjectPoint>();
         public SectorMapView()
         {
@@ -92,12 +90,18 @@ namespace XCommonLib.UI.Bases.Sector
         private bool _IsDrawing = false;
         public void Draw()
         {
-            if (_IsDrawing) return;
+            if (_IsDrawing)
+            {
+                return;
+            }
+
             _IsDrawing = true;
+
+            _CanvasGraphics.Clear(Color.Silver);
+
             _DrawGrid();
             _DrawObjects();
 
-            _IsCanvas1Front = !_IsCanvas1Front;
             _IsDrawing = false;
         }
 

@@ -137,8 +137,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\CommonToolLib.csproj">
-      <Project>{819F7430-5684-4CDD-8C02-E1AC8BAA6D92}</Project>
+    <ProjectReference Include="..\CommonToolLib\CommonToolLib.csproj">
+      <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>CommonToolLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\X2Lib\X2Lib.csproj">
@@ -153,7 +153,7 @@
       <Project>{adbbdbb6-324b-4d38-b723-7f1181f32f24}</Project>
       <Name>XCommonLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XLibraryWrapper\XWrapperLib.csproj">
+    <ProjectReference Include="..\XWrapperLib\XWrapperLib.csproj">
       <Project>{759f8701-1c95-42a4-a31f-5b82e6bbfeda}</Project>
       <Name>XWrapperLib</Name>
     </ProjectReference>
