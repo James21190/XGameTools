@@ -32,5 +32,10 @@ namespace XRAMTool
         {
             new StoryBase_Display().Show();
         }
+
+        private void btnAssemblyScripts_Click(object sender, EventArgs e)
+        {
+            new AssemblyScripts_Display().Show();
+        }
     }
 }

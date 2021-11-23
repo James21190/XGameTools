@@ -30,13 +30,14 @@
         {
             this.btnSectorBase = new System.Windows.Forms.Button();
             this.grpBases = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnTypeData = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnStoryBase = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnTypeData = new System.Windows.Forms.Button();
+            this.btnAssemblyScripts = new System.Windows.Forms.Button();
             this.grpBases.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSectorBase
@@ -62,6 +63,28 @@
             this.grpBases.TabStop = false;
             this.grpBases.Text = "Bases";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnStoryBase);
+            this.groupBox2.Location = new System.Drawing.Point(125, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(113, 84);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Story";
+            // 
+            // btnStoryBase
+            // 
+            this.btnStoryBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStoryBase.Location = new System.Drawing.Point(6, 19);
+            this.btnStoryBase.Name = "btnStoryBase";
+            this.btnStoryBase.Size = new System.Drawing.Size(101, 23);
+            this.btnStoryBase.TabIndex = 2;
+            this.btnStoryBase.Text = "StoryBase";
+            this.btnStoryBase.UseVisualStyleBackColor = true;
+            this.btnStoryBase.Click += new System.EventHandler(this.btnStoryBase_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnTypeData);
@@ -85,40 +108,29 @@
             this.btnTypeData.UseVisualStyleBackColor = true;
             this.btnTypeData.Click += new System.EventHandler(this.btnTypeData_Click);
             // 
-            // groupBox2
+            // btnAssemblyScripts
             // 
-            this.groupBox2.Controls.Add(this.btnStoryBase);
-            this.groupBox2.Location = new System.Drawing.Point(125, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(113, 84);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Story";
-            // 
-            // btnStoryBase
-            // 
-            this.btnStoryBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStoryBase.Location = new System.Drawing.Point(6, 19);
-            this.btnStoryBase.Name = "btnStoryBase";
-            this.btnStoryBase.Size = new System.Drawing.Size(101, 23);
-            this.btnStoryBase.TabIndex = 2;
-            this.btnStoryBase.Text = "StoryBase";
-            this.btnStoryBase.UseVisualStyleBackColor = true;
-            this.btnStoryBase.Click += new System.EventHandler(this.btnStoryBase_Click);
+            this.btnAssemblyScripts.Location = new System.Drawing.Point(688, 12);
+            this.btnAssemblyScripts.Name = "btnAssemblyScripts";
+            this.btnAssemblyScripts.Size = new System.Drawing.Size(100, 23);
+            this.btnAssemblyScripts.TabIndex = 2;
+            this.btnAssemblyScripts.Text = "Assembly Scripts";
+            this.btnAssemblyScripts.UseVisualStyleBackColor = true;
+            this.btnAssemblyScripts.Click += new System.EventHandler(this.btnAssemblyScripts_Click);
             // 
             // XRAMTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAssemblyScripts);
             this.Controls.Add(this.grpBases);
             this.Name = "XRAMTool";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpBases.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Button btnTypeData;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnStoryBase;
+        private System.Windows.Forms.Button btnAssemblyScripts;
     }
 }
 

@@ -35,8 +35,8 @@ namespace XCommonLib.UI.Bases.Sector
 
             public SectorObjectPoint(SectorObject sectorObject, GameHook referenceGameHook)
             {
-                X = sectorObject.Position.X;
-                Y = sectorObject.Position.Z;
+                X = sectorObject.CopyPosition.X;
+                Y = sectorObject.CopyPosition.Z;
                 Race = referenceGameHook.GetRaceByID(sectorObject.RaceID);
                 ObjectType = sectorObject.ObjectType.MainType;
             }

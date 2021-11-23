@@ -53,7 +53,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         }
 
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             pHashTable_ScriptTaskObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
 

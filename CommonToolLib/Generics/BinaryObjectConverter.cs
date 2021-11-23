@@ -25,7 +25,7 @@ namespace CommonToolLib.Generics
 
         public void Seek(int index)
         {
-            _DataPointer = 0;
+            _DataPointer = index;
         }
 
         #region Appends

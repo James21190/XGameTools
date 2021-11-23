@@ -21,7 +21,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
         }
 
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             #region Base TypeData
             BodyID = objectByteList.PopInt();

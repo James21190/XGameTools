@@ -12,7 +12,7 @@ namespace X2Lib.RAM
         // Taken from TC. Possible inaccuracy.
         internal enum RaceID_X2 : ushort
         {
-            Argon,
+            Argon = 1,
             Boron,
             Split,
             Paranid,
@@ -21,7 +21,7 @@ namespace X2Lib.RAM
             Khaak,
             Pirates,
             Gonor,
-            Player,
+            Player = 10,
             EnemyRace,
             NeutralRace,
             FriendlyRace,
@@ -32,7 +32,7 @@ namespace X2Lib.RAM
             Race4,
             Race5,
 
-            None = 65535
+            None = 65534,
         }
 
         // Taken from TC. Possible inaccuracy.
@@ -59,6 +59,8 @@ namespace X2Lib.RAM
             Gate,
             Camera,
             Special,
+
+            Type_21 = 21,
 
             Cockpit = 25,
 
@@ -133,6 +135,7 @@ namespace X2Lib.RAM
                 case RaceID_X2.Khaak: return GeneralRaces.Khaak;
                 case RaceID_X2.None: return GeneralRaces.None;
                 case RaceID_X2.Gonor: return GeneralRaces.Gonor;
+                case RaceID_X2.EnemyRace: return GeneralRaces.Enemy;
             }
             throw new NotImplementedException("RaceID of " + ((RaceID_X2)raceID).ToString() + " was not assigned.");
         }
@@ -141,7 +144,17 @@ namespace X2Lib.RAM
             switch ((MainType_X2)mainType)
             {
                 case MainType_X2.Ship: return GeneralMainType.Ship;
+                case MainType_X2.Sun: return GeneralMainType.Sun;
                 case MainType_X2.Sector: return GeneralMainType.Sector;
+                case MainType_X2.Planet: return GeneralMainType.Planet;
+                case MainType_X2.Dock: return GeneralMainType.Dock;
+                case MainType_X2.Shield: return GeneralMainType.Shield;
+                case MainType_X2.Laser: return GeneralMainType.Laser;
+                case MainType_X2.Asteroid: return GeneralMainType.Asteroid;
+                case MainType_X2.Gate: return GeneralMainType.Gate;
+                case MainType_X2.Debris: return GeneralMainType.Debris;
+                case MainType_X2.Factory: return GeneralMainType.Factory;
+                case MainType_X2.Type_21: return GeneralMainType.X2_21;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }
@@ -149,6 +162,30 @@ namespace X2Lib.RAM
         public override short GetMainTypeID(GeneralMainType mainType)
         {
             throw new NotImplementedException();
+        }
+
+        public override void AttachEventManager()
+        {
+            // Initialize code injector
+            EventManager = new EventManager(this.hProcess);
+
+            // OnGameTick event
+            EventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00402982, new byte[]
+            {
+                0xb8,0xe0,0x13,0x46,0x00, // MOV EAX, 004613e0
+                0xff, 0xd0, // Call EAX
+                0xa1, 0x00, 0x67, 0x5d, 0x01, // MOV EAX, pStoryBase
+                0xc3 // Ret
+            }, 3);
+
+            // OnDamage
+            EventManager.CreateNewEvent("OnObjectDestroyed", (IntPtr)0x0043368c, new byte[]
+            {
+                0x8b, 0xce,// Mov ECX, ESI
+                0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 004613e0
+                0xff, 0xd0, // Call EAX
+                0xc3 // Ret
+            }, 0);
         }
     }
 }

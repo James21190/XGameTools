@@ -128,7 +128,7 @@ namespace PushMyShip
             -2147483648});
             this.nnudDesiredSpeed.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudDesiredSpeed.Name = "nnudDesiredSpeed";
-            this.nnudDesiredSpeed.Size = new System.Drawing.Size(156, 50);
+            this.nnudDesiredSpeed.Size = new System.Drawing.Size(100, 50);
             this.nnudDesiredSpeed.TabIndex = 5;
             this.nnudDesiredSpeed.Title = "Desired Speed";
             this.nnudDesiredSpeed.Value = new decimal(new int[] {
@@ -153,7 +153,7 @@ namespace PushMyShip
             -2147483648});
             this.nnudSpeed.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudSpeed.Name = "nnudSpeed";
-            this.nnudSpeed.Size = new System.Drawing.Size(156, 50);
+            this.nnudSpeed.Size = new System.Drawing.Size(100, 50);
             this.nnudSpeed.TabIndex = 4;
             this.nnudSpeed.Title = "Speed";
             this.nnudSpeed.Value = new decimal(new int[] {
@@ -165,6 +165,7 @@ namespace PushMyShip
             // vector3Display1
             // 
             this.vector3Display1.DecimalPlaces = 0;
+            this.vector3Display1.Enabled = false;
             this.vector3Display1.Increment = new decimal(new int[] {
             1,
             0,
@@ -187,6 +188,7 @@ namespace PushMyShip
             this.vector3Display1.Size = new System.Drawing.Size(156, 103);
             this.vector3Display1.TabIndex = 8;
             this.vector3Display1.Text = "Position";
+            this.vector3Display1.Visible = false;
             this.vector3Display1.X = new decimal(new int[] {
             0,
             0,

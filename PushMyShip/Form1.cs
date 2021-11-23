@@ -93,7 +93,7 @@ namespace PushMyShip
                             sectorDataPacket.SectorObjects[i] = new SectorDataPacket.SectorObjectData()
                             {
                                 ID = children[i].ID,
-                                Position = children[i].Position,
+                                Position = children[i].CopyPosition,
                                 Race = _GameHook.GetRaceByID(children[i].RaceID)
                             };
                         }
@@ -106,7 +106,7 @@ namespace PushMyShip
 
                         playerShip.Speed = shipDataPacket.Speed;
                         playerShip.DesiredSpeed = shipDataPacket.DesiredSpeed;
-                        playerShip.Position = shipDataPacket.Position;
+                        playerShip.CopyPosition = shipDataPacket.Position;
 
                         playerShip.WriteSafeToMemory();
                         break;

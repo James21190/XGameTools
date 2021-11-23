@@ -33,7 +33,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public const int ByteSizeConst = 5;
         public override int ByteSize => ByteSizeConst;
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Flag = (FlagType)objectByteList.PopByte();
             Value = objectByteList.PopInt();

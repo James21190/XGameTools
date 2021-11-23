@@ -38,7 +38,7 @@ namespace X2Lib.RAM.Bases.Story
         #endregion
 
         #region MemoryObject
-        public override int ByteSize => throw new NotImplementedException();
+        public override int ByteSize => 5648;
 
 
         public override byte[] GetBytes()
@@ -47,9 +47,9 @@ namespace X2Lib.RAM.Bases.Story
         }
 
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
-            base.SetDataFromObjectByteList(objectByteList);
+            //base.SetDataFromMemoryObjectConverter(objectByteList);
         }
 
 

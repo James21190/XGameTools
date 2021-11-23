@@ -1,0 +1,20 @@
+﻿#Data:8
+#Name:ObjectDestoyer
+
+/ mov ecx,[eax+4]
+8B 48 04
+/ test ecx,ecx
+85 C9
+/ je @end 
+74 15
+/ mov ecx,[eax]
+8B 08
+/ mov edx,[ecx+40]
+8B 51 40
+/ mov edx, 0x08000000
+81 CA 00 00 00 08
+/ mov [ecx+40],edx
+89 51 40
+/ mov [eax+4],0x0
+C7 40 04 00 00 00 00
+/ @end

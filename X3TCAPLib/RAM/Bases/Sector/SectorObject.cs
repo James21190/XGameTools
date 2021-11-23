@@ -17,7 +17,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public MemoryObjectPointer<MemoryString> pDefaultName;
         public override int Speed { get; set; }
         public override int DesiredSpeed { get; set; }
-        public override Vector3_32 EulerRotation { get; set; }
+        public override Vector3_32 EulerRotationCopy { get; set; }
         public override Vector3_32 LocalEulerRotationDelta { get; set; }
         public override Vector3_32 LocalAutopilotRotationDeltaTarget { get; set; }
         public override ushort RaceID { get; set; }
@@ -73,9 +73,9 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public int pLastUnknown;
         public int Unknown_22;
         public int Unknown_23;
-        public override Vector3_32 Position { get; set; }
+        public override Vector3_32 CopyPosition { get; set; }
         public int Unknown_24;
-        public Vector3_32 EulerRotationCopy;
+        public Vector3_32 EulerRotationCopy2;
         public Vector3_32 LocalEulerRotationDeltaCopy;
         public int Speed_Copy;
         public int Hull;
@@ -108,7 +108,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             var collection = new MemoryObjectConverter();
             collection.Append(Speed);
             collection.Append(DesiredSpeed);
-            collection.Append(EulerRotation);
+            collection.Append(EulerRotationCopy);
             collection.Append(LocalEulerRotationDelta);
             collection.Append(LocalAutopilotRotationDeltaTarget);
             collection.Append(RaceID);
@@ -131,7 +131,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             collection.Append(pDefaultName);
             collection.Append(Speed);
             collection.Append(DesiredSpeed);
-            collection.Append(EulerRotation);
+            collection.Append(EulerRotationCopy);
             collection.Append(LocalEulerRotationDelta);
             collection.Append(LocalAutopilotRotationDeltaTarget);
             collection.Append(RaceID);
@@ -168,9 +168,9 @@ namespace X3TCAPLib.RAM.Bases.Sector
             collection.Append(pLastUnknown);
             collection.Append(Unknown_22);
             collection.Append(Unknown_23);
-            collection.Append(Position);
+            collection.Append(CopyPosition);
             collection.Append(Unknown_24);
-            collection.Append(EulerRotationCopy);
+            collection.Append(EulerRotationCopy2);
             collection.Append(LocalEulerRotationDeltaCopy);
             collection.Append(Speed_Copy);
             collection.Append(Hull);
@@ -189,7 +189,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             return collection.GetBytes();
         }
         public override int ByteSize => 304;
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
             pPrevious = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
@@ -197,7 +197,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             pDefaultName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
             Speed = objectByteList.PopInt();
             DesiredSpeed = objectByteList.PopInt();
-            EulerRotation = objectByteList.PopIMemoryObject<Vector3_32>();
+            EulerRotationCopy = objectByteList.PopIMemoryObject<Vector3_32>();
             LocalEulerRotationDelta = objectByteList.PopIMemoryObject<Vector3_32>();
             LocalAutopilotRotationDeltaTarget = objectByteList.PopIMemoryObject<Vector3_32>();
             RaceID = objectByteList.PopUShort();
@@ -234,9 +234,9 @@ namespace X3TCAPLib.RAM.Bases.Sector
             pLastUnknown = objectByteList.PopInt();
             Unknown_22 = objectByteList.PopInt();
             Unknown_23 = objectByteList.PopInt();
-            Position = objectByteList.PopIMemoryObject<Vector3_32>();
+            CopyPosition = objectByteList.PopIMemoryObject<Vector3_32>();
             Unknown_24 = objectByteList.PopInt();
-            EulerRotationCopy = objectByteList.PopIMemoryObject<Vector3_32>();
+            EulerRotationCopy2 = objectByteList.PopIMemoryObject<Vector3_32>();
             LocalEulerRotationDeltaCopy = objectByteList.PopIMemoryObject<Vector3_32>();
             Speed_Copy = objectByteList.PopInt();
             Hull = objectByteList.PopInt();

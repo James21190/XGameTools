@@ -47,11 +47,9 @@ namespace X2Lib.RAM.Bases.Sector
         #endregion
 
         #region Common
-        public override XCommonLib.RAM.Bases.Sector.SectorObject First => throw new NotImplementedException();
-
-        public override XCommonLib.RAM.Bases.Sector.SectorObject Last => throw new NotImplementedException();
-
-        public override XCommonLib.RAM.Bases.Sector.SectorObject Player => throw new NotImplementedException();
+        public override XCommonLib.RAM.Bases.Sector.SectorObject First => pFirst.obj;
+        public override XCommonLib.RAM.Bases.Sector.SectorObject Last => pLast.obj;
+        public override XCommonLib.RAM.Bases.Sector.SectorObject Player => pPlayerShip.obj;
         #endregion
 
         #region IMemoryObject
@@ -90,7 +88,7 @@ namespace X2Lib.RAM.Bases.Sector
         }
 
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
 
             Unknown_1 = objectByteList.PopInt();

@@ -49,7 +49,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Unknown_1 = objectByteList.PopInt(); // 0x0
             Unknown_2 = objectByteList.PopInt();

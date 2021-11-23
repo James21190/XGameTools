@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyScripts_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyScripts_Display.Designer.cs">
+      <DependentUpon>AssemblyScripts_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bases\B3D\B3DBase_Display.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AssemblyScripts_Display.resx">
+      <DependentUpon>AssemblyScripts_Display.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bases\Sector\SectorBase_Display.resx">
       <DependentUpon>SectorBase_Display.cs</DependentUpon>
     </EmbeddedResource>

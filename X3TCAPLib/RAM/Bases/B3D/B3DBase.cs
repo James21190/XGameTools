@@ -20,9 +20,9 @@ namespace X3TCAPLib.RAM.Bases.B3D
         }
 
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
-            base.SetDataFromObjectByteList(objectByteList);
+            base.SetDataFromMemoryObjectConverter(objectByteList);
         }
         #endregion
     }

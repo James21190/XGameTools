@@ -13,8 +13,8 @@ public override byte[] GetBytes()
 }
 
 
-protected override void SetDataFromObjectByteList(ObjectByteList objectByteList)
+protected override void SetDataFromMemoryObjectConverter(ObjectByteList objectByteList)
 {
-    base.SetDataFromObjectByteList(objectByteList);
+    base.SetDataFromMemoryObjectConverter(objectByteList);
 }
 #endregion

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.ntxtDefaultName = new CommonToolLib.UI.NamedTextBox();
             this.ntxtDefaultNameParsed = new CommonToolLib.UI.NamedTextBox();
             this.ntxtRace = new CommonToolLib.UI.NamedTextBox();
@@ -39,20 +38,9 @@
             this.vec3AutopilotRotationDeltaTarget = new CommonToolLib.UI.Vector3Display();
             this.vec3LocalEulerRotationDelta = new CommonToolLib.UI.Vector3Display();
             this.vec3EulerRotation = new CommonToolLib.UI.Vector3Display();
+            this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.bitFieldDisplay1 = new CommonToolLib.UI.BitFieldDisplay();
             this.SuspendLayout();
-            // 
-            // numericIDObjectControl1
-            // 
-// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
-            this.numericIDObjectControl1.EnableLoad = false;
-            this.numericIDObjectControl1.ID = 0;
-            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 3);
-            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
-            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.TabIndex = 0;
             // 
             // ntxtDefaultName
             // 
@@ -349,9 +337,22 @@
             0,
             0});
             // 
+            // numericIDObjectControl1
+            // 
+// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
+            this.numericIDObjectControl1.EnableLoad = false;
+            this.numericIDObjectControl1.ID = 0;
+            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 3);
+            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
+            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.TabIndex = 0;
+            // 
             // bitFieldDisplay1
             // 
             this.bitFieldDisplay1.Bits = 32;
+            this.bitFieldDisplay1.Enabled = false;
             this.bitFieldDisplay1.Lables = new string[] {
         "",
         "IsPlayer",
@@ -386,6 +387,7 @@
             this.bitFieldDisplay1.Size = new System.Drawing.Size(150, 146);
             this.bitFieldDisplay1.TabIndex = 13;
             this.bitFieldDisplay1.Value = null;
+            this.bitFieldDisplay1.Visible = false;
             // 
             // SectorObjectView
             // 

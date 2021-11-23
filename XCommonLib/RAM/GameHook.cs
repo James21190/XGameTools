@@ -57,7 +57,9 @@ namespace XCommonLib.RAM
             Debris,
             Wreck,
             Factory_Wreck,
-            Ship_Wreck
+            Ship_Wreck,
+
+            X2_21
         }
 
         public GeneralMainType GetMainTypeByID(SectorObject.SectorObjectType type)
@@ -122,7 +124,8 @@ namespace XCommonLib.RAM
             Unknown,
             Unowned,
             Xenon,
-            Yaki
+            Yaki,
+            Enemy,
         }
         public abstract GeneralRaces GetRaceByID(ushort raceID);
 
@@ -162,6 +165,7 @@ namespace XCommonLib.RAM
                 case GeneralRaces.Player: return Color.LawnGreen;
                 case GeneralRaces.Unowned: return Color.Gray;
                 case GeneralRaces.Friendly:
+                case GeneralRaces.Enemy:
                 case GeneralRaces.Pirate:
                 case GeneralRaces.NA:
                 case GeneralRaces.None: return Color.LightGray;
@@ -172,6 +176,12 @@ namespace XCommonLib.RAM
 
         public abstract string GameName { get; }
 
+        public EventManager EventManager { get; protected set; }
+
+        public virtual void AttachEventManager()
+        {
+            throw new NotImplementedException();
+        }
 
         public GameHook()
         {

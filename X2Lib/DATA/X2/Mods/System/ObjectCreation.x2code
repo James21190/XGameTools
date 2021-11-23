@@ -1,0 +1,84 @@
+﻿#Data:16
+#Name:ObjectCreator
+/ Data structure
+/ 0: int FullType
+/ 4: int Pointer to new object
+/ 8: int Pointer to parent object
+/ 12: int IsRunning
+
+
+/ Check if a type has been entered, if it has run code, otherwise jump
+/ mov ecx,[eax+C]
+8B 48 0C
+/ test ecx,ecx
+85 C9
+/ je @end
+74 54
+/ push eax
+50
+/ mov [eax+4], 0
+C7 40 04 00 00 00 00
+
+/ Call alloc for new SectorObject
+
+/ push 0xDC
+68 DC 00 00 00
+/ mov eax, X2.exe+E6CE5
+B8 E5 6C 4E 00
+/ call eax
+FF D0
+/ add esp, 4
+83 C4 04
+
+/ Call SectorObject setup
+/ mov ecx, [esp]
+8B 0C 24
+/ push [ecx]
+FF 31
+/ push eax
+50
+/ mov eax, X2.exe+1F5A0
+B8 A0 F5 41 00
+/ call eax
+FF D0
+
+/ Call SectorObject SetParent, and set to sector
+/ mov ecx, eax
+8B C8
+/ mov eax, [esp]
+8B 04 24
+/ push ecx
+51
+/ mov eax, [eax+8]
+8B 40 08
+/ test eax, eax
+85 C9
+/ je @skip
+74 07
+/ mov edx, X2.exe+27F90
+BA 90 7F 42 00
+/ call edx
+FF D2
+/ @skip
+
+/ Reset
+/ pop ecx
+59
+/ Save result to data
+/ mov eax, [esp]
+8B 04 24
+/ mov [eax+4],ecx
+89 48 04
+/ Reset FullType to null
+/ mov [eax], 0
+C7 00 00 00 00 00
+// Reset parent
+/ mov [eax+8], 0
+c7 40 08 00 00 00 00
+
+/ Reset IsRunning
+/ mov [eax+C], 0
+c7 40 0C 00 00 00 00
+/ pop eax
+58
+/ @end

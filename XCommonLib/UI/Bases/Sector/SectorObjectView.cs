@@ -29,16 +29,16 @@ namespace XCommonLib.UI
             nnudSpeed.Value = m_SectorObject.Speed;
             nnudDesiredSpeed.Value = m_SectorObject.DesiredSpeed;
 
-            vec3EulerRotation.Vector = m_SectorObject.EulerRotation;
+            vec3EulerRotation.Vector = m_SectorObject.EulerRotationCopy;
             vec3LocalEulerRotationDelta.Vector = m_SectorObject.LocalEulerRotationDelta;
             vec3AutopilotRotationDeltaTarget.Vector = m_SectorObject.LocalAutopilotRotationDeltaTarget;
-            vec3Position.Vector = m_SectorObject.Position;
+            vec3Position.Vector = m_SectorObject.CopyPosition;
             vec3PositionStrafeDelta.Vector = m_SectorObject.PositionStrafeDelta;
 
             ntxtDefaultName.Text = m_SectorObject.DefaultName.Value;
             ntxtDefaultNameParsed.Text = ReferenceGameHook.StoryBase.GetParsedText(44, m_SectorObject.DefaultName.Value);
 
-            bitFieldDisplay1.Value = m_SectorObject.InteractionFlags;
+            //bitFieldDisplay1.Value = m_SectorObject.InteractionFlags;
 
             if (ReferenceGameHook != null)
             {

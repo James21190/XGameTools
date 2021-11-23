@@ -4,8 +4,12 @@ using System.IO;
 
 namespace CommonToolLib.ProcessHooking
 {
+    /// <summary>
+    /// A class for managing assembly scripts in a process.
+    /// </summary>
     public class EventManager
     {
+        public const string SystemModDirectory = ".\\DATA\\EventManager Scripts\\";
         public class GameCode
         {
             public int DataHeaderSize;
@@ -35,6 +39,7 @@ namespace CommonToolLib.ProcessHooking
             /// <returns></returns>
             public IntPtr WriteNewToMemory(IntPtr hProcess, byte[] Footer)
             {
+                // Allocate memory for the injection
                 IntPtr pCode = MemoryControl.AllocateMemory(hProcess, 5 + Length + Footer.Length);
 
                 byte[] buffer = new byte[5 + Length + Footer.Length];
@@ -43,6 +48,8 @@ namespace CommonToolLib.ProcessHooking
                     buffer[i] = 0;
                 }
 
+                // Set EAX to the address of the injection
+                // TODO: NOT GOOD, SHOULD BE EBP!!!!
                 Array.Copy(ScriptAssembler.SetRegister(ScriptAssembler.x86Register.EAX, (uint)pCode), 0, buffer, DataHeaderSize, 5);
                 Array.Copy(Code, 0, buffer, DataHeaderSize + 5, Code.Length);
                 Array.Copy(Footer, 0, buffer, DataHeaderSize + 5 + Code.Length, Footer.Length);
@@ -115,7 +122,7 @@ namespace CommonToolLib.ProcessHooking
         {
             #region Public Fields
             public readonly string EventName;
-            public static readonly GameCode EventMain = new GameCode(ScriptAssembler.SystemModDirectory + "GameCodeList.mod");
+            public static readonly GameCode EventMain = new GameCode(SystemModDirectory + "GameCodeList.mod");
             #endregion
 
             #region Private Fields
@@ -123,9 +130,17 @@ namespace CommonToolLib.ProcessHooking
             private readonly IntPtr m_hProcess;
             #endregion
 
-
+            /// <summary>
+            /// Create an event at a given address
+            /// </summary>
+            /// <param name="hProcess">Process handle</param>
+            /// <param name="EventName">The name of the event</param>
+            /// <param name="InjectionPoint">The address at which the call should be injected</param>
+            /// <param name="Footer">Code at the end of the injection to replace the overwritten code at the injection site</param>
+            /// <param name="NOPLength">The number of NOPs after the injected call</param>
             public GameEvent(IntPtr hProcess, string EventName, IntPtr InjectionPoint, byte[] Footer, int NOPLength)
             {
+                // Set the process handle, event name, and write the injection point.
                 m_hProcess = hProcess;
                 this.EventName = EventName;
                 IntPtr pInjection = EventMain.WriteNewToMemory(m_hProcess, Footer);
@@ -145,6 +160,11 @@ namespace CommonToolLib.ProcessHooking
             }
 
             #region Public Methods
+            /// <summary>
+            /// Subscribe GameCode to the event
+            /// </summary>
+            /// <param name="GC"></param>
+            /// <returns></returns>
             public IntPtr Subscribe(GameCode GC)
             {
                 return m_List.Append(GC);
@@ -173,6 +193,13 @@ namespace CommonToolLib.ProcessHooking
 
         }
 
+        /// <summary>
+        /// Create an event
+        /// </summary>
+        /// <param name="EventName">The name of the event</param>
+        /// <param name="Address">The address at which </param>
+        /// <param name="Footer"></param>
+        /// <param name="NOPLength"></param>
         public void CreateNewEvent(string EventName, IntPtr Address, byte[] Footer, byte NOPLength)
         {
             m_Events.Add(new GameEvent(m_hProcess, EventName, Address, Footer, NOPLength));

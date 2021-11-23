@@ -1,0 +1,36 @@
+﻿#Data:8
+#Event:OnGameTick
+#Name:ObjectDock
+/ pSectorObject
+/ pNewParentSectorObject
+
+// Check if pNewParentSectorObject is null, if not, run code
+/ mov ecx, [eax+4]
+8b 48 04
+/ test ecx, ecx
+85 c9
+/ je @end
+74 15
+
+/ push eax
+50
+
+// Pass parameters
+
+/ mov ebx, [eax]
+8b 18
+/ mov eax, [eax+4]
+8b 40 04
+
+// Farcall SectorObjectDock
+-FarCall 004280d0 ecx
+
+/ pop eax
+/58
+58
+
+// Set pNewParentSectorObject to null
+/ mov [eax+4], 0
+c7 40 04 00 00 00 00
+
+/ end

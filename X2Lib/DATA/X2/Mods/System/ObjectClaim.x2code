@@ -1,0 +1,17 @@
+﻿#Data:6
+#Name:ObjectClaim
+#Event:OnGameTick
+/ pSectorObject (4)
+/ RaceID (2)
+
+-mov ecx eax
+/ mov ax, [eax+4]
+66 8b 40 04
+/ test ax, ax
+66 85 c0
+/ je @end
+74 09
+/ mov ecx, [ecx]
+8b 09
+-Farcall 0042d8d0 edx
+/ @end

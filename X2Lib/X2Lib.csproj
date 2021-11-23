@@ -46,6 +46,8 @@
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
     <Compile Include="RAM\Bases\Galaxy\GalaxyBase.cs" />
     <Compile Include="RAM\Bases\Sector\SectorBase.cs" />
+    <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObjectMetaWithChildren.cs" />
+    <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Sector_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
@@ -62,9 +64,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DATA\X2\SectorObject Types\" />
-    <Folder Include="RAM\Bases\Sector\SectorObject Meta\" />
     <Folder Include="RAM\Bases\Sector\SectorObject TypeData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DATA\X2\SectorObject Types\7.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DATA\X2\Mods\IndestructablePlayer.x2code">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DATA\X2\Mods\System\ObjectClaim.x2code">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DATA\X2\Mods\System\ObjectCreation.x2code">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DATA\X2\Mods\System\ObjectDestroy.x2code">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DATA\X2\Mods\System\ObjectDock.x2code">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

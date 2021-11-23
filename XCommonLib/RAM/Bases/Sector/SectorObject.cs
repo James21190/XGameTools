@@ -97,12 +97,12 @@ namespace XCommonLib.RAM.Bases.Sector
         public abstract int Speed { get; set; }
         public abstract int DesiredSpeed { get; set; }
         public SectorObjectType ObjectType;
-        public abstract Vector3_32 EulerRotation { get; set; }
+        public abstract Vector3_32 EulerRotationCopy { get; set; }
         public abstract Vector3_32 LocalEulerRotationDelta { get; set; }
         public abstract Vector3_32 LocalAutopilotRotationDeltaTarget { get; set; }
         public abstract ushort RaceID { get; set; }
         public abstract BitField InteractionFlags { get; set; }
-        public abstract Vector3_32 Position { get; set; }
+        public abstract Vector3_32 CopyPosition { get; set; }
         public abstract Vector3_32 PositionStrafeDelta { get; set; }
         public abstract RenderObject RenderObject { get; }
         public abstract ISectorObjectMeta Meta { get; }

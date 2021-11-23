@@ -28,8 +28,8 @@ namespace XWrapperLib.Networking
                 var result = new InSectorObjectData();
                 result.Speed = sectorObject.Speed;
                 result.DesiredSpeed = sectorObject.DesiredSpeed;
-                result.Position = sectorObject.Position;
-                result.EulerRotation = sectorObject.EulerRotation;
+                result.Position = sectorObject.CopyPosition;
+                result.EulerRotation = sectorObject.EulerRotationCopy;
                 return result;
             }
 
@@ -37,8 +37,8 @@ namespace XWrapperLib.Networking
             {
                 sectorObject.Speed = Speed;
                 sectorObject.DesiredSpeed = DesiredSpeed;
-                sectorObject.Position = Position;
-                sectorObject.EulerRotation = EulerRotation;
+                sectorObject.CopyPosition = Position;
+                sectorObject.EulerRotationCopy = EulerRotation;
             }
 
             public int ByteSize => 32;

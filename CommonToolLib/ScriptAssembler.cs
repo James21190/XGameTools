@@ -5,8 +5,6 @@ namespace CommonToolLib
 {
     public static class ScriptAssembler
     {
-        public const string SystemModDirectory = ".\\RAM\\Mods\\System\\";
-
         public enum x86Register
         {
             EAX,
@@ -21,9 +19,13 @@ namespace CommonToolLib
 
         public struct ScriptCode
         {
+            // The number of free bytes that should be allocated
             public int DataSize;
+            // The name of the script
             public string Name;
+            // The name of the event this script should be attached to
             public string Event;
+            // The machine code of the script
             public byte[] Code;
         }
 

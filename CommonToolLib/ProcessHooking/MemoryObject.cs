@@ -31,7 +31,7 @@ namespace CommonToolLib.ProcessHooking
         /// <param name="Memory"></param>
         public virtual void SetData(byte[] Memory)
         {
-            SetDataFromObjectByteList(new MemoryObjectConverter(Memory, hProcess, pThis));
+            SetDataFromMemoryObjectConverter(new MemoryObjectConverter(Memory, hProcess, pThis));
         }
 
         #endregion
@@ -40,7 +40,7 @@ namespace CommonToolLib.ProcessHooking
         /// Abstracted version of SetData using an ObjectByteList. Called from SetData unless overrided.
         /// </summary>
         /// <param name="objectByteList"></param>
-        protected virtual void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected virtual void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new NotImplementedException();
         }

@@ -33,7 +33,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Class = objectByteList.PopInt();
             Unknown_1 = objectByteList.PopInt();

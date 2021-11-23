@@ -132,10 +132,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ContentWithTargetPath Include="ProcessHooking\GameCodeList Script.txt">
+    <Content Include="GameCodeList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>./RAM/Mods/System/GameCodeList.mod</TargetPath>
-    </ContentWithTargetPath>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assembly Scripting.txt">
@@ -144,6 +144,9 @@
     <Content Include="CommonToolLib Changelog.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DATA\EventManager Scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

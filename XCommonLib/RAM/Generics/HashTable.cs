@@ -40,7 +40,7 @@ namespace XCommonLib.RAM.Generics
 
             public override int ByteSize => 12;
 
-            protected override void SetDataFromObjectByteList(MemoryObjectConverter objectByteList)
+            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
                 pNext.address = objectByteList.PopIntPtr();
                 ObjectID = objectByteList.PopInt();
@@ -227,7 +227,7 @@ namespace XCommonLib.RAM.Generics
 
         public override int ByteSize => 16;
 
-        protected override void SetDataFromObjectByteList(MemoryObjectConverter collection)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter collection)
         {
             ppEntry = collection.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>>();
             Length = collection.PopInt();

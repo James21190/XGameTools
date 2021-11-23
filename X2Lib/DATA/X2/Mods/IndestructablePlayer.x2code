@@ -1,0 +1,5 @@
+﻿#Name:IndistructablePlayer
+#Data:0
+#Event:OnGameTick
+
+A1 A8 66 5D 01 8B 40 38 C7 80 D0 00 00 00 FF FF 00 00
