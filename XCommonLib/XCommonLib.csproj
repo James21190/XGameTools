@@ -109,7 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="RAM\Class region template.txt" />
-    <Content Include="XCommonLib Changelog.txt" />
+    <Content Include="Changelogs\XCommonLib Changelog.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Bases\Sector\SectorMapView.resx">

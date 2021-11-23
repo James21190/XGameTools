@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CommonToolLib")]
-[assembly: AssemblyDescription("Library for editing process memory.")]
+[assembly: AssemblyDescription("Library with common tools, such as process hooking and networking.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MemoryControl")]
-[assembly: AssemblyCopyright("Copyright ©James Burdett  2019 No Rights Reserved")]
+[assembly: AssemblyProduct("CommonToolLib")]
+[assembly: AssemblyCopyright("Copyright ©James Burdett  2019 - 2021 All Rights Reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

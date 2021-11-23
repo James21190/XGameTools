@@ -161,8 +161,8 @@ namespace X3TCAPLib.RAM
             {
                 case GeneralMainType.Ship: return (short)MainType_X3TCAP.Ship;
                 case GeneralMainType.Sector: return (short)MainType_X3TCAP.Sector;
-                default: return 0;
             }
+            throw new NotImplementedException("MainType of " + (mainType).ToString() + " was not assigned.");
         }
     }
 }

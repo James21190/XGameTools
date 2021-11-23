@@ -65,6 +65,16 @@
     <Compile Include="Networking\Packet.cs" />
     <Compile Include="Patcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ScriptAssembler.cs" />
     <Compile Include="UI\BitFieldDisplay.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +122,10 @@
     <Compile Include="Generics\Vector3_32.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\BitFieldDisplay.resx">
       <DependentUpon>BitFieldDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,21 +146,24 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GameCodeList.txt">
+    <Content Include="DATA\EventManager Scripts\GameCodeList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <TargetPath>./RAM/Mods/System/GameCodeList.mod</TargetPath>
+      <!-- <TargetPath>./RAM/Mods/System/GameCodeList.mod</TargetPath> -->
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assembly Scripting.txt">
+    <Content Include="DATA\EventManager Scripts\Assembly Scripting.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="CommonToolLib Changelog.txt">
+    <Content Include="Changelogs\CommonToolLib Changelog.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DATA\EventManager Scripts\" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

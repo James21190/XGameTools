@@ -74,7 +74,9 @@
       <Name>XCommonLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Changelogs\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DATA\X3TC\ScriptInstance Types\RaceData.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

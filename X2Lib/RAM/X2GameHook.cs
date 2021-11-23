@@ -161,7 +161,12 @@ namespace X2Lib.RAM
 
         public override short GetMainTypeID(GeneralMainType mainType)
         {
-            throw new NotImplementedException();
+            switch (mainType)
+            {
+                case GeneralMainType.Ship: return (short)MainType_X2.Ship;
+                case GeneralMainType.Sector: return (short)MainType_X2.Sector;
+            }
+            throw new NotImplementedException("MainType of " + (mainType).ToString() + " was not assigned.");
         }
 
         public override void AttachEventManager()

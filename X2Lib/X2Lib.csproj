@@ -64,6 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Changelogs\" />
     <Folder Include="RAM\Bases\Sector\SectorObject TypeData\" />
   </ItemGroup>
   <ItemGroup>
