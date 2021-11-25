@@ -12,9 +12,8 @@ public override byte[] GetBytes()
     throw new NotImplementedException();
 }
 
-
-protected override void SetDataFromMemoryObjectConverter(ObjectByteList objectByteList)
+protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
 {
-    base.SetDataFromMemoryObjectConverter(objectByteList);
+    base.SetDataFromMemoryObjectConverter(memoryObjectConverter);
 }
 #endregion

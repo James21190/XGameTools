@@ -18,10 +18,33 @@ namespace X3TCAPLib.RAM.Bases.Story
         #endregion
 
         #region Common
+        #region Scripting
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(int id)
         {
             return pHashTable_ScriptTaskObject.obj.GetObject(id);
         }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
+        {
+            int value = id < 0 ? -id - 1 : id;
+            return pHashTable_ScriptInstance.obj.GetObject(value);
+        }
+        public override int[] GetAllScriptInstances()
+        {
+            return pHashTable_ScriptInstance.obj.ScanContents();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(IntPtr address)
+        {
+            var result = new ScriptHashTable();
+            result.hProcess = hProcess;
+            result.pThis = address;
+            result.ReloadFromMemory();
+            return result;
+        }
+        #endregion
 
         public override MemoryString GetStringFromArray(int index)
         {
@@ -30,11 +53,6 @@ namespace X3TCAPLib.RAM.Bases.Story
             memorystring.pThis = pStrings.address + index;
             memorystring.ReloadFromMemory();
             return memorystring;
-        }
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
-        {
-            int value = id < 0 ? -id - 1 : id;
-            return pHashTable_ScriptInstance.obj.GetObject(value);
         }
         public override XCommonLib.RAM.Bases.Story.TextPage GetTextPage(int languageId, int pageId)
         {

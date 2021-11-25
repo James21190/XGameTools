@@ -1,6 +1,6 @@
 ﻿namespace XRAMTool.Bases.Story
 {
-    partial class ScriptInstance_Display
+    partial class ScriptHashTable_Display
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.scriptInstanceView1 = new XCommonLib.UI.Bases.Story.ScriptInstanceView();
+            this.scriptingHashTableView1 = new XCommonLib.UI.Bases.Story.ScriptingHashTableView();
             this.SuspendLayout();
             // 
-            // scriptInstanceView1
+            // scriptingHashTableView1
             // 
-            this.scriptInstanceView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.scriptInstanceView1.Location = new System.Drawing.Point(12, 12);
-            this.scriptInstanceView1.Name = "scriptInstanceView1";
-            this.scriptInstanceView1.Size = new System.Drawing.Size(776, 426);
-            this.scriptInstanceView1.TabIndex = 0;
-            this.scriptInstanceView1.OnViewClicked += new XCommonLib.UI.Bases.Story.ScriptInstanceView.CellActionHandler(this.scriptInstanceView1_OnViewClicked);
+            this.scriptingHashTableView1.Location = new System.Drawing.Point(12, 12);
+            this.scriptingHashTableView1.Name = "scriptingHashTableView1";
+            this.scriptingHashTableView1.Size = new System.Drawing.Size(380, 242);
+            this.scriptingHashTableView1.TabIndex = 0;
             // 
-            // ScriptInstance_Display
+            // ScriptHashTable_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.scriptInstanceView1);
-            this.Name = "ScriptInstance_Display";
-            this.Text = "ScriptInstance_Display";
+            this.Controls.Add(this.scriptingHashTableView1);
+            this.Name = "ScriptHashTable_Display";
+            this.Text = "ScriptHashTable_Display";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private XCommonLib.UI.Bases.Story.ScriptInstanceView scriptInstanceView1;
+        private XCommonLib.UI.Bases.Story.ScriptingHashTableView scriptingHashTableView1;
     }
 }

@@ -31,12 +31,14 @@
             this.nnudReferenceCount = new CommonToolLib.UI.NamedNumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvMemoryTable = new System.Windows.Forms.DataGridView();
+            this.ntxtMemoryAddress = new CommonToolLib.UI.NamedTextBox();
+            this.namedTextBox1 = new CommonToolLib.UI.NamedTextBox();
+            this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.clmIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmValueDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmValueHex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ntxtMemoryAddress = new CommonToolLib.UI.NamedTextBox();
-            this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
+            this.colView = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMemoryTable)).BeginInit();
             this.SuspendLayout();
@@ -58,7 +60,7 @@
             this.nnudReferenceCount.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudReferenceCount.Name = "nnudReferenceCount";
             this.nnudReferenceCount.ReadOnly = true;
-            this.nnudReferenceCount.Size = new System.Drawing.Size(113, 50);
+            this.nnudReferenceCount.Size = new System.Drawing.Size(100, 50);
             this.nnudReferenceCount.TabIndex = 1;
             this.nnudReferenceCount.Title = "Reference Count";
             this.nnudReferenceCount.Value = new decimal(new int[] {
@@ -94,7 +96,8 @@
             this.clmIndex,
             this.clmType,
             this.clmValueDec,
-            this.clmValueHex});
+            this.clmValueHex,
+            this.colView});
             this.dgvMemoryTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMemoryTable.Location = new System.Drawing.Point(6, 75);
             this.dgvMemoryTable.Name = "dgvMemoryTable";
@@ -102,6 +105,39 @@
             this.dgvMemoryTable.RowHeadersVisible = false;
             this.dgvMemoryTable.Size = new System.Drawing.Size(293, 277);
             this.dgvMemoryTable.TabIndex = 1;
+            this.dgvMemoryTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMemoryTable_CellContentClick);
+            // 
+            // ntxtMemoryAddress
+            // 
+            this.ntxtMemoryAddress.Location = new System.Drawing.Point(6, 19);
+            this.ntxtMemoryAddress.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtMemoryAddress.Name = "ntxtMemoryAddress";
+            this.ntxtMemoryAddress.ReadOnly = true;
+            this.ntxtMemoryAddress.Size = new System.Drawing.Size(100, 50);
+            this.ntxtMemoryAddress.TabIndex = 0;
+            this.ntxtMemoryAddress.Title = "Address";
+            // 
+            // namedTextBox1
+            // 
+            this.namedTextBox1.Location = new System.Drawing.Point(3, 121);
+            this.namedTextBox1.MinimumSize = new System.Drawing.Size(100, 50);
+            this.namedTextBox1.Name = "namedTextBox1";
+            this.namedTextBox1.ReadOnly = true;
+            this.namedTextBox1.Size = new System.Drawing.Size(206, 50);
+            this.namedTextBox1.TabIndex = 3;
+            this.namedTextBox1.Title = "Type";
+            // 
+            // numericIDObjectControl1
+            // 
+// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
+            this.numericIDObjectControl1.EnableLoad = false;
+            this.numericIDObjectControl1.ID = 0;
+            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 3);
+            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
+            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.TabIndex = 0;
             // 
             // clmIndex
             // 
@@ -127,32 +163,18 @@
             this.clmValueHex.Name = "clmValueHex";
             this.clmValueHex.ReadOnly = true;
             // 
-            // ntxtMemoryAddress
+            // colView
             // 
-            this.ntxtMemoryAddress.Location = new System.Drawing.Point(6, 19);
-            this.ntxtMemoryAddress.MinimumSize = new System.Drawing.Size(100, 50);
-            this.ntxtMemoryAddress.Name = "ntxtMemoryAddress";
-            this.ntxtMemoryAddress.ReadOnly = true;
-            this.ntxtMemoryAddress.Size = new System.Drawing.Size(100, 50);
-            this.ntxtMemoryAddress.TabIndex = 0;
-            this.ntxtMemoryAddress.Title = "Address";
-            // 
-            // numericIDObjectControl1
-            // 
-// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
-            this.numericIDObjectControl1.EnableLoad = false;
-            this.numericIDObjectControl1.ID = 0;
-            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 3);
-            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
-            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.TabIndex = 0;
+            this.colView.HeaderText = "";
+            this.colView.Name = "colView";
+            this.colView.ReadOnly = true;
+            this.colView.Text = "View";
             // 
             // ScriptInstanceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.namedTextBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.nnudReferenceCount);
             this.Controls.Add(this.numericIDObjectControl1);
@@ -171,9 +193,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private CommonToolLib.UI.NamedTextBox ntxtMemoryAddress;
         private System.Windows.Forms.DataGridView dgvMemoryTable;
+        private CommonToolLib.UI.NamedTextBox namedTextBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmValueDec;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmValueHex;
+        private System.Windows.Forms.DataGridViewButtonColumn colView;
     }
 }

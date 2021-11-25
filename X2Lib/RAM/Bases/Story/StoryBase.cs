@@ -13,11 +13,29 @@ namespace X2Lib.RAM.Bases.Story
         #endregion
 
         #region Common
-
+        #region Scripting
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(int id)
         {
             throw new NotImplementedException();
         }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
+        {
+            int value = id < 0 ? -id - 1 : id;
+            return pHashTable_ScriptInstance.obj.GetObject(value);
+        }
+        public override int[] GetAllScriptInstances()
+        {
+            return pHashTable_ScriptInstance.obj.ScanContents();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
         public override MemoryString GetStringFromArray(int index)
         {
             MemoryString memorystring = new MemoryString();
@@ -25,11 +43,6 @@ namespace X2Lib.RAM.Bases.Story
             memorystring.pThis = pStrings.address + index;
             memorystring.ReloadFromMemory();
             return memorystring;
-        }
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
-        {
-            int value = id < 0 ? -id - 1 : id;
-            return pHashTable_ScriptInstance.obj.GetObject(value);
         }
         public override XCommonLib.RAM.Bases.Story.TextPage GetTextPage(int languageId, int pageId)
         {

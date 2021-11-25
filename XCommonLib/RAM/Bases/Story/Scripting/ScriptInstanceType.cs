@@ -4,6 +4,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
 {
     public class ScriptInstanceType
     {
+        public string Name;
         public int TypeID;
         public ScriptInstanceType Parent;
 

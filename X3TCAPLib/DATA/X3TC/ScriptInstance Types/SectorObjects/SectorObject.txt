@@ -3,3 +3,6 @@
 PositionData
 CurrentSectorScriptInstanceID
 PreviousSectorScriptInstanceID
+LastSectorObjectID
+
+ScriptTasks

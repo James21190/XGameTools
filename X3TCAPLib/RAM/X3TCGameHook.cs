@@ -151,6 +151,12 @@ namespace X3TCAPLib.RAM
                 case MainType_X3TCAP.Asteroid: return GeneralMainType.Asteroid;
                 case MainType_X3TCAP.Gate: return GeneralMainType.Gate;
                 case MainType_X3TCAP.Debris: return GeneralMainType.Debris;
+                case MainType_X3TCAP.Factory: return GeneralMainType.Factory;
+                case MainType_X3TCAP.Special: return GeneralMainType.Special;
+                case MainType_X3TCAP.Bullet: return GeneralMainType.Bullet;
+                case MainType_X3TCAP.Missile: return GeneralMainType.Missile;
+                case MainType_X3TCAP.Ware_F: return GeneralMainType.Ware_F;
+                case MainType_X3TCAP.Ware_T: return GeneralMainType.Ware_T;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X3TCAP)mainType).ToString() + " was not assigned.");
         }

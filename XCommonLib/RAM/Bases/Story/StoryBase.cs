@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using XCommonLib.RAM.Bases.Story.Scripting;
@@ -10,14 +11,20 @@ namespace XCommonLib.RAM.Bases.Story
         #region Memory
         #endregion
 
+        #region Scripting
         /// <summary>
         /// Search the hash table for the ScriptTaskObject.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public abstract ScriptTaskObject GetScriptTaskObject(int id);
-        public abstract MemoryString GetStringFromArray(int index);
         public abstract ScriptInstance GetScriptInstance(int id);
+        public abstract int[] GetAllScriptInstances();
+        public abstract ScriptHashTable GetScriptHashTable(IntPtr address);
+        public abstract ScriptHashTable GetScriptHashTable(int id);
+        #endregion
+
+        public abstract MemoryString GetStringFromArray(int index);
         public abstract TextPage GetTextPage(int languageId, int pageId);
         public MemoryString GetText(int languageId, int pageId, int textId)
         {

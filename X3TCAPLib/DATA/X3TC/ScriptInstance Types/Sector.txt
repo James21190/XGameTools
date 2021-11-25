@@ -34,7 +34,7 @@ BackgroundID
 
 BackgroundMusicID
 
-
+LastSectorObjectID
 
 
 

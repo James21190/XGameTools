@@ -56,6 +56,7 @@
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\DynamicValue.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptHashTable.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceType.cs" />
@@ -82,6 +83,12 @@
     <Compile Include="UI\Bases\Sector\TypeDataView.Designer.cs">
       <DependentUpon>TypeDataView.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Bases\Story\ScriptingHashTableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\Story\ScriptingHashTableView.Designer.cs">
+      <DependentUpon>ScriptingHashTableView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\Story\ScriptInstanceView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +100,12 @@
     </Compile>
     <Compile Include="UI\Bases\Story\ScriptTaskObjectView.Designer.cs">
       <DependentUpon>ScriptTaskObjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HashTableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HashTableView.Designer.cs">
+      <DependentUpon>HashTableView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\NumericIDObjectControl.cs">
       <SubType>UserControl</SubType>
@@ -120,11 +133,17 @@
     <EmbeddedResource Include="UI\Bases\Sector\TypeDataView.resx">
       <DependentUpon>TypeDataView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bases\Story\ScriptingHashTableView.resx">
+      <DependentUpon>ScriptingHashTableView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Story\ScriptInstanceView.resx">
       <DependentUpon>ScriptInstanceView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Story\ScriptTaskObjectView.resx">
       <DependentUpon>ScriptTaskObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HashTableView.resx">
+      <DependentUpon>HashTableView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NumericIDObjectControl.resx">
       <DependentUpon>NumericIDObjectControl.cs</DependentUpon>
