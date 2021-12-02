@@ -54,6 +54,7 @@ namespace X3TCAPLib.RAM
 
             Cockpit = 25,
 
+            Type_27 = 27,
             Debris = 28,
             Wreck,
             Factory_Wreck,

@@ -58,8 +58,12 @@ namespace XCommonLib.RAM
             Wreck,
             Factory_Wreck,
             Ship_Wreck,
+            Station_Interior,
 
-            X2_21
+
+            X2_21,
+
+            X3TC_27
         }
 
         public GeneralMainType GetMainTypeByID(SectorObject.SectorObjectType type)

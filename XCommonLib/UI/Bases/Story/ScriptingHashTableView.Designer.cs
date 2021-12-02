@@ -30,6 +30,7 @@
         {
             this.btnScan = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.nnudCount = new CommonToolLib.UI.NamedNumericUpDown();
             this.SuspendLayout();
             // 
             // btnScan
@@ -50,10 +51,36 @@
             this.listBox1.Size = new System.Drawing.Size(157, 199);
             this.listBox1.TabIndex = 1;
             // 
+            // nnudCount
+            // 
+            this.nnudCount.Location = new System.Drawing.Point(166, 3);
+            this.nnudCount.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nnudCount.MaximumSize = new System.Drawing.Size(0, 50);
+            this.nnudCount.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nnudCount.MinimumSize = new System.Drawing.Size(100, 50);
+            this.nnudCount.Name = "nnudCount";
+            this.nnudCount.Size = new System.Drawing.Size(128, 50);
+            this.nnudCount.TabIndex = 2;
+            this.nnudCount.Title = "Count";
+            this.nnudCount.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
             // ScriptingHashTableView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.nnudCount);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnScan);
             this.Name = "ScriptingHashTableView";
@@ -66,5 +93,6 @@
 
         private System.Windows.Forms.Button btnScan;
         private System.Windows.Forms.ListBox listBox1;
+        private CommonToolLib.UI.NamedNumericUpDown nnudCount;
     }
 }

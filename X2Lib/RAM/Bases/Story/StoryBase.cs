@@ -8,8 +8,8 @@ namespace X2Lib.RAM.Bases.Story
     public class StoryBase : XCommonLib.RAM.Bases.Story.StoryBase
     {
         #region Memory Fields
-        public MemoryObjectPointer<MemoryString> pStrings = new MemoryObjectPointer<MemoryString>();
-        public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance = new MemoryObjectPointer<HashTable<ScriptInstance>>();
+        public MemoryObjectPointer<MemoryString> pStrings;
+        public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
         #endregion
 
         #region Common

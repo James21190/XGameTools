@@ -61,6 +61,7 @@ namespace X2Lib.RAM
             Special,
 
             Type_21 = 21,
+            Station_Interior,
 
             Cockpit = 25,
 
@@ -155,6 +156,7 @@ namespace X2Lib.RAM
                 case MainType_X2.Debris: return GeneralMainType.Debris;
                 case MainType_X2.Factory: return GeneralMainType.Factory;
                 case MainType_X2.Type_21: return GeneralMainType.X2_21;
+                case MainType_X2.Station_Interior: return GeneralMainType.Station_Interior;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }

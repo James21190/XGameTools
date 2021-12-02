@@ -19,13 +19,16 @@ namespace XRAMTool.Bases.Sector
         public void LoadObject(SectorObject obj)
         {
             m_SectorObject = obj;
-            sectorObjectView1.LoadObject(obj);
-            RepopulateTree();
+            Reload();
         }
 
         public void Reload()
         {
+            m_SectorObject.ReloadFromMemory();
+            sectorObjectView1.LoadObject(m_SectorObject);
             RepopulateTree();
+
+            btnLoadScriptInstance.Text = String.Format("Load ScriptInstance ({0})", m_SectorObject.ScriptInstanceID);
         }
 
         public void RepopulateTree()

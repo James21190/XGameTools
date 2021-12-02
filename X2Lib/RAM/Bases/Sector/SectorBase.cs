@@ -12,12 +12,12 @@ namespace X2Lib.RAM.Bases.Sector
         /// <summary>
         /// Pointer to the first sector object in a linear list.
         /// </summary>
-        public MemoryObjectPointer<SectorObject> pFirst = new MemoryObjectPointer<SectorObject>();
+        public MemoryObjectPointer<SectorObject> pFirst;
         /// <summary>
         /// Pointer to the last sector object in a linear list.
         /// </summary>
         public int Unknown_3;
-        public MemoryObjectPointer<SectorObject> pLast = new MemoryObjectPointer<SectorObject>(); // 0x10
+        public MemoryObjectPointer<SectorObject> pLast; // 0x10
         /// <summary>
         /// Pointer to the hash table containing all SectorObject.
         /// </summary>

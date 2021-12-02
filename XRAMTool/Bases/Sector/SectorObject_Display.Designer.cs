@@ -58,7 +58,7 @@
             this.btnLoadScriptInstance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLoadScriptInstance.Location = new System.Drawing.Point(228, 415);
             this.btnLoadScriptInstance.Name = "btnLoadScriptInstance";
-            this.btnLoadScriptInstance.Size = new System.Drawing.Size(130, 23);
+            this.btnLoadScriptInstance.Size = new System.Drawing.Size(164, 23);
             this.btnLoadScriptInstance.TabIndex = 2;
             this.btnLoadScriptInstance.Text = "Load ScriptInstance";
             this.btnLoadScriptInstance.UseVisualStyleBackColor = true;
