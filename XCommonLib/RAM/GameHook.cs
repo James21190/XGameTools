@@ -61,7 +61,7 @@ namespace XCommonLib.RAM
             Station_Interior,
 
 
-            X2_21,
+            Nebula,
 
             X3TC_27
         }
@@ -130,6 +130,7 @@ namespace XCommonLib.RAM
             Xenon,
             Yaki,
             Enemy,
+            Neutral
         }
         public abstract GeneralRaces GetRaceByID(ushort raceID);
 
@@ -168,9 +169,10 @@ namespace XCommonLib.RAM
                 case GeneralRaces.Xenon: return Color.IndianRed;
                 case GeneralRaces.Player: return Color.LawnGreen;
                 case GeneralRaces.Unowned: return Color.Gray;
+                case GeneralRaces.Pirate: return Color.MediumPurple;
                 case GeneralRaces.Friendly:
                 case GeneralRaces.Enemy:
-                case GeneralRaces.Pirate:
+                case GeneralRaces.Neutral:
                 case GeneralRaces.NA:
                 case GeneralRaces.None: return Color.LightGray;
             }

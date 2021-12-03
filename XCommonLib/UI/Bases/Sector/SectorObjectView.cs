@@ -38,6 +38,8 @@ namespace XCommonLib.UI
             ntxtDefaultName.Text = m_SectorObject.DefaultName.Value;
             ntxtDefaultNameParsed.Text = ReferenceGameHook.StoryBase.GetParsedText(44, m_SectorObject.DefaultName.Value);
 
+            ntxtType.Text = m_SectorObject.ObjectType.ToString();
+
             //bitFieldDisplay1.Value = m_SectorObject.InteractionFlags;
 
             if (ReferenceGameHook != null)

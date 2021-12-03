@@ -26,6 +26,7 @@ Argon_Discoverer
 
 
 
+Paranid_Pegasus
 
 
 
@@ -47,6 +48,7 @@ Argon_Discoverer
 
 
 
+Space_Suit
 
 
 
@@ -57,18 +59,16 @@ Argon_Discoverer
 
 
 
+Pirate_Orinoco
+Pirate_Bayamon
+Pirate_Mandalay
 
 
 
 
 
 
-
-
-
-
-
-
+Spacefly
 
 
 

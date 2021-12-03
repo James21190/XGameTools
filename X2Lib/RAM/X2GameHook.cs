@@ -19,12 +19,12 @@ namespace X2Lib.RAM
             Teladi,
             Xenon,
             Khaak,
-            Pirates,
+            Pirate,
             Gonor,
             Player = 10,
-            EnemyRace,
-            NeutralRace,
-            FriendlyRace,
+            Enemy,
+            Neutral,
+            Friendly,
             Unknown,
             Race1,
             Race2,
@@ -60,7 +60,7 @@ namespace X2Lib.RAM
             Camera,
             Special,
 
-            Type_21 = 21,
+            Nebula = 21,
             Station_Interior,
 
             Cockpit = 25,
@@ -136,7 +136,10 @@ namespace X2Lib.RAM
                 case RaceID_X2.Khaak: return GeneralRaces.Khaak;
                 case RaceID_X2.None: return GeneralRaces.None;
                 case RaceID_X2.Gonor: return GeneralRaces.Gonor;
-                case RaceID_X2.EnemyRace: return GeneralRaces.Enemy;
+                case RaceID_X2.Enemy: return GeneralRaces.Enemy;
+                case RaceID_X2.Pirate: return GeneralRaces.Pirate;
+                case RaceID_X2.Friendly: return GeneralRaces.Friendly;
+                case RaceID_X2.Neutral: return GeneralRaces.Neutral;
             }
             throw new NotImplementedException("RaceID of " + ((RaceID_X2)raceID).ToString() + " was not assigned.");
         }
@@ -155,8 +158,11 @@ namespace X2Lib.RAM
                 case MainType_X2.Gate: return GeneralMainType.Gate;
                 case MainType_X2.Debris: return GeneralMainType.Debris;
                 case MainType_X2.Factory: return GeneralMainType.Factory;
-                case MainType_X2.Type_21: return GeneralMainType.X2_21;
+                case MainType_X2.Nebula: return GeneralMainType.Nebula;
                 case MainType_X2.Station_Interior: return GeneralMainType.Station_Interior;
+                case MainType_X2.Missile: return GeneralMainType.Missile;
+                case MainType_X2.Ware_T: return GeneralMainType.Ware_T;
+                case MainType_X2.Ware_E: return GeneralMainType.Ware_E;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
@@ -26,25 +27,10 @@ namespace XRAMTool.Bases.Sector
         {
             m_SectorObject.ReloadFromMemory();
             sectorObjectView1.LoadObject(m_SectorObject);
-            RepopulateTree();
+            if(!bgwTreeReloader.IsBusy)
+                bgwTreeReloader.RunWorkerAsync();
 
             btnLoadScriptInstance.Text = String.Format("Load ScriptInstance ({0})", m_SectorObject.ScriptInstanceID);
-        }
-
-        public void RepopulateTree()
-        {
-            treeView1.Nodes.Clear();
-            TreeNodeCollection nodeCollection = treeView1.Nodes;
-            foreach (SectorObject sectorObject in Program.GameHook.SectorBase.GetSectorObjects())
-            {
-                TreeNode currentSelection;
-                nodeCollection.Add(GetSectorObjectTreeNode(sectorObject, out currentSelection));
-                if (currentSelection != null)
-                {
-                    treeView1.SelectedNode = currentSelection;
-                    currentSelection.Expand();
-                }
-            }
         }
 
         private TreeNode GetSectorObjectTreeNode(SectorObject sectorObject, out TreeNode currentSelection)
@@ -113,6 +99,36 @@ namespace XRAMTool.Bases.Sector
             var display = new ScriptInstance_Display();
             display.LoadObject(Program.GameHook.StoryBase.GetScriptInstance(m_SectorObject.ScriptInstanceID));
             display.Show();
+        }
+
+        private void bgwTreeReloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            bgwTreeReloader.ReportProgress(99);
+            List<TreeNode> nodeCollection = new List<TreeNode>();
+            TreeNode currentSelection = null;
+            foreach (SectorObject sectorObject in Program.GameHook.SectorBase.GetSectorObjects())
+            {
+                nodeCollection.Add(GetSectorObjectTreeNode(sectorObject, out currentSelection));
+                if (currentSelection != null)
+                {
+                    treeView1.SelectedNode = currentSelection;
+                    currentSelection.Expand();
+                }
+            }
+
+            treeView1.Invoke(new Action(() =>
+            {
+                treeView1.Nodes.Clear();
+                treeView1.Nodes.AddRange(nodeCollection.ToArray());
+                treeView1.SelectedNode = currentSelection;
+            }));
+
+            bgwTreeReloader.ReportProgress(100);
+        }
+
+        private void bgwTreeReloader_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            pgbTreeLoading.Value = e.ProgressPercentage;
         }
     }
 }

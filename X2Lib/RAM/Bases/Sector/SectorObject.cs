@@ -34,9 +34,9 @@ namespace X2Lib.RAM.Bases.Sector
                 switch ((X2GameHook.MainType_X2)ObjectType.MainType)
                 {
                     case X2GameHook.MainType_X2.Sector: meta = new SectorObject_Sector_Meta(); break;
-                    //case X2GameHook.MainType_X2.Dock:
-                    //case X2GameHook.MainType_X2.Factory: meta = new SectorObject_Station_Meta(); break;
-                    //case X2GameHook.MainType_X2.Ship: meta = new SectorObject_Ship_Meta(); break;
+                    case X2GameHook.MainType_X2.Dock:
+                    case X2GameHook.MainType_X2.Factory: meta = new SectorObject_Station_Meta(); break;
+                    case X2GameHook.MainType_X2.Ship: meta = new SectorObject_Ship_Meta(); break;
                     default: return null;
                 }
                 meta.hProcess = hProcess;

@@ -38,8 +38,9 @@
             this.vec3AutopilotRotationDeltaTarget = new CommonToolLib.UI.Vector3Display();
             this.vec3LocalEulerRotationDelta = new CommonToolLib.UI.Vector3Display();
             this.vec3EulerRotation = new CommonToolLib.UI.Vector3Display();
-            this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.bitFieldDisplay1 = new CommonToolLib.UI.BitFieldDisplay();
+            this.ntxtType = new CommonToolLib.UI.NamedTextBox();
+            this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.SuspendLayout();
             // 
             // ntxtDefaultName
@@ -337,18 +338,6 @@
             0,
             0});
             // 
-            // numericIDObjectControl1
-            // 
-// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
-            this.numericIDObjectControl1.EnableLoad = false;
-            this.numericIDObjectControl1.ID = 0;
-            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 3);
-            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
-            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
-            this.numericIDObjectControl1.TabIndex = 0;
-            // 
             // bitFieldDisplay1
             // 
             this.bitFieldDisplay1.Bits = 32;
@@ -389,10 +378,34 @@
             this.bitFieldDisplay1.Value = null;
             this.bitFieldDisplay1.Visible = false;
             // 
+            // ntxtType
+            // 
+            this.ntxtType.Location = new System.Drawing.Point(483, 115);
+            this.ntxtType.MaximumSize = new System.Drawing.Size(0, 50);
+            this.ntxtType.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtType.Name = "ntxtType";
+            this.ntxtType.ReadOnly = true;
+            this.ntxtType.Size = new System.Drawing.Size(180, 50);
+            this.ntxtType.TabIndex = 14;
+            this.ntxtType.Title = "Type";
+            // 
+            // numericIDObjectControl1
+            // 
+// TODO: Code generation for '' failed because of Exception 'Invalid Primitive Type: System.IntPtr. Consider using CodeObjectCreateExpression.'.
+            this.numericIDObjectControl1.EnableLoad = false;
+            this.numericIDObjectControl1.ID = 0;
+            this.numericIDObjectControl1.Location = new System.Drawing.Point(3, 3);
+            this.numericIDObjectControl1.MaximumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.MinimumSize = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.Name = "numericIDObjectControl1";
+            this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
+            this.numericIDObjectControl1.TabIndex = 0;
+            // 
             // SectorObjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ntxtType);
             this.Controls.Add(this.bitFieldDisplay1);
             this.Controls.Add(this.ntxtDefaultName);
             this.Controls.Add(this.ntxtDefaultNameParsed);
@@ -425,5 +438,6 @@
         private CommonToolLib.UI.NamedTextBox ntxtDefaultNameParsed;
         private CommonToolLib.UI.NamedTextBox ntxtDefaultName;
         private CommonToolLib.UI.BitFieldDisplay bitFieldDisplay1;
+        private CommonToolLib.UI.NamedTextBox ntxtType;
     }
 }

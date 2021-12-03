@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushMyShip", "PushMyShip\Pu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XWrapperLib", "XWrapperLib\XWrapperLib.csproj", "{759F8701-1C95-42A4-A31F-5B82E6BBFEDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XCatTool", "XCatTool\XCatTool.csproj", "{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -231,6 +233,18 @@ Global
 		{759F8701-1C95-42A4-A31F-5B82E6BBFEDA}.Release|x64.Build.0 = Release|Any CPU
 		{759F8701-1C95-42A4-A31F-5B82E6BBFEDA}.Release|x86.ActiveCfg = Release|Any CPU
 		{759F8701-1C95-42A4-A31F-5B82E6BBFEDA}.Release|x86.Build.0 = Release|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Debug|x64.Build.0 = Debug|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Debug|x86.Build.0 = Debug|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x64.ActiveCfg = Release|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x64.Build.0 = Release|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x86.ActiveCfg = Release|Any CPU
+		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
