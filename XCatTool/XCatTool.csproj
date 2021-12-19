@@ -86,6 +86,14 @@
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>CommonToolLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\X2Lib\X2Lib.csproj">
+      <Project>{44c260dc-3bd2-4b47-a11c-93184e972c71}</Project>
+      <Name>X2Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\X3TCAPLib\X3TCAPLib.csproj">
+      <Project>{08839997-89c5-4c73-874e-5fa977b6ef6e}</Project>
+      <Name>X3TCAPLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XCommonLib\XCommonLib.csproj">
       <Project>{adbbdbb6-324b-4d38-b723-7f1181f32f24}</Project>
       <Name>XCommonLib</Name>

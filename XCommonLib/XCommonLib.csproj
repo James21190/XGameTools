@@ -46,7 +46,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Files\ExternalDataCollection.cs" />
+    <Compile Include="Files\CatDat\CatDatFile.cs" />
+    <Compile Include="Files\CatDat\CatDatReader.cs" />
+    <Compile Include="Files\CatDat\CatEntry.cs" />
+    <Compile Include="Files\CatDat\ICatDatCollection.cs" />
+    <Compile Include="Files\CatDat\ICatFile.cs" />
+    <Compile Include="Files\CatDat\IDatFile.cs" />
+    <Compile Include="Files\CatDat\CatDatBuilder.cs" />
+    <Compile Include="Files\CatDat\IPckFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
