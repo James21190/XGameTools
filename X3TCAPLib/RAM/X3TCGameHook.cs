@@ -159,7 +159,7 @@ namespace X3TCAPLib.RAM
                 case MainType_X3TCAP.Ware_T: return GeneralMainType.Ware_T;
                 case MainType_X3TCAP.Ware_E: return GeneralMainType.Ware_E;
                 case MainType_X3TCAP.Ware_B: return GeneralMainType.Ware_B;
-                case MainType_X3TCAP.Type_27: return GeneralMainType.X3TC_27;
+                case MainType_X3TCAP.Type_27: return GeneralMainType.Type_27;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X3TCAP)mainType).ToString() + " was not assigned.");
         }

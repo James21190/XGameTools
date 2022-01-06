@@ -47,8 +47,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XWrapperLib", "XWrapperLib\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XCatTool", "XCatTool\XCatTool.csproj", "{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "flipflip", "flipflip\flipflip.csproj", "{0C4A70CF-044B-442B-A03D-D88600F62911}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -247,18 +245,6 @@ Global
 		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x64.Build.0 = Release|Any CPU
 		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x86.ActiveCfg = Release|Any CPU
 		{68F20F82-8DC4-42A1-A2B9-26F2CE4BEE0C}.Release|x86.Build.0 = Release|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Debug|x64.Build.0 = Debug|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Debug|x86.Build.0 = Debug|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Release|x64.ActiveCfg = Release|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Release|x64.Build.0 = Release|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Release|x86.ActiveCfg = Release|Any CPU
-		{0C4A70CF-044B-442B-A03D-D88600F62911}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

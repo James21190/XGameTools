@@ -107,9 +107,9 @@ namespace X2Lib.RAM.Bases.Sector
             ObjectType = memoryObjectConverter.PopIMemoryObject<SectorObjectType>(0x48);
             pMeta = memoryObjectConverter.PopIntPtr();
 
-            ScriptInstanceID = memoryObjectConverter.PopUShort(0x80);
+            ScriptInstanceID = memoryObjectConverter.PopInt(0x80);
 
-            ModelCollectionID = memoryObjectConverter.PopUShort(0x88);
+            ModelCollectionID = memoryObjectConverter.PopInt(0x88);
 
             CopyPosition = memoryObjectConverter.PopIMemoryObject<Vector3_32>(0xa8);
         }

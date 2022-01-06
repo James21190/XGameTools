@@ -1,9 +1,23 @@
-﻿
+﻿Alpha Impuse Ray Emitter
+
+Gamma Impulse Ray Emitter
+Alpha Particle Accelerator Cannon
+
+
+
+Beta High Energy Plasma Thrower
+Gamma High Energy Plasma Thrower
+
+
+
+
+Alpha Kyon Emitter
+Beta Kyon Emitter
 
 
 
 
 
 
-Beta_High_Energy_Plasma_Thrower
-Gamma_High_Energy_Plasma_Thrower
+
+Gamma Kyon Emitter

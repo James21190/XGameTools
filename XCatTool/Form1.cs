@@ -73,7 +73,23 @@ namespace XCatTool
 
         private void ReloadTextView()
         {
-            rtxtText.Text = Encoding.Default.GetString(_LoadedFileData);
+            const string allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!\"£$%^&*()_+[]{};'#:@~,./<>?`¬| \\\n\r";
+            char[] result = new char[_LoadedFileData.Length];
+            for(int i = 0; i < _LoadedFileData.Length; i++)
+            {
+                char character = (char)_LoadedFileData[i];
+                if (allowedCharacters.Contains(character))
+                {
+                    result[i] = character;
+                }
+                else
+                {
+                    result[i] = '.';
+                }
+            }
+
+            rtxtText.Text = new string(result);
+            //rtxtText.Text = Encoding.Default.GetString(_LoadedFileData);
         }
 
         private void ReloadImage()

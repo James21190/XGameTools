@@ -63,7 +63,7 @@ namespace XCommonLib.RAM
 
             Nebula,
 
-            X3TC_27
+            Type_27
         }
 
         public GeneralMainType GetMainTypeByID(SectorObject.SectorObjectType type)

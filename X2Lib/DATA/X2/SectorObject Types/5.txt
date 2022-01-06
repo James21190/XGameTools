@@ -1,7 +1,17 @@
-﻿Argon_Trading_Station
+﻿Argon Trading Station
+
+Paranid Trading Station
+Boron Trading Station
+
+Xenon Station
+Argon Equipment Dock
+
+Paranid Equipment Dock
 
 
-Boron_Trading_Station
 
 
-Argon_Equipment_Dock
+
+
+
+Khaak Station

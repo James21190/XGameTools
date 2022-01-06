@@ -63,7 +63,6 @@
     <Compile Include="Networking\TCPClientBase.cs" />
     <Compile Include="Networking\NetworkListener.cs" />
     <Compile Include="Networking\Packet.cs" />
-    <Compile Include="Patcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

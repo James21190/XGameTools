@@ -65,7 +65,8 @@ namespace X2Lib.RAM
 
             Cockpit = 25,
 
-            Debris = 28,
+            Type_27 = 27,
+            Debris,
             Wreck,
             Factory_Wreck,
             Ship_Wreck
@@ -163,6 +164,11 @@ namespace X2Lib.RAM
                 case MainType_X2.Missile: return GeneralMainType.Missile;
                 case MainType_X2.Ware_T: return GeneralMainType.Ware_T;
                 case MainType_X2.Ware_E: return GeneralMainType.Ware_E;
+                case MainType_X2.Special: return GeneralMainType.Special;
+                case MainType_X2.Ware_F: return GeneralMainType.Ware_F;
+                case MainType_X2.Bullet: return GeneralMainType.Bullet;
+                case MainType_X2.Ware_B: return GeneralMainType.Ware_B;
+                case MainType_X2.Type_27: return GeneralMainType.Type_27;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }

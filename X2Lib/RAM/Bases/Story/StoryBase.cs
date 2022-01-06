@@ -62,7 +62,7 @@ namespace X2Lib.RAM.Bases.Story
 
         protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
-            //base.SetDataFromMemoryObjectConverter(objectByteList);
+            pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d8);
         }
 
 

@@ -1,0 +1,5 @@
+﻿North Gate
+South Gate
+West Gate
+East Gate
+Xenon Gate

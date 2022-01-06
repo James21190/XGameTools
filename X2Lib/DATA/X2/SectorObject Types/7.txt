@@ -1,20 +1,18 @@
-﻿Argon_Mammoth
-Argon_Mercury
-Argon_Colossus
-Argon_Titan
+﻿Argon Mammoth
+Argon Mercury
+Argon Colossus
+Argon Titan
 
-Argon_Buster
-Argon_Discoverer
-
-
+Argon Buster
+Argon Discoverer
 
 
 
-
-
-
-
-
+Xenon J
+Xenon K
+Xenon L
+Xenon M
+Xenon N
 
 
 
@@ -22,57 +20,94 @@ Argon_Discoverer
 
 
 
+Paranid Hercules
+Paranid Demeter
+Paranid Zeus
 
+Paranid Perseus
 
+Paranid Pegasus
 
-
-Paranid_Pegasus
-
-
-
-
-
-
-
-
-
+Boron Dolphin
 
 
 
 
 
+Teladi Albatross
+Teladi Vulture
 
 
 
 
 
-
-
-Space_Suit
+Pirate Ship
 
 
 
 
 
 
+Space Suit
+
+Gonor Ship
 
 
 
 
-Pirate_Orinoco
-Pirate_Bayamon
-Pirate_Mandalay
 
 
 
 
+Pirate Orinoco
+Pirate Bayamon
+Pirate Mandalay
+
+
+Fighter Drone
+Lasertower
 
 
 Spacefly
+Khaak Fighter
+Khaak Interceptor
+Khaak Scout
+Khaak Carrier
+Khaak Destroyer
+Argon Centaur
+Argon Nova
+Argon Express
+
+
+Teladi Buzzard
 
 
 
 
 
-Argon_Centaur
-Argon_Nova
+
+Boron Hydra
+Boron Barracuda
+
+
+Paranid Nemesis
+Paranid Pericles
+
+
+
+
+
+
+
+AP Gunner
+
+
+Khaak Cluster 13
+Khaak Cluster 5
+
+
+
+
+
+Khaak M0
+Khaak M0 Generator

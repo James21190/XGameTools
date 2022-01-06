@@ -74,7 +74,16 @@
     <Folder Include="RAM\Bases\Sector\SectorObject TypeData\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DATA\X2\SectorObject Types\21.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DATA\X2\SectorObject Types\0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X2\SectorObject Types\20.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X2\SectorObject Types\18.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DATA\X2\SectorObject Types\16.txt">
