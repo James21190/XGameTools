@@ -13,9 +13,9 @@ using X2Lib.Files.CatDat;
 
 namespace XCatTool
 {
-    public partial class Form1 : Form
+    public partial class CatDatViewer : Form
     {
-        public Form1()
+        public CatDatViewer()
         {
             InitializeComponent();
         }
@@ -211,50 +211,11 @@ namespace XCatTool
             }
         }
         #endregion
-
-        private void ReloadExternalFileList()
-        {
-            listBox1.Items.Clear();
-            foreach (var file in _ExternalFiles)
-                listBox1.Items.Add(file);
-        }
         private void exportReadableCatsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var d = new FolderBrowserDialog();
             if (d.ShowDialog() == DialogResult.OK)
                 _Reader.ExportCatsToDirectory(d.SelectedPath, true);
-        }
-
-        private void externalFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ofdGetPcks.ShowDialog() == DialogResult.OK)
-            {
-                var files = ofdGetPcks.FileNames;
-                foreach (var file in files)
-                {
-                    _ExternalFiles.Add(file);
-                }
-                ReloadExternalFileList();
-            }
-        }
-
-        private void listBox1_DoubleClick(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex == null)
-                return;
-            var path = listBox1.SelectedItem.ToString();
-            switch (Path.GetExtension(path))
-            {
-                case ".pck":
-                    var pckFile = new X2PckFile();
-                    pckFile.SetData(File.ReadAllBytes(path));
-                    _LoadedFileData = pckFile.Decompress();
-                    break;
-                default:
-                    _LoadedFileData = File.ReadAllBytes(path);
-                    break;
-            }
-            ReloadViews();
         }
 
         private void exportAsCatDatToolStripMenuItem_Click(object sender, EventArgs e)

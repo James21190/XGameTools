@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace XCommonLib.Files.CatDat
 {
-    public class CatEntry
+    /// <summary>
+    /// The location of a block of data within a dat file.
+    /// </summary>
+    public struct FileLocationData
     {
         public string InternalPath;
         public int DatIndex;

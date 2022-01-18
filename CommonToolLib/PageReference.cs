@@ -9,7 +9,7 @@ namespace CommonToolLib
         private static class PageMaster
         {
             private static int _Index = 0;
-            private const string _TempFolder = @".\PagingLibTemp\";
+            private const string _TempFolder = @".\PagingTemp\";
 
 
             public static string GetNewPagePath()
@@ -32,6 +32,8 @@ namespace CommonToolLib
         }
         public enum StorageType
         {
+            Binary,
+            Text,
             Image
         }
         public enum StorageMode
@@ -48,6 +50,10 @@ namespace CommonToolLib
             {
                 switch (StoredType)
                 {
+                    case StorageType.Binary:
+                        return File.ReadAllBytes(_Path);
+                    case StorageType.Text:
+                        return File.ReadAllText(_Path);
                     case StorageType.Image:
                         return _GetAsBitmap();
                 }

@@ -11,25 +11,7 @@ namespace XCommonLib.RAM
 {
     public abstract class GameHook : ApplicationHook
     {
-        #region Bases
-        /// <summary>
-        /// The SectorBase is responsible for managing all in-sector objects.
-        /// Returns null if not found.
-        /// </summary>
-        public abstract SectorBase SectorBase { get; }
-        public abstract StoryBase StoryBase { get; }
-        public abstract GalaxyBase GalaxyBase { get; }
-        public abstract B3DBase B3DBase { get; }
-        #endregion
-
-
-        #region SectorObject TypeData
-        public abstract int TypeData_Ship_Count { get; }
-        public abstract TypeData_Ship GetTypeData_Ship(int subType);
-        #endregion
-
-        #region SectorObject MainTypes
-        public static readonly int MainTypeCount = 32;
+        #region Enums
         public enum GeneralMainType
         {
             Bullet,
@@ -65,6 +47,74 @@ namespace XCommonLib.RAM
 
             Type_27
         }
+        public enum GeneralRaces : short
+        {
+            ATF,
+            Argon,
+            Boron,
+            Friendly,
+            Gonor,
+            Khaak,
+            NA,
+            None,
+            Paranid,
+            Pirate,
+            Player,
+            Split,
+            Teladi,
+            Terran,
+            Unknown,
+            Unowned,
+            Xenon,
+            Yaki,
+            Enemy,
+            Neutral
+        }
+        #endregion
+
+        public static readonly int MainTypeCount = 32;
+
+        #region Fields
+        /// <summary>
+        /// The name of the game.
+        /// </summary>
+        public abstract string GameName { get; }
+        /// <summary>
+        /// An EventManager instance attached to the game.
+        /// </summary>
+        public EventManager EventManager { get; protected set; }
+        /// <summary>
+        /// A DataFileManager that is configured to fetch data for this version of the game.
+        /// </summary>
+        public DataFileManager DataFileManager;
+
+        #region Bases
+        /// <summary>
+        /// The SectorBase is responsible for managing all in-sector objects.
+        /// Returns null if not found.
+        /// </summary>
+        public abstract SectorBase SectorBase { get; }
+        public abstract StoryBase StoryBase { get; }
+        public abstract GalaxyBase GalaxyBase { get; }
+        public abstract B3DBase B3DBase { get; }
+        #endregion
+
+        #region SectorObject TypeData
+        public abstract int TypeData_Ship_Count { get; }
+        public abstract TypeData_Ship GetTypeData_Ship(int subType);
+        #endregion
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Attach a new EventManager to the game.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        public virtual void AttachEventManager()
+        {
+            throw new NotImplementedException();
+        }
+        #region SectorObject MainTypes
 
         public GeneralMainType GetMainTypeByID(SectorObject.SectorObjectType type)
         {
@@ -109,29 +159,6 @@ namespace XCommonLib.RAM
         #endregion
 
         #region Races
-        public enum GeneralRaces : short
-        {
-            ATF,
-            Argon,
-            Boron,
-            Friendly,
-            Gonor,
-            Khaak,
-            NA,
-            None,
-            Paranid,
-            Pirate,
-            Player,
-            Split,
-            Teladi,
-            Terran,
-            Unknown,
-            Unowned,
-            Xenon,
-            Yaki,
-            Enemy,
-            Neutral
-        }
         public abstract GeneralRaces GetRaceByID(ushort raceID);
 
         public string GetRaceIDName(ushort raceID) { return GetRaceIDName(GetRaceByID(raceID)); }
@@ -179,22 +206,12 @@ namespace XCommonLib.RAM
             throw new NotImplementedException("RaceID of " + raceID + " was not assigned a color.");
         }
         #endregion
-
-        public abstract string GameName { get; }
-
-        public EventManager EventManager { get; protected set; }
-
-        public virtual void AttachEventManager()
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
 
         public GameHook()
         {
+            // Create a new DataFileManager at the data's path.
             DataFileManager = new DataFileManager(string.Format(".\\DATA\\{0}\\", GameName));
         }
-
-        public DataFileManager DataFileManager;
-
     }
 }

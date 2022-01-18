@@ -1,6 +1,6 @@
 ﻿namespace XCatTool
 {
-    partial class Form1
+    partial class CatDatViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -49,8 +49,6 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bgdReloadTree = new System.ComponentModel.BackgroundWorker();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.externalFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdGetPcks = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabHexView.SuspendLayout();
@@ -64,7 +62,7 @@
             // 
             this.treeView1.Location = new System.Drawing.Point(12, 27);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(214, 193);
+            this.treeView1.Size = new System.Drawing.Size(214, 411);
             this.treeView1.TabIndex = 0;
             this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
             // 
@@ -169,8 +167,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loadCatFilesToolStripMenuItem,
-            this.externalFilesToolStripMenuItem});
+            this.loadCatFilesToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.fileToolStripMenuItem.Text = "Import";
@@ -212,7 +209,7 @@
             // exportAllToolStripMenuItem
             // 
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
-            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.exportAllToolStripMenuItem.Text = "Export All";
             this.exportAllToolStripMenuItem.Click += new System.EventHandler(this.exportAllToolStripMenuItem_Click);
             // 
@@ -220,7 +217,7 @@
             // 
             this.exportChangesToolStripMenuItem.Enabled = false;
             this.exportChangesToolStripMenuItem.Name = "exportChangesToolStripMenuItem";
-            this.exportChangesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportChangesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.exportChangesToolStripMenuItem.Text = "Export Changes";
             // 
             // exportReadableCatsToolStripMenuItem
@@ -249,40 +246,22 @@
             // 
             this.bgdReloadTree.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgdReloadTree_DoWork);
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 226);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(214, 212);
-            this.listBox1.TabIndex = 3;
-            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
-            // 
-            // externalFilesToolStripMenuItem
-            // 
-            this.externalFilesToolStripMenuItem.Name = "externalFilesToolStripMenuItem";
-            this.externalFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.externalFilesToolStripMenuItem.Text = "External Pck";
-            this.externalFilesToolStripMenuItem.Click += new System.EventHandler(this.externalFilesToolStripMenuItem_Click);
-            // 
             // ofdGetPcks
             // 
             this.ofdGetPcks.Filter = "Pack|*.pck";
             this.ofdGetPcks.Multiselect = true;
             // 
-            // Form1
+            // CatDatViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "CatDatViewer";
+            this.Text = "Cat Dat Viewer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabHexView.ResumeLayout(false);
@@ -319,8 +298,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker bgdReloadTree;
         private System.Windows.Forms.ToolStripMenuItem exportReadableCatsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem externalFilesToolStripMenuItem;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.OpenFileDialog ofdGetPcks;
     }
 }

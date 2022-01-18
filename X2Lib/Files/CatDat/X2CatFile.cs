@@ -8,7 +8,7 @@ using XCommonLib.Files.CatDat;
 
 namespace X2Lib.Files.CatDat
 {
-    public class X2CatFile : ICatFile
+    public class X2CatFile : CatFile
     {
         public struct CatEntry
         {
@@ -22,19 +22,7 @@ namespace X2Lib.Files.CatDat
         }
 
         #region Fields
-        public string FilePath { get; private set; }
-        public string DatName { get; set; }
-        public string DatPath
-        {
-            get
-            {
-                //var internalDefinedPath = Path.Combine(Path.GetDirectoryName(this.FilePath), DATName);
-                //if (File.Exists(internalDefinedPath))
-                //    return internalDefinedPath;
-                //else
-                    return Path.Combine(Path.GetDirectoryName(this.FilePath), Path.GetFileNameWithoutExtension(this.FilePath) + ".dat");
-            }
-        }
+        public string DatName;
         public List<CatEntry> Entries = new List<CatEntry>();
         #endregion
 
@@ -43,106 +31,104 @@ namespace X2Lib.Files.CatDat
 
         }
 
-        public static void ToggleEncryption(ref byte[] data)
+        public static void ToggleEncryption(ref byte[] data, int index = 0)
         {
             for (int i = 0; i < data.Length; i++)
             {
-                byte xorValue = (byte)(i - 0x25);
+                byte xorValue = (byte)((index + i) - 0x25);
                 data[i] ^= xorValue;
             }
         }
-
-        public XCommonLib.Files.CatDat.CatEntry GetFile(string internalPath)
+        public override void LoadEntriesFromFile(string path)
         {
-            int index = 0;
-            foreach (var item in Entries)
-            {
-                if (item.InternalPath == internalPath)
-                    return new XCommonLib.Files.CatDat.CatEntry()
-                    {
-                        InternalPath = internalPath,
-                        DatIndex = index,
-                        Length = item.Length
-                    };
-                index += item.Length;
-            }
-            return null;
-        }
-        public string[] GetDirectories()
-        {
-            List<string> files = new List<string>();
-            foreach (var entry in Entries)
-            {
-                var splitPath = entry.InternalPath.Split('/');
-                var dirPath = string.Join("/", splitPath.Take(splitPath.Length - 1));
-                if (!files.Contains(dirPath))
-                    files.Add(dirPath);
-            }
-            return files.ToArray();
-        }
-        public string[] GetFiles()
-        {
-            List<string> files = new List<string>();
-            foreach (var entry in Entries)
-                if (!files.Contains(entry.InternalPath))
-                    files.Add(entry.InternalPath);
-            return files.ToArray();
-        }
-
-        public void LoadFromFile(string path)
-        {
-            FilePath = path;
-            var bytes = File.ReadAllBytes(FilePath);
-            // Remove the encryption
+            DatName = null;
+            Entries.Clear();
+            var bytes = File.ReadAllBytes(path);
             ToggleEncryption(ref bytes);
-
-            int Start = 0;
-            for (int i = 0; i < bytes.Length; i++)
+            var sb = new StringBuilder();
+            for(int i = 0; i < bytes.Length; i++)
             {
-                if (bytes[i] == '\n' || bytes[i] == '\r' || i == bytes.Length - 1)
+                var nextChar = (char)bytes[i];
+                if(nextChar == '\n')
                 {
-                    byte[] temp = new byte[(i - Start)];
-                    Array.Copy(bytes, Start, temp, 0, temp.Length);
-                    var str = Encoding.Default.GetString(temp);
-                    if (Start == 0)
-                        DatName = str;
+                    if(DatName == null)
+                    {
+                        DatName = sb.ToString();
+                    }
                     else
                     {
-                        var split = str.Split(' ');
-                        var entry = new CatEntry()
-                        {
-                            InternalPath = string.Join(" ", split.Take(split.Length - 1)),
-                            Length = int.Parse(split.Last())
-                        };
-                        Entries.Add(entry);
+                        var newEntry = new CatEntry();
+                        var split = sb.ToString().Split(' ');
+                        newEntry.InternalPath = split[0];
+                        newEntry.Length = int.Parse(split[1]);
+                        Entries.Add(newEntry);
                     }
-                    Start = i + 1;
+                    sb.Clear();
+                }
+                else
+                {
+                    sb.Append(nextChar);
                 }
             }
         }
-
-        public void ExportToFile(string path, bool readable)
+        public override void SaveEntriesToFile(string path, bool forceNoEncryption)
         {
-            List<string> lines = new List<string>();
-            lines.Add(DatName);
+            var sb = new StringBuilder();
+            sb.Append(DatName);
             foreach(var entry in Entries)
             {
-                lines.Add(entry.ToString());
+                sb.Append('\n' + entry.ToString());
             }
-            var result = Encoding.ASCII.GetBytes(string.Join("\n", lines));
-            if (!readable)
-                ToggleEncryption(ref result);
 
-            File.WriteAllBytes(path, result);
+            var bytes = Encoding.ASCII.GetBytes(sb.ToString());
+
+            if (!forceNoEncryption)
+                ToggleEncryption(ref bytes);
+
+            File.WriteAllBytes(path, bytes);
         }
-
-        public void Append(XCommonLib.Files.CatDat.CatEntry entry)
+        public override string[] GetInternalFiles()
         {
-            Entries.Add(new CatEntry()
+            string[] fileNames = new string[Entries.Count];
+            for(int i = 0; i < fileNames.Length; i++)
             {
-                InternalPath = entry.InternalPath,
-                Length = entry.Length
-            });
+                fileNames[i] = Entries[i].InternalPath;
+            }
+            return fileNames;
+        }
+        public override FileLocationData[] GetInternalFileLocations()
+        {
+            FileLocationData[] fileLocationDatas = new FileLocationData[Entries.Count];
+            int offset = 0;
+            for(int i = 0; i < fileLocationDatas.Length; i++)
+            {
+                fileLocationDatas[i] = new FileLocationData()
+                {
+                    Length = Entries[i].Length,
+                    InternalPath = Entries[i].InternalPath,
+                    DatIndex = offset
+                };
+                offset += Entries[i].Length;
+            }
+            return fileLocationDatas;
+        }
+        public override FileLocationData GetInternalFileLocation(string internalPath)
+        {
+            int offset = 0;
+            foreach (var entry in Entries)
+            {
+                if(entry.InternalPath == internalPath)
+                {
+                    var fld = new FileLocationData();
+                    fld.InternalPath = internalPath;
+                    fld.Length = entry.Length;
+                    fld.DatIndex = offset;
+                    return fld;
+                }
+
+                offset += entry.Length;
+            }
+            throw new FileNotFoundException();
         }
     }
 }

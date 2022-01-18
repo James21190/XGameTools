@@ -46,14 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Files\CatDat\CatDatFile.cs" />
-    <Compile Include="Files\CatDat\CatDatReader.cs" />
-    <Compile Include="Files\CatDat\CatEntry.cs" />
-    <Compile Include="Files\CatDat\ICatDatCollection.cs" />
-    <Compile Include="Files\CatDat\ICatFile.cs" />
-    <Compile Include="Files\CatDat\IDatFile.cs" />
-    <Compile Include="Files\CatDat\CatDatBuilder.cs" />
-    <Compile Include="Files\CatDat\IPckFile.cs" />
+    <Compile Include="Files\CatDat\CatDatPair.cs" />
+    <Compile Include="Files\CatDat\FileLocationData.cs" />
+    <Compile Include="Files\CatDat\CatFile.cs" />
+    <Compile Include="Files\CatDat\DatFile.cs" />
+    <Compile Include="Files\CatDat\PckFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
