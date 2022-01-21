@@ -10,6 +10,7 @@ namespace XCommonLib.RAM.Bases.Sector.SectorObject_TypeData
         public int ObjectClass;
         public int DefaultNameId;
         public int WareVolume;
+
         /// <summary>
         /// The relative value of the type. Used to calculate storage in docks and factories, and price in credits.
         /// </summary>

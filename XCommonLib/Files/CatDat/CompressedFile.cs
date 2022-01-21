@@ -10,7 +10,7 @@ namespace XCommonLib.Files.CatDat
     /// <summary>
     /// A compressed file used by the game. May be encrypted depending on the version of the game it is from.
     /// </summary>
-    public abstract class PckFile : IBinaryObject
+    public abstract class CompressedFile : IBinaryObject
     {
         public byte[] DecompressedData
         {

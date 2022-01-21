@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using XCommonLib.Files.CatDat;
 
-namespace X2Lib.Files.CatDat
+namespace X3TCAPLib.Files.CatDat
 {
-    public class X2DatFile : DatFile
+    public class X3DatFile : DatFile
     {
         
-        public X2DatFile()
+        public X3DatFile()
         {
         }
 

@@ -50,7 +50,7 @@
     <Compile Include="Files\CatDat\FileLocationData.cs" />
     <Compile Include="Files\CatDat\CatFile.cs" />
     <Compile Include="Files\CatDat\DatFile.cs" />
-    <Compile Include="Files\CatDat\PckFile.cs" />
+    <Compile Include="Files\CatDat\CompressedFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />

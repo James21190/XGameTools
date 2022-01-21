@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Files\CatDat\X2CatFile.cs" />
     <Compile Include="Files\CatDat\X2DatFile.cs" />
-    <Compile Include="Files\CatDat\X2PckFile.cs" />
+    <Compile Include="Files\CatDat\X2CompressedFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />

@@ -23,7 +23,7 @@ namespace XCommonLib.Files.CatDat
         public abstract byte[] GetInternalFile(string internalPath);
         public abstract void ExtractAll(string targetDirectory, ExtractionMode extractionMode = ExtractionMode.None);
     }
-    public class CatDatPair <C,D,P> : AbstractCatDatPair where C : CatFile, new() where D : DatFile, new() where P : PckFile, new()
+    public class CatDatPair <C,D,P> : AbstractCatDatPair where C : CatFile, new() where D : DatFile, new() where P : CompressedFile, new()
     {
 
         private C m_CatFile = new C();
@@ -53,6 +53,7 @@ namespace XCommonLib.Files.CatDat
         }
         public override void ExtractAll(string targetDirectory, ExtractionMode extractionMode = ExtractionMode.None)
         {
+            var compressedFile = new P();
             foreach(var internalPath in GetInternalFiles())
             {
                 // Get the path of the destination file
@@ -68,25 +69,49 @@ namespace XCommonLib.Files.CatDat
                 // Apply decryption and extraction if needed
                 if (extractionMode == ExtractionMode.Decrypt || extractionMode == ExtractionMode.DecryptAndExtract)
                 {
-                    switch(Path.GetExtension(internalPath))
+                    // Decrypt and write.
+                    var extension = Path.GetExtension(internalPath);
+                    switch (extension)
                     {
+                        // Compressed files
+                        case ".pbd":
                         case ".pck":
-                            var pckFile = new P();
-                            pckFile.SetData(fileBytes);
-                            if(extractionMode == ExtractionMode.DecryptAndExtract)
+                            compressedFile.SetData(fileBytes);
+                            // If only decrypt
+                            if(extractionMode == ExtractionMode.Decrypt)
                             {
-                                fileBytes = pckFile.DecompressedData;
+                                File.WriteAllBytes(targetPath, compressedFile.CompressedData);
                             }
+                            // If decrypt and extract
                             else
                             {
-                                fileBytes = pckFile.CompressedData;
+                                // Get new extension
+                                string newExtension;
+                                switch (Path.GetExtension(internalPath))
+                                {
+                                    case ".pbd":
+                                        newExtension = ".bod";
+                                        break;
+                                    case ".pck":
+                                        newExtension = ".txt";
+                                        break;
+                                    default:
+                                        throw new NotImplementedException();
+                                }
+                                File.WriteAllBytes(Path.ChangeExtension(targetPath, newExtension), compressedFile.DecompressedData);
                             }
+                            break;
+                        default:
+                            File.WriteAllBytes(targetPath, fileBytes);
                             break;
                     }
                 }
+                // Write raw internal file without decryption
+                else
+                {
+                    File.WriteAllBytes(targetPath, fileBytes);
+                }
 
-                // Write the internal file to the path
-                File.WriteAllBytes(targetPath, fileBytes);
             }
         }
     }
