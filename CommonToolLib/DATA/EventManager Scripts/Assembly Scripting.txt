@@ -16,10 +16,15 @@ Registers:
 Meta:
 	Set the amount of free bytes above the code:
 		#Data:<int>
-	Set the intended event name for the script:
-		#Event:<string>
 	Set the internal name of the script:
-		#Name:<String>
+		#Name:<string>
+
+	Only 1 of the following may exist in a script:
+
+	Set the intended event for the script:
+		#Event:<string>
+	Set the intended address of the script:
+		#Address:<hex int>
 		
 Macro:
 	Set the value of a register to a constant:

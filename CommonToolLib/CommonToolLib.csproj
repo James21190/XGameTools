@@ -50,7 +50,7 @@
     <Compile Include="PageReference.cs" />
     <Compile Include="ProcessHooking\ApplicationHook.cs" />
     <Compile Include="ProcessHooking\BitField.cs" />
-    <Compile Include="ProcessHooking\EventManager.cs" />
+    <Compile Include="ProcessHooking\InjectionManager.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="ProcessHooking\IMemoryObject.cs" />
     <Compile Include="Generics\IValidateable.cs" />
@@ -74,7 +74,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ScriptAssembler.cs" />
+    <Compile Include="ProcessHooking\ScriptAssembler.cs" />
     <Compile Include="UI\BitFieldDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,9 +145,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DATA\EventManager Scripts\GameCodeList.txt">
+    <Content Include="DATA\EventManager Scripts\EventList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <!-- <TargetPath>./RAM/Mods/System/GameCodeList.mod</TargetPath> -->
+    </Content>
+    <Content Include="DATA\EventManager Scripts\PostEventList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\EventManager Scripts\PreEventList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

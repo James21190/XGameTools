@@ -2,8 +2,8 @@
 using System;
 using System.Diagnostics;
 using X2Lib.RAM.Bases.Sector;
+using X2Lib.RAM.Bases.Sector.SectorObject_TypeData;
 using X2Lib.RAM.Bases.Story;
-using XCommonLib.RAM.Bases.Sector.SectorObject_TypeData;
 
 namespace X2Lib.RAM
 {
@@ -59,13 +59,13 @@ namespace X2Lib.RAM
             Gate,
             Camera,
             Special,
-
-            Nebula = 21,
+            Nebula,
             Station_Interior,
-
-            Cockpit = 25,
-
-            Type_27 = 27,
+            Type_23,
+            Type_24,
+            Cockpit,
+            Type_26,
+            Type_27,
             Debris,
             Wreck,
             Factory_Wreck,
@@ -74,9 +74,14 @@ namespace X2Lib.RAM
 
         public enum GlobalAddresses_X2
         {
-            TypeDataArray = 0x15d65b0,
             pSectorBase = 0x15d66a8,
-            pStoryBase = 0x15d6700
+            pStoryBase = 0x15d6700,
+
+            #region TypeData
+            pTypeData_Ship = 0x015d65cc,
+
+            pTypeDataCountArray = 0x015d6620
+            #endregion
         }
         public override string GameName => "X2";
 
@@ -86,6 +91,8 @@ namespace X2Lib.RAM
         public MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         #endregion
         #region TypeData
+        public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         #endregion
         #endregion
 
@@ -98,10 +105,19 @@ namespace X2Lib.RAM
         #endregion
 
         #region TypeData
-        public override int TypeData_Ship_Count => throw new NotImplementedException();
-        public override TypeData_Ship GetTypeData_Ship(int subType)
+        public override short[] TypeData_Counts
         {
-            throw new NotImplementedException();
+            get
+            {
+                short[] values = new short[XCommonLib.RAM.GameHook.MainTypeCount];
+                for (int i = 0; i < XCommonLib.RAM.GameHook.MainTypeCount; i++)
+                    values[i] = pTypeData_CountArr.GetObjectInArray(i).Value;
+                return values;
+            }
+        }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
+        {
+            return ppTypeData_Ship.obj.GetObjectInArray(subType);
         }
         #endregion
 
@@ -115,6 +131,8 @@ namespace X2Lib.RAM
             #endregion
 
             #region TypeData
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(hProcess, (IntPtr)GlobalAddresses_X2.pTypeDataCountArray);
+            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X2.pTypeData_Ship);
             #endregion
         }
 
@@ -148,6 +166,7 @@ namespace X2Lib.RAM
         {
             switch ((MainType_X2)mainType)
             {
+                case MainType_X2.Background: return GeneralMainType.Background;
                 case MainType_X2.Ship: return GeneralMainType.Ship;
                 case MainType_X2.Sun: return GeneralMainType.Sun;
                 case MainType_X2.Sector: return GeneralMainType.Sector;
@@ -168,7 +187,17 @@ namespace X2Lib.RAM
                 case MainType_X2.Ware_F: return GeneralMainType.Ware_F;
                 case MainType_X2.Bullet: return GeneralMainType.Bullet;
                 case MainType_X2.Ware_B: return GeneralMainType.Ware_B;
+                case MainType_X2.Ware_N: return GeneralMainType.Ware_N;
+                case MainType_X2.Ware_M: return GeneralMainType.Ware_M;
+                case MainType_X2.Camera: return GeneralMainType.Camera;
+                case MainType_X2.Type_23: return GeneralMainType.Type_23;
+                case MainType_X2.Type_24: return GeneralMainType.Type_24;
+                case MainType_X2.Type_26: return GeneralMainType.Type_26;
                 case MainType_X2.Type_27: return GeneralMainType.Type_27;
+                case MainType_X2.Cockpit: return GeneralMainType.Cockpit;
+                case MainType_X2.Wreck: return GeneralMainType.Wreck;
+                case MainType_X2.Factory_Wreck: return GeneralMainType.Factory_Wreck;
+                case MainType_X2.Ship_Wreck: return GeneralMainType.Ship_Wreck;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X2)mainType).ToString() + " was not assigned.");
         }
@@ -186,15 +215,14 @@ namespace X2Lib.RAM
         public override void AttachEventManager()
         {
             // Initialize code injector
-            EventManager = new EventManager(this.hProcess);
+            EventManager = new InjectionManager(this.hProcess);
 
             // OnGameTick event
             EventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00402982, new byte[]
             {
                 0xb8,0xe0,0x13,0x46,0x00, // MOV EAX, 004613e0
                 0xff, 0xd0, // Call EAX
-                0xa1, 0x00, 0x67, 0x5d, 0x01, // MOV EAX, pStoryBase
-                0xc3 // Ret
+                0xa1, 0x00, 0x67, 0x5d, 0x01 // MOV EAX, pStoryBase
             }, 3);
 
             // OnDamage
@@ -202,8 +230,7 @@ namespace X2Lib.RAM
             {
                 0x8b, 0xce,// Mov ECX, ESI
                 0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 004613e0
-                0xff, 0xd0, // Call EAX
-                0xc3 // Ret
+                0xff, 0xd0 // Call EAX
             }, 0);
         }
     }

@@ -82,10 +82,10 @@
     <Compile Include="UI\Bases\Sector\SectorMapView.Designer.cs">
       <DependentUpon>SectorMapView.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Bases\Sector\TypeDataView.cs">
+    <Compile Include="UI\Bases\Sector\TypeData\TypeDataView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Bases\Sector\TypeDataView.Designer.cs">
+    <Compile Include="UI\Bases\Sector\TypeData\TypeDataView.Designer.cs">
       <DependentUpon>TypeDataView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Bases\Story\ScriptingHashTableView.cs">
@@ -135,7 +135,7 @@
     <EmbeddedResource Include="UI\Bases\Sector\SectorMapView.resx">
       <DependentUpon>SectorMapView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Sector\TypeDataView.resx">
+    <EmbeddedResource Include="UI\Bases\Sector\TypeData\TypeDataView.resx">
       <DependentUpon>TypeDataView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Story\ScriptingHashTableView.resx">

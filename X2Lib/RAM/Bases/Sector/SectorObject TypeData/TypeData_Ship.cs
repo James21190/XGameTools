@@ -1,8 +1,12 @@
 ﻿using CommonToolLib.Generics;
 using CommonToolLib.ProcessHooking;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
+namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
 {
     public class TypeData_Ship : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship
     {
@@ -13,7 +17,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
         #endregion
 
         #region IMemoryObject
-        public override int ByteSize => 3512;
+        public override int ByteSize => 0x61c;
 
         public override byte[] GetBytes()
         {
@@ -35,7 +39,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
 
             WareClass = objectByteList.PopInt(0x2c);
 
-            pTypeName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x40);
+            pTypeName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x30);
             #endregion
         }
         #endregion

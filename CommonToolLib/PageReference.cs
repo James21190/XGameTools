@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CommonToolLib
 {
-    public class PageReference
+    public class PageReference<T>
     {
         private static class PageMaster
         {
             private static int _Index = 0;
             private const string _TempFolder = @".\PagingTemp\";
-
 
             public static string GetNewPagePath()
             {
@@ -32,9 +32,10 @@ namespace CommonToolLib
         }
         public enum StorageType
         {
-            Binary,
-            Text,
-            Image
+            BinaryArray,
+            String,
+            Bitmap,
+            CSObject
         }
         public enum StorageMode
         {
@@ -44,48 +45,83 @@ namespace CommonToolLib
         private string _Path;
         public readonly StorageType StoredType;
         public readonly StorageMode Mode;
-        public object StoredObject
+
+        public T StoredObject
+        {
+            get
+            {
+                return (T)_StoredObject;
+            }
+            set
+            {
+                _StoredObject = value;
+            }
+        }
+        private object _StoredObject
         {
             get
             {
                 switch (StoredType)
                 {
-                    case StorageType.Binary:
+                    case StorageType.BinaryArray:
                         return File.ReadAllBytes(_Path);
-                    case StorageType.Text:
+                    case StorageType.String:
                         return File.ReadAllText(_Path);
-                    case StorageType.Image:
-                        return _GetAsBitmap();
+                    case StorageType.Bitmap:
+                        var stream = File.Open(_Path, FileMode.Open);
+                        return new Bitmap(stream);
+                    case StorageType.CSObject:
+                        BinaryFormatter bf = new BinaryFormatter();
+                        return bf.Deserialize(File.Open(_Path, FileMode.Open));
                 }
                 throw new NotImplementedException();
             }
-        }
-
-        public PageReference(string path, StorageType storageType, StorageMode mode)
-        {
-            StoredType = storageType;
-            Mode = mode;
-            switch (mode)
+            set
             {
-                case StorageMode.Read:
-                    _Path = path;
-                    break;
-                case StorageMode.ReadWrite:
-                    _Path = PageMaster.GetNewPagePath();
-                    File.Copy(path, _Path);
-                    break;
-                default:
-                    throw new NotImplementedException();
+                if (Mode != StorageMode.ReadWrite)
+                    throw new Exception();
+                switch (StoredType)
+                {
+                    case StorageType.BinaryArray:
+                        File.WriteAllBytes(_Path, (byte[])value);
+                        break;
+                    case StorageType.String:
+                        File.WriteAllText(_Path, (string)value);
+                        break;
+                    case StorageType.Bitmap:
+                        ((Bitmap)value).Save(_Path, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                    case StorageType.CSObject:
+                        BinaryFormatter bf = new BinaryFormatter();
+                        bf.Serialize(File.Open(_Path, FileMode.Create), value);
+                        break;
+                }
             }
         }
 
-        public PageReference(Bitmap obj)
+        public PageReference(T obj)
         {
+            switch (obj)
+            {
+                case byte[] t:
+                    StoredType = StorageType.BinaryArray;
+                    break;
+                case string t:
+                    StoredType = StorageType.String;
+                    break;
+                case Bitmap t:
+                    StoredType = StorageType.Bitmap;
+                    break;
+                default:
+                    StoredType = StorageType.CSObject;
+                    break;
+
+            }
             _Path = PageMaster.GetNewPagePath();
-            StoredType = StorageType.Image;
             Mode = StorageMode.ReadWrite;
-            obj.Save(_Path, System.Drawing.Imaging.ImageFormat.Jpeg);
+            StoredObject = obj;
         }
+
         ~PageReference()
         {
             switch (Mode)
@@ -95,7 +131,6 @@ namespace CommonToolLib
                     {
                         File.Delete(_Path);
                     }
-
                     break;
             }
         }
@@ -104,16 +139,5 @@ namespace CommonToolLib
         {
             File.Copy(_Path, path, true);
         }
-
-        private Bitmap _GetAsBitmap()
-        {
-            Bitmap result;
-            using (var stream = File.Open(_Path, FileMode.Open))
-            {
-                result = new Bitmap(stream);
-            }
-            return result;
-        }
-
     }
 }

@@ -16,7 +16,7 @@ namespace XCommonLib.RAM.Bases.Sector.SectorObject_TypeData
         /// </summary>
         public int RelVal;
         public int PriceRangePercentage;
-        public int WareSizeClass;
+        public int WareClass;
         public MemoryObjectPointer<MemoryString> pTypeName;
     }
 }

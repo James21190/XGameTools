@@ -45,6 +45,9 @@ namespace XCommonLib.RAM
 
             Nebula,
 
+            Type_23,
+            Type_24,
+            Type_26,
             Type_27
         }
         public enum GeneralRaces : short
@@ -82,7 +85,7 @@ namespace XCommonLib.RAM
         /// <summary>
         /// An EventManager instance attached to the game.
         /// </summary>
-        public EventManager EventManager { get; protected set; }
+        public InjectionManager EventManager { get; protected set; }
         /// <summary>
         /// A DataFileManager that is configured to fetch data for this version of the game.
         /// </summary>
@@ -100,7 +103,7 @@ namespace XCommonLib.RAM
         #endregion
 
         #region SectorObject TypeData
-        public abstract int TypeData_Ship_Count { get; }
+        public abstract short[] TypeData_Counts { get; }
         public abstract TypeData_Ship GetTypeData_Ship(int subType);
         #endregion
         #endregion

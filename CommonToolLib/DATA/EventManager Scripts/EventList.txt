@@ -1,23 +1,20 @@
 ﻿/ Allocate 8 bytes
 / pNext
 / pCode
+
+/ This script does not return.
+
 #Data:8
-#Name:GameCodeList
+#Name:EventList
 
 // If pCode is not null, call it
-/ push ebx
-53
-/ push ecx
-51
-/ push edx
-52
-
+/ EAX should be EBP
 / mov ecx, [eax+4]
 8B 48 04
 / test ecx, ecx
 85 C9
 / je @end
-74 0C
+74 11
 / push eax
 50
 / call ecx
@@ -26,19 +23,22 @@ FF D1
 58
 
 // If pNext is not null, call it + 8
-/ mov ecx, [eax]
-8B 08
-/ test ecx, ecx
-85 C9
-/ je @end
-74 02
-/  call ecx
-FF D1
-/ @end
 
-/ pop edx
-5a
-/ pop ecx
-59
-/ pop ebx
-5b
+/ TODO: Reload volatile registers?
+
+
+/ mov eax, [eax]
+8B 00
+/ test ecx, ecx
+85 C0
+/ je @end
+74 07
+
+/ mov ecx, eax
+8b c8
+/ add ecx, 0x8
+83 c1 08
+/ call ecx
+ff d1
+
+/ @end

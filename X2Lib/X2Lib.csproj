@@ -54,6 +54,7 @@
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Station_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Ship_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Sector_Meta.cs" />
+    <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
@@ -71,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Changelogs\" />
-    <Folder Include="RAM\Bases\Sector\SectorObject TypeData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DATA\X2\SectorObject Types\21.txt">
@@ -115,16 +115,16 @@
     <None Include="DATA\X2\Mods\IndestructablePlayer.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DATA\X2\Mods\System\ObjectClaim.x2code">
+    <None Include="DATA\X2\Mods\ObjectClaim.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DATA\X2\Mods\System\ObjectCreation.x2code">
+    <None Include="DATA\X2\Mods\ObjectCreation.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DATA\X2\Mods\System\ObjectDestroy.x2code">
+    <None Include="DATA\X2\Mods\ObjectDestroy.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="DATA\X2\Mods\System\ObjectDock.x2code">
+    <None Include="DATA\X2\Mods\ObjectDock.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

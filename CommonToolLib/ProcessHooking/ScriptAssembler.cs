@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
-namespace CommonToolLib
+namespace CommonToolLib.ProcessHooking
 {
     public static class ScriptAssembler
     {
@@ -23,10 +24,19 @@ namespace CommonToolLib
             public int DataSize;
             // The name of the script
             public string Name;
-            // The name of the event this script should be attached to
+
+            // The name of the event this script is intended to be attached to
             public string Event;
+            // The address this code is intended to go to
+            public IntPtr IntendedAddress;
+
             // The machine code of the script
             public byte[] Code;
+        }
+
+        public static ScriptCode ParseScript(string path)
+        {
+            return ParseScript(File.ReadAllLines(path));
         }
 
         /// <summary>
@@ -48,7 +58,8 @@ namespace CommonToolLib
             {
                 DataSize = 0,
                 Name = "Unnamed",
-                Event = "OnGameTick",
+                Event = null,
+                IntendedAddress = IntPtr.Zero,
                 Code = null
             };
             // Itterate through every line
@@ -78,6 +89,9 @@ namespace CommonToolLib
                                 break;
                             case "EVENT":
                                 filecode.Event = parsed[1];
+                                break;
+                            case "ADDRESS":
+                                filecode.IntendedAddress = (IntPtr)int.Parse(parsed[1], System.Globalization.NumberStyles.HexNumber);
                                 break;
                             case "NAME":
                                 filecode.Name = parsed[1];

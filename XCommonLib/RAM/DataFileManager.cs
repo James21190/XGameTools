@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using XCommonLib.RAM.Bases.Sector;
+using CommonToolLib.ProcessHooking;
 
 namespace XCommonLib.RAM
 {
@@ -13,7 +14,11 @@ namespace XCommonLib.RAM
         }
 
         #region SectorObject Types
-        private string _SectorObjectTypesDir = "SectorObject Types";
+        private const string _SectorObjectTypesDir = "SectorObject Types";
+        public string GetSectorObjectTypeName(short mainType, short subType)
+        {
+            return GetSectorObjectTypeName(new SectorObject.SectorObjectType() { MainType = mainType, SubType = subType });
+        }
         public string GetSectorObjectTypeName(SectorObject.SectorObjectType type)
         {
             var path = Path.Combine(DataFilePath, _SectorObjectTypesDir, type.MainType + ".txt");
@@ -29,7 +34,7 @@ namespace XCommonLib.RAM
                     }
                 }
             }
-            return type.ToString(); ;
+            return type.ToString();
         }
         #endregion
 
@@ -113,6 +118,25 @@ namespace XCommonLib.RAM
                 result.LocalVariableNames[i - 2] = lines[i];
             }
             return result;
+        }
+        #endregion
+
+        #region Mods
+        private const string _ModsDir = "Mods";
+
+        public string[] GetModFiles()
+        {
+            var files = Directory.GetFiles(Path.Combine(DataFilePath, _ModsDir));
+            for(int i = 0; i < files.Length; i++)
+            {
+                files[i] = Path.GetFileName(files[i]);
+            }
+            return files;
+        }
+
+        public ScriptAssembler.ScriptCode GetMod(string fileName)
+        {
+            return ScriptAssembler.ParseScript(Path.Combine(DataFilePath, _ModsDir, fileName));
         }
         #endregion
     }

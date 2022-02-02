@@ -120,6 +120,9 @@
     <EmbeddedResource Include="Bases\Sector\SectorObject_Display.resx">
       <DependentUpon>SectorObject_Display.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Sector\TypeData_Display.resx">
+      <DependentUpon>TypeData_Display.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bases\Story\ScriptHashTable_Display.resx">
       <DependentUpon>ScriptHashTable_Display.cs</DependentUpon>
     </EmbeddedResource>

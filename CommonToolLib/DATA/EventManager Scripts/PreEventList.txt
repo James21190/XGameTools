@@ -1,0 +1,17 @@
+﻿/ Push volatile registers
+
+/ push ebx
+53
+/ push ecx
+51
+/ push edx
+52
+
+/ Add to eax so it points to EventList's parameters
+
+/ add eax, 0x8
+83 c0 08
+
+/ Jump over parameters of EventList
+/ jmp 0x8
+eb 08

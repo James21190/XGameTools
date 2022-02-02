@@ -1,0 +1,8 @@
+﻿/ Pop volatile registers
+
+/ pop edx
+5a
+/ pop ecx
+59
+/ pop ebx
+5b

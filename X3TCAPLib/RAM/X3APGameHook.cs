@@ -71,7 +71,7 @@ namespace X3TCAPLib.RAM
         public MemoryObjectPointer<MemoryObjectPointer<B3DBase>> ppB3DBase;
         #endregion
         #region TypeData
-        public MemoryObjectPointer<MemoryInt32> pTypeData_CountArr;
+        public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
         public MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         #endregion
         #endregion
@@ -84,7 +84,16 @@ namespace X3TCAPLib.RAM
         #endregion
 
         #region TypeData
-        public override int TypeData_Ship_Count => pTypeData_CountArr.GetObjectInArray((int)MainType_X3TCAP.Ship).Value;
+        public override short[] TypeData_Counts
+        {
+            get
+            {
+                short[] values = new short[XCommonLib.RAM.GameHook.MainTypeCount];
+                for (int i = 0; i < XCommonLib.RAM.GameHook.MainTypeCount; i++)
+                    values[i] = pTypeData_CountArr.GetObjectInArray(i).Value;
+                return values;
+            }
+        }
         public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
@@ -103,7 +112,7 @@ namespace X3TCAPLib.RAM
             #endregion
 
             #region TypeData
-            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddresses_X3AP.pTypeDataCountArray);
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(hProcess, (IntPtr)GlobalAddresses_X3AP.pTypeDataCountArray);
             ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X3AP.pTypeData_Ship);
 
             #endregion
