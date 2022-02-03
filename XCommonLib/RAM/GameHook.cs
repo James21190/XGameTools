@@ -85,7 +85,7 @@ namespace XCommonLib.RAM
         /// <summary>
         /// An EventManager instance attached to the game.
         /// </summary>
-        public InjectionManager EventManager { get; protected set; }
+        public InjectionManager InjectionManager { get; protected set; }
         /// <summary>
         /// A DataFileManager that is configured to fetch data for this version of the game.
         /// </summary>
@@ -113,7 +113,7 @@ namespace XCommonLib.RAM
         /// Attach a new EventManager to the game.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public virtual void AttachEventManager()
+        public virtual void AttachInjectionManager()
         {
             throw new NotImplementedException();
         }

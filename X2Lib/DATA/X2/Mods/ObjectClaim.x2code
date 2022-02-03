@@ -1,6 +1,6 @@
 ﻿#Data:6
 #Name:ObjectClaim
-#Event:OnGameTick
+#Type:Event OnGameTick
 / pSectorObject (4)
 / RaceID (2)
 

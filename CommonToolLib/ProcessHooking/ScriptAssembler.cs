@@ -6,6 +6,7 @@ namespace CommonToolLib.ProcessHooking
 {
     public static class ScriptAssembler
     {
+        #region Types
         public enum x86Register
         {
             EAX,
@@ -20,20 +21,33 @@ namespace CommonToolLib.ProcessHooking
 
         public struct ScriptCode
         {
+            public enum InsertionType
+            {
+                Undefined,
+                Event,
+                Inline
+            }
+
             // The number of free bytes that should be allocated
-            public int DataSize;
+            public int DataSize { get; internal set; }
             // The name of the script
-            public string Name;
+            public string Name { get; internal set; }
+
+            public InsertionType Type { get; internal set; }
 
             // The name of the event this script is intended to be attached to
-            public string Event;
+            public string Event { get; internal set; }
             // The address this code is intended to go to
-            public IntPtr IntendedAddress;
+            public IntPtr InlineAddress { get; internal set; }
+            public int InlineNOP { get; internal set; }
+            public bool InlineOverwrite { get; internal set; }
 
             // The machine code of the script
-            public byte[] Code;
+            public byte[] Code { get; internal set; }
         }
+        #endregion
 
+        #region Parsing
         public static ScriptCode ParseScript(string path)
         {
             return ParseScript(File.ReadAllLines(path));
@@ -58,8 +72,11 @@ namespace CommonToolLib.ProcessHooking
             {
                 DataSize = 0,
                 Name = "Unnamed",
+                Type = ScriptCode.InsertionType.Undefined,
                 Event = null,
-                IntendedAddress = IntPtr.Zero,
+                InlineAddress = IntPtr.Zero,
+                InlineNOP = 0,
+                InlineOverwrite = false,
                 Code = null
             };
             // Itterate through every line
@@ -72,29 +89,40 @@ namespace CommonToolLib.ProcessHooking
                     if (line[0] == '#')
                     {
                         string[] parsed = line.Trim('#', ' ').Split(':');
-                        if (parsed.Length != 2)
-                        {
-                            throw new InvalidModCodeMetaException();
-                        }
+                        string metaName = parsed[0];
+                        string[] metaParams = parsed[1].Split(' ');
 
-                        switch (parsed[0].ToUpper())
+                        switch (metaName.ToUpper())
                         {
                             case "DATA":
                                 int result;
-                                if (int.TryParse(parsed[1], out result))
+                                if (int.TryParse(metaParams[0], out result))
                                 {
                                     filecode.DataSize = result;
                                 }
 
                                 break;
-                            case "EVENT":
-                                filecode.Event = parsed[1];
-                                break;
-                            case "ADDRESS":
-                                filecode.IntendedAddress = (IntPtr)int.Parse(parsed[1], System.Globalization.NumberStyles.HexNumber);
+                            case "TYPE":
+                                if (filecode.Type != ScriptCode.InsertionType.Undefined)
+                                    throw new InvalidModCodeMetaException();
+                                switch (metaParams[0].ToUpper())
+                                {
+                                    case "EVENT":
+                                        filecode.Type = ScriptCode.InsertionType.Event;
+                                        filecode.Event = metaParams[1];
+                                        break;
+                                    case "INLINE":
+                                        filecode.Type = ScriptCode.InsertionType.Inline;
+                                        filecode.InlineAddress = (IntPtr)int.Parse(metaParams[1], System.Globalization.NumberStyles.HexNumber);
+                                        filecode.InlineNOP = int.Parse(metaParams[2]);
+                                        filecode.InlineOverwrite = bool.Parse(metaParams[3]);
+                                        break;
+                                    default:
+                                        throw new InvalidModCodeMetaException();
+                                }
                                 break;
                             case "NAME":
-                                filecode.Name = parsed[1];
+                                filecode.Name = metaParams[0];
                                 break;
                             default:
                                 throw new InvalidModCodeMetaException();
@@ -132,13 +160,12 @@ namespace CommonToolLib.ProcessHooking
                             // Nop <count>
                             case "NOP":
                                 int count = int.Parse(code[1], System.Globalization.NumberStyles.HexNumber);
-                                byte[] temp = new byte[count];
-                                for (int i = 0; i < count; i++)
-                                {
-                                    temp[i] = 0x90;
-                                }
 
-                                Instructions.AddRange(temp);
+                                Instructions.AddRange(NOPs(count));
+                                break;
+                            // Ret
+                            case "RET":
+                                Instructions.Add(0xc3);
                                 break;
                             // Pop <Register>
                             case "POP":
@@ -171,9 +198,9 @@ namespace CommonToolLib.ProcessHooking
             return filecode;
         }
 
-        public static x86Register RegisterParse(string Register)
+        public static x86Register RegisterParse(string register)
         {
-            switch (Register.ToUpper())
+            switch (register.ToUpper())
             {
                 case "EAX": return x86Register.EAX;
                 case "EBX": return x86Register.EBX;
@@ -183,10 +210,18 @@ namespace CommonToolLib.ProcessHooking
                 case "[EBX]": return x86Register.pEBX;
                 case "[ECX]": return x86Register.pECX;
                 case "[EDX]": return x86Register.pEDX;
-                default: throw new Exception("Register " + Register + " invalid.");
+                default: throw new Exception("Register " + register + " invalid.");
             }
         }
+        #endregion
 
+        #region Primative Assembly Generation
+        /// <summary>
+        /// Length: 1
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static byte[] Push(x86Register register)
         {
             switch (register)
@@ -210,7 +245,12 @@ namespace CommonToolLib.ProcessHooking
                 default: throw new ArgumentException(string.Format("Register {0} not supported.", register.ToString()));
             }
         }
-
+        /// <summary>
+        /// Length: 1
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static byte[] Pop(x86Register register)
         {
             switch (register)
@@ -234,19 +274,18 @@ namespace CommonToolLib.ProcessHooking
                 default: throw new ArgumentException(string.Format("Register {0} not supported.", register.ToString()));
             }
         }
-
-        public static byte[] FarCall(IntPtr Address, x86Register Register)
-        {
-            List<byte> code = new List<byte>();
-            code.AddRange(SetRegister(Register, (uint)Address));
-            code.AddRange(CallRegister(Register));
-            return code.ToArray();
-        }
-
-        public static byte[] SetRegister(x86Register Register, uint Value)
+        /// <summary>
+        /// Length (address in register): 5
+        /// Length (address pointed to in register): 6
+        /// </summary>
+        /// <param name="register"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static byte[] SetRegister(x86Register register, uint value)
         {
             List<byte> Instructions = new List<byte>();
-            switch (Register)
+            switch (register)
             {
                 case x86Register.EAX:
                     Instructions.Add(0xb8);
@@ -276,15 +315,21 @@ namespace CommonToolLib.ProcessHooking
                     throw new NotImplementedException();
             }
 
-            Instructions.AddRange(BitConverter.GetBytes(Value));
+            Instructions.AddRange(BitConverter.GetBytes(value));
             return Instructions.ToArray();
         }
-
-        public static byte[] SetRegister(x86Register DestRegister, x86Register Register)
+        /// <summary>
+        /// Length: 2
+        /// </summary>
+        /// <param name="destRegister"></param>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static byte[] SetRegister(x86Register destRegister, x86Register register)
         {
             List<byte> Instructions = new List<byte>(); // { 0x8b, 0x00 };
 
-            switch (DestRegister)
+            switch (destRegister)
             {
                 case x86Register.EAX:
                 case x86Register.EBX:
@@ -301,137 +346,137 @@ namespace CommonToolLib.ProcessHooking
             }
 
             // EAX
-            if (DestRegister == x86Register.EAX && Register == x86Register.EAX)
+            if (destRegister == x86Register.EAX && register == x86Register.EAX)
             {
                 Instructions.Add(0xc0);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.EAX && register == x86Register.EBX)
             {
                 Instructions.Add(0xc3);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.EAX && register == x86Register.ECX)
             {
                 Instructions.Add(0xc1);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.EAX && register == x86Register.EDX)
             {
                 Instructions.Add(0xc2);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pEAX)
+            else if (destRegister == x86Register.EAX && register == x86Register.pEAX)
             {
                 Instructions.Add(0x00);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pEBX)
+            else if (destRegister == x86Register.EAX && register == x86Register.pEBX)
             {
                 Instructions.Add(0x03);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pECX)
+            else if (destRegister == x86Register.EAX && register == x86Register.pECX)
             {
                 Instructions.Add(0x01);
             }
-            else if (DestRegister == x86Register.EAX && Register == x86Register.pEDX)
+            else if (destRegister == x86Register.EAX && register == x86Register.pEDX)
             {
                 Instructions.Add(0x02);
             }
 
             // EBX                                                                              
-            else if (DestRegister == x86Register.EBX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.EBX && register == x86Register.EAX)
             {
                 Instructions.Add(0xd8);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.EBX && register == x86Register.EBX)
             {
                 Instructions.Add(0xdb);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.EBX && register == x86Register.ECX)
             {
                 Instructions.Add(0xd9);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.EBX && register == x86Register.EDX)
             {
                 Instructions.Add(0xDA);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pEAX)
+            else if (destRegister == x86Register.EBX && register == x86Register.pEAX)
             {
                 Instructions.Add(0x18);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pEBX)
+            else if (destRegister == x86Register.EBX && register == x86Register.pEBX)
             {
                 Instructions.Add(0x1b);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pECX)
+            else if (destRegister == x86Register.EBX && register == x86Register.pECX)
             {
                 Instructions.Add(0x19);
             }
-            else if (DestRegister == x86Register.EBX && Register == x86Register.pEDX)
+            else if (destRegister == x86Register.EBX && register == x86Register.pEDX)
             {
                 Instructions.Add(0x1a);
             }
 
             // ECX                                                                                
-            else if (DestRegister == x86Register.ECX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.ECX && register == x86Register.EAX)
             {
                 Instructions.Add(0xc8);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.ECX && register == x86Register.EBX)
             {
                 Instructions.Add(0xcb);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.ECX && register == x86Register.ECX)
             {
                 Instructions.Add(0xc9);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.ECX && register == x86Register.EDX)
             {
                 Instructions.Add(0xca);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pEAX)
+            else if (destRegister == x86Register.ECX && register == x86Register.pEAX)
             {
                 Instructions.Add(0x08);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pEBX)
+            else if (destRegister == x86Register.ECX && register == x86Register.pEBX)
             {
                 Instructions.Add(0x0b);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pECX)
+            else if (destRegister == x86Register.ECX && register == x86Register.pECX)
             {
                 Instructions.Add(0x09);
             }
-            else if (DestRegister == x86Register.ECX && Register == x86Register.pEDX)
+            else if (destRegister == x86Register.ECX && register == x86Register.pEDX)
             {
                 Instructions.Add(0x0a);
             }
 
             // EDX                                                                            
-            else if (DestRegister == x86Register.EDX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.EDX && register == x86Register.EAX)
             {
                 Instructions.Add(0xd0);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.EDX && register == x86Register.EBX)
             {
                 Instructions.Add(0xd3);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.EDX && register == x86Register.ECX)
             {
                 Instructions.Add(0xd1);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.EDX && register == x86Register.EDX)
             {
                 Instructions.Add(0xd2);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pEAX)
+            else if (destRegister == x86Register.EDX && register == x86Register.pEAX)
             {
                 Instructions.Add(0x10);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pEBX)
+            else if (destRegister == x86Register.EDX && register == x86Register.pEBX)
             {
                 Instructions.Add(0x13);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pECX)
+            else if (destRegister == x86Register.EDX && register == x86Register.pECX)
             {
                 Instructions.Add(0x11);
             }
-            else if (DestRegister == x86Register.EDX && Register == x86Register.pEDX)
+            else if (destRegister == x86Register.EDX && register == x86Register.pEDX)
             {
                 Instructions.Add(0x12);
             }
@@ -439,88 +484,95 @@ namespace CommonToolLib.ProcessHooking
 
 
             // pEAX
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.pEAX && register == x86Register.EAX)
             {
                 Instructions.Add(0x00);
             }
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.pEAX && register == x86Register.EBX)
             {
                 Instructions.Add(0x18);
             }
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.pEAX && register == x86Register.ECX)
             {
                 Instructions.Add(0x08);
             }
-            else if (DestRegister == x86Register.pEAX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.pEAX && register == x86Register.EDX)
             {
                 Instructions.Add(0x10);
             }
 
             // pEBX                                                                              
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.pEBX && register == x86Register.EAX)
             {
                 Instructions.Add(0x03);
             }
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.pEBX && register == x86Register.EBX)
             {
                 Instructions.Add(0x1b);
             }
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.pEBX && register == x86Register.ECX)
             {
                 Instructions.Add(0x0b);
             }
-            else if (DestRegister == x86Register.pEBX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.pEBX && register == x86Register.EDX)
             {
                 Instructions.Add(0x13);
             }
 
             // pECX                                                                                
-            else if (DestRegister == x86Register.pECX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.pECX && register == x86Register.EAX)
             {
                 Instructions.Add(0x01);
             }
-            else if (DestRegister == x86Register.pECX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.pECX && register == x86Register.EBX)
             {
                 Instructions.Add(0x19);
             }
-            else if (DestRegister == x86Register.pECX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.pECX && register == x86Register.ECX)
             {
                 Instructions.Add(0x09);
             }
-            else if (DestRegister == x86Register.pECX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.pECX && register == x86Register.EDX)
             {
                 Instructions.Add(0x11);
             }
             // pEDX                                                                            
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.EAX)
+            else if (destRegister == x86Register.pEDX && register == x86Register.EAX)
             {
                 Instructions.Add(0x02);
             }
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.EBX)
+            else if (destRegister == x86Register.pEDX && register == x86Register.EBX)
             {
                 Instructions.Add(0x1a);
             }
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.ECX)
+            else if (destRegister == x86Register.pEDX && register == x86Register.ECX)
             {
                 Instructions.Add(0x0a);
             }
-            else if (DestRegister == x86Register.pEDX && Register == x86Register.EDX)
+            else if (destRegister == x86Register.pEDX && register == x86Register.EDX)
             {
                 Instructions.Add(0x12);
             }
             else
             {
-                throw new NotImplementedException(string.Format("SetRegister: Combination of {0} and {1} not implemented or invalid.", DestRegister.ToString(), Register.ToString()));
+                throw new NotImplementedException(string.Format("SetRegister: Combination of {0} and {1} not implemented or invalid.", destRegister.ToString(), register.ToString()));
             }
 
             return Instructions.ToArray();
         }
 
-        public static byte[] CallRegister(x86Register Register)
+        /// <summary>
+        /// Call address from register.
+        /// Length: 2
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static byte[] CallRegister(x86Register register)
         {
             byte[] temp = new byte[2];
             temp[0] = 0xff;
-            switch (Register)
+            switch (register)
             {
                 case x86Register.EAX: temp[1] = 0xd0; break;
                 case x86Register.EBX: temp[1] = 0xd3; break;
@@ -536,5 +588,75 @@ namespace CommonToolLib.ProcessHooking
             return temp;
         }
 
+        /// <summary>
+        /// Jump Instruction.
+        /// Length: 2
+        /// </summary>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static byte[] JumpRegister(x86Register register)
+        {
+            byte[] temp = new byte[2];
+            temp[0] = 0xff;
+            switch (register)
+            {
+                case x86Register.EAX: temp[1] = 0xE0; break;
+                case x86Register.EBX: temp[1] = 0xE3; break;
+                case x86Register.ECX: temp[1] = 0xE1; break;
+                case x86Register.EDX: temp[1] = 0xE2; break;
+                case x86Register.pEAX: temp[1] = 0x20; break;
+                case x86Register.pEBX: temp[1] = 0x23; break;
+                case x86Register.pECX: temp[1] = 0x21; break;
+                case x86Register.pEDX: temp[1] = 0x22; break;
+                default:
+                    throw new NotImplementedException();
+            }
+            return temp;
+        }
+
+        /// <summary>
+        /// Returns an array of NOP instructions.
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static byte[] NOPs(int count = 1)
+        {
+            byte[] temp = new byte[count];
+            for(int i = 0; i < count; i++)
+            {
+                temp[i] = 0x90;
+            }
+            return temp;
+        }
+        #endregion
+        /// <summary>
+        /// Uses a register to call an absolute address.
+        /// Length: 7
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        public static byte[] FarCall(IntPtr address, x86Register register)
+        {
+            List<byte> code = new List<byte>();
+            code.AddRange(SetRegister(register, (uint)address));
+            code.AddRange(CallRegister(register));
+            return code.ToArray();
+        }
+        /// <summary>
+        /// Uses a register to jump to an absolute address.
+        /// Length: 7
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="register"></param>
+        /// <returns></returns>
+        public static byte[] FarJump(IntPtr address, x86Register register)
+        {
+            List<byte> code = new List<byte>();
+            code.AddRange(SetRegister(register, (uint)address));
+            code.AddRange(JumpRegister(register));
+            return code.ToArray();
+        }
     }
 }

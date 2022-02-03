@@ -212,13 +212,13 @@ namespace X2Lib.RAM
             throw new NotImplementedException("MainType of " + (mainType).ToString() + " was not assigned.");
         }
 
-        public override void AttachEventManager()
+        public override void AttachInjectionManager()
         {
             // Initialize code injector
-            EventManager = new InjectionManager(this.hProcess);
+            InjectionManager = new InjectionManager(this.hProcess);
 
             // OnGameTick event
-            EventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00402982, new byte[]
+            InjectionManager.CreateNewEvent("OnGameTick", (IntPtr)0x00402982, new byte[]
             {
                 0xb8,0xe0,0x13,0x46,0x00, // MOV EAX, 004613e0
                 0xff, 0xd0, // Call EAX
@@ -226,7 +226,7 @@ namespace X2Lib.RAM
             }, 3);
 
             // OnDamage
-            EventManager.CreateNewEvent("OnObjectDestroyed", (IntPtr)0x0043368c, new byte[]
+            InjectionManager.CreateNewEvent("OnObjectDestroyed", (IntPtr)0x0043368c, new byte[]
             {
                 0x8b, 0xce,// Mov ECX, ESI
                 0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 004613e0

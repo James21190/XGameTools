@@ -123,39 +123,43 @@ namespace CommonToolLib.ProcessHooking
             /// <param name="InjectionPoint">The address at which the call should be injected</param>
             /// <param name="Footer">Code at the end of the injection to replace the overwritten code at the injection site</param>
             /// <param name="NOPLength">The number of NOPs after the injected call</param>
-            public EventInjectionObject(IntPtr hProcess, string EventName, IntPtr InjectionPoint, byte[] Footer, int NOPLength)
+            public EventInjectionObject(IntPtr hProcess, string EventName, IntPtr InjectionPoint, byte[] footer, int NOPLength)
             {
                 // Set the process handle, event name, and write the injection point.
                 m_hProcess = hProcess;
                 this.EventName = EventName;
 
+                #region Generate injection list entry
                 // Write list entry
-                IntPtr pInjection = MemoryControl.AllocateMemory(hProcess, PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length + PostEventListScript.Code.Length + Footer.Length + 1);
+                IntPtr pListEntry = MemoryControl.AllocateMemory(hProcess, PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length + PostEventListScript.Code.Length + footer.Length + 1);
                 for(int i = 0; i < EventListScript.DataSize; i++)
                 {
-                    MemoryControl.Write(m_hProcess, pInjection + i, (byte)0);
+                    MemoryControl.Write(m_hProcess, pListEntry + i, (byte)0);
                 }
                 // Write pre code
-                MemoryControl.Write(hProcess, pInjection, PreEventListScript.Code);
+                MemoryControl.Write(hProcess, pListEntry, PreEventListScript.Code);
                 // Write main code
-                MemoryControl.Write(hProcess, pInjection + PreEventListScript.Code.Length + EventListScript.DataSize, EventListScript.Code);
+                MemoryControl.Write(hProcess, pListEntry + PreEventListScript.Code.Length + EventListScript.DataSize, EventListScript.Code);
                 // Write post code
-                MemoryControl.Write(hProcess, pInjection + PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length, PostEventListScript.Code);
+                MemoryControl.Write(hProcess, pListEntry + PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length, PostEventListScript.Code);
 
-                MemoryControl.Write(hProcess, pInjection + PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length + PostEventListScript.Code.Length, Footer);
+                MemoryControl.Write(hProcess, pListEntry + PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length + PostEventListScript.Code.Length, footer);
                 // Write return
-                MemoryControl.Write(hProcess, pInjection + PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length + PostEventListScript.Code.Length + Footer.Length, 0xc3);
+                MemoryControl.Write(hProcess, pListEntry + PreEventListScript.Code.Length + EventListScript.DataSize + EventListScript.Code.Length + PostEventListScript.Code.Length + footer.Length, 0xc3);
 
-                m_List = new EventCodeList(pInjection + PreEventListScript.Code.Length, hProcess);
+                m_List = new EventCodeList(pListEntry + PreEventListScript.Code.Length, hProcess);
+                #endregion
 
+                #region Generate code at injection site
                 byte[] injection = new byte[7 + NOPLength];
 
-                Array.Copy(ScriptAssembler.FarCall(pInjection, ScriptAssembler.x86Register.EAX), 0, injection, 0, 7);
+                Array.Copy(ScriptAssembler.FarCall(pListEntry, ScriptAssembler.x86Register.EAX), 0, injection, 0, 7);
 
                 for (int i = 0; i < NOPLength; i++)
                 {
                     injection[i + 7] = 0x90;
                 }
+                #endregion
 
                 MemoryControl.Write(m_hProcess, InjectionPoint, injection);
             }
@@ -241,10 +245,100 @@ namespace CommonToolLib.ProcessHooking
         }
         #endregion
 
+        #region Inline Injection
+        public class InlineInjectionObject
+        {
+            private IntPtr _hProcess;
+            public byte[] InjectedCode
+            {
+                get;
+                private set;
+            }
+
+            private byte[] _Footer;
+            private IntPtr _CallAddress;
+            private IntPtr _ReturnAddress;
+            /// <summary>
+            /// At injection site with nopLenght of 0, 9 bytes are overwritten.
+            /// </summary>
+            /// <param name="hProcess"></param>
+            /// <param name="name"></param>
+            /// <param name="injectionPoint"></param>
+            /// <param name="nopLength"></param>
+            /// <param name="overwrite">If true, original code that is overwritten at the injection site is not copied over. Nessassary if relative code would be copied.</param>
+            public InlineInjectionObject(IntPtr hProcess, string name, IntPtr injectionPoint, int nopLength, bool overwrite)
+            {
+                _hProcess = hProcess;
+
+                // Get footer
+                List<byte> footer = new List<byte>();
+                if (!overwrite)
+                {
+                    footer.AddRange(MemoryControl.Read(hProcess, injectionPoint, 9 + nopLength));
+                }
+
+                // push edx
+                var pushInstruction = ScriptAssembler.Push(ScriptAssembler.x86Register.EDX);
+                MemoryControl.Write(hProcess, injectionPoint, pushInstruction);
+                _CallAddress = injectionPoint + pushInstruction.Length;
+
+
+                // Get return address
+                _ReturnAddress = _CallAddress + 7 + nopLength;
+                footer.AddRange(ScriptAssembler.FarJump(_ReturnAddress, ScriptAssembler.x86Register.EDX));
+                _Footer = footer.ToArray();
+                
+                // jump
+                SetInjectedCode(new byte[0]);
+
+                // Fill nops
+                for(int i = 0; i < nopLength; i++)
+                {
+                    MemoryControl.Write(hProcess, _CallAddress + 7 + i, new byte[] { 0x90 });
+                }
+
+                // pop edx
+
+                var popInstruction = ScriptAssembler.Pop(ScriptAssembler.x86Register.EDX);
+                MemoryControl.Write(_hProcess, _ReturnAddress, popInstruction);
+            }
+
+            public void SetInjectedCode(ScriptAssembler.ScriptCode code)
+            {
+                SetInjectedCode(code.Code, code.DataSize);
+            }
+
+            public void SetInjectedCode(byte[] code, int dataHeader = 0)
+            {
+                this.InjectedCode = code;
+
+                // Allocate memory for code and footer
+                var pMem = MemoryControl.AllocateMemory(_hProcess, dataHeader + code.Length + _Footer.Length);
+
+                for (int i = 0; i < dataHeader; i++)
+                    MemoryControl.Write(_hProcess, pMem, new byte[] { 0 });
+
+                MemoryControl.Write(_hProcess, pMem + dataHeader, code);
+                // Write footer
+                MemoryControl.Write(_hProcess, pMem + dataHeader + code.Length, _Footer);
+
+                // Write call to injection
+                MemoryControl.Write(_hProcess, _CallAddress, ScriptAssembler.FarJump(pMem + dataHeader, ScriptAssembler.x86Register.EDX));
+            }
+        }
+
+        public void SetInlineInjection(ScriptAssembler.ScriptCode code)
+        {
+            var iio = new InlineInjectionObject(m_hProcess, "", code.InlineAddress, code.InlineNOP, code.InlineOverwrite);
+            iio.SetInjectedCode(code.Code, code.DataSize);
+        }
+
+        #endregion
+
         public void OverwriteCode(string scriptPath)
         {
             var code = ScriptAssembler.ParseScript(File.ReadAllLines(scriptPath));
-            OverwriteCode(code.IntendedAddress, code.Code);
+            OverwriteCode(code.InlineAddress, code.Code);
         }
 
         /// <summary>

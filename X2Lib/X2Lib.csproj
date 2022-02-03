@@ -74,6 +74,9 @@
     <Folder Include="Changelogs\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DATA\X2\Mods\Speed Inline.x2code">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="DATA\X2\SectorObject Types\21.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
