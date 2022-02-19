@@ -7,35 +7,33 @@
 #Data:8
 #Name:EventList
 
+/ Using EDX as pointer to top
+/ EDX should be EBP
+
 // If pCode is not null, call it
-/ EAX should be EBP
-/ mov ecx, [eax+4]
-8B 48 04
+/ mov ecx, [edx+4]
+8B 4A 04
 / test ecx, ecx
 85 C9
 / je @end
 74 11
-/ push eax
-50
+-push edx
 / call ecx
 FF D1
-/ pop eax
-58
+-pop edx
 
 // If pNext is not null, call it + 8
 
 / TODO: Reload volatile registers?
 
 
-/ mov eax, [eax]
-8B 00
-/ test ecx, ecx
-85 C0
+-mov edx [edx]
+/ test edx, edx
+85 d2
 / je @end
 74 07
 
-/ mov ecx, eax
-8b c8
+-mov ecx edx
 / add ecx, 0x8
 83 c1 08
 / call ecx

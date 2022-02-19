@@ -48,9 +48,9 @@ namespace CommonToolLib.ProcessHooking
         #endregion
 
         #region Parsing
-        public static ScriptCode ParseScript(string path)
+        public static ScriptCode ParseScript(string path, params object[] parameters)
         {
-            return ParseScript(File.ReadAllLines(path));
+            return ParseScript(File.ReadAllLines(path), parameters);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace CommonToolLib.ProcessHooking
         /// </summary>
         /// <param name="Script"></param>
         /// <returns></returns>
-        public static ScriptCode ParseScript(string[] Script)
+        public static ScriptCode ParseScript(string[] Script, params object[] paramiters)
         {
             // Key
             // '#' Meta data

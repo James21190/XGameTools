@@ -19,11 +19,11 @@ Meta:
 	Set the internal name of the script:
 		#Name:<script name>
 	Set the type of script:
-		#Type <type> [type params]
+		#Type:<type> [type params]
 		Available types:
 			Event <event name>:
 				Define the event this script should be attached to.
-			Inline <NOP length> <overwrite>:
+			Inline <Intended address> <NOP length> <overwrite>:
 				NOP length: The number of bytes after the injection site that are set to nop to keep instructions in line.
 				Overwrite: If true, original code that is overwritten at the injection site is not copied over. Nessassary if relative code would be copied.
 
@@ -41,3 +41,5 @@ Macro:
 		-Push <register>
 	Pop from stack:
 		-Pop <register>
+	Return:
+		-Ret

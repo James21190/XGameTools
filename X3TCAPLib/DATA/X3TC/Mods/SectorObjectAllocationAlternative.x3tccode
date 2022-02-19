@@ -1,0 +1,65 @@
+﻿#Name:SectorObjectAlocationAlternative
+#Type:Inline 004b90d6 2 true
+
+/ Parameters:
+/ 0: pDestroyedSectorObjectStack
+
+// If EDI != 0x130
+
+/ CMP EDI 0x130
+81 ff 30 01 00 00
+/ JNE @allocNew
+75 18
+
+
+/ Get top of stack
+-MOV EAX 0
+/ MOV ESI [EAX]
+8b 30
+
+// if ESI != 0 {
+/ CMP ESI, 0
+83 fe 00
+/ JE @allocNew
+74 0c
+
+
+/ ESI: pSectorObject
+/ EAX: ppStack
+
+-PUSH EBX
+
+/ Get pointer to next
+/ MOV EBX [ESI]
+8b 1e
+// pDestroyedSectorObjectStack = pSectorObject->pNext;
+/ MOV [EAX] ebx
+89 18
+
+-POP EBX
+
+/ Return from function
+-POP EDX
+/  POP EDI
+5f
+/ MOV EAX ESI
+8b c6
+/ POP ESI
+5e
+-RET
+
+// JMP @end
+/eb 0d
+// } else {
+/ @allocNew
+
+/ PUSH EDI
+57
+-FARCALL 00511844 EDX
+/ MOV ESI EAX
+8b f0
+/ ADD ESP 0x4
+83 c4 04
+
+// }
+/ @end

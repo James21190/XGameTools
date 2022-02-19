@@ -1,0 +1,30 @@
+﻿#Name:SectorObjectDestructionAlternative
+#Type:Inline 00431efa 0 true
+#Data:4
+
+
+/ ESI: pSectorObject
+
+/ Parameters:
+/ 0: pDestroyedSectorObjectStack
+
+/ Get top of stack
+-MOV EAX 0
+-MOV ECX [EAX]
+
+// if ECX != 0 {
+/ CMP ECX, 0
+83 f9 00
+/ JE @end
+74 02
+
+// pSectorObject->pNext = *pDestroyedSectorObjectStack
+/ MOV [ESI], ECX
+89 0e
+
+// }
+/@end
+
+// *pDestroyedSectorObjectStack = pSectorObject;
+/ MOV [eax], esi
+89 30

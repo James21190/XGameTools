@@ -223,15 +223,19 @@ namespace X2Lib.RAM
                 0xb8,0xe0,0x13,0x46,0x00, // MOV EAX, 004613e0
                 0xff, 0xd0, // Call EAX
                 0xa1, 0x00, 0x67, 0x5d, 0x01 // MOV EAX, pStoryBase
-            }, 3);
+            }, 1);
 
             // OnDamage
             InjectionManager.CreateNewEvent("OnObjectDestroyed", (IntPtr)0x0043368c, new byte[]
             {
                 0x8b, 0xce,// Mov ECX, ESI
-                0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 004613e0
-                0xff, 0xd0 // Call EAX
-            }, 0);
+                0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 0041F870
+                0xff, 0xd0, // Call EAX
+                0x56, // Push ESI
+                0xb8,0x45,0x6b,0x4e,0x00, // MOV EAX, 004e6b45
+                0xff, 0xd0, // Call EAX
+                0x83, 0xc4, 0x04 // Add ESP, 0x4
+            }, 7);
         }
     }
 }

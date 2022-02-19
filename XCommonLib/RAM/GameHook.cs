@@ -115,7 +115,7 @@ namespace XCommonLib.RAM
         /// <exception cref="NotImplementedException"></exception>
         public virtual void AttachInjectionManager()
         {
-            throw new NotImplementedException();
+            InjectionManager = new InjectionManager(hProcess);
         }
         #region SectorObject MainTypes
 

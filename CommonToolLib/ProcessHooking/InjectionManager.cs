@@ -9,6 +9,7 @@ namespace CommonToolLib.ProcessHooking
     /// </summary>
     public class InjectionManager
     {
+        private const ScriptAssembler.x86Register _CallingRegister = ScriptAssembler.x86Register.EDX;
         public const string SystemModDirectory = ".\\DATA\\EventManager Scripts\\";
         #region Event Injection
         /// <summary>
@@ -151,14 +152,15 @@ namespace CommonToolLib.ProcessHooking
                 #endregion
 
                 #region Generate code at injection site
-                byte[] injection = new byte[7 + NOPLength];
+                byte[] injection = new byte[9 + NOPLength];
 
-                Array.Copy(ScriptAssembler.FarCall(pListEntry, ScriptAssembler.x86Register.EAX), 0, injection, 0, 7);
-
+                Array.Copy(ScriptAssembler.Push(_CallingRegister), 0, injection, 0, 1);
+                Array.Copy(ScriptAssembler.FarCall(pListEntry, _CallingRegister), 0, injection, 1, 7);
                 for (int i = 0; i < NOPLength; i++)
                 {
-                    injection[i + 7] = 0x90;
+                    injection[i + 8] = 0x90;
                 }
+                Array.Copy(ScriptAssembler.Pop(_CallingRegister), 0, injection, 8 + NOPLength, 1);
                 #endregion
 
                 MemoryControl.Write(m_hProcess, InjectionPoint, injection);
@@ -278,14 +280,14 @@ namespace CommonToolLib.ProcessHooking
                 }
 
                 // push edx
-                var pushInstruction = ScriptAssembler.Push(ScriptAssembler.x86Register.EDX);
+                var pushInstruction = ScriptAssembler.Push(_CallingRegister);
                 MemoryControl.Write(hProcess, injectionPoint, pushInstruction);
                 _CallAddress = injectionPoint + pushInstruction.Length;
 
 
                 // Get return address
                 _ReturnAddress = _CallAddress + 7 + nopLength;
-                footer.AddRange(ScriptAssembler.FarJump(_ReturnAddress, ScriptAssembler.x86Register.EDX));
+                footer.AddRange(ScriptAssembler.FarJump(_ReturnAddress, _CallingRegister));
                 _Footer = footer.ToArray();
                 
                 // jump
@@ -299,7 +301,7 @@ namespace CommonToolLib.ProcessHooking
 
                 // pop edx
 
-                var popInstruction = ScriptAssembler.Pop(ScriptAssembler.x86Register.EDX);
+                var popInstruction = ScriptAssembler.Pop(_CallingRegister);
                 MemoryControl.Write(_hProcess, _ReturnAddress, popInstruction);
             }
 
@@ -323,7 +325,7 @@ namespace CommonToolLib.ProcessHooking
                 MemoryControl.Write(_hProcess, pMem + dataHeader + code.Length, _Footer);
 
                 // Write call to injection
-                MemoryControl.Write(_hProcess, _CallAddress, ScriptAssembler.FarJump(pMem + dataHeader, ScriptAssembler.x86Register.EDX));
+                MemoryControl.Write(_hProcess, _CallAddress, ScriptAssembler.FarJump(pMem + dataHeader, _CallingRegister));
             }
         }
 
