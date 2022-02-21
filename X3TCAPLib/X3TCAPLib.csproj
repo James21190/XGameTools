@@ -62,6 +62,7 @@
     <Compile Include="RAM\Bases\Story\Scripting\ScriptTaskObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\Bases\Story\TextPage.cs" />
+    <Compile Include="RAM\Bases\System\SystemBase.cs" />
     <Compile Include="RAM\X3APGameHook.cs" />
     <Compile Include="RAM\X3TCAPGameHookBase.cs" />
     <Compile Include="RAM\X3TCGameHook.cs" />

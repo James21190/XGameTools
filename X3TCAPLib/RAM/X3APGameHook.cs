@@ -81,6 +81,7 @@ namespace X3TCAPLib.RAM
         public override XCommonLib.RAM.Bases.Story.StoryBase StoryBase => ppStoryBase != null ? ppStoryBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Galaxy.GalaxyBase GalaxyBase => ppGalaxyBase != null ? ppGalaxyBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => ppB3DBase != null ? ppB3DBase.obj.obj : null;
+        public override XCommonLib.RAM.Bases.System.SystemBase SystemBase => throw new NotImplementedException();
         #endregion
 
         #region TypeData

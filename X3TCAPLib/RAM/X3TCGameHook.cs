@@ -6,6 +6,7 @@ using X3TCAPLib.RAM.Bases.Galaxy;
 using X3TCAPLib.RAM.Bases.Sector;
 using X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData;
 using X3TCAPLib.RAM.Bases.Story;
+using X3TCAPLib.RAM.Bases.System;
 
 namespace X3TCAPLib.RAM
 {
@@ -69,6 +70,7 @@ namespace X3TCAPLib.RAM
         public MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
         public MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>> ppGalaxyBase;
         public MemoryObjectPointer<MemoryObjectPointer<B3DBase>> ppB3DBase;
+        public MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
         #endregion
         #region TypeData
         public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
@@ -81,6 +83,7 @@ namespace X3TCAPLib.RAM
         public override XCommonLib.RAM.Bases.Story.StoryBase StoryBase => ppStoryBase != null ? ppStoryBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Galaxy.GalaxyBase GalaxyBase => ppGalaxyBase != null ? ppGalaxyBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => ppB3DBase != null ? ppB3DBase.obj.obj : null;
+        public override XCommonLib.RAM.Bases.System.SystemBase SystemBase => ppSystemBase != null ? ppSystemBase.obj.obj : null;
         #endregion
 
         #region TypeData
@@ -109,6 +112,7 @@ namespace X3TCAPLib.RAM
             ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pStoryBase);
             ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pGalaxyBase);
             ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pB3DBase);
+            ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pSystemBase);
             #endregion
 
             #region TypeData

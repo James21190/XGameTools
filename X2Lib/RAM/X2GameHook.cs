@@ -101,6 +101,7 @@ namespace X2Lib.RAM
         public override XCommonLib.RAM.Bases.Story.StoryBase StoryBase => ppStoryBase != null ? ppStoryBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Galaxy.GalaxyBase GalaxyBase => throw new NotImplementedException();
         public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => throw new NotImplementedException();
+        public override XCommonLib.RAM.Bases.System.SystemBase SystemBase => throw new NotImplementedException();
 
         #endregion
 

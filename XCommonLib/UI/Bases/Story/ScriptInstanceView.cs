@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Story.Scripting;
@@ -117,6 +118,24 @@ namespace XCommonLib.UI.Bases.Story
                 }
                 */
             //}
+        }
+
+        private void numericIDObjectControl1_AddressLoad(object sender, int value)
+        {
+            if(ReferenceGameHook != null)
+            {
+                m_ScriptInstance = ReferenceGameHook.StoryBase.GetScriptInstance((IntPtr)value);
+                Reload();
+            }
+        }
+
+        private void numericIDObjectControl1_IDLoad(object sender, int value)
+        {
+            if (ReferenceGameHook != null)
+            {
+                m_ScriptInstance = ReferenceGameHook.StoryBase.GetScriptInstance(value);
+                Reload();
+            }
         }
     }
 }

@@ -30,12 +30,15 @@
         {
             this.btnSectorBase = new System.Windows.Forms.Button();
             this.grpBases = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnSystemBase = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnStoryBase = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnTypeData = new System.Windows.Forms.Button();
             this.btnAssemblyScripts = new System.Windows.Forms.Button();
             this.grpBases.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,14 +57,37 @@
             // 
             // grpBases
             // 
+            this.grpBases.Controls.Add(this.groupBox3);
             this.grpBases.Controls.Add(this.groupBox2);
             this.grpBases.Controls.Add(this.groupBox1);
             this.grpBases.Location = new System.Drawing.Point(12, 12);
             this.grpBases.Name = "grpBases";
-            this.grpBases.Size = new System.Drawing.Size(263, 114);
+            this.grpBases.Size = new System.Drawing.Size(372, 114);
             this.grpBases.TabIndex = 1;
             this.grpBases.TabStop = false;
             this.grpBases.Text = "Bases";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnSystemBase);
+            this.groupBox3.Location = new System.Drawing.Point(244, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(113, 84);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "System";
+            // 
+            // btnSystemBase
+            // 
+            this.btnSystemBase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSystemBase.Location = new System.Drawing.Point(6, 19);
+            this.btnSystemBase.Name = "btnSystemBase";
+            this.btnSystemBase.Size = new System.Drawing.Size(101, 23);
+            this.btnSystemBase.TabIndex = 2;
+            this.btnSystemBase.Text = "SystemBase";
+            this.btnSystemBase.UseVisualStyleBackColor = true;
+            this.btnSystemBase.Click += new System.EventHandler(this.btnSystemBase_Click);
             // 
             // groupBox2
             // 
@@ -129,6 +155,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpBases.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -144,6 +171,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnStoryBase;
         private System.Windows.Forms.Button btnAssemblyScripts;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnSystemBase;
     }
 }
 

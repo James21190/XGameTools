@@ -5,7 +5,7 @@ using System.Net.Sockets;
 namespace CommonToolLib.Networking
 {
     /// <summary>
-    /// Basic object for sending data.
+    /// Basic object for sending identifiable data.
     /// </summary>
     public class Packet
     {
@@ -27,7 +27,11 @@ namespace CommonToolLib.Networking
             return newPacket;
         }
 
-        public void WriteToStream(NetworkStream stream)
+        /// <summary>
+        /// Method to write data to a network stream
+        /// </summary>
+        /// <param name="stream"></param>
+        internal void WriteToStream(NetworkStream stream)
         {
             MemoryObjectConverter collection = new MemoryObjectConverter();
             var length = Data != null ? Data.Length : 0;

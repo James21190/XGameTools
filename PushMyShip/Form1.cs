@@ -77,7 +77,7 @@ namespace PushMyShip
             _NetworkClient.SendData(packet);
         }
 
-        public void OnDataRecieved(Packet packet)
+        public void OnDataRecieved(int sender, Packet packet)
         {
             _Logger.Log(Logger.MessageSeverity.Debug, "Recieved packet of type " + (PacketType)packet.PacketType + ".");
             if (_IsHost)

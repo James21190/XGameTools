@@ -37,5 +37,10 @@ namespace XRAMTool
         {
             new AssemblyScripts_Display().Show();
         }
+
+        private void btnSystemBase_Click(object sender, EventArgs e)
+        {
+            new Bases.SystemBase.SystemBase_Display().Show();
+        }
     }
 }

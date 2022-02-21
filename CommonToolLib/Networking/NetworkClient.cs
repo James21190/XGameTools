@@ -74,7 +74,7 @@ namespace CommonToolLib.Networking
                     if (_NetworkStream.DataAvailable)
                     {
                         var packet = _GetPacketFromStream(_NetworkStream);
-                        InvokeOnDataRecieved(packet);
+                        InvokeOnDataRecieved(0,packet);
                     }
                 }
             }

@@ -32,5 +32,15 @@ namespace XRAMTool.Bases.Story
             }
             display.Show();
         }
+
+        private void scriptInstanceView1_AddressLoad(object sender, int value)
+        {
+
+        }
+
+        private void scriptInstanceView1_IDLoad(object sender, int value)
+        {
+
+        }
     }
 }

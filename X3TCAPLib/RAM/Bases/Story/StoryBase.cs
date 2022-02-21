@@ -28,6 +28,14 @@ namespace X3TCAPLib.RAM.Bases.Story
             int value = id < 0 ? -id - 1 : id;
             return pHashTable_ScriptInstance.obj.GetObject(value);
         }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(IntPtr pAddress)
+        {
+            var scriptInstance = new ScriptInstance();
+            scriptInstance.pThis = pAddress;
+            scriptInstance.hProcess = hProcess;
+            scriptInstance.ReloadFromMemory();
+            return scriptInstance;
+        }
         public override int[] GetAllScriptInstances()
         {
             return pHashTable_ScriptInstance.obj.ScanContents();

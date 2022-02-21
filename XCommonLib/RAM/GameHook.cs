@@ -6,6 +6,7 @@ using XCommonLib.RAM.Bases.Galaxy;
 using XCommonLib.RAM.Bases.Sector;
 using XCommonLib.RAM.Bases.Sector.SectorObject_TypeData;
 using XCommonLib.RAM.Bases.Story;
+using XCommonLib.RAM.Bases.System;
 
 namespace XCommonLib.RAM
 {
@@ -100,6 +101,7 @@ namespace XCommonLib.RAM
         public abstract StoryBase StoryBase { get; }
         public abstract GalaxyBase GalaxyBase { get; }
         public abstract B3DBase B3DBase { get; }
+        public abstract SystemBase SystemBase { get; }
         #endregion
 
         #region SectorObject TypeData

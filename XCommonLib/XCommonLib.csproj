@@ -69,6 +69,7 @@
     <Compile Include="RAM\Bases\Story\Scripting\ScriptTaskObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\Bases\Story\TextPage.cs" />
+    <Compile Include="RAM\Bases\System\SystemBase.cs" />
     <Compile Include="RAM\DataFileManager.cs" />
     <Compile Include="RAM\GameHook.cs" />
     <Compile Include="RAM\Generics\Generics Exceptions.cs" />

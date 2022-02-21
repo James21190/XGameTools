@@ -5,14 +5,14 @@ namespace CommonToolLib.Networking
 {
     public abstract class TCPClientBase
     {
-        public delegate void DataRecievedHandler(Packet packet);
+        public delegate void DataRecievedHandler(int sender, Packet packet);
         public event DataRecievedHandler OnDataRecieved;
         public event UnhandledExceptionEventHandler OnUnhandledException;
-        protected void InvokeOnDataRecieved(Packet packet)
+        protected void InvokeOnDataRecieved(int sender, Packet packet)
         {
             if (OnDataRecieved != null)
             {
-                OnDataRecieved(packet);
+                OnDataRecieved(sender, packet);
             }
         }
 
@@ -24,6 +24,12 @@ namespace CommonToolLib.Networking
             }
         }
 
+        /// <summary>
+        /// Returns the next packet in the network stream.
+        /// Waits for data.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
         protected static Packet _GetPacketFromStream(NetworkStream stream)
         {
             _WaitForData(stream);
@@ -43,12 +49,13 @@ namespace CommonToolLib.Networking
             return packet;
         }
 
+        /// <summary>
+        /// Waits until data is available in the network stream.
+        /// </summary>
+        /// <param name="stream"></param>
         private static void _WaitForData(NetworkStream stream)
         {
-            while (!stream.DataAvailable)
-            {
-                ;
-            }
+            while (!stream.DataAvailable) ;
 
             return;
         }

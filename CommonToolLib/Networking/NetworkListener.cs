@@ -25,7 +25,9 @@ namespace CommonToolLib.Networking
             }
         }
 
+        // Thread to listen for new connections
         private Thread _ListeningThread;
+        // Thread for recieving data
         private Thread _RecieveDataThread;
         // The listener to accept connections.
         private TcpListener _Listener;
@@ -106,7 +108,7 @@ namespace CommonToolLib.Networking
 
         #region Sending Data
         /// <summary>
-        /// Send a byte array to all clients.
+        /// Send a packet
         /// </summary>
         /// <param name="data"></param>
         public void SendToAll(Packet packet)
@@ -153,7 +155,7 @@ namespace CommonToolLib.Networking
                         if (stream.DataAvailable)
                         {
                             var packet = _GetPacketFromStream(stream);
-                            InvokeOnDataRecieved(packet);
+                            InvokeOnDataRecieved(client.ID,packet);
                         }
                     }
                 }
