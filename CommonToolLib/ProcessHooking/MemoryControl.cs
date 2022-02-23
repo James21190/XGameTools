@@ -7,6 +7,7 @@ namespace CommonToolLib.ProcessHooking
 {
     public static class MemoryControl
     {
+        #region Kernel32
         [DllImport("kernel32.dll")]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
@@ -65,7 +66,9 @@ namespace CommonToolLib.ProcessHooking
             QueryInformation = 0x00000400,
             Synchronize = 0x00100000
         }
+        #endregion
 
+        #region Reads
         /// <summary>
         /// Read an array of bytes from memory.
         /// </summary>
@@ -94,18 +97,6 @@ namespace CommonToolLib.ProcessHooking
         }
 
         /// <summary>
-        /// Loads values in memory to a given IMemoryObject.
-        /// </summary>
-        /// <param name="hProcess"></param>
-        /// <param name="address"></param>
-        /// <param name="memoryObject"></param>
-        public static void ReadIMemoryObject(IntPtr hProcess, IntPtr address, ref IMemoryObject memoryObject)
-        {
-            byte[] data = Read(hProcess, address, memoryObject.ByteSize);
-            memoryObject.SetData(data);
-        }
-
-        /// <summary>
         /// Read a null terminated string at the given address.
         /// </summary>
         /// <param name="hProcess"></param>
@@ -128,17 +119,7 @@ namespace CommonToolLib.ProcessHooking
 
         }
 
-        /// <summary>
-        /// Reads 4 bytes at the given address and returns it as a MemoryObjectPointer.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="hProcess"></param>
-        /// <param name="Address"></param>
-        /// <returns></returns>
-        public static MemoryObjectPointer<T> ReadPointer<T>(IntPtr hProcess, IntPtr Address) where T : IMemoryObject, new()
-        {
-            return new MemoryObjectPointer<T>(hProcess, (IntPtr)ReadInt(hProcess, Address));
-        }
+        #endregion
 
         #region Writes
 
@@ -199,26 +180,6 @@ namespace CommonToolLib.ProcessHooking
         public static int CalculateArrayIndexAddress(int ArrayBase, int ObjectSize, int Index)
         {
             return ArrayBase + (ObjectSize * Index);
-        }
-
-
-        public static void CopyToArray(ref byte[] Arr, IMemoryObject memoryObject, int Index)
-        {
-            if (Index + memoryObject.ByteSize > Arr.Length)
-            {
-                throw new IndexOutOfRangeException();
-            }
-
-            Array.Copy(memoryObject.GetBytes(), 0, Arr, Index, memoryObject.ByteSize);
-        }
-
-        public static void ToObject(ref IMemoryObject obj, byte[] Arr, int Index)
-        {
-            byte[] arr = new byte[obj.ByteSize];
-            Array.Copy(Arr, Index, arr, 0, obj.ByteSize);
-
-            obj.SetData(arr);
-
         }
 
     }
