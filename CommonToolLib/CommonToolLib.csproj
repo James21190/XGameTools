@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Files\FileIdentifier.cs" />
     <Compile Include="Generics\BinaryObjectConverter.cs" />
     <Compile Include="Generics\IBinaryObject.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
