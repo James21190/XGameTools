@@ -84,7 +84,7 @@ namespace XRAMTool.Bases.Sector
 
         private void treeView1_DoubleClick(object sender, EventArgs e)
         {
-            if (treeView1.SelectedNode.Tag is SectorObject)
+            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Tag is SectorObject)
             {
                 LoadObject((SectorObject)treeView1.SelectedNode.Tag);
             }

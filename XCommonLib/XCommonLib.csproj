@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Files\BOBFile.cs" />
+    <Compile Include="Files\BODFile.cs" />
     <Compile Include="Files\CatDat\CatDatPair.cs" />
     <Compile Include="Files\CatDat\FileLocationData.cs" />
     <Compile Include="Files\CatDat\CatFile.cs" />

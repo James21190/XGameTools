@@ -6,6 +6,7 @@ namespace X2Lib.RAM.Bases.B3D
     public class B3DBase : XCommonLib.RAM.Bases.B3D.B3DBase
     {
         #region Memory Fields
+
         #endregion
 
         #region Common

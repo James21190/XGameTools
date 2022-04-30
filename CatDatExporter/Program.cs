@@ -44,56 +44,62 @@ namespace CatDatExporter
                 new GameInstall("X3AP",@"J:\Steam\steamapps\common\x3 terran conflict\addon", GameVersion.X3AP),
                 new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL),
             };
+            List<Task> tasks = new List<Task>();
             foreach(var install in Installs)
             {
-                Console.WriteLine(string.Format("Finding files for \"{0}\" at \"{1}\" as version \"{2}\".",install.Name, install.Path,install.Version.ToString()));
-                // Get cat files
-                var collectionNames = new List<string>();
-                foreach(var file in Directory.GetFiles(install.Path))
+                var currentInstall = install;
+                var newTask = new Task(() =>
                 {
-                    if(Path.GetExtension(file) == ".cat")
+                    Console.WriteLine(string.Format("Finding files for \"{0}\" at \"{1}\" as version \"{2}\".", currentInstall.Name, currentInstall.Path, currentInstall.Version.ToString()));
+                    // Get cat files
+                    var collectionNames = new List<string>();
+                    foreach(var file in Directory.GetFiles(currentInstall.Path))
                     {
-                        collectionNames.Add(Path.GetFileNameWithoutExtension(file));
-                    }
-                }
-
-                Console.WriteLine(string.Format("Found {0} files.", collectionNames.Count));
-
-                string targetDir = Path.Combine(@".\exports\", install.Name);
-
-                Console.WriteLine(string.Format("Extracting to \"{0}\"", targetDir));
-
-                AbstractCatDatPair catDatPair;
-
-                foreach(var collectionName in collectionNames)
-                {
-                    switch (install.Version)
-                    {
-                        case GameVersion.X2:
-                            catDatPair = new CatDatPair<X2CatFile, X2DatFile, X2CompressedFile>(Path.Combine(install.Path, collectionName));
-                            break;
-                        case GameVersion.X3R:
-                        case GameVersion.X3TC:
-                        case GameVersion.X3AP:
-                        case GameVersion.X3FL:
-                            catDatPair = new CatDatPair<X3CatFile, X3DatFile, X3CompressedFile>(Path.Combine(install.Path, collectionName));
-                            break;
-                        default:
-                            throw new NotImplementedException();
+                        if(Path.GetExtension(file) == ".cat")
+                        {
+                            collectionNames.Add(Path.GetFileNameWithoutExtension(file));
+                        }
                     }
 
-                    Console.WriteLine(string.Format("Extracting {0}...", collectionName));
-                    try
+                    Console.WriteLine(string.Format("Found {0} files for \"{1}\".", collectionNames.Count,currentInstall.Name));
+
+                    string targetDir = Path.Combine(@".\exports\", currentInstall.Name);
+
+                    AbstractCatDatPair catDatPair;
+
+                    foreach(var collectionName in collectionNames)
                     {
-                        catDatPair.ExtractAll(targetDir, AbstractCatDatPair.ExtractionMode.Decrypt);
+                        switch (currentInstall.Version)
+                        {
+                            case GameVersion.X2:
+                                catDatPair = new CatDatPair<X2CatFile, X2DatFile, X2CompressedFile>(Path.Combine(currentInstall.Path, collectionName));
+                                break;
+                            case GameVersion.X3R:
+                            case GameVersion.X3TC:
+                            case GameVersion.X3AP:
+                            case GameVersion.X3FL:
+                                catDatPair = new CatDatPair<X3CatFile, X3DatFile, X3CompressedFile>(Path.Combine(currentInstall.Path, collectionName));
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+
+                        Console.WriteLine(string.Format("Extracting {0}-{1}...", currentInstall.Name,collectionName));
+                        try
+                        {
+                            catDatPair.ExtractAll(targetDir, AbstractCatDatPair.ExtractionMode.Decrypt);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Failed extraction.");
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Failed extraction.");
-                        Console.WriteLine(ex.ToString());
-                    }
-                }
+                });
+                newTask.Start();
+                tasks.Add(newTask);
             }
+            Task.WaitAll(tasks.ToArray());
             Console.WriteLine("Done.");
             Console.ReadKey();
         }

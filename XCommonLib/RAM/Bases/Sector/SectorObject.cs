@@ -107,6 +107,7 @@ namespace XCommonLib.RAM.Bases.Sector
         public abstract RenderObject RenderObject { get; }
         public abstract ISectorObjectMeta Meta { get; }
         public abstract int ScriptInstanceID { get; set; }
+        public abstract int ModelCollectionID { get; set; }
 
         public override string ToString()
         {

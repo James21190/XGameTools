@@ -20,10 +20,45 @@ namespace XCommonLib.Files.CatDat
         }
 
         public abstract string[] GetInternalFiles();
-        public abstract byte[] GetInternalFile(string internalPath);
+        public string[] GetInternalFiles(string basePath, bool depth = false)
+        {
+            List<string> files = new List<string>();
+            foreach (var file in GetInternalFiles())
+            {
+                // If the current file is longer than the base path...
+                if (file.Length > basePath.Length)
+                {
+                    // Compare the start of the path
+                    for (int i = 0; i < basePath.Length; i++)
+                    {
+                        if (file[i] != basePath[i])
+                            goto end;
+                    }
+
+                    // If depth is not enabled, make sure it's not in a deeper directory
+                    if (!depth)
+                    {
+                        for (int i = basePath.Length + 1; i < file.Length; i++)
+                        {
+                            if (file[i] == '/' || file[i] == '\\')
+                                goto end;
+                        }
+                    }
+
+                    files.Add(file);
+                }
+            end:;
+            }
+
+            return files.ToArray();
+        }
+        public abstract byte[] GetInternalFile(string internalPath, ExtractionMode extractionMode);
         public abstract void ExtractAll(string targetDirectory, ExtractionMode extractionMode = ExtractionMode.None);
     }
-    public class CatDatPair <C,D,P> : AbstractCatDatPair where C : CatFile, new() where D : DatFile, new() where P : CompressedFile, new()
+    public class CatDatPair <C,D,P> : AbstractCatDatPair 
+        where C : CatFile, new() 
+        where D : DatFile, new() 
+        where P : CompressedFile, new()
     {
 
         private C m_CatFile = new C();
@@ -46,14 +81,27 @@ namespace XCommonLib.Files.CatDat
         {
             return m_CatFile.GetInternalFiles();
         }
-        public override byte[] GetInternalFile(string internalPath)
+        /// <summary>
+        /// Returns the internal bytes. Extraction mode can be set if it's a compressed file to decrypt it if required.
+        /// </summary>
+        /// <param name="internalPath"></param>
+        /// <param name="extractionMode"></param>
+        /// <returns></returns>
+        public override byte[] GetInternalFile(string internalPath, ExtractionMode extractionMode = ExtractionMode.None)
         {
             var internalFileLocation = m_CatFile.GetInternalFileLocation(internalPath);
-            return m_DatFile.GetData(internalFileLocation);
+            var data = m_DatFile.GetData(internalFileLocation);
+            if (extractionMode == ExtractionMode.None)
+                return data;
+            // If the file is identified as a compressed file...
+            var compressedFile = new P();
+            compressedFile.SetData(data);
+            if (extractionMode == ExtractionMode.Decrypt)
+                return compressedFile.CompressedData;
+            return compressedFile.DecompressedData;
         }
         public override void ExtractAll(string targetDirectory, ExtractionMode extractionMode = ExtractionMode.None)
         {
-            var compressedFile = new P();
             foreach(var internalPath in GetInternalFiles())
             {
                 // Get the path of the destination file
@@ -64,7 +112,7 @@ namespace XCommonLib.Files.CatDat
                     Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
                 }
                 // Get the internal file from the .dat file
-                var fileBytes = GetInternalFile(internalPath);
+                byte[] fileBytes = GetInternalFile(internalPath);
 
                 // Apply decryption and extraction if needed
                 if (extractionMode == ExtractionMode.Decrypt || extractionMode == ExtractionMode.DecryptAndExtract)
@@ -76,9 +124,10 @@ namespace XCommonLib.Files.CatDat
                         // Compressed files
                         case ".pbd":
                         case ".pck":
+                            var compressedFile = new P();
                             compressedFile.SetData(fileBytes);
                             // If only decrypt
-                            if(extractionMode == ExtractionMode.Decrypt)
+                            if (extractionMode == ExtractionMode.Decrypt)
                             {
                                 File.WriteAllBytes(targetPath, compressedFile.CompressedData);
                             }

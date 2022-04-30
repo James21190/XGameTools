@@ -40,6 +40,8 @@ namespace XCommonLib.UI
 
             ntxtType.Text = m_SectorObject.ObjectType.ToString();
 
+            ntxtModelCollectionID.Text = m_SectorObject.ModelCollectionID.ToString();
+
             //bitFieldDisplay1.Value = m_SectorObject.InteractionFlags;
 
             if (ReferenceGameHook != null)

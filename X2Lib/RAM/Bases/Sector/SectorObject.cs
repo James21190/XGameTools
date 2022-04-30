@@ -57,7 +57,7 @@ namespace X2Lib.RAM.Bases.Sector
         public int Unknown_12;
         public override int ScriptInstanceID { get; set; }
         public int Unknown_14;
-        public int ModelCollectionID;
+        public override int ModelCollectionID { get; set; }
         public int Unknown_15;
         public int Unknown_16;
         public int Unknown_17;

@@ -41,6 +41,7 @@
             this.bitFieldDisplay1 = new CommonToolLib.UI.BitFieldDisplay();
             this.ntxtType = new CommonToolLib.UI.NamedTextBox();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
+            this.ntxtModelCollectionID = new CommonToolLib.UI.NamedTextBox();
             this.SuspendLayout();
             // 
             // ntxtDefaultName
@@ -385,7 +386,7 @@
             this.ntxtType.MinimumSize = new System.Drawing.Size(100, 50);
             this.ntxtType.Name = "ntxtType";
             this.ntxtType.ReadOnly = true;
-            this.ntxtType.Size = new System.Drawing.Size(180, 50);
+            this.ntxtType.Size = new System.Drawing.Size(100, 50);
             this.ntxtType.TabIndex = 14;
             this.ntxtType.Title = "Type";
             // 
@@ -401,10 +402,22 @@
             this.numericIDObjectControl1.Size = new System.Drawing.Size(206, 112);
             this.numericIDObjectControl1.TabIndex = 0;
             // 
+            // ntxtModelCollectionID
+            // 
+            this.ntxtModelCollectionID.Location = new System.Drawing.Point(377, 323);
+            this.ntxtModelCollectionID.MaximumSize = new System.Drawing.Size(0, 50);
+            this.ntxtModelCollectionID.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtModelCollectionID.Name = "ntxtModelCollectionID";
+            this.ntxtModelCollectionID.ReadOnly = true;
+            this.ntxtModelCollectionID.Size = new System.Drawing.Size(150, 50);
+            this.ntxtModelCollectionID.TabIndex = 15;
+            this.ntxtModelCollectionID.Title = "Model Collection ID";
+            // 
             // SectorObjectView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ntxtModelCollectionID);
             this.Controls.Add(this.ntxtType);
             this.Controls.Add(this.bitFieldDisplay1);
             this.Controls.Add(this.ntxtDefaultName);
@@ -439,5 +452,6 @@
         private CommonToolLib.UI.NamedTextBox ntxtDefaultName;
         private CommonToolLib.UI.BitFieldDisplay bitFieldDisplay1;
         private CommonToolLib.UI.NamedTextBox ntxtType;
+        private CommonToolLib.UI.NamedTextBox ntxtModelCollectionID;
     }
 }

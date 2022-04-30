@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace CommonToolLib.Generics
 {
@@ -70,6 +71,38 @@ namespace CommonToolLib.Generics
             {
                 Append(obj.GetBytes());
             }
+        }
+
+        /// <summary>
+        /// Fills a null array with a string. The string is null terminated.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="length"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void AppendFixedLengthString(string str, int length)
+        {
+            if (str.Length > length)
+                throw new ArgumentException();
+            var arr = Encoding.Default.GetBytes(str);
+            byte[] result = new byte[length];
+            for(int i = 0; i < length; i++)
+            {
+                if(arr.Length <= i)
+                {
+                    result[i] = 0;
+                }
+                else
+                {
+                    result[i] = arr[i];
+                }
+            }
+            Append(result);
+        }
+
+        public void AppendFixedLengthStrings(string[] strs, int length)
+        {
+            foreach(var str in strs)
+                AppendFixedLengthString(str, length);
         }
         #endregion
 
@@ -300,6 +333,33 @@ namespace CommonToolLib.Generics
             }
 
             return binaryObject;
+        }
+
+        public string PopFixedLengthString(int length)
+        {
+            List<byte> bytes = new List<byte>();
+            int i;
+            for(i = 0; i < length; i++)
+            {
+                var readByte = PopByte();
+                if (readByte == 0)
+                {
+                    _DataPointer += (length - i - 1);
+                    break;
+                }
+                bytes.Add(readByte);
+
+            }
+            return Encoding.Default.GetString(bytes.ToArray());
+        }
+        public string[] PopLengthedStrings(int length, int count)
+        {
+            string[] results = new string[count];
+            for(int i = 0; i < count; ++i)
+            {
+                results[i] = PopFixedLengthString(length);
+            }
+            return results;
         }
 
         #endregion
