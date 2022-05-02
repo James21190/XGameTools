@@ -37,6 +37,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnTypeData = new System.Windows.Forms.Button();
             this.btnAssemblyScripts = new System.Windows.Forms.Button();
+            this.btnHashTableHelper = new System.Windows.Forms.Button();
             this.grpBases.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -144,11 +145,22 @@
             this.btnAssemblyScripts.UseVisualStyleBackColor = true;
             this.btnAssemblyScripts.Click += new System.EventHandler(this.btnAssemblyScripts_Click);
             // 
+            // btnHashTableHelper
+            // 
+            this.btnHashTableHelper.Location = new System.Drawing.Point(606, 225);
+            this.btnHashTableHelper.Name = "btnHashTableHelper";
+            this.btnHashTableHelper.Size = new System.Drawing.Size(182, 23);
+            this.btnHashTableHelper.TabIndex = 3;
+            this.btnHashTableHelper.Text = "Hash Table Helper";
+            this.btnHashTableHelper.UseVisualStyleBackColor = true;
+            this.btnHashTableHelper.Click += new System.EventHandler(this.btnHashTableHelper_Click);
+            // 
             // XRAMTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnHashTableHelper);
             this.Controls.Add(this.btnAssemblyScripts);
             this.Controls.Add(this.grpBases);
             this.Name = "XRAMTool";
@@ -173,6 +185,7 @@
         private System.Windows.Forms.Button btnAssemblyScripts;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSystemBase;
+        private System.Windows.Forms.Button btnHashTableHelper;
     }
 }
 

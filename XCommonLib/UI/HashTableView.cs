@@ -14,17 +14,17 @@ namespace XCommonLib.UI
 {
     public partial class HashTableView : UserControl
     {
-        private HashTable<MemoryInt32> _HashTable = new HashTable<MemoryInt32>();
+        public HashTable<MemoryInt32> HashTable = new HashTable<MemoryInt32>();
 
         public IntPtr hProcess
         {
             get
             {
-                return _HashTable.hProcess;
+                return HashTable.hProcess;
             }
             set
             {
-                _HashTable.hProcess = value;
+                HashTable.hProcess = value;
             }
         }
 
@@ -32,11 +32,11 @@ namespace XCommonLib.UI
         {
             get
             {
-                return _HashTable.pThis;
+                return HashTable.pThis;
             }
             set
             {
-                _HashTable.pThis = value;
+                HashTable.pThis = value;
             }
         }
 
@@ -45,18 +45,43 @@ namespace XCommonLib.UI
             InitializeComponent();
         }
 
+        private int[] _ScanResults;
+
         public void ScanHashTable()
         {
+            HashTable.ReloadFromMemory();
+            _ScanResults = HashTable.ScanContents();
+            Reload();
+        }
+
+        public void Reload()
+        {
             listBox1.Items.Clear();
-            foreach(var item in _HashTable.ScanContents())
+            foreach(var item in _ScanResults)
             {
-                listBox1.Items.Add(item);
+                if(item.ToString().Contains(txtSearch.Text))
+                    listBox1.Items.Add(item);
             }
+
         }
 
         private void btnScan_Click(object sender, EventArgs e)
         {
             ScanHashTable();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            Reload();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1)
+                return;
+            var selectedID = (int)listBox1.SelectedItem;
+            ntxtEntryID.Text = selectedID.ToString();
+            ntxtEntryObject.Text = HashTable.GetAddress(selectedID).ToString("X");
         }
     }
 }

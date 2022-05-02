@@ -4,18 +4,50 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommonToolLib.Generics;
+using XCommonLib.Files.CatDat;
 
 namespace XCommonLib.Files
 {
     public class BOBFile
     {
-        public string Info;
-        public int Unknown_1, PathCount;
-        public BOBFileSub[] SubArr;
+        private CatDat.AbstractCatDatPair _ReferenceCatDat = null;
 
-        public struct BOBFileSub
+        public string Info;
+        public int Unknown_1;
+        public ModelData[] Models;
+
+        public struct ModelData
         {
-            public int Unknown_1, Unknown_2, Unknown_3, Unknown_4, Unknown_5;
+            // The ID of the model in V
+            public int ModelID;
+            public int Unknown_1, Unknown_3, Unknown_4, Unknown_5;
+            public string PathName;
+            public ConsObject[] ConsObjects;
+            public NoteObject[] NoteObjects;
+            public PositionStateObject[] PositionStates;
+
+            public struct ConsObject
+            {
+                public int Unknown_1, Unknown_2;
+            }
+
+            public struct NoteObject
+            {
+                public int Unknown;
+                public string Text;
+            }
+
+            public struct PositionStateObject
+            {
+                public int Flags;
+                public Vector3_32 Position;
+            }
+
+            public override string ToString()
+            {
+                return String.Format("Model {0}", ModelID);
+            }
         }
 
         private static byte[] EncryptionKey = new byte[2] { 4, 0 };
@@ -109,12 +141,19 @@ namespace XCommonLib.Files
             }
         }
 
-        public void FromBytes(byte[] fileBytes)
+        public BOBFile(CatDat.AbstractCatDatPair abstractCatDatPair)
         {
-            var fileData = new FileReader(fileBytes);
+            _ReferenceCatDat = abstractCatDatPair;
+        }
+
+        public void FromFile(string path)
+        {
+            var ModelCollectionID = int.Parse(Path.GetFileNameWithoutExtension(path));
+            var fileData = new FileReader(_ReferenceCatDat.GetInternalFile(path, CatDat.AbstractCatDatPair.ExtractionMode.None));
 
             if(fileData.GetNextAsTag(true) != "CUT1")
             {
+                return;
                 throw new Exception();
             }
 
@@ -135,14 +174,11 @@ namespace XCommonLib.Files
                 }
             }
 
-            Unknown_1 = BitConverter.ToInt32(fileData.GetNextAsBytes(4, true), 0);
-            PathCount = BitConverter.ToInt32(fileData.GetNextAsBytes(4, true), 0);
+            Unknown_1 = fileData.GetNextAsInt();
 
-            SubArr = new BOBFileSub[PathCount];
+            Models = new ModelData[fileData.GetNextAsInt()];
 
-            int CurrentTagCount = 0;
-
-            while(PathCount > CurrentTagCount)
+            for(int CurrentModelIndex = 0; Models.Length > CurrentModelIndex; CurrentModelIndex++)
             {
                 // Ensure tag is PATH
                 if(fileData.GetNextAsTag(true) != "PATH")
@@ -150,22 +186,224 @@ namespace XCommonLib.Files
                     throw new Exception();
                 }
 
-                var currentSub = SubArr[CurrentTagCount];
+                Models[CurrentModelIndex].Unknown_1 = fileData.GetNextAsInt();
+                Models[CurrentModelIndex].ModelID = fileData.GetNextAsInt();
+                Models[CurrentModelIndex].Unknown_3 = fileData.GetNextAsInt();
+                Models[CurrentModelIndex].Unknown_4 = fileData.GetNextAsInt();
+                Models[CurrentModelIndex].Unknown_5 = fileData.GetNextAsInt();
 
-                currentSub.Unknown_1 = fileData.GetNextAsInt();
-                currentSub.Unknown_2 = fileData.GetNextAsInt();
-                currentSub.Unknown_3 = fileData.GetNextAsInt();
-                currentSub.Unknown_4 = fileData.GetNextAsInt();
-                currentSub.Unknown_5 = fileData.GetNextAsInt();
-
-                var nextTag = fileData.GetNextAsTag(true);
+                var nextTag = fileData.GetNextAsTag(false);
                 // Check for name tag
                 if(nextTag == "NAME")
+                {
+                    fileData.Index += 4;
+                    var sb = new StringBuilder();
+                    char pathNameChar = (char)fileData.GetNextAsByte();
+                    while(pathNameChar != '\0')
+                    {
+                        sb.Append(pathNameChar);
+                        pathNameChar = (char)fileData.GetNextAsByte();
+                    }
+                    Models[CurrentModelIndex].PathName = sb.ToString();
+                    if (fileData.GetNextAsTag(true) != "/NAM")
+                        throw new Exception();
+                    nextTag = fileData.GetNextAsTag(false);
+                }
+                
+                if(nextTag == "CONS")
+                {
+                    fileData.Index += 4;
+                    var consObjectCount = fileData.GetNextAsInt();
+                    Models[CurrentModelIndex].ConsObjects = new ModelData.ConsObject[consObjectCount];
+                    for(int i = 0; i < Models[CurrentModelIndex].ConsObjects.Length; i++)
+                    {
+                        Models[CurrentModelIndex].ConsObjects[i].Unknown_1 = fileData.GetNextAsInt();
+                        Models[CurrentModelIndex].ConsObjects[i].Unknown_2 = fileData.GetNextAsInt();
+                    }
+
+                    if (fileData.GetNextAsTag(false) != "/CON")
+                        throw new Exception();
+                    nextTag = fileData.GetNextAsTag(true);
+                }
+
+                if (nextTag == "BOB1")
+                {
+                    fileData.Index += 4;
+
+                    Models[CurrentModelIndex].ModelID = Models[CurrentModelIndex].ModelID + ModelCollectionID * 100000 - 100000;
+
+                    // This bit is complicated, so I'll just skip it
+                    while (fileData.GetNextAsTag(false) != "/BOB")
+                        fileData.Index += 1;
+
+                    if (fileData.GetNextAsTag(true) != "/BOB")
+                        throw new Exception();
+                }
+
+                Models[CurrentModelIndex].NoteObjects = new ModelData.NoteObject[fileData.GetNextAsInt()];
+
+                if(Models[CurrentModelIndex].NoteObjects.Length != 0)
+                {
+                    if (fileData.GetNextAsTag(true) != "NOTE")
+                        throw new Exception();
+
+                    for(int i = 0;i < Models[CurrentModelIndex].NoteObjects.Length; i++)
+                    {
+                        Models[CurrentModelIndex].NoteObjects[i].Unknown = fileData.GetNextAsInt();
+                        var sb = new StringBuilder();
+                        while (true)
+                        {
+                            char noteChar = (char)fileData.GetNextAsByte();
+                            if (noteChar == '\0')
+                                break;
+                            sb.Append(noteChar);
+                        }
+
+                        Models[CurrentModelIndex].NoteObjects[i].Text = sb.ToString();
+                    }
+
+                    if (fileData.GetNextAsTag(true) != "/NOT")
+                        throw new Exception();
+                }
+
+                Models[CurrentModelIndex].PositionStates = new ModelData.PositionStateObject[fileData.GetNextAsInt()];
+
+                if(Models[CurrentModelIndex].PositionStates.Length != 0)
+                {
+                    if(fileData.GetNextAsTag(true) != "STAT")
+                    {
+                        throw new Exception();
+                    }
+
+                    for (int i = 0; i < Models[CurrentModelIndex].PositionStates.Length; i++)
+                    {
+                        var statFlag = fileData.GetNextAsInt();
+                        Models[CurrentModelIndex].PositionStates[i].Flags = statFlag;
+#if true
+                        if((statFlag & 0x10) == 0)
+                        {
+                            Models[CurrentModelIndex].PositionStates[i].Position.X = fileData.GetNextAsInt() * 100;
+                            Models[CurrentModelIndex].PositionStates[i].Position.Y = fileData.GetNextAsInt() * 100;
+                            Models[CurrentModelIndex].PositionStates[i].Position.Z = fileData.GetNextAsInt() * 100;
+
+                            if((statFlag & 0x4000) != 0)
+                            {
+                                var u4 = fileData.GetNextAsInt();
+                                var u5 = fileData.GetNextAsInt();
+                                var u6 = fileData.GetNextAsInt();
+                                var u7 = fileData.GetNextAsInt();
+                                var u8 = fileData.GetNextAsInt();
+                            }
+
+                            if((statFlag & 8) == 0)
+                            {
+                                if((statFlag & 0x20) == 0)
+                                {
+                                    if((statFlag & 2) != 0)
+                                    {
+                                        var u9 = fileData.GetNextAsInt();
+                                        var u10 = fileData.GetNextAsInt();
+                                        var u11 = fileData.GetNextAsInt();
+                                        var u12 = fileData.GetNextAsInt();
+                                    }
+                                    if((statFlag >> 8) < 0)
+                                    {
+                                        var u13 = fileData.GetNextAsInt();
+                                        var u14 = fileData.GetNextAsInt();
+                                        var u15 = fileData.GetNextAsInt();
+                                        var u16 = fileData.GetNextAsInt();
+                                        var u17 = fileData.GetNextAsInt();
+                                    }
+                                    if((statFlag & 0x40000)!= 0)
+                                    {
+                                        statFlag |= 0x8000;
+                                    }
+                                }
+                                else if (i == 0 && (statFlag & 2) != 0)
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                if((statFlag & 0x40) == 0)
+                                {
+                                    var u18 = fileData.GetNextAsInt();
+                                    var u19 = fileData.GetNextAsInt();
+                                    var u20 = fileData.GetNextAsInt();
+
+                                    if((statFlag & 0x20000) != 0)
+                                    {
+                                        var u21 = fileData.GetNextAsInt();
+                                        var u22 = fileData.GetNextAsInt();
+                                        var u23 = fileData.GetNextAsInt();
+                                        var u24 = fileData.GetNextAsInt();
+                                        var u25 = fileData.GetNextAsInt();
+                                    }
+                                }
+                                if((statFlag & 0x20) == 0)
+                                {
+                                    var u26 = fileData.GetNextAsInt();
+                                }
+                            }
+                            if((statFlag & 0x200) != 0 && (statFlag & 0x400) == 0)
+                            {
+                                var u27 = fileData.GetNextAsInt();
+                                var u28 = fileData.GetNextAsInt();
+                                var u29 = fileData.GetNextAsInt();
+                            }
+                            if((statFlag & 0x800) != 0 && (statFlag & 0x1000) == 0)
+                            {
+                                var u30 = fileData.GetNextAsInt();
+                            }
+
+                            var u31 = fileData.GetNextAsInt();
+                            var u32 = fileData.GetNextAsInt();
+                        }
+#endif
+                    }
+
+                    // This bit is complicated and involves a lot of objects, so I'll just skip it
+                    while (fileData.GetNextAsTag(false) != "/STA")
+                        fileData.Index += 1;
+
+                    if (fileData.GetNextAsTag(true) != "/STA")
+                        throw new Exception();
+                }
+
+                if (fileData.GetNextAsTag(true) != "/PAT")
+                    throw new Exception();
+            }
+
+        }
+    
+        public BODFile ConvertToBOD()
+        {
+            if(Models == null || Models.Count() == 0)
+            {
+                return null;
+            }
+
+            var baseModel = new BODFile();
+
+            foreach(var model in Models)
+            {
+                if (model.ModelID == -1)
+                    continue;
+                try
+                {
+                    var bodFile = new BODFile();
+                    var file = _ReferenceCatDat.GetInternalFile(String.Format("v/{0}.pbd", model.ModelID.ToString("D5")), AbstractCatDatPair.ExtractionMode.DecryptAndExtract);
+                    var filedata = Encoding.Default.GetString(file);
+                    bodFile.FromText(filedata, model.ModelID);
+                    baseModel.AppendBody(bodFile, model.PositionStates.Length == 0 ? new Vector3_32(0,0,0) : model.PositionStates[0].Position);
+                }
+                catch (Exception ex)
                 {
 
                 }
             }
-
+            return baseModel;
         }
     }
 }

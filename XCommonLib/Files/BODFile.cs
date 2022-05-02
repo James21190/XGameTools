@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.Generics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace XCommonLib.Files
         {
             public struct Vertex
             {
-                public int X, Y, Z;
+                public double X, Y, Z;
             }
             public struct Face
             {
@@ -30,9 +31,22 @@ namespace XCommonLib.Files
                 public int Material;
                 public VertexData[] Vertices;
             }
+            public string Name;
             public int ObjectSize;
             public List<Vertex> Vertices = new List<Vertex>();
             public List<Face> Faces = new List<Face>();
+
+            public void Rescale(double x, double y, double z)
+            {
+                for (int i = 0; i < Vertices.Count(); i++)
+                {
+                    var vertex = Vertices[i];
+                    vertex.X *= x;
+                    vertex.Y *= y;
+                    vertex.Z *= z;
+                    Vertices[i] = vertex;
+                }
+            }
         }
 
         public List<Material> Materials = new List<Material>();
@@ -62,7 +76,46 @@ namespace XCommonLib.Files
             TextureCoordinatesAndExtra = -137,
             NumberAndTextureCoordinatesAndExtra = -153
         }
-        public void FromText(string text)
+
+        public void Rescale(double x, double y, double z)
+        {
+            foreach(var body in Bodies)
+                body.Rescale(x, y, z);
+        }
+
+        public void Rescale(double value)
+        {
+            Rescale(value, value, value);
+        }
+
+        public void AppendBody(BODFile bodFile, Vector3_32 positionOffset)
+        {
+            var materialOffset = Materials.Count();
+
+            Materials.AddRange(bodFile.Materials);
+
+            foreach(var body in bodFile.Bodies)
+            {
+                for(int i = 0; i < body.Vertices.Count; i++)
+                {
+                    var vertex = body.Vertices[i];
+                    vertex.X += positionOffset.X;
+                    vertex.Y += positionOffset.Y;
+                    vertex.Z += positionOffset.Z;
+                    body.Vertices[i] = vertex;
+                }
+
+                for(int i = 0; i < body.Faces.Count(); i++)
+                {
+                    var face = body.Faces[i];
+                    face.Material += materialOffset;
+                    body.Faces[i] = face;
+                }
+                Bodies.Add(body);
+            }
+        }
+
+        public void FromText(string text, int modelID = -1)
         {
             const string ALLOWED = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.-+:;";
             var sb = new StringBuilder();
@@ -300,6 +353,8 @@ namespace XCommonLib.Files
                         break;
                     case ParsingStage.BodySize:
                         currentBody = new Body();
+                        if(modelID != -1)
+                            currentBody.Name = modelID.ToString();
                         currentBody.ObjectSize = int.Parse(formatted[i]);
                         stage = ParsingStage.Vertices;
                         break;
@@ -406,6 +461,18 @@ namespace XCommonLib.Files
                 }
                 
             }
+
+            //_NormalizeBodies();
+
+        }
+
+        private void _NormalizeBodies()
+        {
+            foreach(var body in Bodies)
+            {
+                var scale = 10000/body.ObjectSize;
+                body.Rescale(scale, scale, scale);
+            }
         }
 
         private void ExportMaterials(string path, string textureDir)
@@ -441,7 +508,10 @@ namespace XCommonLib.Files
                 int textureCordCount = 0;
                 foreach(var body in Bodies)
                 {
-                    sw.WriteLine(String.Format("o {0} Body {1}", Path.GetFileNameWithoutExtension(path), bodyNumber++));
+                    if (body.Name == null)
+                        sw.WriteLine(String.Format("o Body {0}", bodyNumber++));
+                    else
+                        sw.WriteLine(string.Format("o Body {0} - {1}", bodyNumber++, body.Name));
                     // Vertices
                     foreach (var vertex in body.Vertices)
                     {

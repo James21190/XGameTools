@@ -42,5 +42,10 @@ namespace XRAMTool
         {
             new Bases.SystemBase.SystemBase_Display().Show();
         }
+
+        private void btnHashTableHelper_Click(object sender, EventArgs e)
+        {
+            new HashTable_Display().Show();
+        }
     }
 }

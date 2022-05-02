@@ -44,17 +44,22 @@ namespace ModelExporter
             GameInstall[] Installs = new GameInstall[]
             {
                 new GameInstall("X2", @"J:\Steam\steamapps\common\X2 - The Threat", GameVersion.X2, "v", "cut"),
-                //new GameInstall("X3R",@"J:\Steam\steamapps\common\X3 - Reunion", GameVersion.X3R,"objects/v"),
-                //new GameInstall("X3TC",@"J:\Steam\steamapps\common\X3 Terran Conflict", GameVersion.X3TC,"objects/v"),
-                //new GameInstall("X3AP",@"J:\Steam\steamapps\common\x3 terran conflict\addon", GameVersion.X3AP,"objects/v"),
-                //new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL,"objects/v"),
+                new GameInstall("X3R",@"J:\Steam\steamapps\common\X3 - Reunion", GameVersion.X3R,"objects/v", "objects/cut"),
+                new GameInstall("X3TC",@"J:\Steam\steamapps\common\X3 Terran Conflict", GameVersion.X3TC,"objects/v", "objects/cut"),
+                new GameInstall("X3AP",@"J:\Steam\steamapps\common\x3 terran conflict\addon", GameVersion.X3AP,"objects/v", "objects/cut"),
+                new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL,"objects/v", "objects/cut"),
             };
-            //List<Task> tasks = new List<Task>();
+
+#if RELEASE
+            List<Task> tasks = new List<Task>();
+#endif
             foreach (var install in Installs)
             {
                 var currentInstall = install;
-                //var newTask = new Task(() =>
-                //{
+#if RELEASE
+                var newTask = new Task(() =>
+                {
+#endif
                     var destDir = Path.Combine(".","Exports", currentInstall.Name);
                     if (!Directory.Exists(destDir))
                     {
@@ -93,22 +98,27 @@ namespace ModelExporter
                             default:
                                 throw new NotImplementedException();
                         }
-
-                        Console.WriteLine(string.Format("Extracting {0}-{1}...", currentInstall.Name, collectionName));
-                        //try
-                        //{
-                            var texturePath = Path.Combine(destDir, "Textures");
-                            if (!Directory.Exists(texturePath))
-                            {
-                                Directory.CreateDirectory(texturePath);
-                            }
+#if RELEASE
+                    try
+                        {
+#endif
+                            Console.WriteLine(string.Format("Extracting {0}-{1} Textures...", currentInstall.Name, collectionName));
+                            var textureDest = Path.Combine(destDir, "Textures");
+                            if (!Directory.Exists(textureDest))
+                                Directory.CreateDirectory(textureDest);
                             // Extract textures
                             foreach(var file in catDatPair.GetInternalFiles("tex/true"))
                             {
                                 var filedata = catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.None);
-                                File.WriteAllBytes(Path.Combine(texturePath,Path.GetFileNameWithoutExtension(file) + ".jpg"), filedata);
+                                File.WriteAllBytes(Path.Combine(textureDest,Path.GetFileNameWithoutExtension(file) + ".jpg"), filedata);
                             }
+
                             // Extract models
+                            Console.WriteLine(string.Format("Extracting {0}-{1} Models...", currentInstall.Name, collectionName));
+                            var modelDest = Path.Combine(destDir, "Models");
+                            if (!Directory.Exists(modelDest))
+                                Directory.CreateDirectory(modelDest);
+
                             //foreach(var file in catDatPair.GetInternalFiles(currentInstall.ModelPath))
                             //{
                             //    if (Path.GetExtension(file).ToLower() != ".pbd")
@@ -117,28 +127,48 @@ namespace ModelExporter
                             //    var filedata = Encoding.Default.GetString(catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.DecryptAndExtract));
                             //    bodFile.FromText(filedata);
                             //    // Convert to .obj
-                            //    bodFile.ExportAsOBJ(Path.Combine(destDir, Path.GetFileNameWithoutExtension(file)+".obj"), "Textures");
+                            //    bodFile.ExportAsOBJ(Path.Combine(modelDest, Path.GetFileNameWithoutExtension(file)+".obj"), "..\\Textures");
                             //}
 
-                            foreach(var file in catDatPair.GetInternalFiles(currentInstall.CutPath))
+                            // Extract collections
+                            Console.WriteLine(string.Format("Extracting {0}-{1} Collections...", currentInstall.Name, collectionName));
+                            var collectionDest = Path.Combine(destDir, "Collections");
+                            if (!Directory.Exists(collectionDest))
+                                Directory.CreateDirectory(collectionDest);
+
+                            foreach (var file in catDatPair.GetInternalFiles(currentInstall.CutPath))
                             {
-                                if (Path.GetExtension(file).ToLower() != ".bob")
-                                    continue;
-                                var bobFile = new BOBFile();
-                                bobFile.FromBytes(catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.None));
+                                    if (Path.GetExtension(file).ToLower() != ".bob")
+                                        continue;
+                                    if (file != "cut/04191.bob")
+                                        continue;
+                                    var bobFile = new BOBFile(catDatPair);
+                                    bobFile.FromFile(file);
+                                    var convertedBob = bobFile.ConvertToBOD();
+                                    //convertedBob.Rescale(0.001d);
+                                    if(convertedBob != null)
+                                        convertedBob.ExportAsOBJ(Path.Combine(collectionDest, Path.GetFileNameWithoutExtension(file) + ".obj"), "..\\Textures");
                             }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    Console.WriteLine("Failed extraction.");
-                        //    Console.WriteLine(ex.ToString());
-                        //}
+#if RELEASE
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(string.Format("Failed Extracting {0}-{1}!", currentInstall.Name, collectionName));
+                            Console.WriteLine(ex.ToString());
+                        }
+#endif
                     }
-                //});
-                //newTask.Start();
-                //tasks.Add(newTask);
+
+                    Console.WriteLine(string.Format("Completed extraction of {0}.", currentInstall.Name));
+#if RELEASE
+                });
+                newTask.Start();
+                tasks.Add(newTask);
+#endif
             }
-            //Task.WaitAll(tasks.ToArray());
+#if RELEASE
+            Task.WaitAll(tasks.ToArray());
+#endif
             Console.WriteLine("Done.");
             Console.ReadKey();
         }
