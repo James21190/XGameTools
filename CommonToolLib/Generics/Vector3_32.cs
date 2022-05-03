@@ -19,6 +19,22 @@ namespace CommonToolLib.Generics
             hProcess = IntPtr.Zero;
         }
 
+        public static Vector3_32 operator *(Vector3_32 a, int b)
+        {
+            a.X *= b;
+            a.Y *= b;
+            a.Z *= b;
+            return a;
+        }
+
+        public static Vector3_32 operator *(Vector3_32 a, double b)
+        {
+            a.X = (int)((double)a.X * b);
+            a.Y = (int)((double)a.Y * b);
+            a.Z = (int)((double)a.Z * b);
+            return a;
+        }
+
         public override bool Equals(object obj)
         {
             return base.Equals(obj);

@@ -13,6 +13,7 @@ namespace XCommonLib.Files
     {
         private CatDat.AbstractCatDatPair _ReferenceCatDat = null;
 
+        public string Name;
         public string Info;
         public int Unknown_1;
         public ModelData[] Models;
@@ -26,6 +27,7 @@ namespace XCommonLib.Files
             public ConsObject[] ConsObjects;
             public NoteObject[] NoteObjects;
             public PositionStateObject[] PositionStates;
+            public RotationStateObject[] RotationStates;
 
             public struct ConsObject
             {
@@ -40,8 +42,39 @@ namespace XCommonLib.Files
 
             public struct PositionStateObject
             {
-                public int Flags;
                 public Vector3_32 Position;
+            }
+
+            public struct RotationStateObject
+            {
+                public int Angle;
+                public Vector3_32 Axis;
+
+                public double AngleRadian => ((double)Angle / 0x10000) * 2 * Math.PI;
+                public double[] AxisNormalized => new double[] { ((double)Axis.X) / (double)0x10000, ((double)Axis.Y) / (double)0x10000, ((double)Axis.Z) / (double)0x10000 };
+
+                public double[,] RotationMatrix
+                {
+                    get
+                    {
+                        var cosAngle = Math.Cos(AngleRadian);
+                        var sinAngle = Math.Sin(AngleRadian);
+                        var matrix = new double[3, 3];
+                        matrix[0, 0] = cosAngle + Math.Pow(AxisNormalized[0],2) * (1- cosAngle);
+                        matrix[0, 1] = AxisNormalized[0] * AxisNormalized[1] * (1 - cosAngle) - AxisNormalized[2] * sinAngle;
+                        matrix[0, 2] = AxisNormalized[0] * AxisNormalized[2] * (1 - cosAngle) + AxisNormalized[1] * sinAngle;
+
+                        matrix[1, 0] = AxisNormalized[1] * AxisNormalized[0] * (1 - cosAngle) + AxisNormalized[2] * sinAngle;
+                        matrix[1, 1] = cosAngle + Math.Pow(AxisNormalized[1], 2) * (1 - cosAngle);
+                        matrix[1, 2] = AxisNormalized[1] * AxisNormalized[2] * (1 - cosAngle) - AxisNormalized[0] * sinAngle;
+
+                        matrix[2,0] = AxisNormalized[2] * AxisNormalized[0] * (1-cosAngle) - AxisNormalized[1] * sinAngle;
+                        matrix[2,1] = AxisNormalized[2] * AxisNormalized[1] * (1-cosAngle) + AxisNormalized[0] * sinAngle;
+                        matrix[2,2] = cosAngle + Math.Pow(AxisNormalized[2],2) * (1-cosAngle);
+
+                        return matrix;
+                    }
+                }
             }
 
             public override string ToString()
@@ -149,6 +182,7 @@ namespace XCommonLib.Files
         public void FromFile(string path)
         {
             var ModelCollectionID = int.Parse(Path.GetFileNameWithoutExtension(path));
+            Name = "Model:" + ModelCollectionID.ToString();
             var fileData = new FileReader(_ReferenceCatDat.GetInternalFile(path, CatDat.AbstractCatDatPair.ExtractionMode.None));
 
             if(fileData.GetNextAsTag(true) != "CUT1")
@@ -266,25 +300,30 @@ namespace XCommonLib.Files
                         throw new Exception();
                 }
 
-                Models[CurrentModelIndex].PositionStates = new ModelData.PositionStateObject[fileData.GetNextAsInt()];
+                var statCounter = fileData.GetNextAsInt();
+                Models[CurrentModelIndex].PositionStates = new ModelData.PositionStateObject[statCounter];
+                Models[CurrentModelIndex].RotationStates = new ModelData.RotationStateObject[statCounter];
 
                 if(Models[CurrentModelIndex].PositionStates.Length != 0)
                 {
+                    if(Models[CurrentModelIndex].ModelID == 774)
+                    {
+                        Console.WriteLine();
+                    }
                     if(fileData.GetNextAsTag(true) != "STAT")
                     {
                         throw new Exception();
                     }
 
-                    for (int i = 0; i < Models[CurrentModelIndex].PositionStates.Length; i++)
+                    for (int i = 0; i < statCounter; i++)
                     {
                         var statFlag = fileData.GetNextAsInt();
-                        Models[CurrentModelIndex].PositionStates[i].Flags = statFlag;
 #if true
                         if((statFlag & 0x10) == 0)
                         {
-                            Models[CurrentModelIndex].PositionStates[i].Position.X = fileData.GetNextAsInt() * 100;
-                            Models[CurrentModelIndex].PositionStates[i].Position.Y = fileData.GetNextAsInt() * 100;
-                            Models[CurrentModelIndex].PositionStates[i].Position.Z = fileData.GetNextAsInt() * 100;
+                            Models[CurrentModelIndex].PositionStates[i].Position.X = fileData.GetNextAsInt();
+                            Models[CurrentModelIndex].PositionStates[i].Position.Y = fileData.GetNextAsInt();
+                            Models[CurrentModelIndex].PositionStates[i].Position.Z = fileData.GetNextAsInt();
 
                             if((statFlag & 0x4000) != 0)
                             {
@@ -301,10 +340,10 @@ namespace XCommonLib.Files
                                 {
                                     if((statFlag & 2) != 0)
                                     {
-                                        var u9 = fileData.GetNextAsInt();
-                                        var u10 = fileData.GetNextAsInt();
-                                        var u11 = fileData.GetNextAsInt();
-                                        var u12 = fileData.GetNextAsInt();
+                                        Models[CurrentModelIndex].RotationStates[i].Angle = fileData.GetNextAsInt();
+                                        Models[CurrentModelIndex].RotationStates[i].Axis.X = fileData.GetNextAsInt();
+                                        Models[CurrentModelIndex].RotationStates[i].Axis.Y = fileData.GetNextAsInt();
+                                        Models[CurrentModelIndex].RotationStates[i].Axis.Z = fileData.GetNextAsInt();
                                     }
                                     if((statFlag >> 8) < 0)
                                     {
@@ -386,6 +425,10 @@ namespace XCommonLib.Files
 
             var baseModel = new BODFile();
 
+            baseModel.Name = Name;
+
+            int modelIndex = 0;
+
             foreach(var model in Models)
             {
                 if (model.ModelID == -1)
@@ -396,12 +439,24 @@ namespace XCommonLib.Files
                     var file = _ReferenceCatDat.GetInternalFile(String.Format("v/{0}.pbd", model.ModelID.ToString("D5")), AbstractCatDatPair.ExtractionMode.DecryptAndExtract);
                     var filedata = Encoding.Default.GetString(file);
                     bodFile.FromText(filedata, model.ModelID);
-                    baseModel.AppendBody(bodFile, model.PositionStates.Length == 0 ? new Vector3_32(0,0,0) : model.PositionStates[0].Position);
+                    bodFile.Name = "BOD:" + modelIndex + " ID:" + model.ModelID;
+
+                    // Rotate
+                    if(model.RotationStates.Length > 0)
+                        bodFile.ApplyRotationMatrix(model.RotationStates[0].RotationMatrix);
+
+                    const int RESCALE_TO = 2000;
+                    // Resize the body to the same relative size before appending it.
+                    bodFile.RelativeRescale(RESCALE_TO);
+                    // Append body with offset given as a value between -1 and 1 calculated by deviding 0x10000 by the objectsize.
+                    baseModel.AppendBody(bodFile, model.PositionStates.Length == 0 ? new Vector3_32(0, 0, 0) : model.PositionStates[0].Position * ((double)0x10000 / (double)RESCALE_TO));
                 }
                 catch (Exception ex)
                 {
 
                 }
+
+                modelIndex++;
             }
             return baseModel;
         }

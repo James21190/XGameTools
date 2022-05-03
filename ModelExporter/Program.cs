@@ -43,20 +43,25 @@ namespace ModelExporter
         {
             GameInstall[] Installs = new GameInstall[]
             {
-                new GameInstall("X2", @"J:\Steam\steamapps\common\X2 - The Threat", GameVersion.X2, "v", "cut"),
-                new GameInstall("X3R",@"J:\Steam\steamapps\common\X3 - Reunion", GameVersion.X3R,"objects/v", "objects/cut"),
-                new GameInstall("X3TC",@"J:\Steam\steamapps\common\X3 Terran Conflict", GameVersion.X3TC,"objects/v", "objects/cut"),
-                new GameInstall("X3AP",@"J:\Steam\steamapps\common\x3 terran conflict\addon", GameVersion.X3AP,"objects/v", "objects/cut"),
-                new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL,"objects/v", "objects/cut"),
+                new GameInstall("X2", @".\X2", GameVersion.X2, "v", "cut"),
+                //new GameInstall("X3R",@"J:\Steam\steamapps\common\X3 - Reunion", GameVersion.X3R,"objects/v", "objects/cut"),
+                //new GameInstall("X3TC",@"J:\Steam\steamapps\common\X3 Terran Conflict", GameVersion.X3TC,"objects/v", "objects/cut"),
+                //new GameInstall("X3AP",@"J:\Steam\steamapps\common\x3 terran conflict\addon", GameVersion.X3AP,"objects/v", "objects/cut"),
+                //new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL,"objects/v", "objects/cut"),
             };
 
-#if RELEASE
+#if !DEBUG
             List<Task> tasks = new List<Task>();
 #endif
             foreach (var install in Installs)
             {
+                if (!Directory.Exists(install.Path))
+                {
+                    Console.WriteLine("Unable to find path \"" + install.Path + "\" for " +install.Name);
+                    continue;
+                }
                 var currentInstall = install;
-#if RELEASE
+#if !DEBUG
                 var newTask = new Task(() =>
                 {
 #endif
@@ -98,9 +103,9 @@ namespace ModelExporter
                             default:
                                 throw new NotImplementedException();
                         }
-#if RELEASE
+#if !DEBUG
                     try
-                        {
+                    {
 #endif
                             Console.WriteLine(string.Format("Extracting {0}-{1} Textures...", currentInstall.Name, collectionName));
                             var textureDest = Path.Combine(destDir, "Textures");
@@ -119,16 +124,16 @@ namespace ModelExporter
                             if (!Directory.Exists(modelDest))
                                 Directory.CreateDirectory(modelDest);
 
-                            //foreach(var file in catDatPair.GetInternalFiles(currentInstall.ModelPath))
-                            //{
-                            //    if (Path.GetExtension(file).ToLower() != ".pbd")
-                            //        continue;
-                            //    var bodFile = new BODFile();
-                            //    var filedata = Encoding.Default.GetString(catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.DecryptAndExtract));
-                            //    bodFile.FromText(filedata);
-                            //    // Convert to .obj
-                            //    bodFile.ExportAsOBJ(Path.Combine(modelDest, Path.GetFileNameWithoutExtension(file)+".obj"), "..\\Textures");
-                            //}
+                            foreach(var file in catDatPair.GetInternalFiles(currentInstall.ModelPath))
+                            {
+                                if (Path.GetExtension(file).ToLower() != ".pbd")
+                                    continue;
+                                var bodFile = new BODFile();
+                                var filedata = Encoding.Default.GetString(catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.DecryptAndExtract));
+                                bodFile.FromText(filedata);
+                                // Convert to .obj
+                                bodFile.ExportAsOBJ(Path.Combine(modelDest, Path.GetFileNameWithoutExtension(file)+".obj"), "..\\Textures");
+                            }
 
                             // Extract collections
                             Console.WriteLine(string.Format("Extracting {0}-{1} Collections...", currentInstall.Name, collectionName));
@@ -138,18 +143,29 @@ namespace ModelExporter
 
                             foreach (var file in catDatPair.GetInternalFiles(currentInstall.CutPath))
                             {
+#if !DEBUG
+                                try
+                                {
+#endif
                                     if (Path.GetExtension(file).ToLower() != ".bob")
                                         continue;
-                                    if (file != "cut/04191.bob")
-                                        continue;
+                                    //if (file != "cut/04191.bob")
+                                    //    continue;
                                     var bobFile = new BOBFile(catDatPair);
                                     bobFile.FromFile(file);
                                     var convertedBob = bobFile.ConvertToBOD();
-                                    //convertedBob.Rescale(0.001d);
-                                    if(convertedBob != null)
+                                    if (convertedBob != null)
                                         convertedBob.ExportAsOBJ(Path.Combine(collectionDest, Path.GetFileNameWithoutExtension(file) + ".obj"), "..\\Textures");
+#if !DEBUG
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Error while extracting " + file);
+                                    Console.WriteLine(ex.ToString());
+                                }
+#endif
                             }
-#if RELEASE
+#if !DEBUG
                         }
                         catch (Exception ex)
                         {
@@ -160,13 +176,13 @@ namespace ModelExporter
                     }
 
                     Console.WriteLine(string.Format("Completed extraction of {0}.", currentInstall.Name));
-#if RELEASE
+#if !DEBUG
                 });
                 newTask.Start();
                 tasks.Add(newTask);
 #endif
             }
-#if RELEASE
+#if !DEBUG
             Task.WaitAll(tasks.ToArray());
 #endif
             Console.WriteLine("Done.");
