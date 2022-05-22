@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommonToolLib.Generics;
+using XCommonLib;
 using XCommonLib.Files.CatDat;
 
 namespace XCommonLib.Files
@@ -40,12 +41,12 @@ namespace XCommonLib.Files
                 public string Text;
             }
 
-            public struct PositionStateObject
+            public class PositionStateObject
             {
                 public Vector3_32 Position;
             }
 
-            public struct RotationStateObject
+            public class RotationStateObject
             {
                 public int Angle;
                 public Vector3_32 Axis;
@@ -53,24 +54,22 @@ namespace XCommonLib.Files
                 public double AngleRadian => ((double)Angle / 0x10000) * 2 * Math.PI;
                 public double[] AxisNormalized => new double[] { ((double)Axis.X) / (double)0x10000, ((double)Axis.Y) / (double)0x10000, ((double)Axis.Z) / (double)0x10000 };
 
-                public double[,] RotationMatrix
+                public Matrix<XFixedPointValue> RotationMatrix
                 {
                     get
                     {
                         var cosAngle = Math.Cos(AngleRadian);
                         var sinAngle = Math.Sin(AngleRadian);
-                        var matrix = new double[3, 3];
-                        matrix[0, 0] = cosAngle + Math.Pow(AxisNormalized[0],2) * (1- cosAngle);
-                        matrix[0, 1] = AxisNormalized[0] * AxisNormalized[1] * (1 - cosAngle) - AxisNormalized[2] * sinAngle;
-                        matrix[0, 2] = AxisNormalized[0] * AxisNormalized[2] * (1 - cosAngle) + AxisNormalized[1] * sinAngle;
-
-                        matrix[1, 0] = AxisNormalized[1] * AxisNormalized[0] * (1 - cosAngle) + AxisNormalized[2] * sinAngle;
-                        matrix[1, 1] = cosAngle + Math.Pow(AxisNormalized[1], 2) * (1 - cosAngle);
-                        matrix[1, 2] = AxisNormalized[1] * AxisNormalized[2] * (1 - cosAngle) - AxisNormalized[0] * sinAngle;
-
-                        matrix[2,0] = AxisNormalized[2] * AxisNormalized[0] * (1-cosAngle) - AxisNormalized[1] * sinAngle;
-                        matrix[2,1] = AxisNormalized[2] * AxisNormalized[1] * (1-cosAngle) + AxisNormalized[0] * sinAngle;
-                        matrix[2,2] = cosAngle + Math.Pow(AxisNormalized[2],2) * (1-cosAngle);
+                        var matrix = new Matrix<XFixedPointValue>(3, 3);
+                        matrix.Values[0, 0].Double = cosAngle + Math.Pow(AxisNormalized[0],2) * (1- cosAngle);
+                        matrix.Values[0, 1].Double = AxisNormalized[0] * AxisNormalized[1] * (1 - cosAngle) - AxisNormalized[2] * sinAngle;
+                        matrix.Values[0, 2].Double = AxisNormalized[0] * AxisNormalized[2] * (1 - cosAngle) + AxisNormalized[1] * sinAngle;
+                        matrix.Values[1, 0].Double = AxisNormalized[1] * AxisNormalized[0] * (1 - cosAngle) + AxisNormalized[2] * sinAngle;
+                        matrix.Values[1, 1].Double = cosAngle + Math.Pow(AxisNormalized[1], 2) * (1 - cosAngle);
+                        matrix.Values[1, 2].Double = AxisNormalized[1] * AxisNormalized[2] * (1 - cosAngle) - AxisNormalized[0] * sinAngle;
+                        matrix.Values[2, 0].Double= AxisNormalized[2] * AxisNormalized[0] * (1-cosAngle) - AxisNormalized[1] * sinAngle;
+                        matrix.Values[2, 1].Double= AxisNormalized[2] * AxisNormalized[1] * (1-cosAngle) + AxisNormalized[0] * sinAngle;
+                        matrix.Values[2, 2].Double= cosAngle + Math.Pow(AxisNormalized[2],2) * (1-cosAngle);
 
                         return matrix;
                     }
@@ -179,11 +178,9 @@ namespace XCommonLib.Files
             _ReferenceCatDat = abstractCatDatPair;
         }
 
-        public void FromFile(string path)
+        public void FromFile(byte[] fileContents)
         {
-            var ModelCollectionID = int.Parse(Path.GetFileNameWithoutExtension(path));
-            Name = "Model:" + ModelCollectionID.ToString();
-            var fileData = new FileReader(_ReferenceCatDat.GetInternalFile(path, CatDat.AbstractCatDatPair.ExtractionMode.None));
+            var fileData = new FileReader(fileContents);
 
             if(fileData.GetNextAsTag(true) != "CUT1")
             {
@@ -264,7 +261,7 @@ namespace XCommonLib.Files
                 {
                     fileData.Index += 4;
 
-                    Models[CurrentModelIndex].ModelID = Models[CurrentModelIndex].ModelID + ModelCollectionID * 100000 - 100000;
+                    //Models[CurrentModelIndex].ModelID = Models[CurrentModelIndex].ModelID + ModelCollectionID * 100000 - 100000;
 
                     // This bit is complicated, so I'll just skip it
                     while (fileData.GetNextAsTag(false) != "/BOB")
@@ -303,6 +300,12 @@ namespace XCommonLib.Files
                 var statCounter = fileData.GetNextAsInt();
                 Models[CurrentModelIndex].PositionStates = new ModelData.PositionStateObject[statCounter];
                 Models[CurrentModelIndex].RotationStates = new ModelData.RotationStateObject[statCounter];
+
+                for(int i = 0; i < statCounter; i++)
+                {
+                    Models[CurrentModelIndex].PositionStates[i] = new ModelData.PositionStateObject();
+                    Models[CurrentModelIndex].RotationStates[i] = new ModelData.RotationStateObject();
+                }
 
                 if(Models[CurrentModelIndex].PositionStates.Length != 0)
                 {
@@ -416,7 +419,7 @@ namespace XCommonLib.Files
 
         }
     
-        public BODFile ConvertToBOD()
+        public BODFile ConvertToBOD(BODFile[] bodFiles)
         {
             if(Models == null || Models.Count() == 0)
             {
@@ -424,8 +427,6 @@ namespace XCommonLib.Files
             }
 
             var baseModel = new BODFile();
-
-            baseModel.Name = Name;
 
             int modelIndex = 0;
 
@@ -435,21 +436,33 @@ namespace XCommonLib.Files
                     continue;
                 try
                 {
-                    var bodFile = new BODFile();
-                    var file = _ReferenceCatDat.GetInternalFile(String.Format("v/{0}.pbd", model.ModelID.ToString("D5")), AbstractCatDatPair.ExtractionMode.DecryptAndExtract);
-                    var filedata = Encoding.Default.GetString(file);
-                    bodFile.FromText(filedata, model.ModelID);
-                    bodFile.Name = "BOD:" + modelIndex + " ID:" + model.ModelID;
+                    //var bodFile = new BODFile();
+                    //var file = _ReferenceCatDat.GetInternalFile(String.Format("v/{0}.pbd", model.ModelID.ToString("D5")), AbstractCatDatPair.ExtractionMode.DecryptAndExtract);
+                    //var filedata = Encoding.Default.GetString(file);
+                    //bodFile.FromText(filedata, model.ModelID);
+
+                    BODFile bodFile = null;
+                    foreach(var bod in bodFiles)
+                    {
+                        if(bod.ID == model.ModelID)
+                        {
+                            bodFile = (BODFile)bod.Clone();
+                            break;
+                        }    
+                    }
+                    if (bodFile == null)
+                        throw new Exception();
 
                     // Rotate
                     if(model.RotationStates.Length > 0)
                         bodFile.ApplyRotationMatrix(model.RotationStates[0].RotationMatrix);
 
-                    const int RESCALE_TO = 2000;
+                    const double RESCALE_TO = 2000;
                     // Resize the body to the same relative size before appending it.
                     bodFile.RelativeRescale(RESCALE_TO);
                     // Append body with offset given as a value between -1 and 1 calculated by deviding 0x10000 by the objectsize.
                     baseModel.AppendBody(bodFile, model.PositionStates.Length == 0 ? new Vector3_32(0, 0, 0) : model.PositionStates[0].Position * ((double)0x10000 / (double)RESCALE_TO));
+                    //baseModel.AppendBody(bodFile, new Vector3_32(0, 0, 0));
                 }
                 catch (Exception ex)
                 {

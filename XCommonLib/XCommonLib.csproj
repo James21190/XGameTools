@@ -78,7 +78,7 @@
     <Compile Include="RAM\Generics\HashTable.cs" />
     <Compile Include="RAM\Generics\INumericIDObject.cs" />
     <Compile Include="RAM\Generics\LinkedListStart.cs" />
-    <Compile Include="RAM\Generics\X3FixedPointValue.cs" />
+    <Compile Include="XFixedPointValue.cs" />
     <Compile Include="UI\Bases\Sector\SectorMapView.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -1,2 +1,5 @@
-﻿1.0.0.0 (03/05/2022)
+﻿1.1.0.0
+	- Renamed X3FixedPointValue to XFixedPointValue and moved to namespace XCommonLib.
+
+1.0.0.0 (03/05/2022)
 	- Initial

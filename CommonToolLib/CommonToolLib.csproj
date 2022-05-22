@@ -46,7 +46,9 @@
     <Compile Include="Files\FileIdentifier.cs" />
     <Compile Include="Generics\BinaryObjectConverter.cs" />
     <Compile Include="Generics\IBinaryObject.cs" />
+    <Compile Include="Generics\Matrix.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
+    <Compile Include="Generics\Vector.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="PageReference.cs" />
     <Compile Include="ProcessHooking\ApplicationHook.cs" />

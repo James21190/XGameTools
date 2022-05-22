@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.Generics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace ModelExporter
             {
                 new GameInstall("X2", @".\X2", GameVersion.X2, "v", "cut"),
                 //new GameInstall("X3R",@"J:\Steam\steamapps\common\X3 - Reunion", GameVersion.X3R,"objects/v", "objects/cut"),
-                //new GameInstall("X3TC",@"J:\Steam\steamapps\common\X3 Terran Conflict", GameVersion.X3TC,"objects/v", "objects/cut"),
+                //new GameInstall("X3TC",@"J:\Steam\steamapps\common\X3 Terran Conflict", GameVersion.X3TC,"objects/v", "objects/ships/argon"),
                 //new GameInstall("X3AP",@"J:\Steam\steamapps\common\x3 terran conflict\addon", GameVersion.X3AP,"objects/v", "objects/cut"),
                 //new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL,"objects/v", "objects/cut"),
             };
@@ -124,13 +125,16 @@ namespace ModelExporter
                             if (!Directory.Exists(modelDest))
                                 Directory.CreateDirectory(modelDest);
 
+                            List<BODFile> bodFiles = new List<BODFile>();
                             foreach(var file in catDatPair.GetInternalFiles(currentInstall.ModelPath))
                             {
                                 if (Path.GetExtension(file).ToLower() != ".pbd")
                                     continue;
                                 var bodFile = new BODFile();
                                 var filedata = Encoding.Default.GetString(catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.DecryptAndExtract));
-                                bodFile.FromText(filedata);
+                                bodFile.FromText(filedata, int.Parse(Path.GetFileNameWithoutExtension(file)));
+                                // Append to list for use with bob files
+                                bodFiles.Add(bodFile);
                                 // Convert to .obj
                                 bodFile.ExportAsOBJ(Path.Combine(modelDest, Path.GetFileNameWithoutExtension(file)+".obj"), "..\\Textures");
                             }
@@ -147,13 +151,14 @@ namespace ModelExporter
                                 try
                                 {
 #endif
-                                    if (Path.GetExtension(file).ToLower() != ".bob")
+                                    byte[] contents;
+                                    if (Path.GetExtension(file).ToLower() == ".bob")
+                                        contents = catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.None);
+                                    else
                                         continue;
-                                    //if (file != "cut/04191.bob")
-                                    //    continue;
                                     var bobFile = new BOBFile(catDatPair);
-                                    bobFile.FromFile(file);
-                                    var convertedBob = bobFile.ConvertToBOD();
+                                    bobFile.FromFile(contents);
+                                    var convertedBob = bobFile.ConvertToBOD(bodFiles.ToArray());
                                     if (convertedBob != null)
                                         convertedBob.ExportAsOBJ(Path.Combine(collectionDest, Path.GetFileNameWithoutExtension(file) + ".obj"), "..\\Textures");
 #if !DEBUG

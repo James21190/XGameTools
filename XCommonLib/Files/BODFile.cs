@@ -5,22 +5,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XCommonLib.RAM.Generics;
 
 namespace XCommonLib.Files
 {
-    public class BODFile
+    public class BODFile : ICloneable
     {
         public struct Material
         {
             public string matType;
             public string Texture;
         }
-        public class Body
+        public class Body : ICloneable
         {
-            public struct Vertex
-            {
-                public double X, Y, Z;
-            }
             public struct Face
             {
                 public struct VertexData
@@ -38,7 +35,7 @@ namespace XCommonLib.Files
             // Is a fixed point decimal where 0x10000 = 1.
             public int ObjectSize;
 
-            public List<Vertex> Vertices = new List<Vertex>();
+            public List<Vector<XFixedPointValue>> Vertices = new List<Vector<XFixedPointValue>>();
             public List<Face> Faces = new List<Face>();
 
             public void Rescale(double value)
@@ -50,43 +47,33 @@ namespace XCommonLib.Files
                 for (int i = 0; i < Vertices.Count(); i++)
                 {
                     var vertex = Vertices[i];
-                    vertex.X *= x;
-                    vertex.Y *= y;
-                    vertex.Z *= z;
+                    vertex.Values[0].Double *= x;
+                    vertex.Values[1].Double *= y;
+                    vertex.Values[2].Double *= z;
                     Vertices[i] = vertex;
                 }
             }
+
+            public object Clone()
+            {
+                var clone = new Body();
+                clone.Name = Name;
+                clone.ObjectSize = ObjectSize;
+                foreach(var vertex in Vertices)
+                {
+                    clone.Vertices.Add((Vector<XFixedPointValue>)vertex.Clone());
+                }
+                foreach(var face in Faces)
+                {
+                    clone.Faces.Add(face);
+                }
+                return clone;
+            }
         }
 
-        public string Name;
+        public int ID;
         public List<Material> Materials = new List<Material>();
         public List<Body> Bodies = new List<Body>();
-
-        public string ToText()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        private enum ParsingStage
-        {
-            Material,
-            BodySize,
-            Vertices,
-            Faces
-        }
-
-        private enum FaceCode
-        {
-            NoAdditionalData = -1,
-            TextureCoordinates = -9,
-            AdditionalNumber = -17,
-            NumberAndTextureCoordinates = -25,
-            NumberAndTextureCoordinates_2 = -57,
-            TextureCoordinatesAndExtra = -137,
-            NumberAndTextureCoordinatesAndExtra = -153
-        }
-
         public void Rescale(double x, double y, double z)
         {
             foreach(var body in Bodies)
@@ -100,6 +87,8 @@ namespace XCommonLib.Files
 
         /// <summary>
         /// Rescales the object to a set object size.
+        /// Multiplies the position of every vertex by the original object size / new object size.
+        /// The smaller the number, the bigger the result.
         /// </summary>
         /// <param name="objectSize"></param>
         public void RelativeRescale(double objectSize)
@@ -125,9 +114,9 @@ namespace XCommonLib.Files
                 for(int i = 0; i < body.Vertices.Count; i++)
                 {
                     var vertex = body.Vertices[i];
-                    vertex.X += positionOffset.X;
-                    vertex.Y += positionOffset.Y;
-                    vertex.Z += positionOffset.Z;
+                    vertex.Values[0].FixedPointValue += positionOffset.X;
+                    vertex.Values[1].FixedPointValue += positionOffset.Y;
+                    vertex.Values[2].FixedPointValue += positionOffset.Z;
                     body.Vertices[i] = vertex;
                 }
 
@@ -138,7 +127,7 @@ namespace XCommonLib.Files
                     body.Faces[i] = face;
                 }
                 if (bodFile != null)
-                    body.Name = bodFile.Name + " " + bodynum;
+                    body.Name = bodFile.ID + " " + bodynum;
                 else
                     body.Name = bodynum.ToString();
                 Bodies.Add(body);
@@ -147,31 +136,52 @@ namespace XCommonLib.Files
             }
         }
 
-        public void ApplyRotationMatrix(double[,] rotationMatrix)
+        public void ApplyRotationMatrix(Matrix<XFixedPointValue> rotationMatrix)
         {
             foreach (var body in Bodies)
             {
                 for (int i = 0; i < body.Vertices.Count(); i++)
                 {
+                    // Apply rotation to the vertex
                     var vertex = body.Vertices[i];
-
-                    // apply matrix
-
-                    // 3 x 3 * 3 x 1 = 3 x 1
-
-                    var result = new Body.Vertex();
-
-                    result.X = vertex.X * rotationMatrix[0 ,0] + vertex.Y * rotationMatrix[0,1] + vertex.Z * rotationMatrix[0,2];
-                    result.Y = vertex.X * rotationMatrix[1 ,0] + vertex.Y * rotationMatrix[1,1] + vertex.Z * rotationMatrix[1,2];
-                    result.Z = vertex.X * rotationMatrix[2 ,0] + vertex.Y * rotationMatrix[2,1] + vertex.Z * rotationMatrix[2,2];
-
-                    body.Vertices[i] = result;
+                    vertex = rotationMatrix * vertex;
+                    body.Vertices[i] = vertex;
                 }
             }
         }
 
+        #region File Conversion
+
+        public string ToText()
+        {
+            throw new NotImplementedException();
+        }
+
+        private enum ParsingStage
+        {
+            Material,
+            BodySize,
+            Vertices,
+            Faces
+        }
+
+        private enum FaceCode
+        {
+            NoAdditionalData = -1,
+            TextureCoordinates = -9,
+            AdditionalNumber = -17,
+            NumberAndTextureCoordinates = -25,
+            NumberAndTextureCoordinates_2 = -57,
+            TextureCoordinatesAndExtra = -137,
+            NumberAndTextureCoordinatesAndExtra = -153
+        }
+
+
         public void FromText(string text, int modelID = -1)
         {
+            ID = modelID;
+            // Sanitize text
+            #region Sanitization
             const string ALLOWED = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.-+:;";
             var sb = new StringBuilder();
             bool isComment = false;
@@ -196,8 +206,8 @@ namespace XCommonLib.Files
                     }
                 }
             }
-
             var formatted = sb.ToString().TrimEnd(';').Split(';');
+            #endregion
 
             var stage = ParsingStage.Material;
             Body currentBody = new Body();
@@ -408,20 +418,18 @@ namespace XCommonLib.Files
                         break;
                     case ParsingStage.BodySize:
                         currentBody = new Body();
-                        if(modelID != -1)
-                            currentBody.Name = modelID.ToString();
+                        currentBody.Name = "LOD " + Bodies.Count();;
                         currentBody.ObjectSize = int.Parse(formatted[i]);
                         stage = ParsingStage.Vertices;
                         break;
                     case ParsingStage.Vertices:
-                        var vertex = new Body.Vertex()
-                        {
-                            X = int.Parse(formatted[i]),
-                            Y = int.Parse(formatted[i + 1]),
-                            Z = int.Parse(formatted[i + 2])
-                        };
+                        var vertex = new Vector<XFixedPointValue>(3);
+                        vertex.Values[0].FixedPointValue = int.Parse(formatted[i]);
+                        vertex.Values[1].FixedPointValue = int.Parse(formatted[i + 1]);
+                        vertex.Values[2].FixedPointValue = int.Parse(formatted[i + 2]);
+
                         // If end code...
-                        if (vertex.X == -1 && vertex.Y == -1 && vertex.Z == -1)
+                        if (vertex.X.FixedPointValue == -1 && vertex.Y.FixedPointValue == -1 && vertex.Z.FixedPointValue == -1)
                         {
                             stage = ParsingStage.Faces;
                         }
@@ -520,26 +528,6 @@ namespace XCommonLib.Files
             _NormalizeBodies();
 
         }
-
-        private void _NormalizeBodies()
-        {
-            double largest = 0;
-            foreach(var body in Bodies)
-            {
-                foreach(var vertex in body.Vertices)
-                {
-                    if(vertex.X > largest)
-                        largest = vertex.X;
-                    if (vertex.Y > largest)
-                        largest = vertex.Y;
-                    if (vertex.Z > largest)
-                        largest = vertex.Z;
-                }
-                double scale = 0x10000 / largest;
-                body.Rescale(scale, scale, scale);
-            }
-        }
-
         private void ExportMaterials(string path, string textureDir)
         {
             using (StreamWriter sw = new StreamWriter(path))
@@ -579,8 +567,7 @@ namespace XCommonLib.Files
                 foreach(var body in Bodies)
                 {
                     List<string> names = new List<string>();
-                    if (Name != null)
-                        names.Add(Name);
+                    names.Add(ID.ToString());
                     names.Add(bodyCount++.ToString());
                     if (body.Name != null)
                         names.Add("(" + body.Name + ")");
@@ -591,7 +578,7 @@ namespace XCommonLib.Files
                     // Vertices
                     foreach (var vertex in body.Vertices)
                     {
-                        sw.WriteLine(String.Join(" ","v", ((double)vertex.X/0x10000), ((double)vertex.Y / 0x10000), ((double)vertex.Z/0x10000)));
+                        sw.WriteLine(String.Join(" ","v", vertex.X.Decimal, vertex.Y.Decimal, vertex.Z.Decimal));
                     }
                     int lastMaterial = -1;
                     // Faces
@@ -623,6 +610,42 @@ namespace XCommonLib.Files
                     vertexcount += body.Vertices.Count();
                 }
             }
+        }
+
+
+        #endregion
+
+        private void _NormalizeBodies()
+        {
+            XFixedPointValue largest = XFixedPointValue.Zero;
+            foreach(var body in Bodies)
+            {
+                foreach(var vertex in body.Vertices)
+                {
+                    if(vertex.X.FixedPointValue > largest.FixedPointValue)
+                        largest = vertex.X;
+                    if (vertex.Y.FixedPointValue > largest.FixedPointValue)
+                        largest = vertex.Y;
+                    if (vertex.Z.FixedPointValue > largest.FixedPointValue)
+                        largest = vertex.Z;
+                }
+                body.Rescale(1f/largest.Double, 1f/largest.Double, 1f/largest.Double);
+            }
+        }
+
+        public object Clone()
+        {
+            var clone = new BODFile();
+            clone.ID = this.ID;
+            foreach(var material in Materials)
+            {
+                clone.Materials.Add(material);
+            }
+            foreach(var body in Bodies)
+            {
+                clone.Bodies.Add((Body)body.Clone());
+            }
+            return clone;
         }
     }
 }
