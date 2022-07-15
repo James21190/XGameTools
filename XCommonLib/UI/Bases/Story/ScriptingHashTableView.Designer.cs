@@ -67,7 +67,7 @@
             0});
             this.nnudCount.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudCount.Name = "nnudCount";
-            this.nnudCount.Size = new System.Drawing.Size(128, 50);
+            this.nnudCount.Size = new System.Drawing.Size(157, 50);
             this.nnudCount.TabIndex = 2;
             this.nnudCount.Title = "Count";
             this.nnudCount.Value = new decimal(new int[] {

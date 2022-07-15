@@ -40,17 +40,30 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             return pHashTable_ScriptInstance.obj.ScanContents();
         }
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(int id)
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
             throw new NotImplementedException();
         }
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(IntPtr address)
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(IntPtr address)
         {
-            var result = new ScriptHashTable();
+            var result = new ScriptTableObject();
             result.hProcess = hProcess;
             result.pThis = address;
             result.ReloadFromMemory();
             return result;
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(IntPtr address)
+        {
+            var result = new ScriptArrayObject();
+            result.hProcess = hProcess;
+            result.pThis = address;
+            result.ReloadFromMemory();
+            return result;
+        }
+
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(int id)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -89,6 +102,7 @@ namespace X3TCAPLib.RAM.Bases.Story
 
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
         }
+
 
 
         #endregion

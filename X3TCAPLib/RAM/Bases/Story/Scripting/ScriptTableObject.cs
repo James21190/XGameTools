@@ -8,7 +8,7 @@ using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace X3TCAPLib.RAM.Bases.Story.Scripting
 {
-    public class ScriptHashTable : XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable
+    public class ScriptTableObject : XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject
     {
         public struct ScriptHashTableEntry : IMemoryObject
         {

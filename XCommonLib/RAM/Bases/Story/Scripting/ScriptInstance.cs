@@ -1,5 +1,6 @@
 ﻿using CommonToolLib.ProcessHooking;
 using XCommonLib.RAM.Generics;
+using System;
 
 namespace XCommonLib.RAM.Bases.Story.Scripting
 {
@@ -11,6 +12,27 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public abstract ScriptInstanceSub Sub { get; }
         public abstract MemoryObjectPointer<DynamicValue> pScriptVariableArr { get; set; }
         #endregion
+
+        public ScriptInstanceType ReferenceType;
+        private int _GetVariableIndex(string name)
+        {
+            for (int index = 0; index < Sub.ScriptVariableCount && index < ReferenceType.Variables.Length; index++)
+            {
+                if (ReferenceType.LocalVariables[index].Name == name)
+                    return index;
+            }
+            throw new IndexOutOfRangeException();
+        }
+
+        public DynamicValue GetVariable(string name)
+        {
+            return pScriptVariableArr.GetObjectInArray(_GetVariableIndex(name));
+        }
+
+        public void SetVariable(string name, DynamicValue value)
+        {
+            pScriptVariableArr.SetObjectInArray(_GetVariableIndex(name), value);
+        }
 
         public int ID => -NegativeID - 1;
     }

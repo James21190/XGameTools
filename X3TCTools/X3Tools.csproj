@@ -434,7 +434,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\CommonToolLib.csproj">
+    <ProjectReference Include="..\CommonToolLib\CommonToolLib.csproj">
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>CommonToolLib</Name>
     </ProjectReference>

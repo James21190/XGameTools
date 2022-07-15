@@ -13,7 +13,7 @@ namespace XRAMTool.Bases.Story
 {
     public partial class ScriptHashTable_Display : Form
     {
-        public ScriptHashTable ScriptHashTable
+        public ScriptTableObject ScriptHashTable
         {
             get
             {
@@ -27,6 +27,12 @@ namespace XRAMTool.Bases.Story
         public ScriptHashTable_Display()
         {
             InitializeComponent();
+            
+        }
+
+        public void LoadObject(IntPtr pHashTable)
+        {
+            ScriptHashTable = Program.GameHook.StoryBase.GetScriptHashTable(pHashTable);
         }
     }
 }

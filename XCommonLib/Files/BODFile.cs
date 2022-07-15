@@ -126,10 +126,6 @@ namespace XCommonLib.Files
                     face.Material += materialOffset;
                     body.Faces[i] = face;
                 }
-                if (bodFile != null)
-                    body.Name = bodFile.ID + " " + bodynum;
-                else
-                    body.Name = bodynum.ToString();
                 Bodies.Add(body);
 
                 bodynum++;
@@ -177,7 +173,7 @@ namespace XCommonLib.Files
         }
 
 
-        public void FromText(string text, int modelID = -1)
+        public void FromText(string text, BODFile[] bods = null, int modelID = -1)
         {
             ID = modelID;
             // Sanitize text
@@ -418,7 +414,7 @@ namespace XCommonLib.Files
                         break;
                     case ParsingStage.BodySize:
                         currentBody = new Body();
-                        currentBody.Name = "LOD " + Bodies.Count();;
+                        currentBody.Name = "LOD " + Bodies.Count();
                         currentBody.ObjectSize = int.Parse(formatted[i]);
                         stage = ParsingStage.Vertices;
                         break;
@@ -567,8 +563,8 @@ namespace XCommonLib.Files
                 foreach(var body in Bodies)
                 {
                     List<string> names = new List<string>();
-                    names.Add(ID.ToString());
-                    names.Add(bodyCount++.ToString());
+                    names.Add("Number: " +bodyCount++.ToString());
+                    names.Add("ID: " +ID.ToString());
                     if (body.Name != null)
                         names.Add("(" + body.Name + ")");
 

@@ -82,6 +82,12 @@
     <Compile Include="Bases\Sector\TypeData_Display.Designer.cs">
       <DependentUpon>TypeData_Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bases\Story\ScriptArray_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\Story\ScriptArray_Display.Designer.cs">
+      <DependentUpon>ScriptArray_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bases\Story\ScriptHashTable_Display.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\Sector\TypeData_Display.resx">
       <DependentUpon>TypeData_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\Story\ScriptArray_Display.resx">
+      <DependentUpon>ScriptArray_Display.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\Story\ScriptHashTable_Display.resx">
       <DependentUpon>ScriptHashTable_Display.cs</DependentUpon>

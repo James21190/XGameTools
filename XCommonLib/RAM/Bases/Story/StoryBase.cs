@@ -21,8 +21,10 @@ namespace XCommonLib.RAM.Bases.Story
         public abstract ScriptInstance GetScriptInstance(int id);
         public abstract ScriptInstance GetScriptInstance(IntPtr pAddress);
         public abstract int[] GetAllScriptInstances();
-        public abstract ScriptHashTable GetScriptHashTable(IntPtr address);
-        public abstract ScriptHashTable GetScriptHashTable(int id);
+        public abstract ScriptTableObject GetScriptHashTable(IntPtr address);
+        public abstract ScriptTableObject GetScriptHashTable(int id);
+        public abstract ScriptArrayObject GetScriptArrayObject(IntPtr address);
+        public abstract ScriptArrayObject GetScriptArrayObject(int id);
         #endregion
 
         public abstract MemoryString GetStringFromArray(int index);

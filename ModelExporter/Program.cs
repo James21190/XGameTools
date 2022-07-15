@@ -132,7 +132,7 @@ namespace ModelExporter
                                     continue;
                                 var bodFile = new BODFile();
                                 var filedata = Encoding.Default.GetString(catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.DecryptAndExtract));
-                                bodFile.FromText(filedata, int.Parse(Path.GetFileNameWithoutExtension(file)));
+                                bodFile.FromText(filedata, bodFiles.ToArray(), int.Parse(Path.GetFileNameWithoutExtension(file)));
                                 // Append to list for use with bob files
                                 bodFiles.Add(bodFile);
                                 // Convert to .obj

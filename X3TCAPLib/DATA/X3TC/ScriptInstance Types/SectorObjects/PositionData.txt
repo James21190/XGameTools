@@ -1,0 +1,8 @@
+﻿-1
+
+PositionX
+PositionY
+PositionZ
+EulerRotationX
+EulerRotationY
+EulerRotationZ

@@ -93,6 +93,16 @@ namespace CommonToolLib.ProcessHooking
             return obj;
         }
 
+        public T[] ToArray(int length)
+        {
+            T[] arr = new T[length];
+            for(int i = 0; i < length; i++)
+            {
+                arr[i] = GetObjectInArray(i);
+            }
+            return arr;
+        }
+
         /// <summary>
         /// Sets the object at the address with a given offset.
         /// </summary>

@@ -52,72 +52,17 @@ namespace XCommonLib.UI.Bases.Story
 
         public void ReloadMemoryTable()
         {
-            dgvMemoryTable.Rows.Clear();
+            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.Sub.ScriptVariableCount);
 
-            string[] variableNames = new string[m_ScriptInstance.Sub.ScriptVariableCount];
-            for (int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount; i++)
-            {
-                variableNames[i] = i.ToString();
-            }
-
-            // Get variable name if possible
-            if (ReferenceGameHook != null)
+            // Load variables if available
+            if(ReferenceGameHook != null)
             {
                 var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Sub.Class);
                 if(typeData != null)
-                    for (int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount && i < typeData.VariableNames.Length; i++)
-                    {
-                        if (!string.IsNullOrWhiteSpace(typeData.VariableNames[i]))
-                        {
-                            variableNames[i] = typeData.VariableNames[i];
-                        }
-                    }
+                    scriptVariableArrayView1.Variables = typeData.Variables;
             }
 
-            for (int i = 0; i < m_ScriptInstance.Sub.ScriptVariableCount; i++)
-            {
-                var variable = m_ScriptInstance.pScriptVariableArr.GetObjectInArray(i);
-                dgvMemoryTable.Rows.Add(variableNames[i], variable.Flag, variable.Value, variable.Value.ToString("X"));
-            }
-        }
-
-        public delegate void CellActionHandler(object sender, DynamicValue dynamicValue);
-        [Browsable(true)]
-        public event CellActionHandler OnViewClicked;
-
-        private void dgvMemoryTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
-
-            DataGridViewRow row = dgvMemoryTable.Rows[e.RowIndex];
-            if (e.ColumnIndex == dgvMemoryTable.Columns["colView"].Index && e.RowIndex >= 0)
-            {
-
-                DynamicValue dv = new DynamicValue
-                {
-                    Flag = (DynamicValue.FlagType)row.Cells[1].Value,
-                    Value = (int)row.Cells[2].Value
-                };
-
-                if(OnViewClicked != null)
-                    OnViewClicked(this, dv);
-            }
-            //else if (e.ColumnIndex == dgvMemoryTable.Columns["colEdit"].Index && e.RowIndex >= 0)
-            //{
-                /*
-                DynamicValueEditorDisplay editor = new DynamicValueEditorDisplay(m_object.GetVariable(e.RowIndex));
-                editor.ShowDialog();
-                if (editor.result != null)
-                {
-                    m_object.SetVariable(e.RowIndex, editor.result);
-                    m_object.WriteToMemory();
-                    Reload();
-                }
-                */
-            //}
+            scriptVariableArrayView1.DynamicValues = arrValues;
         }
 
         private void numericIDObjectControl1_AddressLoad(object sender, int value)
@@ -136,6 +81,14 @@ namespace XCommonLib.UI.Bases.Story
                 m_ScriptInstance = ReferenceGameHook.StoryBase.GetScriptInstance(value);
                 Reload();
             }
+        }
+
+        public event ScriptVariableArrayView.RequestViewHandler RequestVariableView;
+
+        private void scriptVariableArrayView1_RequestView(object sender, ScriptInstanceType.VariableType type, int variableValue, object additional)
+        {
+            if(RequestVariableView != null)
+                RequestVariableView(this, type, variableValue, additional);
         }
     }
 }

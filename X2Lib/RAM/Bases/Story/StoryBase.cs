@@ -35,11 +35,20 @@ namespace X2Lib.RAM.Bases.Story
         {
             return pHashTable_ScriptInstance.obj.ScanContents();
         }
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(int id)
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
             throw new NotImplementedException();
         }
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptHashTable GetScriptHashTable(IntPtr address)
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(IntPtr address)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(int id)
         {
             throw new NotImplementedException();
         }

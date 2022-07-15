@@ -13,7 +13,21 @@ namespace XCommonLib.UI.Bases.Story
 {
     public partial class ScriptingHashTableView : UserControl
     {
-        public ScriptHashTable ScriptHashTable;
+        private ScriptTableObject _scriptTaskObject;
+        public ScriptTableObject ScriptHashTable
+        {
+            get { return _scriptTaskObject; }
+            set
+            {
+                _scriptTaskObject = value;
+                Reload();
+            }
+        }
+
+        public void Reload()
+        {
+            nnudCount.Value = ScriptHashTable.Count;
+        }
         public ScriptingHashTableView()
         {
             InitializeComponent();

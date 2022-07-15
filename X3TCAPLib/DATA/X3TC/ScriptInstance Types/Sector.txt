@@ -2,33 +2,33 @@
 
 Sector_X
 Sector_Y
-SectorDataScriptInstanceID
-ShipScriptInstanceIDHashTable
+ScriptInstanceID OwningRaceScriptInstanceID
+Table ShipScriptInstanceIDHashTable
 
 
-DockScriptInstanceIDHashTable
-FactoryScriptInstanceIDHashTable
+Table DockScriptInstanceIDHashTable
+Table FactoryScriptInstanceIDHashTable
+Table UnknownTable_1
+Table UnknownTable_2
+Table UnknownTable_3
+Array UnknownArray_1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Table UnknownTable_4
+Table UnknownTable_5
+Table UnknownTable_6
+Table UnknownTable_7
+Table UnknownTable_8
+Table UnknownTable_9
+Table UnknownTable_10
+Table UnknownTable_11
+Table UnknownTable_12
+Table UnknownTable_13
+Table UnknownTable_14
+Table UnknownTable_15
+Table UnknownTable_16
+Table UnknownTable_17
+Table UnknownTable_18
+Table UnknownTable_19
 BackgroundID
 
 
@@ -40,3 +40,18 @@ LastSectorObjectID
 
 
 Population
+
+
+
+
+
+
+
+Array UnknownArray_2
+
+
+Array UnknownArray_3
+Table UnknownTable_20
+Table UnknownTable_21
+Array UnknownArray_4
+Array UnknownArray_5

@@ -55,7 +55,8 @@
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Station_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Sun_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptHashTable.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptArrayObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
@@ -117,6 +118,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Planet.txt" />
+    <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\PositionData.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\SectorObject.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -199,6 +203,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DATA\X3TC\ScriptInstance Types\SectorObjects\Sun.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X3TC\ScriptInstance Types\RaceRelations.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DATA\X3TC\ScriptInstance Types\Template.txt">

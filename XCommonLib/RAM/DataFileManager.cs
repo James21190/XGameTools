@@ -107,15 +107,65 @@ namespace XCommonLib.RAM
             var lines = File.ReadAllLines(path);
             result.Name = Path.GetFileNameWithoutExtension(path);
             result.TypeID = int.Parse(lines[0]);
+
             if (!string.IsNullOrWhiteSpace(lines[1]))
             {
                 result.Parent = GetScriptInstanceType(lines[1]);
             }
 
-            result.LocalVariableNames = new string[lines.Length - 2];
+            result.LocalVariables = new Bases.Story.Scripting.ScriptInstanceType.VariableData[lines.Length - 2];
             for (int i = 2; i < lines.Length; i++)
             {
-                result.LocalVariableNames[i - 2] = lines[i];
+                var newVariable = new Bases.Story.Scripting.ScriptInstanceType.VariableData();
+                // Split line into type and name
+                var splitLine = lines[i].Split(' ');
+                // If no type is provided
+                if (splitLine.Length == 1)
+                {
+                    newVariable.Name = splitLine[0];
+                }
+                // If type and name is provided
+                else if (splitLine.Length == 2)
+                {
+                    newVariable.Name = splitLine[1];
+                    switch (splitLine[0].ToUpper())
+                    {
+                        case "SCRIPTINSTANCEID":
+                            newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.ScriptInstanceID;
+                            break;
+                        case "ARRAY":
+                            newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.Array;
+                            break;
+                        case "NONE":
+                            newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.None;
+                            break;
+                        case "TABLE":
+                            newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.Table;
+                            break;
+                        default:
+                            throw new InvalidDataException("Type is invalid in ScriptInstanceType file " + path + " at line " + i + ".");
+                    }
+                }
+                // If name and type with additional information is provided
+                else if(splitLine.Length == 3)
+                {
+                    newVariable.Name = splitLine[2];
+                    switch(splitLine[0].ToUpper())
+                    {
+                        case "OBJECT":
+                            newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.Object;
+                            newVariable.Additional = splitLine[1];
+                            break;
+                        default:
+                            throw new InvalidDataException("Type is invalid in ScriptInstanceType file " + path + " at line " + i + ".");
+                    }
+                }
+                // If invalid
+                else
+                {
+                    throw new InvalidDataException("Line is invalid in ScriptInstanceType file " + path + " at line " + i + ".");
+                }
+                result.LocalVariables[i-2] = newVariable;
             }
             return result;
         }

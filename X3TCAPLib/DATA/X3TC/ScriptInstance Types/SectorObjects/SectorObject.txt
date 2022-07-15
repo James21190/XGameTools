@@ -1,8 +1,8 @@
 ﻿-1
 
-PositionData
-CurrentSectorScriptInstanceID
-PreviousSectorScriptInstanceID
+Object PositionData PositionData
+ScriptInstanceID CurrentParentScriptInstanceID
+ScriptInstanceID PreviousParentScriptInstanceID
 LastSectorObjectID
 
-ScriptTasks
+Table ScriptTasks

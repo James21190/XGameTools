@@ -1,56 +1,70 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using XCommonLib.RAM.Bases.Story.Scripting;
 
 namespace XRAMTool.Bases.Story
 {
-    public partial class ScriptInstance_Display : Form
+    public partial class ScriptArray_Display : Form
     {
-        private ScriptInstance m_ScriptInstance;
-        public ScriptInstance_Display()
+        public ScriptArray_Display()
         {
             InitializeComponent();
-            scriptInstanceView1.ReferenceGameHook = Program.GameHook;
-        }
-        public void LoadObject(ScriptInstance obj)
-        {
-            m_ScriptInstance = obj;
-            scriptInstanceView1.LoadObject(m_ScriptInstance);
         }
 
-        public void LoadObject(int objID)
+        private IntPtr _pArray;
+        public IntPtr pArray
         {
-            m_ScriptInstance = scriptInstanceView1.ReferenceGameHook.StoryBase.GetScriptInstance(objID);
-            scriptInstanceView1.LoadObject(m_ScriptInstance);
-        }
-
-        private void scriptInstanceView1_OnViewClicked(object sender, DynamicValue dynamicValue)
-        {
-            Form display;
-            switch (dynamicValue.Flag)
+            get { return _pArray; }
+            set
             {
-                case DynamicValue.FlagType.pHashTable:
-                    var hashTableDisplay = new ScriptHashTable_Display();
-                    hashTableDisplay.ScriptHashTable = Program.GameHook.StoryBase.GetScriptHashTable((IntPtr)dynamicValue.Value);
-                    display = hashTableDisplay;
-                    break;
-                default: return;
+                _pArray = value;
+                Reload();
             }
-            display.Show();
         }
-
-        private void scriptInstanceView1_AddressLoad(object sender, int value)
+        private int _ArrayLength;
+        public int ArrayLength
         {
-
+            get { return _ArrayLength; }
+            set
+            {
+                _ArrayLength = value;
+                Reload();
+            }
         }
-
-        private void scriptInstanceView1_IDLoad(object sender, int value)
+        public void LoadFromScriptArrayObject(ScriptArrayObject obj)
         {
-
+            pArray = obj.pArr.address;
+            ArrayLength = obj.Length;
         }
 
-        private void scriptInstanceView1_RequestVariableView(object sender, ScriptInstanceType.VariableType type, int variableValue, object additional)
+        public void Reload()
+        {
+            var pointer = new MemoryObjectPointer<DynamicValue>(Program.GameHook.hProcess);
+            pointer.address = _pArray;
+            Values = pointer.ToArray(_ArrayLength);
+        }
+
+        public DynamicValue[] Values
+        {
+            get { return scriptVariableArrayView1.DynamicValues; }
+            set { scriptVariableArrayView1.DynamicValues = value;}
+        }
+
+        public ScriptInstanceType.VariableData[] VariableData
+        {
+            get { return scriptVariableArrayView1.Variables; }
+            set { scriptVariableArrayView1.Variables = value;}
+        }
+
+        private void scriptVariableArrayView1_RequestView(object sender, ScriptInstanceType.VariableType type, int variableValue, object additional)
         {
             switch (type)
             {

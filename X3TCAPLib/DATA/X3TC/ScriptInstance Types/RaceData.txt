@@ -1,9 +1,9 @@
 ﻿-1
 
 RaceID
-SectorScriptingObjectID
+ScriptInstanceID HomeSectorScriptInstanceID
 
-RaceRelationsArray
+Object RaceRelations RaceRelationsArray
 OwnedShipScriptInstanceIDHashTable
 
 

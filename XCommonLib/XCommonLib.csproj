@@ -63,7 +63,8 @@
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\DynamicValue.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptHashTable.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptArrayObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceType.cs" />
@@ -78,6 +79,12 @@
     <Compile Include="RAM\Generics\HashTable.cs" />
     <Compile Include="RAM\Generics\INumericIDObject.cs" />
     <Compile Include="RAM\Generics\LinkedListStart.cs" />
+    <Compile Include="UI\Bases\Story\ScriptVariableArrayView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\Story\ScriptVariableArrayView.Designer.cs">
+      <DependentUpon>ScriptVariableArrayView.cs</DependentUpon>
+    </Compile>
     <Compile Include="XFixedPointValue.cs" />
     <Compile Include="UI\Bases\Sector\SectorMapView.cs">
       <SubType>UserControl</SubType>
@@ -102,12 +109,6 @@
     </Compile>
     <Compile Include="UI\Bases\Story\ScriptInstanceView.Designer.cs">
       <DependentUpon>ScriptInstanceView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Bases\Story\ScriptTaskObjectView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Bases\Story\ScriptTaskObjectView.Designer.cs">
-      <DependentUpon>ScriptTaskObjectView.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\HashTableView.cs">
       <SubType>UserControl</SubType>
@@ -147,8 +148,8 @@
     <EmbeddedResource Include="UI\Bases\Story\ScriptInstanceView.resx">
       <DependentUpon>ScriptInstanceView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bases\Story\ScriptTaskObjectView.resx">
-      <DependentUpon>ScriptTaskObjectView.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Bases\Story\ScriptVariableArrayView.resx">
+      <DependentUpon>ScriptVariableArrayView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\HashTableView.resx">
       <DependentUpon>HashTableView.cs</DependentUpon>

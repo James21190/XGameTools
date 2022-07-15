@@ -29,18 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvMemoryTable = new System.Windows.Forms.DataGridView();
-            this.clmIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmValueDec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmValueHex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colView = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.scriptVariableArrayView1 = new XCommonLib.UI.Bases.Story.ScriptVariableArrayView();
             this.ntxtMemoryAddress = new CommonToolLib.UI.NamedTextBox();
             this.namedTextBox1 = new CommonToolLib.UI.NamedTextBox();
             this.nnudReferenceCount = new CommonToolLib.UI.NamedNumericUpDown();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMemoryTable)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -48,7 +42,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.dgvMemoryTable);
+            this.groupBox1.Controls.Add(this.scriptVariableArrayView1);
             this.groupBox1.Controls.Add(this.ntxtMemoryAddress);
             this.groupBox1.Location = new System.Drawing.Point(334, 3);
             this.groupBox1.Name = "groupBox1";
@@ -57,60 +51,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Script Memory";
             // 
-            // dgvMemoryTable
+            // scriptVariableArrayView1
             // 
-            this.dgvMemoryTable.AllowUserToAddRows = false;
-            this.dgvMemoryTable.AllowUserToDeleteRows = false;
-            this.dgvMemoryTable.AllowUserToOrderColumns = true;
-            this.dgvMemoryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.scriptVariableArrayView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvMemoryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMemoryTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmIndex,
-            this.clmType,
-            this.clmValueDec,
-            this.clmValueHex,
-            this.colView});
-            this.dgvMemoryTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvMemoryTable.Location = new System.Drawing.Point(6, 75);
-            this.dgvMemoryTable.Name = "dgvMemoryTable";
-            this.dgvMemoryTable.ReadOnly = true;
-            this.dgvMemoryTable.RowHeadersVisible = false;
-            this.dgvMemoryTable.Size = new System.Drawing.Size(293, 277);
-            this.dgvMemoryTable.TabIndex = 1;
-            this.dgvMemoryTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMemoryTable_CellContentClick);
-            // 
-            // clmIndex
-            // 
-            this.clmIndex.HeaderText = "Index";
-            this.clmIndex.Name = "clmIndex";
-            this.clmIndex.ReadOnly = true;
-            // 
-            // clmType
-            // 
-            this.clmType.HeaderText = "Type";
-            this.clmType.Name = "clmType";
-            this.clmType.ReadOnly = true;
-            // 
-            // clmValueDec
-            // 
-            this.clmValueDec.HeaderText = "Value (Dec)";
-            this.clmValueDec.Name = "clmValueDec";
-            this.clmValueDec.ReadOnly = true;
-            // 
-            // clmValueHex
-            // 
-            this.clmValueHex.HeaderText = "Value (Hex)";
-            this.clmValueHex.Name = "clmValueHex";
-            this.clmValueHex.ReadOnly = true;
-            // 
-            // colView
-            // 
-            this.colView.HeaderText = "";
-            this.colView.Name = "colView";
-            this.colView.ReadOnly = true;
-            this.colView.Text = "View";
+            this.scriptVariableArrayView1.DynamicValues = null;
+            this.scriptVariableArrayView1.Location = new System.Drawing.Point(6, 75);
+            this.scriptVariableArrayView1.Name = "scriptVariableArrayView1";
+            this.scriptVariableArrayView1.Size = new System.Drawing.Size(293, 277);
+            this.scriptVariableArrayView1.TabIndex = 1;
+            this.scriptVariableArrayView1.RequestView += new XCommonLib.UI.Bases.Story.ScriptVariableArrayView.RequestViewHandler(this.scriptVariableArrayView1_RequestView);
             // 
             // ntxtMemoryAddress
             // 
@@ -182,7 +133,6 @@
             this.Name = "ScriptInstanceView";
             this.Size = new System.Drawing.Size(642, 364);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMemoryTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -193,12 +143,7 @@
         private CommonToolLib.UI.NamedNumericUpDown nnudReferenceCount;
         private System.Windows.Forms.GroupBox groupBox1;
         private CommonToolLib.UI.NamedTextBox ntxtMemoryAddress;
-        private System.Windows.Forms.DataGridView dgvMemoryTable;
         private CommonToolLib.UI.NamedTextBox namedTextBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIndex;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmValueDec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmValueHex;
-        private System.Windows.Forms.DataGridViewButtonColumn colView;
+        private ScriptVariableArrayView scriptVariableArrayView1;
     }
 }
