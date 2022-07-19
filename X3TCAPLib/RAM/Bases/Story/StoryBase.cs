@@ -19,6 +19,10 @@ namespace X3TCAPLib.RAM.Bases.Story
 
         #region Common
         #region Scripting
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(IntPtr pAddress)
+        {
+            throw new NotImplementedException();
+        }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(int id)
         {
             return pHashTable_ScriptTaskObject.obj.GetObject(id);
@@ -102,6 +106,7 @@ namespace X3TCAPLib.RAM.Bases.Story
 
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
         }
+
 
 
 

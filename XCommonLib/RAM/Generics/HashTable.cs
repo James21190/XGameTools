@@ -87,14 +87,16 @@ namespace XCommonLib.RAM.Generics
         }
 
         /// <summary>
-        /// Returns the address of an object with a given ID.
-        /// Throws an exception if the object is not found.
+        /// Gets the address of an element within the table.
         /// </summary>
         /// <param name="ID"></param>
-        /// <returns></returns>
+        /// <returns>IntPtr to the object or a null pointer</returns>
         public IntPtr GetAddress(int ID)
         {
-            return GetEntry(ID).address;
+            var obj = GetEntry(ID);
+            if (obj == null)
+                return IntPtr.Zero;
+            return obj.address;
         }
 
         #region Scans
@@ -164,14 +166,7 @@ namespace XCommonLib.RAM.Generics
             int[] ids = ScanContents();
             for (int i = 0; i < Count; i++)
             {
-                try
-                {
-                    result[i] = GetObject(ids[i]);
-                }
-                catch (Exception)
-                {
-
-                }
+                result[i] = GetObject(ids[i]);
             }
 
             return result;
@@ -180,7 +175,7 @@ namespace XCommonLib.RAM.Generics
         #endregion
 
         /// <summary>
-        /// Returns the entry with a given id. Throws an exception if not found.
+        /// Returns the entry with a given id. Returns null if not found.
         /// </summary>
         /// <param name="ID"></param>
         /// <returns></returns>
@@ -192,7 +187,7 @@ namespace XCommonLib.RAM.Generics
 
             if (!pEntry.IsValid)
             {
-                throw new HashTableElementNotFoundException(ID);
+                return null;
             }
 
             Entry<T> entry = pEntry.obj;
@@ -200,7 +195,7 @@ namespace XCommonLib.RAM.Generics
             {
                 if (!entry.pNext.IsValid)
                 {
-                    throw new HashTableElementNotFoundException(ID);
+                    return null;
                 }
 
                 entry = entry.pNext.obj;

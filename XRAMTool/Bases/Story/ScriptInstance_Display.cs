@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using XCommonLib.RAM.Bases.Story.Scripting;
+using XRAMTool.Bases.Sector;
 
 namespace XRAMTool.Bases.Story
 {
@@ -81,7 +82,13 @@ namespace XRAMTool.Bases.Story
 
                     newObjectDisplay.Show();
                     break;
+                case ScriptInstanceType.VariableType.SectorObjectID:
+                    var newSectorObjectDisplay = new SectorObject_Display();
 
+                    newSectorObjectDisplay.LoadObject(Program.GameHook.SectorBase.GetSectorObject(variableValue));
+
+                    newSectorObjectDisplay.Show();
+                    break;
             }
         }
     }

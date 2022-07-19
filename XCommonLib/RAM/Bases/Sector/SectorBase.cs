@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
+using System;
 using System.Collections.Generic;
 
 namespace XCommonLib.RAM.Bases.Sector
@@ -40,6 +41,9 @@ namespace XCommonLib.RAM.Bases.Sector
             }
             return null;
         }
+
+        public abstract SectorObject GetSectorObject(int id);
+        public abstract SectorObject GetSectorObject(IntPtr pAddress);
 
         /// <summary>
         /// Returns all top level SectorObjects.

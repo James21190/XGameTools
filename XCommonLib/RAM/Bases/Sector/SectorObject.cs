@@ -82,6 +82,7 @@ namespace XCommonLib.RAM.Bases.Sector
         }
         public abstract bool IsValid { get; }
 
+        #region Memory
         /// <summary>
         /// Next SectorObject in the list.
         /// Is null if object is invalid or non-existant.
@@ -108,6 +109,7 @@ namespace XCommonLib.RAM.Bases.Sector
         public abstract ISectorObjectMeta Meta { get; }
         public abstract int ScriptInstanceID { get; set; }
         public abstract int ModelCollectionID { get; set; }
+        #endregion
 
         public override string ToString()
         {

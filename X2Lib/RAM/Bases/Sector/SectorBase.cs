@@ -50,6 +50,19 @@ namespace X2Lib.RAM.Bases.Sector
         public override XCommonLib.RAM.Bases.Sector.SectorObject First => pFirst.obj;
         public override XCommonLib.RAM.Bases.Sector.SectorObject Last => pLast.obj;
         public override XCommonLib.RAM.Bases.Sector.SectorObject Player => pPlayerShip.obj;
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject GetSectorObject(int id)
+        {
+            return pObjectHashTable.obj.GetObject(id);
+        }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject GetSectorObject(IntPtr pAddress)
+        {
+            var so = new SectorObject();
+            so.hProcess = hProcess;
+            so.pThis = pAddress;
+            so.ReloadFromMemory();
+            return so;
+        }
         #endregion
 
         #region IMemoryObject

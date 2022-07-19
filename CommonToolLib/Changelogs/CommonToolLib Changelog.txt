@@ -1,5 +1,6 @@
 ﻿1.7.0.0
 	- Made generic Vector and Matrix classes.
+	- Added ToArray function for MemoryObjectPointer.
 
 1.6.0.0 (03/05/2022)
 	- Renamed to "CommonToolLib"

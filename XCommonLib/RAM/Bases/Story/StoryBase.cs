@@ -12,19 +12,28 @@ namespace XCommonLib.RAM.Bases.Story
         #endregion
 
         #region Scripting
+        #region ScriptTaskObject
         /// <summary>
         /// Search the hash table for the ScriptTaskObject.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public abstract ScriptTaskObject GetScriptTaskObject(int id);
+        public abstract ScriptTaskObject GetScriptTaskObject(IntPtr pAddress);
+        #endregion
+        #region ScriptInstance
         public abstract ScriptInstance GetScriptInstance(int id);
         public abstract ScriptInstance GetScriptInstance(IntPtr pAddress);
         public abstract int[] GetAllScriptInstances();
+        #endregion
+        #region ScriptTable
         public abstract ScriptTableObject GetScriptHashTable(IntPtr address);
         public abstract ScriptTableObject GetScriptHashTable(int id);
+        #endregion
+        #region ScriptArray
         public abstract ScriptArrayObject GetScriptArrayObject(IntPtr address);
         public abstract ScriptArrayObject GetScriptArrayObject(int id);
+        #endregion
         #endregion
 
         public abstract MemoryString GetStringFromArray(int index);

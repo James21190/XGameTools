@@ -14,6 +14,10 @@ namespace X2Lib.RAM.Bases.Story
 
         #region Common
         #region Scripting
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(IntPtr pAddress)
+        {
+            throw new NotImplementedException();
+        }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(int id)
         {
             throw new NotImplementedException();
@@ -81,6 +85,7 @@ namespace X2Lib.RAM.Bases.Story
         {
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d8);
         }
+
 
 
         #endregion

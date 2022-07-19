@@ -9,6 +9,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         {
             None,
             ScriptInstanceID,
+            SectorObjectID,
             Array,
             Table,
             Object

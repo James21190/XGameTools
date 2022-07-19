@@ -49,6 +49,8 @@ namespace XCommonLib.UI.Bases.Story
                 {
                     case ScriptInstanceType.VariableType.ScriptInstanceID:
                         return "View ScriptInstance";
+                    case ScriptInstanceType.VariableType.SectorObjectID:
+                        return "View SectorObject";
                     case ScriptInstanceType.VariableType.Array:
                         return "View Array";
                     case ScriptInstanceType.VariableType.Table:

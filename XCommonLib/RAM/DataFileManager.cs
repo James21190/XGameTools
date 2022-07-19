@@ -133,6 +133,9 @@ namespace XCommonLib.RAM
                         case "SCRIPTINSTANCEID":
                             newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.ScriptInstanceID;
                             break;
+                        case "SECTOROBJECTID":
+                            newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.SectorObjectID;
+                            break;
                         case "ARRAY":
                             newVariable.Type = Bases.Story.Scripting.ScriptInstanceType.VariableType.Array;
                             break;

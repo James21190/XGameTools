@@ -3,6 +3,6 @@
 Object PositionData PositionData
 ScriptInstanceID CurrentParentScriptInstanceID
 ScriptInstanceID PreviousParentScriptInstanceID
-LastSectorObjectID
+SectorObjectID LastSectorObjectID
 
 Table ScriptTasks
