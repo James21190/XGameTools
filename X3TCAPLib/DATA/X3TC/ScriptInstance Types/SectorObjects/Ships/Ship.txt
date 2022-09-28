@@ -10,7 +10,7 @@ SubType
 
 
 
-CustomShipName
+Array CustomShipName
 
 Hull
 

@@ -51,9 +51,12 @@ namespace X3TCAPLib.RAM
             Gate,
             Camera,
             Special,
-
+            Type_21,
+            Type_22,
+            Type_23,
+            Type_24,
             Cockpit = 25,
-
+            Type_26,
             Type_27 = 27,
             Debris = 28,
             Wreck,

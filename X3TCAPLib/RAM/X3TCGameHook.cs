@@ -73,7 +73,7 @@ namespace X3TCAPLib.RAM
         public MemoryObjectPointer<MemoryObjectPointer<SystemBase>> ppSystemBase;
         #endregion
         #region TypeData
-        public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
+        public MemoryObjectPointer<MemoryInt32> pTypeData_CountArr;
         public MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         #endregion
         #endregion
@@ -93,7 +93,7 @@ namespace X3TCAPLib.RAM
             {
                 short[] values = new short[XCommonLib.RAM.GameHook.MainTypeCount];
                 for (int i = 0; i < XCommonLib.RAM.GameHook.MainTypeCount; i++)
-                    values[i] = pTypeData_CountArr.GetObjectInArray(i).Value;
+                    values[i] = (short)(pTypeData_CountArr.GetObjectInArray(i).Value);
                 return values;
             }
         }
@@ -116,7 +116,7 @@ namespace X3TCAPLib.RAM
             #endregion
 
             #region TypeData
-            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeDataCountArray);
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeDataCountArray);
             ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeData_Ship);
 
             #endregion
@@ -172,7 +172,20 @@ namespace X3TCAPLib.RAM
                 case MainType_X3TCAP.Ware_T: return GeneralMainType.Ware_T;
                 case MainType_X3TCAP.Ware_E: return GeneralMainType.Ware_E;
                 case MainType_X3TCAP.Ware_B: return GeneralMainType.Ware_B;
-                case MainType_X3TCAP.Type_27: return GeneralMainType.Type_27;
+                case MainType_X3TCAP.Type_27: return GeneralMainType.UnknownType_27;
+                case MainType_X3TCAP.Background: return GeneralMainType.Background;
+                case MainType_X3TCAP.Ware_N: return GeneralMainType.Ware_N;
+                case MainType_X3TCAP.Ware_M: return GeneralMainType.Ware_M;
+                case MainType_X3TCAP.Camera: return GeneralMainType.Camera;
+                case MainType_X3TCAP.Type_21: return GeneralMainType.UnknownType_21;
+                case MainType_X3TCAP.Type_22: return GeneralMainType.UnknownType_22;
+                case MainType_X3TCAP.Type_23: return GeneralMainType.UnknownType_23;
+                case MainType_X3TCAP.Type_24: return GeneralMainType.UnknownType_24;
+                case MainType_X3TCAP.Cockpit: return GeneralMainType.Cockpit;
+                case MainType_X3TCAP.Type_26: return GeneralMainType.UnknownType_26;
+                case MainType_X3TCAP.Wreck: return GeneralMainType.Wreck;
+                case MainType_X3TCAP.Factory_Wreck: return GeneralMainType.Factory_Wreck;
+                case MainType_X3TCAP.Ship_Wreck: return GeneralMainType.Ship_Wreck;
             }
             throw new NotImplementedException("MainType of " + ((MainType_X3TCAP)mainType).ToString() + " was not assigned.");
         }

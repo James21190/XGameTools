@@ -46,10 +46,12 @@ namespace XCommonLib.RAM
 
             Nebula,
 
-            Type_23,
-            Type_24,
-            Type_26,
-            Type_27
+            UnknownType_21,
+            UnknownType_22,
+            UnknownType_23,
+            UnknownType_24,
+            UnknownType_26,
+            UnknownType_27
         }
         public enum GeneralRaces : short
         {

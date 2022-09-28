@@ -20,8 +20,16 @@ namespace XCommonLib.UI.Bases.Story
         {
             get { return _dynamicValues; }
             set {
-                _dynamicValues = value;
-                Reload();
+                if(_dynamicValues.Length == value.Length)
+                {
+                    _dynamicValues = value;
+                    SoftReload();
+                }
+                else
+                {
+                    _dynamicValues = value;
+                    Reload();
+                }
             }
         }
         public ScriptInstanceType.VariableData[] Variables;
@@ -60,6 +68,16 @@ namespace XCommonLib.UI.Bases.Story
                 }
             }
             return null;
+        }
+
+        private void SoftReload()
+        {
+            if (DynamicValues != null)
+                for (int i = 0; i < DynamicValues.Length; i++)
+                {
+                    var variable = DynamicValues[i];
+                    dgvMemoryTable.Rows[i].SetValues(_GetVariableName(i), variable.Flag, variable.Value, variable.Value.ToString("X"), _GetButtonText(i));
+                }
         }
 
         public void Reload()

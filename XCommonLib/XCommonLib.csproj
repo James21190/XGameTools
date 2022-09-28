@@ -79,6 +79,12 @@
     <Compile Include="RAM\Generics\HashTable.cs" />
     <Compile Include="RAM\Generics\INumericIDObject.cs" />
     <Compile Include="RAM\Generics\LinkedListStart.cs" />
+    <Compile Include="UI\Bases\Sector\TypeData\TypeDataShipSubView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Bases\Sector\TypeData\TypeDataShipSubView.Designer.cs">
+      <DependentUpon>TypeDataShipSubView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Bases\Story\ScriptVariableArrayView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +144,9 @@
   <ItemGroup>
     <EmbeddedResource Include="UI\Bases\Sector\SectorMapView.resx">
       <DependentUpon>SectorMapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Bases\Sector\TypeData\TypeDataShipSubView.resx">
+      <DependentUpon>TypeDataShipSubView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Bases\Sector\TypeData\TypeDataView.resx">
       <DependentUpon>TypeDataView.cs</DependentUpon>

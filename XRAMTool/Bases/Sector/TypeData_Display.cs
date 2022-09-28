@@ -25,6 +25,7 @@ namespace XRAMTool.Bases.Sector
             {
                 case GameHook.GeneralMainType.Ship:
                     var shipTypeData = Program.GameHook.GetTypeData_Ship(subType);
+                    namedTextBox1.Text = shipTypeData.pThis.ToString("X");
                     typeDataView1.LoadObject(shipTypeData);
                     break;
             }

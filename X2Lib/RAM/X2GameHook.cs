@@ -191,10 +191,10 @@ namespace X2Lib.RAM
                 case MainType_X2.Ware_N: return GeneralMainType.Ware_N;
                 case MainType_X2.Ware_M: return GeneralMainType.Ware_M;
                 case MainType_X2.Camera: return GeneralMainType.Camera;
-                case MainType_X2.Type_23: return GeneralMainType.Type_23;
-                case MainType_X2.Type_24: return GeneralMainType.Type_24;
-                case MainType_X2.Type_26: return GeneralMainType.Type_26;
-                case MainType_X2.Type_27: return GeneralMainType.Type_27;
+                case MainType_X2.Type_23: return GeneralMainType.UnknownType_23;
+                case MainType_X2.Type_24: return GeneralMainType.UnknownType_24;
+                case MainType_X2.Type_26: return GeneralMainType.UnknownType_26;
+                case MainType_X2.Type_27: return GeneralMainType.UnknownType_27;
                 case MainType_X2.Cockpit: return GeneralMainType.Cockpit;
                 case MainType_X2.Wreck: return GeneralMainType.Wreck;
                 case MainType_X2.Factory_Wreck: return GeneralMainType.Factory_Wreck;

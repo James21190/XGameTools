@@ -1,6 +1,7 @@
 ﻿1.7.0.0
-	- Made generic Vector and Matrix classes.
+	- Added generic Vector and Matrix classes.
 	- Added ToArray function for MemoryObjectPointer.
+	- Added CString functions for BinaryObjectConverter.
 
 1.6.0.0 (03/05/2022)
 	- Renamed to "CommonToolLib"

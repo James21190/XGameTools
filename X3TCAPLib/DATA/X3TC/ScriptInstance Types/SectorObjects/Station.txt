@@ -7,7 +7,7 @@ SectorObject
 MainType
 SubType
 
-OwningRaceDataScriptingObjectID
+ScriptInstanceID OwningRaceScriptInstanceID
 
 
 

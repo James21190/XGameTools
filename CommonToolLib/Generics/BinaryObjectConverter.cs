@@ -104,6 +104,30 @@ namespace CommonToolLib.Generics
             foreach(var str in strs)
                 AppendFixedLengthString(str, length);
         }
+
+        public void AppendCString(string str)
+        {
+            byte[] bytes = new byte[str.Length + 1];
+
+            for(int i = 0; i < str.Length; i++)
+            {
+                bytes[i] = (byte)str[i];
+                if (bytes[i] == 0)
+                    throw new ArgumentException("String contains null");
+            }
+
+            bytes[str.Length] = 0;
+
+            Append(bytes);
+        }
+
+        public void AppendCStrings(string[] strs)
+        {
+            foreach(var str in strs)
+            {
+                AppendCString(str);
+            }
+        }
         #endregion
 
         #region Pops
@@ -360,6 +384,28 @@ namespace CommonToolLib.Generics
                 results[i] = PopFixedLengthString(length);
             }
             return results;
+        }
+
+        public string PopCString()
+        {
+            StringBuilder sb = new StringBuilder();
+            byte b = PopByte();
+            while(b != 0)
+            {
+                sb.Append((char)b);
+                b = PopByte();
+            }
+            return sb.ToString();
+        }
+
+        public string[] PopCStrings(int count)
+        {
+            var result = new string[count];
+            for(int i = 0; i < count; i++)
+            {
+                result[i] = PopCString();
+            }
+            return result;
         }
 
         #endregion

@@ -30,9 +30,8 @@
         {
             this.cmbMainType = new System.Windows.Forms.ComboBox();
             this.cmbSubType = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.typeDataView1 = new XCommonLib.UI.Bases.Sector.TypeData.TypeDataView();
-            this.panel1.SuspendLayout();
+            this.namedTextBox1 = new CommonToolLib.UI.NamedTextBox();
             this.SuspendLayout();
             // 
             // cmbMainType
@@ -55,33 +54,34 @@
             this.cmbSubType.TabIndex = 1;
             this.cmbSubType.SelectedIndexChanged += new System.EventHandler(this.cmbSubType_SelectedIndexChanged);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.typeDataView1);
-            this.panel1.Location = new System.Drawing.Point(12, 66);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 372);
-            this.panel1.TabIndex = 2;
-            // 
             // typeDataView1
             // 
-            this.typeDataView1.Location = new System.Drawing.Point(3, 3);
+            this.typeDataView1.Location = new System.Drawing.Point(12, 68);
             this.typeDataView1.Name = "typeDataView1";
-            this.typeDataView1.Size = new System.Drawing.Size(328, 281);
+            this.typeDataView1.Size = new System.Drawing.Size(776, 370);
             this.typeDataView1.TabIndex = 0;
+            // 
+            // namedTextBox1
+            // 
+            this.namedTextBox1.Location = new System.Drawing.Point(139, 12);
+            this.namedTextBox1.MinimumSize = new System.Drawing.Size(100, 50);
+            this.namedTextBox1.Name = "namedTextBox1";
+            this.namedTextBox1.Size = new System.Drawing.Size(138, 50);
+            this.namedTextBox1.TabIndex = 3;
+            this.namedTextBox1.Title = "Address";
             // 
             // TypeData_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.typeDataView1);
+            this.Controls.Add(this.namedTextBox1);
             this.Controls.Add(this.cmbSubType);
             this.Controls.Add(this.cmbMainType);
             this.Name = "TypeData_Display";
             this.Text = "TypeData_Display";
             this.Load += new System.EventHandler(this.TypeData_Display_Load);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -90,7 +90,7 @@
 
         private System.Windows.Forms.ComboBox cmbMainType;
         private System.Windows.Forms.ComboBox cmbSubType;
-        private System.Windows.Forms.Panel panel1;
         private XCommonLib.UI.Bases.Sector.TypeData.TypeDataView typeDataView1;
+        private CommonToolLib.UI.NamedTextBox namedTextBox1;
     }
 }
