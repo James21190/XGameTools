@@ -45,7 +45,7 @@ namespace X3TCAPLib.Files.CatDat
             Array.Copy(Memory,decrypted,decrypted.Length);
             base.SetData(decrypted);
         }
-
+        // test
         public override byte[] GetBytes()
         {
             var decrypted = base.GetBytes();
