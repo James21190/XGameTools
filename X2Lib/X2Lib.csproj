@@ -57,6 +57,7 @@
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
     <Compile Include="RAM\X2GameHook.cs" />
   </ItemGroup>
@@ -77,6 +78,9 @@
     <None Include="DATA\X2\Mods\Speed Inline.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="DATA\X2\SectorObject Types\3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DATA\X2\SectorObject Types\21.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

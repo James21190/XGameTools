@@ -1,6 +1,7 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 using XCommonLib.RAM.Generics;
 
@@ -66,12 +67,29 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
             SetUniqueData(collection);
         }
 
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        public override IntPtr hProcess
         {
-            base.SetLocation(hProcess, address);
-            for (int i = 0; i < X3TCGameHook.MainTypeCount; i++)
+            get => base.hProcess;
+            set
             {
-                Children[i].SetLocation(hProcess, address + LinkedListStart<SectorObject>.ByteSizeConst * i);
+                for (int i = 0; i < X3TCGameHook.MainTypeCount; i++)
+                {
+                    Children[i].hProcess = value;
+                }
+                base.hProcess = value;
+            }
+        }
+
+        public override IntPtr pThis
+        {
+            get => base.pThis;
+            set
+            {
+                for (int i = 0; i < X3TCGameHook.MainTypeCount; i++)
+                {
+                    Children[i].pThis = value + LinkedListStart<SectorObject>.ByteSizeConst * i;
+                }
+                base.pThis = value;
             }
         }
 

@@ -91,29 +91,31 @@ namespace X3TCAPLib.RAM.Bases.Sector
             Unknown_21 = objectByteList.PopInt(); // 0x60
             Unknown_22 = objectByteList.PopInt();
         }
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
+
+        public override IntPtr hProcess
         {
-            if (pFirst != null)
+            get => base.hProcess;
+            set
             {
-                pFirst.SetLocation(hProcess, address + 0x8);
+                pFirst.hProcess = value;
+                pLast.hProcess = value;
+                pObjectHashTable.hProcess = value;
+                pPlayerShip.hProcess = value;
+                base.hProcess = value;
             }
+        }
 
-            if (pLast != null)
+        public override IntPtr pThis
+        {
+            get => base.pThis;
+            set
             {
-                pLast.SetLocation(hProcess, address + 0x10);
+                pFirst.pThis = value + 0x8;
+                pLast.pThis = value + 0x10;
+                pObjectHashTable.pThis = value + 0x14;
+                pPlayerShip.pThis = value + 0x38;
+                base.pThis = value;
             }
-
-            if (pObjectHashTable != null)
-            {
-                pObjectHashTable.SetLocation(hProcess, address + 0x14);
-            }
-
-            if (pPlayerShip != null)
-            {
-                pPlayerShip.SetLocation(hProcess, address + 0x38);
-            }
-
-            base.SetLocation(hProcess, address);
         }
         #endregion
     }

@@ -56,6 +56,13 @@ namespace XCommonLib.UI
 
         public void Reload()
         {
+            HashTable.ReloadFromMemory();
+            ntxtLength.Text = HashTable.Length.ToString();
+            int searchnum;
+            if (int.TryParse(txtSearch.Text, out searchnum))
+                ntxtSearchedIndex.Text = HashTable.GetIndex(searchnum).ToString();
+            else
+                ntxtSearchedIndex.Text = "";
             listBox1.Items.Clear();
             foreach(var item in _ScanResults)
             {

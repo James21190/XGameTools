@@ -36,11 +36,26 @@ namespace XCommonLib.RAM.Generics
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
         }
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        public override IntPtr hProcess
         {
-            base.SetLocation(hProcess, address);
-            pFirst.SetLocation(hProcess, address);
-            pLast.SetLocation(hProcess, address + 8);
+            get => base.hProcess;
+            set
+            {
+                pFirst.hProcess = value;
+                pLast.hProcess = value;
+                base.hProcess = value;
+            }
+        }
+
+        public override IntPtr pThis
+        {
+            get => base.pThis;
+            set
+            {
+                pFirst.pThis = value;
+                pLast.pThis = value + 0x8;
+                base.pThis = value;
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace XCommonLib.UI.Bases.Story
         {
             get { return _dynamicValues; }
             set {
-                if(_dynamicValues.Length == value.Length)
+                if(_dynamicValues != null && _dynamicValues.Length == value.Length)
                 {
                     _dynamicValues = value;
                     SoftReload();

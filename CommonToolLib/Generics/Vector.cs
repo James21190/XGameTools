@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommonToolLib.Generics
 {
-    public class Vector<T> : ICloneable
+    public struct Vector<T> : ICloneable
     {
         // When converted int a matrix, this will be a Length x 1 matrix.
 

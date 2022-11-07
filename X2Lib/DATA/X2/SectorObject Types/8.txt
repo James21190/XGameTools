@@ -1,9 +1,9 @@
 ﻿Alpha Impuse Ray Emitter
-
+Beta Impulse Ray Emitter
 Gamma Impulse Ray Emitter
 Alpha Particle Accelerator Cannon
 
-
+Gamma Particle Accelerator Cannon
 
 Beta High Energy Plasma Thrower
 Gamma High Energy Plasma Thrower
@@ -19,5 +19,5 @@ Beta Kyon Emitter
 
 
 
-
+Lasertower Weapon
 Gamma Kyon Emitter

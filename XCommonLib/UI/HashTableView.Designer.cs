@@ -34,13 +34,15 @@
             this.ntxtEntryObject = new CommonToolLib.UI.NamedTextBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ntxtSearchedIndex = new CommonToolLib.UI.NamedTextBox();
+            this.ntxtLength = new CommonToolLib.UI.NamedTextBox();
             this.SuspendLayout();
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(129, 29);
+            this.btnScan.Location = new System.Drawing.Point(6, 29);
             this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(133, 23);
+            this.btnScan.Size = new System.Drawing.Size(117, 23);
             this.btnScan.TabIndex = 0;
             this.btnScan.Text = "Scan";
             this.btnScan.UseVisualStyleBackColor = true;
@@ -49,15 +51,15 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 29);
+            this.listBox1.Location = new System.Drawing.Point(6, 58);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 290);
+            this.listBox1.Size = new System.Drawing.Size(117, 264);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // ntxtEntryID
             // 
-            this.ntxtEntryID.Location = new System.Drawing.Point(129, 58);
+            this.ntxtEntryID.Location = new System.Drawing.Point(129, 216);
             this.ntxtEntryID.MinimumSize = new System.Drawing.Size(100, 50);
             this.ntxtEntryID.Name = "ntxtEntryID";
             this.ntxtEntryID.ReadOnly = true;
@@ -67,7 +69,7 @@
             // 
             // ntxtEntryObject
             // 
-            this.ntxtEntryObject.Location = new System.Drawing.Point(129, 114);
+            this.ntxtEntryObject.Location = new System.Drawing.Point(129, 272);
             this.ntxtEntryObject.MinimumSize = new System.Drawing.Size(100, 50);
             this.ntxtEntryObject.Name = "ntxtEntryObject";
             this.ntxtEntryObject.ReadOnly = true;
@@ -92,10 +94,32 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Search";
             // 
+            // ntxtSearchedIndex
+            // 
+            this.ntxtSearchedIndex.Location = new System.Drawing.Point(129, 160);
+            this.ntxtSearchedIndex.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtSearchedIndex.Name = "ntxtSearchedIndex";
+            this.ntxtSearchedIndex.ReadOnly = true;
+            this.ntxtSearchedIndex.Size = new System.Drawing.Size(133, 50);
+            this.ntxtSearchedIndex.TabIndex = 7;
+            this.ntxtSearchedIndex.Title = "Searched Index";
+            // 
+            // ntxtLength
+            // 
+            this.ntxtLength.Location = new System.Drawing.Point(129, 29);
+            this.ntxtLength.MinimumSize = new System.Drawing.Size(100, 50);
+            this.ntxtLength.Name = "ntxtLength";
+            this.ntxtLength.ReadOnly = true;
+            this.ntxtLength.Size = new System.Drawing.Size(133, 50);
+            this.ntxtLength.TabIndex = 8;
+            this.ntxtLength.Title = "Length";
+            // 
             // HashTableView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ntxtLength);
+            this.Controls.Add(this.ntxtSearchedIndex);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.ntxtEntryObject);
@@ -117,5 +141,7 @@
         private CommonToolLib.UI.NamedTextBox ntxtEntryObject;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
+        private CommonToolLib.UI.NamedTextBox ntxtSearchedIndex;
+        private CommonToolLib.UI.NamedTextBox ntxtLength;
     }
 }

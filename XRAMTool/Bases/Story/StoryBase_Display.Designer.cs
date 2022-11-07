@@ -28,10 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstScriptInstances = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lstScriptInstances = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lstScriptInstances);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(121, 324);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Script Instances";
             // 
             // lstScriptInstances
             // 
@@ -44,16 +54,6 @@
             this.lstScriptInstances.Size = new System.Drawing.Size(109, 290);
             this.lstScriptInstances.TabIndex = 0;
             this.lstScriptInstances.DoubleClick += new System.EventHandler(this.lstScriptInstances_DoubleClick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lstScriptInstances);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 324);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Script Instances";
             // 
             // StoryBase_Display
             // 
@@ -70,8 +70,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lstScriptInstances;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox lstScriptInstances;
     }
 }

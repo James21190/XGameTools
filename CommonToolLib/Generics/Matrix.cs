@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CommonToolLib.Generics
 {
-    public class Matrix<T>
+    public struct Matrix<T>
     {
         public int Rows { get; }
         public int Columns { get; }

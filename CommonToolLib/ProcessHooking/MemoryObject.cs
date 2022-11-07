@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace CommonToolLib.ProcessHooking
 {
@@ -22,8 +23,10 @@ namespace CommonToolLib.ProcessHooking
         /// </summary>
         /// <returns></returns>
         public abstract int ByteSize { get; }
-        public IntPtr pThis { get; set; }
-        public IntPtr hProcess { get; set; }
+
+
+        public virtual IntPtr pThis { get; set; }
+        public virtual IntPtr hProcess { get; set; }
 
         /// <summary>
         /// Sets the values of the fields of this object with the values stored in a binary array.
@@ -42,20 +45,7 @@ namespace CommonToolLib.ProcessHooking
         /// <param name="objectByteList"></param>
         protected virtual void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Sets the context of the object.
-        /// Essential for keeping newly created objects from pointers in context.
-        /// The memory is not automatically reloaded.
-        /// </summary>
-        /// <param name="hProcess"></param>
-        /// <param name="address"></param>
-        public virtual void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            this.hProcess = hProcess;
-            pThis = address;
+            throw new NotImplementedException("The type of \"" + this.GetType().ToString() + "\" has not implemented SetData(byte[]).");
         }
 
         /// <summary>

@@ -29,6 +29,27 @@ namespace XCommonLib.RAM.Generics
             #endregion
 
             #region IMemoryObject
+
+            public override IntPtr pThis
+            {
+                get => base.pThis;
+                set
+                {
+                    pNext.pThis = value;
+                    pObject.pThis = value + 0x8;
+                    base.pThis = value;
+                }
+            }
+            public override IntPtr hProcess
+            {
+                get => base.hProcess;
+                set
+                {
+                    pNext.hProcess = value;
+                    pObject.hProcess = value;
+                    base.hProcess = value;
+                }
+            }
             public override byte[] GetBytes()
             {
                 MemoryObjectConverter collection = new MemoryObjectConverter();
@@ -45,13 +66,6 @@ namespace XCommonLib.RAM.Generics
                 pNext.address = objectByteList.PopIntPtr();
                 ObjectID = objectByteList.PopInt();
                 pObject.address = objectByteList.PopIntPtr();
-            }
-
-            public override void SetLocation(IntPtr hProcess, IntPtr address)
-            {
-                pNext.SetLocation(hProcess, address);
-                pObject.SetLocation(hProcess, address + 0x8);
-                base.SetLocation(hProcess, address);
             }
             #endregion
         }
@@ -203,7 +217,7 @@ namespace XCommonLib.RAM.Generics
             return entry.pObject;
         }
 
-        private int GetIndex(int ID)
+        public int GetIndex(int ID)
         {
             return (Length - 1) & ID;
         }
@@ -230,10 +244,24 @@ namespace XCommonLib.RAM.Generics
             Count = collection.PopInt();
         }
 
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        public override IntPtr hProcess
         {
-            base.SetLocation(hProcess, address);
-            ppEntry.SetLocation(hProcess, address);
+            get => base.hProcess;
+            set
+            {
+                ppEntry.hProcess = value;
+                base.hProcess = value;
+            }
+        }
+
+        public override IntPtr pThis
+        {
+            get => base.pThis;
+            set
+            {
+                ppEntry.pThis = value;
+                base.pThis = value;
+            }
         }
         #endregion
     }

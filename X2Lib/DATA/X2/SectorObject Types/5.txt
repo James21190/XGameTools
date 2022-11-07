@@ -1,14 +1,14 @@
 ﻿Argon Trading Station
-
+Split Trading Station
 Paranid Trading Station
 Boron Trading Station
-
+Teladi Trading Station
 Xenon Station
 Argon Equipment Dock
-
+Split Equipment Dock
 Paranid Equipment Dock
 
-
+Teladi Equipment Dock
 
 
 

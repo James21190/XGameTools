@@ -17,12 +17,16 @@ namespace XRAMTool.Bases.Sector
 
         private SectorObject m_SectorObject;
 
+        // Load a SectorObject
         public void LoadObject(SectorObject obj)
         {
             m_SectorObject = obj;
             Reload();
         }
 
+        /// <summary>
+        /// Reload all elements of the GUI
+        /// </summary>
         public void Reload()
         {
             m_SectorObject.ReloadFromMemory();
@@ -101,18 +105,25 @@ namespace XRAMTool.Bases.Sector
             display.Show();
         }
 
+        /// <summary>
+        /// A threaded method that generates the tree view.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bgwTreeReloader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            bgwTreeReloader.ReportProgress(99);
+            bgwTreeReloader.ReportProgress(50);
+            // Get list of
             List<TreeNode> nodeCollection = new List<TreeNode>();
+
             TreeNode currentSelection = null;
+            TreeNode selectedNode = null;
             foreach (SectorObject sectorObject in Program.GameHook.SectorBase.GetSectorObjects())
             {
                 nodeCollection.Add(GetSectorObjectTreeNode(sectorObject, out currentSelection));
-                if (currentSelection != null)
-                {
-                    treeView1.SelectedNode = currentSelection;
-                    currentSelection.Expand();
+                // Generate tree node, and if the current SectorObject was generated within the node, select it.
+                if (selectedNode == null && currentSelection != null)                {
+                    selectedNode = currentSelection;
                 }
             }
 
@@ -120,7 +131,9 @@ namespace XRAMTool.Bases.Sector
             {
                 treeView1.Nodes.Clear();
                 treeView1.Nodes.AddRange(nodeCollection.ToArray());
-                treeView1.SelectedNode = currentSelection;
+                treeView1.SelectedNode = selectedNode;
+                if(selectedNode != null)
+                    selectedNode.Expand();
             }));
 
             bgwTreeReloader.ReportProgress(100);

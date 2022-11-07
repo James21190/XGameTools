@@ -1,8 +1,8 @@
 ﻿
-
+Split Shipyard
 Paranid Shipyard
 
-
+Teladi Shipyard
 
 
 
@@ -56,7 +56,7 @@ Paranid Quantum Tube Fab
 
 
 
-
+Split Silkworm Missile Factory
 
 
 
@@ -119,41 +119,41 @@ Paranid Beta HEPT Forge
 
 
 
-
+Split Ore Mine
 Paranid Ore Mine
 
 
 
-
+Split Silicon Mine
 Paranid Silicon Mine
 
 
 
-
+Split Solar Power Plant
 Paranid Solar Power Plant
 
+Teladi Solar Power Plant
 
 
 
 
 
-
-
+Split Chelt Space Aquarium
 Paranid Soyfarm
 
+Teladi Flower Farm
+Teladi Teladianium foundry
+Teladi Dream farm
 
 
 
 
 
-
-
-
-
-
+Split Massom Mill
+Split Rastar Refinery
 
 Paranid Soyery
-
+Teladi Sun oil refinery
 
 Xenon Solar Power Plant
 
@@ -165,3 +165,67 @@ Xenon Solar Power Plant
 
 
 Paranid SQUASH Mine Factory
+
+
+
+
+
+
+
+
+
+
+
+
+
+Split Warf
+
+
+Teladi Warf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Split Ammunition Factory

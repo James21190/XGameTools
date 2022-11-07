@@ -44,7 +44,8 @@ namespace CommonToolLib.ProcessHooking
             get
             {
                 T obj = new T();
-                obj.SetLocation(hProcess, address);
+                obj.hProcess = hProcess;
+                obj.pThis = address;
                 obj.ReloadFromMemory();
                 return obj;
             }
@@ -56,15 +57,17 @@ namespace CommonToolLib.ProcessHooking
         public A GetObjAsType<A>() where A : IMemoryObject, new()
         {
             A obj = new A();
-            obj.SetLocation(hProcess, address);
+            obj.hProcess = hProcess;
+            obj.pThis = address;
             obj.ReloadFromMemory();
             return obj;
         }
 
-        public A GetObjInArrayAsType<A>(int Index) where A : IMemoryObject, new()
+        public A GetObjInArrayAsType<A>(int index) where A : IMemoryObject, new()
         {
             A obj = new A();
-            obj.SetLocation(hProcess, address + (obj.ByteSize * Index));
+            obj.hProcess = hProcess;
+            obj.pThis = address + (obj.ByteSize * index);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -82,13 +85,13 @@ namespace CommonToolLib.ProcessHooking
         /// <summary>
         /// Returns the object at the address with a given offset.
         /// </summary>
-        /// <param name="Index"></param>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public T GetObjectInArray(int Index)
+        public T GetObjectInArray(int index)
         {
             T obj = new T();
-            IntPtr newAddress = address + (Index * obj.ByteSize);
-            obj.SetLocation(hProcess, newAddress);
+            obj.hProcess = hProcess;
+            obj.pThis = address + (index * obj.ByteSize);
             obj.ReloadFromMemory();
             return obj;
         }

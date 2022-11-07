@@ -1,9 +1,11 @@
-﻿using CommonToolLib.ProcessHooking;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace XCommonLib.RAM.Bases.Story.Scripting
 {
-    public class DynamicValue : MemoryObject
+    public struct DynamicValue : IMemoryObject
     {
         public const int FlagCount = 15;
         public enum FlagType
@@ -21,8 +23,18 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public FlagType Flag;
         public int Value;
 
-        #region MemoryObject
-        public override byte[] GetBytes()
+        public DynamicValue(FlagType flag = FlagType.NULL, int value = 0)
+        {
+            Flag = flag;
+            Value = value;
+            pThis = IntPtr.Zero;
+            hProcess = IntPtr.Zero;
+        }
+
+        #region IMemoryObject
+        public IntPtr pThis { get; set; }
+        public IntPtr hProcess { get; set; }
+        public byte[] GetBytes()
         {
             MemoryObjectConverter collection = new MemoryObjectConverter();
             collection.Append((byte)Flag);
@@ -31,12 +43,24 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         }
 
         public const int ByteSizeConst = 5;
-        public override int ByteSize => ByteSizeConst;
+        public int ByteSize => ByteSizeConst;
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        public void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Flag = (FlagType)objectByteList.PopByte();
             Value = objectByteList.PopInt();
+        }
+
+        public void ReloadFromMemory()
+        {
+            SetData(MemoryControl.Read(hProcess, pThis, ByteSize));
+        }
+
+        public void SetData(byte[] Memory)
+        {
+            var boc = new BinaryObjectConverter(Memory);
+            Flag = (FlagType)boc.PopByte();
+            Value = boc.PopInt();
         }
         #endregion
 
@@ -82,6 +106,8 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             return 0;
         }
 
+        #region Operators
+
         public override bool Equals(object obj)
         {
             if (obj is DynamicValue)
@@ -90,6 +116,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             }
             return false;
         }
+
 
         public static bool operator ==(DynamicValue a, DynamicValue b)
         {
@@ -109,5 +136,33 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         {
             return !(a == b);
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        #endregion
+
+        #region Casting
+        public static explicit operator DynamicValue(int v)
+        {
+            return new DynamicValue(FlagType.Int, v);
+        }
+
+        public static explicit operator int (DynamicValue v)
+        {
+            if (v.Flag != FlagType.Int)
+                throw new ArgumentException("Dynamic value is not an int");
+            return v.Value;
+        }
+        #endregion
+
+        #region Default objects
+
+        public static readonly DynamicValue Null = new DynamicValue();
+        public static readonly DynamicValue Zero = new DynamicValue(FlagType.Int);
+
+        #endregion
     }
 }

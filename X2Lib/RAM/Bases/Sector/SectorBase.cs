@@ -12,12 +12,12 @@ namespace X2Lib.RAM.Bases.Sector
         /// <summary>
         /// Pointer to the first sector object in a linear list.
         /// </summary>
-        public MemoryObjectPointer<SectorObject> pFirst;
+        public MemoryObjectPointer<SectorObject> pFirst = new MemoryObjectPointer<SectorObject>();
         /// <summary>
         /// Pointer to the last sector object in a linear list.
         /// </summary>
         public int Unknown_3;
-        public MemoryObjectPointer<SectorObject> pLast; // 0x10
+        public MemoryObjectPointer<SectorObject> pLast = new MemoryObjectPointer<SectorObject>(); // 0x10
         /// <summary>
         /// Pointer to the hash table containing all SectorObject.
         /// </summary>
@@ -131,29 +131,30 @@ namespace X2Lib.RAM.Bases.Sector
             Unknown_15 = objectByteList.PopInt();
         }
 
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
+        public override IntPtr hProcess
         {
-            if (pFirst != null)
+            get => base.hProcess;
+            set
             {
-                pFirst.SetLocation(hProcess, address + 0x8);
+                pFirst.hProcess = value;
+                pLast.hProcess = value;
+                pObjectHashTable.hProcess = value;
+                pPlayerShip.hProcess = value;
+                base.hProcess = value;
             }
+        }
 
-            if (pLast != null)
+        public override IntPtr pThis
+        {
+            get => base.pThis;
+            set
             {
-                pLast.SetLocation(hProcess, address + 0x10);
+                pFirst.pThis = value + 0x8;
+                pLast.pThis = value + 0x10;
+                pObjectHashTable.pThis = value + 0x14;
+                pPlayerShip.pThis = value + 0x38;
+                base.pThis = value;
             }
-
-            if (pObjectHashTable != null)
-            {
-                pObjectHashTable.SetLocation(hProcess, address + 0x14);
-            }
-
-            if (pPlayerShip != null)
-            {
-                pPlayerShip.SetLocation(hProcess, address + 0x38);
-            }
-
-            base.SetLocation(hProcess, address);
         }
         #endregion
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using XCommonLib.RAM.Bases.Story.Scripting;
@@ -76,7 +77,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
                     entry = entry.pNext.obj;
                 }
             }
-            return null;
+            return DynamicValue.Null;
         }
 
         public override DynamicValue[] ScanContents()

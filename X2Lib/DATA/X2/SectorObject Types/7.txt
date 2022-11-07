@@ -13,17 +13,17 @@ Xenon K
 Xenon L
 Xenon M
 Xenon N
+Split Elephant
 
 
-
-
-
-
+Split Python
+Split Mamba
+Split Scorpion
 
 Paranid Hercules
 Paranid Demeter
 Paranid Zeus
-
+Paranid Odysseus
 Paranid Perseus
 
 Paranid Pegasus
@@ -37,8 +37,8 @@ Boron Dolphin
 Teladi Albatross
 Teladi Vulture
 
-
-
+Teladi Phoenix
+Teladi Falcon
 
 
 Pirate Ship
@@ -80,12 +80,12 @@ Argon Express
 
 
 Teladi Buzzard
+Teladi Harrier
 
-
-
-
-
-
+Split Dragon
+Split Jaguar
+Split Caiman
+Split Iguana
 Boron Hydra
 Boron Barracuda
 

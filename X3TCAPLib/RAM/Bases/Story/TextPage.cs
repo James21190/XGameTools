@@ -1,5 +1,6 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
+using System.Windows.Markup;
 using X3TCAPLib.RAM.Bases.Story.Scripting;
 
 namespace X3TCAPLib.RAM.Bases.Story
@@ -84,6 +85,26 @@ namespace X3TCAPLib.RAM.Bases.Story
             throw new IndexOutOfRangeException();
         }
 
+        public override IntPtr hProcess 
+        { 
+            get => base.hProcess;
+            set
+            {
+                pEntries.hProcess = value;
+                base.hProcess = value;
+            }
+        }
+
+        public override IntPtr pThis 
+        {
+            get => base.pThis;
+            set 
+            {
+                pEntries.pThis = value;
+                base.pThis = value;
+            }
+        }
+
         public override MemoryString GetText(int id)
         {
             return _GetTextObject(id).Text;
@@ -95,12 +116,6 @@ namespace X3TCAPLib.RAM.Bases.Story
         }
 
         public override int ByteSize => 12;
-
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            base.SetLocation(hProcess, address);
-            pEntries.SetLocation(hProcess, address + 0x4);
-        }
 
         protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
