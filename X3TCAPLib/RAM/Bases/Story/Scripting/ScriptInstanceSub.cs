@@ -3,26 +3,22 @@ using System;
 
 namespace X3TCAPLib.RAM.Bases.Story.Scripting
 {
-    public class ScriptInstanceSub : XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceSub
+    public class ScriptInstanceSub : MemoryObject
     {
         #region Memory
-        public override int Class { get; set; }
-        public override int Unknown_1 { get; set; }
-        public override IntPtr pSelf { get; set; }
-        public override int Unknown_2 { get; set; }
+        public int Class { get; set; }
+        public int Unknown_1 { get; set; }
+        public IntPtr pSelf { get; set; }
+        public int Unknown_2 { get; set; }
         public MemoryObjectPointer<ScriptInstanceSub> pNext;
-        public override int NextID { get; set; }
-        public override int Unknown_3 { get; set; }
-        public override int ScriptVariableCount { get; set; }
-        public override int Unknown_4 { get; set; }
-        public override int Unknown_5 { get; set; }
-        public override int FunctionCount_1 { get; set; }
+        public int NextID { get; set; }
+        public int Unknown_3 { get; set; }
+        public int ScriptVariableCount { get; set; }
+        public int Unknown_4 { get; set; }
+        public int Unknown_5 { get; set; }
+        public int FunctionCount_1 { get; set; }
         public MemoryObjectPointer<MemoryInt32> pFunctions;
-        public override int Unknown { get; set; }
-        #endregion
-
-        #region Common
-        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceSub Next => pNext.obj;
+        public int Unknown { get; set; }
         #endregion
 
         #region MemoryObject

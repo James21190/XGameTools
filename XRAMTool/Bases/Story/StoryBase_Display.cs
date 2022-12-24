@@ -18,9 +18,19 @@ namespace XRAMTool.Bases.Story
         {
             var storyBase = Program.GameHook.StoryBase;
 
+            ntxtAddress.Text = storyBase.pThis.ToString("X");
+
             lstScriptInstances.Items.Clear();
-            foreach(var scriptInstanceID in storyBase.GetAllScriptInstances())
+            var scriptInstances = storyBase.GetAllScriptInstances();
+            lblScriptInstanceCount.Text = "Count: " + scriptInstances.Length;
+            foreach(var scriptInstanceID in scriptInstances)
                 lstScriptInstances.Items.Add(scriptInstanceID);
+
+            lstScriptTaskObjects.Items.Clear();
+            var scriptTaskObjects = storyBase.GetAllScriptTaskObjects();
+            lblScriptTaskObjectCount.Text = "Count: " + scriptTaskObjects.Length;
+            foreach(var scriptTaskObjectID in scriptTaskObjects)
+                lstScriptTaskObjects.Items.Add(scriptTaskObjectID);
         }
 
         private void lstScriptInstances_DoubleClick(object sender, System.EventArgs e)

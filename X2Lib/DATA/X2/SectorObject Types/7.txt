@@ -76,8 +76,8 @@ Khaak Carrier
 Khaak Destroyer
 Argon Centaur
 Argon Nova
-Argon Express
 
+Argon Express
 
 Teladi Buzzard
 Teladi Harrier

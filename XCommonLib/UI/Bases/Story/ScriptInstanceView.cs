@@ -27,10 +27,10 @@ namespace XCommonLib.UI.Bases.Story
             ntxtMemoryAddress.Text = m_ScriptInstance.pScriptVariableArr.address.ToString("X");
 
             // Display type name
-            string typeName = m_ScriptInstance.Sub.Class.ToString();
+            string typeName = m_ScriptInstance.Class.ToString();
             if (ReferenceGameHook != null)
             {
-                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Sub.Class);
+                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Class);
                 if (typeData != null)
                 {
                     if (typeData.Parent != null)
@@ -52,12 +52,12 @@ namespace XCommonLib.UI.Bases.Story
 
         public void ReloadMemoryTable()
         {
-            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.Sub.ScriptVariableCount);
+            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.ScriptVariableCount);
 
             // Load variables if available
             if(ReferenceGameHook != null)
             {
-                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Sub.Class);
+                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Class);
                 if(typeData != null)
                     scriptVariableArrayView1.Variables = typeData.Variables;
             }

@@ -20,6 +20,7 @@ namespace XCommonLib.RAM.Bases.Story
         /// <returns></returns>
         public abstract ScriptTaskObject GetScriptTaskObject(int id);
         public abstract ScriptTaskObject GetScriptTaskObject(IntPtr pAddress);
+        public abstract int[] GetAllScriptTaskObjects();
         #endregion
         #region ScriptInstance
         public abstract ScriptInstance GetScriptInstance(int id);

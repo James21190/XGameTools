@@ -66,7 +66,6 @@
     <Compile Include="RAM\Bases\Story\Scripting\ScriptArrayObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
-    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceSub.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceType.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptStringObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptTaskObject.cs" />

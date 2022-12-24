@@ -76,6 +76,7 @@ namespace X2Lib.RAM
         {
             pSectorBase = 0x15d66a8,
             pStoryBase = 0x15d6700,
+            pSystemBase = 0x15A453C,
 
             #region TypeData
             pTypeData_Ship = 0x015d65cc,

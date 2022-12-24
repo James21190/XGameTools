@@ -8,15 +8,16 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
     {
         #region Memory
         public abstract int NegativeID { get; set; }
+        public abstract int Class { get; set; }
         public abstract int ReferenceCount { get; set; }
-        public abstract ScriptInstanceSub Sub { get; }
+        public abstract int ScriptVariableCount { get; set; }
         public abstract MemoryObjectPointer<DynamicValue> pScriptVariableArr { get; set; }
         #endregion
 
         public ScriptInstanceType ReferenceType;
         private int _GetVariableIndex(string name)
         {
-            for (int index = 0; index < Sub.ScriptVariableCount && index < ReferenceType.Variables.Length; index++)
+            for (int index = 0; index < ScriptVariableCount && index < ReferenceType.Variables.Length; index++)
             {
                 if (ReferenceType.LocalVariables[index].Name == name)
                     return index;

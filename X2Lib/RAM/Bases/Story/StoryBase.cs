@@ -10,6 +10,7 @@ namespace X2Lib.RAM.Bases.Story
         #region Memory Fields
         public MemoryObjectPointer<MemoryString> pStrings;
         public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
+        public MemoryObjectPointer<HashTable<ScriptTaskObject>> pHashTable_ScriptTaskObject;
         #endregion
 
         #region Common
@@ -26,6 +27,10 @@ namespace X2Lib.RAM.Bases.Story
         {
             int value = id < 0 ? -id - 1 : id;
             return pHashTable_ScriptInstance.obj.GetObject(value);
+        }
+        public override int[] GetAllScriptTaskObjects()
+        {
+            return pHashTable_ScriptTaskObject.obj.ScanContents();
         }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(IntPtr pAddress)
         {
@@ -83,6 +88,7 @@ namespace X2Lib.RAM.Bases.Story
 
         protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
+            pHashTable_ScriptTaskObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>(0x0);
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d8);
         }
 

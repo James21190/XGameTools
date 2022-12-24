@@ -44,6 +44,10 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             return pHashTable_ScriptInstance.obj.ScanContents();
         }
+        public override int[] GetAllScriptTaskObjects()
+        {
+            return pHashTable_ScriptTaskObject.obj.ScanContents();
+        }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
             throw new NotImplementedException();
