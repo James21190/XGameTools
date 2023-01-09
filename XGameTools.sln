@@ -55,6 +55,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{960C55
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Memory Viewing and Reverse Engineering", "Memory Viewing and Reverse Engineering", "{3A75AA1B-8CB5-4818-89DC-A2F24FDA4F7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X2FramerateLimiter", "X2FramerateLimiter\X2FramerateLimiter.csproj", "{C2079D0A-8E62-46EB-8602-001EAA90C750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -265,6 +267,18 @@ Global
 		{5218BFB6-D907-4499-A4DB-BD21044D9A92}.Release|x64.Build.0 = Release|Any CPU
 		{5218BFB6-D907-4499-A4DB-BD21044D9A92}.Release|x86.ActiveCfg = Release|Any CPU
 		{5218BFB6-D907-4499-A4DB-BD21044D9A92}.Release|x86.Build.0 = Release|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Debug|x64.Build.0 = Debug|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Debug|x86.Build.0 = Debug|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Release|x64.ActiveCfg = Release|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Release|x64.Build.0 = Release|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2079D0A-8E62-46EB-8602-001EAA90C750}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -294,6 +308,7 @@ Global
 		{7D3D8988-B7BA-4786-8DCA-2871524DFFBA} = {3A75AA1B-8CB5-4818-89DC-A2F24FDA4F7B}
 		{0D47AD9A-B28B-4214-959E-663D902B5543} = {7D3D8988-B7BA-4786-8DCA-2871524DFFBA}
 		{5218BFB6-D907-4499-A4DB-BD21044D9A92} = {7D3D8988-B7BA-4786-8DCA-2871524DFFBA}
+		{C2079D0A-8E62-46EB-8602-001EAA90C750} = {26B4687C-D3AF-4DE5-A333-432D98972E93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AE4A789-586A-4A9A-B553-AFFABF47EC82}
