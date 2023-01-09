@@ -99,6 +99,10 @@ namespace X3TCAPLib.RAM
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
         }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Laser GetTypeData_Laser(int subType)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         public X3APGameHook(Process process)
@@ -106,15 +110,15 @@ namespace X3TCAPLib.RAM
             HookIntoProcess(process);
 
             #region Bases
-            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddresses_X3AP.pSectorBase);
-            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses_X3AP.pStoryBase);
-            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddresses_X3AP.pGalaxyBase);
+            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(this, (IntPtr)GlobalAddresses_X3AP.pSectorBase);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(this, (IntPtr)GlobalAddresses_X3AP.pStoryBase);
+            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(this, (IntPtr)GlobalAddresses_X3AP.pGalaxyBase);
             //ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddressesX3AP.pB3DBase);
             #endregion
 
             #region TypeData
-            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(hProcess, (IntPtr)GlobalAddresses_X3AP.pTypeDataCountArray);
-            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X3AP.pTypeData_Ship);
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(this, (IntPtr)GlobalAddresses_X3AP.pTypeDataCountArray);
+            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(this, (IntPtr)GlobalAddresses_X3AP.pTypeData_Ship);
 
             #endregion
         }

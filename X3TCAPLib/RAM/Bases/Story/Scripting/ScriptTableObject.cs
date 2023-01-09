@@ -19,7 +19,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             public DynamicValue Value;
 
             public IntPtr pThis { get; set; }
-            public IntPtr hProcess { get; set; }
+            public IMemoryBlockManager ParentMemoryBlock { get; set; }
 
             public int ByteSize => 14;
 
@@ -30,21 +30,15 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
 
             public void ReloadFromMemory()
             {
-                SetData(MemoryControl.Read(hProcess, pThis, ByteSize));
+                ParentMemoryBlock.WriteBytes(pThis, GetBytes());
             }
 
             public void SetData(byte[] Memory)
             {
-                var memoryObjectConverter = new MemoryObjectConverter(Memory,hProcess, pThis);
+                var memoryObjectConverter = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
                 pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptHashTableEntry>>();
                 Id = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
                 Value = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
-            }
-
-            public void SetLocation(IntPtr hProcess, IntPtr address)
-            {
-                pThis = address;
-                this.hProcess = hProcess;
             }
         }
 

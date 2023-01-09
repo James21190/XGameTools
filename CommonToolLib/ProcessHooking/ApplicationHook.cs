@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.Generics;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,17 @@ namespace CommonToolLib.ProcessHooking
     /// <summary>
     /// Base class used to hook into another process.
     /// </summary>
-    public class ApplicationHook
+    public class ApplicationHook : IMemoryBlockManager
     {
         /// <summary>
         /// Handle to the attached process.
         /// </summary>
         public IntPtr hProcess { private set; get; }
+
+        public bool IsReadOnly
+        {
+            get;
+        } = false;
 
         /// <summary>
         /// Hooks into a process and stores the handle in the hProcess field.
@@ -62,7 +68,6 @@ namespace CommonToolLib.ProcessHooking
         /// <param name="memoryObject"></param>
         public void AllocNewMemory(ref IMemoryObject memoryObject)
         {
-            memoryObject.hProcess = hProcess;
             memoryObject.pThis = AllocNewMemory(memoryObject.ByteSize);
         }
 
@@ -90,6 +95,38 @@ namespace CommonToolLib.ProcessHooking
         public void Unhook()
         {
             MemoryControl.CloseHandle(hProcess);
+        }
+
+        public byte[] ReadBytes(IntPtr address, int lenght)
+        {
+            return MemoryControl.Read(hProcess, address, lenght);
+        }
+
+        public T ReadBinaryObject<T>(IntPtr address) where T : IBinaryObject, new()
+        {
+            var result = new T();
+            result.SetData(ReadBytes(address, result.ByteSize));
+            return result;
+        }
+
+        public T ReadMemoryObject<T>(IntPtr address) where T : IMemoryObject, new()
+        {
+            var result = new T();
+            result.ParentMemoryBlock = this;
+            result.SetData(ReadBytes(address, result.ByteSize));
+            return result;
+        }
+
+        public void WriteBytes(IntPtr address, byte[] bytes)
+        {
+            if (IsReadOnly) throw new Exception("Memory block is read only.");
+            MemoryControl.Write(hProcess, address, bytes);
+        }
+
+        public void WriteBinaryObject(IntPtr address, IBinaryObject binaryObject)
+        {
+            if (IsReadOnly) throw new Exception("Memory block is read only.");
+            MemoryControl.Write(hProcess, address, binaryObject.GetBytes());
         }
     }
 }

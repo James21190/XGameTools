@@ -58,7 +58,7 @@ namespace X2Lib.RAM.Bases.Sector
         public override XCommonLib.RAM.Bases.Sector.SectorObject GetSectorObject(IntPtr pAddress)
         {
             var so = new SectorObject();
-            so.hProcess = hProcess;
+            so.ParentMemoryBlock = ParentMemoryBlock;
             so.pThis = pAddress;
             so.ReloadFromMemory();
             return so;
@@ -131,16 +131,16 @@ namespace X2Lib.RAM.Bases.Sector
             Unknown_15 = objectByteList.PopInt();
         }
 
-        public override IntPtr hProcess
+        public override IMemoryBlockManager ParentMemoryBlock
         {
-            get => base.hProcess;
+            get => base.ParentMemoryBlock;
             set
             {
-                pFirst.hProcess = value;
-                pLast.hProcess = value;
-                pObjectHashTable.hProcess = value;
-                pPlayerShip.hProcess = value;
-                base.hProcess = value;
+                pFirst.ParentMemoryBlock = value;
+                pLast.ParentMemoryBlock = value;
+                pObjectHashTable.ParentMemoryBlock = value;
+                pPlayerShip.ParentMemoryBlock = value;
+                base.ParentMemoryBlock = value;
             }
         }
 

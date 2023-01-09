@@ -12,27 +12,22 @@ namespace CommonToolLib.ProcessHooking
         public MemoryObjectConverter() : base()
         {
             pThis = IntPtr.Zero;
-            hProcess = IntPtr.Zero;
+            ParentMemoryBlock = null;
         }
         public MemoryObjectConverter(byte[] data) : base(data)
         {
             pThis = IntPtr.Zero;
-            hProcess = IntPtr.Zero;
+            ParentMemoryBlock = null;
         }
-        public MemoryObjectConverter(byte[] data, IntPtr hProcess, IntPtr pThis) : base(data)
+        public MemoryObjectConverter(byte[] data, IMemoryBlockManager memoryBlock, IntPtr pThis) : base(data)
         {
             this.pThis = pThis;
-            this.hProcess = hProcess;
+            this.ParentMemoryBlock = memoryBlock;
         }
 
         #region IMemoryObject
         public IntPtr pThis { get; set; }
-        public IntPtr hProcess { get; set; }
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            pThis = address;
-            this.hProcess = hProcess;
-        }
+        public IMemoryBlockManager ParentMemoryBlock { get; set; }
         public void ReloadFromMemory()
         {
             throw new NotSupportedException();
@@ -47,7 +42,7 @@ namespace CommonToolLib.ProcessHooking
         {
             T memoryObject = new T();
 
-            memoryObject.hProcess = hProcess;
+            memoryObject.ParentMemoryBlock = ParentMemoryBlock;
             memoryObject.pThis = pThis + _DataPointer;
             memoryObject.SetData(PopBytes(memoryObject.ByteSize));
 
@@ -66,7 +61,7 @@ namespace CommonToolLib.ProcessHooking
             for (int i = 0; i < Count; i++)
             {
                 memoryObjects[i] = new T();
-                memoryObjects[i].hProcess = hProcess;
+                memoryObjects[i].ParentMemoryBlock = ParentMemoryBlock;
                 memoryObjects[i].pThis = pThis + _DataPointer;
                 memoryObjects[i].SetData(PopBytes(memoryObjects[i].ByteSize));
             }

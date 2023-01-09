@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.ProcessHooking;
+using System;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 
 namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
@@ -13,7 +14,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         public int ByteSize => 8;
 
         public IntPtr pThis { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IntPtr hProcess { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IMemoryBlockManager ParentMemoryBlock { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void ReloadFromMemory()
         {

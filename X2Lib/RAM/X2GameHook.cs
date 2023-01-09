@@ -80,6 +80,7 @@ namespace X2Lib.RAM
 
             #region TypeData
             pTypeData_Ship = 0x015d65cc,
+            pTypeData_Laser = 0x015d65d0,
 
             pTypeDataCountArray = 0x015d6620
             #endregion
@@ -94,6 +95,7 @@ namespace X2Lib.RAM
         #region TypeData
         public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
         public MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
         #endregion
         #endregion
 
@@ -121,6 +123,10 @@ namespace X2Lib.RAM
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
         }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Laser GetTypeData_Laser(int subType)
+        {
+            return ppTypeData_Laser.obj.GetObjectInArray(subType);
+        }
         #endregion
 
         public X2GameHook(Process process)
@@ -128,13 +134,14 @@ namespace X2Lib.RAM
             HookIntoProcess(process);
 
             #region Bases
-            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddresses_X2.pSectorBase);
-            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses_X2.pStoryBase);
+            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(this, (IntPtr)GlobalAddresses_X2.pSectorBase);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(this, (IntPtr)GlobalAddresses_X2.pStoryBase);
             #endregion
 
             #region TypeData
-            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(hProcess, (IntPtr)GlobalAddresses_X2.pTypeDataCountArray);
-            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X2.pTypeData_Ship);
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(this, (IntPtr)GlobalAddresses_X2.pTypeDataCountArray);
+            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Ship);
+            ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Laser);
             #endregion
         }
 
@@ -161,6 +168,7 @@ namespace X2Lib.RAM
                 case RaceID_X2.Pirate: return GeneralRaces.Pirate;
                 case RaceID_X2.Friendly: return GeneralRaces.Friendly;
                 case RaceID_X2.Neutral: return GeneralRaces.Neutral;
+                case RaceID_X2.Unknown: return GeneralRaces.Unknown;
             }
             throw new NotImplementedException("RaceID of " + ((RaceID_X2)raceID).ToString() + " was not assigned.");
         }

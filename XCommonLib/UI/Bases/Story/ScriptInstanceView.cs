@@ -24,7 +24,7 @@ namespace XCommonLib.UI.Bases.Story
         {
             numericIDObjectControl1.LoadObject(m_ScriptInstance);
             nnudReferenceCount.Value = m_ScriptInstance.ReferenceCount;
-            ntxtMemoryAddress.Text = m_ScriptInstance.pScriptVariableArr.address.ToString("X");
+            ntxtMemoryAddress.Text = m_ScriptInstance.pScriptVariableArr.PointedAddress.ToString("X");
 
             // Display type name
             string typeName = m_ScriptInstance.Class.ToString();

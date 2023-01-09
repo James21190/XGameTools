@@ -20,7 +20,7 @@ namespace XCommonLib.RAM.Bases.Sector
             }
 
             public IntPtr pThis { get; set; }
-            public IntPtr hProcess { get; set; }
+            public IMemoryBlockManager ParentMemoryBlock { get; set; }
 
             public int ByteSize => 4;
 
@@ -41,12 +41,6 @@ namespace XCommonLib.RAM.Bases.Sector
             {
                 MainType = BitConverter.ToInt16(Memory, 0);
                 SubType = BitConverter.ToInt16(Memory, 2);
-            }
-
-            public void SetLocation(IntPtr hProcess, IntPtr address)
-            {
-                this.hProcess = hProcess;
-                pThis = address;
             }
 
             public int CompareTo(object obj)

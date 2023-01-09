@@ -57,6 +57,7 @@
     <Compile Include="Exceptions.cs" />
     <Compile Include="ProcessHooking\IMemoryObject.cs" />
     <Compile Include="Generics\IValidateable.cs" />
+    <Compile Include="ProcessHooking\IMemoryBlockManager.cs" />
     <Compile Include="ProcessHooking\MemoryControl.cs" />
     <Compile Include="ProcessHooking\Basic Types.cs" />
     <Compile Include="ProcessHooking\MemoryObject.cs" />

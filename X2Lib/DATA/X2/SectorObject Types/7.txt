@@ -15,7 +15,7 @@ Xenon M
 Xenon N
 Split Elephant
 
-
+Split Raptor
 Split Python
 Split Mamba
 Split Scorpion
@@ -27,13 +27,13 @@ Paranid Odysseus
 Paranid Perseus
 
 Paranid Pegasus
-
+Boron Orca
 Boron Dolphin
+Boron Shark
 
 
 
-
-
+Boron Octopus
 Teladi Albatross
 Teladi Vulture
 
@@ -63,10 +63,10 @@ Pirate Orinoco
 Pirate Bayamon
 Pirate Mandalay
 
-
+SQUASH Mine
 Fighter Drone
 Lasertower
-
+UFO
 
 Spacefly
 Khaak Fighter
@@ -78,7 +78,7 @@ Argon Centaur
 Argon Nova
 
 Argon Express
-
+Teladi Osprey
 Teladi Buzzard
 Teladi Harrier
 
@@ -88,24 +88,24 @@ Split Caiman
 Split Iguana
 Boron Hydra
 Boron Barracuda
-
-
+Boron Mako
+Boron Manta
 Paranid Nemesis
 Paranid Pericles
 
+Paranid Hermes
 
 
 
 
-
-
+Advanced Satellite
 AP Gunner
 
-
+Khaak Cluster 30
 Khaak Cluster 13
 Khaak Cluster 5
-
-
+Khaak Cluster 21
+Navigational Beacon
 
 
 

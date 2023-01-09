@@ -1,0 +1,13 @@
+﻿#Name:Wait
+#Data:0
+#Type:Event OnGameTick
+
+-push eax
+/ mov eax 0x08000000
+B8 00 00 00 08
+/ dec eax
+48
+/ jne
+75 fd
+-pop eax
+-ret

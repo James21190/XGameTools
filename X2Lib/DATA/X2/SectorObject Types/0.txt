@@ -1,23 +1,23 @@
-﻿
+﻿Alpha Impuse Ray Emitter
+Beta Impulse Ray Emitter
+
+
+
+Gamma Particle Accelerator Cannon
 
 
 
 
-
-
-
-
-
-
-
+Beta Phased Shockwave Generator
+Gamma Phased Shockwave Generator
 
 Alpha Kyon Emitter
+Beta Kyon Emitter
 
 
 
 
-
-
-
+Beta Photon Pulse Cannon
+Gamma Photon Pulse Cannon
 
 Khaak M0 Beam

@@ -14,7 +14,7 @@ namespace CommonToolLib.Generics
             X = (x);
             Y = (y);
             pThis = IntPtr.Zero;
-            hProcess = IntPtr.Zero;
+            ParentMemoryBlock = null;
         }
 
         public override bool Equals(object obj)
@@ -34,13 +34,8 @@ namespace CommonToolLib.Generics
 
         #region IMemoryObject
         public IntPtr pThis { get; set; }
-        public IntPtr hProcess { get; set; }
+        public IMemoryBlockManager ParentMemoryBlock { get; set; }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            pThis = address;
-            this.hProcess = hProcess;
-        }
         public byte[] GetBytes()
         {
             var collection = new MemoryObjectConverter();

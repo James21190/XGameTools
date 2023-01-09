@@ -1,0 +1,9 @@
+﻿2050
+
+
+
+
+
+Amount
+MainType
+SubType

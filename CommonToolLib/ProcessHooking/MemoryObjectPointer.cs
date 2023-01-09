@@ -10,29 +10,29 @@ namespace CommonToolLib.ProcessHooking
     {
 
         #region Constructors
-        public MemoryObjectPointer(IntPtr hProcess, IntPtr address)
+        public MemoryObjectPointer(IMemoryBlockManager parentMemoryBlock, IntPtr address)
         {
-            this.hProcess = hProcess;
-            this.address = address;
+            ParentMemoryBlock = parentMemoryBlock;
+            this.PointedAddress = address;
         }
 
-        public MemoryObjectPointer(IntPtr hProcess)
+        public MemoryObjectPointer(IMemoryBlockManager parentMemoryBlock)
         {
-            this.hProcess = hProcess;
-            address = IntPtr.Zero;
+            ParentMemoryBlock = parentMemoryBlock;
+            PointedAddress = IntPtr.Zero;
         }
 
         public MemoryObjectPointer()
         {
-            hProcess = IntPtr.Zero;
-            address = IntPtr.Zero;
+            ParentMemoryBlock = null;
+            PointedAddress = IntPtr.Zero;
         }
 
         #endregion
         /// <summary>
         /// The address that is pointed to.
         /// </summary>
-        public IntPtr address;
+        public IntPtr PointedAddress;
 
         /// <summary>
         /// The object at the address.
@@ -44,12 +44,12 @@ namespace CommonToolLib.ProcessHooking
             get
             {
                 T obj = new T();
-                obj.hProcess = hProcess;
-                obj.pThis = address;
+                obj.ParentMemoryBlock = ParentMemoryBlock;
+                obj.pThis = PointedAddress;
                 obj.ReloadFromMemory();
                 return obj;
             }
-            set => MemoryControl.Write(hProcess, address, value.GetBytes());
+            set => ParentMemoryBlock.WriteBytes(PointedAddress, value.GetBytes());
         }
 
         public T this[int index] => GetObjectInArray(index);
@@ -57,8 +57,8 @@ namespace CommonToolLib.ProcessHooking
         public A GetObjAsType<A>() where A : IMemoryObject, new()
         {
             A obj = new A();
-            obj.hProcess = hProcess;
-            obj.pThis = address;
+            obj.ParentMemoryBlock = ParentMemoryBlock;
+            obj.pThis = PointedAddress;
             obj.ReloadFromMemory();
             return obj;
         }
@@ -66,8 +66,8 @@ namespace CommonToolLib.ProcessHooking
         public A GetObjInArrayAsType<A>(int index) where A : IMemoryObject, new()
         {
             A obj = new A();
-            obj.hProcess = hProcess;
-            obj.pThis = address + (obj.ByteSize * index);
+            obj.ParentMemoryBlock = ParentMemoryBlock;
+            obj.pThis = PointedAddress + (obj.ByteSize * index);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -75,11 +75,11 @@ namespace CommonToolLib.ProcessHooking
         /// <summary>
         /// Is false when the pointer is null.
         /// </summary>
-        public bool IsValid => (address != IntPtr.Zero);
+        public bool IsValid => (PointedAddress != IntPtr.Zero);
 
         public override string ToString()
         {
-            return "0x" + address.ToString("X");
+            return "0x" + PointedAddress.ToString("X");
         }
 
         /// <summary>
@@ -90,8 +90,8 @@ namespace CommonToolLib.ProcessHooking
         public T GetObjectInArray(int index)
         {
             T obj = new T();
-            obj.hProcess = hProcess;
-            obj.pThis = address + (index * obj.ByteSize);
+            obj.ParentMemoryBlock = ParentMemoryBlock;
+            obj.pThis = PointedAddress + (index * obj.ByteSize);
             obj.ReloadFromMemory();
             return obj;
         }
@@ -113,7 +113,7 @@ namespace CommonToolLib.ProcessHooking
         /// <param name="obj"></param>
         public void SetObjectInArray(int Index, T obj)
         {
-            MemoryControl.Write(hProcess, address + (Index * 4), obj.GetBytes());
+            ParentMemoryBlock.WriteBinaryObject(PointedAddress + (Index * 4), obj);
         }
 
         #region IMemoryObject
@@ -121,12 +121,12 @@ namespace CommonToolLib.ProcessHooking
 
         public override void SetData(byte[] Memory)
         {
-            address = (IntPtr)BitConverter.ToInt32(Memory, 0);
+            PointedAddress = (IntPtr)BitConverter.ToInt32(Memory, 0);
         }
 
         public override byte[] GetBytes()
         {
-            return BitConverter.GetBytes((int)address);
+            return BitConverter.GetBytes((int)PointedAddress);
         }
 
         #endregion

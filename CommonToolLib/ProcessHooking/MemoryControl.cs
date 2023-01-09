@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CommonToolLib.ProcessHooking
 {
-    public static class MemoryControl
+    internal static class MemoryControl
     {
         #region Kernel32
         [DllImport("kernel32.dll")]

@@ -6,7 +6,7 @@
 / push ecx
 51
 
-/ Add to eax so it points to EventList's parameters
+/ Add to edx so it points to EventList's parameters
 
 / add edx, 0x8
 83 c2 08

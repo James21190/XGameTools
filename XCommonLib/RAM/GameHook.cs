@@ -109,6 +109,7 @@ namespace XCommonLib.RAM
         #region SectorObject TypeData
         public abstract short[] TypeData_Counts { get; }
         public abstract TypeData_Ship GetTypeData_Ship(int subType);
+        public abstract TypeData_Laser GetTypeData_Laser(int subType);
         #endregion
         #endregion
 
@@ -198,13 +199,14 @@ namespace XCommonLib.RAM
                 case GeneralRaces.Split: return Color.Orange;
                 case GeneralRaces.Teladi: return Color.GreenYellow;
                 case GeneralRaces.Paranid: return Color.YellowGreen;
-                case GeneralRaces.Gonor: return Color.Chartreuse;
+                case GeneralRaces.Gonor: return Color.Bisque;
                 case GeneralRaces.Khaak: return Color.Purple;
                 case GeneralRaces.Xenon: return Color.IndianRed;
                 case GeneralRaces.Player: return Color.LawnGreen;
                 case GeneralRaces.Unowned: return Color.Gray;
                 case GeneralRaces.Pirate: return Color.MediumPurple;
                 case GeneralRaces.Friendly:
+                case GeneralRaces.Unknown:
                 case GeneralRaces.Enemy:
                 case GeneralRaces.Neutral:
                 case GeneralRaces.NA:

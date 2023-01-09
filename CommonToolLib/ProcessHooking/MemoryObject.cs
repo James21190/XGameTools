@@ -26,7 +26,7 @@ namespace CommonToolLib.ProcessHooking
 
 
         public virtual IntPtr pThis { get; set; }
-        public virtual IntPtr hProcess { get; set; }
+        public virtual IMemoryBlockManager ParentMemoryBlock { get; set; }
 
         /// <summary>
         /// Sets the values of the fields of this object with the values stored in a binary array.
@@ -34,7 +34,7 @@ namespace CommonToolLib.ProcessHooking
         /// <param name="Memory"></param>
         public virtual void SetData(byte[] Memory)
         {
-            SetDataFromMemoryObjectConverter(new MemoryObjectConverter(Memory, hProcess, pThis));
+            SetDataFromMemoryObjectConverter(new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis));
         }
 
         #endregion
@@ -53,7 +53,7 @@ namespace CommonToolLib.ProcessHooking
         /// </summary>
         public void ReloadFromMemory()
         {
-            SetData(MemoryControl.Read(hProcess, pThis, ByteSize));
+            SetData(ParentMemoryBlock.ReadBytes(pThis,ByteSize));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace CommonToolLib.ProcessHooking
         /// </summary>
         public void WriteToMemory()
         {
-            MemoryControl.Write(hProcess, pThis, GetBytes());
+            ParentMemoryBlock.WriteBinaryObject(pThis, this);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace CommonToolLib.ProcessHooking
         /// </summary>
         public virtual void WriteSafeToMemory()
         {
-            MemoryControl.Write(hProcess, pThis, GetBytes());
+            ParentMemoryBlock.WriteBinaryObject(pThis, this);
         }
 
     }

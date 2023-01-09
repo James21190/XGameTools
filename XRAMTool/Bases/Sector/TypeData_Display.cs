@@ -28,6 +28,11 @@ namespace XRAMTool.Bases.Sector
                     namedTextBox1.Text = shipTypeData.pThis.ToString("X");
                     typeDataView1.LoadObject(shipTypeData);
                     break;
+                case GameHook.GeneralMainType.Laser:
+                    var laserTypeData = Program.GameHook.GetTypeData_Laser(subType);
+                    namedTextBox1.Text = laserTypeData.pThis.ToString("X");
+                    typeDataView1.LoadObject(laserTypeData);
+                    break;
             }
         }
 

@@ -143,5 +143,13 @@ namespace XRAMTool.Bases.Sector
         {
             pgbTreeLoading.Value = e.ProgressPercentage;
         }
+
+        private void bgwTreeReloader_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if(e.Error != null)
+            {
+                throw e.Error;
+            }
+        }
     }
 }

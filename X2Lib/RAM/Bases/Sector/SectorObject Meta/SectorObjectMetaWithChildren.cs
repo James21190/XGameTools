@@ -52,7 +52,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_Meta
         }
         public override void SetData(byte[] Memory)
         {
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, hProcess, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
 
             Children = collection.PopIMemoryObject<LinkedListStart<SectorObject>>();
 

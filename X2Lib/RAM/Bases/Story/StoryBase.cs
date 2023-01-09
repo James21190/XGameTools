@@ -36,7 +36,7 @@ namespace X2Lib.RAM.Bases.Story
         {
             var scriptInstance = new ScriptInstance();
             scriptInstance.pThis = pAddress;
-            scriptInstance.hProcess = hProcess;
+            scriptInstance.ParentMemoryBlock = ParentMemoryBlock;
             scriptInstance.ReloadFromMemory();
             return scriptInstance;
         }
@@ -65,8 +65,8 @@ namespace X2Lib.RAM.Bases.Story
         public override MemoryString GetStringFromArray(int index)
         {
             MemoryString memorystring = new MemoryString();
-            memorystring.hProcess = hProcess;
-            memorystring.pThis = pStrings.address + index;
+            memorystring.ParentMemoryBlock = ParentMemoryBlock;
+            memorystring.pThis = pStrings.PointedAddress + index;
             memorystring.ReloadFromMemory();
             return memorystring;
         }

@@ -1,0 +1,60 @@
+﻿#Name:Wait
+#Data:16
+#Type:Event OnGameTick
+/ Data Structure
+/ 0: Last PerformanceCounter
+/ 4: TargetDelta
+/ 8: PerformanceCounterReturn
+
+-push ebx
+
+/ @loopStart
+
+/ push &PerformanceCounterReturn
+-mov eax ecx
+/ sub eax 0x8
+83 e8 08
+-push ecx
+-push eax
+// call QueryPerformanceCounter
+/ mov eax [004fa0c0]
+a1 c0 a0 4f 00
+/ call eax
+ff d0
+-pop ecx
+
+// Compare Current to Last
+/ mov eax, [ecx-0x8]
+8b 41 f8
+/ mov ebx, [ecx-0x10]
+8b 59 f0
+/ sub eax, ebx
+29 d8
+/ and eax 0x7fffffff
+25 ff ff ff 7f
+/ mov ebx, [ecx-0xc]
+8b 59 f4
+
+// This code can be removed if target is set as unsigned.
+/ and ebx 0x7fffffff
+81 e3 ff ff ff 7f
+
+/ sub eax, ebx
+29 d8
+// If delta not met, loop and update until it is
+/ jge @loopExit
+7d 02
+/ jmp @loopStart
+eb d5
+
+/ @loopExit
+// Update Last PerformanceCounter
+/ mov eax, [ecx-0x8]
+8b 41 f8
+/ mov [ecx-0x10], eax
+89 41 f0
+
+// Return
+-nop 10
+-pop ebx
+-ret

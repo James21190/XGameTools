@@ -3,6 +3,10 @@
 	'/': Comment
 	'-': Macro
 
+Notes:
+	EDX is used as a pointer to the top of the script, where data is stored.
+	EAX, ECX, and EDX are caller saved. Scripts are allowed to modify them.
+
 Registers:
 	"EAX"
 	"EBX"

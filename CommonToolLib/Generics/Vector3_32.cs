@@ -16,7 +16,7 @@ namespace CommonToolLib.Generics
             Y = (y);
             Z = (z);
             pThis = IntPtr.Zero;
-            hProcess = IntPtr.Zero;
+            ParentMemoryBlock = null;
         }
 
         public static Vector3_32 operator *(Vector3_32 a, int b)
@@ -52,13 +52,8 @@ namespace CommonToolLib.Generics
 
         #region IMemoryObject
         public IntPtr pThis { get; set; }
-        public IntPtr hProcess { get; set; }
+        public IMemoryBlockManager ParentMemoryBlock { get; set; }
 
-        public void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            pThis = address;
-            this.hProcess = hProcess;
-        }
         public byte[] GetBytes()
         {
             var collection = new MemoryObjectConverter();

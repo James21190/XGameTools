@@ -36,7 +36,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             var scriptInstance = new ScriptInstance();
             scriptInstance.pThis = pAddress;
-            scriptInstance.hProcess = hProcess;
+            scriptInstance.ParentMemoryBlock = ParentMemoryBlock;
             scriptInstance.ReloadFromMemory();
             return scriptInstance;
         }
@@ -55,7 +55,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(IntPtr address)
         {
             var result = new ScriptTableObject();
-            result.hProcess = hProcess;
+            result.ParentMemoryBlock = ParentMemoryBlock;
             result.pThis = address;
             result.ReloadFromMemory();
             return result;
@@ -63,7 +63,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(IntPtr address)
         {
             var result = new ScriptArrayObject();
-            result.hProcess = hProcess;
+            result.ParentMemoryBlock = ParentMemoryBlock;
             result.pThis = address;
             result.ReloadFromMemory();
             return result;
@@ -78,8 +78,8 @@ namespace X3TCAPLib.RAM.Bases.Story
         public override MemoryString GetStringFromArray(int index)
         {
             MemoryString memorystring = new MemoryString();
-            memorystring.hProcess = hProcess;
-            memorystring.pThis = pStrings.address + index;
+            memorystring.ParentMemoryBlock = ParentMemoryBlock;
+            memorystring.pThis = pStrings.PointedAddress + index;
             memorystring.ReloadFromMemory();
             return memorystring;
         }

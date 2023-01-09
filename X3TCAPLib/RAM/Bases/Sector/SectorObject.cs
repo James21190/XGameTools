@@ -40,7 +40,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
                     case X3TCGameHook.MainType_X3TCAP.Ship: meta = new SectorObject_Ship_Meta(); break;
                     default: return null;
                 }
-                meta.hProcess = hProcess;
+                meta.ParentMemoryBlock = ParentMemoryBlock;
                 meta.pThis = pMeta;
                 meta.ReloadFromMemory();
                 return meta;
@@ -100,8 +100,8 @@ namespace X3TCAPLib.RAM.Bases.Sector
         #endregion
 
         public override bool IsValid =>
-            pNext.address != IntPtr.Zero &&
-            pPrevious.address != IntPtr.Zero;
+            pNext.PointedAddress != IntPtr.Zero &&
+            pPrevious.PointedAddress != IntPtr.Zero;
 
         public override void WriteSafeToMemory()
         {
@@ -117,7 +117,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             collection.Append(Unknown_5);
             collection.Append(base.ObjectType);
             collection.Append(Unknown_6);
-            MemoryControl.Write(hProcess, pThis + 0x10, collection.GetBytes());
+            ParentMemoryBlock.WriteBytes(pThis + 0x10, collection.GetBytes());
         }
 
         #region IMemoryObject
@@ -125,8 +125,8 @@ namespace X3TCAPLib.RAM.Bases.Sector
         {
             MemoryObjectConverter collection = new MemoryObjectConverter();
 
-            collection.Append(pNext.address);
-            collection.Append(pPrevious.address);
+            collection.Append(pNext.PointedAddress);
+            collection.Append(pPrevious.PointedAddress);
             collection.Append(ID);
             collection.Append(pDefaultName);
             collection.Append(Speed);

@@ -28,12 +28,12 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             Flag = flag;
             Value = value;
             pThis = IntPtr.Zero;
-            hProcess = IntPtr.Zero;
+            ParentMemoryBlock = null;
         }
 
         #region IMemoryObject
         public IntPtr pThis { get; set; }
-        public IntPtr hProcess { get; set; }
+        public IMemoryBlockManager ParentMemoryBlock { get; set; }
         public byte[] GetBytes()
         {
             MemoryObjectConverter collection = new MemoryObjectConverter();
@@ -53,7 +53,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
 
         public void ReloadFromMemory()
         {
-            SetData(MemoryControl.Read(hProcess, pThis, ByteSize));
+            SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
         }
 
         public void SetData(byte[] Memory)

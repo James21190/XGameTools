@@ -31,19 +31,19 @@ namespace XCommonLib.RAM.Generics
 
         public override void SetData(byte[] Memory)
         {
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, hProcess, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
             pFirst = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
         }
-        public override IntPtr hProcess
+        public override IMemoryBlockManager ParentMemoryBlock
         {
-            get => base.hProcess;
+            get => base.ParentMemoryBlock;
             set
             {
-                pFirst.hProcess = value;
-                pLast.hProcess = value;
-                base.hProcess = value;
+                pFirst.ParentMemoryBlock = value;
+                pLast.ParentMemoryBlock = value;
+                base.ParentMemoryBlock = value;
             }
         }
 

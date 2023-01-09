@@ -39,7 +39,7 @@ namespace X2Lib.RAM.Bases.Sector
                     case X2GameHook.MainType_X2.Ship: meta = new SectorObject_Ship_Meta(); break;
                     default: return null;
                 }
-                meta.hProcess = hProcess;
+                meta.ParentMemoryBlock = ParentMemoryBlock;
                 meta.pThis = pMeta;
                 meta.ReloadFromMemory();
                 return meta;
@@ -82,8 +82,8 @@ namespace X2Lib.RAM.Bases.Sector
         #endregion
 
         public override bool IsValid =>
-            pNext.address != IntPtr.Zero &&
-            pPrevious.address != IntPtr.Zero;
+            pNext.PointedAddress != IntPtr.Zero &&
+            pPrevious.PointedAddress != IntPtr.Zero;
 
         #region IMemoryObject
         public override int ByteSize => 0xdc;

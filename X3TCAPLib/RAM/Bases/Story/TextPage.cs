@@ -76,7 +76,7 @@ namespace X3TCAPLib.RAM.Bases.Story
                 if (entry.ID == id)
                 {
                     var strObj = new ScriptStringObject();
-                    strObj.hProcess = hProcess;
+                    strObj.ParentMemoryBlock = ParentMemoryBlock;
                     strObj.pThis = (IntPtr)entry.Value.Value;
                     strObj.ReloadFromMemory();
                     return strObj;
@@ -85,13 +85,13 @@ namespace X3TCAPLib.RAM.Bases.Story
             throw new IndexOutOfRangeException();
         }
 
-        public override IntPtr hProcess 
+        public override IMemoryBlockManager ParentMemoryBlock
         { 
-            get => base.hProcess;
+            get => base.ParentMemoryBlock;
             set
             {
-                pEntries.hProcess = value;
-                base.hProcess = value;
+                pEntries.ParentMemoryBlock = value;
+                base.ParentMemoryBlock = value;
             }
         }
 

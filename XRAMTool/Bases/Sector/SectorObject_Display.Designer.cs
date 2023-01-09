@@ -71,6 +71,7 @@
             this.bgwTreeReloader.WorkerReportsProgress = true;
             this.bgwTreeReloader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwTreeReloader_DoWork);
             this.bgwTreeReloader.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwTreeReloader_ProgressChanged);
+            this.bgwTreeReloader.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwTreeReloader_RunWorkerCompleted);
             // 
             // pgbTreeLoading
             // 

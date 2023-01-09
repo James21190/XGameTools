@@ -1,15 +1,15 @@
 ﻿
 Split Shipyard
 Paranid Shipyard
-
+Boron Shipyard
 Teladi Shipyard
+Argon Weapon Component Factory
+Argon Crystal Fab
+Argon Quantum Tube Fab
 
 
 
-
-
-
-
+Split Crystal Fab
 
 
 
@@ -20,6 +20,18 @@ Paranid Quantum Tube Fab
 
 
 
+Boron Quantum Tube Fab
+
+
+Teladi Weapon Component Factory
+Teladi Crystal Fab
+
+
+
+
+
+
+Argon Shield Production Facility 125MW
 
 
 
@@ -33,23 +45,11 @@ Paranid Quantum Tube Fab
 
 
 
+Teladi Shield Production Facility 5MW
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Argon Wasp Missile Factory
 
 
 
@@ -84,22 +84,33 @@ Paranid Hornet Missile Factory
 
 
 
+Split Gamma IRE Forge
 
 
 
 
 
+Split Gamma HEPT Forge
 
 
 
 
-
-
-
+Paranid Beta PAC Forge
 
 
 Paranid Beta HEPT Forge
 
+Boron Alpha IRE Forge
+
+
+
+
+Boron Gamma PAC Forge
+Boron Alpha HEPT Forge
+
+
+Teladi Alpha IRE Forge
+Teladi Beta IRE Forge
 
 
 
@@ -107,60 +118,49 @@ Paranid Beta HEPT Forge
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+Argon Ore Mine
 Split Ore Mine
 Paranid Ore Mine
+Boron Ore Mine
 
-
-
+Argon Silicon Mine
 Split Silicon Mine
 Paranid Silicon Mine
 
-
-
+Teladi Silicon Mine
+Argon Solar Power Plant
 Split Solar Power Plant
 Paranid Solar Power Plant
-
+Boron Solar Power Plant
 Teladi Solar Power Plant
-
-
-
-
-
+Argon Wheat Farm
+Argon Cattle Ranch
+Boron Plankton Farm
+Boron Bio Gas Factory
+Split Scruffin Farm
 Split Chelt Space Aquarium
 Paranid Soyfarm
-
+Paranid Snail Ranch
 Teladi Flower Farm
 Teladi Teladianium foundry
 Teladi Dream farm
+Argon Rimes Fact
+Argon Cahoona Bakery
 
-
-
-
-
+Boron Stott Mixery
+Boron BoFu Chemical Lab
 Split Massom Mill
 Split Rastar Refinery
-
+Paranid Space Jewellery
 Paranid Soyery
 Teladi Sun oil refinery
 
 Xenon Solar Power Plant
+Xenon Shipyard
 
 
 
-
-
+Boron Satellite Factory
 
 
 
@@ -173,15 +173,43 @@ Paranid SQUASH Mine Factory
 
 
 
-
+Split Drone Factory
 
 
 
 
 Split Warf
-
-
+Paranid Warf
+Boron Warf
 Teladi Warf
+Argon Alpha PPC Forge
+
+
+
+
+Split Gamma PPC Forge
+
+
+
+
+Boron Beta PPC Forge
+
+Teladi Alpha PPC Forge
+
+Teladi Gamma PPC Forge
+
+
+
+
+
+
+Paranid Alpha PSG Forge
+
+Paranid Gamma PSG Forge
+
+
+
+Teladi Alpha PSG Forge
 
 
 
@@ -189,40 +217,12 @@ Teladi Warf
 
 
 
+Argon Ion Disruptor Forge
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Argon Mobile Drilling System Factory
 
 
 

@@ -16,15 +16,15 @@ namespace XCommonLib.UI
     {
         public HashTable<MemoryInt32> HashTable = new HashTable<MemoryInt32>();
 
-        public IntPtr hProcess
+        public IMemoryBlockManager ParentMemoryBlock
         {
             get
             {
-                return HashTable.hProcess;
+                return HashTable.ParentMemoryBlock;
             }
             set
             {
-                HashTable.hProcess = value;
+                HashTable.ParentMemoryBlock = value;
             }
         }
 

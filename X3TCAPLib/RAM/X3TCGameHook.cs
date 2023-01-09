@@ -101,6 +101,10 @@ namespace X3TCAPLib.RAM
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
         }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Laser GetTypeData_Laser(int subType)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         public X3TCGameHook(Process process)
@@ -108,16 +112,16 @@ namespace X3TCAPLib.RAM
             HookIntoProcess(process);
 
             #region Bases
-            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pSectorBase);
-            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pStoryBase);
-            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pGalaxyBase);
-            ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pB3DBase);
-            ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pSystemBase);
+            ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(this, (IntPtr)GlobalAddresses_X3TC.pSectorBase);
+            ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(this, (IntPtr)GlobalAddresses_X3TC.pStoryBase);
+            ppGalaxyBase = new MemoryObjectPointer<MemoryObjectPointer<GalaxyBase>>(this, (IntPtr)GlobalAddresses_X3TC.pGalaxyBase);
+            ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(this, (IntPtr)GlobalAddresses_X3TC.pB3DBase);
+            ppSystemBase = new MemoryObjectPointer<MemoryObjectPointer<SystemBase>>(this, (IntPtr)GlobalAddresses_X3TC.pSystemBase);
             #endregion
 
             #region TypeData
-            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeDataCountArray);
-            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(hProcess, (IntPtr)GlobalAddresses_X3TC.pTypeData_Ship);
+            pTypeData_CountArr = new MemoryObjectPointer<MemoryInt32>(this, (IntPtr)GlobalAddresses_X3TC.pTypeDataCountArray);
+            ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(this, (IntPtr)GlobalAddresses_X3TC.pTypeData_Ship);
 
             #endregion
         }

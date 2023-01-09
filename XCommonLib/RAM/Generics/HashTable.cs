@@ -21,9 +21,9 @@ namespace XCommonLib.RAM.Generics
 
             public Entry()
             {
-                pNext = new MemoryObjectPointer<Entry<t>>(hProcess);
+                pNext = new MemoryObjectPointer<Entry<t>>(ParentMemoryBlock);
                 ObjectID = 0;
-                pObject = new MemoryObjectPointer<t>(hProcess);
+                pObject = new MemoryObjectPointer<t>(ParentMemoryBlock);
             }
 
             #endregion
@@ -40,22 +40,22 @@ namespace XCommonLib.RAM.Generics
                     base.pThis = value;
                 }
             }
-            public override IntPtr hProcess
+            public override IMemoryBlockManager ParentMemoryBlock
             {
-                get => base.hProcess;
+                get => base.ParentMemoryBlock;
                 set
                 {
-                    pNext.hProcess = value;
-                    pObject.hProcess = value;
-                    base.hProcess = value;
+                    pNext.ParentMemoryBlock = value;
+                    pObject.ParentMemoryBlock = value;
+                    base.ParentMemoryBlock = value;
                 }
             }
             public override byte[] GetBytes()
             {
                 MemoryObjectConverter collection = new MemoryObjectConverter();
-                collection.Append(pNext.address);
+                collection.Append(pNext.PointedAddress);
                 collection.Append(ObjectID);
-                collection.Append(pObject.address);
+                collection.Append(pObject.PointedAddress);
                 return collection.GetBytes();
             }
 
@@ -63,9 +63,9 @@ namespace XCommonLib.RAM.Generics
 
             protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
-                pNext.address = objectByteList.PopIntPtr();
+                pNext.PointedAddress = objectByteList.PopIntPtr();
                 ObjectID = objectByteList.PopInt();
-                pObject.address = objectByteList.PopIntPtr();
+                pObject.PointedAddress = objectByteList.PopIntPtr();
             }
             #endregion
         }
@@ -110,7 +110,7 @@ namespace XCommonLib.RAM.Generics
             var obj = GetEntry(ID);
             if (obj == null)
                 return IntPtr.Zero;
-            return obj.address;
+            return obj.PointedAddress;
         }
 
         #region Scans
@@ -226,7 +226,7 @@ namespace XCommonLib.RAM.Generics
         public override byte[] GetBytes()
         {
             MemoryObjectConverter collection = new MemoryObjectConverter();
-            collection.Append(ppEntry.address);
+            collection.Append(ppEntry.PointedAddress);
             collection.Append(Length);
             collection.Append(NextAvailableID);
             collection.Append(Count);
@@ -244,13 +244,13 @@ namespace XCommonLib.RAM.Generics
             Count = collection.PopInt();
         }
 
-        public override IntPtr hProcess
+        public override IMemoryBlockManager ParentMemoryBlock
         {
-            get => base.hProcess;
+            get => base.ParentMemoryBlock;
             set
             {
-                ppEntry.hProcess = value;
-                base.hProcess = value;
+                ppEntry.ParentMemoryBlock = value;
+                base.ParentMemoryBlock = value;
             }
         }
 

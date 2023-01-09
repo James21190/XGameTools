@@ -42,14 +42,14 @@ namespace XRAMTool.Bases.Story
         }
         public void LoadFromScriptArrayObject(ScriptArrayObject obj)
         {
-            pArray = obj.pArr.address;
+            pArray = obj.pArr.PointedAddress;
             ArrayLength = obj.Length;
         }
 
         public void Reload()
         {
-            var pointer = new MemoryObjectPointer<DynamicValue>(Program.GameHook.hProcess);
-            pointer.address = _pArray;
+            var pointer = new MemoryObjectPointer<DynamicValue>(Program.GameHook);
+            pointer.PointedAddress = _pArray;
             Values = pointer.ToArray(_ArrayLength);
         }
 

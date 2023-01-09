@@ -60,23 +60,23 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         }
         public override void SetData(byte[] Memory)
         {
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, hProcess, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(X3TCGameHook.MainTypeCount);
 
             SetUniqueData(collection);
         }
 
-        public override IntPtr hProcess
+        public override IMemoryBlockManager ParentMemoryBlock
         {
-            get => base.hProcess;
+            get => base.ParentMemoryBlock;
             set
             {
                 for (int i = 0; i < X3TCGameHook.MainTypeCount; i++)
                 {
-                    Children[i].hProcess = value;
+                    Children[i].ParentMemoryBlock = value;
                 }
-                base.hProcess = value;
+                base.ParentMemoryBlock = value;
             }
         }
 

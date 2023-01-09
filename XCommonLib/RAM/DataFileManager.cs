@@ -105,6 +105,8 @@ namespace XCommonLib.RAM
         {
             var result = new XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceType();
             var lines = File.ReadAllLines(path);
+            if (lines.Length < 2)
+                return null;
             result.Name = Path.GetFileNameWithoutExtension(path);
             result.TypeID = int.Parse(lines[0]);
 

@@ -9,6 +9,7 @@ namespace CommonToolLib.ProcessHooking
     /// </summary>
     public class InjectionManager
     {
+        // This register is used to jump to specific addresses. This should be consistant between scripts.
         private const ScriptAssembler.x86Register _CallingRegister = ScriptAssembler.x86Register.EDX;
         public const string SystemModDirectory = ".\\DATA\\EventManager Scripts\\";
         #region Event Injection

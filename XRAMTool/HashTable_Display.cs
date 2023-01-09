@@ -31,7 +31,7 @@ namespace XRAMTool
 
         private void HashTable_Display_Load(object sender, EventArgs e)
         {
-            hashTableView1.hProcess = Program.GameHook.hProcess;
+            hashTableView1.ParentMemoryBlock = Program.GameHook;
         }
 
         private void txtAddress_TextChanged(object sender, EventArgs e)
