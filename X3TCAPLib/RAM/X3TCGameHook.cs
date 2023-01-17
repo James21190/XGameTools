@@ -137,12 +137,11 @@ namespace X3TCAPLib.RAM
             InjectionManager = new InjectionManager(this.hProcess);
 
             // OnGameTick event
-            InjectionManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404af8, new byte[]
+            InjectionManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404a87, new byte[]
             {
-                0xa1, 0x40, 0x46, 0x60, 0x00,
-                0x8b, 0x78, 0x08,
-                0x39, 0x1f
-            }, 1);
+                0x81, 0xa0, 0x08, 0x01, 0x00, 0x00, 0xff, 0xbf, 0xff, 0xff, // and [eax + 0x108] 0xffffbfff
+                0xbd, 0x01, 0x00, 0x00, 0x00 // mov ebp 0x1
+            }, 6);
         }
 
         public override GeneralRaces GetRaceByID(ushort raceID)

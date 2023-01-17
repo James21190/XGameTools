@@ -1,4 +1,5 @@
 ﻿1.8.0.0
+	- Added ProgramRunning to ApplicationHook
 
 1.7.0.0 (09/01/2023)
 	- Added generic Vector and Matrix classes.
