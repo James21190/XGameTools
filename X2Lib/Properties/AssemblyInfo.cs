@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("X2Lib")]
-[assembly: AssemblyCopyright("Copyright ©James Burdett  2020 - 2021 All Rights Reserved")]
+[assembly: AssemblyCopyright("Copyright ©James Burdett  2020 - 2023 All Rights Reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

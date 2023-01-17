@@ -79,6 +79,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ProcessHooking\ScriptAssembler.cs" />
+    <Compile Include="SimpleScript\Assembly\X86_32_Reference.cs" />
+    <Compile Include="SimpleScript\SimpleScript.cs" />
+    <Compile Include="SimpleScript\SimpleScriptVariable.cs" />
+    <Compile Include="SimpleScript\Token.cs" />
     <Compile Include="UI\BitFieldDisplay.cs">
       <SubType>UserControl</SubType>
     </Compile>

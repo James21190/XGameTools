@@ -1,0 +1,5 @@
+﻿#Name:NOP
+#Data:0
+#Type:Event OnGameTick
+-nop 10
+-ret

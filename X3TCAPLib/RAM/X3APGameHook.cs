@@ -163,5 +163,18 @@ namespace X3TCAPLib.RAM
         {
             throw new NotImplementedException();
         }
+
+        public override void AttachInjectionManager()
+        {
+            // Initialize code injector
+            InjectionManager = new InjectionManager(this.hProcess);
+
+            // OnGameTick event
+            InjectionManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404a00, new byte[]
+            {
+                0x81, 0xa0, 0x08, 0x01, 0x00, 0x00, 0xff, 0xbf, 0xff, 0xff, // and [eax + 0x108] 0xffffbfff
+                0xbd, 0x01, 0x00, 0x00, 0x00 // mov ebp 0x1
+            }, 6);
+        }
     }
 }

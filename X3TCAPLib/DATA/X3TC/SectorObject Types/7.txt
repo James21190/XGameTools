@@ -1,374 +1,374 @@
-Argon_Mammoth
-Argon_Mercury
-Argon_Mercury_Tanker
-Argon_Mercury_Hauler
-Argon_Mercury_Tanker_XL
-Argon_Mercury_Super_Freighter
-Argon_Mercury_Super_Freighter_XL
-Argon_Express
-Argon_Express_Hauler
-Argon_Magnetar
-Argon_Colossus
-Argon_Titan
-Argon_Nova
-Argon_Nova_Raider
-Argon_Nova_Vanguard
-Argon_Nova_Sentinel
-Argon_Eclipse
-Argon_Buster
-Argon_Buster_Raider
-Argon_Buster_Vanguard
-Argon_Buster_Sentiel
-Argon_Elite
-Argon_Discoverer
-Argon_Discoverer_Raider
-Argon_Discoverer_Hauler
-Argon_Discoverer_Vanguard
-Argon_Centaur
-Argon_Heavy_Centaur
-Argon_Cerberus
-Argon_Minotaur
-Argon_Gladiator
-Fighter_Drone_MKII
-Undefined_Hauler_1
-Undefined_Hauler_2
-Undefined_Hauler_3
-Undefined_Hauler_4
-Undefined_Hauler_5
-Undefined_Hauler_6
-Small_Orbital_Weapons_Platform
-Medium_Orbital_Weapons_Platform
-Large_Orbital_Weapons_Platform
-Split_Elephant
-Split_Caiman
-Split_Caiman_Tanker
-Split_Caiman_Hauler
-Split_Caiman_Tanker_XL
-Split_Caiman_Super_Freighter
-Split_Caiman_Super_Freighter_XL
-Split_Caiman_Miner
-Split_Iguana
-Split_Iquana_Vanguard
-Split_Boa
-Split_Raptor
-Split_Python
-Split_Mamba
-Split_Mamba_Raider
-Split_Mamba_Vanguard
-Split_Mamba_Sentinel
-Split_Chimera
-Split_Scorpion
-Split_Scorpion_Raider
-Split_Scorpion_Vanguard
-Split_Scorpion_4
-Split_Asp
-Split_Jaguar
-Split_Jaguar_Raider
-Split_Jaguar_3
-Split_Jaguar_Vanguard
-Split_Dragon
-Split_Heavy_Dragon
-Split_Tiger
-Split_Cobra
-Split_Viper
-Paranid_Hercules
-Paranid_Demeter
-Paranid_Demeter_Tanker
-Paranid_Demeter_Hauler
-Paranid_Demeter_Miner
-Paranid_Demeter_Super_Freighter
-Paranid_Demeter_Super_Freighter_XL
-Paranid_Hermes
-Paranid_Hermes_Hauler
-Paranid_Helios
-Paranid_Zeus
-Paranid_Odysseus
-Paranid_Perseus
-Paranid_Perseus_Raider
-Paranid_Perseus_Vanguard
-Paranid_Perseus_Sentinel
-Paranid_Medusa
-Paranid_Pericles
-Paranid_Perecles_Raider
-Paranid_Perecles_Vanguard
-Paranid_Perecles_Sentinel
-Paranid_Theseus
-Paranid_Pegasus
-Paranid_Pegasus_Raider
-Paranid_Pegasus_Vanguard
-Paranid_Pegasus_Sentinel
-Paranid_Nemesis
-Paranid_Heavy_Nemesis
-Paranid_Diamos
-Paranid_Ares
-Paranid_Hades
-Boron_Orca
-Boron_Dolphin
-Boron_Dolphin_2
-Boron_Dolphin_Hauler
-Boron_Dolphin_4
-Boron_Dolphin_Super_Freighter
-Boron_Dolphin_Super_Freighter_XL
-Boron_Angel
-Boron_Manta
-Boron_Manta_Hauler
-Boron_Pleco
-Boron_Shark
-Boron_Ray
-Boron_Barracuda
-Boron_Barracuda_Raider
-Boron_Barracuda_Vanguard
-Boron_Barracuda_Sentinel
-Boron_Skate
-Boron_Mako
-Boron_Mako_2
-Boron_Mako_Vanguard
-Boron_Mako_4
-Boron_Pike
-Boron_Octopus
-Boron_Octopus_Raider
-Boron_Octopus_3
-Boron_Octopus_Sentinel
-Boron_Hydra
-Boron_Heavy_Hydra
-Boron_Thresher
-Boron_Kracken
-Boron_Marlin_Hauler
-Teladi_Albatross
-Teladi_Vulture
-Teladi_Vulture_Tanker
-Teladi_Vulture_3
-Teladi_Vulture_Miner
-Teladi_Vulture_Super_Freighter
-Teladi_Vulture_Super_Freighter_XL
-Teladi_Toucan
-Teladi_Toucan_2
-Teladi_Pelican
-Teladi_Condor
-Teladi_Phoenix
-Teladi_Falcon
-Teladi_Falcon_Hauler
-Teladi_Falcon_Vanguard
-Teladi_Falcon_Sentinel
-Teladi_Kea
-Teladi_Buzzard
-Teladi_Buzzard_Hauler
-Teladi_Buzzard_Vanguard
-Teladi_Buzzard_Sentinel
-Teladi_Kite
-Teladi_Harrier
-Teladi_Harrier_Hauler
-Teladi_Harrier_Vanguard
-Teladi_Harrier_Sentinel
-Teladi_Kestrel
-Teladi_Osprey
-Teladi_Heavy_Osprey
-Teladi_Shrike
-Teladi_Gannet
-Teladi_Peregrine
-Xenon_J
-Xenon_K
-Xenon_L
-Xenon_LX
-Xenon_M
-Xenon_N
-Xenon_P
-Xenon_PX
-Xenon_Q
-Pirate_Caravel
-Pirate_Ship
-Pirate_Falcon
-Pirate_Nova_Raider
-Pirate_Nova
-Pirate_Falcon_Vanguard
-Pirate_Eclipse
-Pirate_Kea
-Pirate_Blastclaw
-Pirate_Buster
-Pirate_Buzzard
-Pirate_Buster_Hauler
-Pirate_Buzzard_Vanguard
-Pirate_Scorpion
-Pirate_Elite
-Pirate_Harrier
-Pirate_Harrier_Raider
-Pirate_Harrier_Hauler
-Pirate_Harrier_Vanguard
-Pirate_Kestrel
-Pirate_Centaur
-Pirate_Osprey
-Pirate_Carrack
-ATF_Odin
-ATF_Tyr
-ATF_Thor
-ATF_Fenrir
-ATF_Mjollnir
-ATF_Valkyrie
-ATF_Vidar
-ATF_Vali
-ATF_Aegir
-ATF_Skirnir
-ATF_Woden
-ATF_Valhalla
-Terran_Baldric
-Terran_Scabbard
-Terran_Tokyo
-Terran_Osaka
-Terran_Scimitar
-Terran_Cutlass
-Terran_Sabre
-Terran_Rapier
-Terran_Keris
-Terran_Katana
-Terran_Yokohama
-Terran_Clamore
-Terran_Spitfyre
-Terran_Springblossom
-Terran_Deca
-Terran_Deca_Cefa
-Yaki_Chokaro
-Yaki_Susanowa
-Yaki_Susanowa_Raider
-Yaki_Susanowa_3
-Yaki_Tenjin
-Yaki_Raijin
-Yaki_Raijin_2
-Yaki_Raijin_Raider
-Yaki_Tonbo
-Yaki_Fujin
-Yaki_Fujin_Sentinel
-Yaki_Fujin_Raider
-Yaki_Washi_Hauler
-Khaak_Carrier
-Khaak_Destroyer
-Khaak_Fighter
-Khaak_Interceptor
-Khaak_Scout
-Khaak_Corvette
-Khaak_Guardian
-Khaak_Hive_Queen
-Gonor_Ozias
-Gonor_Aran
-Gonor_Ranger
-OTAS_Boreas
-OTAS_Venti
-OTAS_Notus_Hauler
-OTAS_Eurus
-OTAS_Solano
-OTAS_Zephyrus
-OTAS_Skiron
-OTAS_Astraeus_Hauler
-OTAS_Aquilo
-OTAS_Auster_Hauler
-OTAS_Sirokos
+Argon Mammoth
+Argon Mercury
+Argon Mercury Tanker
+Argon Mercury Hauler
+Argon Mercury Tanker XL
+Argon Mercury Super Freighter
+Argon Mercury Super Freighter XL
+Argon Express
+Argon Express Hauler
+Argon Magnetar
+Argon Colossus
+Argon Titan
+Argon Nova
+Argon Nova Raider
+Argon Nova Vanguard
+Argon Nova Sentinel
+Argon Eclipse
+Argon Buster
+Argon Buster Raider
+Argon Buster Vanguard
+Argon Buster Sentiel
+Argon Elite
+Argon Discoverer
+Argon Discoverer Raider
+Argon Discoverer Hauler
+Argon Discoverer Vanguard
+Argon Centaur
+Argon Heavy Centaur
+Argon Cerberus
+Argon Minotaur
+Argon Gladiator
+Fighter Drone MKII
+Undefined Hauler 1
+Undefined Hauler 2
+Undefined Hauler 3
+Undefined Hauler 4
+Undefined Hauler 5
+Undefined Hauler 6
+Small Orbital Weapons Platform
+Medium Orbital Weapons Platform
+Large Orbital Weapons Platform
+Split Elephant
+Split Caiman
+Split Caiman Tanker
+Split Caiman Hauler
+Split Caiman Tanker XL
+Split Caiman Super Freighter
+Split Caiman Super Freighter XL
+Split Caiman Miner
+Split Iguana
+Split Iquana Vanguard
+Split Boa
+Split Raptor
+Split Python
+Split Mamba
+Split Mamba Raider
+Split Mamba Vanguard
+Split Mamba Sentinel
+Split Chimera
+Split Scorpion
+Split Scorpion Raider
+Split Scorpion Vanguard
+Split Scorpion 4
+Split Asp
+Split Jaguar
+Split Jaguar Raider
+Split Jaguar 3
+Split Jaguar Vanguard
+Split Dragon
+Split Heavy Dragon
+Split Tiger
+Split Cobra
+Split Viper
+Paranid Hercules
+Paranid Demeter
+Paranid Demeter Tanker
+Paranid Demeter Hauler
+Paranid Demeter Miner
+Paranid Demeter Super Freighter
+Paranid Demeter Super Freighter XL
+Paranid Hermes
+Paranid Hermes Hauler
+Paranid Helios
+Paranid Zeus
+Paranid Odysseus
+Paranid Perseus
+Paranid Perseus Raider
+Paranid Perseus Vanguard
+Paranid Perseus Sentinel
+Paranid Medusa
+Paranid Pericles
+Paranid Perecles Raider
+Paranid Perecles Vanguard
+Paranid Perecles Sentinel
+Paranid Theseus
+Paranid Pegasus
+Paranid Pegasus Raider
+Paranid Pegasus Vanguard
+Paranid Pegasus Sentinel
+Paranid Nemesis
+Paranid Heavy Nemesis
+Paranid Diamos
+Paranid Ares
+Paranid Hades
+Boron Orca
+Boron Dolphin
+Boron Dolphin 2
+Boron Dolphin Hauler
+Boron Dolphin 4
+Boron Dolphin Super Freighter
+Boron Dolphin Super Freighter XL
+Boron Angel
+Boron Manta
+Boron Manta Hauler
+Boron Pleco
+Boron Shark
+Boron Ray
+Boron Barracuda
+Boron Barracuda Raider
+Boron Barracuda Vanguard
+Boron Barracuda Sentinel
+Boron Skate
+Boron Mako
+Boron Mako 2
+Boron Mako Vanguard
+Boron Mako 4
+Boron Pike
+Boron Octopus
+Boron Octopus Raider
+Boron Octopus 3
+Boron Octopus Sentinel
+Boron Hydra
+Boron Heavy Hydra
+Boron Thresher
+Boron Kracken
+Boron Marlin Hauler
+Teladi Albatross
+Teladi Vulture
+Teladi Vulture Tanker
+Teladi Vulture 3
+Teladi Vulture Miner
+Teladi Vulture Super Freighter
+Teladi Vulture Super Freighter XL
+Teladi Toucan
+Teladi Toucan 2
+Teladi Pelican
+Teladi Condor
+Teladi Phoenix
+Teladi Falcon
+Teladi Falcon Hauler
+Teladi Falcon Vanguard
+Teladi Falcon Sentinel
+Teladi Kea
+Teladi Buzzard
+Teladi Buzzard Hauler
+Teladi Buzzard Vanguard
+Teladi Buzzard Sentinel
+Teladi Kite
+Teladi Harrier
+Teladi Harrier Hauler
+Teladi Harrier Vanguard
+Teladi Harrier Sentinel
+Teladi Kestrel
+Teladi Osprey
+Teladi Heavy Osprey
+Teladi Shrike
+Teladi Gannet
+Teladi Peregrine
+Xenon J
+Xenon K
+Xenon L
+Xenon LX
+Xenon M
+Xenon N
+Xenon P
+Xenon PX
+Xenon Q
+Pirate Caravel
+Pirate Ship
+Pirate Falcon
+Pirate Nova Raider
+Pirate Nova
+Pirate Falcon Vanguard
+Pirate Eclipse
+Pirate Kea
+Pirate Blastclaw
+Pirate Buster
+Pirate Buzzard
+Pirate Buster Hauler
+Pirate Buzzard Vanguard
+Pirate Scorpion
+Pirate Elite
+Pirate Harrier
+Pirate Harrier Raider
+Pirate Harrier Hauler
+Pirate Harrier Vanguard
+Pirate Kestrel
+Pirate Centaur
+Pirate Osprey
+Pirate Carrack
+ATF Odin
+ATF Tyr
+ATF Thor
+ATF Fenrir
+ATF Mjollnir
+ATF Valkyrie
+ATF Vidar
+ATF Vali
+ATF Aegir
+ATF Skirnir
+ATF Woden
+ATF Valhalla
+Terran Baldric
+Terran Scabbard
+Terran Tokyo
+Terran Osaka
+Terran Scimitar
+Terran Cutlass
+Terran Sabre
+Terran Rapier
+Terran Keris
+Terran Katana
+Terran Yokohama
+Terran Clamore
+Terran Spitfyre
+Terran Springblossom
+Terran Deca
+Terran Deca Cefa
+Yaki Chokaro
+Yaki Susanowa
+Yaki Susanowa Raider
+Yaki Susanowa 3
+Yaki Tenjin
+Yaki Raijin
+Yaki Raijin 2
+Yaki Raijin Raider
+Yaki Tonbo
+Yaki Fujin
+Yaki Fujin Sentinel
+Yaki Fujin Raider
+Yaki Washi Hauler
+Khaak Carrier
+Khaak Destroyer
+Khaak Fighter
+Khaak Interceptor
+Khaak Scout
+Khaak Corvette
+Khaak Guardian
+Khaak Hive Queen
+Gonor Ozias
+Gonor Aran
+Gonor Ranger
+OTAS Boreas
+OTAS Venti
+OTAS Notus Hauler
+OTAS Eurus
+OTAS Solano
+OTAS Zephyrus
+OTAS Skiron
+OTAS Astraeus Hauler
+OTAS Aquilo
+OTAS Auster Hauler
+OTAS Sirokos
 
 
 
-Khaak_Cluster
-Space_Suit
+Khaak Cluster
+Space Suit
 
 
-Navigation_Relay_Satellite
-SQUASH_Mine
-Fighter_Drone
+Navigation Relay Satellite
+SQUASH Mine
+Fighter Drone
 Lazertower
-Gonor_UFO
+Gonor UFO
 Spaceflies
 Starburst
 
-Advanced_Satellite
+Advanced Satellite
 
-Navigational_Beacon
-
-
+Navigational Beacon
 
 
 
 
 
 
-Argon_Truelight_Seeker
+
+
+Argon Truelight Seeker
 
 
 
-Argon_Colossus_Hauler
-Freight_Drone
-Argon_Griffon_Sentinel
-Split_Panther
-Paranid_Agamemnon
-Teladi_Tern_Sentinel
-Pirate_Mobile_Pirate_Base_Hauler
-Pirate_Galleon
-Pirate_Brigantine
-Yaki_Shuri
-Yaki_Ryu
-Yaki_Hoshi
-Yaki_Akuma
-Yaki_Akurei
-Yaki_Kariudo_Hauler
-Yaki_Senshi
-OTAS_Mistral
-OTAS_Mistral_Super_Freighter
-Troop_Training_Ship_Hauler
-Argon_Vessel_Hauler_1
-Argon_Vessel_Hauler_2
-Argon_Vessel_Hauler_3
-Argon_Starliner_Hauler
-Gonor_Mobile_Repair_Ship
-Unknown_Biological_Entity_1
-Unknown_Biological_Entity_2
-ATF_Matter/Anti_Matter_Mine
-Argon_Tracker_Mine
-Argon_Ion_Mine
+Argon Colossus Hauler
+Freight Drone
+Argon Griffon Sentinel
+Split Panther
+Paranid Agamemnon
+Teladi Tern Sentinel
+Pirate Mobile Pirate Base Hauler
+Pirate Galleon
+Pirate Brigantine
+Yaki Shuri
+Yaki Ryu
+Yaki Hoshi
+Yaki Akuma
+Yaki Akurei
+Yaki Kariudo Hauler
+Yaki Senshi
+OTAS Mistral
+OTAS Mistral Super Freighter
+Troop Training Ship Hauler
+Argon Vessel Hauler 1
+Argon Vessel Hauler 2
+Argon Vessel Hauler 3
+Argon Starliner Hauler
+Gonor Mobile Repair Ship
+Unknown Biological Entity 1
+Unknown Biological Entity 2
+ATF Matter/Anti Matter Mine
+Argon Tracker Mine
+Argon Ion Mine
 
 
-Argon_Recon_Drone
-Pirate_Marauder
-Terran_Atmospheric_Lifter
-Terran_Mobile_Mining_Base_Ship
-Paranid_Hyperion
-Argon_Eclipse_Prototype
-Argon_Nova_Prototype
-Argon_Advanced_Express
-Argon_Enhanced_Mercury
-Argon_Mercury_Prototype
-Argon_Heavy_Centaur_Prototype
-Argon_Advanced_Discoverer
-Argon_Enhanced_Elite
-Split_Advanced_Mamba
-Split_Scorpion_Prototype
-Split_Enhanced_Chimera
-Split_Enhanced_Jaguar
-Paranid_Medusa_Prototype
-Paranid_Demeter_Prototype
-Paranid_Advanced_Perseus
-Paranid_Enhanced_Pericles
-Boron_Skate_Prototype
-Boron_Enhanced_Dolphin
-Boron_Advanced_Barracuda
-Boron_Enhanced_Mako
-Boron_Barracuda_Prototype
-Teladi_Enhanced_Kea
-Teladi_Vulture_Prototype
-Teladi_Toucan_Prototype
-Teladi_Falcon_Prototype
+Argon Recon Drone
+Pirate Marauder
+Terran Atmospheric Lifter
+Terran Mobile Mining Base Ship
+Paranid Hyperion
+Argon Eclipse Prototype
+Argon Nova Prototype
+Argon Advanced Express
+Argon Enhanced Mercury
+Argon Mercury Prototype
+Argon Heavy Centaur Prototype
+Argon Advanced Discoverer
+Argon Enhanced Elite
+Split Advanced Mamba
+Split Scorpion Prototype
+Split Enhanced Chimera
+Split Enhanced Jaguar
+Paranid Medusa Prototype
+Paranid Demeter Prototype
+Paranid Advanced Perseus
+Paranid Enhanced Pericles
+Boron Skate Prototype
+Boron Enhanced Dolphin
+Boron Advanced Barracuda
+Boron Enhanced Mako
+Boron Barracuda Prototype
+Teladi Enhanced Kea
+Teladi Vulture Prototype
+Teladi Toucan Prototype
+Teladi Falcon Prototype
 
-Teladi_Advanced_Kestrel
-Pirate_Advanced_Eclipse
-Pirate_Blastclaw_Prototype
-Yaki_Susanowa_Prototype
-Argon_Jump_Beacon
-Argon_Message_Drone
-Terran_deca_deaf
-Terran_deca_fade
-Terran_Terran_Freight_Drone
-Terran_Terran_Freight_Drone
-Terran_Terran_Freight_Drone
-Argon_Small_Orbital_Weapons_Platform
-Terran_Terran_Freight_Drone
-Terran_Lasertower
-Terran_Lasertower
-Terran_Baldric_Miner
-Yaki_Advanced_Chokaro
-Terran_Xperimental_Shuttle
-Argon_Aamon_Prototype
+Teladi Advanced Kestrel
+Pirate Advanced Eclipse
+Pirate Blastclaw Prototype
+Yaki Susanowa Prototype
+Argon Jump Beacon
+Argon Message Drone
+Terran deca deaf
+Terran deca fade
+Terran Terran Freight Drone
+Terran Terran Freight Drone
+Terran Terran Freight Drone
+Argon Small Orbital Weapons Platform
+Terran Terran Freight Drone
+Terran Lasertower
+Terran Lasertower
+Terran Baldric Miner
+Yaki Advanced Chokaro
+Terran Xperimental Shuttle
+Argon Aamon Prototype

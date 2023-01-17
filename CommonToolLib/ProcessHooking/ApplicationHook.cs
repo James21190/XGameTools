@@ -16,10 +16,20 @@ namespace CommonToolLib.ProcessHooking
         /// </summary>
         public IntPtr hProcess { private set; get; }
 
+        private Process _Process;
+
         public bool IsReadOnly
         {
             get;
         } = false;
+
+        public bool ProcessRunning
+        {
+            get
+            {
+                return !_Process.HasExited;
+            }
+        }
 
         /// <summary>
         /// Hooks into a process and stores the handle in the hProcess field.
@@ -27,7 +37,8 @@ namespace CommonToolLib.ProcessHooking
         /// <param name="process"></param>
         public void HookIntoProcess(Process process)
         {
-            HookIntoProcess((uint)process.Id);
+            _Process = process;
+            HookIntoProcess((uint)_Process.Id);
         }
 
         public void HookIntoProcess(uint processID)

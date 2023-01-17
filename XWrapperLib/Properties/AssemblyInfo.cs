@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XLibraryWrapper")]
-[assembly: AssemblyCopyright("Copyright ©James Burdett  2021 All Rights Reserved")]
+[assembly: AssemblyCopyright("Copyright ©James Burdett  2021 - 2023 All Rights Reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

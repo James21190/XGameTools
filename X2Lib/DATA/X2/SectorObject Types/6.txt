@@ -26,7 +26,7 @@ Boron Quantum Tube Fab
 Teladi Weapon Component Factory
 Teladi Crystal Fab
 
-
+Teladi Chip plant
 
 
 
@@ -68,7 +68,7 @@ Paranid Hornet Missile Factory
 
 
 
-
+Teladi Mosquito Missile Factory
 
 
 
@@ -122,7 +122,7 @@ Argon Ore Mine
 Split Ore Mine
 Paranid Ore Mine
 Boron Ore Mine
-
+Teladi Ore Mine
 Argon Silicon Mine
 Split Silicon Mine
 Paranid Silicon Mine
@@ -161,12 +161,12 @@ Xenon Shipyard
 
 
 Boron Satellite Factory
-
+Teladi Satellite Factory
 
 
 Paranid SQUASH Mine Factory
 
-
+Teladi SQUASH Mine Factory
 
 
 
@@ -221,7 +221,7 @@ Argon Ion Disruptor Forge
 
 
 
-
+Teladi Ion Disruptor Forge
 Argon Mobile Drilling System Factory
 
 
@@ -229,3 +229,8 @@ Argon Mobile Drilling System Factory
 
 
 Split Ammunition Factory
+
+
+
+
+Split Advanced Satellite Factory

@@ -36,7 +36,7 @@ Boron Shark
 Boron Octopus
 Teladi Albatross
 Teladi Vulture
-
+Teladi Condor
 Teladi Phoenix
 Teladi Falcon
 

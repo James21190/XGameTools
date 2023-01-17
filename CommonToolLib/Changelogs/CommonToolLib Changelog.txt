@@ -1,4 +1,6 @@
-﻿1.7.0.0 (09/01/2023)
+﻿1.8.0.0
+
+1.7.0.0 (09/01/2023)
 	- Added generic Vector and Matrix classes.
 	- Added ToArray function for MemoryObjectPointer.
 	- Added CString functions for BinaryObjectConverter.

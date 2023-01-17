@@ -1,15 +1,16 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("X3TCAPLib")]
+[assembly: AssemblyTitle("SimpleScriptCompiler")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("X3TCAPLib")]
-[assembly: AssemblyCopyright("Copyright ©James Burdett  2020 - 2023 All Rights Reserved")]
+[assembly: AssemblyProduct("SimpleScriptCompiler")]
+[assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("08839997-89c5-4c73-874e-5fa977b6ef6e")]
+[assembly: Guid("e09ad666-f55a-4043-bca2-650cfdfb2a45")]
 
 // Version information for an assembly consists of the following four values:
 //

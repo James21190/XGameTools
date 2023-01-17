@@ -9,10 +9,10 @@ namespace X3TCAPLib.RAM.Bases.Sector
         #region Memory Fields
         public int Unknown_1;
         public int Unknown_2;
-        public MemoryObjectPointer<SectorObject> pFirst;
+        public MemoryObjectPointer<SectorObject> pFirst = new MemoryObjectPointer<SectorObject>();
         public int Unknown_3;
-        public MemoryObjectPointer<SectorObject> pLast;
-        public MemoryObjectPointer<HashTable<SectorObject>> pObjectHashTable;
+        public MemoryObjectPointer<SectorObject> pLast = new MemoryObjectPointer<SectorObject>();
+        public MemoryObjectPointer<HashTable<SectorObject>> pObjectHashTable = new MemoryObjectPointer<HashTable<SectorObject>>();
         public int Unknown_4;
         public int Unknown_5;
         public int Unknown_6;
@@ -21,7 +21,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
         public int Unknown_9;
         public int Unknown_10;
         public int Unknown_11;
-        public MemoryObjectPointer<SectorObject> pPlayerShip;
+        public MemoryObjectPointer<SectorObject> pPlayerShip = new MemoryObjectPointer<SectorObject>();
         public int Unknown_12;
         public int Unknown_13;
         public int Unknown_14;

@@ -1,4 +1,6 @@
-﻿1.1.0.0 (09/01/2023)
+﻿1.2.0.0
+
+1.1.0.0 (09/01/2023)
 	- Renamed X3FixedPointValue to XFixedPointValue and moved to namespace XCommonLib.
 	- HashTable now returns null if an object is not found.
 

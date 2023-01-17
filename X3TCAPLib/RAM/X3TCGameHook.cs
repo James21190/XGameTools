@@ -131,6 +131,20 @@ namespace X3TCAPLib.RAM
             Unhook();
         }
 
+        public override void AttachInjectionManager()
+        {
+            // Initialize code injector
+            InjectionManager = new InjectionManager(this.hProcess);
+
+            // OnGameTick event
+            InjectionManager.CreateNewEvent("OnGameTick", (IntPtr)0x00404af8, new byte[]
+            {
+                0xa1, 0x40, 0x46, 0x60, 0x00,
+                0x8b, 0x78, 0x08,
+                0x39, 0x1f
+            }, 1);
+        }
+
         public override GeneralRaces GetRaceByID(ushort raceID)
         {
             switch (((RaceID_X3TCAP)raceID))
@@ -151,6 +165,7 @@ namespace X3TCAPLib.RAM
                 case RaceID_X3TCAP.Pirate: return GeneralRaces.Pirate;
                 case RaceID_X3TCAP.Gonor: return GeneralRaces.Gonor;
                 case RaceID_X3TCAP.NA: return GeneralRaces.NA;
+                case RaceID_X3TCAP.Unowned: return GeneralRaces.Unowned;
             }
             throw new NotImplementedException("RaceID of " + ((RaceID_X3TCAP)raceID).ToString() + " was not assigned.");
         }
