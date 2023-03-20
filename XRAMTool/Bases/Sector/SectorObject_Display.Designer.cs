@@ -33,6 +33,7 @@
             this.btnLoadScriptInstance = new System.Windows.Forms.Button();
             this.bgwTreeReloader = new System.ComponentModel.BackgroundWorker();
             this.pgbTreeLoading = new System.Windows.Forms.ProgressBar();
+            this.btnLoadRenderObject = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // treeView1
@@ -80,11 +81,23 @@
             this.pgbTreeLoading.Size = new System.Drawing.Size(210, 23);
             this.pgbTreeLoading.TabIndex = 3;
             // 
+            // btnLoadRenderObject
+            // 
+            this.btnLoadRenderObject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadRenderObject.Location = new System.Drawing.Point(398, 415);
+            this.btnLoadRenderObject.Name = "btnLoadRenderObject";
+            this.btnLoadRenderObject.Size = new System.Drawing.Size(164, 23);
+            this.btnLoadRenderObject.TabIndex = 4;
+            this.btnLoadRenderObject.Text = "Load RenderObject";
+            this.btnLoadRenderObject.UseVisualStyleBackColor = true;
+            this.btnLoadRenderObject.Click += new System.EventHandler(this.btnLoadRenderObject_Click);
+            // 
             // SectorObject_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 450);
+            this.Controls.Add(this.btnLoadRenderObject);
             this.Controls.Add(this.pgbTreeLoading);
             this.Controls.Add(this.btnLoadScriptInstance);
             this.Controls.Add(this.sectorObjectView1);
@@ -102,5 +115,6 @@
         private System.Windows.Forms.Button btnLoadScriptInstance;
         private System.ComponentModel.BackgroundWorker bgwTreeReloader;
         private System.Windows.Forms.ProgressBar pgbTreeLoading;
+        private System.Windows.Forms.Button btnLoadRenderObject;
     }
 }

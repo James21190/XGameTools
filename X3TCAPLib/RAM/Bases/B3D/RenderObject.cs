@@ -17,7 +17,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int Unknown_8;
         public int Unknown_9; // 0x20
         public int Unknown_10;
-        public int ID; // 0x28
+        public override int ID { get; set; } // 0x28
         public int Unknown_12;
         public Vector3_32 ParentRelativePosition; // 0x30
         public int Unknown_16; // 0x3c
@@ -134,8 +134,6 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int Unknown_155;
         public int Unknown_156; // 26c
         #endregion
-
-        public override bool IsValid => throw new NotImplementedException();
 
         #region Common
         #endregion

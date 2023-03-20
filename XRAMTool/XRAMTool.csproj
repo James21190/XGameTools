@@ -59,6 +59,12 @@
     <Compile Include="Bases\B3D\B3DBase_Display.Designer.cs">
       <DependentUpon>B3DBase_Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bases\B3D\RenderObject_Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bases\B3D\RenderObject_Display.Designer.cs">
+      <DependentUpon>RenderObject_Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bases\Sector\SectorBase_Display.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AssemblyScripts_Display.resx">
       <DependentUpon>AssemblyScripts_Display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bases\B3D\RenderObject_Display.resx">
+      <DependentUpon>RenderObject_Display.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bases\Sector\SectorBase_Display.resx">
       <DependentUpon>SectorBase_Display.cs</DependentUpon>

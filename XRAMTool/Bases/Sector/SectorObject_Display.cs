@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Sector;
+using XRAMTool.Bases.B3D;
 using XRAMTool.Bases.Story;
 
 namespace XRAMTool.Bases.Sector
@@ -150,6 +151,13 @@ namespace XRAMTool.Bases.Sector
             {
                 throw e.Error;
             }
+        }
+
+        private void btnLoadRenderObject_Click(object sender, EventArgs e)
+        {
+            var renderObjectDisplay = new RenderObject_Display();
+            renderObjectDisplay.LoadObject(m_SectorObject.RenderObject);
+            renderObjectDisplay.Show();
         }
     }
 }

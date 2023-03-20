@@ -1,0 +1,40 @@
+// ebp + 0
+static int LastPerformanceCounter 0;
+// ebp + 4
+config static int TargetDelta 0;
+// ebp + 8
+static long PerformanceCounter 0;
+
+config const int QueryPerformanceCounter;
+
+LoopStart:
+
+// Get current PerformanceCounter
+
+// mov eax
+// add eax 8
+mov eax &PerformanceCounter;
+call QueryPerformanceCounter;
+
+// Get delta
+
+// mov eax [ebp + 8]
+mov eax PerformanceCounter;
+// mov ecx [ebp + 0]
+mov ecx LastPerformanceCounter;
+sub eax ecx;
+and eax 7fffffff;
+
+// Compare to target
+
+// mov ecx [ebp + 8]
+mov ecx TargetDelta;
+and ecx 7fffffff;
+
+// Restart if less
+jl LoopStart;
+
+// mov eax [ebp + 8]
+mov eax PerformanceCounter;
+// mov [ebp+0] eax
+mov LastPerformanceCounter eax;

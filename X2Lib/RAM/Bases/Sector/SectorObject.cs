@@ -78,7 +78,7 @@ namespace X2Lib.RAM.Bases.Sector
         public override XCommonLib.RAM.Bases.Sector.SectorObject Next => pNext.obj.IsValid ? pNext.obj : null;
         public override XCommonLib.RAM.Bases.Sector.SectorObject Previous => pPrevious.obj.IsValid ? pPrevious.obj : null;
         public override MemoryString DefaultName => pDefaultName.obj;
-        public override XCommonLib.RAM.Bases.B3D.RenderObject RenderObject => pRenderObject.obj.IsValid ? pRenderObject.obj : null;
+        public override XCommonLib.RAM.Bases.B3D.RenderObject RenderObject => pRenderObject.obj;
         #endregion
 
         public override bool IsValid =>
@@ -106,6 +106,8 @@ namespace X2Lib.RAM.Bases.Sector
 
             ObjectType = memoryObjectConverter.PopIMemoryObject<SectorObjectType>(0x48);
             pMeta = memoryObjectConverter.PopIntPtr();
+
+            pRenderObject = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>(0x60);
 
             ScriptInstanceID = memoryObjectConverter.PopInt(0x80);
 

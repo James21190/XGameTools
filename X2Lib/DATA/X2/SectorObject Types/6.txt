@@ -163,7 +163,7 @@ Xenon Shipyard
 Boron Satellite Factory
 Teladi Satellite Factory
 
-
+Split SQUASH Mine Factory
 Paranid SQUASH Mine Factory
 
 Teladi SQUASH Mine Factory
@@ -176,7 +176,7 @@ Teladi SQUASH Mine Factory
 Split Drone Factory
 
 
-
+Teladi Drone Factory
 
 Split Warf
 Paranid Warf

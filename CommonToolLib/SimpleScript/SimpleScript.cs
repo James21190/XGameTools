@@ -9,13 +9,58 @@ namespace CommonToolLib.SimpleScript
 {
     public class SimpleScript
     {
+        public class SimpleScriptCodeBlock
+        {
+            public class SimpleScriptInstruction
+            {
+                public enum InstructionType
+                {
+                    MOV,
+                    CALL,
+                    JL,
+                    SUB
+                }
+
+                public class SimpleScriptInstructionParameter
+                {
+                    public enum ParameterType
+                    {
+                        Register,
+                        Variable
+                    }
+                    public ParameterType Type;
+                    public object Value;
+
+                    public override string ToString()
+                    {
+                        return Value.ToString();
+                    }
+                }
+
+                public InstructionType Type;
+                public SimpleScriptInstructionParameter[] Parameters;
+                public override string ToString()
+                {
+                    string param = "";
+                    foreach(var parameter in Parameters)
+                        param += " " + parameter.ToString();
+                    return Type.ToString() + param + ";";
+                }
+            }
+            public string Label;
+            public SimpleScriptInstruction[] Instructions;
+        }
+
+        public SimpleScriptVariable[] Variables;
+        public SimpleScriptCodeBlock[] CodeBlocks;
         public static SimpleScript LoadSource(string source)
         {
+            // Clean the source and remove unneeded characters
             source = _CleanSource(source);
 #if DEBUG
             File.WriteAllText("./SimpleScriptDebug_PostClean.txt", source);
 #endif
-
+            // Get tokens
             var tokens = _CleanToTokens(source);
 
 #if DEBUG
@@ -27,18 +72,26 @@ namespace CommonToolLib.SimpleScript
 #endif
 
             var variables = new List<SimpleScriptVariable>();
-            int currentStaticVariableOffset = 0;
-            int currentLocalVariableOffset = 0;
+            var codeBlocks = new List<SimpleScriptCodeBlock>();
+
+            var currentCodeBlockLabel = "entry";
+            var currentCodeBlockInstuctions = new List<SimpleScriptCodeBlock.SimpleScriptInstruction>();
 
             bool variableIsStatic;
             bool variableIsConfigureable;
             bool variableIsConstant;
+
+            bool isInInstruction;
+            var currentCodeBlockInstructionType = SimpleScriptCodeBlock.SimpleScriptInstruction.InstructionType.MOV;
+            var currentCodeBlockInstructionParameters = new List<SimpleScriptCodeBlock.SimpleScriptInstruction.SimpleScriptInstructionParameter>();
 
             void ResetState()
             {
                 variableIsStatic = false;
                 variableIsConfigureable = false;
                 variableIsConstant = false;
+                isInInstruction = false;
+                currentCodeBlockInstructionParameters.Clear();
             }
 
             ResetState();
@@ -65,8 +118,31 @@ namespace CommonToolLib.SimpleScript
                                 break;
                         }
                         break;
+                    case Token.TokenType.VariableName:
+                        if (isInInstruction)
+                        {
+                            currentCodeBlockInstructionParameters.Add(new SimpleScriptCodeBlock.SimpleScriptInstruction.SimpleScriptInstructionParameter()
+                            {
+                                Type = SimpleScriptCodeBlock.SimpleScriptInstruction.SimpleScriptInstructionParameter.ParameterType.Variable,
+                                Value = currentToken.Value
+                            });
+                        }
+                        break;
+                    case Token.TokenType.Register:
+                        if (isInInstruction)
+                        {
+                            if (isInInstruction)
+                            {
+                                currentCodeBlockInstructionParameters.Add(new SimpleScriptCodeBlock.SimpleScriptInstruction.SimpleScriptInstructionParameter()
+                                {
+                                    Type = SimpleScriptCodeBlock.SimpleScriptInstruction.SimpleScriptInstructionParameter.ParameterType.Register,
+                                    Value = currentToken.Value
+                                });
+                            }
+                        }
+                        break;
                     case Token.TokenType.VariableType:
-                        #region Variable Initialization
+                        #region VariableType
                         var newVariable = new SimpleScriptVariable();
                         // Get the type
                         newVariable.Type = (SimpleScriptVariableType)currentToken.Value;
@@ -79,7 +155,7 @@ namespace CommonToolLib.SimpleScript
                         // Ensure no other variable of the same name exists already.
                         foreach (var variable in variables)
                             if (variable.Name == (string)currentToken.Value)
-                                throw new Exception();
+                                throw new Exception("Multiple variables have the name " + variable.Name);
 
                         newVariable.Name = (string)currentToken.Value;
 
@@ -99,7 +175,7 @@ namespace CommonToolLib.SimpleScript
                                 break;
                             case Token.TokenType.EndOfStatement:
                                 newVariable.Value = 0;
-                                ResetState();
+                                i--;
                                 break;
                             default:
                                 throw new Exception();
@@ -117,17 +193,64 @@ namespace CommonToolLib.SimpleScript
 
                         // Add to variable list
                         variables.Add(newVariable);
-                        #endregion
+                        
                         break;
-                    case Token.TokenType.VariableName:
+                    #endregion
+                    case Token.TokenType.Label:
+                        // If label is encountered, start new code block
+                        codeBlocks.Add(new SimpleScriptCodeBlock()
+                        {
+                            Label = currentCodeBlockLabel,
+                            Instructions = currentCodeBlockInstuctions.ToArray()
+                        });
+                        currentCodeBlockLabel = (string)currentToken.Value;
+                        currentCodeBlockInstuctions.Clear();
+                        break;
+                    case Token.TokenType.Instruction:
+                        switch ((string)currentToken.Value)
+                        {
+                            case "mov":
+                                currentCodeBlockInstructionType = SimpleScriptCodeBlock.SimpleScriptInstruction.InstructionType.MOV;
+                                break;
+                            case "call":
+                                currentCodeBlockInstructionType = SimpleScriptCodeBlock.SimpleScriptInstruction.InstructionType.CALL;
+                                break;
+                            case "sub":
+                                currentCodeBlockInstructionType = SimpleScriptCodeBlock.SimpleScriptInstruction.InstructionType.SUB;
+                                break;
+                            case "jl":
+                                currentCodeBlockInstructionType = SimpleScriptCodeBlock.SimpleScriptInstruction.InstructionType.JL;
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+                        isInInstruction = true;
                         break;
                     case Token.TokenType.EndOfStatement:
+                        if (isInInstruction)
+                        {
+                            var newInstruction = new SimpleScriptCodeBlock.SimpleScriptInstruction();
+                            newInstruction.Type = currentCodeBlockInstructionType;
+                            newInstruction.Parameters = currentCodeBlockInstructionParameters.ToArray();
+                            currentCodeBlockInstuctions.Add(newInstruction);
+                        }
                         ResetState();
                         break;
                 }
             }
 
+            // Append final code block
+            codeBlocks.Add(new SimpleScriptCodeBlock()
+            {
+                Label = currentCodeBlockLabel,
+                Instructions = currentCodeBlockInstuctions.ToArray()
+            });
+
+            // Generate final object and return
             var result = new SimpleScript();
+
+            result.Variables = variables.ToArray();
+            result.CodeBlocks = codeBlocks.ToArray();
 
             return result;
         }
@@ -235,6 +358,7 @@ namespace CommonToolLib.SimpleScript
             {
                 switch (currentStringToken)
                 {
+                    case "config":
                     case "static":
                     case "const":
                     case "explicit":

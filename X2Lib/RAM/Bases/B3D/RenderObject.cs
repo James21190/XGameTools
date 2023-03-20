@@ -6,15 +6,15 @@ namespace X2Lib.RAM.Bases.B3D
     public class RenderObject : XCommonLib.RAM.Bases.B3D.RenderObject
     {
         #region Memory Fields
+        public override int ID { get; set; }
         #endregion
 
         #region Common
         #endregion
 
-        public override bool IsValid => throw new NotImplementedException();
-
         #region MemoryObject
-        public override int ByteSize => throw new NotImplementedException();
+        public override int ByteSize => 488;
+
 
         public override byte[] GetBytes()
         {
@@ -23,7 +23,7 @@ namespace X2Lib.RAM.Bases.B3D
 
         protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
-            base.SetDataFromMemoryObjectConverter(objectByteList);
+            ID = objectByteList.PopInt(0x24);
         }
         #endregion
     }
