@@ -18,6 +18,8 @@ namespace CommonToolLib.Files
 
             public bool DoesFileMatch(byte[] file)
             {
+                if (file.Length < Signature.Length)
+                    return false;
                 for (int i = 0; i < Signature.Length; i++)
                 {
                     if (WildcardIndexs == null || !WildcardIndexs.Contains(i))

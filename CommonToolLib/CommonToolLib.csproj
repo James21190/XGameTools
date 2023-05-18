@@ -50,6 +50,7 @@
     <Compile Include="Generics\NamedObjectContainer.cs" />
     <Compile Include="Generics\Vector.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="MetaData.cs" />
     <Compile Include="PageReference.cs" />
     <Compile Include="ProcessHooking\ApplicationHook.cs" />
     <Compile Include="ProcessHooking\BitField.cs" />
