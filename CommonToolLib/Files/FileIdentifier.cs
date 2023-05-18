@@ -93,26 +93,34 @@ namespace CommonToolLib.Files
                 Extension = ".gz",
                 Signature = new byte[] { 0x1f, 0x8b, 0x08}
             },
-            //new FileSignature
-            //{
-            //    Extension = ".",
-            //    Signature = new byte[] { }
-            //},
-            //new FileSignature
-            //{
-            //    Extension = ".",
-            //    Signature = new byte[] { }
-            //},
-            //new FileSignature
-            //{
-            //    Extension = ".",
-            //    Signature = new byte[] { }
-            //},
-            //new FileSignature
-            //{
-            //    Extension = ".",
-            //    Signature = new byte[] { }
-            //},
+            new FileSignature
+            {
+                Extension = ".woff2",
+                Signature = new byte[] { 0x77, 0x4f, 0x46, 0x32 }
+            },
+            new FileSignature
+            {
+                Extension = ".mp3",
+                Signature = new byte[] { 0x49, 0x44, 0x33 }
+            },
+            new FileSignature
+            {
+                Extension = ".m4v",
+                Signature = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x66, 0x74, 0x79, 0x70, 0x6d, 0x70, 0x34, 0x32 },
+                WildcardIndexs = new int[] {0,1,2,3}
+            },
+            new FileSignature
+            {
+                Extension = ".mp4",
+                Signature = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x66, 0x74, 0x79, 0x70, 0x69, 0x73, 0x6f, 0x6d },
+                WildcardIndexs = new int[] {0,1,2,3}
+            },
+            new FileSignature
+            {
+                Extension = ".mov",
+                Signature = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x66, 0x74, 0x79, 0x70, 0x71, 0x74, 0x20, 0x20 },
+                WildcardIndexs = new int[] {0,1,2,3}
+            },
         };
 
         /// <summary>
@@ -120,18 +128,25 @@ namespace CommonToolLib.Files
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static string IdentifyExtension(string path)
+        public static string IdentifyExtension(string path, bool appendFirstBytesIfUnknown = false)
         {
-            return IdentifyExtension(File.ReadAllBytes(path));
+            return IdentifyExtension(File.ReadAllBytes(path), appendFirstBytesIfUnknown);
         }
 
-        public static string IdentifyExtension(byte[] file)
+        public static string IdentifyExtension(byte[] file, bool appendFirstBytesIfUnknown = false)
         {
             foreach (var signature in Signatures)
             {
                 if (signature.DoesFileMatch(file)) return signature.Extension;
             }
-            return ".unknown";
+            if (appendFirstBytesIfUnknown && file.Length >= 2)
+            {
+                return ".unknown_" + file[0].ToString("X2") + file[1].ToString("X2"); 
+            }
+            else
+            {
+                return ".unknown";
+            }
         }
     }
 }
