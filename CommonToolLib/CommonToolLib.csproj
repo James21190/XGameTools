@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Files\FileIdentifier.cs" />
+    <Compile Include="Files\Patcher\FilePatch.cs" />
+    <Compile Include="Files\Patcher\FilePatcher.cs" />
+    <Compile Include="Files\Patcher\FileProfile.cs" />
     <Compile Include="Generics\BinaryObjectConverter.cs" />
     <Compile Include="Generics\IBinaryObject.cs" />
     <Compile Include="Generics\Matrix.cs" />
