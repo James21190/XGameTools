@@ -80,11 +80,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MemoryControl\Common.csproj">
+    <ProjectReference Include="..\CommonToolLib\CommonToolLib.csproj">
       <Project>{819f7430-5684-4cdd-8c02-e1ac8baa6d92}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\X3TCTools\X3TCTools.csproj">
+    <ProjectReference Include="..\X3TCTools\X3Tools.csproj">
       <Project>{5d48fefb-8ffc-45b8-a09c-8ef0e109be51}</Project>
       <Name>X3TCTools</Name>
     </ProjectReference>
