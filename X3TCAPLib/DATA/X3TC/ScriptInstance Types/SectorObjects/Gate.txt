@@ -1,2 +1,6 @@
 ﻿2014
 SectorObject
+Index
+Destination_X
+Destination_Y
+Destination_Index

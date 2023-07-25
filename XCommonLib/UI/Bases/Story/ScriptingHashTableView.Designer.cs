@@ -55,7 +55,7 @@
             // 
             this.nnudCount.Location = new System.Drawing.Point(166, 3);
             this.nnudCount.Maximum = new decimal(new int[] {
-            100,
+            10000000,
             0,
             0,
             0});
@@ -67,7 +67,7 @@
             0});
             this.nnudCount.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudCount.Name = "nnudCount";
-            this.nnudCount.Size = new System.Drawing.Size(157, 50);
+            this.nnudCount.Size = new System.Drawing.Size(100, 50);
             this.nnudCount.TabIndex = 2;
             this.nnudCount.Title = "Count";
             this.nnudCount.Value = new decimal(new int[] {

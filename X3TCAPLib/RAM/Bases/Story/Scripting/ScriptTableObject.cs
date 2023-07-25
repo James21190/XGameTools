@@ -30,7 +30,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
 
             public void ReloadFromMemory()
             {
-                ParentMemoryBlock.WriteBytes(pThis, GetBytes());
+                SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
             }
 
             public void SetData(byte[] Memory)

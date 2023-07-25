@@ -19,7 +19,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         {
             for (int index = 0; index < ScriptVariableCount && index < ReferenceType.Variables.Length; index++)
             {
-                if (ReferenceType.LocalVariables[index].Name == name)
+                if (ReferenceType.Variables[index].Name == name)
                     return index;
             }
             throw new IndexOutOfRangeException();

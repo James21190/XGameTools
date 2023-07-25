@@ -10,7 +10,7 @@ Table DockScriptInstanceIDHashTable
 Table FactoryScriptInstanceIDHashTable
 Table UnknownTable_1
 Table UnknownTable_2
-Table UnknownTable_3
+Table GateScriptInstanceIDHashTable
 Array UnknownArray_1
 
 Table UnknownTable_4
