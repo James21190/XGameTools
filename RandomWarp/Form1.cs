@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using X2Lib.RAM;
+using X3TCAPLib.RAM;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Galaxy;
 
@@ -22,12 +24,15 @@ namespace RandomWarp
         {
             InitializeComponent();
 
-
-            _GameHook = XWrapperLib.XGameHookFactory.GetGameHook();
-
-            if (_GameHook == null)
+            Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
+            if (processX3TC != null)
             {
-                this.Close();
+                _GameHook = new X3TCGameHook(processX3TC);
+            }
+            else
+            {
+                MessageBox.Show("X3TC not found. Please launch the game and try again.");
+                Close();
             }
         }
 
