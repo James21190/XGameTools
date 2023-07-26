@@ -13,16 +13,16 @@ SecondsElapsed
 
 
 
-RaceDataWithSectorScriptInstanceIDHashTable
-RaceDataScriptInstanceIDHashTable
+Table KnownRacesWithSectorScriptInstanceIDHashTable
+Table KnownRacesScriptInstanceIDHashTable
 
 TradeRank
 FightRank
-OwnedShipScriptInstanceIDHashTable
+Table OwnedShipScriptInstanceIDHashTable
 
 
 
-OwnedStationScriptInstanceIDHashTable
+Table OwnedStationScriptInstanceIDHashTable
 
 
 

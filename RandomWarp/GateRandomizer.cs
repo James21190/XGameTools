@@ -156,6 +156,7 @@ namespace RandomWarp
                 _SearchSectors(ref unvisited, origin);
 
                 // Fix then repeat if needed
+                // This fix method in theory could be repeated infinite times before a solution is found, however that will never happen.
                 if (unvisited.Count > 0)
                 {
                     var targetSector = unvisited[_Rand.Next(unvisited.Count())];

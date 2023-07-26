@@ -205,6 +205,8 @@ namespace XCommonLib.RAM
                 case GeneralRaces.Player: return Color.LawnGreen;
                 case GeneralRaces.Unowned: return Color.Gray;
                 case GeneralRaces.Pirate: return Color.MediumPurple;
+                case GeneralRaces.ATF:
+                case GeneralRaces.Terran: return Color.Sienna;
                 case GeneralRaces.Friendly:
                 case GeneralRaces.Unknown:
                 case GeneralRaces.Enemy:
