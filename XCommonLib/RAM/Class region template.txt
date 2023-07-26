@@ -5,15 +5,16 @@
 #endregion
 
 #region IMemoryObject
-public override int ByteSize => throw new NotImplementedException();
+public const int BYTE_SIZE = 0;
+public override int ByteSize => BYTE_SIZE;
 
 public override byte[] GetBytes()
 {
     throw new NotImplementedException();
 }
 
-protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
+protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
 {
-    base.SetDataFromMemoryObjectConverter(memoryObjectConverter);
+    base.SetDataFromMemoryObjectConverter(objectByteList);
 }
 #endregion

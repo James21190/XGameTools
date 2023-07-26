@@ -48,6 +48,8 @@
     <Compile Include="RAM\Bases\B3D\B3DBase.cs" />
     <Compile Include="RAM\Bases\B3D\RenderObject.cs" />
     <Compile Include="RAM\Bases\Galaxy\GalaxyBase.cs" />
+    <Compile Include="RAM\Bases\Galaxy\GateData.cs" />
+    <Compile Include="RAM\Bases\Galaxy\SectorData.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObjectMetaWithChildren.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Gate_Meta.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject Meta\SectorObject_Sector_Meta.cs" />

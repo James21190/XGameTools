@@ -30,7 +30,7 @@ namespace CommonToolLib.ProcessHooking
         private static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint dwFreeType);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern int WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, uint size, int lpNumberOfBytesWritten);
+        private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] buffer, uint size, int lpNumberOfBytesWritten);
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, IntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
 
@@ -161,9 +161,19 @@ namespace CommonToolLib.ProcessHooking
         {
             int numberOfBytesWritten = 0;
             uint old;
-            VirtualProtectEx(hProcess, Address, (IntPtr)Bytes.Length, (uint)PageProtectionFlags.PAGE_EXECUTE_READWRITE, out old);
-            WriteProcessMemory(hProcess, Address, Bytes, (uint)Bytes.Length, numberOfBytesWritten);
-            VirtualProtectEx(hProcess, Address, (IntPtr)Bytes.Length, old, out old);
+            if(!VirtualProtectEx(hProcess, Address, (IntPtr)Bytes.Length, (uint)PageProtectionFlags.PAGE_EXECUTE_READWRITE, out old))
+            {
+                throw new Exception();
+            }
+            if(!WriteProcessMemory(hProcess, Address, Bytes, (uint)Bytes.Length, numberOfBytesWritten))
+            {
+                throw new Exception();
+            }
+            if(!VirtualProtectEx(hProcess, Address, (IntPtr)Bytes.Length, old, out old))
+            {
+                throw new Exception();
+            }
+
         }
 
         #endregion
