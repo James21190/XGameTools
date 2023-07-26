@@ -10,7 +10,6 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using X2Lib.RAM;
 using X3TCAPLib.RAM;
 using XCommonLib.RAM;
 using XCommonLib.RAM.Bases.Galaxy;
