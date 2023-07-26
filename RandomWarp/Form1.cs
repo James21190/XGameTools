@@ -31,194 +31,9 @@ namespace RandomWarp
             }
         }
 
-        private static Random _Rand;
-        private static int _Randomness;
+        public static Random _Rand;
+        public static int _Randomness;
 
-        public class GateCollection
-        {
-            public List<GateData> Gates;
-            public List<Sector> Sectors;
-            private List<GateData> _ToRandomize = new List<GateData>();
-
-            public void LinkGates(GateData gateA, GateData gateB)
-            {
-                var gateC = GetGate(gateA.DestSectorX, gateA.DestSectorY, gateA.DestIndex);
-                var gateD = GetGate(gateB.DestSectorX,gateB.DestSectorY, gateB.DestIndex);
-
-                gateA.DestSectorX = gateB.SectorX;
-                gateA.DestSectorY = gateB.SectorY;
-                gateA.DestIndex =   gateB.Index;
-                gateB.DestSectorX = gateA.SectorX;
-                gateB.DestSectorY = gateA.SectorY;
-                gateB.DestIndex =   gateA.Index;
-
-                gateC.DestSectorX = gateD.SectorX;
-                gateC.DestSectorY = gateD.SectorY;
-                gateC.DestIndex =   gateD.Index;
-                gateD.DestSectorX = gateC.SectorX;
-                gateD.DestSectorY = gateC.SectorY;
-                gateD.DestIndex =   gateC.Index;
-            }
-
-            public Sector GetSector(int x, int y)
-            {
-                foreach (var sector in Sectors)
-                    if (sector.SectorX == x && sector.SectorY == y)
-                        return sector;
-                return null;
-            }
-
-            public GateData GetGate(int sectorX, int sectorY, int index)
-            {
-                foreach(var gate in Gates)
-                {
-                    if (gate.SectorX == sectorX && gate.SectorY == sectorY && gate.Index == index)
-                        return gate;
-                }
-                return null;
-            }
-
-            public GateData GetRandomGate()
-            {
-                return Gates[_Rand.Next(Gates.Count)];
-            }
-
-            private GateData _GetRandomGateFromToRandomize()
-            {
-                return _ToRandomize[_Rand.Next(_ToRandomize.Count)];
-            }
-
-            public void RandomizePairs(int limit = -1, bool resetUsedList = true)
-            {
-                if (resetUsedList)
-                    _ToRandomize = new List<GateData>(Gates);
-                int counter = 0;
-
-                while (_ToRandomize.Count > 1 && counter != limit)
-                {
-                    var gateA = _GetRandomGateFromToRandomize();
-                    _ToRandomize.Remove(gateA);
-                    var gateB = _GetRandomGateFromToRandomize();
-                    _ToRandomize.Remove(gateB);
-
-                    LinkGates(gateA, gateB);
-                    counter++;
-                }
-            }
-
-            public void WriteScriptInstance(ref GameHook gameHook)
-            {
-                foreach (var gate in Gates)
-                    gate.ApplyDestToScriptInstance(ref gameHook);
-            }
-
-            public void WriteGalaxyBase(ref GameHook gameHook)
-            {
-                var gb = gameHook.GalaxyBase;
-                foreach (var gate in Gates)
-                    gate.ApplyDestToGalaxyBase(ref gb);
-            }
-
-            private void _SearchSectors(ref List<Sector> unvisited, Sector origin)
-            {
-                unvisited.Remove(origin);
-                foreach(var gate in origin.Gates)
-                {
-                    var nextSector = GetSector(gate.DestSectorX, gate.DestSectorY);
-                    if(unvisited.Contains(nextSector))
-                        _SearchSectors(ref unvisited, nextSector);
-                }
-            }
-
-            public void ValidateAndFix()
-            {
-                // Fix islands
-                while (true)
-                {
-                    var origin = Sectors[_Rand.Next(Sectors.Count)];
-                    List<Sector> unvisited = new List<Sector>(Sectors);
-
-                    _SearchSectors(ref unvisited, origin);
-
-                    // Fix then repeat if needed
-                    if(unvisited.Count > 0)
-                    {
-                        var targetSector = unvisited[_Rand.Next(unvisited.Count())];
-                        Sector toConnect;
-                        do
-                        {
-                            toConnect = Sectors[_Rand.Next(Sectors.Count)];
-                        } while (unvisited.Contains(toConnect));
-
-                        var gateA = targetSector.Gates[_Rand.Next(targetSector.Gates.Count)];
-                        var gateB = toConnect.Gates[_Rand.Next(toConnect.Gates.Count)];
-
-                        LinkGates(gateA, gateB);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-
-        public class Sector
-        {
-            public int SectorX;
-            public int SectorY;
-            public List<GateData> Gates = new List<GateData>();
-
-            public override string ToString()
-            {
-                return "Sector " + SectorX + ", " + SectorY;
-            }
-        }
-
-        public class GateData
-        {
-            public int ScriptInstanceID;
-            public int Index;
-            public int SectorX;
-            public int SectorY;
-            public int DestIndex;
-            public int DestSectorX;
-            public int DestSectorY;
-
-            public override string ToString()
-            {
-                return "Gate " + SectorX+ ", " + SectorY + ", " + Index;
-            }
-
-            public void ApplyDestToScriptInstance(ref GameHook gameHook)
-            {
-                var scriptInstance = gameHook.StoryBase.GetScriptInstance(ScriptInstanceID);
-                scriptInstance.ReferenceType = gameHook.DataFileManager.GetScriptInstanceType(scriptInstance.Class);
-
-                var destX = scriptInstance.GetVariable("Destination_X");
-                var destY = scriptInstance.GetVariable("Destination_Y");
-                var destIndex = scriptInstance.GetVariable("Destination_Index");
-
-                destX.Value = DestSectorX;
-                destY.Value = DestSectorY;
-                destIndex.Value = DestIndex;
-
-                // Write to game memory
-                gameHook.WriteBinaryObject(destX.pThis, destX);
-                gameHook.WriteBinaryObject(destY.pThis, destY);
-                gameHook.WriteBinaryObject(destIndex.pThis, destIndex);
-            }
-            public void ApplyDestToGalaxyBase(ref GalaxyBase gameHook)
-            {
-                var sectorIndex = gameHook.GetSectorIndex(SectorX, SectorY);
-                var gate = gameHook.Sectors[sectorIndex].Gates[Index];
-                gate.DestinationSectorX = DestSectorX;
-                gate.DestinationSectorY = DestSectorY;
-                gate.DestinationSectorIndex = DestIndex;
-
-                gate.WriteSafeToMemory();
-            }
-        }
 
         public void RandomizeGateConnections()
         {
@@ -228,7 +43,7 @@ namespace RandomWarp
             backgroundWorker1.RunWorkerAsync();
         }
 
-        public GateCollection GetGateList()
+        internal GateRandomizer GetGateList()
         {
             // Get list of race ids
             var playerShip_ScriptInstance = _GameHook.StoryBase.GetScriptInstance(_GameHook.SectorBase.Player.ScriptInstanceID);
@@ -307,7 +122,7 @@ namespace RandomWarp
                 }
             }
 
-            return new GateCollection()
+            return new GateRandomizer()
             {
                 Gates = GateList,
                 Sectors = Sectors
