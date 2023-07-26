@@ -8,7 +8,7 @@ using XCommonLib.RAM.Bases.Galaxy;
 
 namespace RandomWarp
 {
-    internal class GateData
+    internal class GateData : IComparable
     {
         public int ScriptInstanceID;
         public int Index;
@@ -50,6 +50,22 @@ namespace RandomWarp
             gate.DestinationSectorIndex = DestIndex;
 
             gate.WriteSafeToMemory();
+        }
+
+        public int CompareTo(object obj)
+        {
+            var other = (GateData)obj;
+
+            if (SectorX > other.SectorX) return 1;
+            if (SectorX < other.SectorX) return -1;
+
+            if (SectorY > other.SectorY) return 1;
+            if (SectorY < other.SectorY) return -1;
+
+            if (Index > other.Index) return 1;
+            if (Index < other.Index) return -1;
+
+            return 0;
         }
     }
 }

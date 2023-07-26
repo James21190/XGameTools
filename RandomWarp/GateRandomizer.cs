@@ -15,10 +15,47 @@ namespace RandomWarp
         public List<Sector> Sectors;
         private List<GateData> _ToRandomize = new List<GateData>();
 
-        public void LinkGates(GateData gateA, GateData gateB)
+        private GateData _GetDest(GateData origin)
         {
-            var gateC = GetGate(gateA.DestSectorX, gateA.DestSectorY, gateA.DestIndex);
-            var gateD = GetGate(gateB.DestSectorX, gateB.DestSectorY, gateB.DestIndex);
+            return GetGate(origin.DestSectorX, origin.DestSectorY, origin.DestIndex);
+        }
+
+        public void RemoveUnlinkedGates()
+        {
+            for(int s = 0; s < Sectors.Count;)
+            {
+                var sector = Sectors[s];
+                for(int g = 0; g < sector.Gates.Count;)
+                {
+                    var gate = sector.Gates[g];
+                    if(_GetDest(gate) == null)
+                    {
+                        sector.Gates.RemoveAt(g);
+                        Gates.Remove(gate);
+                    }
+                    else
+                    {
+                        g++;
+                    }
+                }
+                if(sector.Gates.Count == 0)
+                {
+                    Sectors.RemoveAt(s);
+                }
+                else
+                {
+                    s++;
+                }
+            }
+        }
+
+        public bool LinkGates(GateData gateA, GateData gateB)
+        {
+            var gateC = _GetDest(gateA);
+            var gateD = _GetDest(gateB);
+
+            if (gateC == null || gateD == null)
+                return false;
 
             gateA.DestSectorX = gateB.SectorX;
             gateA.DestSectorY = gateB.SectorY;
@@ -27,12 +64,15 @@ namespace RandomWarp
             gateB.DestSectorY = gateA.SectorY;
             gateB.DestIndex = gateA.Index;
 
+
             gateC.DestSectorX = gateD.SectorX;
             gateC.DestSectorY = gateD.SectorY;
             gateC.DestIndex = gateD.Index;
             gateD.DestSectorX = gateC.SectorX;
             gateD.DestSectorY = gateC.SectorY;
             gateD.DestIndex = gateC.Index;
+
+            return true;
         }
 
         public Sector GetSector(int x, int y)

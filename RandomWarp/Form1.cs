@@ -126,6 +126,7 @@ namespace RandomWarp
                 }
             }
 
+            GateList.Sort();
             return new GateRandomizer()
             {
                 Gates = GateList,
@@ -140,17 +141,27 @@ namespace RandomWarp
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            // Get a list of all active gates
             var Gates = GetGateList();
-            backgroundWorker1.ReportProgress(20);
+            backgroundWorker1.ReportProgress(17);
 
+            // Remove any gates that go nowhere
+            Gates.RemoveUnlinkedGates();
+            backgroundWorker1.ReportProgress(33);
+
+            // Randomize the pairs of gates
             Gates.RandomizePairs((int)(Gates.Gates.Count * _Randomness / 100.0f));
-            backgroundWorker1.ReportProgress(40);
+            backgroundWorker1.ReportProgress(50);
 
+            // Ensure there are no islands so every active sector is reachable
             Gates.ValidateAndFix();
-            backgroundWorker1.ReportProgress(60);
+            backgroundWorker1.ReportProgress(67);
 
+            // Write new destinations to gate script instances
             Gates.WriteScriptInstance(ref _GameHook);
-            backgroundWorker1.ReportProgress(80);
+            backgroundWorker1.ReportProgress(83);
+
+            // Write new destinations to the galaxy base
             Gates.WriteGalaxyBase(ref _GameHook);
             backgroundWorker1.ReportProgress(100);
         }
