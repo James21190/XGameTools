@@ -33,9 +33,9 @@ namespace XCommonLib.UI.Bases.Story
                 var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Class);
                 if (typeData != null)
                 {
-                    if (typeData.Parent != null)
+                    if (typeData.ParentType != null)
                     {
-                        typeName = string.Format("{0} : {1}", typeData.Name, typeData.Parent.Name);
+                        typeName = string.Format("{0} : {1}", typeData.Name, typeData.ParentType.Name);
                     }
                     else
                     {

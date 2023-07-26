@@ -57,6 +57,7 @@
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Ship.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject TypeData\TypeData_Laser.cs" />
     <Compile Include="RAM\Bases\Sector\SectorObject.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptTaskObject.cs" />
     <Compile Include="RAM\Bases\Story\StoryBase.cs" />
@@ -91,25 +92,31 @@
     <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Container.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship_Large.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship_Large.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship_UFO.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship_UFO.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship_T.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship_T.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship_Pirate_Ship.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship_Pirate_Ship.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship_TP.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship_TP.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ship_Small.txt">
+    <Content Include="DATA\X2\ScriptInstance Types\SectorObjects\Ships\Ship_Small.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X2\ScriptInstance Types\RaceData.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DATA\X2\ScriptInstance Types\RaceData_Player.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DATA\X2\ScriptInstance Types\Template.txt">

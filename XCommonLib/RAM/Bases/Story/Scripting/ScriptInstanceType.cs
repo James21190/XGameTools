@@ -31,7 +31,16 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         }
         public string Name;
         public int TypeID;
-        public ScriptInstanceType Parent;
+        public ScriptInstanceType ParentType;
+
+        public bool IsDerivedFrom(string name)
+        {
+            if (Name == name)
+                return true;
+            if(ParentType != null)
+                return ParentType.IsDerivedFrom(name);
+            return false;
+        }
 
         public VariableData[] LocalVariables;
 
@@ -40,9 +49,9 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             get
             {
                 List<VariableData> result = new List<VariableData>();
-                if (Parent != null)
+                if (ParentType != null)
                 {
-                    result.AddRange(Parent.Variables);
+                    result.AddRange(ParentType.Variables);
                 }
 
                 result.AddRange(LocalVariables);

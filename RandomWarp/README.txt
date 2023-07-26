@@ -6,8 +6,6 @@ Likewise, loading a save made before modification will undo the changes.
 This application runs on .NET Framework 4.8
 
 1) Run X3 Terran Conflict and load into a save or start a new game.
-   When starting a new game only some gates are active, with more activating as you explore.
-   These inactive gates will not be randomized.
 2) Ensure game is set to pause while tabbed out
 3) Tab out of the game and launch RandomWarp.exe
 4) Set values in the GUI and click "Shuffle Gates"

@@ -13,6 +13,9 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             NULL,
             Int,
             MODValue,
+
+            pX2HashTable = 4,
+
             pArray = 8,
             pHashTable,
             pScriptingObject,

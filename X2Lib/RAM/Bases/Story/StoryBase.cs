@@ -11,6 +11,7 @@ namespace X2Lib.RAM.Bases.Story
         public MemoryObjectPointer<MemoryString> pStrings;
         public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
         public MemoryObjectPointer<HashTable<ScriptTaskObject>> pHashTable_ScriptTaskObject;
+        public MemoryObjectPointer<HashTable<ScriptTableObject>> pHashTable_ScriptHashTable;
         #endregion
 
         #region Common
@@ -46,11 +47,15 @@ namespace X2Lib.RAM.Bases.Story
         }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
-            throw new NotImplementedException();
+            return pHashTable_ScriptHashTable.obj.GetObject(id);
         }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(IntPtr address)
         {
-            throw new NotImplementedException();
+            var result = new ScriptTableObject();
+            result.ParentMemoryBlock = ParentMemoryBlock;
+            result.pThis = address;
+            result.ReloadFromMemory();
+            return result;
         }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(IntPtr address)
         {
@@ -90,6 +95,8 @@ namespace X2Lib.RAM.Bases.Story
         {
             pHashTable_ScriptTaskObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>(0x0);
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d8);
+            pHashTable_ScriptHashTable = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTableObject>>>(0x1604);
+
         }
 
 

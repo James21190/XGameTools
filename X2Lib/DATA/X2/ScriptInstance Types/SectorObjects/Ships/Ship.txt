@@ -1,7 +1,7 @@
 ﻿-2
 
 
-
+Table HashTable
 
 
 
@@ -24,7 +24,7 @@ Shield
 
 
 
-
+ScriptInstanceID OwningRaceScriptInstanceID
 
 
 

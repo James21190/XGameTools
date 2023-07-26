@@ -112,7 +112,7 @@ namespace XCommonLib.RAM
 
             if (!string.IsNullOrWhiteSpace(lines[1]))
             {
-                result.Parent = GetScriptInstanceType(lines[1]);
+                result.ParentType = GetScriptInstanceType(lines[1]);
             }
 
             result.LocalVariables = new Bases.Story.Scripting.ScriptInstanceType.VariableData[lines.Length - 2];

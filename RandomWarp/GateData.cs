@@ -41,15 +41,15 @@ namespace RandomWarp
             gameHook.WriteBinaryObject(destY.pThis, destY);
             gameHook.WriteBinaryObject(destIndex.pThis, destIndex);
         }
-        public void ApplyDestToGalaxyBase(ref GalaxyBase gameHook)
+        public void ApplyDestToGalaxyBase(ref GalaxyBase galaxyBase)
         {
-            var sectorIndex = gameHook.GetSectorIndex(SectorX, SectorY);
-            var gate = gameHook.Sectors[sectorIndex].Gates[Index];
+            var sectorIndex = galaxyBase.GetSectorIndex(SectorX, SectorY);
+            var gate = galaxyBase.Sectors[sectorIndex].Gates[Index];
             gate.DestinationSectorX = DestSectorX;
             gate.DestinationSectorY = DestSectorY;
             gate.DestinationSectorIndex = DestIndex;
 
-            gate.WriteSafeToMemory();
+            gate.WriteToMemory();
         }
 
         public int CompareTo(object obj)
