@@ -59,7 +59,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X2FramerateLimiter", "X2Fra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleScriptCompiler", "SimpleScriptCompiler\SimpleScriptCompiler.csproj", "{E09AD666-F55A-4043-BCA2-650CFDFB2A45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomWarp", "RandomWarp\RandomWarp.csproj", "{DE5A6F0A-0A17-4B50-8156-608490E63ACD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randomizer", "RandomWarp\Randomizer.csproj", "{DE5A6F0A-0A17-4B50-8156-608490E63ACD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

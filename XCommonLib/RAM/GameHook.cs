@@ -108,6 +108,7 @@ namespace XCommonLib.RAM
 
         #region SectorObject TypeData
         public abstract short[] TypeData_Counts { get; }
+        public abstract int GetTypeDataCount_Ship();
         public abstract TypeData_Ship GetTypeData_Ship(int subType);
         public abstract TypeData_Laser GetTypeData_Laser(int subType);
         #endregion

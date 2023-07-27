@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DE5A6F0A-0A17-4B50-8156-608490E63ACD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RandomWarp</RootNamespace>
-    <AssemblyName>RandomWarp</AssemblyName>
+    <RootNamespace>Randomizer</RootNamespace>
+    <AssemblyName>Randomizer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,11 +53,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GateData.cs" />
-    <Compile Include="GateRandomizer.cs" />
+    <Compile Include="Randomizers\GateRandomizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sector.cs" />
+    <Compile Include="Randomizers\ShipRandomizer.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

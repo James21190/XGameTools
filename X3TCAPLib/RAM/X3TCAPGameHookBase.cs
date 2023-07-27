@@ -4,7 +4,7 @@ namespace X3TCAPLib.RAM
 {
     public abstract class X3TCAPGameHookBase : GameHook
     {
-        internal enum RaceID_X3TCAP : ushort
+        public enum RaceID_X3TCAP : ushort
         {
             NA,
             Argon,
@@ -28,7 +28,7 @@ namespace X3TCAPLib.RAM
             None = 65535
         }
 
-        internal enum MainType_X3TCAP
+        public enum MainType_X3TCAP
         {
             Bullet,
             Sector,
@@ -62,6 +62,11 @@ namespace X3TCAPLib.RAM
             Wreck,
             Factory_Wreck,
             Ship_Wreck
+        }
+
+        public override int GetTypeDataCount_Ship()
+        {
+            return TypeData_Counts[(int)MainType_X3TCAP.Ship];
         }
     }
 }

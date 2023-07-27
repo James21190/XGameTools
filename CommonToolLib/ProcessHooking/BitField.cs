@@ -40,6 +40,24 @@
             }
         }
 
+        public int CountOnes()
+        {
+
+            int count = 0;
+            for(int b = 0; b < m_Length; b++)
+            {
+                var bite = m_Value[b];
+                // Could make a lookup table for this, but effort.
+                for(int i = 0; i < 8; i++)
+                {
+                    if((bite & (0b1 << i)) != 0)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
 
         public override byte[] GetBytes()
         {

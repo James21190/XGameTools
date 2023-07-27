@@ -119,6 +119,12 @@ namespace X2Lib.RAM
                 return values;
             }
         }
+
+        public override int GetTypeDataCount_Ship()
+        {
+            return TypeData_Counts[(int)MainType_X2.Ship];
+        }
+
         public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);

@@ -9,7 +9,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
         public class TurretData : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship.TurretData
         {
             public override int WeaponCount { get; set; }
-            public override int WeaponCompatability { get; set; }
+            public override BitField WeaponCompatability { get; set; }
             public override int TurretNumber { get; set; }
 
             public override int ByteSize => 0x138;
@@ -24,7 +24,12 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
                 WeaponCount = objectByteList.PopInt(0x4);
                 TurretNumber = objectByteList.PopInt();
 
-                WeaponCompatability = objectByteList.PopInt(0x10);
+                WeaponCompatability = objectByteList.PopIMemoryObject<BitField>(0x10);
+            }
+
+            public override void WriteSafeToMemory()
+            {
+                ParentMemoryBlock.WriteBinaryObject(pThis + 0x10, WeaponCompatability);
             }
         }
 

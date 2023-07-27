@@ -13,7 +13,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
         public class TurretData : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship.TurretData
         {
             public override int WeaponCount { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-            public override int WeaponCompatability { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            public override BitField WeaponCompatability { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
             public override int TurretNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
             public override int ByteSize => throw new NotImplementedException();

@@ -7,7 +7,7 @@ namespace XCommonLib.RAM.Bases.Sector.SectorObject_TypeData
         public abstract class TurretData : MemoryObject
         {
             public abstract int WeaponCount { get; set; }
-            public abstract int WeaponCompatability { get; set; }
+            public abstract BitField WeaponCompatability { get; set; }
             public abstract int TurretNumber { get; set; }
         }
 

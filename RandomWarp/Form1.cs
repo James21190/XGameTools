@@ -1,132 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Randomizer.Randomizers;
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using X3TCAPLib.RAM;
-using X3TCAPLib.RAM.Bases.Story.Scripting;
-using XCommonLib.RAM;
-using XCommonLib.RAM.Bases.Galaxy;
 
-namespace RandomWarp
+namespace Randomizer
 {
     public partial class Form1 : Form
     {
-        GameHook _GameHook;
         public Form1()
         {
             InitializeComponent();
-
-            Process processX3TC = Process.GetProcessesByName("X3TC").FirstOrDefault();
-            if (processX3TC != null)
-            {
-                _GameHook = new X3TCGameHook(processX3TC);
-            }
-            else
-            {
-                MessageBox.Show("X3TC not found. Please launch the game and try again.");
-                Close();
-            }
         }
 
-        public static Random _Rand;
-        public static int _Randomness;
+        private int _RandomSeed => (int)numericUpDown2.Value;
+        private int _GateRandomness => (int)numericUpDown1.Value;
 
 
-        public void RandomizeGateConnections()
+        public void StartRandomize()
         {
             button1.Enabled = false;
-            _Rand = new Random((int)numericUpDown2.Value);
-            _Randomness = (int)numericUpDown1.Value;
             backgroundWorker1.RunWorkerAsync();
-        }
-
-        internal GateRandomizer GetGateList()
-        {
-            List<XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance> sector_ScriptInstances = new List<XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance>();
-            var ids = _GameHook.StoryBase.GetAllScriptInstances();
-            foreach(var scriptInstanceID in ids)
-            {
-                var scriptInstance = _GameHook.StoryBase.GetScriptInstance(scriptInstanceID);
-                scriptInstance.ReferenceType = _GameHook.DataFileManager.GetScriptInstanceType(scriptInstance.Class);
-
-                if (scriptInstance.ReferenceType != null && scriptInstance.ReferenceType.IsDerivedFrom("Sector"))
-                {
-                    sector_ScriptInstances.Add(scriptInstance);
-                }
-
-                if (sector_ScriptInstances.Count == 480)
-                    break;
-            }
-
-            List<Sector> Sectors = new List<Sector>();
-            // Get every gate
-            List<GateData> GateList = new List<GateData>();
-
-            foreach (var sector_ScriptInstance in sector_ScriptInstances)
-            {
-                var SectorX = sector_ScriptInstance.GetVariable("Sector_X").Value;
-                var SectorY = sector_ScriptInstance.GetVariable("Sector_Y").Value;
-
-                var CurrentSector = new Sector();
-                CurrentSector.SectorX = SectorX;
-                CurrentSector.SectorY = SectorY;
-
-                var gateHashTable = _GameHook.StoryBase.GetScriptHashTable((IntPtr)sector_ScriptInstance.GetVariable("GateScriptInstanceIDHashTable").Value);
-                    
-                var gateIDs = gateHashTable.ScanContents();
-
-                bool hasValidGates = false;
-                // For every gate in the sector
-                foreach(var gateID in gateIDs)
-                {
-                    var gate_ScriptInstance = _GameHook.StoryBase.GetScriptInstance(gateID.Value);
-                    gate_ScriptInstance.ReferenceType = _GameHook.DataFileManager.GetScriptInstanceType(gate_ScriptInstance.Class);
-
-                    var index = gate_ScriptInstance.GetVariable("Index").Value;
-                    var destIndex = gate_ScriptInstance.GetVariable("Destination_Index").Value;
-                    if (index == -1 || destIndex == -1)
-                        continue;
-
-                    //if (SectorX > 4 || SectorY > 4)
-                    //    continue;
-
-                    var destX = gate_ScriptInstance.GetVariable("Destination_X").Value;
-                    var destY = gate_ScriptInstance.GetVariable("Destination_Y").Value;
-
-                    var newData = new GateData()
-                    {
-                        ScriptInstanceID = gate_ScriptInstance.ID,
-                        Index = index,
-                        SectorX = SectorX,
-                        SectorY = SectorY,
-                        DestIndex = destIndex,
-                        DestSectorX = destX,
-                        DestSectorY = destY
-                    };
-
-                    CurrentSector.Gates.Add(newData);
-                    GateList.Add(newData);
-
-                    hasValidGates = true;
-                }
-                if(hasValidGates)
-                    Sectors.Add(CurrentSector);
-            }
-
-            GateList.Sort();
-            return new GateRandomizer()
-            {
-                Gates = GateList,
-                Sectors = Sectors
-            };
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -136,31 +30,37 @@ namespace RandomWarp
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+
+            int TasksToComplete = 0;
+            int TasksCompleted = 0;
+
+            void reportProgress()
+            {
+                backgroundWorker1.ReportProgress((TasksCompleted * 100) / TasksToComplete);
+            }
+            void reportTaskComplete()
+            {
+                TasksCompleted++;
+                reportProgress();
+            }
+            // Count tasks
+            if (chkRandomizeGates.Checked) TasksToComplete++;
+            if (chkRandomizeShipTypeData.Checked) TasksToComplete++;
+
+            reportProgress();
+
             try
             {
-                // Get a list of all active gates
-                var Gates = GetGateList();
-                backgroundWorker1.ReportProgress(17);
-
-                // Remove any gates that go nowhere
-                Gates.RemoveUnlinkedGates();
-                backgroundWorker1.ReportProgress(33);
-
-                // Randomize the pairs of gates
-                Gates.RandomizePairs((int)(Gates.Gates.Count * _Randomness / 100.0f));
-                backgroundWorker1.ReportProgress(50);
-
-                // Ensure there are no islands so every active sector is reachable
-                Gates.ValidateAndFix();
-                backgroundWorker1.ReportProgress(67);
-
-                // Write new destinations to gate script instances
-                Gates.WriteScriptInstance(ref _GameHook);
-                backgroundWorker1.ReportProgress(83);
-
-                // Write new destinations to the galaxy base
-                Gates.WriteGalaxyBase(ref _GameHook);
-                backgroundWorker1.ReportProgress(100);
+                if (chkRandomizeGates.Checked)
+                {
+                    GateRandomizer.RandomizeGateConnections(_RandomSeed, _GateRandomness);
+                    reportTaskComplete();
+                }
+                if (chkRandomizeShipTypeData.Checked)
+                {
+                    ShipRandomizer.RandomizeAllShipWeapons(_RandomSeed);
+                    reportTaskComplete();
+                }
             }
             catch (Exception ex)
             {
@@ -176,7 +76,7 @@ namespace RandomWarp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RandomizeGateConnections();
+            StartRandomize();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
