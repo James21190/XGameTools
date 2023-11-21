@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonToolLib.Generics;
+using System;
 using System.Runtime.CompilerServices;
 
 namespace CommonToolLib.ProcessHooking
@@ -73,5 +74,9 @@ namespace CommonToolLib.ProcessHooking
             ParentMemoryBlock.WriteBinaryObject(pThis, this);
         }
 
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

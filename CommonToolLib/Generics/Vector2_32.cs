@@ -57,6 +57,11 @@ namespace CommonToolLib.Generics
             throw new NotImplementedException();
         }
 
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
+        }
+
         public int ByteSize => 8;
 
         #endregion

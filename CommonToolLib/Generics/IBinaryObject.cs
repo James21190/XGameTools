@@ -1,4 +1,6 @@
-﻿namespace CommonToolLib.Generics
+﻿using System.IO;
+
+namespace CommonToolLib.Generics
 {
     public interface IBinaryObject
     {
@@ -10,8 +12,11 @@
         /// <summary>
         /// Sets values in the object from a byte array.
         /// </summary>
-        /// <param name="Memory"></param>
-        void SetData(byte[] Memory);
+        /// <param name="data"></param>
+        void SetData(byte[] data);
+
+        void SetData(BinaryObjectConverter boc);
+
         /// <summary>
         /// Returns the object in bytes.
         /// </summary>

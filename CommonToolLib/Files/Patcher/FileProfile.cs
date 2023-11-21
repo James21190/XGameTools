@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -23,6 +24,23 @@ namespace CommonToolLib.Files.Patcher
             /// The memory address the file index will be loaded in memory.
             /// </summary>
             public int Address;
+
+            public override string ToString()
+            {
+                return FileIndex.ToString() + " " + Address.ToString("X");
+            }
+
+            public static Region FromString(string line)
+            {
+                Region region = new Region();
+
+                var split = line.Split(' ');
+
+                region.FileIndex = int.Parse(split[0]);
+                region.Address = int.Parse(split[1], System.Globalization.NumberStyles.HexNumber);
+
+                return region;
+            }
         }
 
         /// <summary>
@@ -92,6 +110,41 @@ namespace CommonToolLib.Files.Patcher
             var region = GetRegionOfFileIndex(index);
 
             return region.Address + (index - region.FileIndex);
+        }
+
+        public static FileProfile FromFile(string path)
+        {
+            var result = new FileProfile();
+
+            var lines = File.ReadAllLines(path);
+            result.FileHash = lines[0];
+            result.FileHash = lines[1];
+
+            result.MemoryRegions = new Region[lines.Length - 2];
+
+            for(int i = 2; i < lines.Length; i++)
+            {
+                var line = lines[i];
+
+                var region = Region.FromString(line);
+                result.MemoryRegions[i-2] = region;
+
+            }
+
+            return result;
+        }
+
+        public void ToFile(string path)
+        {
+            StreamWriter sw = new StreamWriter(path);
+            sw.WriteLine(FileName);
+            sw.WriteLine(FileHash);
+
+            foreach(var region in MemoryRegions)
+            {
+                sw.WriteLine(region.ToString());
+            }
+
         }
     }
 }

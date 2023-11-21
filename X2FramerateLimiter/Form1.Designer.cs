@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.nudFPSLimit = new System.Windows.Forms.NumericUpDown();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFPSLimit)).BeginInit();
             this.SuspendLayout();
@@ -96,21 +96,37 @@
             0});
             this.nudFPSLimit.ValueChanged += new System.EventHandler(this.nudFPSLimit_ValueChanged);
             // 
-            // timer1
+            // button1
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.button1.Location = new System.Drawing.Point(12, 86);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(183, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Apply To Running";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 115);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(183, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Apply To Executable";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(207, 87);
+            this.ClientSize = new System.Drawing.Size(207, 146);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(223, 126);
-            this.MinimumSize = new System.Drawing.Size(223, 126);
+            this.MaximumSize = new System.Drawing.Size(223, 185);
+            this.MinimumSize = new System.Drawing.Size(223, 185);
             this.Name = "Form1";
-            this.Text = "X FPS Limiter";
+            this.Text = "X2 FPS Limiter";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -125,7 +141,8 @@
         private System.Windows.Forms.NumericUpDown nudFPSLimit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

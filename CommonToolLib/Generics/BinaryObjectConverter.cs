@@ -12,7 +12,15 @@ namespace CommonToolLib.Generics
     {
         private List<byte> _Data;
         protected int _DataPointer { get; private set; } = 0;
+        public bool IsAtEnd 
+        { 
+            get
+            {
+                return _DataPointer == _Data.Count();
+            } 
+        }
 
+        #region Constructors
         public BinaryObjectConverter()
         {
             _Data = new List<byte>();
@@ -22,7 +30,7 @@ namespace CommonToolLib.Generics
         {
             _Data = new List<byte>(data);
         }
-
+        #endregion
 
         public void Seek(int index)
         {
@@ -30,6 +38,7 @@ namespace CommonToolLib.Generics
         }
 
         #region Appends
+        #region Bytes
         public void Append(byte value)
         {
             _Data.Add(value);
@@ -38,19 +47,38 @@ namespace CommonToolLib.Generics
         {
             _Data.AddRange(arr);
         }
+        public void AppendReversed(byte[] bytes)
+        {
+            for (int i = bytes.Length - 1; i >= 0; i--)
+                Append(bytes[i]);
+        }
 
+        #endregion
+
+        #region Shorts
         public void Append(short value)
         {
             _Data.AddRange(BitConverter.GetBytes(value));
+        }
+        public void AppendReversed(short value)
+        {
+            AppendReversed(BitConverter.GetBytes(value));
         }
         public void Append(ushort value)
         {
             _Data.AddRange(BitConverter.GetBytes(value));
         }
 
+        #endregion
+
+        #region Ints
         public void Append(int value)
         {
             _Data.AddRange(BitConverter.GetBytes(value));
+        }
+        public void AppendReversed(int value)
+        {
+            AppendReversed(BitConverter.GetBytes(value));
         }
         public void Append(uint value)
         {
@@ -61,6 +89,9 @@ namespace CommonToolLib.Generics
             Append((int)value);
         }
 
+        #endregion
+
+        #region BinaryObjects
         public void Append(IBinaryObject memoryObject)
         {
             _Data.AddRange(memoryObject.GetBytes());
@@ -72,7 +103,9 @@ namespace CommonToolLib.Generics
                 Append(obj.GetBytes());
             }
         }
+        #endregion
 
+        #region Strings
         /// <summary>
         /// Fills a null array with a string. The string is null terminated.
         /// </summary>
@@ -130,7 +163,12 @@ namespace CommonToolLib.Generics
         }
         #endregion
 
+
+
+        #endregion
+
         #region Pops
+        #region Bytes
         public byte PopByte()
         {
             return _Data[_DataPointer++];
@@ -140,7 +178,6 @@ namespace CommonToolLib.Generics
             Seek(GoToOffset);
             return PopByte();
         }
-
         public byte[] PopBytes(int Count)
         {
             byte[] result = _Data.Skip(_DataPointer).Take(Count).ToArray();
@@ -153,16 +190,32 @@ namespace CommonToolLib.Generics
             return PopBytes(Count);
         }
 
+        public byte[] PopBytesReversed(int count)
+        {
+            byte[] result = new byte[count];
+            for(int i = count - 1; i >= 0; i--)
+            {
+                result[i] = PopByte();
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region Shorts
         public short PopShort()
         {
             return BitConverter.ToInt16(PopBytes(2), 0);
+        }
+        public short PopShortReversed()
+        {
+            return BitConverter.ToInt16(PopBytesReversed(2), 0);
         }
         public short PopShort(int GoToOffset)
         {
             Seek(GoToOffset);
             return PopShort();
         }
-
         public short[] PopShorts(int Count)
         {
             short[] arr = new short[Count];
@@ -179,7 +232,6 @@ namespace CommonToolLib.Generics
             Seek(GoToOffset);
             return PopShorts(Count);
         }
-
         public ushort PopUShort()
         {
             return (ushort)PopShort();
@@ -189,7 +241,6 @@ namespace CommonToolLib.Generics
             Seek(GoToOffset);
             return PopUShort();
         }
-
         public ushort[] PopUShorts(int Count)
         {
             ushort[] arr = new ushort[Count];
@@ -206,7 +257,9 @@ namespace CommonToolLib.Generics
             Seek(GoToOffset);
             return PopUShorts(Count);
         }
+        #endregion
 
+        #region Ints
         public int PopInt()
         {
             return BitConverter.ToInt32(PopBytes(4), 0);
@@ -287,61 +340,65 @@ namespace CommonToolLib.Generics
             Seek(GoToOffset);
             return PopIntPtrs(Count);
         }
+        #endregion
 
+        #region Longs
         public long PopLong()
         {
             return BitConverter.ToInt64(PopBytes(8), 0);
         }
-        public long PopLong(int GoToOffset)
+        public long PopLong(int goToOffset)
         {
-            Seek(GoToOffset);
+            Seek(goToOffset);
             return PopLong();
         }
 
-        public long[] PopLongs(int Count)
+        public long[] PopLongs(int count)
         {
-            long[] arr = new long[Count];
+            long[] arr = new long[count];
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 arr[i] = PopLong();
             }
 
             return arr;
         }
-        public long[] PopLongs(int Count, int GoToOffset)
+        public long[] PopLongs(int count, int goToOffset)
         {
-            Seek(GoToOffset);
-            return PopLongs(Count);
+            Seek(goToOffset);
+            return PopLongs(count);
         }
 
         public ulong PopULong()
         {
             return (ulong)PopLong();
         }
-        public ulong PopULong(int GoToOffset)
+        public ulong PopULong(int goToOffset)
         {
-            Seek(GoToOffset);
+            Seek(goToOffset);
             return PopUInt();
         }
 
-        public ulong[] PopULongs(int Count)
+        public ulong[] PopULongs(int count)
         {
-            ulong[] arr = new ulong[Count];
+            ulong[] arr = new ulong[count];
 
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 arr[i] = PopULong();
             }
 
             return arr;
         }
-        public ulong[] PopULongs(int Count, int GoToOffset)
+        public ulong[] PopULongs(int count, int goToOffset)
         {
-            Seek(GoToOffset);
-            return PopULongs(Count);
+            Seek(goToOffset);
+            return PopULongs(count);
         }
+        #endregion
 
+        #region BinaryObjects
         public T PopIBinaryObject<T>() where T : IBinaryObject, new()
         {
             T binaryObject = new T();
@@ -358,7 +415,9 @@ namespace CommonToolLib.Generics
 
             return binaryObject;
         }
+        #endregion
 
+        #region Strings
         public string PopFixedLengthString(int length)
         {
             List<byte> bytes = new List<byte>();
@@ -407,7 +466,7 @@ namespace CommonToolLib.Generics
             }
             return result;
         }
-
+        #endregion
         #endregion
 
         #region IBinaryObject
@@ -420,6 +479,11 @@ namespace CommonToolLib.Generics
         public void SetData(byte[] Memory)
         {
             _Data = new List<byte>(Memory);
+        }
+
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

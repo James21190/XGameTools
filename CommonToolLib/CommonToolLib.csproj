@@ -48,6 +48,7 @@
     <Compile Include="Files\Patcher\FilePatcher.cs" />
     <Compile Include="Files\Patcher\FileProfile.cs" />
     <Compile Include="Generics\BinaryObjectConverter.cs" />
+    <Compile Include="Generics\BinaryString.cs" />
     <Compile Include="Generics\IBinaryObject.cs" />
     <Compile Include="Generics\Matrix.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
