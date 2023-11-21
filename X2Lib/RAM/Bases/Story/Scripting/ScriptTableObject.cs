@@ -1,4 +1,5 @@
-﻿using CommonToolLib.ProcessHooking;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,11 @@ namespace X2Lib.RAM.Bases.Story.Scripting
                 pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptHashTableEntry>>();
                 Id = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
                 Value = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
+            }
+
+            public void SetData(BinaryObjectConverter boc)
+            {
+                throw new NotImplementedException();
             }
         }
 

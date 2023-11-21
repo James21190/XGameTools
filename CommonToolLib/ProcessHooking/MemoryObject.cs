@@ -13,11 +13,6 @@ namespace CommonToolLib.ProcessHooking
 
         #region IMemoryObject
 
-        /// <summary>
-        /// Converts the values within the object into bytes.
-        /// </summary>
-        /// <returns></returns>
-        public abstract byte[] GetBytes();
 
         /// <summary>
         /// The size of the object in bytes.
@@ -25,8 +20,13 @@ namespace CommonToolLib.ProcessHooking
         /// <returns></returns>
         public abstract int ByteSize { get; }
 
-
+        /// <summary>
+        /// Pointer to where this object is stored in ParentMemoryBlock.
+        /// </summary>
         public virtual IntPtr pThis { get; set; }
+        /// <summary>
+        /// The memory block that holds this object.
+        /// </summary>
         public virtual IMemoryBlockManager ParentMemoryBlock { get; set; }
 
         /// <summary>
@@ -38,10 +38,19 @@ namespace CommonToolLib.ProcessHooking
             SetDataFromMemoryObjectConverter(new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis));
         }
 
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Converts the values within the object into bytes.
+        /// </summary>
+        /// <returns></returns>
+        public abstract byte[] GetBytes();
         #endregion
 
         /// <summary>
-        /// Abstracted version of SetData using an ObjectByteList. Called from SetData unless overrided.
+        /// Abstracted version of SetData using an MemoryObjectConverter. Called from SetData unless overrided.
         /// </summary>
         /// <param name="objectByteList"></param>
         protected virtual void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
@@ -74,9 +83,5 @@ namespace CommonToolLib.ProcessHooking
             ParentMemoryBlock.WriteBinaryObject(pThis, this);
         }
 
-        public void SetData(BinaryObjectConverter boc)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

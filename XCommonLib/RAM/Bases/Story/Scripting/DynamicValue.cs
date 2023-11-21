@@ -145,6 +145,11 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             return base.GetHashCode();
         }
 
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Casting

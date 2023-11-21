@@ -63,6 +63,11 @@ namespace XWrapperLib.Networking
                 Position = obl.PopIMemoryObject<Vector3_32>();
                 EulerRotation = obl.PopIMemoryObject<Vector3_32>();
             }
+
+            public void SetData(BinaryObjectConverter boc)
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
         public InSectorObjectData[] GetObjectsInSector()

@@ -52,5 +52,10 @@ namespace XCommonLib.Files.CatDat
         {
             CompressedData = Memory;
         }
+
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

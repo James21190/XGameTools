@@ -73,6 +73,11 @@ namespace XCommonLib.RAM.Bases.Sector
                 }
                 throw new ArgumentException("Object is not of same type.");
             }
+
+            public void SetData(BinaryObjectConverter boc)
+            {
+                throw new NotImplementedException();
+            }
         }
         public abstract bool IsValid { get; }
 

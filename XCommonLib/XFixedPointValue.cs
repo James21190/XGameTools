@@ -60,6 +60,11 @@ namespace XCommonLib
         {
             FixedPointValue = BitConverter.ToInt32(Memory, 0);
         }
+
+        public void SetData(BinaryObjectConverter boc)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
 

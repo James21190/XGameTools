@@ -1,4 +1,5 @@
-﻿using CommonToolLib.ProcessHooking;
+﻿using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 using System;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
 
@@ -37,6 +38,11 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         }
 
         public XCommonLib.RAM.Bases.Sector.SectorObject[] GetChildren(int main_Type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetData(BinaryObjectConverter boc)
         {
             throw new NotImplementedException();
         }
