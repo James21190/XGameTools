@@ -33,17 +33,13 @@ namespace X2Lib.RAM.Bases.Story.Scripting
                 SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
             }
 
-            public void SetData(byte[] Memory)
+            public SetDataResult SetData(byte[] Memory)
             {
                 var memoryObjectConverter = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
                 pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptHashTableEntry>>();
                 Id = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
                 Value = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
-            }
-
-            public void SetData(BinaryObjectConverter boc)
-            {
-                throw new NotImplementedException();
+                return SetDataResult.Success;
             }
         }
 
@@ -53,12 +49,13 @@ namespace X2Lib.RAM.Bases.Story.Scripting
 
         public override int ByteSize => 0x18;
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             ppEntries = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<ScriptHashTableEntry>>>(0x8);
             TableLength = objectByteList.PopInt();
 
             Count = objectByteList.PopInt(0x14);
+            return SetDataResult.Success;
         }
 
         public override byte[] GetBytes()

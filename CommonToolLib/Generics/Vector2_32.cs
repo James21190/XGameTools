@@ -46,18 +46,14 @@ namespace CommonToolLib.Generics
             return collection.GetBytes();
         }
 
-        public void SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             var collection = new MemoryObjectConverter(Memory);
             X = collection.PopInt();
             Y = collection.PopInt();
+            return SetDataResult.Success;
         }
         public void ReloadFromMemory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetData(BinaryObjectConverter boc)
         {
             throw new NotImplementedException();
         }

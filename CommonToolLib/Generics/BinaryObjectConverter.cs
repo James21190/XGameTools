@@ -476,14 +476,10 @@ namespace CommonToolLib.Generics
         {
             return _Data.ToArray();
         }
-        public void SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             _Data = new List<byte>(Memory);
-        }
-
-        public void SetData(BinaryObjectConverter boc)
-        {
-            throw new NotImplementedException();
+            return SetDataResult.Success;
         }
         #endregion
     }

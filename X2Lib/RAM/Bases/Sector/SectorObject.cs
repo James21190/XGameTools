@@ -91,7 +91,7 @@ namespace X2Lib.RAM.Bases.Sector
         {
             throw new NotImplementedException();
         }
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
             pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
             pPrevious = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
@@ -114,6 +114,8 @@ namespace X2Lib.RAM.Bases.Sector
             ModelCollectionID = memoryObjectConverter.PopInt(0x88);
 
             CopyPosition = memoryObjectConverter.PopIMemoryObject<Vector3_32>(0xa8);
+
+            return SetDataResult.Success;
         }
         #endregion
     }

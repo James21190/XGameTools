@@ -62,7 +62,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Unknown_1 = objectByteList.PopInt(); // 0x0
             Unknown_2 = objectByteList.PopInt();
@@ -90,6 +90,8 @@ namespace X3TCAPLib.RAM.Bases.Sector
             Unknown_20 = objectByteList.PopInt();
             Unknown_21 = objectByteList.PopInt(); // 0x60
             Unknown_22 = objectByteList.PopInt();
+
+            return SetDataResult.Success;
         }
 
         public override IMemoryBlockManager ParentMemoryBlock

@@ -6,6 +6,11 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
     {
         public override int ByteSize => 0x940; // Unknown
 
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new global::System.NotImplementedException();
+        }
+
         protected override void SetUniqueData(MemoryObjectConverter obl)
         {
 

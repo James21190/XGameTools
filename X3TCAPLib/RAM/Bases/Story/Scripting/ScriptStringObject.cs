@@ -25,11 +25,12 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             id = objectByteList.PopInt();
             unknown_1 = objectByteList.PopInt();
             pText = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
+            return SetDataResult.Success;
         }
         #endregion
     }

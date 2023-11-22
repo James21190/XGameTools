@@ -55,18 +55,14 @@ namespace XWrapperLib.Networking
                 return obl.GetBytes();
             }
 
-            public void SetData(byte[] Memory)
+            public SetDataResult SetData(byte[] Memory)
             {
                 var obl = new MemoryObjectConverter(Memory);
                 Speed = obl.PopInt();
                 DesiredSpeed = obl.PopInt();
                 Position = obl.PopIMemoryObject<Vector3_32>();
                 EulerRotation = obl.PopIMemoryObject<Vector3_32>();
-            }
-
-            public void SetData(BinaryObjectConverter boc)
-            {
-                throw new System.NotImplementedException();
+                return SetDataResult.Success;
             }
         }
 

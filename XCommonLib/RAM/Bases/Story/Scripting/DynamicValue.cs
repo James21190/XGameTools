@@ -48,10 +48,11 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public const int ByteSizeConst = 5;
         public int ByteSize => ByteSizeConst;
 
-        public void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        public SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Flag = (FlagType)objectByteList.PopByte();
             Value = objectByteList.PopInt();
+            return SetDataResult.Success;
         }
 
         public void ReloadFromMemory()
@@ -59,11 +60,12 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
         }
 
-        public void SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             var boc = new BinaryObjectConverter(Memory);
             Flag = (FlagType)boc.PopByte();
             Value = boc.PopInt();
+            return SetDataResult.Success;
         }
         #endregion
 
@@ -143,11 +145,6 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
         public override int GetHashCode()
         {
             return base.GetHashCode();
-        }
-
-        public void SetData(BinaryObjectConverter boc)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

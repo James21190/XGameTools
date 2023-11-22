@@ -23,7 +23,7 @@ namespace X2Lib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             NegativeID = objectByteList.PopInt();
 
@@ -31,8 +31,9 @@ namespace X2Lib.RAM.Bases.Story.Scripting
             pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>>();
 
             //ReferenceCount = objectByteList.PopInt(0x8);
-            Class = objectByteList.PopInt(0x20);     
-            
+            Class = objectByteList.PopInt(0x20);
+
+            return SetDataResult.Success;
         }
         #endregion
     }

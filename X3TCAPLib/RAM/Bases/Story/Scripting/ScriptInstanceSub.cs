@@ -29,7 +29,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Class = objectByteList.PopInt();
             Unknown_1 = objectByteList.PopInt();
@@ -44,6 +44,8 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             FunctionCount_1 = objectByteList.PopInt();
             pFunctions = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
             Unknown = objectByteList.PopInt();
+
+            return SetDataResult.Success;
         }
         #endregion
     }

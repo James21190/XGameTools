@@ -22,7 +22,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
             throw new NotImplementedException();
         }
 
-        public void SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             throw new NotImplementedException();
         }
@@ -38,11 +38,6 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         }
 
         public XCommonLib.RAM.Bases.Sector.SectorObject[] GetChildren(int main_Type)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetData(BinaryObjectConverter boc)
         {
             throw new NotImplementedException();
         }

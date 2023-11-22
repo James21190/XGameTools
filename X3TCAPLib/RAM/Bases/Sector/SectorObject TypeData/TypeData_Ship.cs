@@ -6,7 +6,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
 {
     public class TypeData_Ship : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship
     {
-        public class TurretData : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship.TurretData
+        public new class TurretData : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship.TurretData
         {
             public override int WeaponCount { get; set; }
             public override BitField WeaponCompatability { get; set; }
@@ -19,12 +19,13 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
                 throw new NotImplementedException();
             }
 
-            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
                 WeaponCount = objectByteList.PopInt(0x4);
                 TurretNumber = objectByteList.PopInt();
 
                 WeaponCompatability = objectByteList.PopIMemoryObject<BitField>(0x10);
+                return SetDataResult.Success;
             }
 
             public override void WriteSafeToMemory()
@@ -58,7 +59,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             #region Base TypeData
             BodyID = objectByteList.PopInt();
@@ -82,6 +83,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
 
             TurretCount = objectByteList.PopInt(0x180);
             Turrets = objectByteList.PopIMemoryObjects<TurretData>(10);
+            return SetDataResult.Success;
         }
         #endregion
     }

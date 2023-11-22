@@ -29,13 +29,20 @@ namespace XCommonLib.RAM.Generics
         public const int ByteSizeConst = 12;
         public override int ByteSize => ByteSizeConst;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
             pFirst = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
+            return SetDataResult.Success;
         }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new NotSupportedException();
+        }
+
         public override IMemoryBlockManager ParentMemoryBlock
         {
             get => base.ParentMemoryBlock;

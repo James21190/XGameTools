@@ -16,9 +16,15 @@ namespace CommonToolLib.ProcessHooking
 
         public override int ByteSize => 8;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Value = BitConverter.ToInt64(Memory, 0);
+            return SetDataResult.Success;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
     /// <summary>
@@ -45,9 +51,15 @@ namespace CommonToolLib.ProcessHooking
 
         public override int ByteSize => 4;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Value = BitConverter.ToInt32(Memory, 0);
+            return SetDataResult.Success;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
 
@@ -64,9 +76,15 @@ namespace CommonToolLib.ProcessHooking
 
         public override int ByteSize => 2;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Value = BitConverter.ToInt16(Memory, 0);
+            return SetDataResult.Success;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
 
@@ -84,9 +102,15 @@ namespace CommonToolLib.ProcessHooking
 
         public override int ByteSize => 1;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Value = Memory[0];
+            return SetDataResult.Success;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
 
@@ -109,7 +133,7 @@ namespace CommonToolLib.ProcessHooking
 
         public override int ByteSize => Value == null ? 100 : Value.Length + 1;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Value = "";
             MemoryObjectConverter collection = new MemoryObjectConverter(Memory);
@@ -119,6 +143,12 @@ namespace CommonToolLib.ProcessHooking
                 Value += character;
                 character = (char)collection.PopByte();
             }
+            return SetDataResult.Success;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
 }

@@ -119,14 +119,20 @@ namespace CommonToolLib.ProcessHooking
         #region IMemoryObject
         public override int ByteSize => 4;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             PointedAddress = (IntPtr)BitConverter.ToInt32(Memory, 0);
+            return SetDataResult.Success;
         }
 
         public override byte[] GetBytes()
         {
             return BitConverter.GetBytes((int)PointedAddress);
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new NotSupportedException();
         }
 
         #endregion

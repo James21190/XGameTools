@@ -91,12 +91,12 @@ namespace X2Lib.RAM.Bases.Story
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             pHashTable_ScriptTaskObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>(0x0);
             pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d8);
             pHashTable_ScriptHashTable = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTableObject>>>(0x1604);
-
+            return SetDataResult.Success;
         }
 
 

@@ -19,9 +19,10 @@ namespace X3TCAPLib.RAM.Bases.Story
 
                 public override int ByteSize => 4;
 
-                protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+                protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
                 {
                     U_1 = objectByteList.PopInt();
+                    return SetDataResult.Success;
                 }
             }
             public int ID;
@@ -41,13 +42,14 @@ namespace X3TCAPLib.RAM.Bases.Story
             }
 
             public override int ByteSize => 12;
-            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
                 ID = objectByteList.PopInt();
                 Value = objectByteList.PopIMemoryObject<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>();
                 Unknown_2 = objectByteList.PopByte();
                 Unknown_3 = objectByteList.PopByte();
                 Unknown_4 = objectByteList.PopByte();
+                return SetDataResult.Success;
             }
         }
 
@@ -117,11 +119,12 @@ namespace X3TCAPLib.RAM.Bases.Story
 
         public override int ByteSize => 12;
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             Count = objectByteList.PopInt();
             pEntries = objectByteList.PopIMemoryObject<MemoryObjectPointer<TextEntry>>();
             Unknown = objectByteList.PopInt();
+            return SetDataResult.Success;
         }
 
     }

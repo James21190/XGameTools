@@ -21,9 +21,10 @@ namespace X2Lib.RAM.Bases.B3D
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             ID = objectByteList.PopInt(0x24);
+            return SetDataResult.Success;
         }
         #endregion
     }

@@ -56,14 +56,10 @@ namespace XCommonLib
 
         public int ByteSize => 4;
 
-        public void SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             FixedPointValue = BitConverter.ToInt32(Memory, 0);
-        }
-
-        public void SetData(BinaryObjectConverter boc)
-        {
-            throw new NotImplementedException();
+            return SetDataResult.Success;
         }
         #endregion
 

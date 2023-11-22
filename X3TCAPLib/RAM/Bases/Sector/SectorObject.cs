@@ -189,7 +189,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             return collection.GetBytes();
         }
         public override int ByteSize => 304;
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
             pPrevious = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
@@ -251,6 +251,8 @@ namespace X3TCAPLib.RAM.Bases.Sector
             Unknown_33 = objectByteList.PopInt();
             Unknown_34 = objectByteList.PopInt();
             Unknown_35 = objectByteList.PopInt();
+
+            return SetDataResult.Success;
         }
         #endregion
     }

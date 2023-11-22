@@ -17,7 +17,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             #region Base TypeData
             BodyID = objectByteList.PopInt();
@@ -33,6 +33,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
 
             pTypeName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x30);
             #endregion
+            return SetDataResult.Success;
         }
     }
 }

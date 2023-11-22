@@ -40,7 +40,7 @@ namespace CommonToolLib.Generics
         #endregion
 
         #region IMemoryObject
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
             Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
@@ -54,6 +54,7 @@ namespace CommonToolLib.Generics
             Matrix[2, 1] = BitConverter.ToInt32(Memory, 36);
             Matrix[2, 2] = BitConverter.ToInt32(Memory, 40);
             Matrix[2, 3] = BitConverter.ToInt32(Memory, 44);
+            return SetDataResult.Success;
         }
 
         public override byte[] GetBytes()
@@ -74,6 +75,11 @@ namespace CommonToolLib.Generics
             arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 3])));
 
             return arr.ToArray();
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
         #endregion
 

@@ -39,11 +39,11 @@ namespace X3TCAPLib.Files.CatDat
             }
             return result.ToArray();
         }
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             byte[] decrypted = new byte[Memory.Length];
             Array.Copy(Memory,decrypted,decrypted.Length);
-            base.SetData(decrypted);
+            return base.SetData(decrypted);
         }
         // test
         public override byte[] GetBytes()

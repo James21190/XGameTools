@@ -29,13 +29,14 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             return moc.GetBytes();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             ID = objectByteList.PopInt();
             Unknown = objectByteList.PopInt();
             Length = objectByteList.PopInt();
             Count = objectByteList.PopInt();
             pArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<DynamicValue>>();
+            return SetDataResult.Success;
         }
     }
 }

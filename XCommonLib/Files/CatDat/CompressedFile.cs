@@ -48,14 +48,10 @@ namespace XCommonLib.Files.CatDat
         /// Decryption may be done when overriding this method.
         /// </summary>
         /// <param name="Memory">Compressed and (when required) encrypted bytes.</param>
-        public virtual void SetData(byte[] Memory)
+        public virtual SetDataResult SetData(byte[] Memory)
         {
             CompressedData = Memory;
-        }
-
-        public void SetData(BinaryObjectConverter boc)
-        {
-            throw new NotImplementedException();
+            return SetDataResult.Success;
         }
     }
 }

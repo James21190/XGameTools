@@ -42,7 +42,7 @@ namespace CommonToolLib.Generics
             SetData(Memory);
         }
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
             Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
@@ -53,6 +53,7 @@ namespace CommonToolLib.Generics
             Matrix[2, 0] = BitConverter.ToInt32(Memory, 24);
             Matrix[2, 1] = BitConverter.ToInt32(Memory, 28);
             Matrix[2, 2] = BitConverter.ToInt32(Memory, 32);
+            return SetDataResult.Success;
         }
 
         public override byte[] GetBytes()
@@ -118,6 +119,11 @@ namespace CommonToolLib.Generics
             matrix.Matrix[1, 0] = -(Math.Sin(radians));
             matrix.Matrix[1, 1] = Math.Cos(radians);
             return matrix;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
 }

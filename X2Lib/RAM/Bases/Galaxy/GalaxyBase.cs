@@ -29,9 +29,9 @@ namespace X2Lib.RAM.Bases.Galaxy
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
-            base.SetDataFromMemoryObjectConverter(objectByteList);
+            throw new NotImplementedException();
         }
         #endregion
     }

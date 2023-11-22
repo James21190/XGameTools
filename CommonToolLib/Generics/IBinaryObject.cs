@@ -13,14 +13,7 @@ namespace CommonToolLib.Generics
         /// Sets values in the object from a byte array.
         /// </summary>
         /// <param name="data"></param>
-        void SetData(byte[] data);
-
-        /// <summary>
-        /// Sets the values in the object from a BinaryObjectConverter.
-        /// This approach means that objects with variable length can be easily popped from the converter.
-        /// </summary>
-        /// <param name="boc"></param>
-        void SetData(BinaryObjectConverter boc);
+        SetDataResult SetData(byte[] data);
 
         /// <summary>
         /// Returns the object in bytes.

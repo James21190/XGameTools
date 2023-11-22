@@ -39,10 +39,11 @@ namespace X3TCAPLib.RAM.Bases.System
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
             LaunchParamCount = memoryObjectConverter.PopInt(0xb4);
             ppLaunchParams = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<MemoryString>>>();
+            return SetDataResult.Success;
         }
         #endregion
     }

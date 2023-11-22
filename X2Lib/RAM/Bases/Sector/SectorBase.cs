@@ -101,7 +101,7 @@ namespace X2Lib.RAM.Bases.Sector
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
 
             Unknown_1 = objectByteList.PopInt();
@@ -129,6 +129,7 @@ namespace X2Lib.RAM.Bases.Sector
             Unknown_13 = objectByteList.PopInt();
             Unknown_14 = objectByteList.PopInt();
             Unknown_15 = objectByteList.PopInt();
+            return SetDataResult.Success;
         }
 
         public override IMemoryBlockManager ParentMemoryBlock

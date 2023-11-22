@@ -20,27 +20,17 @@ namespace CommonToolLib.ProcessHooking
         /// <returns></returns>
         public abstract int ByteSize { get; }
 
-        /// <summary>
-        /// Pointer to where this object is stored in ParentMemoryBlock.
-        /// </summary>
+        
         public virtual IntPtr pThis { get; set; }
-        /// <summary>
-        /// The memory block that holds this object.
-        /// </summary>
         public virtual IMemoryBlockManager ParentMemoryBlock { get; set; }
 
         /// <summary>
         /// Sets the values of the fields of this object with the values stored in a binary array.
         /// </summary>
         /// <param name="Memory"></param>
-        public virtual void SetData(byte[] Memory)
+        public virtual SetDataResult SetData(byte[] Memory)
         {
-            SetDataFromMemoryObjectConverter(new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis));
-        }
-
-        public void SetData(BinaryObjectConverter boc)
-        {
-            throw new NotImplementedException();
+            return SetDataFromMemoryObjectConverter(new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis));
         }
         /// <summary>
         /// Converts the values within the object into bytes.
@@ -53,10 +43,7 @@ namespace CommonToolLib.ProcessHooking
         /// Abstracted version of SetData using an MemoryObjectConverter. Called from SetData unless overrided.
         /// </summary>
         /// <param name="objectByteList"></param>
-        protected virtual void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
-        {
-            throw new NotImplementedException("The type of \"" + this.GetType().ToString() + "\" has not implemented SetData(byte[]).");
-        }
+        protected abstract SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList);
 
         /// <summary>
         /// Reload values from memory.

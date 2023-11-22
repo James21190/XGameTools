@@ -34,17 +34,13 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
                 SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
             }
 
-            public void SetData(byte[] Memory)
+            public SetDataResult SetData(byte[] Memory)
             {
                 var memoryObjectConverter = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
                 pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptHashTableEntry>>();
                 Id = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
                 Value = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
-            }
-
-            public void SetData(BinaryObjectConverter boc)
-            {
-                throw new NotImplementedException();
+                return SetDataResult.Success;
             }
         }
 
@@ -121,7 +117,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             throw new NotImplementedException();
         }
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             ID = objectByteList.PopInt();
             Unknown_1 = objectByteList.PopInt();
@@ -129,6 +125,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             TableLength = objectByteList.PopInt();
             NextAvailableID = objectByteList.PopInt();
             Count = objectByteList.PopInt();
+            return SetDataResult.Success;
         }
         #endregion
     }

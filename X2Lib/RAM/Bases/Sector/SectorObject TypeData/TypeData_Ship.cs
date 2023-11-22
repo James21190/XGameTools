@@ -10,7 +10,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
 {
     public class TypeData_Ship : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship
     {
-        public class TurretData : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship.TurretData
+        public new class TurretData : XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship.TurretData
         {
             public override int WeaponCount { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
             public override BitField WeaponCompatability { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -23,9 +23,9 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
                 throw new NotImplementedException();
             }
 
-            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
-                base.SetDataFromMemoryObjectConverter(objectByteList);
+                throw new System.NotSupportedException();
             }
         }
 
@@ -52,7 +52,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             #region Base TypeData
             BodyID = objectByteList.PopInt();
@@ -73,6 +73,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
             ExteriorModelID = objectByteList.PopInt(0x58);
 
             OriginRace = objectByteList.PopInt(0xa4);
+            return SetDataResult.Success;
         }
         #endregion
     }

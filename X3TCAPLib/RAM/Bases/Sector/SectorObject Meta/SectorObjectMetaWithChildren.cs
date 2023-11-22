@@ -58,13 +58,15 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
 
             return collection.GetBytes();
         }
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
 
             Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(X3TCGameHook.MainTypeCount);
 
             SetUniqueData(collection);
+
+            return SetDataResult.Success;
         }
 
         public override IMemoryBlockManager ParentMemoryBlock

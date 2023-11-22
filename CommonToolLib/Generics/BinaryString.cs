@@ -15,12 +15,7 @@ namespace CommonToolLib.Generics
             throw new NotImplementedException();
         }
 
-        public void SetData(byte[] Memory)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetData(BinaryObjectConverter boc)
+        public SetDataResult SetData(byte[] Memory)
         {
             throw new NotImplementedException();
         }

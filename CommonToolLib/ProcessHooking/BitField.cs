@@ -66,9 +66,15 @@
 
         public override int ByteSize => m_Length;
 
-        public override void SetData(byte[] Memory)
+        public override SetDataResult SetData(byte[] Memory)
         {
             m_Value = Memory;
+            return SetDataResult.Success;
+        }
+
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        {
+            throw new System.NotSupportedException();
         }
     }
 }

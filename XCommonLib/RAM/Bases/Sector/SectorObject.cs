@@ -37,10 +37,11 @@ namespace XCommonLib.RAM.Bases.Sector
                 throw new NotImplementedException();
             }
 
-            public void SetData(byte[] Memory)
+            public SetDataResult SetData(byte[] Memory)
             {
                 MainType = BitConverter.ToInt16(Memory, 0);
                 SubType = BitConverter.ToInt16(Memory, 2);
+                return SetDataResult.Success;
             }
 
             public int CompareTo(object obj)
@@ -72,11 +73,6 @@ namespace XCommonLib.RAM.Bases.Sector
                     return 0;
                 }
                 throw new ArgumentException("Object is not of same type.");
-            }
-
-            public void SetData(BinaryObjectConverter boc)
-            {
-                throw new NotImplementedException();
             }
         }
         public abstract bool IsValid { get; }
