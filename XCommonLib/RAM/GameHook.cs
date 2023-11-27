@@ -109,8 +109,39 @@ namespace XCommonLib.RAM
         #region SectorObject TypeData
         public abstract short[] TypeData_Counts { get; }
         public abstract int GetTypeDataCount_Ship();
+        public abstract TypeData_Bullet GetTypeData_Bullet(int subType);
+        public abstract TypeData_Sector GetTypeData_Sector(int subType);
+        public abstract TypeData_Background GetTypeData_Background(int subType);
+        public abstract TypeData_Sun GetTypeData_Sun(int subType);
+        public abstract TypeData_Planet GetTypeData_Planet(int subType);
+        public abstract TypeData_Dock GetTypeData_Dock(int subType);
+        public abstract TypeData_Factory GetTypeData_Factory(int subType);
         public abstract TypeData_Ship GetTypeData_Ship(int subType);
         public abstract TypeData_Laser GetTypeData_Laser(int subType);
+        public abstract TypeData_Shield GetTypeData_Shield(int subType);
+        public abstract TypeData_Missile GetTypeData_Missile(int subType);
+        public abstract TypeData_Ware_E GetTypeData_Ware_E(int subType);
+        public abstract TypeData_Ware_N GetTypeData_Ware_N(int subType);
+        public abstract TypeData_Ware_B GetTypeData_Ware_B(int subType);
+        public abstract TypeData_Ware_F GetTypeData_Ware_F(int subType);
+        public abstract TypeData_Ware_M GetTypeData_Ware_M(int subType);
+        public abstract TypeData_Ware_T GetTypeData_Ware_T(int subType);
+        public abstract TypeData_Asteroid GetTypeData_Asteroid(int subType);
+        public abstract TypeData_Gate GetTypeData_Gate(int subType);
+        public abstract TypeData_Camera GetTypeData_Camera(int subType);
+        public abstract TypeData_Special GetTypeData_Special(int subType);
+        public abstract TypeData_Nebula GetTypeData_Nebula(int subType);
+        public abstract TypeData_Station_Interior GetTypeData_Station_Interior(int subType);
+        public abstract TypeData_Type_23 GetTypeData_Type_23(int subType);
+        public abstract TypeData_Type_24 GetTypeData_Type_24(int subType);
+        public abstract TypeData_Cockpit GetTypeData_Cockpit(int subType);
+        public abstract TypeData_Type_26 GetTypeData_Type_26(int subType);
+        public abstract TypeData_Type_27 GetTypeData_Type_27(int subType);
+        public abstract TypeData_Debris GetTypeData_Debris(int subType);
+        public abstract TypeData_Wreck GetTypeData_Wreck(int subType);
+        public abstract TypeData_Factory_Wreck GetTypeData_Factory_Wreck(int subType);
+        public abstract TypeData_Ship_Wreck GetTypeData_Ship_Wreck(int subType);
+
         #endregion
         #endregion
 

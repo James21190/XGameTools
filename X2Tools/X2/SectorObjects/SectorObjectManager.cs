@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using X2Tools.X2.SectorObjects.Meta;
 using CommonToolLib;
-using CommonToolLib.Memory;
+using CommonToolLib.ProcessHooking;
 
 
 namespace X2Tools.X2.SectorObjects
@@ -153,7 +153,7 @@ namespace X2Tools.X2.SectorObjects
         #region IMemoryObject
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            var collection = new BinaryObjectConverter();
             collection.Append(Unknown_1);
             collection.Append(Unknown_2);
             collection.Append(pFirstSectorObject);
@@ -189,7 +189,7 @@ namespace X2Tools.X2.SectorObjects
 
         public override void SetData(byte[] Memory)
         {
-            var collection = new ObjectByteList(Memory);
+            var collection = new BinaryObjectConverter(Memory);
             collection.PopFirst(ref Unknown_1);
             collection.PopFirst(ref Unknown_2);
             collection.PopFirst(ref pFirstSectorObject);

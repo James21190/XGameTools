@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommonToolLib.SimpleScript.Assembly
+namespace XCommonLib.RAM.Bases.Sector.SectorObject_TypeData
 {
-    internal static class X86_32_Reference
+    public abstract class TypeData_Ware_N : TypeData
     {
     }
 }

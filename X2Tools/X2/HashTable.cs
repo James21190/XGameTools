@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommonToolLib;
-using CommonToolLib.Memory;
+using CommonToolLib.Generics;
+using CommonToolLib.ProcessHooking;
 
 
 namespace X2Tools.X2
@@ -17,7 +19,7 @@ namespace X2Tools.X2
         /// <summary>
         /// The size of this object in bytes.
         /// </summary>
-        public const int ByteSize = 16;
+        public override int ByteSize => 16;
 
         #region Memory Fields
 
@@ -37,18 +39,6 @@ namespace X2Tools.X2
         /// The number of objects currently in the table.
         /// </summary>
         public int ObjectCount;
-        #endregion
-
-        #region Constructors
-        public HashTable()
-        {
-            
-        }
-
-        public HashTable(IntPtr hProcess, IntPtr address)
-        {
-            SetLocation(hProcess, address);
-        }
         #endregion
 
         /// <summary>
@@ -72,9 +62,18 @@ namespace X2Tools.X2
         }
 
         #region IMemoryObject
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter moc)
+        {
+            pHashTable = moc.PopIMemoryObject<MemoryObjectPointer<Entry<T>>>();
+            TableLength = moc.PopInt();
+            LastUsedID = moc.PopInt();
+            ObjectCount = moc.PopInt();
+
+            return SetDataResult.Success;
+        }
         public override byte[] GetBytes()
         {
-            var collection = new ObjectByteList();
+            var collection = new BinaryObjectConverter();
 
             collection.Append(pHashTable);
             collection.Append(TableLength);
@@ -82,26 +81,6 @@ namespace X2Tools.X2
             collection.Append(ObjectCount);
 
             return collection.GetBytes();
-        }
-
-        public override int GetByteSize()
-        {
-            return ByteSize;
-        }
-        public override void SetData(byte[] Memory)
-        {
-            var collection = new ObjectByteList(Memory);
-
-            collection.PopFirst(ref pHashTable);
-            collection.PopFirst(ref TableLength);
-            collection.PopFirst(ref LastUsedID);
-            collection.PopFirst(ref ObjectCount);
-        }
-
-        public override void SetLocation(IntPtr hProcess, IntPtr address)
-        {
-            base.SetLocation(hProcess, address);
-            pHashTable.SetLocation(hProcess, address);
         }
         #endregion
 
@@ -111,7 +90,7 @@ namespace X2Tools.X2
         public class Entry<W> : MemoryObject where W:MemoryObject, new()
         {
 
-            public const int ByteSize = 12;
+            public override int ByteSize => 12;
 
             /// <summary>
             /// Pointer to the next entry.
@@ -129,31 +108,19 @@ namespace X2Tools.X2
             #region IMemoryObject
             public override byte[] GetBytes()
             {
-                var collection = new ObjectByteList();
+                var collection = new BinaryObjectConverter();
                 collection.Append(pNext);
                 collection.Append(ID);
                 collection.Append(pObject);
                 return collection.GetBytes();
             }
 
-            public override int GetByteSize()
+            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
-                return ByteSize;
-            }
-
-            public override void SetData(byte[] Memory)
-            {
-                var collection = new ObjectByteList(Memory);
-                collection.PopFirst(ref pNext);
-                collection.PopFirst(ref ID);
-                collection.PopFirst(ref pObject);
-            }
-
-            public override void SetLocation(IntPtr hProcess, IntPtr address)
-            {
-                base.SetLocation(hProcess, address);
-                pNext.SetLocation(hProcess, address);
-                pObject.SetLocation(hProcess, address);
+                pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<Entry<W>>>();
+                ID = objectByteList.PopInt();
+                pObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<W>>();
+                return SetDataResult.Success;
             }
             #endregion
         }

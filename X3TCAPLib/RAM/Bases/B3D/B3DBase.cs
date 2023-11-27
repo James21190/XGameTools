@@ -20,7 +20,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter moc)
         {
             throw new NotImplementedException();
         }

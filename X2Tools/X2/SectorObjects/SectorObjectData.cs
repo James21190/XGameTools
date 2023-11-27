@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommonToolLib;
 using CommonToolLib.Vector;
-using CommonToolLib.Memory;
+using CommonToolLib.ProcessHooking;
 
 
 namespace X2Tools.X2.SectorObjects

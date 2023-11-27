@@ -9,7 +9,7 @@ using X2Tools.X2.TypeData;
 using X2Tools.X2.SectorObjects;
 using X2Tools.X2;
 using CommonToolLib;
-using CommonToolLib.Memory;
+using CommonToolLib.ProcessHooking;
 
 namespace X2Tools
 {
@@ -49,7 +49,7 @@ namespace X2Tools
             get;
         }
 
-        public EventManager EventManager { get; private set; }
+        //public EventManager EventManager { get; private set; }
 
         public GameCodeRunner GameCodeRunner
         {
@@ -62,29 +62,29 @@ namespace X2Tools
             // Get a handle to the process
             HookIntoProcess(GameProcess);
 
-            // Initialize code injector
-            EventManager = new EventManager(this.hProcess);
+            //// Initialize code injector
+            //EventManager = new EventManager(this.hProcess);
 
-            // OnGameTick event
-            EventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00402982, new byte[]
-            {
-                0xb8,0xe0,0x13,0x46,0x00, // MOV EAX, 004613e0
-                0xff, 0xd0, // Call EAX
-                0xa1, 0x00, 0x67, 0x5d, 0x01, // MOV EAX, pStoryBase
-                0xc3 // Ret
-            }, 3);
+            //// OnGameTick event
+            //EventManager.CreateNewEvent("OnGameTick", (IntPtr)0x00402982, new byte[]
+            //{
+            //    0xb8,0xe0,0x13,0x46,0x00, // MOV EAX, 004613e0
+            //    0xff, 0xd0, // Call EAX
+            //    0xa1, 0x00, 0x67, 0x5d, 0x01, // MOV EAX, pStoryBase
+            //    0xc3 // Ret
+            //}, 3);
 
-            // OnDamage
-            EventManager.CreateNewEvent("OnObjectDestroyed", (IntPtr)0x0043368c, new byte[]
-            {
-                0x8b, 0xce,// Mov ECX, ESI
-                0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 004613e0
-                0xff, 0xd0, // Call EAX
-                0xc3 // Ret
-            }, 0);
+            //// OnDamage
+            //EventManager.CreateNewEvent("OnObjectDestroyed", (IntPtr)0x0043368c, new byte[]
+            //{
+            //    0x8b, 0xce,// Mov ECX, ESI
+            //    0xb8,0x70,0xf8,0x41,0x00, // MOV EAX, 004613e0
+            //    0xff, 0xd0, // Call EAX
+            //    0xc3 // Ret
+            //}, 0);
 
             // Setup Pointers
-            ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(hProcess, (IntPtr)GlobalAddresses.pSectorObjectManager);
+            ppSectorObjectManager = new MemoryObjectPointer<MemoryObjectPointer<SectorObjectManager>>(this, (IntPtr)GlobalAddresses.pSectorObjectManager);
 
             // Create main objects
             TypeDataArray = new TypeDataManager(hProcess);
@@ -93,11 +93,6 @@ namespace X2Tools
         #endregion
 
         #region Destructors
-        ~GameHook()
-        {
-            if(hProcess != null)
-                MemoryControl.CloseHandle(hProcess);
-        }
         #endregion
 
         #region Public Methods

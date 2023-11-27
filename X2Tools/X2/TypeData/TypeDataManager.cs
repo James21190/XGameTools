@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using X2Tools.X2;
 using X2Tools.X2.SectorObjects;
 using CommonToolLib;
-using CommonToolLib.Memory;
+using CommonToolLib.ProcessHooking;
 
 namespace X2Tools.X2.TypeData
 {

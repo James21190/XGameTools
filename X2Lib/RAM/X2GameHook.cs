@@ -79,6 +79,13 @@ namespace X2Lib.RAM
             pSystemBase = 0x15A453C,
 
             #region TypeData
+            pTypeData_Bullet = 0x015d65b0,
+            pTypeData_Sector = 0x015d65b4,
+            pTypeData_Background = 0x015d65b8,
+            pTypeData_Sun = 0x015d65bc,
+            pTypeData_Planet = 0x015d65c0,
+            pTypeData_Dock = 0x015d65c4,
+            pTypeData_Factory = 0x015d65c8,
             pTypeData_Ship = 0x015d65cc,
             pTypeData_Laser = 0x015d65d0,
 
@@ -94,6 +101,13 @@ namespace X2Lib.RAM
         #endregion
         #region TypeData
         public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>> ppTypeData_Bullet;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Sector>> ppTypeData_Sector;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>> ppTypeData_Background;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>> ppTypeData_Sun;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>> ppTypeData_Planet;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>> ppTypeData_Dock;
+        public MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>> ppTypeData_Factory;
         public MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>> ppTypeData_Ship;
         public MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>> ppTypeData_Laser;
         #endregion
@@ -125,6 +139,40 @@ namespace X2Lib.RAM
             return TypeData_Counts[(int)MainType_X2.Ship];
         }
 
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Bullet GetTypeData_Bullet(int subType)
+        {
+            return ppTypeData_Bullet.obj.GetObjectInArray(subType);
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Sector GetTypeData_Sector(int subType)
+        {
+            return ppTypeData_Sector.obj.GetObjectInArray(subType);
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Background GetTypeData_Background(int subType)
+        {
+            return ppTypeData_Background.obj.GetObjectInArray(subType);
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Sun GetTypeData_Sun(int subType)
+        {
+            return ppTypeData_Sun.obj.GetObjectInArray(subType);
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Planet GetTypeData_Planet(int subType)
+        {
+            return ppTypeData_Planet.obj.GetObjectInArray(subType);
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Dock GetTypeData_Dock(int subType)
+        {
+            return ppTypeData_Dock.obj.GetObjectInArray(subType);
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Factory GetTypeData_Factory(int subType)
+        {
+            return ppTypeData_Factory.obj.GetObjectInArray(subType);
+        }
         public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
@@ -133,6 +181,121 @@ namespace X2Lib.RAM
         {
             return ppTypeData_Laser.obj.GetObjectInArray(subType);
         }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Shield GetTypeData_Shield(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Missile GetTypeData_Missile(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_E GetTypeData_Ware_E(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_N GetTypeData_Ware_N(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_B GetTypeData_Ware_B(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_F GetTypeData_Ware_F(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_M GetTypeData_Ware_M(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_T GetTypeData_Ware_T(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Asteroid GetTypeData_Asteroid(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Gate GetTypeData_Gate(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Camera GetTypeData_Camera(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Special GetTypeData_Special(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Nebula GetTypeData_Nebula(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Station_Interior GetTypeData_Station_Interior(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_23 GetTypeData_Type_23(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_24 GetTypeData_Type_24(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Cockpit GetTypeData_Cockpit(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_26 GetTypeData_Type_26(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_27 GetTypeData_Type_27(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Debris GetTypeData_Debris(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Wreck GetTypeData_Wreck(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Factory_Wreck GetTypeData_Factory_Wreck(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship_Wreck GetTypeData_Ship_Wreck(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         public X2GameHook(Process process)
@@ -146,6 +309,13 @@ namespace X2Lib.RAM
 
             #region TypeData
             pTypeData_CountArr = new MemoryObjectPointer<MemoryInt16>(this, (IntPtr)GlobalAddresses_X2.pTypeDataCountArray);
+            ppTypeData_Bullet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Bullet>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Bullet);
+            ppTypeData_Sector = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Sector>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Sector);
+            ppTypeData_Background = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Background>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Background);
+            ppTypeData_Sun = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Sun>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Sun);
+            ppTypeData_Planet = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Planet>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Planet);
+            ppTypeData_Dock = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Dock>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Dock);
+            ppTypeData_Factory = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Factory>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Factory);
             ppTypeData_Ship = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Ship>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Ship);
             ppTypeData_Laser = new MemoryObjectPointer<MemoryObjectPointer<TypeData_Laser>>(this, (IntPtr)GlobalAddresses_X2.pTypeData_Laser);
             #endregion

@@ -97,11 +97,160 @@ namespace X3TCAPLib.RAM
                 return values;
             }
         }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Bullet GetTypeData_Bullet(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Sector GetTypeData_Sector(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Background GetTypeData_Background(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Sun GetTypeData_Sun(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Planet GetTypeData_Planet(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Dock GetTypeData_Dock(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Factory GetTypeData_Factory(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
         public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship GetTypeData_Ship(int subType)
         {
             return ppTypeData_Ship.obj.GetObjectInArray(subType);
         }
         public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Laser GetTypeData_Laser(int subType)
+        {
+            throw new NotImplementedException();
+        }
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Shield GetTypeData_Shield(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Missile GetTypeData_Missile(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_E GetTypeData_Ware_E(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_N GetTypeData_Ware_N(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_B GetTypeData_Ware_B(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_F GetTypeData_Ware_F(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_M GetTypeData_Ware_M(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ware_T GetTypeData_Ware_T(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Asteroid GetTypeData_Asteroid(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Gate GetTypeData_Gate(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Camera GetTypeData_Camera(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Special GetTypeData_Special(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Nebula GetTypeData_Nebula(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Station_Interior GetTypeData_Station_Interior(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_23 GetTypeData_Type_23(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_24 GetTypeData_Type_24(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Cockpit GetTypeData_Cockpit(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_26 GetTypeData_Type_26(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Type_27 GetTypeData_Type_27(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Debris GetTypeData_Debris(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Wreck GetTypeData_Wreck(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Factory_Wreck GetTypeData_Factory_Wreck(int subType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override XCommonLib.RAM.Bases.Sector.SectorObject_TypeData.TypeData_Ship_Wreck GetTypeData_Ship_Wreck(int subType)
         {
             throw new NotImplementedException();
         }
@@ -217,5 +366,6 @@ namespace X3TCAPLib.RAM
             }
             throw new NotImplementedException("MainType of " + (mainType).ToString() + " was not assigned.");
         }
+
     }
 }

@@ -24,12 +24,13 @@ namespace PushMyShip.Packets
                 return obl.GetBytes();
             }
 
-            public void SetData(byte[] Memory)
+            public SetDataResult SetData(byte[] Memory)
             {
                 var obl = new MemoryObjectConverter(Memory);
                 ID = obl.PopInt();
                 Race = (GameHook.GeneralRaces)obl.PopShort();
                 Position = obl.PopIMemoryObject<Vector3_32>();
+                return SetDataResult.Success;
             }
         }
 

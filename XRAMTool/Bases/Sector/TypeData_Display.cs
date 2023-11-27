@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using XCommonLib.RAM;
+using XCommonLib.RAM.Bases.Sector.SectorObject_TypeData;
 
 namespace XRAMTool.Bases.Sector
 {
@@ -21,19 +22,41 @@ namespace XRAMTool.Bases.Sector
 
         private void LoadSubType(short mainType, short subType)
         {
+            TypeData typeData;
             switch (Program.GameHook.GetMainType(mainType))
             {
+                case GameHook.GeneralMainType.Bullet:
+                    typeData = Program.GameHook.GetTypeData_Bullet(subType);
+                    break;
+                case GameHook.GeneralMainType.Sector:
+                    typeData = Program.GameHook.GetTypeData_Sector(subType);
+                    break;
+                case GameHook.GeneralMainType.Background:
+                    typeData = Program.GameHook.GetTypeData_Background(subType);
+                    break;
+                case GameHook.GeneralMainType.Sun:
+                    typeData = Program.GameHook.GetTypeData_Sun(subType);
+                    break;
+                case GameHook.GeneralMainType.Planet:
+                    typeData = Program.GameHook.GetTypeData_Planet(subType);
+                    break;
+                case GameHook.GeneralMainType.Dock:
+                    typeData = Program.GameHook.GetTypeData_Dock(subType);
+                    break;
+                case GameHook.GeneralMainType.Factory:
+                    typeData = Program.GameHook.GetTypeData_Factory(subType);
+                    break;
                 case GameHook.GeneralMainType.Ship:
-                    var shipTypeData = Program.GameHook.GetTypeData_Ship(subType);
-                    namedTextBox1.Text = shipTypeData.pThis.ToString("X");
-                    typeDataView1.LoadObject(shipTypeData);
+                    typeData = Program.GameHook.GetTypeData_Ship(subType);
                     break;
                 case GameHook.GeneralMainType.Laser:
-                    var laserTypeData = Program.GameHook.GetTypeData_Laser(subType);
-                    namedTextBox1.Text = laserTypeData.pThis.ToString("X");
-                    typeDataView1.LoadObject(laserTypeData);
+                    typeData = Program.GameHook.GetTypeData_Laser(subType);
                     break;
+                default:
+                    return;
             }
+            namedTextBox1.Text = typeData.pThis.ToString("X");
+            typeDataView1.LoadObject(typeData);
         }
 
         private void cmbMainType_SelectedIndexChanged(object sender, System.EventArgs e)
