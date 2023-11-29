@@ -29,7 +29,7 @@ namespace PushMyShip.Packets
                 var obl = new MemoryObjectConverter(Memory);
                 ID = obl.PopInt();
                 Race = (GameHook.GeneralRaces)obl.PopShort();
-                Position = obl.PopIMemoryObject<Vector3_32>();
+                Position = obl.PopIBinaryObject<Vector3_32>();
                 return SetDataResult.Success;
             }
         }
@@ -53,7 +53,7 @@ namespace PushMyShip.Packets
             {
                 var number = value.Length / 18;
                 var obl = new MemoryObjectConverter(value);
-                SectorObjects = obl.PopIBinaryObject<SectorObjectData>(number);
+                SectorObjects = obl.PopIBinaryObjects<SectorObjectData>(number);
             }
         }
     }

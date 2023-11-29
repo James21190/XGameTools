@@ -94,6 +94,11 @@ namespace X3TCAPLib.RAM.Bases.Sector
             return SetDataResult.Success;
         }
 
+        public override int[] GetSectorObjectIDs()
+        {
+            return pObjectHashTable.obj.ScanContents();
+        }
+
         public override IMemoryBlockManager ParentMemoryBlock
         {
             get => base.ParentMemoryBlock;

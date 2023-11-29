@@ -119,7 +119,7 @@ namespace XRAMTool.Bases.Sector
 
             TreeNode currentSelection = null;
             TreeNode selectedNode = null;
-            foreach (SectorObject sectorObject in Program.GameHook.SectorBase.GetSectorObjects())
+            foreach (SectorObject sectorObject in Program.GameHook.SectorBase.GetSectorObjects(true))
             {
                 nodeCollection.Add(GetSectorObjectTreeNode(sectorObject, out currentSelection));
                 // Generate tree node, and if the current SectorObject was generated within the node, select it.

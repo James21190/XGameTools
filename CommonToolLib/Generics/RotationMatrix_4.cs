@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace CommonToolLib.Generics
 {
-    public class RotationMatrix_4 : MemoryObject
+    public class RotationMatrix_4 : IBinaryObject
     {
-        public override int ByteSize => 0x30;
+        public int ByteSize => 0x30;
 
         public double[,] Matrix = new double[3, 4];
 
@@ -40,7 +40,7 @@ namespace CommonToolLib.Generics
         #endregion
 
         #region IMemoryObject
-        public override SetDataResult SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
             Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
@@ -57,7 +57,7 @@ namespace CommonToolLib.Generics
             return SetDataResult.Success;
         }
 
-        public override byte[] GetBytes()
+        public byte[] GetBytes()
         {
             List<byte> arr = new List<byte>();
 
@@ -75,11 +75,6 @@ namespace CommonToolLib.Generics
             arr.AddRange(BitConverter.GetBytes(Convert.ToInt32(Matrix[2, 3])));
 
             return arr.ToArray();
-        }
-
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
-        {
-            throw new System.NotSupportedException();
         }
         #endregion
 

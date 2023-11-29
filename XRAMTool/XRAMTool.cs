@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using XRAMTool.Bases.B3D;
 using XRAMTool.Bases.Sector;
 using XRAMTool.Bases.Story;
 
@@ -46,6 +46,11 @@ namespace XRAMTool
         private void btnHashTableHelper_Click(object sender, EventArgs e)
         {
             new HashTable_Display().Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new B3DBase_Display().Show();
         }
     }
 }

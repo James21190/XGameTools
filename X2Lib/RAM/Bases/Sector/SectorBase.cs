@@ -132,6 +132,11 @@ namespace X2Lib.RAM.Bases.Sector
             return SetDataResult.Success;
         }
 
+        public override int[] GetSectorObjectIDs()
+        {
+            return pObjectHashTable.obj.ScanContents();
+        }
+
         public override IMemoryBlockManager ParentMemoryBlock
         {
             get => base.ParentMemoryBlock;

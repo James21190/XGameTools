@@ -29,7 +29,7 @@ namespace PushMyShip.Packets
                 var obl = new MemoryObjectConverter(value);
                 Speed = obl.PopInt();
                 DesiredSpeed = obl.PopInt();
-                Position = obl.PopIMemoryObject<Vector3_32>();
+                Position = obl.PopIBinaryObject<Vector3_32>();
             }
         }
     }

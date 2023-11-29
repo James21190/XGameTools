@@ -405,7 +405,13 @@ namespace CommonToolLib.Generics
             binaryObject.SetData(PopBytes(binaryObject.ByteSize));
             return binaryObject;
         }
-        public T[] PopIBinaryObject<T>(int count) where T : IBinaryObject, new()
+        public T PopIBinaryObject<T>(int goToOffset) where T : IBinaryObject, new()
+        {
+            Seek(goToOffset);
+            return PopIBinaryObject<T>();
+        }
+
+        public T[] PopIBinaryObjects<T>(int count) where T : IBinaryObject, new()
         {
             T[] binaryObject = new T[count];
             for (int i = 0; i < count; i++)

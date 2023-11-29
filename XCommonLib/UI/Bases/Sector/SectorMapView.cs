@@ -60,7 +60,7 @@ namespace XCommonLib.UI.Bases.Sector
         public void ReloadFromGameHook()
         {
             SectorObjects.Clear();
-            var sector = ReferenceGameHook.SectorBase.GetSectorObjects()[0];
+            var sector = ReferenceGameHook.SectorBase.GetSectorObjects(true)[0];
             foreach (var child in sector.Meta.GetChildren())
             {
                 SectorObjects.Add(new SectorObjectPoint(child, ReferenceGameHook));

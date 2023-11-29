@@ -17,7 +17,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int Unknown_8;
         public int Unknown_9; // 0x20
         public int Unknown_10;
-        public override int ID { get; set; } // 0x28
+        //public int ID { get; set; } // 0x28
         public int Unknown_12;
         public Vector3_32 ParentRelativePosition; // 0x30
         public int Unknown_16; // 0x3c
@@ -36,7 +36,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int TotalSize;
         public int Unknown_43; // a8
         public int Unknown_44;
-        public Vector3_32 AbsolutePosition; // b0
+        //public Vector3_32 AbsolutePosition; // b0
         public int Unknown_48;
         public RotationMatrix_4 RotationMatrix_2; // c0
         public int Unknown_61; // f0
@@ -135,11 +135,14 @@ namespace X3TCAPLib.RAM.Bases.B3D
         public int Unknown_156; // 26c
         #endregion
 
+
         #region Common
         #endregion
 
         #region MemoryObject
         public override int ByteSize => throw new NotImplementedException();
+
+        public override XCommonLib.RAM.Bases.B3D.RenderObject Parent => throw new NotImplementedException();
 
         public override byte[] GetBytes()
         {
@@ -150,6 +153,11 @@ namespace X3TCAPLib.RAM.Bases.B3D
         {
             throw new NotImplementedException();
         }
+
         #endregion
+        public override XCommonLib.RAM.Bases.B3D.RenderObject[] GetChildren(bool getChildrenOfChildren)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

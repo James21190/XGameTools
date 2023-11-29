@@ -60,8 +60,8 @@ namespace XWrapperLib.Networking
                 var obl = new MemoryObjectConverter(Memory);
                 Speed = obl.PopInt();
                 DesiredSpeed = obl.PopInt();
-                Position = obl.PopIMemoryObject<Vector3_32>();
-                EulerRotation = obl.PopIMemoryObject<Vector3_32>();
+                Position = obl.PopIBinaryObject<Vector3_32>();
+                EulerRotation = obl.PopIBinaryObject<Vector3_32>();
                 return SetDataResult.Success;
             }
         }

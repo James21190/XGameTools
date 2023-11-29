@@ -38,10 +38,13 @@
             this.btnTypeData = new System.Windows.Forms.Button();
             this.btnAssemblyScripts = new System.Windows.Forms.Button();
             this.btnHashTableHelper = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.grpBases.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSectorBase
@@ -58,12 +61,13 @@
             // 
             // grpBases
             // 
+            this.grpBases.Controls.Add(this.groupBox4);
             this.grpBases.Controls.Add(this.groupBox3);
             this.grpBases.Controls.Add(this.groupBox2);
             this.grpBases.Controls.Add(this.groupBox1);
             this.grpBases.Location = new System.Drawing.Point(12, 12);
             this.grpBases.Name = "grpBases";
-            this.grpBases.Size = new System.Drawing.Size(372, 114);
+            this.grpBases.Size = new System.Drawing.Size(500, 114);
             this.grpBases.TabIndex = 1;
             this.grpBases.TabStop = false;
             this.grpBases.Text = "Bases";
@@ -155,6 +159,28 @@
             this.btnHashTableHelper.UseVisualStyleBackColor = true;
             this.btnHashTableHelper.Click += new System.EventHandler(this.btnHashTableHelper_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Location = new System.Drawing.Point(363, 19);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(113, 84);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "B3D";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(6, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "B3DBase";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // XRAMTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +196,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -186,6 +213,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSystemBase;
         private System.Windows.Forms.Button btnHashTableHelper;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CommonToolLib.Generics
 {
-    public class RotationMatrix_3 : MemoryObject
+    public class RotationMatrix_3 : IBinaryObject
     {
 
         public double[,] Matrix = new double[3, 3];
@@ -42,7 +42,7 @@ namespace CommonToolLib.Generics
             SetData(Memory);
         }
 
-        public override SetDataResult SetData(byte[] Memory)
+        public SetDataResult SetData(byte[] Memory)
         {
             Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
             Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
@@ -56,7 +56,7 @@ namespace CommonToolLib.Generics
             return SetDataResult.Success;
         }
 
-        public override byte[] GetBytes()
+        public byte[] GetBytes()
         {
             List<byte> arr = new List<byte>();
 
@@ -73,7 +73,7 @@ namespace CommonToolLib.Generics
             return arr.ToArray();
         }
 
-        public override int ByteSize => 36;
+        public int ByteSize => 36;
 
         public static RotationMatrix_3 operator *(RotationMatrix_3 A, RotationMatrix_3 B)
         {
@@ -119,11 +119,6 @@ namespace CommonToolLib.Generics
             matrix.Matrix[1, 0] = -(Math.Sin(radians));
             matrix.Matrix[1, 1] = Math.Cos(radians);
             return matrix;
-        }
-
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
-        {
-            throw new System.NotSupportedException();
         }
     }
 }

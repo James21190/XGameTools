@@ -136,6 +136,9 @@
     <EmbeddedResource Include="AssemblyScripts_Display.resx">
       <DependentUpon>AssemblyScripts_Display.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bases\B3D\B3DBase_Display.resx">
+      <DependentUpon>B3DBase_Display.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bases\B3D\RenderObject_Display.resx">
       <DependentUpon>RenderObject_Display.cs</DependentUpon>
     </EmbeddedResource>

@@ -62,7 +62,7 @@ namespace X3TCAPLib.RAM.Bases.Galaxy
             Unknown1 = objectByteList.PopInt();
             Unknown2 = objectByteList.PopInt();
             Unknown3 = objectByteList.PopInt();
-            Position = objectByteList.PopIMemoryObject<Vector3_32>();
+            Position = objectByteList.PopIBinaryObject<Vector3_32>();
             Unknown4 = objectByteList.PopInt();
             return SetDataResult.Success;
         }

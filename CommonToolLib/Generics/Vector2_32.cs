@@ -4,7 +4,7 @@ using System;
 
 namespace CommonToolLib.Generics
 {
-    public struct Vector2_32 : IMemoryObject
+    public struct Vector2_32 : IBinaryObject
     {
         public int X;
         public int Y;
@@ -13,8 +13,6 @@ namespace CommonToolLib.Generics
         {
             X = (x);
             Y = (y);
-            pThis = IntPtr.Zero;
-            ParentMemoryBlock = null;
         }
 
         public override bool Equals(object obj)
@@ -33,9 +31,6 @@ namespace CommonToolLib.Generics
         }
 
         #region IMemoryObject
-        public IntPtr pThis { get; set; }
-        public IMemoryBlockManager ParentMemoryBlock { get; set; }
-
         public byte[] GetBytes()
         {
             var collection = new MemoryObjectConverter();
@@ -52,10 +47,6 @@ namespace CommonToolLib.Generics
             X = collection.PopInt();
             Y = collection.PopInt();
             return SetDataResult.Success;
-        }
-        public void ReloadFromMemory()
-        {
-            throw new NotImplementedException();
         }
 
         public int ByteSize => 8;

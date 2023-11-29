@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using XCommonLib.RAM.Bases.Sector;
 using CommonToolLib.ProcessHooking;
+using System.Linq;
 
 namespace XCommonLib.RAM
 {
@@ -176,6 +177,59 @@ namespace XCommonLib.RAM
         }
         #endregion
 
+        private const string _RenderObjectTypePath = "RenderObject Types";
+        public string GetModelCollectionName(int id)
+        {
+            var dir = Path.Combine(DataFilePath, _RenderObjectTypePath);
+            if (Directory.Exists(dir))
+            {
+                var file = Path.Combine(dir, "Model Collections.txt");
+                if (File.Exists(file))
+                {
+                    var lines = File.ReadAllLines(file);
+
+                    foreach(var line in lines)
+                    {
+                        var split = line.Split(' ');
+                        if(split.Length >= 2)
+                        {
+                            var lineID = int.Parse(split[0]);
+                            if(lineID == id)
+                            {
+                                return string.Join(" ", split.Skip(1));
+                            }
+                        }
+                    }
+                }
+            }
+            return id.ToString();
+        }
+        public string GetModelBodyName(int id)
+        {
+            var dir = Path.Combine(DataFilePath, _RenderObjectTypePath);
+            if (Directory.Exists(dir))
+            {
+                var file = Path.Combine(dir, "Bodies.txt");
+                if (File.Exists(file))
+                {
+                    var lines = File.ReadAllLines(file);
+
+                    foreach (var line in lines)
+                    {
+                        var split = line.Split(' ');
+                        if (split.Length >= 2)
+                        {
+                            var lineID = int.Parse(split[0]);
+                            if (lineID == id)
+                            {
+                                return string.Join(" ", split.Skip(1));
+                            }
+                        }
+                    }
+                }
+            }
+            return id.ToString();
+        }
         #region Mods
         private const string _ModsDir = "Mods";
 

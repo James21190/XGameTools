@@ -51,9 +51,7 @@ namespace ModelExporter
                 //new GameInstall("X3FL",@"J:\Steam\steamapps\common\x3 terran conflict\addon2", GameVersion.X3FL,"objects/v", "objects/cut"),
             };
 
-#if !DEBUG
             List<Task> tasks = new List<Task>();
-#endif
             foreach (var install in Installs)
             {
                 if (!Directory.Exists(install.Path))
@@ -62,10 +60,8 @@ namespace ModelExporter
                     continue;
                 }
                 var currentInstall = install;
-#if !DEBUG
                 var newTask = new Task(() =>
                 {
-#endif
                     var destDir = Path.Combine(".","Exports", currentInstall.Name);
                     if (!Directory.Exists(destDir))
                     {
@@ -104,10 +100,8 @@ namespace ModelExporter
                             default:
                                 throw new NotImplementedException();
                         }
-#if !DEBUG
-                    try
-                    {
-#endif
+                        try
+                        {
                             Console.WriteLine(string.Format("Extracting {0}-{1} Textures...", currentInstall.Name, collectionName));
                             var textureDest = Path.Combine(destDir, "Textures");
                             if (!Directory.Exists(textureDest))
@@ -147,10 +141,8 @@ namespace ModelExporter
 
                             foreach (var file in catDatPair.GetInternalFiles(currentInstall.CutPath))
                             {
-#if !DEBUG
                                 try
                                 {
-#endif
                                     byte[] contents;
                                     if (Path.GetExtension(file).ToLower() == ".bob")
                                         contents = catDatPair.GetInternalFile(file, AbstractCatDatPair.ExtractionMode.None);
@@ -161,35 +153,27 @@ namespace ModelExporter
                                     var convertedBob = bobFile.ConvertToBOD(bodFiles.ToArray());
                                     if (convertedBob != null)
                                         convertedBob.ExportAsOBJ(Path.Combine(collectionDest, Path.GetFileNameWithoutExtension(file) + ".obj"), "..\\Textures");
-#if !DEBUG
                                 }
                                 catch (Exception ex)
                                 {
                                     Console.WriteLine("Error while extracting " + file);
                                     Console.WriteLine(ex.ToString());
                                 }
-#endif
                             }
-#if !DEBUG
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine(string.Format("Failed Extracting {0}-{1}!", currentInstall.Name, collectionName));
                             Console.WriteLine(ex.ToString());
                         }
-#endif
                     }
 
                     Console.WriteLine(string.Format("Completed extraction of {0}.", currentInstall.Name));
-#if !DEBUG
                 });
                 newTask.Start();
                 tasks.Add(newTask);
-#endif
             }
-#if !DEBUG
             Task.WaitAll(tasks.ToArray());
-#endif
             Console.WriteLine("Done.");
             Console.ReadKey();
         }

@@ -46,21 +46,38 @@ namespace XCommonLib.RAM.Bases.Sector
         public abstract SectorObject GetSectorObject(IntPtr pAddress);
 
         /// <summary>
-        /// Returns all top level SectorObjects.
+        /// Get the SectorObjects registered to the SectorBase.
         /// </summary>
+        /// <param name="topLevelOnly">If true, only the top SectorObjects are returned, if false all are returned.</param>
         /// <returns></returns>
-        public SectorObject[] GetSectorObjects()
+        public SectorObject[] GetSectorObjects(bool topLevelOnly)
         {
             List<SectorObject> sectorObjects = new List<SectorObject>();
 
-            SectorObject so = First;
-            while (so != null)
+            if(topLevelOnly)
             {
-                sectorObjects.Add(so);
-                so = so.Next;
+                SectorObject so = First;
+                while (so != null)
+                {
+                    sectorObjects.Add(so);
+                    so = so.Next;
+                }
+            }
+            else
+            {
+                foreach(var id in GetSectorObjectIDs())
+                {
+                    sectorObjects.Add(GetSectorObject(id));
+                }
             }
 
             return sectorObjects.ToArray();
         }
+
+        /// <summary>
+        /// Returns all SectorObject IDs.
+        /// </summary>
+        /// <returns></returns>
+        public abstract int[] GetSectorObjectIDs();
     }
 }

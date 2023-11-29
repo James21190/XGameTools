@@ -1,6 +1,7 @@
 ﻿using CommonToolLib.ProcessHooking;
 using System;
 using System.Diagnostics;
+using X2Lib.RAM.Bases.B3D;
 using X2Lib.RAM.Bases.Sector;
 using X2Lib.RAM.Bases.Sector.SectorObject_TypeData;
 using X2Lib.RAM.Bases.Story;
@@ -77,6 +78,7 @@ namespace X2Lib.RAM
             pSectorBase = 0x15d66a8,
             pStoryBase = 0x15d6700,
             pSystemBase = 0x15A453C,
+            pB3DBase = 0x015d66ac,
 
             #region TypeData
             pTypeData_Bullet = 0x015d65b0,
@@ -98,6 +100,7 @@ namespace X2Lib.RAM
         #region Bases
         public MemoryObjectPointer<MemoryObjectPointer<SectorBase>> ppSectorBase;
         public MemoryObjectPointer<MemoryObjectPointer<StoryBase>> ppStoryBase;
+        public MemoryObjectPointer<MemoryObjectPointer<B3DBase>> ppB3DBase;
         #endregion
         #region TypeData
         public MemoryObjectPointer<MemoryInt16> pTypeData_CountArr;
@@ -117,7 +120,7 @@ namespace X2Lib.RAM
         public override XCommonLib.RAM.Bases.Sector.SectorBase SectorBase => ppSectorBase != null ? ppSectorBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Story.StoryBase StoryBase => ppStoryBase != null ? ppStoryBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.Galaxy.GalaxyBase GalaxyBase => throw new NotImplementedException();
-        public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => throw new NotImplementedException();
+        public override XCommonLib.RAM.Bases.B3D.B3DBase B3DBase => ppB3DBase != null ? ppB3DBase.obj.obj : null;
         public override XCommonLib.RAM.Bases.System.SystemBase SystemBase => throw new NotImplementedException();
 
         #endregion
@@ -305,6 +308,7 @@ namespace X2Lib.RAM
             #region Bases
             ppSectorBase = new MemoryObjectPointer<MemoryObjectPointer<SectorBase>>(this, (IntPtr)GlobalAddresses_X2.pSectorBase);
             ppStoryBase = new MemoryObjectPointer<MemoryObjectPointer<StoryBase>>(this, (IntPtr)GlobalAddresses_X2.pStoryBase);
+            ppB3DBase = new MemoryObjectPointer<MemoryObjectPointer<B3DBase>>(this, (IntPtr)GlobalAddresses_X2.pB3DBase);
             #endregion
 
             #region TypeData

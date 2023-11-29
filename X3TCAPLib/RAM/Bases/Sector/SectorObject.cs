@@ -197,9 +197,9 @@ namespace X3TCAPLib.RAM.Bases.Sector
             pDefaultName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
             Speed = objectByteList.PopInt();
             DesiredSpeed = objectByteList.PopInt();
-            EulerRotationCopy = objectByteList.PopIMemoryObject<Vector3_32>();
-            LocalEulerRotationDelta = objectByteList.PopIMemoryObject<Vector3_32>();
-            LocalAutopilotRotationDeltaTarget = objectByteList.PopIMemoryObject<Vector3_32>();
+            EulerRotationCopy = objectByteList.PopIBinaryObject<Vector3_32>();
+            LocalEulerRotationDelta = objectByteList.PopIBinaryObject<Vector3_32>();
+            LocalAutopilotRotationDeltaTarget = objectByteList.PopIBinaryObject<Vector3_32>();
             RaceID = objectByteList.PopUShort();
             Unknown_4 = objectByteList.PopUShort();
             InteractionFlags = objectByteList.PopIMemoryObject<BitField>();
@@ -210,7 +210,7 @@ namespace X3TCAPLib.RAM.Bases.Sector
             pParent = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
             Unknown_7 = objectByteList.PopInt();
             Unknown_8 = objectByteList.PopInt();
-            PositionStrafeDelta = objectByteList.PopIMemoryObject<Vector3_32>();
+            PositionStrafeDelta = objectByteList.PopIBinaryObject<Vector3_32>();
             Unknown_9 = objectByteList.PopInt();
             pRenderObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<B3D.RenderObject>>();
             Unknown_10 = objectByteList.PopInt();
@@ -234,10 +234,10 @@ namespace X3TCAPLib.RAM.Bases.Sector
             pLastUnknown = objectByteList.PopInt();
             Unknown_22 = objectByteList.PopInt();
             Unknown_23 = objectByteList.PopInt();
-            CopyPosition = objectByteList.PopIMemoryObject<Vector3_32>();
+            CopyPosition = objectByteList.PopIBinaryObject<Vector3_32>();
             Unknown_24 = objectByteList.PopInt();
-            EulerRotationCopy2 = objectByteList.PopIMemoryObject<Vector3_32>();
-            LocalEulerRotationDeltaCopy = objectByteList.PopIMemoryObject<Vector3_32>();
+            EulerRotationCopy2 = objectByteList.PopIBinaryObject<Vector3_32>();
+            LocalEulerRotationDeltaCopy = objectByteList.PopIBinaryObject<Vector3_32>();
             Speed_Copy = objectByteList.PopInt();
             Hull = objectByteList.PopInt();
             Unknown_25 = objectByteList.PopInt();
