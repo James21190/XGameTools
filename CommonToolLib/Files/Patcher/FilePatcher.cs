@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CommonToolLib.Files.Patcher
 {
-    public class FilePatcher
+    public class FilePatcher : IDisposable
     {
         private FileStream _file;
         private FileProfile _profile;
@@ -56,6 +56,11 @@ namespace CommonToolLib.Files.Patcher
             {
                 writeMethod(_profile.GetIndexOfAddress(section.Address), section.Bytes);
             }
+        }
+
+        public void Dispose()
+        {
+            _file.Dispose();
         }
     }
 }

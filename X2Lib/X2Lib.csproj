@@ -90,7 +90,9 @@
     <Content Include="DATA\X2\RenderObject Types\Model Collections.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DATA\X2\X2FileProfile.txt" />
+    <Content Include="DATA\X2\X2FileProfile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="DATA\X2\Mods\LimitFPS.x2code">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
