@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,6 +54,18 @@ namespace CommonToolLib.Files.Patcher
         public string FileHash;
 
         public Region[] MemoryRegions;
+
+        public static string GenerateFileHash(string filePath)
+        {
+            using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            {
+                using (var hashAlgorithm = SHA256.Create())
+                {
+                    var hash = hashAlgorithm.ComputeHash(fileStream);
+                    return Convert.ToBase64String(hash);
+                }
+            }
+        }
 
         public Region GetRegionOfAddress(int address)
         {

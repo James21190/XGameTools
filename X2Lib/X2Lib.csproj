@@ -192,6 +192,9 @@
     <Content Include="DATA\X2\SectorObject Types\7.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="DATA\X2\Patches\FPSLimit.patch">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="DATA\X2\Mods\IndestructablePlayer.x2code">
