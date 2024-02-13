@@ -11,7 +11,7 @@ namespace X2Lib.RAM
     public class X2GameHook : XCommonLib.RAM.GameHook
     {
         // Taken from TC. Possible inaccuracy.
-        internal enum RaceID_X2 : ushort
+        public enum RaceID_X2 : ushort
         {
             Argon = 1,
             Boron,
@@ -37,7 +37,7 @@ namespace X2Lib.RAM
         }
 
         // Taken from TC. Possible inaccuracy.
-        internal enum MainType_X2
+        public enum MainType_X2
         {
             Bullet,
             Sector,

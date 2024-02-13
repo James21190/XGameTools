@@ -95,14 +95,89 @@ namespace XCommonLib.RAM
         public DataFileManager DataFileManager;
 
         #region Bases
+        public bool SectorBaseAvailable
+        {
+            get
+            {
+                try
+                {
+                    var temp = SectorBase;
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         /// <summary>
         /// The SectorBase is responsible for managing all in-sector objects.
         /// Returns null if not found.
         /// </summary>
         public abstract SectorBase SectorBase { get; }
+        public bool StoryBaseAvailable
+        {
+            get
+            {
+                try
+                {
+                    var temp = StoryBase;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         public abstract StoryBase StoryBase { get; }
+        public bool GalaxyBaseAvailable
+        {
+            get
+            {
+                try
+                {
+                    var temp = GalaxyBase;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         public abstract GalaxyBase GalaxyBase { get; }
+        public bool B3DBaseAvailable
+        {
+            get
+            {
+                try
+                {
+                    var temp = B3DBase;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         public abstract B3DBase B3DBase { get; }
+        public bool SystemBaseAvailable
+        {
+            get
+            {
+                try
+                {
+                    var temp = SystemBase;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         public abstract SystemBase SystemBase { get; }
         #endregion
 

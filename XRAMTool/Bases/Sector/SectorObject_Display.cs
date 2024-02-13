@@ -159,5 +159,10 @@ namespace XRAMTool.Bases.Sector
             renderObjectDisplay.LoadObject(m_SectorObject.RenderObject);
             renderObjectDisplay.Show();
         }
+
+        private void SectorObject_Display_Load_1(object sender, EventArgs e)
+        {
+            btnLoadScriptInstance.Enabled = Program.GameHook.StoryBaseAvailable;
+        }
     }
 }

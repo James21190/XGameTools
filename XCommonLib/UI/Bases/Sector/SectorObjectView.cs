@@ -36,7 +36,9 @@ namespace XCommonLib.UI
             vec3PositionStrafeDelta.Vector = m_SectorObject.PositionStrafeDelta;
 
             ntxtDefaultName.Text = m_SectorObject.DefaultName.Value;
-            ntxtDefaultNameParsed.Text = ReferenceGameHook.StoryBase.GetParsedText(44, m_SectorObject.DefaultName.Value);
+            ntxtDefaultNameParsed.Text = ReferenceGameHook.StoryBaseAvailable ?
+                ReferenceGameHook.StoryBase.GetParsedText(44, m_SectorObject.DefaultName.Value) :
+                "STORY BASE MISSING";
 
             ntxtType.Text = m_SectorObject.ObjectType.ToString();
 

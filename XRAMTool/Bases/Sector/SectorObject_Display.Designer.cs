@@ -104,6 +104,7 @@
             this.Controls.Add(this.treeView1);
             this.Name = "SectorObject_Display";
             this.Text = "SectorObject_Display";
+            this.Load += new System.EventHandler(this.SectorObject_Display_Load_1);
             this.ResumeLayout(false);
 
         }

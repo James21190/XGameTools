@@ -15,7 +15,10 @@ namespace XRAMTool
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            btnSectorBase.Enabled = Program.GameHook.SectorBase != null;
+            btnSectorBase.Enabled = Program.GameHook.SectorBaseAvailable;
+            btnStoryBase.Enabled = Program.GameHook.StoryBaseAvailable;
+            btnSystemBase.Enabled = Program.GameHook.SystemBaseAvailable;
+            button1.Enabled = Program.GameHook.B3DBaseAvailable;
         }
 
         private void btnSectorBase_Click(object sender, EventArgs e)
