@@ -9,7 +9,7 @@ namespace CommonToolLib.Networking
     /// <summary>
     /// Main interface for recieving packets over a network.
     /// </summary>
-    public class NetworkListener : TCPClientBase
+    public class TCPNetworkListener : TCPClientBase
     {
         private struct ClientData
         {
@@ -38,7 +38,7 @@ namespace CommonToolLib.Networking
         // The next ID to give to a client.
         private int _NextAvailableID = 0;
 
-        public NetworkListener(int port)
+        public TCPNetworkListener(int port)
         {
             _Port = port;
             _Listener = new TcpListener(IPAddress.Parse("0.0.0.0"), _Port);

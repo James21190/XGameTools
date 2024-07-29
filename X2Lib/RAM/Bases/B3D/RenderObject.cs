@@ -39,7 +39,8 @@ namespace X2Lib.RAM.Bases.B3D
         #endregion
 
         #region MemoryObject
-        public override int ByteSize => 488;
+        public const int BYTE_SIZE = 488;
+        public override int ByteSize => BYTE_SIZE;
 
 
         public override byte[] GetBytes()
@@ -47,25 +48,31 @@ namespace X2Lib.RAM.Bases.B3D
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
-            pPrevious = objectByteList.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            pPrevious = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
 
-            pFirstChild = objectByteList.PopIMemoryObject<MemoryObjectPointer<RenderObject>>(0xc);
+            memoryObjectConverter.Seek(0xc);
+            pFirstChild = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
 
-            pLastChild = objectByteList.PopIMemoryObject<MemoryObjectPointer<RenderObject>>(0x14);
-            pParent = objectByteList.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            memoryObjectConverter.Seek(0x14);
+            pLastChild = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
+            pParent = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
 
-            ID = objectByteList.PopInt(0x24);
-            Position = objectByteList.PopIBinaryObject<Vector3_32>();
-            Rotation = objectByteList.PopIBinaryObject<RotationMatrix_3>();
+            memoryObjectConverter.Seek(0x24);
+            ID = memoryObjectConverter.PopInt();
+            Position = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            Rotation = memoryObjectConverter.PopIBinaryObject<RotationMatrix_3>();
 
-            BodyID = objectByteList.PopInt(0xf0);
+            memoryObjectConverter.Seek(0xf0);
+            BodyID = memoryObjectConverter.PopInt();
 
-            CollectionID = objectByteList.PopInt(0x1d8);
+            memoryObjectConverter.Seek(0x1d8);
+            CollectionID = memoryObjectConverter.PopInt();
 
-            return SetDataResult.Success;
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

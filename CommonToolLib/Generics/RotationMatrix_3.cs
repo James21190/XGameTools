@@ -1,4 +1,4 @@
-﻿using CommonToolLib.ProcessHooking;
+﻿using CommonToolLib.Generics.BinaryObjects;
 using System;
 using System.Collections.Generic;
 
@@ -37,23 +37,24 @@ namespace CommonToolLib.Generics
             Matrix[2, 2] = C.Z;
         }
 
-        public RotationMatrix_3(byte[] Memory)
+        public RotationMatrix_3(byte[] data)
         {
-            SetData(Memory);
+            int bytesConsumed;
+            SetData(data, out bytesConsumed);
         }
 
-        public SetDataResult SetData(byte[] Memory)
+        public void SetData(byte[] data, out int bytesConsumed)
         {
-            Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
-            Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
-            Matrix[0, 2] = BitConverter.ToInt32(Memory, 8);
-            Matrix[1, 0] = BitConverter.ToInt32(Memory, 12);
-            Matrix[1, 1] = BitConverter.ToInt32(Memory, 16);
-            Matrix[1, 2] = BitConverter.ToInt32(Memory, 20);
-            Matrix[2, 0] = BitConverter.ToInt32(Memory, 24);
-            Matrix[2, 1] = BitConverter.ToInt32(Memory, 28);
-            Matrix[2, 2] = BitConverter.ToInt32(Memory, 32);
-            return SetDataResult.Success;
+            Matrix[0, 0] = BitConverter.ToInt32(data, 0);
+            Matrix[0, 1] = BitConverter.ToInt32(data, 4);
+            Matrix[0, 2] = BitConverter.ToInt32(data, 8);
+            Matrix[1, 0] = BitConverter.ToInt32(data, 12);
+            Matrix[1, 1] = BitConverter.ToInt32(data, 16);
+            Matrix[1, 2] = BitConverter.ToInt32(data, 20);
+            Matrix[2, 0] = BitConverter.ToInt32(data, 24);
+            Matrix[2, 1] = BitConverter.ToInt32(data, 28);
+            Matrix[2, 2] = BitConverter.ToInt32(data, 32);
+            bytesConsumed = BYTE_SIZE;
         }
 
         public byte[] GetBytes()
@@ -73,7 +74,7 @@ namespace CommonToolLib.Generics
             return arr.ToArray();
         }
 
-        public int ByteSize => 36;
+        public const int BYTE_SIZE = 36;
 
         public static RotationMatrix_3 operator *(RotationMatrix_3 A, RotationMatrix_3 B)
         {

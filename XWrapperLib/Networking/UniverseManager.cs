@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System.Collections.Generic;
 using XCommonLib.RAM;
@@ -41,7 +42,8 @@ namespace XWrapperLib.Networking
                 sectorObject.EulerRotationCopy = EulerRotation;
             }
 
-            public int ByteSize => 32;
+            public const int BYTE_SIZE = 32;
+            public int ByteSize => BYTE_SIZE;
 
             public byte[] GetBytes()
             {
@@ -55,14 +57,14 @@ namespace XWrapperLib.Networking
                 return obl.GetBytes();
             }
 
-            public SetDataResult SetData(byte[] Memory)
+            public void SetData(byte[] data, out int bytesConsumed)
             {
-                var obl = new MemoryObjectConverter(Memory);
+                var obl = new MemoryObjectConverter(data);
                 Speed = obl.PopInt();
                 DesiredSpeed = obl.PopInt();
                 Position = obl.PopIBinaryObject<Vector3_32>();
                 EulerRotation = obl.PopIBinaryObject<Vector3_32>();
-                return SetDataResult.Success;
+                bytesConsumed = BYTE_SIZE;
             }
         }
 

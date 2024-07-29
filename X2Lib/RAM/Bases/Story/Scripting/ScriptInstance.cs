@@ -14,7 +14,8 @@ namespace X2Lib.RAM.Bases.Story.Scripting
         #endregion
 
         #region IMemoryObject
-        public override int ByteSize => 0x38;
+        public const int BYTE_SIZE = 0x38;
+        public override int ByteSize => BYTE_SIZE;
 
 
         public override byte[] GetBytes()
@@ -23,17 +24,20 @@ namespace X2Lib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            NegativeID = objectByteList.PopInt();
+            NegativeID = memoryObjectConverter.PopInt();
 
-            ScriptVariableCount = objectByteList.PopInt(0x8);
-            pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>>();
+            memoryObjectConverter.Seek(0x8);
+            ScriptVariableCount = memoryObjectConverter.PopInt();
+            pScriptVariableArr = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>>();
 
             //ReferenceCount = objectByteList.PopInt(0x8);
-            Class = objectByteList.PopInt(0x20);
+            memoryObjectConverter.Seek(0x20);
+            Class = memoryObjectConverter.PopInt();
 
-            return SetDataResult.Success;
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

@@ -23,9 +23,9 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
                 throw new NotImplementedException();
             }
 
-            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
             {
-                throw new System.NotSupportedException();
+                throw new NotImplementedException();
             }
         }
 
@@ -44,7 +44,8 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
         #endregion
 
         #region IMemoryObject
-        public override int ByteSize => 0x61c;
+        public const int BYTE_SIZE = 0x61c;
+        public override int ByteSize => BYTE_SIZE;
 
         public override byte[] GetBytes()
         {
@@ -52,28 +53,35 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_TypeData
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
             #region Base TypeData
-            BodyID = objectByteList.PopInt();
+            BodyID = memoryObjectConverter.PopInt();
 
-            RotationSpeed = objectByteList.PopIBinaryObject<Vector3_32>(0x8);
-            ObjectClass = objectByteList.PopInt();
-            DefaultNameId = objectByteList.PopInt();
-            WareVolume = objectByteList.PopInt();
-            RelVal = objectByteList.PopInt();
-            PriceRangePercentage = objectByteList.PopInt();
+            memoryObjectConverter.Seek(0x8);
+            RotationSpeed = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            ObjectClass = memoryObjectConverter.PopInt();
+            DefaultNameId = memoryObjectConverter.PopInt();
+            WareVolume = memoryObjectConverter.PopInt();
+            RelVal = memoryObjectConverter.PopInt();
+            PriceRangePercentage = memoryObjectConverter.PopInt();
 
-            WareClass = objectByteList.PopInt(0x2c);
+            memoryObjectConverter.Seek(0x2c);
+            WareClass = memoryObjectConverter.PopInt();
 
-            pTypeName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x30);
+            memoryObjectConverter.Seek(0x30);
+            pTypeName = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
             #endregion
-            MaxSpeed = objectByteList.PopInt();
+            MaxSpeed = memoryObjectConverter.PopInt();
 
-            ExteriorModelID = objectByteList.PopInt(0x58);
+            memoryObjectConverter.Seek(0x58);
+            ExteriorModelID = memoryObjectConverter.PopInt();
 
-            OriginRace = objectByteList.PopInt(0xa4);
-            return SetDataResult.Success;
+            memoryObjectConverter.Seek(0xa4);
+            OriginRace = memoryObjectConverter.PopInt();
+
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

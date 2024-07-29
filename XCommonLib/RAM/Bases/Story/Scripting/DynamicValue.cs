@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System;
 using System.Runtime.CompilerServices;
@@ -45,27 +46,27 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             return collection.GetBytes();
         }
 
-        public const int ByteSizeConst = 5;
-        public int ByteSize => ByteSizeConst;
+        public const int BYTE_SIZE = 5;
+        public int ByteSize => BYTE_SIZE;
 
-        public SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        public void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            Flag = (FlagType)objectByteList.PopByte();
-            Value = objectByteList.PopInt();
-            return SetDataResult.Success;
+            Flag = (FlagType)memoryObjectConverter.PopByte();
+            Value = memoryObjectConverter.PopInt();
         }
 
-        public void ReloadFromMemory()
+        public void ReloadFromMemory(int maxObjectSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE)
         {
-            SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
+            int bytesConsumed;
+            SetData(ParentMemoryBlock.ReadBytes(pThis, maxObjectSize), out bytesConsumed);
         }
 
-        public SetDataResult SetData(byte[] Memory)
+        public void SetData(byte[] data, out int bytesConsumed)
         {
-            var boc = new BinaryObjectConverter(Memory);
+            var boc = new BinaryObjectConverter(data);
             Flag = (FlagType)boc.PopByte();
             Value = boc.PopInt();
-            return SetDataResult.Success;
+            bytesConsumed = BYTE_SIZE;
         }
         #endregion
 

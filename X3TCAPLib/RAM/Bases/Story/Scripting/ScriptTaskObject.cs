@@ -28,7 +28,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
             throw new NotImplementedException();
         }

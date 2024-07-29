@@ -61,12 +61,11 @@ namespace XCommonLib.RAM.Generics
 
             public override int ByteSize => 12;
 
-            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
             {
-                pNext.PointedAddress = objectByteList.PopIntPtr();
-                ObjectID = objectByteList.PopInt();
-                pObject.PointedAddress = objectByteList.PopIntPtr();
-                return SetDataResult.Success;
+                pNext.PointedAddress = memoryObjectConverter.PopIntPtr();
+                ObjectID = memoryObjectConverter.PopInt();
+                pObject.PointedAddress = memoryObjectConverter.PopIntPtr();
             }
             #endregion
         }
@@ -237,13 +236,12 @@ namespace XCommonLib.RAM.Generics
 
         public override int ByteSize => 16;
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter collection)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            ppEntry = collection.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>>();
-            Length = collection.PopInt();
-            NextAvailableID = collection.PopInt();
-            Count = collection.PopInt();
-            return SetDataResult.Success;
+            ppEntry = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<Entry<T>>>>();
+            Length = memoryObjectConverter.PopInt();
+            NextAvailableID = memoryObjectConverter.PopInt();
+            Count = memoryObjectConverter.PopInt();
         }
 
         public override IMemoryBlockManager ParentMemoryBlock

@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
+using System;
 
 namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
 {
@@ -6,9 +7,9 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
     {
         public override int ByteSize => 0x940; // Unknown
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            throw new global::System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         protected override void SetUniqueData(MemoryObjectConverter obl)

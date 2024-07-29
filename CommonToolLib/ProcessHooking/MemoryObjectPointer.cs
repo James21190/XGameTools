@@ -3,22 +3,22 @@
 namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
-    /// A pointer that points to an IMemoryObject in a process's memory.
+    /// A pointer that points to an IMemoryObject in a process's data.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public sealed class MemoryObjectPointer<T> : MemoryObject where T : IMemoryObject, new()
     {
 
         #region Constructors
-        public MemoryObjectPointer(IMemoryBlockManager parentMemoryBlock, IntPtr address)
+        public MemoryObjectPointer(IMemoryBlockManager parentdataBlock, IntPtr address)
         {
-            ParentMemoryBlock = parentMemoryBlock;
+            ParentMemoryBlock = parentdataBlock;
             this.PointedAddress = address;
         }
 
-        public MemoryObjectPointer(IMemoryBlockManager parentMemoryBlock)
+        public MemoryObjectPointer(IMemoryBlockManager parentdataBlock)
         {
-            ParentMemoryBlock = parentMemoryBlock;
+            ParentMemoryBlock = parentdataBlock;
             PointedAddress = IntPtr.Zero;
         }
 
@@ -36,8 +36,8 @@ namespace CommonToolLib.ProcessHooking
 
         /// <summary>
         /// The object at the address.
-        /// Returns a new object from the process memory.
-        /// Sets to the process memory.
+        /// Returns a new object from the process data.
+        /// Sets to the process data.
         /// </summary>
         public T obj
         {
@@ -46,7 +46,7 @@ namespace CommonToolLib.ProcessHooking
                 T obj = new T();
                 obj.ParentMemoryBlock = ParentMemoryBlock;
                 obj.pThis = PointedAddress;
-                obj.ReloadFromMemory();
+                obj.ReloadFromMemory(obj.ByteSize);
                 return obj;
             }
             set => ParentMemoryBlock.WriteBytes(PointedAddress, value.GetBytes());
@@ -59,7 +59,7 @@ namespace CommonToolLib.ProcessHooking
             A obj = new A();
             obj.ParentMemoryBlock = ParentMemoryBlock;
             obj.pThis = PointedAddress;
-            obj.ReloadFromMemory();
+            obj.ReloadFromMemory(obj.ByteSize);
             return obj;
         }
 
@@ -68,7 +68,7 @@ namespace CommonToolLib.ProcessHooking
             A obj = new A();
             obj.ParentMemoryBlock = ParentMemoryBlock;
             obj.pThis = PointedAddress + (obj.ByteSize * index);
-            obj.ReloadFromMemory();
+            obj.ReloadFromMemory(obj.ByteSize);
             return obj;
         }
 
@@ -92,7 +92,7 @@ namespace CommonToolLib.ProcessHooking
             T obj = new T();
             obj.ParentMemoryBlock = ParentMemoryBlock;
             obj.pThis = PointedAddress + (index * obj.ByteSize);
-            obj.ReloadFromMemory();
+            obj.ReloadFromMemory(obj.ByteSize);
             return obj;
         }
 
@@ -116,13 +116,14 @@ namespace CommonToolLib.ProcessHooking
             ParentMemoryBlock.WriteBinaryObject(PointedAddress + (Index * 4), obj);
         }
 
-        #region IMemoryObject
-        public override int ByteSize => 4;
+        #region IBinaryObject
+        public const int BYTE_SIZE = 4;
+        public override int ByteSize => BYTE_SIZE;
 
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            PointedAddress = (IntPtr)BitConverter.ToInt32(Memory, 0);
-            return SetDataResult.Success;
+            PointedAddress = (IntPtr)BitConverter.ToInt32(data, 0);
+            bytesConsumed = BYTE_SIZE;
         }
 
         public override byte[] GetBytes()
@@ -130,7 +131,7 @@ namespace CommonToolLib.ProcessHooking
             return BitConverter.GetBytes((int)PointedAddress);
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new NotSupportedException();
         }

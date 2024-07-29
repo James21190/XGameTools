@@ -19,10 +19,9 @@ namespace X3TCAPLib.RAM.Bases.Story
 
                 public override int ByteSize => 4;
 
-                protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+                protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
                 {
-                    U_1 = objectByteList.PopInt();
-                    return SetDataResult.Success;
+                    U_1 = memoryObjectConverter.PopInt();
                 }
             }
             public int ID;
@@ -42,14 +41,13 @@ namespace X3TCAPLib.RAM.Bases.Story
             }
 
             public override int ByteSize => 12;
-            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
             {
-                ID = objectByteList.PopInt();
-                Value = objectByteList.PopIMemoryObject<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>();
-                Unknown_2 = objectByteList.PopByte();
-                Unknown_3 = objectByteList.PopByte();
-                Unknown_4 = objectByteList.PopByte();
-                return SetDataResult.Success;
+                ID = memoryObjectConverter.PopInt();
+                Value = memoryObjectConverter.PopIMemoryObject<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>();
+                Unknown_2 = memoryObjectConverter.PopByte();
+                Unknown_3 = memoryObjectConverter.PopByte();
+                Unknown_4 = memoryObjectConverter.PopByte();
             }
         }
 
@@ -119,12 +117,11 @@ namespace X3TCAPLib.RAM.Bases.Story
 
         public override int ByteSize => 12;
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            Count = objectByteList.PopInt();
-            pEntries = objectByteList.PopIMemoryObject<MemoryObjectPointer<TextEntry>>();
-            Unknown = objectByteList.PopInt();
-            return SetDataResult.Success;
+            Count = memoryObjectConverter.PopInt();
+            pEntries = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<TextEntry>>();
+            Unknown = memoryObjectConverter.PopInt();
         }
 
     }

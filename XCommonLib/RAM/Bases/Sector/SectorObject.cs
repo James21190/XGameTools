@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System;
 using XCommonLib.RAM.Bases.B3D;
@@ -22,7 +23,8 @@ namespace XCommonLib.RAM.Bases.Sector
             public IntPtr pThis { get; set; }
             public IMemoryBlockManager ParentMemoryBlock { get; set; }
 
-            public int ByteSize => 4;
+            public const int BYTE_SIZE = 4;
+            public int ByteSize => BYTE_SIZE;
 
             public byte[] GetBytes()
             {
@@ -32,16 +34,16 @@ namespace XCommonLib.RAM.Bases.Sector
                 return arr;
             }
 
-            public void ReloadFromMemory()
+            public void ReloadFromMemory(int maxObjectSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE)
             {
                 throw new NotImplementedException();
             }
 
-            public SetDataResult SetData(byte[] Memory)
+            public void SetData(byte[] data, out int bytesConsumed)
             {
-                MainType = BitConverter.ToInt16(Memory, 0);
-                SubType = BitConverter.ToInt16(Memory, 2);
-                return SetDataResult.Success;
+                MainType = BitConverter.ToInt16(data, 0);
+                SubType = BitConverter.ToInt16(data, 2);
+                bytesConsumed = BYTE_SIZE;
             }
 
             public int CompareTo(object obj)

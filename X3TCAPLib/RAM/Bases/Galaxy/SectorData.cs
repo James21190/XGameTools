@@ -26,10 +26,9 @@ namespace X3TCAPLib.RAM.Bases.Galaxy
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            Gates = objectByteList.PopIMemoryObjects<GateData>(6);
-            return SetDataResult.Success;
+            Gates = memoryObjectConverter.PopIMemoryObjects<GateData>(6);
         }
         #endregion
     }

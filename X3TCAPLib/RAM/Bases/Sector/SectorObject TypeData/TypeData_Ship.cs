@@ -12,20 +12,25 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
             public override BitField WeaponCompatability { get; set; }
             public override int TurretNumber { get; set; }
 
-            public override int ByteSize => 0x138;
+            public const int BYTE_SIZE = 0x138;
+            public override int ByteSize => BYTE_SIZE;
 
             public override byte[] GetBytes()
             {
                 throw new NotImplementedException();
             }
 
-            protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+            protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
             {
-                WeaponCount = objectByteList.PopInt(0x4);
-                TurretNumber = objectByteList.PopInt();
+                memoryObjectConverter.Seek(0x4);
+                WeaponCount = memoryObjectConverter.PopInt();
+                TurretNumber = memoryObjectConverter.PopInt();
 
-                WeaponCompatability = objectByteList.PopIMemoryObject<BitField>(0x10);
-                return SetDataResult.Success;
+                memoryObjectConverter.Seek(0x10);
+                WeaponCompatability = memoryObjectConverter.PopIMemoryObject<BitField>();
+
+                // Seek to end to consume the correct amount of bytes.
+                memoryObjectConverter.Seek(BYTE_SIZE);
             }
 
             public override void WriteSafeToMemory()
@@ -51,7 +56,8 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
         #endregion
 
         #region IMemoryObject
-        public override int ByteSize => 3512;
+        public const int BYTE_SIZE = 3512;
+        public override int ByteSize => BYTE_SIZE;
 
         public override byte[] GetBytes()
         {
@@ -59,31 +65,39 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_TypeData
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
             #region Base TypeData
-            BodyID = objectByteList.PopInt();
+            BodyID = memoryObjectConverter.PopInt();
 
-            RotationSpeed = objectByteList.PopIBinaryObject<Vector3_32>(0x8);
-            ObjectClass = objectByteList.PopInt();
-            DefaultNameId = objectByteList.PopInt();
-            WareVolume = objectByteList.PopInt();
-            RelVal = objectByteList.PopInt();
-            PriceRangePercentage = objectByteList.PopInt();
+            memoryObjectConverter.Seek(0x8);
+            RotationSpeed = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            ObjectClass = memoryObjectConverter.PopInt();
+            DefaultNameId = memoryObjectConverter.PopInt();
+            WareVolume = memoryObjectConverter.PopInt();
+            RelVal = memoryObjectConverter.PopInt();
+            PriceRangePercentage = memoryObjectConverter.PopInt();
 
-            WareClass = objectByteList.PopInt(0x2c);
+            memoryObjectConverter.Seek(0x2c);
+            WareClass = memoryObjectConverter.PopInt();
 
-            pTypeName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x40);
+            memoryObjectConverter.Seek(0x40);
+            pTypeName = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
             #endregion
-            MaxSpeed = objectByteList.PopInt();
+            MaxSpeed = memoryObjectConverter.PopInt();
 
-            ExteriorModelID = objectByteList.PopInt(0x68);
+            memoryObjectConverter.Seek(0x68);
+            ExteriorModelID = memoryObjectConverter.PopInt();
 
-            OriginRace = objectByteList.PopInt(0xb4);
+            memoryObjectConverter.Seek(0xb4);
+            OriginRace = memoryObjectConverter.PopInt();
 
-            TurretCount = objectByteList.PopInt(0x180);
-            Turrets = objectByteList.PopIMemoryObjects<TurretData>(10);
-            return SetDataResult.Success;
+            memoryObjectConverter.Seek(0x180);
+            TurretCount = memoryObjectConverter.PopInt();
+            Turrets = memoryObjectConverter.PopIMemoryObjects<TurretData>(10);
+
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

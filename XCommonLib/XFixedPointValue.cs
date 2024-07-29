@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System;
 
@@ -54,12 +55,13 @@ namespace XCommonLib
             return BitConverter.GetBytes(FixedPointValue);
         }
 
-        public int ByteSize => 4;
+        public const int BYTE_SIZE = 4;
+        public int ByteSize => BYTE_SIZE;
 
-        public SetDataResult SetData(byte[] Memory)
+        public void SetData(byte[] data, out int bytesConsumed)
         {
-            FixedPointValue = BitConverter.ToInt32(Memory, 0);
-            return SetDataResult.Success;
+            FixedPointValue = BitConverter.ToInt32(data, 0);
+            bytesConsumed = BYTE_SIZE;
         }
         #endregion
 

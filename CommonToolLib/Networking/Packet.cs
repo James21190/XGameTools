@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Generics;
+﻿using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System.Net.Sockets;
 
@@ -46,7 +46,8 @@ namespace CommonToolLib.Networking
         public IBinaryObject ToBinaryObject<T>() where T : IBinaryObject, new()
         {
             var result = new T();
-            result.SetData(Data);
+            int bytesConsumed;
+            result.SetData(Data, out bytesConsumed);
             return result;
         }
 

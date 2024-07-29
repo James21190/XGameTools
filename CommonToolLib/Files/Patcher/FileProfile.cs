@@ -12,8 +12,8 @@ namespace CommonToolLib.Files.Patcher
     public struct FileProfile
     {
         /// <summary>
-        /// A structure to represent how the memory address of a file changes at specific points in the file.
-        /// Such as when an exe is loaded into memory.
+        /// A structure to represent how the data address of a file changes at specific points in the file.
+        /// Such as when an exe is loaded into data.
         /// </summary>
         public struct Region
         {
@@ -22,7 +22,7 @@ namespace CommonToolLib.Files.Patcher
             /// </summary>
             public int FileIndex;
             /// <summary>
-            /// The memory address the file index will be loaded in memory.
+            /// The data address the file index will be loaded in data.
             /// </summary>
             public int Address;
 
@@ -53,7 +53,7 @@ namespace CommonToolLib.Files.Patcher
         /// </summary>
         public string FileHash;
 
-        public Region[] MemoryRegions;
+        public Region[] dataRegions;
 
         public static string GenerateFileHash(string filePath)
         {
@@ -76,9 +76,9 @@ namespace CommonToolLib.Files.Patcher
                 Address = 0
             };
 
-            for (int i = 0; i < MemoryRegions.Length; i++)
+            for (int i = 0; i < dataRegions.Length; i++)
             {
-                var region = MemoryRegions[i];
+                var region = dataRegions[i];
                 // If the region address is less than the target, and higher than the current, set the region as current.
                 if (region.Address <= address && region.Address > currentRegion.Address)
                 {
@@ -98,9 +98,9 @@ namespace CommonToolLib.Files.Patcher
                 Address = 0
             };
 
-            for (int i = 0; i < MemoryRegions.Length; i++)
+            for (int i = 0; i < dataRegions.Length; i++)
             {
-                var region = MemoryRegions[i];
+                var region = dataRegions[i];
                 // If the region index is less than the target, and higher than the current, set the region as current.
                 if (region.FileIndex <= index && region.FileIndex > currentRegion.FileIndex)
                 {
@@ -133,14 +133,14 @@ namespace CommonToolLib.Files.Patcher
             result.FileHash = lines[0];
             result.FileHash = lines[1];
 
-            result.MemoryRegions = new Region[lines.Length - 2];
+            result.dataRegions = new Region[lines.Length - 2];
 
             for(int i = 2; i < lines.Length; i++)
             {
                 var line = lines[i];
 
                 var region = Region.FromString(line);
-                result.MemoryRegions[i-2] = region;
+                result.dataRegions[i-2] = region;
 
             }
 
@@ -153,7 +153,7 @@ namespace CommonToolLib.Files.Patcher
             sw.WriteLine(FileName);
             sw.WriteLine(FileHash);
 
-            foreach(var region in MemoryRegions)
+            foreach(var region in dataRegions)
             {
                 sw.WriteLine(region.ToString());
             }

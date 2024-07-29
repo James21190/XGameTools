@@ -101,35 +101,34 @@ namespace X2Lib.RAM.Bases.Sector
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
 
-            Unknown_1 = objectByteList.PopInt();
-            Unknown_2 = objectByteList.PopInt();
-            pFirst = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            Unknown_3 = objectByteList.PopInt();
-            pLast = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            pObjectHashTable = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<SectorObject>>>();
-            Unknown_4 = objectByteList.PopInt();
-            Unknown_5 = objectByteList.PopInt();
-            Unknown_6 = objectByteList.PopInt();
-            Unknown_7 = objectByteList.PopInt();
-            Unknown_8 = objectByteList.PopInt();
-            Unknown_9 = objectByteList.PopInt();
-            Unknown_10 = objectByteList.PopInt();
-            Unknown_11 = objectByteList.PopInt();
-            pPlayerShip = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            Unknown_12 = objectByteList.PopInt();
-            PlayerShotsFired = objectByteList.PopInt();
-            PlayerMissilesLaunched = objectByteList.PopInt();
-            PlayerShotsHit = objectByteList.PopInt();
-            PlayerMissilesHit = objectByteList.PopInt();
-            PlayerSubDistanceTravelled = objectByteList.PopInt();
-            PlayerDistanceTraveled = objectByteList.PopInt();
-            Unknown_13 = objectByteList.PopInt();
-            Unknown_14 = objectByteList.PopInt();
-            Unknown_15 = objectByteList.PopInt();
-            return SetDataResult.Success;
+            Unknown_1 = memoryObjectConverter.PopInt();
+            Unknown_2 = memoryObjectConverter.PopInt();
+            pFirst = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            Unknown_3 = memoryObjectConverter.PopInt();
+            pLast = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            pObjectHashTable = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<SectorObject>>>();
+            Unknown_4 = memoryObjectConverter.PopInt();
+            Unknown_5 = memoryObjectConverter.PopInt();
+            Unknown_6 = memoryObjectConverter.PopInt();
+            Unknown_7 = memoryObjectConverter.PopInt();
+            Unknown_8 = memoryObjectConverter.PopInt();
+            Unknown_9 = memoryObjectConverter.PopInt();
+            Unknown_10 = memoryObjectConverter.PopInt();
+            Unknown_11 = memoryObjectConverter.PopInt();
+            pPlayerShip = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            Unknown_12 = memoryObjectConverter.PopInt();
+            PlayerShotsFired = memoryObjectConverter.PopInt();
+            PlayerMissilesLaunched = memoryObjectConverter.PopInt();
+            PlayerShotsHit = memoryObjectConverter.PopInt();
+            PlayerMissilesHit = memoryObjectConverter.PopInt();
+            PlayerSubDistanceTravelled = memoryObjectConverter.PopInt();
+            PlayerDistanceTraveled = memoryObjectConverter.PopInt();
+            Unknown_13 = memoryObjectConverter.PopInt();
+            Unknown_14 = memoryObjectConverter.PopInt();
+            Unknown_15 = memoryObjectConverter.PopInt();
         }
 
         public override int[] GetSectorObjectIDs()

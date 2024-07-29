@@ -11,7 +11,7 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_Meta
     {
         public override int ByteSize => 0x180;
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new NotImplementedException();
         }

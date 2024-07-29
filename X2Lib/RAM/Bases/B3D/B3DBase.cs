@@ -34,7 +34,8 @@ namespace X2Lib.RAM.Bases.B3D
         }
 
         #region IMemoryObject
-        public override int ByteSize => 0xc6ec;
+        public const int BYTE_SIZE = 0xc6ec;
+        public override int ByteSize => BYTE_SIZE;
 
 
         public override byte[] GetBytes()
@@ -42,11 +43,13 @@ namespace X2Lib.RAM.Bases.B3D
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter moc)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            pRenderObjectHashTable = moc.PopIMemoryObject<MemoryObjectPointer<HashTable<RenderObject>>>(0xc);
+            memoryObjectConverter.Seek(0xc);
+            pRenderObjectHashTable = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<RenderObject>>>();
 
-            return SetDataResult.Success;
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

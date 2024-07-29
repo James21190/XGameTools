@@ -1,19 +1,15 @@
 ﻿using System.IO;
 
-namespace CommonToolLib.Generics
+namespace CommonToolLib.Generics.BinaryObjects
 {
     public interface IBinaryObject
     {
         /// <summary>
-        /// The size of the object in bytes.
-        /// </summary>
-        /// <returns></returns>
-        int ByteSize { get; }
-        /// <summary>
         /// Sets values in the object from a byte array.
         /// </summary>
         /// <param name="data"></param>
-        SetDataResult SetData(byte[] data);
+        /// <param name="bytesConsumed"></param>
+        void SetData(byte[] data, out int bytesConsumed);
 
         /// <summary>
         /// Returns the object in bytes.

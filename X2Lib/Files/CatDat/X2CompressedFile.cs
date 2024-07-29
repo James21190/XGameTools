@@ -49,12 +49,12 @@ namespace X2Lib.Files.CatDat
             }
             return result.ToArray();
         }
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            byte[] decrypted = new byte[Memory.Length];
-            Array.Copy(Memory,decrypted,decrypted.Length);
+            byte[] decrypted = new byte[data.Length];
+            Array.Copy(data,decrypted,decrypted.Length);
             ToggleEncryption(ref decrypted);
-            return base.SetData(decrypted);
+            base.SetData(decrypted, out bytesConsumed);
         }
 
         public override byte[] GetBytes()

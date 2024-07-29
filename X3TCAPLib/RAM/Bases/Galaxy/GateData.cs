@@ -54,17 +54,16 @@ namespace X3TCAPLib.RAM.Bases.Galaxy
             ParentMemoryBlock.WriteBytes(pThis, objectByteList.GetBytes());
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            DestinationSectorX = objectByteList.PopByte();
-            DestinationSectorY = objectByteList.PopByte();
-            DestinationSectorIndex = objectByteList.PopShort();
-            Unknown1 = objectByteList.PopInt();
-            Unknown2 = objectByteList.PopInt();
-            Unknown3 = objectByteList.PopInt();
-            Position = objectByteList.PopIBinaryObject<Vector3_32>();
-            Unknown4 = objectByteList.PopInt();
-            return SetDataResult.Success;
+            DestinationSectorX = memoryObjectConverter.PopByte();
+            DestinationSectorY = memoryObjectConverter.PopByte();
+            DestinationSectorIndex = memoryObjectConverter.PopShort();
+            Unknown1 = memoryObjectConverter.PopInt();
+            Unknown2 = memoryObjectConverter.PopInt();
+            Unknown3 = memoryObjectConverter.PopInt();
+            Position = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            Unknown4 = memoryObjectConverter.PopInt();
         }
         #endregion
     }

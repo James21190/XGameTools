@@ -1,10 +1,10 @@
-﻿using CommonToolLib.Generics;
+﻿using CommonToolLib.Generics.BinaryObjects;
 using System;
 
 namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
-    /// A byte array that can combine IMemoryObjects and seperate them.
+    /// A byte array that can combine IMemoryObject and seperate them.
     /// </summary>
     public class MemoryObjectConverter : BinaryObjectConverter, IMemoryObject
     {
@@ -19,59 +19,44 @@ namespace CommonToolLib.ProcessHooking
             pThis = IntPtr.Zero;
             ParentMemoryBlock = null;
         }
-        public MemoryObjectConverter(byte[] data, IMemoryBlockManager memoryBlock, IntPtr pThis) : base(data)
+        public MemoryObjectConverter(byte[] data, IMemoryBlockManager dataBlock, IntPtr pThis) : base(data)
         {
             this.pThis = pThis;
-            this.ParentMemoryBlock = memoryBlock;
+            this.ParentMemoryBlock = dataBlock;
         }
 
         #region IMemoryObject
         public IntPtr pThis { get; set; }
         public IMemoryBlockManager ParentMemoryBlock { get; set; }
-        public void ReloadFromMemory()
+        public void ReloadFromMemory(int maxObjectSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE)
         {
-            throw new NotSupportedException();
+            throw new NotImplementedException();
         }
-        #endregion
-
-        #region Appends
+        public int ByteSize => Size;
         #endregion
 
         #region Pops
-        public T PopIMemoryObject<T>() where T : IMemoryObject, new()
+        public T PopIMemoryObject<T>(int maxSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE) where T : IMemoryObject, new()
         {
-            T memoryObject = new T();
+            T memoryObject = PopIBinaryObject<T>(maxSize);
 
             memoryObject.ParentMemoryBlock = ParentMemoryBlock;
-            memoryObject.pThis = pThis + _DataPointer;
-            memoryObject.SetData(PopBytes(memoryObject.ByteSize));
+            memoryObject.pThis = pThis + DataPointer;
 
             return memoryObject;
         }
-        public T PopIMemoryObject<T>(int GoToOffset) where T : IMemoryObject, new()
-        {
-            Seek(GoToOffset);
-            return PopIMemoryObject<T>();
-        }
 
-        public T[] PopIMemoryObjects<T>(int Count) where T : IMemoryObject, new()
+        public T[] PopIMemoryObjects<T>(int Count, int maxSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE) where T : IMemoryObject, new()
         {
-            T[] memoryObjects = new T[Count];
+            T[] dataObjects = PopIBinaryObjects<T>(Count, maxSize);
 
             for (int i = 0; i < Count; i++)
             {
-                memoryObjects[i] = new T();
-                memoryObjects[i].ParentMemoryBlock = ParentMemoryBlock;
-                memoryObjects[i].pThis = pThis + _DataPointer;
-                memoryObjects[i].SetData(PopBytes(memoryObjects[i].ByteSize));
+                dataObjects[i].ParentMemoryBlock = ParentMemoryBlock;
+                dataObjects[i].pThis = pThis + DataPointer;
             }
 
-            return memoryObjects;
-        }
-        public T[] PopIMemoryObjects<T>(int Count, int GoToOffset) where T : IMemoryObject, new()
-        {
-            Seek(GoToOffset);
-            return PopIMemoryObjects<T>(Count);
+            return dataObjects;
         }
         #endregion
 

@@ -14,7 +14,7 @@ namespace CommonToolLib.ProcessHooking
         public const string SystemModDirectory = ".\\DATA\\EventManager Scripts\\";
         #region Event Injection
         /// <summary>
-        /// A list in process memory 
+        /// A list in process data 
         /// </summary>
         public class EventCodeList
         {
@@ -315,7 +315,7 @@ namespace CommonToolLib.ProcessHooking
             {
                 this.InjectedCode = code;
 
-                // Allocate memory for code and footer
+                // Allocate data for code and footer
                 var pMem = MemoryControl.AllocateMemory(_hProcess, dataHeader + code.Length + _Footer.Length);
 
                 for (int i = 0; i < dataHeader; i++)

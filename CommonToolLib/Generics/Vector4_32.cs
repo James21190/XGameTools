@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.ProcessHooking;
+using CommonToolLib.Generics.BinaryObjects;
 using System;
 
 
@@ -35,7 +36,7 @@ namespace CommonToolLib.Generics
             return string.Format("{0},{1},{2},{3}", X, Y, Z, W);
         }
 
-        #region IMemoryObject
+        #region IBinaryObject
         public byte[] GetBytes()
         {
             var collection = new MemoryObjectConverter();
@@ -48,17 +49,17 @@ namespace CommonToolLib.Generics
             return collection.GetBytes();
         }
 
-        public SetDataResult SetData(byte[] Memory)
+        void IBinaryObject.SetData(byte[] data, out int bytesConsumed)
         {
-            var collection = new MemoryObjectConverter(Memory);
+            var collection = new MemoryObjectConverter(data);
             X = collection.PopInt();
             Y = collection.PopInt();
             Z = collection.PopInt();
             W = collection.PopInt();
-            return SetDataResult.Success;
+            bytesConsumed = BYTE_SIZE;
         }
 
-        public int ByteSize => 16;
+        public const int BYTE_SIZE = 16;
 
         #endregion
     }

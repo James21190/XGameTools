@@ -22,7 +22,7 @@ namespace X2Lib.RAM.Bases.Story.Scripting
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new NotImplementedException();
         }

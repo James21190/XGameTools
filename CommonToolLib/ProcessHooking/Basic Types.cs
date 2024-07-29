@@ -4,7 +4,7 @@ using System.Linq;
 namespace CommonToolLib.ProcessHooking
 {
     /// <summary>
-    /// A 64 bit intager that implements IMemoryObject.
+    /// A 64 bit intager that implements IBinaryObject.
     /// </summary>
     public class MemoryInt64 : MemoryObject
     {
@@ -14,21 +14,22 @@ namespace CommonToolLib.ProcessHooking
             return BitConverter.GetBytes(Value);
         }
 
-        public override int ByteSize => 8;
+        public const int BYTE_SIZE = 8;
+        public override int ByteSize => BYTE_SIZE;
 
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            Value = BitConverter.ToInt64(Memory, 0);
-            return SetDataResult.Success;
+            Value = BitConverter.ToInt64(data, 0);
+            bytesConsumed = BYTE_SIZE;
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new System.NotSupportedException();
         }
     }
     /// <summary>
-    /// A 32 bit intager that implements IMemoryObject.
+    /// A 32 bit intager that implements IBinaryObject.
     /// </summary>
     public class MemoryInt32 : MemoryObject
     {
@@ -49,22 +50,23 @@ namespace CommonToolLib.ProcessHooking
             return BitConverter.GetBytes(Value);
         }
 
-        public override int ByteSize => 4;
-
-        public override SetDataResult SetData(byte[] Memory)
+        public const int BYTE_SIZE = 4;
+        public override int ByteSize => BYTE_SIZE;
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            Value = BitConverter.ToInt32(Memory, 0);
-            return SetDataResult.Success;
+            Value = BitConverter.ToInt32(data, 0);
+            bytesConsumed = BYTE_SIZE;
+
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new System.NotSupportedException();
         }
     }
 
     /// <summary>
-    /// A 16 bit intager that implements IMemoryObject.
+    /// A 16 bit intager that implements IBinaryObject.
     /// </summary>
     public class MemoryInt16 : MemoryObject
     {
@@ -74,22 +76,23 @@ namespace CommonToolLib.ProcessHooking
             return BitConverter.GetBytes(Value);
         }
 
-        public override int ByteSize => 2;
+        public const int BYTE_SIZE = 2;
+        public override int ByteSize => BYTE_SIZE;
 
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            Value = BitConverter.ToInt16(Memory, 0);
-            return SetDataResult.Success;
+            Value = BitConverter.ToInt16(data, 0);
+            bytesConsumed = BYTE_SIZE;
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new System.NotSupportedException();
         }
     }
 
     /// <summary>
-    /// A 8 bit intager that implements IMemoryObject.
+    /// A 8 bit intager that implements IBinaryObject.
     /// </summary>
     public class MemoryByte : MemoryObject
     {
@@ -100,15 +103,15 @@ namespace CommonToolLib.ProcessHooking
             return new byte[] { Value };
         }
 
-        public override int ByteSize => 1;
-
-        public override SetDataResult SetData(byte[] Memory)
+        public const int BYTE_SIZE = 1;
+        public override int ByteSize => BYTE_SIZE;
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            Value = Memory[0];
-            return SetDataResult.Success;
+            Value = data[0];
+            bytesConsumed = BYTE_SIZE;
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new System.NotSupportedException();
         }
@@ -131,22 +134,22 @@ namespace CommonToolLib.ProcessHooking
             return collection.GetBytes();
         }
 
-        public override int ByteSize => Value == null ? 100 : Value.Length + 1;
+        public override int ByteSize => Value.Length;
 
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
             Value = "";
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory);
+            MemoryObjectConverter collection = new MemoryObjectConverter(data);
             char character = (char)collection.PopByte();
             while (character != 0)
             {
                 Value += character;
                 character = (char)collection.PopByte();
             }
-            return SetDataResult.Success;
+            bytesConsumed = Value.Length + 1;
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new System.NotSupportedException();
         }

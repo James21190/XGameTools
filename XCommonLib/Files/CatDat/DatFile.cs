@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace XCommonLib.Files.CatDat
         public T GetDataAsBinaryObject<T>(FileLocationData fileLocationData) where T : IBinaryObject, new()
         {
             var result = new T();
-            result.SetData(GetData(fileLocationData));
+            int bytesConsumed;
+            result.SetData(GetData(fileLocationData), out bytesConsumed);
             return result;
         }
         /// <summary>
@@ -42,7 +44,12 @@ namespace XCommonLib.Files.CatDat
         public T GetDataAsBinaryObject<T>(int index, int length) where T : IBinaryObject, new()
         {
             var result = new T();
-            result.SetData(GetData(index, length));
+            int bytesConsumed;
+            result.SetData(GetData(index, length), out bytesConsumed);
+            if(length != bytesConsumed)
+            {
+                throw new Exception("Not all bytes were consumed!");
+            }
             return result;
         }
         /// <summary>

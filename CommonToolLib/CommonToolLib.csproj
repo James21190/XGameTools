@@ -47,9 +47,11 @@
     <Compile Include="Files\Patcher\FilePatch.cs" />
     <Compile Include="Files\Patcher\FilePatcher.cs" />
     <Compile Include="Files\Patcher\FileProfile.cs" />
-    <Compile Include="Generics\BinaryObjectConverter.cs" />
-    <Compile Include="Generics\BinaryString.cs" />
-    <Compile Include="Generics\IBinaryObject.cs" />
+    <Compile Include="Generics\BinaryObjects\BinaryObjectConverter Pop.cs" />
+    <Compile Include="Generics\BinaryObjects\BinaryObjectConverter Peek.cs" />
+    <Compile Include="Generics\BinaryObjects\BinaryObjectConverter Append.cs" />
+    <Compile Include="Generics\BinaryObjects\BinaryObjectConverter.cs" />
+    <Compile Include="Generics\BinaryObjects\IBinaryObject.cs" />
     <Compile Include="Generics\Matrix.cs" />
     <Compile Include="Generics\NamedObjectContainer.cs" />
     <Compile Include="Generics\Vector.cs" />
@@ -68,9 +70,9 @@
     <Compile Include="ProcessHooking\MemoryObject.cs" />
     <Compile Include="ProcessHooking\MemoryObjectConverter.cs" />
     <Compile Include="ProcessHooking\MemoryObjectPointer.cs" />
-    <Compile Include="Networking\NetworkClient.cs" />
+    <Compile Include="Networking\TCPNetworkClient.cs" />
     <Compile Include="Networking\TCPClientBase.cs" />
-    <Compile Include="Networking\NetworkListener.cs" />
+    <Compile Include="Networking\TCPNetworkListener.cs" />
     <Compile Include="Networking\Packet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -174,7 +176,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generics\SetDataResult.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

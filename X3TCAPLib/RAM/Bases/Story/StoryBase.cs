@@ -91,7 +91,8 @@ namespace X3TCAPLib.RAM.Bases.Story
         #endregion
 
         #region MemoryObject
-        public override int ByteSize => 5648;
+        public const int BYTE_SIZE = 5648;
+        public override int ByteSize => BYTE_SIZE;
 
 
         public override byte[] GetBytes()
@@ -100,16 +101,22 @@ namespace X3TCAPLib.RAM.Bases.Story
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            pHashTable_ScriptTaskObject = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
+            pHashTable_ScriptTaskObject = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
 
-            pStrings = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x14);
+            memoryObjectConverter.Seek(0x14);
+            pStrings = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x14);
 
-            TextHashTableArray = objectByteList.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
+            memoryObjectConverter.Seek(0x334);
+            TextHashTableArray = memoryObjectConverter.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
 
-            pHashTable_ScriptInstance = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
-            return SetDataResult.Success;
+            memoryObjectConverter.Seek(0x12d0);
+            pHashTable_ScriptInstance = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
+
+
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
 
 

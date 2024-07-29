@@ -27,10 +27,10 @@ namespace X3TCAPLib.RAM.Bases.Galaxy
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            Sectors = objectByteList.PopIMemoryObjects<SectorData>(GALAXY_SIZE,0x10);
-            return SetDataResult.Success;
+            memoryObjectConverter.Seek(0x10);
+            Sectors = memoryObjectConverter.PopIMemoryObjects<SectorData>(GALAXY_SIZE);
         }
 
         #endregion

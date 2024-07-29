@@ -46,27 +46,31 @@ namespace XBTFLib.RAM.Bases.Sector
         public override int ScriptInstanceID { get; set; }
         public override int ModelCollectionID { get; set; }
 
-        public override int ByteSize => 0x78;
+        public const int BYTE_SIZE = 0x78;
+        public override int ByteSize => BYTE_SIZE;
 
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            pPrevious = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            ID = objectByteList.PopInt();
-            pDefaultName = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
-            Speed = objectByteList.PopInt();
-            DesiredSpeed = objectByteList.PopInt();
+            pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            pPrevious = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            ID = memoryObjectConverter.PopInt();
+            pDefaultName = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
+            Speed = memoryObjectConverter.PopInt();
+            DesiredSpeed = memoryObjectConverter.PopInt();
 
-            ObjectType = objectByteList.PopIMemoryObject<SectorObjectType>(0x54);
+            memoryObjectConverter.Seek(0x54);
+            ObjectType = memoryObjectConverter.PopIMemoryObject<SectorObjectType>();
 
-            pParent = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>(0x5c);
+            memoryObjectConverter.Seek(0x5c);
+            pParent = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
 
-            return SetDataResult.Success;
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
     }
 }

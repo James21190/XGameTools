@@ -50,15 +50,14 @@ namespace X2Lib.RAM.Bases.Sector.SectorObject_Meta
 
             return collection.GetBytes();
         }
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(data, ParentMemoryBlock, pThis);
 
             Children = collection.PopIMemoryObject<LinkedListStart<SectorObject>>();
 
             SetUniqueData(collection);
-
-            return SetDataResult.Success;
+            bytesConsumed = collection.DataPointer;
         }
         #endregion
         protected abstract void SetUniqueData(MemoryObjectConverter obl);

@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System;
 using XCommonLib.RAM.Bases.Sector.SectorObject_Meta;
@@ -17,12 +18,12 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
         public IntPtr pThis { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IMemoryBlockManager ParentMemoryBlock { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public void ReloadFromMemory()
+        public void ReloadFromMemory(int maxObjectSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE)
         {
             throw new NotImplementedException();
         }
 
-        public SetDataResult SetData(byte[] Memory)
+        public void SetData(byte[] data, out int bytesConsumed)
         {
             throw new NotImplementedException();
         }

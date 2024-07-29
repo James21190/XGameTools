@@ -58,15 +58,15 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
 
             return collection.GetBytes();
         }
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
+            MemoryObjectConverter memoryObjectConverter = new MemoryObjectConverter(data, ParentMemoryBlock, pThis);
 
-            Children = collection.PopIMemoryObjects<LinkedListStart<SectorObject>>(X3TCGameHook.MainTypeCount);
+            Children = memoryObjectConverter.PopIMemoryObjects<LinkedListStart<SectorObject>>(X3TCGameHook.MainTypeCount);
 
-            SetUniqueData(collection);
+            SetUniqueData(memoryObjectConverter);
 
-            return SetDataResult.Success;
+            bytesConsumed = memoryObjectConverter.DataPointer;
         }
 
         public override IMemoryBlockManager ParentMemoryBlock
@@ -89,7 +89,7 @@ namespace X3TCAPLib.RAM.Bases.Sector.SectorObject_Meta
             {
                 for (int i = 0; i < X3TCGameHook.MainTypeCount; i++)
                 {
-                    Children[i].pThis = value + LinkedListStart<SectorObject>.ByteSizeConst * i;
+                    Children[i].pThis = value + LinkedListStart<SectorObject>.BYTE_SIZE * i;
                 }
                 base.pThis = value;
             }

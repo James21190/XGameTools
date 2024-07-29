@@ -32,18 +32,23 @@ namespace X3TCAPLib.RAM.Bases.System
         #endregion
 
         #region IMemoryObject
-        public override int ByteSize => 0x7a8;
+        public const int BYTE_SIZE = 0x7a8;
+        public override int ByteSize => BYTE_SIZE;
 
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            LaunchParamCount = memoryObjectConverter.PopInt(0xb4);
+            memoryObjectConverter.Seek(0xb4);
+            LaunchParamCount = memoryObjectConverter.PopInt();
             ppLaunchParams = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<MemoryString>>>();
-            return SetDataResult.Success;
+
+
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

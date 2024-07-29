@@ -4,7 +4,7 @@ namespace CommonToolLib
 {
     public class AddressNullException : Exception
     {
-        public new string Message = "Memory pointer is null.";
+        public new string Message = "data pointer is null.";
     }
 
     public class SystemModCodeMissingException : Exception

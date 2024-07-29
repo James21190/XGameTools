@@ -210,6 +210,10 @@
       <Project>{08839997-89c5-4c73-874e-5fa977b6ef6e}</Project>
       <Name>X3TCAPLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XBTFLib\XBTFLib.csproj">
+      <Project>{8c1eade2-34fb-4837-b549-7bf08679f2b4}</Project>
+      <Name>XBTFLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XCommonLib\XCommonLib.csproj">
       <Project>{adbbdbb6-324b-4d38-b723-7f1181f32f24}</Project>
       <Name>XCommonLib</Name>

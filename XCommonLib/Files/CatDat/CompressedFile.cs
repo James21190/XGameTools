@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,11 +48,11 @@ namespace XCommonLib.Files.CatDat
         /// Set the compressed file.
         /// Decryption may be done when overriding this method.
         /// </summary>
-        /// <param name="Memory">Compressed and (when required) encrypted bytes.</param>
-        public virtual SetDataResult SetData(byte[] Memory)
+        /// <param name="data">Compressed and (when required) encrypted bytes.</param>
+        public virtual void SetData(byte[] data, out int bytesConsumed)
         {
-            CompressedData = Memory;
-            return SetDataResult.Success;
+            CompressedData = data;
+            bytesConsumed = data.Length;
         }
     }
 }

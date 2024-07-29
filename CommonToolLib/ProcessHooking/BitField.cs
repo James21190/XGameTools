@@ -1,4 +1,6 @@
-﻿namespace CommonToolLib.ProcessHooking
+﻿using System;
+
+namespace CommonToolLib.ProcessHooking
 {
     public class BitField : MemoryObject
     {
@@ -59,20 +61,21 @@
             return count;
         }
 
+        public override int ByteSize => m_Length;
+
         public override byte[] GetBytes()
         {
             return m_Value;
         }
 
-        public override int ByteSize => m_Length;
-
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            m_Value = Memory;
-            return SetDataResult.Success;
+            Array.Copy(data, m_Value, m_Length);
+            m_Value = data;
+            bytesConsumed = m_Length;
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new System.NotSupportedException();
         }

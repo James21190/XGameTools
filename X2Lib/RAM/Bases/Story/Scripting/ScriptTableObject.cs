@@ -1,4 +1,5 @@
 ﻿using CommonToolLib.Generics;
+using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
 using System;
 using System.Collections.Generic;
@@ -21,25 +22,27 @@ namespace X2Lib.RAM.Bases.Story.Scripting
             public IntPtr pThis { get; set; }
             public IMemoryBlockManager ParentMemoryBlock { get; set; }
 
-            public int ByteSize => 14;
+            public const int BYTE_SIZE = 14;
+            public int ByteSize => BYTE_SIZE;
 
             public byte[] GetBytes()
             {
                 throw new NotImplementedException();
             }
 
-            public void ReloadFromMemory()
+            public void ReloadFromMemory(int maxObjectSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE)
             {
-                SetData(ParentMemoryBlock.ReadBytes(pThis, ByteSize));
+                int bytesConsumed;
+                SetData(ParentMemoryBlock.ReadBytes(pThis, maxObjectSize), out bytesConsumed);
             }
 
-            public SetDataResult SetData(byte[] Memory)
+            public void SetData(byte[] data, out int bytesConsumed)
             {
-                var memoryObjectConverter = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
+                var memoryObjectConverter = new MemoryObjectConverter(data, ParentMemoryBlock, pThis);
                 pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptHashTableEntry>>();
                 Id = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
                 Value = memoryObjectConverter.PopIMemoryObject<DynamicValue>();
-                return SetDataResult.Success;
+                bytesConsumed = BYTE_SIZE;
             }
         }
 
@@ -47,15 +50,20 @@ namespace X2Lib.RAM.Bases.Story.Scripting
         public int TableLength;
         public override int Count { get; set; }
 
-        public override int ByteSize => 0x18;
+        public const int BYTE_SIZE = 0x18;
+        public override int ByteSize => BYTE_SIZE;
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            ppEntries = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<ScriptHashTableEntry>>>(0x8);
-            TableLength = objectByteList.PopInt();
+            memoryObjectConverter.Seek(0x8);
+            ppEntries = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryObjectPointer<ScriptHashTableEntry>>>();
+            TableLength = memoryObjectConverter.PopInt();
 
-            Count = objectByteList.PopInt(0x14);
-            return SetDataResult.Success;
+            memoryObjectConverter.Seek(0x14);
+            Count = memoryObjectConverter.PopInt();
+
+            // Seek to expected end of object so it consumes the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
 
         public override byte[] GetBytes()

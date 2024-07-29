@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using CommonToolLib.Generics.BinaryObjects;
 
 namespace CommonToolLib.ProcessHooking
 {
@@ -70,7 +71,7 @@ namespace CommonToolLib.ProcessHooking
 
         #region Reads
         /// <summary>
-        /// Read an array of bytes from memory.
+        /// Read an array of bytes from data.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="Address"></param>
@@ -86,7 +87,7 @@ namespace CommonToolLib.ProcessHooking
         }
 
         /// <summary>
-        /// Read a 4 byte int from memory.
+        /// Read a 4 byte int from data.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="Address"></param>
@@ -124,24 +125,24 @@ namespace CommonToolLib.ProcessHooking
         #region Writes
 
         /// <summary>
-        /// Write an IMemoryObject to memory.
+        /// Write an IBinaryObject to data.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="address"></param>
-        /// <param name="memoryObject"></param>
-        public static void Write(IntPtr hProcess, IntPtr address, IMemoryObject memoryObject)
+        /// <param name="binaryObject"></param>
+        public static void Write(IntPtr hProcess, IntPtr address, IBinaryObject binaryObject)
         {
-            Write(hProcess, address, memoryObject.GetBytes());
+            Write(hProcess, address, binaryObject.GetBytes());
         }
 
-        public static void Write(IntPtr hProcess, IntPtr baseAddress, IntPtr offset, IMemoryObject memoryObject)
+        public static void Write(IntPtr hProcess, IntPtr baseAddress, IntPtr offset, IBinaryObject binaryObject)
         {
             IntPtr address = (IntPtr)((int)baseAddress + (int)offset);
-            Write(hProcess, address, memoryObject);
+            Write(hProcess, address, binaryObject);
         }
 
         /// <summary>
-        /// Write a 4 byte int to memory.
+        /// Write a 4 byte int to data.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="address"></param>
@@ -152,7 +153,7 @@ namespace CommonToolLib.ProcessHooking
         }
 
         /// <summary>
-        /// Write an array of bytes to memory.
+        /// Write an array of bytes to data.
         /// </summary>
         /// <param name="hProcess"></param>
         /// <param name="Address"></param>

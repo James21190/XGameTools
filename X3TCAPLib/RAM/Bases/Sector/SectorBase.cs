@@ -62,36 +62,34 @@ namespace X3TCAPLib.RAM.Bases.Sector
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            Unknown_1 = objectByteList.PopInt(); // 0x0
-            Unknown_2 = objectByteList.PopInt();
-            pFirst = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            Unknown_3 = objectByteList.PopInt();
-            pLast = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>(); // 0x10
-            pObjectHashTable = objectByteList.PopIMemoryObject<MemoryObjectPointer<HashTable<SectorObject>>>();
-            Unknown_4 = objectByteList.PopInt();
-            Unknown_5 = objectByteList.PopInt();
-            Unknown_6 = objectByteList.PopInt(); // 0x20
-            Unknown_7 = objectByteList.PopInt();
-            Unknown_8 = objectByteList.PopInt();
-            Unknown_9 = objectByteList.PopInt();
-            Unknown_10 = objectByteList.PopInt(); // 0x30
-            Unknown_11 = objectByteList.PopInt();
-            pPlayerShip = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            Unknown_12 = objectByteList.PopInt();
-            Unknown_13 = objectByteList.PopInt(); // 0x40
-            Unknown_14 = objectByteList.PopInt();
-            Unknown_15 = objectByteList.PopInt();
-            Unknown_16 = objectByteList.PopInt();
-            Unknown_17 = objectByteList.PopInt(); // 0x50
-            Unknown_18 = objectByteList.PopInt();
-            Unknown_19 = objectByteList.PopInt();
-            Unknown_20 = objectByteList.PopInt();
-            Unknown_21 = objectByteList.PopInt(); // 0x60
-            Unknown_22 = objectByteList.PopInt();
-
-            return SetDataResult.Success;
+            Unknown_1 = memoryObjectConverter.PopInt(); // 0x0
+            Unknown_2 = memoryObjectConverter.PopInt();
+            pFirst = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            Unknown_3 = memoryObjectConverter.PopInt();
+            pLast = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>(); // 0x10
+            pObjectHashTable = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<SectorObject>>>();
+            Unknown_4 = memoryObjectConverter.PopInt();
+            Unknown_5 = memoryObjectConverter.PopInt();
+            Unknown_6 = memoryObjectConverter.PopInt(); // 0x20
+            Unknown_7 = memoryObjectConverter.PopInt();
+            Unknown_8 = memoryObjectConverter.PopInt();
+            Unknown_9 = memoryObjectConverter.PopInt();
+            Unknown_10 = memoryObjectConverter.PopInt(); // 0x30
+            Unknown_11 = memoryObjectConverter.PopInt();
+            pPlayerShip = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            Unknown_12 = memoryObjectConverter.PopInt();
+            Unknown_13 = memoryObjectConverter.PopInt(); // 0x40
+            Unknown_14 = memoryObjectConverter.PopInt();
+            Unknown_15 = memoryObjectConverter.PopInt();
+            Unknown_16 = memoryObjectConverter.PopInt();
+            Unknown_17 = memoryObjectConverter.PopInt(); // 0x50
+            Unknown_18 = memoryObjectConverter.PopInt();
+            Unknown_19 = memoryObjectConverter.PopInt();
+            Unknown_20 = memoryObjectConverter.PopInt();
+            Unknown_21 = memoryObjectConverter.PopInt(); // 0x60
+            Unknown_22 = memoryObjectConverter.PopInt();
         }
 
         public override int[] GetSectorObjectIDs()

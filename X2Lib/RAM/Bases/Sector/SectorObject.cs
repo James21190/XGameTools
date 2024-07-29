@@ -86,36 +86,43 @@ namespace X2Lib.RAM.Bases.Sector
             pPrevious.PointedAddress != IntPtr.Zero;
 
         #region IMemoryObject
-        public override int ByteSize => 0xdc;
+        public const int BYTE_SIZE = 0xdc;
+        public override int ByteSize => BYTE_SIZE;
         public override byte[] GetBytes()
         {
             throw new NotImplementedException();
         }
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter moc)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            pNext = moc.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            pPrevious = moc.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
-            ID = moc.PopInt();
-            pDefaultName = moc.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
-            Speed = moc.PopInt();
-            DesiredSpeed = moc.PopInt();
-            EulerRotationCopy = moc.PopIBinaryObject<Vector3_32>();
-            LocalEulerRotationDelta = moc.PopIBinaryObject<Vector3_32>();
-            LocalAutopilotRotationDeltaTarget = moc.PopIBinaryObject<Vector3_32>();
-            RaceID = moc.PopUShort();
+            pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            pPrevious = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+            ID = memoryObjectConverter.PopInt();
+            pDefaultName = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
+            Speed = memoryObjectConverter.PopInt();
+            DesiredSpeed = memoryObjectConverter.PopInt();
+            EulerRotationCopy = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            LocalEulerRotationDelta = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            LocalAutopilotRotationDeltaTarget = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
+            RaceID = memoryObjectConverter.PopUShort();
 
-            ObjectType = moc.PopIMemoryObject<SectorObjectType>(0x48);
-            pMeta = moc.PopIntPtr();
+            memoryObjectConverter.Seek(0x48);
+            ObjectType = memoryObjectConverter.PopIMemoryObject<SectorObjectType>();
+            pMeta = memoryObjectConverter.PopIntPtr();
 
-            pRenderObject = moc.PopIMemoryObject<MemoryObjectPointer<RenderObject>>(0x60);
+            memoryObjectConverter.Seek(0x60);
+            pRenderObject = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<RenderObject>>();
 
-            ScriptInstanceID = moc.PopInt(0x80);
+            memoryObjectConverter.Seek(0x80);
+            ScriptInstanceID = memoryObjectConverter.PopInt();
 
-            ModelCollectionID = moc.PopInt(0x88);
+            memoryObjectConverter.Seek(0x88);
+            ModelCollectionID = memoryObjectConverter.PopInt();
 
-            CopyPosition = moc.PopIBinaryObject<Vector3_32>(0xa8);
+            memoryObjectConverter.Seek(0xa8);
+            CopyPosition = memoryObjectConverter.PopIBinaryObject<Vector3_32>();
 
-            return SetDataResult.Success;
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
         #endregion
     }

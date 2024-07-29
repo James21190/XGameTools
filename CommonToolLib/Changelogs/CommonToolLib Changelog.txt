@@ -2,10 +2,11 @@
 	- Added ProgramRunning to ApplicationHook
 	- Added meta data.
 	- Added more file signatures to identifier.
+	- BinaryObjects now properly support variable length objects.
 
 1.7.0.0 (09/01/2023)
 	- Added generic Vector and Matrix classes.
-	- Added ToArray function for MemoryObjectPointer.
+	- Added ToArray function for dataObjectPointer.
 	- Added CString functions for BinaryObjectConverter.
 
 1.6.0.0 (03/05/2022)
@@ -13,7 +14,7 @@
 	- Added NamedTextBox UI element.
 	- Added FileIdentifer class.
 	- Added dll injection method to ApplicationHook.
-	- Depreciated SetLodation in IMemoryObject. This has been replaced with pThis and hProcess fields.
+	- Depreciated SetLodation in IBinaryObject. This has been replaced with pThis and hProcess fields.
 	- Reordered message serverity in Logger class.
 	- Moved around and renamed some namespaces to make more sense.
 	- Added (hopefully better) networking objects.
@@ -23,26 +24,26 @@
 
 1.5.0.0 (22/11/2020)
 	- Added comments to more methods and objects.
-	- Added MemoryByte, MemoryInt16, MemoryInt32, and MemoryInt64, which are basic types that derive from MemoryObject.
+	- Added dataByte, dataInt16, dataInt32, and dataInt64, which are basic types that derive from dataObject.
 	- Added Vector UI.
-	- Added ReloadFromMemory() to IMemoryObject.
+	- Added ReloadFromdata() to IBinaryObject.
 	- Added Vector2 struct.
 	- Added GoTo(address) to ObjectByteList.
 	- Added DecimalPlaces and Increment to vector displays.
-	- Added WriteToMemory in MemoryObject.
-	- Added protected method to MemoryObject to simplify memory reads.
-	- Added method to MemoryObjectPointer to request a different type than the one assigned.
+	- Added WriteTodata in dataObject.
+	- Added protected method to dataObject to simplify data reads.
+	- Added method to dataObjectPointer to request a different type than the one assigned.
 	- Reworked ObjectByteList methods. Previous Pop methods are now depreciated.
 	- Completed ApplicationHook abstract class.
-	- SetLocation in MemoryObject will no longer reload values from memory.
+	- SetLocation in dataObject will no longer reload values from data.
 	- Removed flawed network classes.
 
 1.4.0.0
 	- Added the Patcher object.
-	- Added the MemoryObjectPointer object.
-	- Added the MemoryObject class.
+	- Added the dataObjectPointer object.
+	- Added the dataObject class.
 	- Added the ApplicationHook abstract class.
-	- Added "void SetLocation(IntPtr hProcess, IntPtr address)" to IMemoryObject.
+	- Added "void SetLocation(IntPtr hProcess, IntPtr address)" to IBinaryObject.
 	- Added Skip method to ObjectByteList
 
 1.3.0.0:
@@ -61,7 +62,7 @@
 	- Script Assembler can now recognise EBX, [EAX], [EBX], [ECX], and [EDX].
 	- Added "Pop <register>" to script macros.
 	- Added "Push <register>" to script macros.
-	- MemoryControl now has methods to read and write IMemoryObjects.
+	- dataControl now has methods to read and write IBinaryObjects.
 
 1.0.0.0:
 	- Initial

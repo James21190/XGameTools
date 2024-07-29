@@ -1,4 +1,4 @@
-﻿using CommonToolLib.ProcessHooking;
+﻿using CommonToolLib.Generics.BinaryObjects;
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace CommonToolLib.Generics
 {
     public class RotationMatrix_4 : IBinaryObject
     {
-        public int ByteSize => 0x30;
+        public const int BYTE_SIZE = 0x30;
 
         public double[,] Matrix = new double[3, 4];
 
@@ -39,23 +39,25 @@ namespace CommonToolLib.Generics
         }
         #endregion
 
-        #region IMemoryObject
-        public SetDataResult SetData(byte[] Memory)
+        #region IBinaryObject
+        void IBinaryObject.SetData(byte[] data, out int bytesConsumed)
         {
-            Matrix[0, 0] = BitConverter.ToInt32(Memory, 0);
-            Matrix[0, 1] = BitConverter.ToInt32(Memory, 4);
-            Matrix[0, 2] = BitConverter.ToInt32(Memory, 8);
-            Matrix[0, 3] = BitConverter.ToInt32(Memory, 12);
-            Matrix[1, 0] = BitConverter.ToInt32(Memory, 16);
-            Matrix[1, 1] = BitConverter.ToInt32(Memory, 20);
-            Matrix[1, 2] = BitConverter.ToInt32(Memory, 24);
-            Matrix[1, 3] = BitConverter.ToInt32(Memory, 28);
-            Matrix[2, 0] = BitConverter.ToInt32(Memory, 32);
-            Matrix[2, 1] = BitConverter.ToInt32(Memory, 36);
-            Matrix[2, 2] = BitConverter.ToInt32(Memory, 40);
-            Matrix[2, 3] = BitConverter.ToInt32(Memory, 44);
-            return SetDataResult.Success;
+            Matrix[0, 0] = BitConverter.ToInt32(data, 0);
+            Matrix[0, 1] = BitConverter.ToInt32(data, 4);
+            Matrix[0, 2] = BitConverter.ToInt32(data, 8);
+            Matrix[0, 3] = BitConverter.ToInt32(data, 12);
+            Matrix[1, 0] = BitConverter.ToInt32(data, 16);
+            Matrix[1, 1] = BitConverter.ToInt32(data, 20);
+            Matrix[1, 2] = BitConverter.ToInt32(data, 24);
+            Matrix[1, 3] = BitConverter.ToInt32(data, 28);
+            Matrix[2, 0] = BitConverter.ToInt32(data, 32);
+            Matrix[2, 1] = BitConverter.ToInt32(data, 36);
+            Matrix[2, 2] = BitConverter.ToInt32(data, 40);
+            Matrix[2, 3] = BitConverter.ToInt32(data, 44);
+            bytesConsumed = BYTE_SIZE;
         }
+
+        public int ByteSize => BYTE_SIZE;
 
         public byte[] GetBytes()
         {

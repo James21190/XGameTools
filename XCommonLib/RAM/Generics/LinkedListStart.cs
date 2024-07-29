@@ -26,19 +26,19 @@ namespace XCommonLib.RAM.Generics
             return collection.GetBytes();
         }
 
-        public const int ByteSizeConst = 12;
-        public override int ByteSize => ByteSizeConst;
+        public const int BYTE_SIZE = 12;
+        public override int ByteSize => BYTE_SIZE;
 
-        public override SetDataResult SetData(byte[] Memory)
+        public override void SetData(byte[] data, out int bytesConsumed)
         {
-            MemoryObjectConverter collection = new MemoryObjectConverter(Memory, ParentMemoryBlock, pThis);
+            MemoryObjectConverter collection = new MemoryObjectConverter(data, ParentMemoryBlock, pThis);
             pFirst = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
             NullValue = collection.PopInt();
             pLast = collection.PopIMemoryObject<MemoryObjectPointer<T>>();
-            return SetDataResult.Success;
+            bytesConsumed = BYTE_SIZE;
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
         {
             throw new NotSupportedException();
         }

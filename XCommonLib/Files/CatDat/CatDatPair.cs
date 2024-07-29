@@ -95,7 +95,8 @@ namespace XCommonLib.Files.CatDat
                 return data;
             // If the file is identified as a compressed file...
             var compressedFile = new P();
-            compressedFile.SetData(data);
+            int bytesConsumed;
+            compressedFile.SetData(data, out bytesConsumed);
             if (extractionMode == ExtractionMode.Decrypt)
                 return compressedFile.CompressedData;
             return compressedFile.DecompressedData;
@@ -125,7 +126,8 @@ namespace XCommonLib.Files.CatDat
                         case ".pbd":
                         case ".pck":
                             var compressedFile = new P();
-                            compressedFile.SetData(fileBytes);
+                            int bytesConsumed;
+                            compressedFile.SetData(fileBytes, out bytesConsumed);
                             // If only decrypt
                             if (extractionMode == ExtractionMode.Decrypt)
                             {

@@ -29,23 +29,21 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            Class = objectByteList.PopInt();
-            Unknown_1 = objectByteList.PopInt();
-            pSelf = objectByteList.PopIntPtr();
-            Unknown_2 = objectByteList.PopInt();
-            NextID = objectByteList.PopInt();
-            pNext = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceSub>>();
-            Unknown_3 = objectByteList.PopInt();
-            ScriptVariableCount = objectByteList.PopInt();
-            Unknown_4 = objectByteList.PopInt();
-            Unknown_5 = objectByteList.PopInt();
-            FunctionCount_1 = objectByteList.PopInt();
-            pFunctions = objectByteList.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
-            Unknown = objectByteList.PopInt();
-
-            return SetDataResult.Success;
+            Class = memoryObjectConverter.PopInt();
+            Unknown_1 = memoryObjectConverter.PopInt();
+            pSelf = memoryObjectConverter.PopIntPtr();
+            Unknown_2 = memoryObjectConverter.PopInt();
+            NextID = memoryObjectConverter.PopInt();
+            pNext = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceSub>>();
+            Unknown_3 = memoryObjectConverter.PopInt();
+            ScriptVariableCount = memoryObjectConverter.PopInt();
+            Unknown_4 = memoryObjectConverter.PopInt();
+            Unknown_5 = memoryObjectConverter.PopInt();
+            FunctionCount_1 = memoryObjectConverter.PopInt();
+            pFunctions = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryInt32>>();
+            Unknown = memoryObjectConverter.PopInt();
         }
         #endregion
     }

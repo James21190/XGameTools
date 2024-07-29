@@ -149,7 +149,7 @@ namespace X3TCAPLib.RAM.Bases.B3D
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
             throw new NotImplementedException();
         }

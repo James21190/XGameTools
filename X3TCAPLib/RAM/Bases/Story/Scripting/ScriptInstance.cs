@@ -34,16 +34,15 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            NegativeID = objectByteList.PopInt();
-            ReferenceCount = objectByteList.PopInt();
-            pSub = objectByteList.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceSub>>();
+            NegativeID = memoryObjectConverter.PopInt();
+            ReferenceCount = memoryObjectConverter.PopInt();
+            pSub = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceSub>>();
 
             _SubCopy = pSub.obj;
             
-            pScriptVariableArr = objectByteList.PopIMemoryObject<MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>>();
-            return SetDataResult.Success;
+            pScriptVariableArr = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue>>();
         }
         #endregion
     }

@@ -23,7 +23,8 @@ namespace XBTFLib.RAM.Bases.Sector
 
         public override XCommonLib.RAM.Bases.Sector.SectorObject Player => pPlayer.obj;
 
-        public override int ByteSize => 0x54;
+        public const int BYTE_SIZE = 0x54;
+        public override int ByteSize => BYTE_SIZE;
 
         public override byte[] GetBytes()
         {
@@ -45,14 +46,19 @@ namespace XBTFLib.RAM.Bases.Sector
             throw new NotImplementedException();
         }
 
-        protected override SetDataResult SetDataFromMemoryObjectConverter(MemoryObjectConverter objectByteList)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
         {
-            pFirst = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>(0x8);
-            pLast = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>(0x10);
+            memoryObjectConverter.Seek(0x8);
+            pFirst = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
 
-            pPlayer = objectByteList.PopIMemoryObject<MemoryObjectPointer<SectorObject>>(0x3c);
+            memoryObjectConverter.Seek(0x10);
+            pLast = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
 
-            return SetDataResult.Success;
+            memoryObjectConverter.Seek(0x3c);
+            pPlayer = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<SectorObject>>();
+
+            // Seek to end to consume the correct amount of bytes.
+            memoryObjectConverter.Seek(BYTE_SIZE);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace CommonToolLib.Networking
     /// <summary>
     /// Main interface for sending packets over a network.
     /// </summary>
-    public class NetworkClient : TCPClientBase
+    public class TCPNetworkClient : TCPClientBase
     {
         private TcpClient _Client;
         private NetworkStream _NetworkStream;

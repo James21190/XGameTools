@@ -1,4 +1,4 @@
-﻿using CommonToolLib.Generics;
+﻿using CommonToolLib.Generics.BinaryObjects;
 using System;
 
 namespace CommonToolLib.ProcessHooking
@@ -15,8 +15,13 @@ namespace CommonToolLib.ProcessHooking
         IMemoryBlockManager ParentMemoryBlock { get; set; }
 
         /// <summary>
-        /// Reloads values from memory with the data provided by SetLocation.
+        /// Reloads values from data with the data provided by SetLocation.
         /// </summary>
-        void ReloadFromMemory();
+        void ReloadFromMemory(int maxObjectSize = BinaryObjectConverter.DEFAULT_MAX_OBJECT_SIZE);
+
+        /// <summary>
+        /// The size of the object. Used when managing objects in another process memory.
+        /// </summary>
+        int ByteSize { get; }
     }
 }
