@@ -25,6 +25,7 @@ namespace CommonToolLibTests
                 Assert.IsTrue(TestArray[i] == ReturnedArray[i]);
             }
         }
+
         [TestMethod]
         public void ShortTest()
         {
@@ -82,6 +83,7 @@ namespace CommonToolLibTests
                 Assert.IsTrue(TestArray[i] == ReturnedArray[i]);
             }
         }
+
         [TestMethod]
         public void TestVariableLengthObjects()
         {

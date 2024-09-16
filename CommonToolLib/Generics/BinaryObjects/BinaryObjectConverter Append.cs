@@ -25,6 +25,10 @@ namespace CommonToolLib.Generics.BinaryObjects
         {
             _Data.AddRange(BitConverter.GetBytes(value));
         }
+        public void Append(ulong value)
+        {
+            _Data.AddRange(BitConverter.GetBytes(value));
+        }
         public void Append(IntPtr value)
         {
             Append((int)value);
@@ -60,6 +64,10 @@ namespace CommonToolLib.Generics.BinaryObjects
         #endregion
 
         #region Decimals
+        public void Append(float value)
+        {
+            Append(BitConverter.GetBytes(value));
+        }
         public void Append(double value)
         {
             Append(BitConverter.GetBytes(value));
@@ -69,10 +77,23 @@ namespace CommonToolLib.Generics.BinaryObjects
             var arr = decimal.GetBits(value);
             if (arr.Length != 4)
                 throw new Exception("Decimal array was not of length 4.");
-            for (int i = 0; i < arr.Length; i++)
-            {
+            Append(arr);
+        }
+
+        public void Append(float[] arr)
+        {
+            for(int i = 0; i < arr.Length; i++)
                 Append(arr[i]);
-            }
+        }
+        public void Append(double[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+                Append(arr[i]);
+        }
+        public void Append(decimal[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+                Append(arr[i]);
         }
         #endregion
 
@@ -142,6 +163,17 @@ namespace CommonToolLib.Generics.BinaryObjects
         public void AppendReversed(byte[] arr)
         {
             for (int i = arr.Length - 1; i >= 0; i--)
+                Append(arr[i]);
+        }
+
+        public void Append(uint[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+                Append(arr[i]);
+        }
+        public void Append(ulong[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
                 Append(arr[i]);
         }
         #endregion

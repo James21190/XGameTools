@@ -37,6 +37,10 @@ namespace CommonToolLib.Generics.BinaryObjects
         #endregion
 
         #region Signed
+        public sbyte PopSByte()
+        {
+            return (sbyte)PopByte();
+        }
         public short PopShort()
         {
             return BitConverter.ToInt16(PopBytes(2), 0);
@@ -49,6 +53,10 @@ namespace CommonToolLib.Generics.BinaryObjects
         {
             return BitConverter.ToInt32(PopBytes(4), 0);
         }
+        public int PopIntReversed()
+        {
+            return BitConverter.ToInt32(PopBytesReversed(4), 0);
+        }
         public long PopLong()
         {
             return BitConverter.ToInt64(PopBytes(8), 0);
@@ -58,6 +66,10 @@ namespace CommonToolLib.Generics.BinaryObjects
         #endregion
 
         #region Decimals
+        public float PopFloat()
+        {
+            return (BitConverter.ToSingle(PopBytes(4), 0));
+        }
         public double PopDouble()
         {
             return (BitConverter.ToDouble(PopBytes(8), 0));
@@ -195,6 +207,17 @@ namespace CommonToolLib.Generics.BinaryObjects
         #endregion
 
         #region Signed
+        public sbyte[] PopSBytes(int count)
+        {
+            sbyte[] arr = new sbyte[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                arr[i] = PopSByte();
+            }
+
+            return arr;
+        }
         public short[] PopShorts(int Count)
         {
             short[] arr = new short[Count];
