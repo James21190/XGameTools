@@ -10,6 +10,10 @@ using XCommonLib.RAM.Bases.System;
 
 namespace XCommonLib.RAM
 {
+    /// <summary>
+    /// This is the base class that is used to hook into a game.
+    /// Contains all tools that are used to view and manipulate memory.
+    /// </summary>
     public abstract class GameHook : ApplicationHook
     {
         #region Enums
@@ -222,7 +226,7 @@ namespace XCommonLib.RAM
 
         #region Methods
         /// <summary>
-        /// Attach a new EventManager to the game.
+        /// Attach a new InjectionManager to the game to allow insertion of assembly.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         public virtual void AttachInjectionManager()
@@ -259,17 +263,6 @@ namespace XCommonLib.RAM
         public string GetMainTypeName(GeneralMainType type)
         {
             return type.ToString();
-            //switch (type)
-            //{
-            //    case GeneralMainType.Ship: return "Ship";
-            //    case GeneralMainType.Sector: return "Sector";
-            //    case GeneralMainType.Asteroid: return "Asteroid";
-            //    case GeneralMainType.Bullet: return "Bullet";
-            //    case GeneralMainType.Sun: return "Sun";
-            //    case GeneralMainType.Planet: return "Planet";
-            //    case GeneralMainType.Dock: return "Dock";
-            //}
-            //throw new NotImplementedException("Maintype of " + type + " was not assigned a name.");
         }
         #endregion
 
@@ -280,21 +273,6 @@ namespace XCommonLib.RAM
         public static string GetRaceIDName(GeneralRaces raceID)
         {
             return raceID.ToString();
-            //switch (raceID)
-            //{
-            //    case GeneralRaces.Argon: return "Argon";
-            //    case GeneralRaces.Boron: return "Boron";
-            //    case GeneralRaces.Split: return "Split";
-            //    case GeneralRaces.Teladi: return "Teladi";
-            //    case GeneralRaces.Paranid: return "Paranid";
-            //    case GeneralRaces.Gonor: return "Gonor";
-            //    case GeneralRaces.Khaak: return "Khaak";
-            //    case GeneralRaces.Xenon: return "Xenon";
-            //    case GeneralRaces.Player: return "Player";
-            //    case GeneralRaces.Unowned: return "Unowned";
-            //    case GeneralRaces.NA: return "NA";
-            //}
-            //throw new NotImplementedException("RaceID of " + raceID + " was not assigned a name.");
         }
         public Color GetRaceColor(ushort raceID) { return GetRaceColor(GetRaceByID(raceID)); }
         public static Color GetRaceColor(GeneralRaces raceID)

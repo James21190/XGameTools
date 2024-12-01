@@ -9,26 +9,31 @@ namespace CommonToolLib.Networking
     /// <summary>
     /// Main interface for recieving packets over a network.
     /// </summary>
-    public class TCPNetworkListener : TCPClientBase
+    public class NetworkListener : ClientBase
     {
         private struct ClientData
         {
             public int ID { get; private set; }
-            public TcpClient Client { get; private set; }
-            public NetworkStream NetworkStream { get; private set; }
+            public NetworkClient Client;
 
-            public ClientData(int id, TcpClient client)
+            public ClientData(int id, NetworkClient client, DataRecievedHandler dataRecivedCallback)
             {
                 ID = id;
                 Client = client;
-                NetworkStream = Client.GetStream();
+                _OnDataRecieved = dataRecivedCallback;
+                Client.OnDataRecieved += _DataRecieved;
+            }
+
+            private DataRecievedHandler _OnDataRecieved;
+
+            private void _DataRecieved(int sender, Packet packet)
+            {
+                _OnDataRecieved(ID, packet);
             }
         }
 
         // Thread to listen for new connections
         private Thread _ListeningThread;
-        // Thread for recieving data
-        private Thread _RecieveDataThread;
         // The listener to accept connections.
         private TcpListener _Listener;
         // List of all connected clients.
@@ -36,21 +41,19 @@ namespace CommonToolLib.Networking
         // The port that is opened to communicate.
         private int _Port;
         // The next ID to give to a client.
-        private int _NextAvailableID = 0;
+        private int _NextAvailableID = 1;
 
-        public TCPNetworkListener(int port)
+        public NetworkListener(int port)
         {
             _Port = port;
             _Listener = new TcpListener(IPAddress.Parse("0.0.0.0"), _Port);
             _Listener.Start();
             _StartAcceptingClients();
-            _StartAcceptingData();
         }
 
         public void Close()
         {
             _StopAcceptingClients();
-            _StopAcceptingData();
         }
 
         #region Manage Connections
@@ -83,7 +86,7 @@ namespace CommonToolLib.Networking
                     if (_Listener.Pending())
                     {
                         TcpClient newClient = _Listener.AcceptTcpClient();
-                        _Clients.Add(new ClientData(_NextAvailableID++, newClient));
+                        _Clients.Add(new ClientData(_NextAvailableID++, new NetworkClient(newClient), InvokeOnDataRecieved));
                     }
                 }
             }
@@ -111,11 +114,12 @@ namespace CommonToolLib.Networking
         /// Send a packet
         /// </summary>
         /// <param name="data"></param>
-        public void SendToAll(Packet packet)
+        public void TCPSendToAll(Packet packet)
         {
+            _ValidatePacket(packet);
             for (int i = 0; i < _Clients.Count; i++)
             {
-                packet.WriteToStream(_Clients[i].NetworkStream);
+                _Clients[i].Client.TCPSendData(packet);
             }
         }
         /// <summary>
@@ -123,47 +127,11 @@ namespace CommonToolLib.Networking
         /// </summary>
         /// <param name="id"></param>
         /// <param name="data"></param>
-        public void SendTo(int id, Packet packet)
+        public void TCPSendTo(int id, Packet packet)
         {
+            _ValidatePacket(packet);
             var clientData = _GetClient(id);
-            packet.WriteToStream(clientData.NetworkStream);
-        }
-        #endregion
-
-        #region Recieving Data
-        private void _StartAcceptingData()
-        {
-            _RecieveDataThread = new Thread(_RecieveData);
-            _AcceptingData = true;
-            _RecieveDataThread.Start();
-        }
-        private volatile bool _AcceptingData = false;
-        private void _StopAcceptingData()
-        {
-            _AcceptingData = false;
-        }
-        private void _RecieveData()
-        {
-            try
-            {
-                while (_AcceptingData)
-                {
-                    for (int i = 0; i < _Clients.Count; i++)
-                    {
-                        var client = _Clients[i];
-                        var stream = client.NetworkStream;
-                        if (stream.DataAvailable)
-                        {
-                            var packet = _GetPacketFromStream(stream);
-                            InvokeOnDataRecieved(client.ID,packet);
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                InvokeOnUnhandledException(e);
-            }
+            clientData.Client.TCPSendData(packet);
         }
         #endregion
     }

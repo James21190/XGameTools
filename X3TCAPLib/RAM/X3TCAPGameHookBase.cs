@@ -2,6 +2,9 @@
 
 namespace X3TCAPLib.RAM
 {
+    /// <summary>
+    /// Shared aspects of both X3TC and X3AP.
+    /// </summary>
     public abstract class X3TCAPGameHookBase : GameHook
     {
         public enum RaceID_X3TCAP : ushort

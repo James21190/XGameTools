@@ -57,6 +57,7 @@
     <Compile Include="Generics\Vector.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MetaData.cs" />
+    <Compile Include="Networking\SystemPackets\ConnectionRequestPacket.cs" />
     <Compile Include="PageReference.cs" />
     <Compile Include="ProcessHooking\ApplicationHook.cs" />
     <Compile Include="ProcessHooking\BitField.cs" />
@@ -70,9 +71,9 @@
     <Compile Include="ProcessHooking\MemoryObject.cs" />
     <Compile Include="ProcessHooking\MemoryObjectConverter.cs" />
     <Compile Include="ProcessHooking\MemoryObjectPointer.cs" />
-    <Compile Include="Networking\TCPNetworkClient.cs" />
-    <Compile Include="Networking\TCPClientBase.cs" />
-    <Compile Include="Networking\TCPNetworkListener.cs" />
+    <Compile Include="Networking\NetworkClient.cs" />
+    <Compile Include="Networking\ClientBase.cs" />
+    <Compile Include="Networking\NetworkListener.cs" />
     <Compile Include="Networking\Packet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -181,5 +182,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

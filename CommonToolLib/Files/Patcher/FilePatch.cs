@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace CommonToolLib.Files.Patcher
 {
+    /// <summary>
+    /// Structure for a patch to be applied to a file. Supports multiple blocks of data that can be applied to different addresses.
+    /// </summary>
     public struct FilePatch
     {
         public enum PatchMethod
@@ -18,9 +21,18 @@ namespace CommonToolLib.Files.Patcher
         public struct SectionVariable
         {
             public string Name;
+            /// <summary>
+            /// The offset in the section that the variable is.
+            /// </summary>
             public int Offset;
+            /// <summary>
+            /// The size of the variable in bytes.
+            /// </summary>
             public int Length;
         }
+        /// <summary>
+        /// A block of data that is applied to a specific address.
+        /// </summary>
         public struct Section
         {
             public int Address;
@@ -35,12 +47,27 @@ namespace CommonToolLib.Files.Patcher
             }
         }
 
+        /// <summary>
+        /// The name of the patch.
+        /// </summary>
         public string Name;
+        /// <summary>
+        /// A description of what the patch does.
+        /// </summary>
         public string Description;
 
+        /// <summary>
+        /// The method used to store data.
+        /// </summary>
         public PatchMethod Method;
         public Section[] Sections;
 
+        /// <summary>
+        /// Searches all sections for a variable with a given name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns>First instance of a variable with a given name.</returns>
+        /// <exception cref="Exception"></exception>
         private Section _GetSectionWithVariable(string name)
         {
             foreach (var section in Sections)
@@ -71,6 +98,11 @@ namespace CommonToolLib.Files.Patcher
             throw new Exception($"Variable of name \"{name}\" not found.");
         }
 
+        /// <summary>
+        /// Get the value of a variable.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public byte[] GetVariable(string name)
         {
             var section = _GetSectionWithVariable(name);
@@ -82,6 +114,12 @@ namespace CommonToolLib.Files.Patcher
             return result;
 
         }
+        /// <summary>
+        /// Set a variable to a given array of bytes.
+        /// </summary>
+        /// <param name="name">The name of the variable.</param>
+        /// <param name="value">The value to set the variable to.</param>
+        /// <exception cref="ArgumentException"></exception>
         public void SetVariable(string name, byte[] value)
         {
             var section = _GetSectionWithVariable(name);
@@ -92,6 +130,12 @@ namespace CommonToolLib.Files.Patcher
 
             Array.Copy(value, 0, section.Bytes, variable.Offset, variable.Length);
         }
+
+        /// <summary>
+        /// Reads a file from disk and creates a patch.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public static FilePatch LoadFromFile(string filePath)
         {
             FilePatch patch = new FilePatch();

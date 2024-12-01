@@ -8,8 +8,14 @@ using XCommonLib.RAM.Generics;
 
 namespace XCommonLib.RAM.Bases.Sector
 {
+    /// <summary>
+    /// Represents a sector object within a game.
+    /// </summary>
     public abstract class SectorObject : MemoryObject, IValidateable, INumericIDObject, IComparable
     {
+        /// <summary>
+        /// A 4 byte structure containing 2 shorts that represent the main type and sub type of a sector object.
+        /// </summary>
         public struct SectorObjectType : IMemoryObject, IComparable
         {
             public short MainType;

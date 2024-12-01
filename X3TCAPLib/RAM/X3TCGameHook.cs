@@ -10,6 +10,9 @@ using X3TCAPLib.RAM.Bases.System;
 
 namespace X3TCAPLib.RAM
 {
+    /// <summary>
+    /// GameHook specific to X3TC.
+    /// </summary>
     public class X3TCGameHook : X3TCAPGameHookBase
     {
         public enum GlobalAddresses_X3TC

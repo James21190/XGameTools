@@ -135,7 +135,7 @@ namespace CommonToolLib.Generics.BinaryObjects
                 int[] bits = new int[4];
                 for (int j = 0; j < 4; j++)
                 {
-                    bits[j] = BitConverter.ToInt32(arr, 4 * j);
+                    bits[j] = BitConverter.ToInt32(arr, i * SIZE + 4 * j);
                 }
                 result[i] = new decimal(bits);
             }

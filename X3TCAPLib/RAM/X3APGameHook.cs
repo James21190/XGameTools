@@ -9,6 +9,9 @@ using X3TCAPLib.RAM.Bases.Story;
 
 namespace X3TCAPLib.RAM
 {
+    /// <summary>
+    /// GameHook specific to X3AP.
+    /// </summary>
     public class X3APGameHook : X3TCAPGameHookBase
     {
         public enum GlobalAddresses_X3AP

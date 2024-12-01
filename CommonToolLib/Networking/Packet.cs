@@ -1,5 +1,6 @@
 ﻿using CommonToolLib.Generics.BinaryObjects;
 using CommonToolLib.ProcessHooking;
+using System;
 using System.Net.Sockets;
 
 namespace CommonToolLib.Networking
@@ -41,6 +42,24 @@ namespace CommonToolLib.Networking
             collection.Append(data);
             var bytes = collection.GetBytes();
             stream.Write(bytes, 0, bytes.Length);
+        }
+
+        internal static Packet ReadFromStream(NetworkStream stream)
+        {
+            var packetType = (byte)stream.ReadByte();
+            var packet = new Packet(packetType);
+            byte[] buffer = new byte[4];
+            stream.Read(buffer, 0, 4);
+            var dataLength = BitConverter.ToInt32(buffer, 0);
+            packet.Data = new byte[dataLength];
+            buffer = new byte[1];
+            for (int i = 0; i < dataLength; i++)
+            {
+                stream.Read(buffer, 0, 1);
+                packet.Data[i] = buffer[0];
+            }
+
+            return packet;
         }
 
         public IBinaryObject ToBinaryObject<T>() where T : IBinaryObject, new()

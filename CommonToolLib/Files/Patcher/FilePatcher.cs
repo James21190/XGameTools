@@ -7,11 +7,19 @@ using System.Threading.Tasks;
 
 namespace CommonToolLib.Files.Patcher
 {
+    /// <summary>
+    /// The patcher opens a file to write patches to. Contents of the file are overwritten with the patch data.
+    /// </summary>
     public class FilePatcher : IDisposable
     {
         private FileStream _file;
         private FileProfile _profile;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath">Path to the file to be patched.</param>
+        /// <param name="profile">File profile detailing address spaces.</param>
         public FilePatcher(string filePath, FileProfile profile)
         {
             _file = File.Open(filePath, FileMode.Open);
@@ -40,6 +48,11 @@ namespace CommonToolLib.Files.Patcher
             _file.Write(tmp, 0, tmp.Length);
         }
 
+        /// <summary>
+        /// Applies a file patch to the loaded file.
+        /// </summary>
+        /// <param name="patch"></param>
+        /// <exception cref="NotImplementedException"></exception>
         public void ApplyPatch(FilePatch patch)
         {
 
