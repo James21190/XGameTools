@@ -31,12 +31,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.scriptVariableArrayView1 = new XCommonLib.UI.Bases.Story.ScriptVariableArrayView();
             this.ntxtMemoryAddress = new CommonToolLib.UI.NamedTextBox();
-            this.namedTextBox1 = new CommonToolLib.UI.NamedTextBox();
             this.nnudReferenceCount = new CommonToolLib.UI.NamedNumericUpDown();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.lstClassStructure = new System.Windows.Forms.ListBox();
+            this.lstFunctions = new System.Windows.Forms.ListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -75,16 +79,6 @@
             this.ntxtMemoryAddress.TabIndex = 0;
             this.ntxtMemoryAddress.Title = "Address";
             // 
-            // namedTextBox1
-            // 
-            this.namedTextBox1.Location = new System.Drawing.Point(3, 121);
-            this.namedTextBox1.MinimumSize = new System.Drawing.Size(100, 50);
-            this.namedTextBox1.Name = "namedTextBox1";
-            this.namedTextBox1.ReadOnly = true;
-            this.namedTextBox1.Size = new System.Drawing.Size(206, 50);
-            this.namedTextBox1.TabIndex = 3;
-            this.namedTextBox1.Title = "Type";
-            // 
             // nnudReferenceCount
             // 
             this.nnudReferenceCount.Location = new System.Drawing.Point(215, 3);
@@ -102,7 +96,7 @@
             this.nnudReferenceCount.MinimumSize = new System.Drawing.Size(100, 50);
             this.nnudReferenceCount.Name = "nnudReferenceCount";
             this.nnudReferenceCount.ReadOnly = true;
-            this.nnudReferenceCount.Size = new System.Drawing.Size(100, 50);
+            this.nnudReferenceCount.Size = new System.Drawing.Size(132, 50);
             this.nnudReferenceCount.TabIndex = 1;
             this.nnudReferenceCount.Title = "Reference Count";
             this.nnudReferenceCount.Value = new decimal(new int[] {
@@ -124,35 +118,56 @@
             this.numericIDObjectControl1.AddressLoad += new XCommonLib.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
             this.numericIDObjectControl1.IDLoad += new XCommonLib.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
             // 
-            // listBox1
+            // lstClassStructure
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 177);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(206, 173);
-            this.listBox1.TabIndex = 4;
+            this.lstClassStructure.FormattingEnabled = true;
+            this.lstClassStructure.Location = new System.Drawing.Point(6, 19);
+            this.lstClassStructure.Name = "lstClassStructure";
+            this.lstClassStructure.Size = new System.Drawing.Size(188, 199);
+            this.lstClassStructure.TabIndex = 4;
             // 
-            // listBox2
+            // lstFunctions
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(215, 177);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(206, 173);
-            this.listBox2.TabIndex = 5;
+            this.lstFunctions.FormattingEnabled = true;
+            this.lstFunctions.Location = new System.Drawing.Point(6, 19);
+            this.lstFunctions.Name = "lstFunctions";
+            this.lstFunctions.Size = new System.Drawing.Size(264, 264);
+            this.lstFunctions.TabIndex = 5;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lstClassStructure);
+            this.groupBox2.Location = new System.Drawing.Point(9, 121);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 234);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Class Structure";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lstFunctions);
+            this.groupBox3.Location = new System.Drawing.Point(215, 59);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(276, 296);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Functions";
             // 
             // ScriptInstanceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.namedTextBox1);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.nnudReferenceCount);
             this.Controls.Add(this.numericIDObjectControl1);
             this.Name = "ScriptInstanceView";
             this.Size = new System.Drawing.Size(834, 364);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -163,9 +178,11 @@
         private CommonToolLib.UI.NamedNumericUpDown nnudReferenceCount;
         private System.Windows.Forms.GroupBox groupBox1;
         private CommonToolLib.UI.NamedTextBox ntxtMemoryAddress;
-        private CommonToolLib.UI.NamedTextBox namedTextBox1;
         private ScriptVariableArrayView scriptVariableArrayView1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox lstClassStructure;
+        private System.Windows.Forms.ListBox lstFunctions;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

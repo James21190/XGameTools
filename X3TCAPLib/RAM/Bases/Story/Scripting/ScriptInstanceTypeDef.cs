@@ -12,7 +12,6 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         public int BaseClass { get; set; }
         public MemoryObjectPointer<ScriptInstanceTypeDef> pBase;
         public int Unknown_3 { get; set; }
-        public int ScriptVariableCount { get; set; }
         public int Unknown_4 { get; set; }
         public int Unknown_5 { get; set; }
         public int FunctionCount_1 { get; set; }
@@ -50,7 +49,7 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
             BaseClass = memoryObjectConverter.PopInt();
             pBase = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<ScriptInstanceTypeDef>>();
             Unknown_3 = memoryObjectConverter.PopInt();
-            ScriptVariableCount = memoryObjectConverter.PopInt();
+            ScriptMemoryLength = memoryObjectConverter.PopInt();
             Unknown_4 = memoryObjectConverter.PopInt();
             Unknown_5 = memoryObjectConverter.PopInt();
             FunctionCount_1 = memoryObjectConverter.PopInt();

@@ -10,7 +10,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
     public abstract class ScriptInstanceTypeDef : MemoryObject
     {
         public int Class;
-        public int MemoryLength;
+        public int ScriptMemoryLength;
         public abstract ScriptInstanceTypeDef BaseType { get; }
         public abstract ScriptInstanceFunction[] Functions { get; }
     }

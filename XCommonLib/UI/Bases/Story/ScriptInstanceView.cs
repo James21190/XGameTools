@@ -26,41 +26,23 @@ namespace XCommonLib.UI.Bases.Story
             nnudReferenceCount.Value = m_ScriptInstance.ReferenceCount;
             ntxtMemoryAddress.Text = m_ScriptInstance.pScriptVariableArr.PointedAddress.ToString("X");
 
-            // Display type name
-            string typeName = m_ScriptInstance.TypeDef.Class.ToString();
-            if (ReferenceGameHook != null)
-            {
-                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.TypeDef.Class);
-                if (typeData != null)
-                {
-                    if (typeData.ParentType != null)
-                    {
-                        typeName = string.Format("{0} : {1}", typeData.Name, typeData.ParentType.Name);
-                    }
-                    else
-                    {
-                        typeName = typeData.Name;
-                    }
-                }
-            }
-            namedTextBox1.Text = typeName;
-
-            listBox1.Items.Clear();
+            lstClassStructure.Items.Clear();
             foreach(var c in m_ScriptInstance.GetClassStructure())
             {
                 var data = ReferenceGameHook.DataFileManager.GetScriptInstanceType(c);
                 if (data != null)
-                    listBox1.Items.Add(data.Name);
+                    lstClassStructure.Items.Add(data.Name);
                 else
-                    listBox1.Items.Add(c.ToString());
+                    lstClassStructure.Items.Add(c.ToString());
             }
 
             var functions = m_ScriptInstance.GetAllFunctions();
-            listBox2.Items.Clear();
+            lstFunctions.Items.Clear();
 
 
             foreach(var func in functions)
             {
+                string typeName;
                 var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(func.Class);
                 if(typeData != null)
                 {
@@ -70,7 +52,7 @@ namespace XCommonLib.UI.Bases.Story
                 {
                     typeName = func.Class.ToString();
                 }
-                listBox2.Items.Add(typeName + ":" + ReferenceGameHook.StoryBase.GetStringFromArray(func.Function.StringOffset).Value);
+                lstFunctions.Items.Add(typeName + "." + ReferenceGameHook.StoryBase.GetStringFromArray(func.Function.StringOffset).Value);
             }
 
             // Reload memory table
@@ -79,7 +61,7 @@ namespace XCommonLib.UI.Bases.Story
 
         public void ReloadMemoryTable()
         {
-            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.TypeDef.MemoryLength);
+            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.TypeDef.ScriptMemoryLength);
 
             // Load variables if available
             if(ReferenceGameHook != null)
