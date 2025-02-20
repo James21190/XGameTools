@@ -34,6 +34,8 @@ namespace XCommonLib.UI.Bases.Story
         }
         public ScriptInstanceType.VariableData[] Variables;
 
+        
+
         public ScriptVariableArrayView()
         {
             InitializeComponent();

@@ -6,12 +6,21 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
 {
     public abstract class ScriptInstance : MemoryObject, INumericIDObject
     {
+        public struct FunctionInfo
+        {
+            public int Class;
+            public ScriptInstanceFunction Function;
+        }
+
         #region Memory
         public abstract int NegativeID { get; set; }
-        public abstract int Class { get; set; }
+        public int Class => Classes[0];
+        public abstract int[] Classes { get; }
         public abstract int ReferenceCount { get; set; }
         public abstract int ScriptVariableCount { get; set; }
         public abstract MemoryObjectPointer<DynamicValue> pScriptVariableArr { get; set; }
+
+        public abstract FunctionInfo[] Functions { get; }
         #endregion
 
         public ScriptInstanceType ReferenceType;

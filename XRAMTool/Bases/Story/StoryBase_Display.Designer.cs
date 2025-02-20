@@ -34,9 +34,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblScriptTaskObjectCount = new System.Windows.Forms.Label();
             this.lstScriptTaskObjects = new System.Windows.Forms.ListBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblScriptStringObjectCount = new System.Windows.Forms.Label();
+            this.lstScriptStringObjects = new System.Windows.Forms.ListBox();
             this.ntxtAddress = new CommonToolLib.UI.NamedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -101,6 +105,39 @@
             this.lstScriptTaskObjects.Name = "lstScriptTaskObjects";
             this.lstScriptTaskObjects.Size = new System.Drawing.Size(109, 277);
             this.lstScriptTaskObjects.TabIndex = 0;
+            this.lstScriptTaskObjects.SelectedIndexChanged += new System.EventHandler(this.lstScriptTaskObjects_SelectedIndexChanged);
+            this.lstScriptTaskObjects.DoubleClick += new System.EventHandler(this.lstScriptTaskObjects_DoubleClick);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblScriptStringObjectCount);
+            this.groupBox3.Controls.Add(this.lstScriptStringObjects);
+            this.groupBox3.Location = new System.Drawing.Point(266, 114);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(522, 324);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Script String Objects";
+            // 
+            // lblScriptStringObjectCount
+            // 
+            this.lblScriptStringObjectCount.AutoSize = true;
+            this.lblScriptStringObjectCount.Location = new System.Drawing.Point(6, 16);
+            this.lblScriptStringObjectCount.Name = "lblScriptStringObjectCount";
+            this.lblScriptStringObjectCount.Size = new System.Drawing.Size(38, 13);
+            this.lblScriptStringObjectCount.TabIndex = 2;
+            this.lblScriptStringObjectCount.Text = "Count:";
+            // 
+            // lstScriptStringObjects
+            // 
+            this.lstScriptStringObjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstScriptStringObjects.FormattingEnabled = true;
+            this.lstScriptStringObjects.Location = new System.Drawing.Point(6, 32);
+            this.lstScriptStringObjects.Name = "lstScriptStringObjects";
+            this.lstScriptStringObjects.Size = new System.Drawing.Size(510, 277);
+            this.lstScriptStringObjects.TabIndex = 0;
             // 
             // ntxtAddress
             // 
@@ -116,6 +153,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.ntxtAddress);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -126,6 +164,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -138,5 +178,8 @@
         private System.Windows.Forms.Label lblScriptInstanceCount;
         private System.Windows.Forms.Label lblScriptTaskObjectCount;
         private CommonToolLib.UI.NamedTextBox ntxtAddress;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblScriptStringObjectCount;
+        private System.Windows.Forms.ListBox lstScriptStringObjects;
     }
 }

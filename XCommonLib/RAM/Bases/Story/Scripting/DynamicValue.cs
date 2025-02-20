@@ -19,7 +19,7 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
 
             pArray = 8,
             pHashTable,
-            pScriptingObject,
+            pScriptInstance,
             pTextObject,
             pObject0xe = 14
         }

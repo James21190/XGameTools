@@ -12,6 +12,7 @@ namespace X2Lib.RAM.Bases.Story
         public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
         public MemoryObjectPointer<HashTable<ScriptTaskObject>> pHashTable_ScriptTaskObject;
         public MemoryObjectPointer<HashTable<ScriptTableObject>> pHashTable_ScriptHashTable;
+        //public MemoryObjectPointer<HashTable<ScriptStringObject>> pHashTable_ScriptStringObject;
         #endregion
 
         #region Common
@@ -24,14 +25,14 @@ namespace X2Lib.RAM.Bases.Story
         {
             throw new NotImplementedException();
         }
+        public override int[] GetAllScriptTaskObjects()
+        {
+            return pHashTable_ScriptTaskObject.obj.ScanContents();
+        }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
         {
             int value = id < 0 ? -id - 1 : id;
             return pHashTable_ScriptInstance.obj.GetObject(value);
-        }
-        public override int[] GetAllScriptTaskObjects()
-        {
-            return pHashTable_ScriptTaskObject.obj.ScanContents();
         }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(IntPtr pAddress)
         {
@@ -45,6 +46,20 @@ namespace X2Lib.RAM.Bases.Story
         {
             return pHashTable_ScriptInstance.obj.ScanContents();
         }
+
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptStringObject GetScriptStringObject(IntPtr pAddress)
+        {
+            throw new NotImplementedException();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptStringObject GetScriptStringObject(int id)
+        {
+            throw new NotImplementedException();
+        }
+        public override int[] GetAllScriptStringObjects()
+        {
+            return pHashTable_ScriptTaskObject.obj.ScanContents();
+        }
+
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
             return pHashTable_ScriptHashTable.obj.GetObject(id);
@@ -61,7 +76,6 @@ namespace X2Lib.RAM.Bases.Story
         {
             throw new NotImplementedException();
         }
-
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(int id)
         {
             throw new NotImplementedException();

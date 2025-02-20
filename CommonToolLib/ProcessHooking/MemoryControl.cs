@@ -38,6 +38,8 @@ namespace CommonToolLib.ProcessHooking
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttribute, IntPtr dwStackSize, IntPtr lpStartAddress,
             IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
+        [DllImport("kernel32.dll")]
+        public static extern int GetLastError();
 
         public enum PageProtectionFlags
         {

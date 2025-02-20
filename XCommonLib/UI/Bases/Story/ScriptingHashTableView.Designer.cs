@@ -31,6 +31,7 @@
             this.btnScan = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.nnudCount = new CommonToolLib.UI.NamedNumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnScan
@@ -50,6 +51,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(157, 199);
             this.listBox1.TabIndex = 1;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // nnudCount
             // 
@@ -76,16 +78,25 @@
             0,
             0});
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(197, 117);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(127, 20);
+            this.textBox1.TabIndex = 3;
+            // 
             // ScriptingHashTableView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.nnudCount);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnScan);
             this.Name = "ScriptingHashTableView";
             this.Size = new System.Drawing.Size(380, 242);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -94,5 +105,6 @@
         private System.Windows.Forms.Button btnScan;
         private System.Windows.Forms.ListBox listBox1;
         private CommonToolLib.UI.NamedNumericUpDown nnudCount;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

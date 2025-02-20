@@ -43,6 +43,10 @@ namespace CommonToolLib.ProcessHooking
         {
             get
             {
+                if (!IsValid)
+                {
+                    throw new NullReferenceException();
+                }
                 T obj = new T();
                 obj.ParentMemoryBlock = ParentMemoryBlock;
                 obj.pThis = PointedAddress;

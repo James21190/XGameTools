@@ -35,6 +35,11 @@ namespace XCommonLib.RAM.Bases.Story
         public abstract ScriptArrayObject GetScriptArrayObject(IntPtr address);
         public abstract ScriptArrayObject GetScriptArrayObject(int id);
         #endregion
+        #region ScriptString
+        public abstract ScriptStringObject GetScriptStringObject(int id);
+        public abstract ScriptStringObject GetScriptStringObject(IntPtr pAddress);
+        public abstract int[] GetAllScriptStringObjects();
+        #endregion
         #endregion
 
         public abstract MemoryString GetStringFromArray(int index);

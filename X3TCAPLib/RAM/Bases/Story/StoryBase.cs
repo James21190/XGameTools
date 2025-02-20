@@ -15,6 +15,7 @@ namespace X3TCAPLib.RAM.Bases.Story
         public MemoryObjectPointer<HashTable<ScriptInstance>> pHashTable_ScriptInstance;
 
         public MemoryObjectPointer<HashTable<ScriptTaskObject>> pHashTable_ScriptTaskObject;
+        public MemoryObjectPointer<HashTable<ScriptStringObject>> pHashTable_ScriptStringObject;
         #endregion
 
         #region Common
@@ -47,6 +48,23 @@ namespace X3TCAPLib.RAM.Bases.Story
         public override int[] GetAllScriptTaskObjects()
         {
             return pHashTable_ScriptTaskObject.obj.ScanContents();
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptStringObject GetScriptStringObject(IntPtr pAddress)
+        {
+            var scriptInstance = new ScriptStringObject();
+            scriptInstance.pThis = pAddress;
+            scriptInstance.ParentMemoryBlock = ParentMemoryBlock;
+            scriptInstance.ReloadFromMemory();
+            return scriptInstance;
+        }
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptStringObject GetScriptStringObject(int id)
+        {
+            int value = id < 0 ? -id - 1 : id;
+            return pHashTable_ScriptStringObject.obj.GetObject(value);
+        }
+        public override int[] GetAllScriptStringObjects()
+        {
+            return pHashTable_ScriptStringObject.obj.ScanContents();
         }
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
@@ -106,13 +124,16 @@ namespace X3TCAPLib.RAM.Bases.Story
             pHashTable_ScriptTaskObject = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptTaskObject>>>();
 
             memoryObjectConverter.Seek(0x14);
-            pStrings = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>(0x14);
+            pStrings = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<MemoryString>>();
 
             memoryObjectConverter.Seek(0x334);
-            TextHashTableArray = memoryObjectConverter.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45, 0x334);
+            TextHashTableArray = memoryObjectConverter.PopIMemoryObjects<MemoryObjectPointer<HashTable<TextPage>>>(45);
 
             memoryObjectConverter.Seek(0x12d0);
-            pHashTable_ScriptInstance = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>(0x12d0);
+            pHashTable_ScriptInstance = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptInstance>>>();
+
+            memoryObjectConverter.Seek(0x15f8);
+            pHashTable_ScriptStringObject = memoryObjectConverter.PopIMemoryObject<MemoryObjectPointer<HashTable<ScriptStringObject>>>();
 
 
             // Seek to end to consume the correct amount of bytes.

@@ -32,6 +32,9 @@ namespace XRAMTool.Bases.Sector
         {
             m_SectorObject.ReloadFromMemory();
             sectorObjectView1.LoadObject(m_SectorObject);
+
+            Text = "SectorObject - " + Program.GameHook.DataFileManager.GetSectorObjectTypeName(m_SectorObject.ObjectType);
+
             if(!bgwTreeReloader.IsBusy)
                 bgwTreeReloader.RunWorkerAsync();
 

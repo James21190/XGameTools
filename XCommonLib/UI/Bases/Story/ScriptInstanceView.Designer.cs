@@ -34,6 +34,8 @@
             this.namedTextBox1 = new CommonToolLib.UI.NamedTextBox();
             this.nnudReferenceCount = new CommonToolLib.UI.NamedNumericUpDown();
             this.numericIDObjectControl1 = new XCommonLib.UI.NumericIDObjectControl();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,9 +46,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.scriptVariableArrayView1);
             this.groupBox1.Controls.Add(this.ntxtMemoryAddress);
-            this.groupBox1.Location = new System.Drawing.Point(334, 3);
+            this.groupBox1.Location = new System.Drawing.Point(497, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 358);
+            this.groupBox1.Size = new System.Drawing.Size(334, 358);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Script Memory";
@@ -59,7 +61,7 @@
             this.scriptVariableArrayView1.DynamicValues = null;
             this.scriptVariableArrayView1.Location = new System.Drawing.Point(6, 75);
             this.scriptVariableArrayView1.Name = "scriptVariableArrayView1";
-            this.scriptVariableArrayView1.Size = new System.Drawing.Size(293, 277);
+            this.scriptVariableArrayView1.Size = new System.Drawing.Size(322, 277);
             this.scriptVariableArrayView1.TabIndex = 1;
             this.scriptVariableArrayView1.RequestView += new XCommonLib.UI.Bases.Story.ScriptVariableArrayView.RequestViewHandler(this.scriptVariableArrayView1_RequestView);
             // 
@@ -122,16 +124,34 @@
             this.numericIDObjectControl1.AddressLoad += new XCommonLib.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_AddressLoad);
             this.numericIDObjectControl1.IDLoad += new XCommonLib.UI.NumericIDObjectControl.LoadEvent(this.numericIDObjectControl1_IDLoad);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(3, 177);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(206, 173);
+            this.listBox1.TabIndex = 4;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(215, 177);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(206, 173);
+            this.listBox2.TabIndex = 5;
+            // 
             // ScriptInstanceView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.namedTextBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.nnudReferenceCount);
             this.Controls.Add(this.numericIDObjectControl1);
             this.Name = "ScriptInstanceView";
-            this.Size = new System.Drawing.Size(642, 364);
+            this.Size = new System.Drawing.Size(834, 364);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -145,5 +165,7 @@
         private CommonToolLib.UI.NamedTextBox ntxtMemoryAddress;
         private CommonToolLib.UI.NamedTextBox namedTextBox1;
         private ScriptVariableArrayView scriptVariableArrayView1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
     }
 }

@@ -1,8 +1,8 @@
-﻿-1
+﻿1000
 
 Object PositionData PositionData
 ScriptInstanceID CurrentParentScriptInstanceID
 ScriptInstanceID PreviousParentScriptInstanceID
 SectorObjectID LastSectorObjectID
-
+Table UnknownTable
 Table ScriptTasks

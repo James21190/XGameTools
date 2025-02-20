@@ -43,8 +43,35 @@ namespace XCommonLib.UI.Bases.Story
                     }
                 }
             }
-
             namedTextBox1.Text = typeName;
+
+            listBox1.Items.Clear();
+            foreach(var c in m_ScriptInstance.Classes)
+            {
+                var data = ReferenceGameHook.DataFileManager.GetScriptInstanceType(c);
+                if (data != null)
+                    listBox1.Items.Add(data.Name);
+                else
+                    listBox1.Items.Add(c.ToString());
+            }
+
+            var functions = m_ScriptInstance.Functions;
+            listBox2.Items.Clear();
+
+
+            foreach(var func in functions)
+            {
+                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(func.Class);
+                if(typeData != null)
+                {
+                    typeName = typeData.Name;
+                }
+                else
+                {
+                    typeName = func.Class.ToString();
+                }
+                listBox2.Items.Add(typeName + ":" + ReferenceGameHook.StoryBase.GetStringFromArray(func.Function.StringOffset).Value);
+            }
 
             // Reload memory table
             ReloadMemoryTable();

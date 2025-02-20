@@ -41,5 +41,14 @@ namespace XCommonLib.UI.Bases.Story
                 listBox1.Items.Add(id);
             }
         }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1)
+                return;
+            var selectedID = (DynamicValue)listBox1.SelectedItem;
+            var obj = ScriptHashTable.GetObject(selectedID);
+            textBox1.Text = obj.ToString();
+        }
     }
 }

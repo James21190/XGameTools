@@ -51,7 +51,17 @@ namespace CommonToolLib.ProcessHooking
 
         public void HookIntoProcess(uint processID)
         {
-            hProcess = MemoryControl.OpenProcess((uint)MemoryControl.ProcessAccessFlags.All, 0, processID);
+            IntPtr openProcessResult = MemoryControl.OpenProcess((uint)MemoryControl.ProcessAccessFlags.All, 0, processID);
+            
+            if(openProcessResult == IntPtr.Zero)
+            {
+                var lastError = MemoryControl.GetLastError();
+                throw new Exception("OpenProcess failed! Error code 0x" + lastError.ToString("X"));
+            }
+            else
+            {
+                hProcess = openProcessResult;
+            }
         }
 
         public void HookIntoProcess(string processName)

@@ -7,19 +7,32 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
     public class ScriptTaskObject : XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject
     {
         #region Memory Fields
-        public override int ID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int StackSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override int ID { get; set; }
+        public override int StackSize { get; set; }
 
-        public override DynamicValue[] Stack => throw new NotImplementedException();
+        private MemoryObjectPointer<DynamicValue> _pStackTop;
 
-        public override int InstructionIndex { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override DynamicValue[] Stack
+        {
+            get
+            {
+                DynamicValue[] result = new DynamicValue[StackSize];
+                for(int i = 0; i < StackSize; i++)
+                {
+                    result[i] = _pStackTop.GetObjectInArray(-i);
+                }
+                return result;
+            }
+        }
+
+        public override int InstructionIndex { get; set; }
         #endregion
 
         #region Common
         #endregion
 
         #region IMemoryObject
-        public override int ByteSize => throw new NotImplementedException();
+        public override int ByteSize => 0x40;
 
 
         public override byte[] GetBytes()
@@ -28,9 +41,14 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         }
 
 
-        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter memoryObjectConverter)
+        protected override void SetDataFromMemoryObjectConverter(MemoryObjectConverter moc)
         {
-            throw new NotImplementedException();
+            moc.Seek(0x8);
+            ID = moc.PopInt();
+
+            moc.Seek(0x10);
+            StackSize = moc.PopInt();
+            _pStackTop = moc.PopIMemoryObject<MemoryObjectPointer<DynamicValue>>(4);
         }
         #endregion
     }

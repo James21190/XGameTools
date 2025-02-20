@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace XCommonLib.RAM.Bases.Sector
 {
+    /// <summary>
+    /// Represents the SectorBase object in game memory.
+    /// </summary>
     public abstract class SectorBase : MemoryObject
     {
         /// <summary>
@@ -42,7 +45,17 @@ namespace XCommonLib.RAM.Bases.Sector
             return null;
         }
 
+        /// <summary>
+        /// Get the SectorObject with a given ID.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public abstract SectorObject GetSectorObject(int id);
+        /// <summary>
+        /// Get the SectorObject at a given address.
+        /// </summary>
+        /// <param name="pAddress"></param>
+        /// <returns></returns>
         public abstract SectorObject GetSectorObject(IntPtr pAddress);
 
         /// <summary>

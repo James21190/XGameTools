@@ -134,14 +134,14 @@ namespace CommonToolLib.ProcessHooking
             return collection.GetBytes();
         }
 
-        public override int ByteSize => Value.Length;
+        public override int ByteSize => Value != null ? Value.Length : 100;
 
         public override void SetData(byte[] data, out int bytesConsumed)
         {
             Value = "";
             MemoryObjectConverter collection = new MemoryObjectConverter(data);
             char character = (char)collection.PopByte();
-            while (character != 0)
+            while (character != 0 && !collection.IsAtEnd)
             {
                 Value += character;
                 character = (char)collection.PopByte();
