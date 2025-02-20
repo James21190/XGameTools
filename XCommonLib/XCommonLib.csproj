@@ -95,6 +95,7 @@
     <Compile Include="RAM\Bases\Story\Scripting\DynamicValue.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptArrayObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceFunction.cs" />
+    <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceTypeDef.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptTableObject.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstance.cs" />
     <Compile Include="RAM\Bases\Story\Scripting\ScriptInstanceType.cs" />

@@ -9,23 +9,16 @@ namespace X2Lib.RAM.Bases.Story.Scripting
         #region Memory Fields
         public override int NegativeID { get; set; }
         private int _Class;
-        public override int[] Classes
-        {
-            get
-            {
-                return new int[] { _Class };
-            }
-        }
         public override int ReferenceCount { get; set; }
-        public override int ScriptVariableCount { get; set; }
+        public int ScriptVariableCount { get; set; }
         public override MemoryObjectPointer<XCommonLib.RAM.Bases.Story.Scripting.DynamicValue> pScriptVariableArr { get; set; }
         #endregion
+
+        public override ScriptInstanceTypeDef TypeDef => throw new NotImplementedException();
 
         #region IMemoryObject
         public const int BYTE_SIZE = 0x38;
         public override int ByteSize => BYTE_SIZE;
-
-        public override FunctionInfo[] Functions => throw new NotImplementedException();
 
         public override byte[] GetBytes()
         {

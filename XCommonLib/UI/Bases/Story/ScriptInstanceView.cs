@@ -27,10 +27,10 @@ namespace XCommonLib.UI.Bases.Story
             ntxtMemoryAddress.Text = m_ScriptInstance.pScriptVariableArr.PointedAddress.ToString("X");
 
             // Display type name
-            string typeName = m_ScriptInstance.Class.ToString();
+            string typeName = m_ScriptInstance.TypeDef.Class.ToString();
             if (ReferenceGameHook != null)
             {
-                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Class);
+                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.TypeDef.Class);
                 if (typeData != null)
                 {
                     if (typeData.ParentType != null)
@@ -46,7 +46,7 @@ namespace XCommonLib.UI.Bases.Story
             namedTextBox1.Text = typeName;
 
             listBox1.Items.Clear();
-            foreach(var c in m_ScriptInstance.Classes)
+            foreach(var c in m_ScriptInstance.GetClassStructure())
             {
                 var data = ReferenceGameHook.DataFileManager.GetScriptInstanceType(c);
                 if (data != null)
@@ -55,7 +55,7 @@ namespace XCommonLib.UI.Bases.Story
                     listBox1.Items.Add(c.ToString());
             }
 
-            var functions = m_ScriptInstance.Functions;
+            var functions = m_ScriptInstance.GetAllFunctions();
             listBox2.Items.Clear();
 
 
@@ -79,12 +79,12 @@ namespace XCommonLib.UI.Bases.Story
 
         public void ReloadMemoryTable()
         {
-            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.ScriptVariableCount);
+            var arrValues = m_ScriptInstance.pScriptVariableArr.ToArray(m_ScriptInstance.TypeDef.MemoryLength);
 
             // Load variables if available
             if(ReferenceGameHook != null)
             {
-                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.Class);
+                var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.TypeDef.Class);
                 if(typeData != null)
                     scriptVariableArrayView1.Variables = typeData.Variables;
             }

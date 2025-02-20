@@ -3,10 +3,9 @@ using System;
 
 namespace X3TCAPLib.RAM.Bases.Story.Scripting
 {
-    public class ScriptInstanceTypeDef : MemoryObject
+    public class ScriptInstanceTypeDef : XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceTypeDef
     {
         #region Memory
-        public int Class { get; set; }
         public int Unknown_1 { get; set; }
         public IntPtr pSelf { get; set; }
         public int Unknown_2 { get; set; }
@@ -20,9 +19,22 @@ namespace X3TCAPLib.RAM.Bases.Story.Scripting
         public MemoryObjectPointer<ScriptInstanceFunction> pFunctions;
         public int Unknown { get; set; }
         #endregion
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceTypeDef BaseType => pBase.IsValid ? pBase.obj : null;
+
+        public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstanceFunction[] Functions
+        {
+            get
+            {
+                ScriptInstanceFunction[] result = new ScriptInstanceFunction[FunctionCount_1];
+                for (int i = 0; i < result.Length; i++)
+                    result[i] = pFunctions.GetObjectInArray(i);
+                return result;
+            }
+        }
 
         #region MemoryObject
         public override int ByteSize => 52;
+
 
         public override byte[] GetBytes()
         {
