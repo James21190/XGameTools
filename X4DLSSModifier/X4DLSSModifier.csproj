@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Reference Include="FilePatching">
-      <HintPath>..\..\FilePatcher\FilePatching\bin\Release\net8.0\FilePatching.dll</HintPath>
+      <HintPath>FilePatching.dll</HintPath>
     </Reference>
   </ItemGroup>
 

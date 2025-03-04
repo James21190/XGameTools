@@ -1,6 +1,6 @@
 ﻿namespace X4DLSSModifier
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,51 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cmbDlssPreset = new ComboBox();
-            checkBox1 = new CheckBox();
+            cmbDlssQualityPreset = new ComboBox();
+            chkDlssIndicator = new CheckBox();
             btnApply = new Button();
-            nudDlssPresetValue = new NumericUpDown();
+            nudDlssQualityPresetValue = new NumericUpDown();
             label1 = new Label();
             label2 = new Label();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             label3 = new Label();
             label4 = new Label();
-            comboBox1 = new ComboBox();
-            numericUpDown1 = new NumericUpDown();
+            cmbDlssBalancedPreset = new ComboBox();
+            nudDlssBalancedPresetValue = new NumericUpDown();
             groupBox3 = new GroupBox();
             label5 = new Label();
             label6 = new Label();
-            comboBox2 = new ComboBox();
-            numericUpDown2 = new NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)nudDlssPresetValue).BeginInit();
+            cmbDlssPerformancePreset = new ComboBox();
+            nudDlssPerformancePresetValue = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)nudDlssQualityPresetValue).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudDlssBalancedPresetValue).BeginInit();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudDlssPerformancePresetValue).BeginInit();
             SuspendLayout();
             // 
-            // cmbDlssPreset
+            // cmbDlssQualityPreset
             // 
-            cmbDlssPreset.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbDlssPreset.FormattingEnabled = true;
-            cmbDlssPreset.Items.AddRange(new object[] { "Default", "A", "B", "C", "D", "E", "F", "J", "K", "Custom" });
-            cmbDlssPreset.Location = new Point(80, 16);
-            cmbDlssPreset.Name = "cmbDlssPreset";
-            cmbDlssPreset.Size = new Size(87, 23);
-            cmbDlssPreset.TabIndex = 0;
-            cmbDlssPreset.SelectedIndexChanged += cmbDlssPreset_SelectedIndexChanged;
+            cmbDlssQualityPreset.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDlssQualityPreset.FormattingEnabled = true;
+            cmbDlssQualityPreset.Items.AddRange(new object[] { "Default", "A", "B", "C", "D", "E", "F", "J", "K", "Custom" });
+            cmbDlssQualityPreset.Location = new Point(80, 16);
+            cmbDlssQualityPreset.Name = "cmbDlssQualityPreset";
+            cmbDlssQualityPreset.Size = new Size(87, 23);
+            cmbDlssQualityPreset.TabIndex = 0;
+            cmbDlssQualityPreset.SelectedIndexChanged += cmbDlssQualityPreset_SelectedIndexChanged;
             // 
-            // checkBox1
+            // chkDlssIndicator
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(12, 264);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(140, 19);
-            checkBox1.TabIndex = 1;
-            checkBox1.Text = "Enable DLSS Indicator";
-            checkBox1.UseVisualStyleBackColor = true;
+            chkDlssIndicator.AutoSize = true;
+            chkDlssIndicator.Location = new Point(12, 264);
+            chkDlssIndicator.Name = "chkDlssIndicator";
+            chkDlssIndicator.Size = new Size(140, 19);
+            chkDlssIndicator.TabIndex = 1;
+            chkDlssIndicator.Text = "Enable DLSS Indicator";
+            chkDlssIndicator.UseVisualStyleBackColor = true;
             // 
             // btnApply
             // 
@@ -84,14 +84,14 @@
             btnApply.UseVisualStyleBackColor = true;
             btnApply.Click += btnApply_Click;
             // 
-            // nudDlssPresetValue
+            // nudDlssQualityPresetValue
             // 
-            nudDlssPresetValue.Location = new Point(111, 45);
-            nudDlssPresetValue.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            nudDlssPresetValue.Name = "nudDlssPresetValue";
-            nudDlssPresetValue.Size = new Size(56, 23);
-            nudDlssPresetValue.TabIndex = 3;
-            nudDlssPresetValue.ValueChanged += nudDlssPresetValue_ValueChanged;
+            nudDlssQualityPresetValue.Location = new Point(111, 45);
+            nudDlssQualityPresetValue.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            nudDlssQualityPresetValue.Name = "nudDlssQualityPresetValue";
+            nudDlssQualityPresetValue.Size = new Size(56, 23);
+            nudDlssQualityPresetValue.TabIndex = 3;
+            nudDlssQualityPresetValue.ValueChanged += nudDlssQualityPresetValue_ValueChanged;
             // 
             // label1
             // 
@@ -115,8 +115,8 @@
             // 
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(cmbDlssPreset);
-            groupBox1.Controls.Add(nudDlssPresetValue);
+            groupBox1.Controls.Add(cmbDlssQualityPreset);
+            groupBox1.Controls.Add(nudDlssQualityPresetValue);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(175, 78);
@@ -128,8 +128,8 @@
             // 
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label4);
-            groupBox2.Controls.Add(comboBox1);
-            groupBox2.Controls.Add(numericUpDown1);
+            groupBox2.Controls.Add(cmbDlssBalancedPreset);
+            groupBox2.Controls.Add(nudDlssBalancedPresetValue);
             groupBox2.Location = new Point(12, 96);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(175, 78);
@@ -155,32 +155,32 @@
             label4.TabIndex = 5;
             label4.Text = "DLSS Preset Value";
             // 
-            // comboBox1
+            // cmbDlssBalancedPreset
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Default", "A", "B", "C", "D", "E", "F", "J", "K", "Custom" });
-            comboBox1.Location = new Point(80, 16);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(87, 23);
-            comboBox1.TabIndex = 0;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cmbDlssBalancedPreset.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDlssBalancedPreset.FormattingEnabled = true;
+            cmbDlssBalancedPreset.Items.AddRange(new object[] { "Default", "A", "B", "C", "D", "E", "F", "J", "K", "Custom" });
+            cmbDlssBalancedPreset.Location = new Point(80, 16);
+            cmbDlssBalancedPreset.Name = "cmbDlssBalancedPreset";
+            cmbDlssBalancedPreset.Size = new Size(87, 23);
+            cmbDlssBalancedPreset.TabIndex = 0;
+            cmbDlssBalancedPreset.SelectedIndexChanged += cmbDlssBalancedPreset_SelectedIndexChanged;
             // 
-            // numericUpDown1
+            // nudDlssBalancedPresetValue
             // 
-            numericUpDown1.Location = new Point(111, 45);
-            numericUpDown1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(56, 23);
-            numericUpDown1.TabIndex = 3;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            nudDlssBalancedPresetValue.Location = new Point(111, 45);
+            nudDlssBalancedPresetValue.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            nudDlssBalancedPresetValue.Name = "nudDlssBalancedPresetValue";
+            nudDlssBalancedPresetValue.Size = new Size(56, 23);
+            nudDlssBalancedPresetValue.TabIndex = 3;
+            nudDlssBalancedPresetValue.ValueChanged += nudDlssBalancedPresetValue_ValueChanged;
             // 
             // groupBox3
             // 
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(label6);
-            groupBox3.Controls.Add(comboBox2);
-            groupBox3.Controls.Add(numericUpDown2);
+            groupBox3.Controls.Add(cmbDlssPerformancePreset);
+            groupBox3.Controls.Add(nudDlssPerformancePresetValue);
             groupBox3.Location = new Point(12, 180);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(175, 78);
@@ -206,27 +206,27 @@
             label6.TabIndex = 5;
             label6.Text = "DLSS Preset Value";
             // 
-            // comboBox2
+            // cmbDlssPerformancePreset
             // 
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Default", "A", "B", "C", "D", "E", "F", "J", "K", "Custom" });
-            comboBox2.Location = new Point(80, 16);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(87, 23);
-            comboBox2.TabIndex = 0;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            cmbDlssPerformancePreset.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDlssPerformancePreset.FormattingEnabled = true;
+            cmbDlssPerformancePreset.Items.AddRange(new object[] { "Default", "A", "B", "C", "D", "E", "F", "J", "K", "Custom" });
+            cmbDlssPerformancePreset.Location = new Point(80, 16);
+            cmbDlssPerformancePreset.Name = "cmbDlssPerformancePreset";
+            cmbDlssPerformancePreset.Size = new Size(87, 23);
+            cmbDlssPerformancePreset.TabIndex = 0;
+            cmbDlssPerformancePreset.SelectedIndexChanged += cmbDlssPerformancePreset_SelectedIndexChanged;
             // 
-            // numericUpDown2
+            // nudDlssPerformancePresetValue
             // 
-            numericUpDown2.Location = new Point(111, 45);
-            numericUpDown2.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(56, 23);
-            numericUpDown2.TabIndex = 3;
-            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
+            nudDlssPerformancePresetValue.Location = new Point(111, 45);
+            nudDlssPerformancePresetValue.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            nudDlssPerformancePresetValue.Name = "nudDlssPerformancePresetValue";
+            nudDlssPerformancePresetValue.Size = new Size(56, 23);
+            nudDlssPerformancePresetValue.TabIndex = 3;
+            nudDlssPerformancePresetValue.ValueChanged += nudDlssPerformancePresetValue_ValueChanged;
             // 
-            // Form1
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -235,44 +235,44 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(btnApply);
-            Controls.Add(checkBox1);
+            Controls.Add(chkDlssIndicator);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximumSize = new Size(215, 360);
             MinimumSize = new Size(215, 360);
-            Name = "Form1";
+            Name = "MainForm";
             Text = "X4 DLSS Modifier";
-            Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)nudDlssPresetValue).EndInit();
+            Load += MainForm_Load;
+            ((System.ComponentModel.ISupportInitialize)nudDlssQualityPresetValue).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudDlssBalancedPresetValue).EndInit();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudDlssPerformancePresetValue).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private ComboBox cmbDlssPreset;
-        private CheckBox checkBox1;
+        private ComboBox cmbDlssQualityPreset;
+        private CheckBox chkDlssIndicator;
         private Button btnApply;
-        private NumericUpDown nudDlssPresetValue;
+        private NumericUpDown nudDlssQualityPresetValue;
         private Label label1;
         private Label label2;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Label label3;
         private Label label4;
-        private ComboBox comboBox1;
-        private NumericUpDown numericUpDown1;
+        private ComboBox cmbDlssBalancedPreset;
+        private NumericUpDown nudDlssBalancedPresetValue;
         private GroupBox groupBox3;
         private Label label5;
         private Label label6;
-        private ComboBox comboBox2;
-        private NumericUpDown numericUpDown2;
+        private ComboBox cmbDlssPerformancePreset;
+        private NumericUpDown nudDlssPerformancePresetValue;
     }
 }
