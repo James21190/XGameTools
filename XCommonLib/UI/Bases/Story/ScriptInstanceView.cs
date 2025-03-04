@@ -66,9 +66,22 @@ namespace XCommonLib.UI.Bases.Story
             // Load variables if available
             if(ReferenceGameHook != null)
             {
+                ScriptInstanceType.VariableData[] variables = new ScriptInstanceType.VariableData[m_ScriptInstance.TypeDef.ScriptMemoryLength];
                 var typeData = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.TypeDef.Class);
-                if(typeData != null)
-                    scriptVariableArrayView1.Variables = typeData.Variables;
+                for(int i = 0; i < variables.Length; i++)
+                {
+                    if(typeData != null && typeData.Variables.Length > i)
+                    {
+                        variables[i] = typeData.Variables[i];
+                    }
+                    else
+                    {
+                        variables[i].Name = "var " + i.ToString();
+                    }
+                    var variableClassType = ReferenceGameHook.DataFileManager.GetScriptInstanceType(m_ScriptInstance.GetClassOfVariable(i));
+                    variables[i].Name = (variableClassType != null ? variableClassType.Name : m_ScriptInstance.GetClassOfVariable(i).ToString()) + "." +variables[i].Name;
+                }
+                scriptVariableArrayView1.Variables = variables;
             }
 
             scriptVariableArrayView1.DynamicValues = arrValues;

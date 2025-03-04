@@ -58,6 +58,15 @@ namespace XCommonLib.RAM.Bases.Story.Scripting
             return result.ToArray();
         }
 
+        public int GetClassOfVariable(int index)
+        {
+            for (var typedef = TypeDef; typedef != null; typedef = typedef.BaseType)
+            {
+                if (typedef.BaseType == null || index > typedef.BaseType.ScriptMemoryLength)
+                    return typedef.Class;
+            }
+            throw new Exception();
+        }
         public int[] GetClassStructure()
         {
             List<int> result = new List<int>();

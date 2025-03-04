@@ -20,6 +20,8 @@ namespace X3TCAPLib.RAM.Bases.Story
 
         #region Common
         #region Scripting
+
+        #region ScriptTask
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTaskObject GetScriptTaskObject(IntPtr pAddress)
         {
             throw new NotImplementedException();
@@ -28,6 +30,13 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             return pHashTable_ScriptTaskObject.obj.GetObject(id);
         }
+        public override int[] GetAllScriptTaskObjects()
+        {
+            return pHashTable_ScriptTaskObject.obj.ScanContents();
+        }
+        #endregion
+
+        #region ScriptInstance
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptInstance GetScriptInstance(int id)
         {
             int value = id < 0 ? -id - 1 : id;
@@ -45,10 +54,9 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             return pHashTable_ScriptInstance.obj.ScanContents();
         }
-        public override int[] GetAllScriptTaskObjects()
-        {
-            return pHashTable_ScriptTaskObject.obj.ScanContents();
-        }
+        #endregion
+
+        #region ScriptString
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptStringObject GetScriptStringObject(IntPtr pAddress)
         {
             var scriptInstance = new ScriptStringObject();
@@ -66,6 +74,8 @@ namespace X3TCAPLib.RAM.Bases.Story
         {
             return pHashTable_ScriptStringObject.obj.ScanContents();
         }
+        #endregion
+
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptTableObject GetScriptHashTable(int id)
         {
             throw new NotImplementedException();
@@ -86,7 +96,6 @@ namespace X3TCAPLib.RAM.Bases.Story
             result.ReloadFromMemory();
             return result;
         }
-
         public override XCommonLib.RAM.Bases.Story.Scripting.ScriptArrayObject GetScriptArrayObject(int id)
         {
             throw new NotImplementedException();

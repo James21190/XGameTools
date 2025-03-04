@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XBTFLib", "XBTFLib\XBTFLib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonToolLibTests", "CommonToolLibTests\CommonToolLibTests.csproj", "{18C50824-FB0D-4496-B8D1-7968961F049C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X4DLSSModifier", "X4DLSSModifier\X4DLSSModifier.csproj", "{97C917D9-9930-44F0-9401-1EED8ACE9E18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -335,6 +337,18 @@ Global
 		{18C50824-FB0D-4496-B8D1-7968961F049C}.Release|x64.Build.0 = Release|Any CPU
 		{18C50824-FB0D-4496-B8D1-7968961F049C}.Release|x86.ActiveCfg = Release|Any CPU
 		{18C50824-FB0D-4496-B8D1-7968961F049C}.Release|x86.Build.0 = Release|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Debug|x64.Build.0 = Debug|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Debug|x86.Build.0 = Debug|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Release|x64.ActiveCfg = Release|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Release|x64.Build.0 = Release|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Release|x86.ActiveCfg = Release|Any CPU
+		{97C917D9-9930-44F0-9401-1EED8ACE9E18}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
