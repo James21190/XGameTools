@@ -20,26 +20,36 @@ namespace X4DLSSModifier
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            if (_DLSSIndicatorAvailable)
+            try
             {
-                int regValue = (int)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\NVIDIA Corporation\\Global\\NGXCore", "ShowDlssIndicator", 0);
-                if (chkDlssIndicator.Checked)
+                if (_DLSSIndicatorAvailable)
                 {
-                    regValue |= 0x400;
+                    int regValue = (int)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\NVIDIA Corporation\\Global\\NGXCore", "ShowDlssIndicator", 0);
+                    int newRegValue;
+                    if (chkDlssIndicator.Checked)
+                    {
+                        newRegValue = regValue | 0x400;
+                    }
+                    else
+                    {
+                        newRegValue = regValue & ~0x400;
+                    }
+                    if(newRegValue != regValue)
+                        Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\NVIDIA Corporation\\Global\\NGXCore", "ShowDlssIndicator", regValue, RegistryValueKind.DWord);
                 }
-                else
+                var patchResult = _PatchHandler.PatchWith(_Patch, true);
+                if (((int)patchResult != (int)PatchResult.PATCH_SUCCESSFUL))
                 {
-                    regValue &= ~0x400;
+                    string errorCode = ((PatternPatch.PatchErrors)((int)patchResult)).ToString();
+                    throw new Exception("Failed to apply patch. Error Code: " + errorCode);
                 }
-                Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\NVIDIA Corporation\\Global\\NGXCore", "ShowDlssIndicator", regValue, RegistryValueKind.DWord);
+                _PatchHandler.WriteChanges(false);
+                MessageBox.Show("Patch was applied.", "Success");
             }
-            var patchResult = _PatchHandler.PatchWith(_Patch, true);
-            if (((int)patchResult != (int)PatchResult.PATCH_SUCCESSFUL))
+            catch (Exception ex)
             {
-                string errorCode = ((PatternPatch.PatchErrors)((int)patchResult)).ToString();
-                throw new Exception("Failed to apply patch. Error Code: " + errorCode);
+                MessageBox.Show(ex.Message, "Error");
             }
-            _PatchHandler.WriteChanges(false);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -54,7 +64,7 @@ namespace X4DLSSModifier
                 return;
             }
 
-            _PatchHandler = new FilePatching.PatchHandler(ofd.FileName);
+            _PatchHandler = new PatchHandler(ofd.FileName);
 
             var regValue = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\NVIDIA Corporation\\Global\\NGXCore", "ShowDlssIndicator", 0);
             chkDlssIndicator.Checked = regValue != null ? (int)regValue == 0x400 : false;
@@ -75,24 +85,26 @@ namespace X4DLSSModifier
 
         private static int _GetDLSSValue(string value)
         {
-            case "Default":
-                return 0;
-            case "A":
-                return 1;
-            case "B":
-                return 2;
-            case "C":
-                return 3;
-            case "D":
-                return 4;
-            case "E":
-                return 5;
-            case "F":
-                return 6;
-            case "J":
-                return 10;
-            case "K":
-                return 11;
+            switch (value)
+            {
+                case "Default":
+                    return 0;
+                case "A":
+                    return 1;
+                case "B":
+                    return 2;
+                case "C":
+                    return 3;
+                case "D":
+                    return 4;
+                case "E":
+                    return 5;
+                case "F":
+                    return 6;
+                case "J":
+                    return 10;
+                case "K":
+                    return 11;
             }
             throw new ArgumentException();
         }
