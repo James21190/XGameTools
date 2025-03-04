@@ -45,7 +45,6 @@
             label6 = new Label();
             comboBox2 = new ComboBox();
             numericUpDown2 = new NumericUpDown();
-            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudDlssPresetValue).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -227,22 +226,11 @@
             numericUpDown2.TabIndex = 3;
             numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(12, 286);
-            label7.Name = "label7";
-            label7.Size = new Size(97, 30);
-            label7.TabIndex = 8;
-            label7.Text = "Tested with build\r\n553255";
-            label7.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(199, 321);
-            Controls.Add(label7);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -286,6 +274,5 @@
         private Label label6;
         private ComboBox comboBox2;
         private NumericUpDown numericUpDown2;
-        private Label label7;
     }
 }

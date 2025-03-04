@@ -1,3 +1,4 @@
+using FilePatching;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
 
@@ -33,9 +34,10 @@ namespace X4DLSSModifier
                 Registry.SetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\NVIDIA Corporation\\Global\\NGXCore", "ShowDlssIndicator", regValue, RegistryValueKind.DWord);
             }
             var patchResult = _PatchHandler.PatchWith(_Patch, true);
-            if (((int)patchResult & (int)FilePatching.PatchHandler.PatchResult.PATCH_SUCCESSFUL) != 0)
+            if (((int)patchResult != (int)PatchResult.PATCH_SUCCESSFUL))
             {
-                throw new Exception("Failed to apply patch!");
+                string errorCode = ((PatternPatch.PatchErrors)((int)patchResult)).ToString();
+                throw new Exception("Failed to apply patch. Error Code: " + errorCode);
             }
             _PatchHandler.WriteChanges(false);
         }
